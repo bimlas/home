@@ -1,0 +1,2971 @@
+linux_parancsok.txt - Ubuntu használatával készült jegyzetek
+
+Ezt a gyűjteményt elsősorban saját magamnak hoztam létre, hogy a manual
+oldalak és a fórumok többszöri átnézése helyett csak ezt az egy irományt
+kelljen elővennem, ha épp egy ritkán használt hasznos parancsra nem emlékszem.
+
+Mivel a programok fejlődnek, változnak, ezért nem kizárt, hogy az alábbi
+példák közül némelyik hibás, idejét múlt. Ráadásul nem én írtam ezeket a
+programokat, már csak ebből a tényből kifolyólag sem biztos, hogy a leírások
+fedik a valóságot. Éppen ezért kérlek, óvatosan próbálgasd az itt leírtakat!
+Bár segítségnyújtásként osztom meg a publikummal, de ez nem egy szentírás,
+lehetnek benne hibák. Ha találsz ilyet, vagy van egy jó tipped, hogy miként
+lehet az adott programból még többet kihozni, kérlek írd meg nekem, hogy ezen
+a dokumentumon keresztül segítsd a többi embert!
+
+                         MEGJEGYZÉSEK A JELÖLÉSEKHEZ
+
+A ^ karakter (kontextustól függően) a Ctrl billentyűt jelenti, pl.:
+
+    ^C = Ctrl+C
+
+A parancsok nevével egy sorban a csomag neve található, a csomagnevek
+Ubuntu-ból vannak ugyan, de a legtöbb csomagnév megegyezik a különböző
+disztrókban. Pl.:
+
+    whatis                                                            [man-db]
+
+Ha kódrészlet van beillesztve, a $ karakter a beírandó parancsot, a #
+magyarázó szöveget jelöl. Pl.:
+
+    $ ls
+    # A fájlok listája jelenik meg.
+
+    $ echo 'Egy többsoros parancsnál
+      a behúzás különíti el a bemenetet
+      és a kimenetet.'
+    Egy többsoros parancsnál a behúzás különíti el a bemenetet és a kimenetet.
+
+A 'regex' alatt regex (reguláris) kifejezést értek.
+
+TIPP: Ha vim-ben nyitottad meg, de nem ismered a folding használatát, a zR
+kinyitja az összes könyvjelzőt.
+
+============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.15 20:04 ==
+
+                               ÁLTALÁNOS INFÓK                            {{{1
+==============================================================================
+
+                                     SÚGÓ                                 {{{2
+______________________________________________________________________________
+
+Mikor man oldalak neve mellett egy szám található, az a szekció számát jelöli.
+Pl.:
+
+    $ whatis 'man'
+    man (7) - macros to format man pages                        # 7-es szekció
+    man (1) - an interface to the on-line reference manuals     # 1-es szekció
+
+whatis                                                                [man-db]
+
+    Egysoros leírás a programról.
+
+        $ whatis 'whatis'
+        whatis (1)    display manual page descriptions
+
+    '/bin' és a '/usr/bin' fájljai rövid leirással:
+
+        $ whatis $(find '/bin' '/usr/bin' -printf '%P\n') | less
+
+apropos                                                               [man-db]
+
+    Egysoros leírást ad a programokról, amelyek leírásában szerepel a megadott
+    regex.
+
+        $ apropos 'shell'
+
+man                                                                   [man-db]
+
+    Manual (kézikönyv) megjelenítése:
+
+        $ man 'ls'
+
+    ... adott szekcióból:
+
+        $ whatis 'printf'
+        printf (1)           - format and print data
+        printf (3)           - formatted output conversion
+        $ man 3 'printf'
+        # A 3-as szekció alatti man oldal fog megjelenni.
+
+    Manual-ok adatbázisának frissítése (akkor kell, ha pl. kézzel másoltunk
+    fel a rendszerre egy man oldalt):
+
+        $ mandb
+
+    __ KAPCSOLÓK __________________________
+
+    -k           Ugyanaz, mint az 'apropos'.
+    -M ÚT/VONAL  A manual-okat a megadott elérési úton keresse. (mindenképp
+                 ÚT/VONAL/man# nevű könyvtárban kell lenniük, ahol # = [1-8])
+
+    __ BILLENTYŰ PARANCSOK ________________
+
+    /   Regex keresése a szövegben.
+    n   Következő találatra ugrás.
+    N   Előző találatra ugrás.
+
+xman                                                                [x11-apps]
+
+    Menüpontokba szedve lehet böngészni a manual oldalakat.
+
+info                                                                    [info]
+
+    Hasonló a 'man'-hoz, de sokszor részletesebb - gyakorlatilag olyan, mintha
+    egy weboldalon böngésznénk.
+
+    __ BILLENTYŰ PARANCSOK ________________
+
+    /   Regex keresése a szövegben.
+    u   Egy szinttel fentebb lép.
+    p   Előző oldal.
+    n   Következő oldal.
+
+                                FUTÁSI SZINTEK                            {{{2
+______________________________________________________________________________
+
+0   Rendszer leállítása. (system halt)
+1   Egyfelhasználós mód. (single user mode)
+2   Többfelhasználós mód - ez az alap. (multiuser mode)
+3-4 Ugyanaz, mint a 2.
+5   GUI (ablakkezelős) mód.
+6   Rendszer újraindítása. (system reboot)
+
+                              KÖNYVTÁRSZERKEZET                           {{{2
+______________________________________________________________________________
+
+~
+
+    Nem valódi könyvtár, de a shell a '/home/USER/' könyvtárat érti alatta.
+
+~/.netrc
+
+    Vannak programok, amelyek ezen fájl alapján előre beírjak nekünk a
+    felhasználónevünket, jelszavunkat, majd belépés után akár előre megadott
+    parancsokat is végrehajthatnak. (pl.: 'pftp')
+
+        .NETRC
+            machine FTP.KISZOLGALÓ.COM login FELHASZNÁLÓNÉV password JELSZÓ
+
+/dev/disk/by-uuid/
+
+    Nyomjunk 'ls -l' parancsot, majd a '/proc/partitions' tartalmával
+    összevetve megkaphatjuk a meghajtók UUID-jet.
+
+/dev/null
+
+    A 'fekete lyuk'. Irányítsunk bele bármit, ha másként nem tudjuk semmissé
+    tenni azt. Pl.:
+
+        $ echo 'Ott vannak a hícsík...? ' > '/dev/null'
+
+/etc/fstab
+
+    Automount beállítások.
+
+/etc/init.d/
+
+    Init szkriptek. Lásd még:
+
+        $ man 'update-rc.d'
+
+/etc/mime.types
+
+    Mime típusok és azok kiterjesztései.
+
+/etc/modprobe.d/blacklist.conf
+
+    Itt lehet letiltani a kernelmodulok betöltését, pl.:
+
+        blacklist nouveau
+
+    Módosítások után:
+
+        $ update-initramfs -u
+
+/etc/modules
+
+    Azon kernelmodulok listája, amiket mindenképp be szeretnénk tölteni, pl.:
+
+        nouveau
+
+/etc/mtab
+
+    Mount-olt meghajtók listája.
+
+/etc/rc*.d/
+
+    Runlevel linkek az '/etc/init.d/' szkriptekhez. Lásd még:
+
+        $ man 'update-rc.d'
+
+/etc/services
+
+    Portlista, az oszlopok jelentése:
+
+        service-name   port/protocol   [aliases ...]
+
+/opt/
+
+    Binárisokat szokták ide tenni, pl. ha apt helyett tar.gz fájlból akarunk
+    telepíteni egy programot. (pl. 'firefox')
+
+/proc/PID/maps
+
+    PID folyamatszámú program memória-térképe.
+
+/proc/PID/smaps
+
+    ... bővebb információkkal.
+
+/proc/partitions
+
+    Az elérhető hattértarolók listája.
+
+/usr/share/
+
+    A program futásához szükséges fájlok, példák, stb. (kb mint windows-on a
+    'program files')
+
+/var/log/
+
+    Log fájlok.
+
+    boot.log    Boot során a képernyőre irt üzenetek.
+    syslog      Rendszernapló.
+
+                                  BASH SHELL                              {{{1
+==============================================================================
+
+A kiegészítések csak akkor működnek, ha nincsenek "idézőjelek", vagy
+'aposztrófok' közé fogva.
+
+A változók használata a kiegészítéseken belül nem várt eredményt ad, a helyes
+működéshez használjuk az 'eval' parancsot:
+
+    $ i=3
+    $ eval echo {1..$i}
+
+A több fájlnév átadását könnyítő 'glob' kifejezések (pl.: '*.jpg') kibővítése:
+
+    $ shopt -s extglob
+
+Így a következő kifejezéseket is használhatjuk:
+
+    ?(LISTA)  Nulla, vagy egy elemre illeszkedik.
+    *(LISTA)  Nulla, vagy bármennyi elemre illeszkedik.
+    +(LISTA)  Legalább egy elemre illeszkedik.
+    @(LISTA)  Az egyik elemre illeszkedik csak.
+    !(LISTA)  A LISTA kivételével mindenre illeszkedik.
+
+Pl.:
+
+    $ ls !(*.jpg|*.gif)
+    # A 'jpg' és 'gif' kiterjesztésű fájlokon kívül mindent kilistáz.
+
+                            BILLENTYŰ KOMBINÁCIÓK                         {{{2
+______________________________________________________________________________
+
+TAB         Automatikus kiegészítés parancs- és fájlnevekhez.
+TAB TAB     Kiírja az összes lehetőséget.
+
+^D          Kijelentkezés, szöveges bevitel lezárása (end of file), pl.
+            magában kiadott 'cat' parancsnál ezzel jelezzük, hogy nem akarunk
+            többet gépelni.
+^V          Karakter beszúrása, pl.: ^V TAB egy rendes tabulátort illeszt be.
+
+^U          A kurzor előtti részt törli a parancssorban, viszont a ^Y
+            lenyomásával beilleszthetjük.
+^K          A kurzor utáni részt törli.
+^Y          A ^U, vagy a ^K hatására törölt részt újra beilleszti.
+^L          Az egész képernyőt törli. (clear screen)
+
+^R          Keresés a beírt parancsok közt. A keresett rész beírása után ha
+            újra lenyomjuk a ^R kombót, akkor a következő találatra ugrik.
+
+^S          Megfagyasztja a folyamatot, így például el lehet olvasni a boot
+            közben kiírt üzeneteket.
+^Q          Folytatja a folyamatot.
+
+^Z          Folyamat felfüggesztése. (pause, lásd: folyamatkezelés)
+^C          Megszakítja a folyamatot. (leállítja, kilép belőle)
+
+                                   VÁLTOZÓK                               {{{2
+______________________________________________________________________________
+
+$VÁLTOZÓ
+
+    Hivatkozás változóra.
+
+        $ bla=123
+        $ echo $bla
+        123
+
+                   KIMENET, BEMENET ÁTIRÁNYÍTÁSA, CSATORNÁK               {{{2
+______________________________________________________________________________
+
+CSATORNÁK SZÁMOZÁSA
+
+    0   stdin  bemenet.
+    1   stdout kimenet.
+    2   stderr hibacsatorna.
+
+PARANCS1 | PARANCS2
+
+    Az első parancs kimenete a második parancs bemenetet képezi.
+
+PARANCS < FÁJL
+
+    A bemenet a fájl tartalma lesz.
+
+PARANCS << HEREDOC
+
+    Többsoros üzenetek átadásához hasznos. (lásd lejebb)
+
+PARANCS > FÁJL
+
+    A kimenete a fájlba kerül.
+
+PARANCS >> FÁJL
+
+    Kimenet hozzáfűződik a fájl végéhez.
+
+PARANCS N>  FÁJL
+PARANCS N>> FÁJL
+
+    N csatorna átirányítása a fájlba.
+
+PARANCS N>&M
+
+    Kimeneti csatorna átirányítása.
+
+PARANCS N<&M
+
+    Bemeneti csatorna átirányítása.
+
+PARANCS &>  FÁJL
+PARANCS &>> FÁJL
+PARANCS >   FÁJL 2>&1
+PARANCS >>  FÁJL 2>&1
+
+    Kimenet és a hibacsatorna tartalma a fájlba íródik.
+
+                                   HEREDOC                                {{{2
+______________________________________________________________________________
+
+Ha többsoros üzenetet akarunk átadni egy parancsnak, vagy körlevelet akarunk
+írni, hasznos lehet a 'here document' (röviden 'heredoc').
+Ez egyfajta átirányítás, de fájl, vagy kimenet átirányítása helyett a szöveget
+helyben adjuk meg.
+
+        $ valtozo='valami'
+        $ cat << HEREDOC
+          Helló!
+          Ez itt egy heredoc, az egyik változóban van $valtozo.
+          A mai dátum: $(date)
+          HEREDOC
+        Helló!
+        Ez itt egy heredoc, az egyik változóban van valami.
+        A mai dátum: 2013. aug. 28., szerda, 18.28.08 CEST
+
+A szöveget egy általunk választott parancsszóval fogjuk közre, a fenti
+példában ez a 'HEREDOC'. Ha szkripten belül szeretnénk használni, de nem
+akarjuk, hogy a behúzások megjelennek, akkor a következő módon használjuk:
+
+        $ cat <<- HEREDOC
+        # ...
+
+                             ZÁRÓJEL KIEGÉSZÍTÉS                          {{{2
+______________________________________________________________________________
+
+{SZTRING1,SZTRING2}
+
+    A megadott szövegrészeket behelyettesítve szóközökkel elválasztott
+    sztringeket generál.
+
+        $ echo {egyik,másik}
+        egyik másik
+        $ echo termin{ál,átor}
+        terminál terminátor
+        $ echo m{e,a}no
+        meno mano
+
+    A kiegészítések hatással vannak egymásra.
+
+        $ echo {{a,b,c}1,2,3}
+        a1 b1 c1 2 3
+        $ echo {a,b,c}{1,2,3}
+        a1 a2 a3 b1 b2 b3 c1 c2 c3
+
+    Szóközök nem szerepelhetnek a kifejezésben, de ha nem csak esztétikai
+    okokból tettük bele, akkor fogjuk idézőjelek közé.
+
+        $ echo m{e, a}no
+        m{e, a}no
+        $ echo se{' füle',' farka'}
+        se füle se farka
+
+    Ha a kifejezés idézőjelek között van, akkor nem lesz értelmezve.
+
+        $ echo '{ez,az} ami nem megy'
+        {ez,az} ami nem megy
+        $ echo 'Ez a(z) ' {egyik,másik} ' példamondat.'
+        Ez a(z) egyik példamondat. Ez a(z) másik példamondat.
+
+    A dolog változók használatával is működik.
+
+        $ egyik='t'; masik='h'
+        $ echo {$egyik,$masik}
+        t h
+        $ echo {$egyik,$masik}'apsi'
+        tapsi hapsi
+
+    Hasznos például hosszú fájlneveknél, vagy olyan esetekben, ha sokat kéne
+    ismételnünk. Például, ha backup-ot akarunk készíteni:
+
+        $ cp .bashrc{,.bak}
+
+    Ez egyenértékű ezzel:
+
+        $ cp '.bashrc' '.bashrc.bak'
+
+{START..STOP}
+
+    A megadott intervallum elemeiből szóközokkel elválasztott felsorolást
+    generál.
+
+        $ echo {0..9}
+        0 1 2 3 4 5 6 7 8 9
+        $ echo {a..f}
+        a b c d e f
+
+    A változók kezelésehez használjuk az eval parancsot:
+
+        $ i=0; j=9
+        $ eval echo {$i..$j}
+        0 1 2 3 4 5 6 7 8 9
+
+    Természetesen a kiegészítések vegyíthetőek egymással is.
+
+        $ echo {{0..9},{a..f}}
+        0 1 2 3 4 5 6 7 8 9 a b c d e f
+
+                            PARAMÉTER KIEGÉSZÍTÉS                         {{{2
+______________________________________________________________________________
+
+FIGYELEM! Csak a könnyebb olvashatóság miatt szerepelnek szóközök a
+kifejezésekben!
+
+${ # VÁLTOZÓ                     }   A változó hossza karakterekben mérve.
+${   VÁLTOZÓ :  KEZDET           }   Változó adott szegmense.
+${   VÁLTOZÓ :  KEZDET : HOSSZ   }
+${   VÁLTOZÓ #  REGEX            }   A tartalma eleji legkisebb...
+${   VÁLTOZÓ ## REGEX            }   ...vagy legnagyobb egyezést törli.
+${   VÁLTOZÓ %  REGEX            }   Ugyanaz a szöveg végén.
+${   VÁLTOZÓ %% REGEX            }
+${   VÁLTOZÓ ^  REGEX            }   Nagybetűssé alakítja az első egyezést.
+${   VÁLTOZÓ ^^ REGEX            }   ... minden egyezést.
+${   VÁLTOZÓ ,  REGEX            }   Ugyanaz, csak kisbetűssé.
+${   VÁLTOZÓ ,, REGEX            }
+${   VÁLTOZÓ /  REGEX  / SZTRING }   Módosítja az első...
+${   VÁLTOZÓ // REGEX  / SZTRING }   ...vagy minden egyezést.
+
+${ VÁLTOZÓ :+ SZTRING }
+
+    Ha a változó nem üres, akkor a sztring kerül átadásra.
+
+        $ valtozo='Blabla...'
+        $ echo ${valtozo:+'Már van értéke.'}
+        Már van értéke
+
+${ VÁLTOZÓ :- SZTRING }
+
+    Ha a változó üres, akkor a sztring kerül átadásra.
+
+        $ valtozo=''
+        $ echo ${valtozo:-'Nincs értéke.'}
+        Nincs értéke.
+
+${ VÁLTOZÓ := SZTRING }
+
+    ... értéket adunk neki, és azzal térünk vissza.
+
+        $ valtozo=''
+        $ echo ${valtozo:='Új érték.'}
+        Új érték.
+        $ echo $valtozo
+        Új érték.
+
+${ VÁLTOZÓ :? ÜZENET }
+
+    ... hibaüzenettel jelezzük.
+
+        $ echo ${valtozo:?'Nincs értéke.'}
+        bash: valtozo: Nincs értéke.
+
+${!PREFIX*}
+${!PREFIX@}
+
+    Azon változók nevét helyettesíti be, amelyek neve a PREFIX-szel kezdődik.
+    Elvileg a @-al minden változó neve idézőjelek közé kerül, de ezt sehol se
+    tapasztaltam még.
+
+${!TÖMB[*]}
+${!TÖMB[@]}
+
+    A tömb elemeinek listája.
+
+                           PARANCS BEHELYETTESÍTÉS                        {{{2
+______________________________________________________________________________
+
+`PARANCS`
+$(PARANCS)
+
+    A behelyettesítés helyére a parancs kimenete kerül. Változók értékadásánál
+    hasznos például.
+
+        $ date '+%d-%b-%Y'
+        12-már-2004
+        $ datum=$( date '+%d-%b-%Y' )
+        $ echo $datum
+        12-már-2004
+
+                         ARITMETIKAI BEHELYETTESÍTÉS                      {{{2
+______________________________________________________________________________
+
+$((ARITMETIKA))
+
+    A bash által ismert aritmetikai műveletek hajthatóak végre.
+
+        $ echo $(( 2**3 ))
+        8
+
+                               FOLYAMATKEZELÉS                            {{{2
+______________________________________________________________________________
+
+./PARANCS
+
+    Futtatás a helyi könyvtárból. (sub-shellben)
+
+        $ ./script.sh
+
+. ./PARANCS
+
+    Futtatás a helyi könyvtárból. (az adott shellben) Hasznos pl. a '.bashrc'
+    módosításainak érvénybe léptetéshez.
+
+        $ . ./.bashrc
+
+PARANCS &
+
+    Folyamat indítása a háttérben - a shell továbbra is interaktív marad, míg
+    a folyamat 'láthatatlanul' fut.
+
+jobs
+
+    Kiírja a shell-en belül futó folyamatokat és a folyamat azonosítókat.
+    A következő példában a 'top' azonosítója 1:
+
+        $ top
+        # Fut a 'top' parancs; megnyomjuk a ^Z-t.
+        [1]+  Stopped       top
+        $ jobs
+        [1]+  Stopped       top
+
+fg N
+%N
+
+    Váltás az N azonosítójú folyamatra. Ha nem adtuk meg az N paramétert,
+    akkor a legutóbbi aktív folyamatot hozza előtérbe.
+
+        $ top
+        # ^Z lenyomásával felfüggesztjük a feladatot.
+        [1]+  Megállítva            top
+        $ %
+        # Ismét fut a 'top'.
+
+    Ha több folyamatot függesztettünk fel, akkor a folyamat azonosítójával
+    lehet rá hivatkozni.
+
+        $ top
+        # ^Z
+        [1]+  Megállítva            top
+        $ man 'ls'
+        # ^Z
+        [2]+  Megállítva            man ls
+        $ %1
+        # A 'top' fut tovább.
+
+bg N
+
+    Folyamat háttérbe küldése.
+
+        $ jobs
+        [1]+  Megállítva            top
+        $ bg 1
+        # A háttérben fut tovább a folyamat.
+
+    Ha üzenet érkezik a programtól, a folyamat megáll, amíg előtérbe nem
+    hozzuk.
+
+kill                                                                  [procps]
+killall
+
+    Folyamat leállítása PID ('kill'),vagy név ('killall') alapján.
+
+        $ kill %1
+        # 1-es azonosítójú folyamat 'megölése'.
+        $ kill 1234
+        # 1234 PID számú folyamat megölése.
+
+    __ KAPCSOLÓK __________________________
+
+    -KILL   Mindenképp nyírja ki.
+
+                            KAPCSOLÓK FELISMERÉSE                         {{{2
+______________________________________________________________________________
+
+$0      Program neve az elérési útvonallal együtt.
+        $ basename $0   # Eltünteti az útvonalat.
+$N      N-edik számú paraméter.
+$*      Az összes paraméter egy idézőjelben.
+$@      Az összes paraméter külön-külön idézőjelekben.
+$#      A paraméterek száma.
+$$      A shell PID-je.
+$?      Utolsó folyamat exitstátusza. (return értéke)
+$_      Az előző folyamat utolsó argumentuma.
+
+shift
+
+    Kapcsolók balra mozgatása.
+
+                             ELÁGAZÁSOK, CIKLUSOK                         {{{2
+______________________________________________________________________________
+
+A FELTÉTELekről infó:
+
+    $ man test
+
+if
+
+    if   [ FELTÉTEL ] ; then
+        PARANCSOK
+    elif [ FELTÉTEL ] && ( UTASÍTÁS ) ; then
+        PARANCSOK
+    else
+        PARANCSOK
+    fi
+
+for
+
+    for CIKLUSVÁLTOZÓ in LISTA ; do
+        PARANCSOK
+    done
+
+    CIKLUSOS HASZNÁLAT:
+
+    for (( i = 0 ; i < 5 ; ++i )) ; do
+        echo $i
+    done
+
+while
+
+    while [ FELTÉTEL ] ; do         # Addig fut amíg igaz.
+        PARANCSOK
+    done
+
+until
+
+    until [ FELTÉTEL ] ; do         # Addig fut amíg hamis.
+        PARANCSOK
+    done
+
+case
+
+    case $VÁLTOZÓ in
+        1         ) PARANCSOK;;
+        'sztring' ) PARANCSOK;;
+        REGEX     ) PARANCSOK;;
+        *         ) PARANCSOK;;     # Minden egyéb esetben.
+    esac
+
+select
+
+    Számozottan felsorolja a lehetőségeket és a változóba bekéri a lehetőség
+    sorszámát.
+
+    select VÁLTOZÓ in 'EGYIK PONT' 'MÁSIK PONT' 'KILÉPÉS' ; do
+        if [[ $VÁLTOZÓ == 'KILÉPÉS' ]]; then
+            break
+        fi
+        echo $VÁLTOZÓ
+    done
+
+                             FELHASZNÁLÓI FELÜLET                         {{{2
+______________________________________________________________________________
+
+read
+
+    Sztring beolvasása.
+
+        ALKALMAZOTTAK.TXT
+            Tapsi Hapsi:100:szórakoztatás
+            Maci Laci:200:környezetvédelem
+
+        SCRIPT.SH
+            #!/bin/bash
+            IFS=':'
+            echo 'Alkalmazottak:'
+            echo '--------------'
+            while read nev id terulet
+            do
+                echo "$nev a $terulet területen dolgozik."
+            done < 'alkalmazottak.txt'
+
+        KIMENET
+            Alkalmazottak:
+            --------------
+            Tapsi Hapsi a szórakoztatás területen dolgozik.
+            Maci Laci a környezetvédelem területen dolgozik.
+
+whiptail                                                            [whiptail]
+
+    Ablakok létrehozása newt függvénykönyvtár használatával.
+
+        $ whiptail --title 'Hülye kérdés' --yesno 'Igen, vagy nem?' 10 20
+
+dialog                                                                [dialog]
+
+    Ablakok létrehozása ncurses függvénykönyvtár használatával.
+
+        $ dialog --title 'Hülye kérdés' --yesno 'Igen, vagy nem?' 10 20
+
+                                    REGEX                                 {{{1
+==============================================================================
+
+A basic regex annyit jelent, hogy a . * $ ^ [ ] és az intervallumot jelölő -
+karakter kivételével minden speciális karaktert a \ kell hogy megelőzzön.
+(escaping) Extend regex esetén minden speciális jelentéssel bíró karakter
+kifejti a hatását a \ nélkül. Az alábbi példákat az extend regex-nek
+megfelelően írtam, hogy könnyebben olvashatóak legyenek.
+
+A legegyszerűbb módja a regex gyakorlásának, ha a 'grep --color' parancsra
+ráküldöd a kívánt szöveget. (ha extend regex-et akarsz használni, akkor a
+'grep' helyett használd az 'egrep' parancsot, de nem árt, ha mihamarább
+rászoksz a basic regex-re)
+
+A példákban szereplő REGEX a grep-nek megadott kifejezést jelöli, míg az
+ILLESZKEDIK alatt a bemenetére küldött szöveget kell érteni. Például a REGEX
+legyen '[aeiou]', az ILLESZKEDIK pedig 'Helye-hulya-rutyutyu!':
+
+    $ echo 'Helye-hulya-rutyutyu!' | grep --color '[aeiou]'
+    Helye-hulya-rutyutyu!
+    # A magánhangzók színezve jelennek meg.
+
+SZTRING VAGY BETŰ
+
+    Ha a sztring, vagy betű megtalálható a szövegben, akkor illeszkedik.
+
+    REGEX
+        Hello Kitty
+
+    ILLESZKEDIK
+        Hello Kitty
+        A Hello Kitty egy cukker-mukker cica.
+
+.
+
+    Bármilyen karakterre illeszkedik, kivéve az újsor karaktert.
+
+    REGEX
+        a..a
+
+    ILLESZKEDIK
+        anya
+        a2/a
+        az a
+
+[]
+
+    A megadott karakterek közül bármelyikre.
+
+    REGEX
+        [tp]a[tp]a
+
+    ILLESZKEDIK
+        tata
+        pata
+        papa
+
+    Lehetőség van karakter intervallumok megadására is. Pl.:
+
+    REGEX
+        [a-c]1
+
+    ILLESZKEDIK
+        a1
+        b1
+        c1
+
+^
+
+    Egyfelől a sor elejére illeszkedik, másfelől tagadásra is ezt használjuk,
+    de ez csak a karakter-intervallumoknál alkalmazható.
+
+    REGEX
+        SOR ELEJE                           TAGADÁS
+        ^Az                                 ny[^a]l
+
+    ILLESZKEDIK
+        Az első karakter elé tesszük.       nyel
+        Azt kell, hogy mondjam...           nyíl
+                                            nyúl
+
+$
+
+    A sor végére illeszkedik.
+    Egymagában az üres sorra is illeszkedik.
+
+    REGEX
+        tesszük$
+
+    ILLESZKEDIK
+        Az utolsó karakter után tesszük
+
+*
+
+    A regex bármennyiszer szerepelhet.
+
+    REGEX
+        ciró*ka
+
+    ILLESZKEDIK
+        cirka
+        ciróka
+        ciróóóka
+
++
+
+    Minimum egyszer szerepelnie kell a regex.
+
+    REGEX
+        jé+
+
+    ILLESZKEDIK
+        jé
+        jééé
+
+?
+
+    Maximum egyszer szerepelhet a regex.
+
+    REGEX
+        jé?
+
+    ILLESZKEDIK
+        j
+        jé
+
+{}
+
+    Számosság megadása.
+    Megadhatjuk pl. hogy egy karakter mennyiszer fordulhat elő az adott
+    helyen.
+    Alakja: regex{számosság}, vagy regex{minimum,maximum}
+
+    REGEX
+        ar{2}a      jé{,2}      bla{2,}
+
+    ILLESZKEDIK
+        arra        j           blaa
+                    jé          blaaa
+                    jéé         blaaaaaa
+
+()
+
+    Csoportosítás.
+
+    REGEX
+        (bla){2}    o(h )?m(y )?g(od)?
+
+    ILLESZKEDIK
+        blabla      oh my god
+                    oh mg
+                    omgod
+                    omg
+
+|
+
+    'Vagy' kapcsolat.
+
+    REGEX
+        (ar|eb)(ra|be)
+
+    ILLESZKEDIK
+        arra
+        ebbe
+        ebra
+        arbe
+
+                            NÉHÁNY ÁLTALÁNOS PÉLDA                        {{{2
+______________________________________________________________________________
+
+^$          Üres sor.
+^sztring$   A sor csak a 'sztring' szöveget tartalmazhatja.
+
+                             ÁLTALÁNOS PARANCSOK                          {{{1
+==============================================================================
+
+A matematikai feladatokra hasznos alternatíva a python. Például egy 5 egység
+sugarú kör területének kiszámolása:
+
+    $ echo 'from math import *; print 5**2 * pi' | python
+
+echo                                                               [coreutils]
+
+    Szöveg kiírása.
+
+        $ echo 'Hello World!'
+        Hello World!
+
+    Hasznos, ha például terminálban (tty) el akarjuk menteni a nehezen
+    kitalált és bonyolult parancsunkat egy fájlba - csupán 'echo'-zzuk az
+    egész sort és a kimenetet egy fájlba irányítjuk.
+
+    __ KAPCSOLÓK __________________________
+
+    -n  Ne írjon újsor karaktert a sztring végére.
+    -e  Értelmezze az escape-szekvenciákat. (pl.: \n)
+
+printf                                                             [coreutils]
+
+    Formázott szöveg kiírása.
+
+        $ printf '%d' '0xFF'
+        255
+
+    A formátum leírása a 'man printf' parancscsal érhető el.
+
+cat                                                                [coreutils]
+
+    Szöveg kiírása.
+
+        $ cat '/var/log/dmesg'
+        [    0.000000] Initializing cgroup subsys cpuset
+        [    0.000000] Initializing cgroup subsys cpu
+        # ...
+
+    Programok bemenetére is ezzel szokás írni.
+
+        $ cat | wc
+          Hány betű van ebben a szövegben?
+        1       6      36
+        # A bemenetet a ^D megnyomásával zárhatjuk le.
+
+cd
+
+    Könyvtárváltás.
+
+        $ cd 'cuccok'
+        # Átlép a 'cuccok' alkönyvtárba.
+
+    Önmagában beírva a $HOME könyvtárra váltunk. (~)
+
+    __ KAPCSOLÓK __________________________
+
+    -   Váltás az előző aktuális könyvtárra.
+
+ls                                                                 [coreutils]
+
+    Könyvtár tartalmának kilistázása.
+
+        $ ls '/bin'
+        bash                  kbd_mode          ping6
+        bunzip2               kill              plymouth
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -A          Minden fájl listázása a '.' és '..' szimbólumokon kívül.
+    -l          Több információt mutat.
+    -o          Ugyanaz, mint -l, de ne mutassa a csoportot (group).
+    -g          Ugyanaz, mint -l, de ne mutassa a tulajdonost (owner).
+    -h          A fájlméreteket könnyen értelmezhető formában írja ki.
+    -v          A számmal kezdődő fájlneveket érték szerint rendezze.
+    --color     Fájltípus-függő színezés.
+
+basename                                                           [coreutils]
+
+    Útvonal eltüntetése fájlnevekből.
+
+        $ basename '/ut/vonal/fajl.txt'
+        fajl.txt
+
+watch                                                                 [procps]
+
+    2 másodpercenként frissíti a parancs kimenetét egy üres képernyőre.
+    (a'la 'top' parancs)
+
+        $ watch 'ps -e | tail'
+        Every 2,0s: ps -e | tail      Mon Oct 12 22:30:45 2009
+
+        3319 pts/0    00:00:00 watch
+        3320 pts/0    00:00:00 sh
+        3321 pts/0    00:00:00 ps
+        3322 pts/0    00:00:00 tail
+        # ...
+
+xargs                                                              [findutils]
+
+    A bemenetére érkező paraméterekkel futtatja a megadott parancsot.
+
+        $ echo '-All' | xargs 'ls'
+        # Az eredmeny az 'ls -All' kimenete lesz.
+
+du                                                                 [coreutils]
+
+    Könyvtárak (és fájlok) méreteinek lekérdezése.
+
+        $ du '.vim/'
+        1       .vim/after/ftplugin
+        1       .vim/after
+        8       .vim/autoload/omni/common
+        124     .vim/autoload/omni/cpp
+        132     .vim/autoload/omni
+        # ...
+
+    Az aktuális könyvtár alatti összes alkönyvtárat (rekurzívan) kilistázza.
+
+    __ KAPCSOLÓK __________________________
+
+    -a  A fájlokat is listázza ki.
+    -s  Csak az aktuális könyvtár helyfoglalása érdekel, ne listázzon.
+    -b  Az eredményt bájtokban írja ki. (alapból blokkokban adja meg)
+    -h  A fájlméreteket könnyen értelmezhető formában írja ki.
+
+df                                                                 [coreutils]
+
+    Csatolt partíciók méreteinek, foglalt- és szabad területeinek lekérdezése.
+
+        $ df
+        Fájlrendszer   1K-blokk    Fogl.   Szabad Fo.% Csatol. pont
+        /dev/sda1      18131268  4586672 12616904  27% /
+        udev             374428        4   374424   1% /dev
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -h  A fájlméreteket könnyen értelmezhető formában írja ki.
+
+which                                                            [debianutils]
+
+    Parancs elérési útvonala - lehetséges, hogy egy symlink-et mutat.
+
+        $ which 'awk'
+        /usr/bin/awk
+        $ ls -l '/usr/bin/awk'
+        lrwxrwxrwx ... /usr/bin/awk -> /etc/alternatives/awk
+        $ ls -l '/etc/alternatives/awk'
+        lrwxrwxrwx ... /etc/alternatives/awk -> /usr/bin/mawk
+        $ ls -l '/usr/bin/mawk'
+        -rwxr-xr-x ... /usr/bin/mawk
+
+whereis                                                           [util-linux]
+
+    Megmondja a parancsról, hogy hol található a könyvtárszerkezetben, és mely
+    egyéb fájlok kapcsolódnak hozzá.
+
+        $ whereis 'vim'
+        vim: /usr/bin/vim.tiny /usr/bin/vim /usr/bin/vim.gtk
+        /usr/bin/vim.basic /etc/vim /usr/bin/X11/vim.tiny /usr/bin/X11/vim
+        /usr/bin/X11/vim.gtk /usr/bin/X11/vim.basic /usr/share/vim
+        /usr/share/man/man1/vim.1.gz
+
+find                                                               [findutils]
+
+    Fájlok és könyvtárak keresése.
+
+        $ find '/home/user' -name '*rc$'
+        /home/user/.bashrc
+        /home/user/.toprc
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -name REGEX     Regex keresése a fájlnevekben.
+    -regex REGEX    A regex az útvonalban is szerepelhet.
+    -xdev           Mount-olt meghajtókon nem keres.
+    -prune          Nem írja ki a '.' és '..' elemeket.
+    -type           Állomány típusa.
+          d         Könyvtár.
+          f         Fájl.
+    -empty          Üres fájlokat és könyvtárakat keres.
+    -size +0        Nem üres állományok keresése. (méret > 0 * 512 byte)
+    -not            Az utánna álló feltétel tagadása.
+
+    Üres könyvtárak keresése:
+
+        $ find '/home' -type 'd' -empty
+        # Ha a kimenetet az 'xargs rm -r'-re irányítjuk, töröljük is őket.
+
+    Tagadás használata, pl. ha a '.git' könyvtár figyelmen kívül hagyása:
+
+        $ find -not -name '.git'
+
+locate                                                               [mlocate]
+
+    Gyorsabb, mint a 'find', de adatbázisból dolgozik - hogy használni tudjuk,
+    először adjuk ki az 'updatedb' parancsot:
+
+        $ updatedb
+        $ locate .bashrc
+        /etc/bash.bashrc
+        /etc/skel/.bashrc
+        /home/user/.bashrc
+        # ...
+
+cp                                                                 [coreutils]
+
+    Fájlok másolása.
+
+        $ cp '/mnt/fajl.txt' '/mnt/uj/'
+        # A '/mnt/fajl.txt' másolata a '/mnt/uj/fajl.txt' lesz.
+
+    __ KAPCSOLÓK __________________________
+
+    -r  Könyvtárakat is másol.
+    -a  Minden attribútum megtartása. (jogok, symlink, stb.)
+    -L  Symlink céljának másolása a symlink helyett.
+    -v  Beszédes mód: kiírja, hogy épp mit másol.
+
+mv                                                                 [coreutils]
+
+    Mozgatás, vagy átnevezés.
+
+        $ mv '/mnt/fajl.txt' '/mnt/konyvtar/'
+        # Mozgatás. '/mnt/fajl.txt' -> '/mnt/konyvtar/fajl.txt'
+        $ mv '/mnt/fajl.txt' '/mnt/konyvtar/masik_nev.txt'
+        # Mozgatás és átnevezés - átnevezni áthelyezés nélkül is lehet és
+        # vica versa.
+
+rm                                                                 [coreutils]
+
+    Fájlok törlése.
+
+        $ rm 'remove.me.txt'
+        # Törli a 'remove.me.txt' fájlt.
+
+    __ KAPCSOLÓK __________________________
+
+    -r  Könyvtárakat is töröl.
+
+mkdir                                                              [coreutils]
+
+    Könyvtárak létrehozása.
+
+        $ mkdir ~/tmp
+        $ mkdir -p ~/tmp/alkonyvtarak/tobb/szinten
+
+    __ KAPCSOLÓK __________________________
+
+    -p  Szülők létrehozása automatikusan.
+
+dd                                                                 [coreutils]
+
+    Fájlszegmensek másolása.
+
+    __ KAPCSOLÓK __________________________
+
+    if=FÁJL         Bemeneti fájl használata az stdin helyett.
+    of=FÁJL         Kimeneti fájl.
+    bs=ÉRTÉK        Egyszerre masolandó blokk mérete bájtokban.
+    ibs=ÉRTÉK       Beolvasandó blokk mérete. (alapból ibs=bs)
+    obs=ÉRTÉK       Kiírandó blokk mérete. (alapból obs=bs)
+    skip=ÉRTÉK      Bemeneti offset = ÉRTÉK*ibs
+    seek=ÉRTÉK      Kimeneti offset = ÉRTÉK*obs
+    count=ÉRTÉK     ÉRTÉK*BS másolása.
+
+    MBR (master boot record) mentése:
+
+        $ dd if='/dev/sda' of='mbr.backup' bs=446 count=1
+        # Nálam a '/dev/sda'-ról indul a rendszer, ez máshol különbözhet.
+
+    MBR helyreállítása:
+
+        $ dd if='mbr.backup' of='/dev/sda'
+
+    De... MÉG SOSEM MŰKÖDÖTT! :D
+
+md5sum                                                             [coreutils]
+
+    MD5 checksum kiírása.
+
+        $ echo -n 'bla' | md5sum
+        128ecf542a35ac5270a87dc740918404  -
+        $ md5sum fajl.txt
+        dcc48a6c828ac4022cbaa06f69f5efc4  linux.txt
+        $ md5sum -b /bin/bash
+        89a3a0d8a971d0f1c4bf0219ee4a335e */bin/bash
+        # CHECKSUM
+        #                                BINÁRIS ('*'), VAGY TEXT (' ') MÓD
+        #                                 FÁJLNÉV
+
+    DVD ellenőrzése:
+
+        $ cd KIÍRT_CUCCOK_FŐ_KÖNYVTÁRA
+        $ find KIÍRVA -type f -print0 | xargs -0 'md5sum' > 'dvd.md5'
+        $ cd DVD
+        $ md5sum -c 'dvd.md5'
+
+    __ KAPCSOLÓK __________________________
+
+    -b  Bináris módban olvassa a fájlt.
+
+rename                                                            [util-linux]
+
+    Csoportos fájl-átnevezés - az ékezeteket nagyon rosszul kezeli!
+    A parancsok formája nagy vonalakban megegyezik a 'sed' programéval. (lásd
+    lejjebb)
+
+    Nagybetűs fájlok kisbetűssé tétele:
+
+        $ ls
+        The_Dj_Producer_-_That_Guitar_Trak.mp3
+        veNeTiaN_sNaRes_-_kÉtSaRkÚ_MoZgalOm.mp3
+        $ rename 'y/[A-Z]ÁÉÍÓÖŐÚÜŰ/[a-z]áéíóöőúüű/' *
+        $ ls
+        the_dj_producer_-_that_guitar_trak.mp3
+        venetian_snares_-_kétsarkú_mozgalom.mp3
+
+head                                                               [coreutils]
+
+    Szöveg első sorainak kiírása.
+
+        $ head '/var/log/boot.log'
+        Begin: Loading essential drivers ... done.
+        Begin: Running /scripts/init-premount ... done.
+        # ...
+
+tail                                                              [util-linux]
+
+    Szöveg utolsó sorainak kiírása
+
+        $ man 'ls' | tail
+        the info and ls programs are properly installed at your site, the
+        command
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -f  Follow, folyamatosan írja ki a változásokat.
+
+more                                                              [util-linux]
+
+    A szöveget lapozható oldalakra bontja.
+
+        $ more '/var/log/boot.log'
+
+    __ BILLENTYŰ PARANCSOK ________________
+
+    /       Regex keresése a szövegben.
+    n       Következő találatra ugrás.
+    SZÓKÖZ  Lapozás előre.
+    b       Lapozás vissza.
+
+less                                                                    [less]
+
+    Könnyebben kezelhető more: például nyilakkal is lehet irányítani.
+
+    __ KAPCSOLÓK __________________________
+
+    -R  Escape-szekvenciákat engedelyezi, de csak a szinezőket.
+    -r  Minden escape szekvenciat engedelyez.
+
+    __ BILLENTYŰ PARANCSOK ________________
+
+    /   Regex keresése a szövegben.
+    n   Következő találatra ugrás.
+    N   Előző találatra ugrás.
+
+wc                                                                 [coreutils]
+
+    Sorok, szavak és bájtok (és nem betűk, pl. multibyte karakterek)
+    számlálása - egysoros szöveg esetén figyelni kell, mert az újsor karit is
+    beleszámolja.
+
+        $ echo '12345678' | wc
+             1       1       9
+        #  sor     szó       byte (\n is bele számít)
+
+    __ KAPCSOLÓK __________________________
+
+    -m  Csak a betűk (és nem bájtok) számát írja ki.
+
+uniq                                                               [coreutils]
+
+    Az ismétlődő sorokat csak egyszer jelenítse meg.
+
+        $ cat > 'megol_az_unalom.txt'
+          Unatkozok...
+          Unatkozok...
+          Unatkozok...
+          Még mindíg...
+          Unatkozok...
+        $ uniq 'megol_az_unalom.txt'
+        Unatkozok...
+        Még mindíg...
+        Unatkozok...
+
+    __ KAPCSOLÓK __________________________
+
+    -c  A sorok elé írja ki, hogy mennyiszer szerepeltek a szövegben.
+    -d  Csak az ismétlődő sorokat írja ki.
+    -u  Csak a nem ismétlődő sorokat írja ki.
+
+sort                                                               [coreutils]
+
+    Szöveg sorba rendezése.
+
+        $ cat | sort
+          Dennis M. Ritchie
+          Bram Moolenaar
+          Tim O'Reilly
+        Bram Moolenaar
+        Dennis M. Ritchie
+        Tim O'Reilly
+
+    __ KAPCSOLÓK __________________________
+
+    -k #[,#]    Az oszlop (vagy intervallum) száma, amely alapján rendezze.
+    -u          Uniq, az azonos sorokat csak egyszer jelenítse meg.
+    -g          Szamérték szerint.
+
+nl                                                                 [coreutils]
+
+    Sorok számozása.
+
+        $ nl '.bashrc'
+        1  # ~/.bashrc: executed by bash(1) for non-login shells.
+        2  # see /usr/share/doc/bash/examples/startup-files (in the package
+        3  # bash-doc) for examples
+        # ...
+
+column                                                          [bsdmainutils]
+
+    Oszlopokba rendez.
+
+        $ cat | column -t
+          a b c
+          aaa bb c
+          a bbbbb c
+          a b cccccc
+        a    b      c
+        aaa  bb     c
+        a    bbbbb  c
+        a    b      cccccc
+
+    __ KAPCSOLÓK __________________________
+
+    -t  A formázandó szöveg alapján találja ki, hogy hány oszlopba kell
+        rendeznie azt.
+
+join                                                               [coreutils]
+
+    Két fájl összefésülése az azonos oszlopaik alapján. (alapból az első
+    oszlop)
+
+        $ cat > 'egyik.txt'
+          1 Egy,
+          2 Kettő,
+          3 Három,
+        $ cat > 'masik.txt'
+          1 megérett a meggy.
+          2 csipkebokor vessző.
+          3 te leszel a párom.
+        $ join 'egyik.txt' 'masik.txt'
+        1 Egy, megérett a meggy.
+        2 Kettő, csipkebokor vessző.
+        3 Három, te leszel a párom.
+
+grep                                                                    [grep]
+
+    Regex keresése.
+
+        $ grep 'Tapsi Hapsi' 'linux_parancsok.txt'
+        Tapsi Hapsi:100:szórakoztatás
+        Tapsi Hapsi a szórakoztatás területen dolgozik.
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    --color     A találatokat színezze ki.
+    -#          A találat körüli # sort is írja ki.
+    -c          Az egyezések helyett csak a számukat írja ki.
+    -n          Az egyezés elé kiírja a találat sorszámát.
+
+sed                                                                      [sed]
+
+    Szöveg manipulálása regex segítségével.
+
+    A parancsok részeit általában '/' karakterrel szokták elválasztani, de
+    használhatunk egyéb karaktert is, hogy a szöveget olvashatóbba tegyük, de
+    a lényeg, hogy a delimitert a regex-eken belül escape-elni kell.
+
+        $ echo 'Szeged@08/08/2013' | sed 's/@[0-9]\+\/[0-9]\+\//@01\/02\//'
+        Szeged@01/02/2013
+
+        $ echo 'Szeged@08/08/2013' | sed 's@\@[0-9]\+/[0-9]\+/@\@01/02/@'
+        Szeged@01/02/2013
+
+    Ha egy számmal, vagy regex-el kezdjük az utasításokat, akkor csak az
+    adott sorra, vagy azokra a sorokra, amelyekben megtalálható a regex
+    fog érvényesülni a módosítás.
+
+        $ echo -e 'alma \n barack \n cukroscsibecombcsont' | \
+          sed '/a/ y/a/A/; 2 s/k/kos lekvár/'
+        AlmA
+        bArAckos lekvár
+        cukroscsibecombcsont
+
+    Az & hatására a találat fog behelyettesítődni:
+
+        $ echo 'Mai műsor: Tapsi Hapsi' | sed 's/Tapsi Hapsi/Tom & Jerry/'
+        Mai műsor: Tom Tapsi Hapsi Jerry
+
+    Ez escape-eléssel kiküszöbölhető:
+
+        $ echo 'Mai műsor: Tapsi Hapsi' | sed 's/Tapsi Hapsi/Tom \& Jerry/'
+        Mai műsor: Tom & Jerry
+
+    __ KAPCSOLÓK __________________________
+
+    -e  Az utána következő sztring egy szkript sorának felel meg.
+
+            $ echo 'foo' | sed -e 'y/f/l/' -e 'y/o/e/'
+            lee
+
+    -n  A kimeneten csak az fog megjelenni, amire mi utasítást adunk.
+
+            $ echo 'foo' | sed -n -e 'y/f/l/' -e 'p' -e 'y/o/e/'
+            loo
+
+    -r  Extend regex használata.
+
+    __ PARANCSOK __________________________
+
+    a   Append, hozzáfűzés.
+
+            $ echo -e 'alma \n barack \n cukroscsibecombcsont' | \
+              sed '/barack/ a VALAMI'
+            alma
+            barack
+            VALAMI
+            cukroscsibecombcsont
+
+    i   Insert, beszúrás.
+
+            $ echo -e 'alma \n barack \n cukroscsibecombcsont' | \
+              sed '/barack/ i VALAMI'
+            alma
+            VALAMI
+            barack
+            cukroscsibecombcsont
+
+    y   Karakterek kicserélése.
+
+            $ echo 'valami' | sed 'y/vlm/wsb/'
+            wasabi
+
+    s   Regex-re illeszkedő rész módosítása.
+
+            $ echo 'Frédi és Béni' |                          \
+              sed 's/.* \([^ ]\+\)$/\1 a szőke a & mesében./'
+            Béni a szőke a Frédi és Béni mesében.
+
+    p   Csak írd ki az illeszkedő szövegrészt.
+
+awk                                                                     [mawk]
+mawk
+
+    Szöveg manipulálása, feldolgozása egy saját programnyelvvel.
+
+        SCRIPT.AWK
+            #!/usr/bin/awk -f
+            BEGIN {
+                print "Elindult a szkript..."
+                valtozo = "wow"
+            }
+            { print "Uj ciklus kezdete." }
+            /REGEX/ {
+                print "Ebben a sorban szerepel a REGEX: " $0 "\n",
+                "Hossza " NF " szo, a masodik szava: '" $2 "',",
+                "ami " length( $2 ) " betu. " valtozo
+            }
+            END { print "Veget ert a szkript." }
+
+        $ ./script.awk
+        Elindult a szkript...
+          Hello!
+        Uj ciklus kezdete.
+          Mi az a REGEX...?
+        Uj ciklus kezdete.
+        Ebben a sorban szerepel a REGEX: Mi az a REGEX...?
+        Hossza 4 szo, a masodik szava: 'az', ami 2 betu.
+        # ^D-vel lezárjuk a bemenetet.
+        Veget ert a szkript.
+
+    Ha parancssorból futtatjuk, a parancsokat szimpla idézőjelek köze kell
+    írni, különben a '$1' nem a szöveg első mezőjét jelenti.
+
+        $ echo 'Helytelen hasznalat.' |  awk "{ print $1 }"
+        Helytelen hasznalat.
+        $ echo 'Helyes hasznalat.' |  awk '{ print $1 }'
+        Helyes
+
+    Mivel csak az asszociatív tömböket ismeri, így a többdimenziós tömbök
+    használatához az szükséges, hogy konkrétan azonosítható sztringeket
+    használjunk indexként. Pl.:
+
+        $ awk '{ tomb[ x "," y ] = 1; print tomb[ x "," y ] }'
+        1
+
+    __ KAPCSOLÓK __________________________
+
+    -f FÁJL             Script fájl.
+    -F 'DELIMITER'      Mezők közti elválasztó. (alapból ' ')
+    -RS 'DELIMITER'     Rekordok közti elválasztó. (alapból '\n')
+    -v VÁLTOZÓ=ÉRTÉK    Értékadás változónak.
+
+hd                                                              [bsdmainutils]
+hexdump
+
+    Fájl kiírása hexadecimálisan.
+
+        $ hexdump '/bin/sh'
+        0000000 457f 464c 0101 0001 0000 0000 0000 0000
+        0000010 0002 0003 0001 0000 98bc 0804 0034 0000
+        0000020 73b0 0001 0000 0000 0034 0020 0009 0028
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -C  Hexadecimális és ASCII nézet.
+
+od                                                                 [coreutils]
+
+    Octal dump - fájl kiírása különböző formákban. (hexadecimális, oktális,
+    stb.)
+
+        $ od -t x1 '/bin/sh'
+        0000000 7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
+        0000020 02 00 03 00 01 00 00 00 bc 98 04 08 34 00 00 00
+        0000040 b0 73 01 00 00 00 00 00 34 00 20 00 09 00 28 00
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -A  [odx]   A kiírt offset számrendszerét adja meg.
+        n       Nem írja ki az offset-et.
+    -t          Konverzió típusa.
+        o1      1 bájtos oktális.
+    -o          -t o2   2 bájtos oktális
+    -h          -t x2   2 bájtos hexa
+    -i          -t dI   integer
+    -l          -t dL   long
+    -c          -t c    karakteres
+
+bc                                                                        [bc]
+
+    Lebegőpontos kalkulátor nyelv. Hexadecimális karakterek esetén csak a
+    nagybetűket fogadja el.
+
+        $ echo 'ibase=16; FF' | bc
+        255
+
+        $ echo 'obase=2; 8' | bc
+        1000
+
+        $ echo 'obase=16; ibase=16; FF * FF' | bc
+        FE01
+        # Fontos az obase és ibase sorrendje.
+
+nohup                                                              [coreutils]
+
+    A parancs a felhasználó kijelentkezése után is futni fog, a kimenet a
+    'nohup.out' fájlba kerül.
+
+    Zene 'láthatatlan' lejátszása:
+
+        $ nohup mplayer 'zene.mp3' &> '/dev/null' &
+
+at                                                                        [at]
+
+    Időzített feladatok.
+
+        $ at 12:00
+          mplayer jo_ebedhez_szol_a_nota.mp3
+
+    Az időpontot megadhatjuk relatívan is, pl. 'now + 1 min', vagy '18:00 + 1
+    day'.
+    A feladatok kilistázására az 'atq' parancs, törlésükre az 'atrm' való.
+
+        $ at 'now + 1 day'
+          echo 'Holnap lesz.'
+        $ at 'now + 2 day'
+          echo 'Ez meg holnapután.'
+        $ atq
+        1      Sun Aug 25 11:06:00 2013 a user
+        2      Mon Aug 26 11:08:00 2013 a user
+        $ atrm 1
+        $ atq
+        2      Mon Aug 26 11:08:00 2013 a user
+
+                                   RENDSZER                               {{{1
+==============================================================================
+
+id                                                                 [coreutils]
+
+    Jogosultságok kiírása.
+
+        $ id
+        uid=1000(user) gid=1000(user) csoportok=1000(user),4(adm), ...
+
+pidof                                                         [sysvinit-utils]
+
+    Futó folyamat PID-je.
+
+        $ pidof 'bash'
+        1578
+
+ps                                                                    [procps]
+
+    Futó folyamatok listája.
+
+        $ ps
+        PID  TTY          TIME CMD
+        1578 pts/0    00:00:00 bash
+        2758 pts/0    00:00:00 ps
+
+    __ KAPCSOLÓK __________________________
+
+    -e      Az összes folyamat listázása.
+    -f      Bővebb információk. (pl. parancs helye a könyvtárszerkezetben)
+    -aux    Összes folyamat még több infóval. (pl. memória és cpu használat)
+
+top                                                                   [procps]
+
+    Futó folyamatok listájának folyamatos mutatása, rendezése memória / cpu /
+    stb. használata alapján.
+
+    __ BILLENTYŰ PARANCSOK ________________
+
+    x   Rendezés oszlopának kiemelése.
+    z   Színezés bekapcsolása.
+    < > Rendezés céljának változtatása.
+
+date                                                               [coreutils]
+
+    Dátum és idő kiírása / beállítása.
+
+        $ date
+        2013. aug. 24., szombat, 09.57.14 CEST
+        $ date -s 18:00
+        $ date
+        2013. aug. 24., szombat, 18.00.01 CEST
+
+    __ KAPCSOLÓK __________________________
+
+    -s          Beállítás.
+    +FORMÁTUM   FORMÁTUMnak megfelelő formában írja ki
+        %F      YYYY-HH-NN
+
+uname                                                              [coreutils]
+
+    Kernel információk.
+
+        $ uname -a
+        Linux albert 3.8.0-29-generic #42-Ubuntu SMP Tue Aug 13 23:12:18
+        UTC 2013 i686 i686 i686 GNU/Linux
+
+    __ KAPCSOLÓK __________________________
+
+    -a  Több infó.
+
+dmesg                                                             [util-linux]
+
+    Rendszerüzenetek kiírása.
+
+    __ KAPCSOLÓK __________________________
+
+    -r  A rendszerszintet is írja ki.
+    -x  Az üzenet forrását (kernel, daemon, stb.) is írja ki.
+
+lsof                                                                    [lsof]
+
+    Megnyitott fájlok listája.
+
+        $ lsof
+        COMMAND PID TID USER  FD    TYPE ... NAME
+        init      1     root cwd unknown     /proc/1/cwd
+        init      1     root rtd unknown     /proc/1/root
+        # ...
+
+    Rákereshetünk, hogy egy konkrét fájlt ki használ:
+
+        $ lsof '/usr/bin/gvim'
+        COMMAND  PID USER  FD   TYPE DEVICE SIZE/OFF   NODE NAME
+        gvim    2384 user txt    REG    8,1  2267552 936066 /usr/bin/vim.gtk
+
+    __ KAPCSOLÓK __________________________
+
+    -u USER         Csak a USER által megnyitott fájlok listája.
+    -c KEZD         A KEZD kezdetű parancsok által megnyitott fájlok listája.
+    +p PID          PID-hez tartozó fájlok.
+    +D KÖNYVTÁR     A KÖNYVTÁR és annak bármely tartalma, amely nyitva van.
+    -i              Megnyitott internet socket-ek.
+       TCP          ...csak TCP.
+       UDP          ...csak UDP.
+       :80          ...a 80-as porton.
+    -U              Unix típusú fájlok. (gyakorlatilag a user hatóköre)
+
+    A sztringeket tagadhatjuk a '^' kezdettel, listákat is megadhatunk, ekkor
+    ',' választja el az elemeket, de nem szabad szóközöket alkalmazni.
+
+    Rajtunk kívül milyen felhasználók nyitottak meg fájlokat:
+
+        $ lsof -u '^root,^bendeguz'
+
+lsmod                                                                   [kmod]
+
+    Betöltött kernelmodulok listája.
+
+        $ lsmod
+        Module                  Size  Used by
+        xt_LOG                 17192  6
+        xt_limit               12541  4
+        # ...
+
+lspci                                                               [pciutils]
+
+    A PCI eszközök és azok nevei.
+
+        $ lspci
+        00:00.0 Host bridge: Intel Corporation 82865G/PE/P DRAM Controller...
+        00:01.0 PCI bridge: Intel Corporation 82865G/PE/P AGP Bridge (rev 02)
+
+    __ KAPCSOLÓK __________________________
+
+    -v  Részletes információ.
+
+dmidecode                                                          [dmidecode]
+
+    DMI (SMBIOS) tábla adatainak kiírása - elég sok infó a hardware-ról.
+
+        $ dmidecode
+        # dmidecode 2.11
+        SMBIOS 2.2 present.
+        41 structures occupying 1074 bytes.
+        Table at 0x000F0000.
+        # ...
+
+report-hw                                                [installation-report]
+
+    Amit a vasról csak tudni lehet, az ezzel elérhető.
+
+mount                                                                  [mount]
+
+    Meghajtok csatolása.
+
+    __ KAPCSOLÓK __________________________
+
+    -t FÁJLRENDSZER     A meghajtó fájlrendszerének megadása.
+        ntfs            NTFS
+        vfat            FAT32
+
+    CD-kép csatolása:
+
+        $ mount -t iso9660 ~/cuccok/cdkep.iso ~/vcd
+
+    De ehelyett inkább használd a 'fuseiso' progit.
+
+fuseiso                                                              [fuseiso]
+
+    CD-kép csatolása.
+
+        $ fuseiso ~/cuccok/cdkep.iso ~/vcd
+
+update-rc.d                                                          [sysv-rc]
+
+    '/etc/init.d' szkriptek beépítése a futási szintekbe.
+
+    Általános módszer egy új szkript felvételere, ha a '/etc/init.d'
+    könyvtárba bemásoljuk a szkriptet, majd kiadjuk a következő parancsot:
+
+        $ update-rc.d script.sh defaults
+
+    Finomíthatunk a dolgon, ha megadjuk, hogy mennyire hamar induljon a
+    szkript (minél magasabb a szám, annál később fog elindulni) és hogy
+    milyen korán állítsa le azt kikapcsoláskor. (ha démonról van szó; a
+    kikapcsolás sürgősséget a második szám állítja be)
+
+        $ update-rc.d script.sh defaults 80 10
+        # Későn indul, hamar leáll.
+
+    Most mi magunk állítsuk be a 'script.sh' parancsfájlt 90-es fontossággal a
+    3, 4 futási szintekre, majd álljon le ugyanilyen fontossággal az 1.
+    szinten:
+
+        $ update-rc.d script.sh start 90 3 4 . stop 90 1 .
+
+    Valószínűleg figyelmeztetést fog kiírni, de ettől még beteszi a megfelelő
+    '/etc/rc*.d' könyvtárba a linket.
+
+    Szkript eltávolítása:
+
+        $ update-rc.d -f script.sh remove
+
+locale                                                              [libc-bin]
+
+    Kiírja a rendszer alapértelmezett karakterkódolását.
+
+        $ locale
+        LANG=hu_HU.UTF-8
+        LANGUAGE=
+        LC_CTYPE="hu_HU.UTF-8"
+        # ...
+
+    __ PARANCSOK __________________________
+
+    validlocale 'hu_HU.UTF-8'           Ellenőrizhetjük a kódolás valódiságát.
+    update-locale LC_ALL='hu_HU.UTF-8'  Változtatások érvényesítése.
+
+                                CSOMAGKEZELÉS                             {{{1
+==============================================================================
+
+dpkg                                                                    [dpkg]
+
+    Csomagok kezelése.
+
+    __ KAPCSOLÓK __________________________
+
+    -i DEBFÁJL  Merevlemezen lévő '.deb' fájl telepítése.
+    -l          Telepített csomagok listája.
+    -L CSOMAG   Csomag által telepített fájlok listája.
+    -S FÁJL     Kiírja, hogy a fájl melyik csomaggal jött létre.
+
+    Félig eltávolított csomagok teljes eltávolítása:
+
+        $ dpkg --list | grep '^rc' | cut -d ' ' -f 3 | \
+          xargs 'sudo dpkg --purge'
+
+    A telepített csomagok és azok fájljainak listázása:
+
+        $ dpkg -S '*' | sort
+        bash: /bin/bash
+        bash: /bin/rbash
+        bash-completion: /etc/bash_completion
+        bash-completion: /etc/profile.d/bash_completion.sh
+        # ...
+
+    A kimenetet érdemes egy fájlba menteni, mert elég sok ideig generálja,
+    majd 'grep'-el megkereshetjük a számunkra érdekes fájlokat.
+
+    __ DPKG-RECONFIGURE ___________________                          [debconf]
+
+    Csomag újrakonfigurálása.
+    Ez akkor lehet hasznos, ha pl. valamiért a fájltársítások megváltoztak és
+    vissza szeretnénk állítani, hogy a '.txt' fájlokat a 'gvim' nyissa meg, ne
+    pedig a libreoffice 'lowriter' programja.
+
+        $ dpkg-reconfigure 'gvim'
+
+    Minden beállításunk ('*rc' fájlok) változatlan marad.
+
+    __ DPKG-SHLIBDEPS _____________________                         [dpkg-dev]
+
+    Eredetileg csomag létrehozásához kell, de segít megtudni a binárisunk
+    csomagfüggőségeit, és azok verziószámat.
+
+        $ mkdir 'debian'
+        $ touch 'debian/control'
+        $ dpkg-shlibdeps -O 'progi' 2> '/dev/null'
+        shlibs:Depends=libc6 (>= 2.0)
+        $ rm -r debian
+apt                                                                      [apt]
+
+    Alapvető csomagkezelő.
+
+    A parancsok formája:
+
+        $ apt-MÓD PARANCS
+
+    Íme néhány parancs:
+
+    __ APT-GET ____________________________
+
+    Csomagok telepítése és eltávolítása.
+
+    update              Csomaglista frissítése.
+    upgrade             Frissíthető csomagok telepítése.
+
+    __ APT-CACHE __________________________
+
+    A csomaglista böngészése.
+
+    show 'CSOMAG'       Kívánt csomag adatainak lekérése.
+    showpkg 'CSOMAG'    Csak a verziók és függőségek lekérdezése.
+    search 'REGEX'      Keresés a csomagok közt.
+    install 'CSOMAG'    Telepítés.
+    remove 'CSOMAG'     Eltávolítás, de a konfig fájlok megmaradnak.
+    purge 'CSOMAG'      ... így már nem.
+    source 'CSOMAG'     Csomag forráskódjának letöltése.
+
+    A regex keresésnél alapjába véve a leírást és a csomagneveket is figyeli -
+    ha csak a csomagnevekben akarunk keresni, akkor használjuk a
+    '--names-only' kapcsolót.
+
+    Dist-upgrade:
+
+        $ apt-get update && apt-get upgrade && apt-get dist-upgrade
+
+apt-file                                                            [apt-file]
+
+    A telepítetlen csomagokban is megtalálja, hogy egy fájl melyik csomag
+    része.
+
+        $ apt-file update
+        $ apt-file search 'nvidia-xconfig'
+
+aptitude                                                            [aptitude]
+
+    Felhasználói felület az 'apt'-hez.
+
+    __ BILLENTYŰ PARANCSOK ________________
+
+    F10             Menü előhívása.
+    l               Csak a regex-re illeszkedő csomagok listája.
+        ~dREGEX     A leírásban is keresi a regex-et.
+    u               Csomaglista frissítése.
+    U               Frissíthetőek kijelölése telepítésre.
+    +               Csomag kijelölése telepítésre.
+    -               ... eltávolításra.
+    _               ... a konfigurációs fájljaival együtt. (purge)
+    g               Kijelölt műveletek végrehajtása.
+
+                                   ARCHÍVUM                               {{{1
+==============================================================================
+
+tar                                                                      [tar]
+
+    Általánosan elterjedt tömörítő program.
+
+        $ tar -czf 'mentes.tar.gz' 'menteni_valok/'
+
+    __ KAPCSOLÓK __________________________
+
+    -cf  archivum.tar FÁJLOK    Tömörítés.
+    -czf archivum.tar.gz FÁJLOK Gzip tömörítés.
+    -xf  archivum.tar[.gz]      Kicsomagolás.
+    -tf  archivum.tar[.gz]      Archívum tartalmának kilistázása.
+    -tvf archivum.tar[.gz]      ... infókkal. (méret, stb.)
+
+7z                                                                     [p7zip]
+
+    Sok formátumot támogató tömörítő program.
+
+        $ 7z x 'archivum.7z'
+
+    __ KAPCSOLÓK __________________________
+
+    x archivum.sokfajta     Kicsomagolás.
+
+                                 VERZIÓKEZELÉS                            {{{1
+==============================================================================
+
+git
+
+    Verziókezelő rendszer forráskódok biztonsági mentéséhez és
+    nyomon követéséhez.
+
+    'Working tree' alatt azt a könyvtárat kell érteni, ahol az eredeti fájlok
+    vannak (amiket menteni szeretnénk).
+
+    Az 'SHA' a verzió beazonosítására szolgáló egyéni azonosító, a 'git log'
+    parancson keresztül könnyen megtalálható. Ahol az SHA-t kell megadni, ott
+    nem szükséges az egészet begépelni, de minimum az első 4 karakter kell. Az
+    SHA helyett használhatjuk a verzió tag-ját is az azonosításra. Relatív
+    hivatkozás az N-edik számú szülő commit-ra az SHA~N kifejezéssel
+    lehetséges, ha tartományra szeretnénk hivatkozni, akkor az SHA..SHA
+    kifejezést használjuk. ('git help rev-parse')
+
+    A 'HEAD' egy hivatkozás az utoljára commit-olt ("mentett") verzióra (SHA
+    helyett használhatjuk), a 'staged' ('cached') szó azt az állapotot jelöli,
+    amikor még nem commit-oltuk a változásokat, csak felvettük őket az 'add'
+    paranccsal.
+
+    Ha Win-en az 'msys-git' rendszert használod és a commit üzeneteket
+    'gvim'-ben akarod megírni, akkor fűzd a 'gvim.exe' könyvtárának útvonalát
+    a 'PATH' környezeti változóhoz és add ki ezt a parancsot:
+
+        $ git config --global core.editor gvim
+
+    __ PARANCSOK __________________________
+
+    clone     Repository klónozása. (gyk. letöltés)
+    init      Új repository létrehozása.
+    add       Fájlok hozzáadása, meglévők frissítése.
+    commit    Verzió módosításainak véglegesítése. (gyk. mentés)
+    status    Változások az utolsó commit óta.
+    tag       Tag hozzáadása a commit-hoz. (pl. verziószám)
+    log       Verziók commit üzeneteinek kilistázása.
+    rebase    Commit-ok módosítása.
+    diff      A verziók közti módosítások megjelenítése.
+    branch    Elágazások kezelése.
+    checkout  Váltás az elágazások közt.
+    fetch     Beágyazás nélkül frissíti a repo-t. (utánna pull be is ágyazza)
+    pull      Helyi repo (aktuális branch-ba) ágyazza be a megadott repo-t.
+    push      Repo feltöltése a távoli repo-ba.
+    ls-tree   Könyvtárszerkezet kiíratása.
+    archive   Verzió fájljainak exportálása.
+
+    A legalapvetőbb dolog, hogy miként lehet letölteni egy repository-t. Az
+    alábbi parancs létrehozza a 'linux' könyvtárat és abba letölti a repo
+    teljes tartalmát:
+
+        $ git clone https://github.com/torvalds/linux.git
+
+    Ha saját repo-t akarunk létrehozni, akkor menjünk a projekt fő
+    könyvtárába és ott adjuk ki ezeket a parancsokat:
+
+        $ git init
+        $ git add --all
+        $ git commit
+        # Itt meg KELL adni a verzió leírását, pl. a változtatások rövid
+        # leírását, vagy hogy mely fájlokat tartalmazza.
+
+    A commit üzenet írásánál érdemes betartani, hogy az első sor egy rövid cím
+    legyen, majd hagyjunk egy üres sort és ezután jöhet a változtatások bővebb
+    leírása.
+
+    Miután elég változtatást hoztunk létre egy újabb verzióhoz, commit-oljuk
+    azokat:
+
+        $ git add --all
+        $ git commit
+        # Ezzel a meglévő fájlok változásait commit-olja, de új fájlokat nem
+        # vesz fel a listába:
+        $ git commit -a
+
+    Hogy visszanézzük a korábbi commit-okat (az összes branch kilistázásához
+    add hozzá az '--all' kapcsolót):
+
+        $ git log --graph --decorate --abbrev-commit
+
+    Changelog készítése a commit üzenetekből:
+
+        $ git log --name-status --summary > changelog.txt
+
+    Sztring keresése a commit üzenetekben:
+
+        $ git log --grep='sztring'
+
+    A megadott sztring keresése a commit-ok közti különbségekben:
+
+        $ git log -S'sztring'
+
+    Ha véletlen hozzáadtunk olyan fájlokat is, amiket nem akartunk, de még nem
+    commit-oltuk, akkor azokat így távolíthatjuk el anélkül, hogy a valódi
+    fájlokat törölnénk:
+
+        $ git rm -r --cached 'fajlok'
+
+    Verzió fájljainak kilistázása:
+
+        $ git ls-tree -r --name-only SHA
+
+    Visszatérés egy korábbi verzióra:
+
+        $ git checkout SHA
+        # Miután megnéztük amit akartunk, álljunk vissza az eredeti állapotra:
+        $ git checkout master
+
+    Korábbi verzió visszaállítása (FIGYELEM! Végleges a visszaállás, az újabb
+    verziók ezután nem érhetőek el):
+
+        $ git reset --hard SHA
+
+    Ha csak egy fájlt szeretnénk visszaállítani:
+
+        $ git checkout --force 'fajl'
+
+    Ha bizonyos fájlokat, vagy könyvtárakat nem akarunk menteni, akkor hozzunk
+    létre egy '.gitignore' fájlt és abba írjuk be a kifejezéseket. Pl.:
+
+        *.swp
+        bin/
+
+    Elláthatjuk tag-gal is a verziót miután commit-eltük, hogy könnyebben
+    lehessen rá hivatkozni:
+
+        $ git tag uj_gui
+        $ git tag regi_gui SHA
+        # Tag törlése:
+        $ git tag -d uj_gui
+
+    Ha egy korábbi commit üzenetét szeretnénk módosítani, akkor az alábbi
+    parancs lesz a segítségünkre. A kívánt commit előtti 'pick'-et írjuk át
+    'reword'-re.
+    FIGYELEM! NEM SZABAD PUSH UTÁNI COMMIT-OKAT MÓDOSÍTANI!
+
+        $ git rebase --interactive SHA~
+
+    A verziók közti különbséget is megtekinthetjük:
+
+        # A staged és a working tree különbségei:
+        $ git diff
+        # Staged és HEAD összehasonlítása:
+        $ git diff --cached
+        # HEAD és working tree:
+        $ git diff HEAD
+        # Working tree összevetése az egyel korábbi verzióval:
+        $ git diff HEAD~
+        # Két meghatározott verzió összehasonlítása:
+        $ git diff SHA SHA
+        # Vimdiff használata ugyanúgy történik, mint a fentebb látottak, de a
+        # 'git diff' helyett ezt írjuk:
+        $ git difftool --tool=vimdiff
+        # Hogy mindig ezt használja:
+        $ git config --global diff.tool vimdiff
+        $ git config --global merge.tool vimdiff
+
+    Új branch (elágazás) létrehozása és aktívvá tétele (a HEAD most ide mutat,
+    a további commit-ok ebbe fognak kerülni):
+
+        $ git checkout -b uj_branch
+
+    Az eredeti 'master' branch használatához először vissza kell rá váltani:
+
+        $ git checkout master
+
+    Az új branch összefésülése a master-ral:
+
+        $ git checkout master
+        $ git merge uj_branch
+
+    Master áthelyezése az uj_master branch-ra:
+
+        # A master-t átnevezzük.
+        $ git branch -m master regi_master
+        # Átlépünk az uj_master-be.
+        $ git checkout uj_master
+        # Töröljük a régi master-t.
+        $ git branch -D regi_master
+        # Az új master-t átnevezzük.
+        $ git branch -m uj_master master
+
+    Branch törlése:
+
+        $ git branch -d uj_branch
+
+    Távoli szerverre való feltöltés:
+
+        $ git push -u https://USER@github.com/USER/repo.git --all
+        $ git push -u https://USER@github.com/USER/repo.git --tags
+        # vagy
+        $ git push -u https://USER:JELSZO@github.com/USER/repo.git --all
+        $ git push -u https://USER:JELSZO@github.com/USER/repo.git --tags
+
+    Az '-u' kapcsoló hozzárendeli a helyi repót a megadott url-hez, ezért a
+    további 'push' és 'pull' utasításoknál nem kell megadni azt:
+
+        $ git push --all
+        $ git push --tags
+
+    Ha nem jött létre a remote branch, vagy nem megfelelo commit-ra mutat:
+
+        $ git remote rm origin
+        $ git remote add origin https://user@bitbucket.org/user/repo.git
+        $ git push -u origin
+
+    Távoli szerveren lévő verzió beágyazása a helyi repo-ba:
+
+        $ git pull https://github.com/USER/repo.git --all
+
+    Ha nem vagyunk benne biztosak, hogy a helyi repo-ba konfliktus nélkül be
+    tudjuk ágyazni a változásokat, akkor először pull helyett használjuk a
+    fetch parancsot, így a fájlok változtatása nélkül ellenőrizhetjük a
+    dolgokat:
+
+        $ git fetch
+        $ git status
+        $ git diff HEAD origin/master
+
+    Lokális repo létrehozása (pl. egy központi szerveren):
+
+        $ cd SZERVER/REPO
+        $ git init --bare
+        $ cd AMIT_FEL_AKARUNK_TOLTENI
+        $ git remote add szerver SZERVER/REPO
+        $ git push szerver --all
+
+    Fájlok exportálása adott verzióból:
+
+        $ git archive SHA -o 'regi.tar'
+        $ git archive SHA --format=zip -o 'regi.zip'
+
+    Könyvtárakba rendezett backup-ok git-be mentése:
+
+        $ shopt -s extglob
+        $ cd repo
+        $ git init
+        $ for i in ../backup/* ; do cp -r $i/* ./ ; git add --all ; \
+          git commit -m ${i##.*/} ; rm -r !(.git) ; done
+
+    A commit üzenetek a 'backup' könyvtárak nevei lesznek. Pl.:
+
+        2013.12.07_08.36
+        2013.12.07_15.50_limitek_jo
+        2013.12.09_11.48
+
+                                   HÁLÓZAT                                {{{1
+==============================================================================
+
+                             KÖRNYEZETI VÁLTOZÓK                          {{{2
+______________________________________________________________________________
+
+$http_proxy
+
+    Konzolban proxy használata:
+
+        $ export http_proxy='http://PROXY:PORT/'
+
+                                  PARANCSOK                               {{{2
+______________________________________________________________________________
+
+ifconfig                                                           [net-tools]
+
+    Hálózati kártya tulajdonságai. (IP, átjáró, fizikai (MAC) cím, ...)
+
+        $ ifconfig
+        eth0      Link encap:Ethernet  HWaddr ...
+                  inet addr:192.168.1.2  Bcast:192.168.1.255  Mask: ...
+        # ...
+
+host                                                              [bind9-host]
+
+    Domain név lekérdezése.
+
+        $ host 'www.hup.hu'
+        host 'www.hup.hu'
+        www.hup.hu is an alias for portal.fsn.hu.
+        portal.fsn.hu is an alias for hup.hu.
+        hup.hu has address ...
+        # ...
+
+netstat                                                            [net-tools]
+
+    Hálózati információk.
+
+        $ netstat -p
+        Active Internet connections (w/o servers)
+        Proto Recv-Q Send-Q Local Address           Foreign Address        ...
+        tcp        0      0 192.168.1.2:41993       bud02s02-in-f5.1e1:http...
+        tcp        0      0 192.168.1.2:50828       muc03s02-in-f18.1:https...
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -a  Minden kapcsolat listázása.
+    -n  A címeket számszerűleg (IP cím) mutassa.
+    -p  PID/programnév kiírása.
+    -t  Csak TCP kapcsolatok.
+    -u  Csak UDP.
+    -l  LISTEN kapcsolatok.
+    -r  Routing table.
+    -i  Interface-ek listája.
+    -s  Statisztika.
+
+    Folyamatos háló figyelés:
+
+        $ watch 'netstat -apt'
+
+    Port alapján program azonosítása:
+
+        $ netstat -nap | grep ':80'
+
+    A rendszeren futó internet szervizek listázása:
+
+        $ netstat -pult
+
+netcat                                                        [netcat-openbsd]
+nc
+
+    Nyers kapcsolat létrehozása.
+
+    A google kezdőlapjának lekérése (80-as porton):
+
+        $ netcat 'www.google.com' 80
+          GET /
+
+    Cookie és egyebek küldése:
+
+        HEADER.TXT
+            GET / HTTP/1.1
+            Host:               www.hackthissite.org
+            User-Agent:         nemmondommeg
+            Accept:             *
+            Accept-Charset:     ISO-8859-2,utf-8;
+            Keep-Alive:         300
+            Connection:         keep-alive
+            Cookie:             ...
+
+        $ cat 'header.txt' | netcat 'www.hackthissite.org' 80
+
+    Fontos hogy egy üres sort is hagyjunk a végén! Hogy olvasni is lehessen a
+    választ, az 'Accept-Encoding' részt nem adtuk meg, így nem lesz tömörítve.
+
+    __ KAPCSOLÓK __________________________
+
+    -vz 'localhost' '1-1023'  Portscan.
+
+pftp                                                                     [ftp]
+
+    Ftp kliens.
+
+    A helyi könyvtárstruktúrának egyeznie kell a távolival.
+
+        $ pftp 'ftp.valami.hu' PORT
+          send 'index.html'
+
+    Ebben az esetben a helyi könyvtárban lévő 'index.html'-t elküldi az
+    aktuális távoli könyvtárba.
+
+    __ FÁJLOK______________________________
+
+    ~/.netrc    Felhasználónevek, jelszavak, stb. listája.
+
+wget                                                                    [wget]
+
+    Script-barát 'böngesző' / letöltő program.
+
+    Egy fájl letöltése (vagy weboldal html része a képek és egyebek nélkül):
+
+        $ wget 'http://www.wikipedia.org/'
+
+    __ KAPCSOLÓK __________________________
+
+    -o FÁJL     A program saját üzenetei a fájlba kerülnek. (log)
+    -O FÁJL     A kimenet átirányítása a fájlba.
+    -i FÁJL     URL-ek listaja, vagy egy oldal főlapja.
+    -L          Csak a relatív útvonalakat kövesse.
+    -k          Az útvonalakat változtassa meg, hogy offline is lehessen
+                használni a weboldalakat.
+    -E          A kiterjesztéseket is változtassa meg. (pl. asp oldalaknál)
+    -p          Az oldal "függőségeit" (css, képek, stb.) is töltse le.
+    -r          Az eredeti könyvtárszerkezet megtartása. (rekurzív letöltés)
+    -l #        Mélység - a rekurzívitás maximuma. (0, vagy 'inf' = végtelen)
+    -np         Csak az adott könyvtáron belüli es az alatti cuccokat szedje
+                le. (no parent)
+    -nc         Nem csinál feleslegesen másolatokat és újboli letöltéseket.
+    -c          Félbemaradt letöltés folytatása. (akár másik progi általi is)
+    -m          Mirroring, abszolút másolas. (-r -N -l inf –no-remove-listing)
+                Egyszóval: letölti a komplett oldalt / internetet.
+    -S          Response header kiírása.
+
+    Egy weboldal letöltése:
+
+        $ wget -LkErp -nc -np 'www.akarmi.com/aloldal/'
+
+    Ha nem múködik, próbáld meg ezt a -L elhagyását.
+    Legvégső esetben:
+
+        $ wget -Ek --mirror 'www.akarmi.com/aloldal/'
+
+    Hogy bejelentkezve tudjunk dolgozni, először csak látogassunk el az
+    oldalra:
+
+        $ wget -O '/dev/null'                               \
+          --keep-session-cookies                            \
+          --save-cookies 'cookie'                           \
+          --load-cookies 'cookie'                           \
+          --referer      'http://www.hellboundhackers.org/' \
+          'http://www.hellboundhackers.org/'
+
+    Majd a belépési adatokat is elküldjük, az oldal tartalmát pedig
+    továbbadjuk a 'w3m' böngészőnek.
+
+        $ wget -o '/dev/null' -O '-'                                 \
+          --keep-session-cookies                                     \
+          --save-cookies 'cookie'                                    \
+          --load-cookies 'cookie'                                    \
+          --referer      'http://www.hellboundhackers.org/'          \
+          --post-data    'user_name=USER&user_pass=PASS&login=Login' \
+          'http://www.hellboundhackers.org/' | w3m -T 'text/html'
+
+    Sajnos elég kevés oldalon működik ez, mert a 'wget' cookie-kezelése elég
+    gyatra...
+
+w3m                                                                      [w3m]
+
+    Terminálos böngesző.
+
+        $ w3m 'http://www.c-faq.com/'
+
+    Bemenetére küldött HTML megjelenítése:
+
+        $ cat 'index.html' | w3m -T 'text/html'
+
+ngrep                                                                  [ngrep]
+
+    Hálózat 'grep'.
+    Argumentum nélkül folyamatosan listázza a hálózati csomagokat.
+
+    Hasznos, ha egy .swf (flash) zenelejátszó elindítása előtt 'ngrep'-et
+    nyomunk, így könnyen megszerezhetőek az mp3-mak.
+
+    __ KAPCSOLÓK __________________________
+
+    -W 'none'   A kimenetet továbbküldi csőbe.
+    -n #        # számú csomag fogadása, aztán exit.
+
+tcpdump                                                              [tcpdump]
+
+    Jól használható packet-sniffer.
+
+    Youtube-ról érkező TCP csomagok figyelése:
+
+        $ tcpdump -qtAs 10000 'tcp and host www.youtube.com'
+
+    __ KAPCSOLÓK __________________________
+
+    -A      A csomagok tartalmának megjelenítése ASCII formában.
+    -q      Rövid protokoll-információk.
+    -t      Ne írjon ki időbélyegeket.
+    -s BÁJT Csomagok mérete. (ennyi bájtot írjon ki belőle)
+
+mysql                                             [mysql-server, mysql-client]
+
+    Adatbázis kezelő.
+
+    __ KAPCSOLÓK __________________________
+
+    -u FELHASZNÁLÓ  Belépés FELHASZNÁLÓ névvel.
+    -h HOST         Kapcsolódás távoli szerverhez.
+    -P PORT         Port száma.
+
+                                  EGYÉB                                   {{{2
+______________________________________________________________________________
+
+Firefox optimalizalas:
+
+    $ apt-get install sqlite3
+    $ for f in ~/.mozilla/firefox-3.5/*/*.sqlite
+      do sqlite3 $f 'VACUUM;'
+      done
+
+                                 PROGRAMOZÁS                              {{{1
+==============================================================================
+
+                              ALAPVETŐ ESZKÖZÖK                           {{{2
+______________________________________________________________________________
+
+gcc                                                                      [gcc]
+
+    Gnu c/c++ compiler.
+
+    __ KAPCSOLÓK __________________________
+
+    -o FÁJLNÉV          Kimeneti fájl neve.
+    -Wall               Beszédes hibajelzés.
+    -ansi               A szabványtól való eltérést nem engedi.
+    -pedantic           Letiltja a glibc függvények használatát, tehát
+                        portolható programok írásánál hasznos.
+    -DNÉV='1234'        #define NÉV 1234
+    -include HEADER.H   A HEADER.H betöltése a forráskód előtt.
+    -IKÖNYVTÁR          KÖNYVTÁR hozzáadása az include útvonalához.
+    -lLIB               Linkelés a LIB-bel.
+    -LKÖNYVTÁR          KÖNYVTÁR hozzáadása a LIB-ek útvonalához.
+    -g                  Hibakeresésre (debug) használható kimenet.
+       -ggdb            A 'gdb'-nek megfelelő kimenet.
+    -O#                 Optimalizálás szintje. (0 az alapértelmezett)
+        0..3            Minél nagyobb, annál jobban optimalizálva lesz.
+        s               -O2 + méretre optimalizálás.
+        fast            -O3 + szabványokkal nem kompatibilis optimalizálás.
+    -s                  Strip, kisebb lesz a bináris.
+
+    __ INFORMÁCIÓK ________________________
+
+    -S                  Assembly kimenet. (sima text, AT&T stílusú)
+       -masm=intel      ... Intel stílusú.
+       -fverbose-asm    Megjegyzések az asm kódban.
+    -M FORRÁSKÓD        Forráshoz kapcsolódó header fájlok listája.
+
+    __ PÉLDÁK _____________________________
+
+    Több forrásból álló program lefordítása:
+
+        $ gcc -o 'progi' 'egyik.c' 'masik.c'
+
+    SDL:
+
+        $ gcc 'progi.c' -lSDL
+
+    OPENGL ('freeglut3-dev' csomag használatával):
+
+        $ gcc 'progi.c' -lGL -lglut
+
+    GTK2:
+
+        $ gcc 'progi.c' $(pkg-config --cflags --libs 'gtk+-2.0')
+
+    __ MINGW32 PÉLDÁK _____________________
+
+    FIGYELEM! Valamiért a mingw először a forrásokat kéri, azután a
+    kapcsolókat, más sorrendben nem megy.
+
+    SDL:
+
+        Az 'sdl.dll' a forrással megegyező könyvtárban kell, hogy legyen.
+
+        $ gcc 'progi.c' -lmingw32 -L./ -lSDL -lSDLmain
+
+    OPENGL:
+
+        MINDENKÉPP BENNE KELL, HOGY LEGYEN A 'WINDOWS.H' A 'GLUT.H' ELŐTT,
+        ezen kívül a 'glut32.dll' a forrással megegyező könyvtárban kell,
+        hogy legyen.
+
+        $ gcc 'progi.c' -lmingw32 -lopengl32 -lglu32 -L./ -lglut32
+
+    GTK2:
+
+        $ gcc 'progi.c' $(PKG-CONFIG --CFLAGS --LIBS GTK+-2.0 KIMENETE)
+
+    Grafikus programoknál (pl. sdl) ne nyisson terminált:
+
+        $ gcc 'progi.c' -lmingw32 -mwindows
+
+    Saját '.dll' készítése:
+
+        $ gcc 'mydll.c' -o 'mydll.o' -c
+        $ gcc 'mydll.o' -o 'mydll.dll' -shared
+
+    A 'mydll.dll' használata:
+
+        $ gcc 'progi.c' -lmingw32 -L./ -lmydll
+
+    A szükséges '.dll'-ek listája:
+
+        $ objdump -x 'progi.exe' | grep 'dll'
+
+    FIGYELEM! Az eredmény inkább csak tájékoztató jellegű, mert ha az egyik
+    '.dll' függ egy másiktól (ami nincs a listán) az nem derül ki.
+
+    Ha a hálózatot akarjuk használni, akkor a következő kódot a '-lws2_32'
+    kapcsolóval lefordítva kell beszúrni a forrásba:
+
+        #ifdef WIN32
+            #include <winsock2.h>
+        #else
+            #include <sys/socket.h>
+            #include <sys/param.h>
+            #include <netinet/in.h>
+            #include <arpa/inet.h>
+            #indlude <netdb.h>
+        #endif
+
+        int
+        main( void )
+        {
+            #ifdef WIN32
+                WSADATA
+                    wsaData;
+
+                if( WSAStartup( MAKEWORD( 2,0 ), &wsaData ) != 0 )
+                {
+                    fprintf( stderr, PROGRAM_NAME ': WSAStartup failed\n' );
+                    exit( 1 );
+                }
+            #endif
+
+            /* ... socket hasznalata ... */
+
+            #ifdef WIN32
+                WSACleanup();
+            #endif
+
+            return( 0 );
+        }
+
+gdb                                                                      [gdb]
+
+    Debugger C programokhoz, binárisokhoz.
+
+        $ gcc -ggdb -o 'progi' 'progi.c'
+
+        $ gdb --tui 'progi'
+        $ gdb --tui --args 'progi' PROGRAM_ARGUMENTUMOK
+
+    __ KAPCSOLÓK __________________________
+
+    --tui           'Grafikus' megjelenés.
+
+    __ PARANCSOK --TUI MÓDBAN ______________
+
+    layout src      Forrás megjelenítése.
+    layout asm      Assembly megjelenítése.
+    layout split    Felül forrás, alul assembly.
+    layout reg      Felül regiszterek (csak a program futása közben)
+
+    __ PARANCSOK ___________________________
+
+    help                            Belső súgó.
+    run                             Program futtatása folyamatosan.
+    start                           Soronkénti futtatás.
+    kill                            Stop.
+    step                            Aktuális sor végrehajtása.
+    next                            ... kihagyása.
+    continue                        Program folyamatos folytatása.
+    break FÜGGVENY_VAGY_SORSZÁM     Breakpoint elhelyezése.
+    break FÁJL:SORSZÁM
+    list FÜGGVÉNY_VAGY_SORSZÁM      Kódra ugrás.
+    print VÁLTOZÓ                   Kiíratás.
+    printf "FORMÁTUM", ELEMEK       Formázott kiíratás.
+    set VÁLTOZÓ        = ÉRTÉK      Értékadás.
+        *(MEMÓRIA_CÍM) = ÉRTÉK
+    info reg                        Regiszterek és tartalmuk kiírása.
+         frame                      Hasznos memóriacímek.
+    backtrace                       Verem kiíratása olvasható formában.
+    disassemble FÜGGVÉNY            Függvény asm kódja.
+    set disassembly-flavor intel    Intel stílusú asm kód az AT&T helyett.
+    ENTER                           Utolsó parancs ismétlése.
+    ^C                              Vizsgált program futásának megszakítása.
+
+cscope                                                                [cscope]
+
+    'Forráskód-böngesző'.
+    Függvények definíciójának, vagy meghívásának helyét lehet vele például
+    megkeresni.
+
+    A forráskódok fő könyvtárában adjuk ki ezt a parancsot, hogy használni
+    tudjuk:
+
+        $ cscope -R
+
+    __ KAPCSOLÓK __________________________
+
+    -R  Az adott könyvtár alá tartozó összes elem vizsgálata.
+    -b  Az adatbázis felépítése a GUI indítása nélkül.
+    -q  Rendezett adatbázis a gyorsabb keresésért.
+
+    __ PARANCSOK ___________________________
+
+    TAB     Váltás a kereső / eredmény ablak között.
+    NYILAK  Navigálás.
+    ENTER   Adott találat megjelenítése az editorban.
+
+    __ KÖRNYEZETI VÁLTOZÓK ________________
+
+    EDITOR  Ebben a texteditor-ban jeleníti meg a kívánt találatot.
+
+                                 PROFILING                                {{{2
+______________________________________________________________________________
+
+oprofile                                                            [oprofile]
+
+    Program analizálása.
+
+    __ OPCONTROL __________________________
+
+    Beállítások.
+
+    -i FÁJL     Bináris, amit elemezni szeretnénk.
+    --reset     Begyűjtött adatok törlése.
+    --start     Daemon indítása.
+    --stop      ... megállítása.
+    --shutdown  ... leállítása.
+
+    __ OPREPORT ___________________________
+
+    Az analízis eredményének lekérdezése.
+
+    -x          Csak a program belső cuccairól adjon ínfót.
+    -l          Minden szimbólumot írjon ki.
+
+    __ PÉLDÁK _____________________________
+
+    Beállítás egy bináris elemzésere:
+
+        $ opcontrol --shutdown
+        $ opcontrol -i './progi'
+        $ opcontrol --start
+
+    A beállítások a '~/.oprofile/daemonrc' fájlba írodnak. Innentől
+    bármennyiszer futtatjuk a './progi' binárist, elkészíti az elemzést, amit
+    így kérhetünk le:
+
+        $ ./progi
+        $ opreport -xl
+
+valgrind                                                            [valgrind]
+
+    Program analizálása nagyon sok tekintetben, mint pl. melyik parancs
+    mennyi assembly utasítást használt. (gyk. a parancs ideje)
+
+    __ CALLGRIND __________________________
+
+        $ gcc -ggdb -o 'progi' 'progi.c'
+        $ valgrind --tool=callgrind './progi'
+
+    Ez létrehoz egy 'callgrind.out.PID' fájlt, amit aztán elemezhetünk.
+
+    Minden gyakran használt forráskód kiíratása a felhasznált utasítások
+    számával:
+
+        $ callgrind_annotate --auto=yes 'callgrind.out.PID'
+
+    Mindegyik forráskód kiírása:
+
+        $ callgrind_annotate --auto=yes --threshold=100 'callgrind.out.PID'
+
+    Ezek közül egyetlen forrás kiíratása:
+
+        $ callgrind_annotate 'callgrind.out.PID' 'FÜGGVÉNY_NEVE'
+
+                         BINÁRISSAL KAPCSOLATOS INFÓK                     {{{2
+______________________________________________________________________________
+
+man elf                                                             [manpages]
+
+    Elf bináris formátum leírása.
+
+strings                                                             [binutils]
+
+    Binárison belüli sztringeket írja ki.
+
+        $ strings 'progi'
+        /lib/ld-linux.so.2
+        libc.so.6
+        _IO_stdin_used
+        puts
+        # ...
+
+size                                                                [binutils]
+
+    Bináris szekcióinak (data, text, ...) méretei.
+
+        $ size 'progi'
+        text    data     bss     dec     hex filename
+        2086     292       4    2382     94e progi
+
+    __ KAPCSOLÓK __________________________
+
+    -A  A címeket is írja ki.
+    -x  Hexadecimálisan írja ki az értekéket és címeket.
+
+nm                                                                  [binutils]
+
+    Binárison belüli nevek listája.
+
+        $ nm 'progi'
+        0804a02c B __bss_start
+        08048574 T bt_korbejar
+        08048527 T bt_torol
+        080484ac T bt_uj
+        # ...
+
+pmap                                                                  [procps]
+
+    Elindított program memória-térképe. (PID az argumentuma)
+
+        $ pmap '1414'
+        1414:   gvim linux_parancsok.txt
+        08048000   2152K r-x--  /usr/bin/vim.gtk
+        08262000      4K r----  /usr/bin/vim.gtk
+        08263000     64K rw---  /usr/bin/vim.gtk
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -d  Kiírja az offset-et is.
+
+objdump                                                             [binutils]
+
+    Adatok a binárisról.
+
+        $ objdump 'progi'
+        progi:   file format elf32-i386
+        Contents of section .interp:
+        8048154 2f6c6962 2f6c642d 6c696e75 782e736f  /lib/ld-linux.so
+        8048164 2e3200                               .2.
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -p  Függőségek.
+    -s  Hexa + adat nézet szegmensekre bontva (.data, .text, ...)
+    -S  Assembly nézet függvényekre bontva.
+
+ldd                                                                 [libc-bin]
+
+    Bináris függőségeinek listája fájlnevekkel.
+
+        $ ldd 'progi'
+        linux-gate.so.1 =>  (0xb7719000)
+        libc.so.6 => /lib/i386-linux-gnu/libc.so.6 (0xb754f000)
+        /lib/ld-linux.so.2 (0xb771a000)
+        # ...
+
+    __ KAPCSOLÓK __________________________
+
+    -v  Verbose, hosszabb lista.
+
+                                  MULTIMÉDIA                              {{{1
+==============================================================================
+
+latex                                                      [texlive-late-base]
+
+    Szövegformázó rendszer - tudományos képletek leírását nagyon támogatja, de
+    akár az önéletrajzunkat is megíhatjuk benne.
+
+        $ pdflatex 'perpetuum_mobile.tex'
+
+    Ha manuálisan szeretnénk telepíteni egy csomagot, először szerezzük be a
+    fájlokat (legegyszerűbb ha az egészet egy tömörített fájlban szedjük le):
+
+        http://www.ctan.org/
+
+    Egy ideiglenes könyvtárba mentsük le a kívánt csomagot, tömörítsük ki,
+    majd a következő utasítást adjuk ki:
+
+        $ for i in *.ins; do latex $i; done
+
+    Ezzel lefordítjuk a csomagokat, de mielőtt használni tudnánk őket, tegyük
+    a '~/texmf/tex/latex' könyvtárba:
+
+        $ mv 'fullpage' ~/texmf/tex/latex
+
+mplayer                                                              [mplayer]
+
+    Médialejátszó.
+
+        $ mplayer 'dvd:///media/dvd'
+
+    __ KAPCSOLÓK __________________________
+
+    -shuffle mp3/*          Véletlenszerű lejátszás.
+    -vo 'caca' 'film.avi'   ASCII mozi.
+    -vo 'svga' 'film.avi'   Konzolban mozi.
+    -msglevel all=6         Beszédes mód. (max 9)
+    -dumpaudio              audio > stream.dump
+
+avconv                                                           [libav-tools]
+ffmpeg
+
+    Audio/video konverter. (az 'ffmpeg' elnevezés elavult)
+
+    A 'libmp3lame' használatához a 'libavcodec-extra-53' csomag kell.
+
+    avconv [BEMENETI BEÁLLÍTÁSOK] -i BEMENET [KIMENETI BEÁLLÍTÁSOK] KIMENET
+
+    __ KAPCSOLÓK __________________________
+
+    -codecs                 Codec-ek kiíratása.
+    -formats                Formátumok kiíratása.
+
+    -i FÁJL                 Bemeneti fájl(ok) kiválasztása.
+    -map FÁJL_ID:STREAM     Adott audio/video csatorna kiválasztása a
+                            bemeneti fájlból. (többi csatorna nem kerül a
+                            kimenetre)
+    -vn                     Video csatorna tiltása.
+    -f FORMÁTUM             Formátum kényszerítése. (force)
+    -c:a CODEC              Ki/bemeneti audiocodec.
+    -c:v CODEC              ... videocodec.
+    -b:v 123k               Video bitrate.
+    -b:a 123k               Audio bitrate.
+    -ac 123                 Audio sávok száma.
+    -s SZELESSÉGxMAGASSÁG   Video felbontása.
+       svga                 800  x 600
+       xga                  1024 x 768
+       wvga                 852  x 480
+       wxga                 1366 x 768
+    -q:v 123                A minőség beállítása. (5: jó minőség/fájlméret)
+    -itsoffset HH:MM:SS     A bemeneti fájl ennyi késleltetéssel induljon.
+    -ss HH:MM:SS            ... elejének levágása eddig a pontig.
+    -t HH:MM:SS             Csak ilyen hosszú rész kerüljön a kimenetre a
+                            bemeneti csatornából.
+
+    Részlet kivágása - elcsúszhat a hang:
+
+        $ avconv -ss 00:00:00 -i 'video.avi' -t 00:30:00 'reszlet.avi'
+
+    Kepék ('kep01.jpg', 'kep02.jpg', ...) -> avi:
+
+        $ avconv -f 'image2' -i 'kep%d.jpg' 'video.avi'
+
+    Kép + hang -> flv:
+
+        $ avconv -i 'kep.jpg' -i 'hang.mp3' -s 854x480 -b:v 2500k -c:a mp3 \
+          -ac 2 -b:a 192k -ar 44100 -loop 1 -shortest 'video.flv'
+
+    Video -> avi
+                              LEHET, HOGY MPEG4 JOBB LENNE (H264 vcodec + MP3)
+
+        Ha DVD-t akarsz konvertalni, akkor elotté fűzd össze a fájlokat:
+        $ cat VTS_01_*.VOB > 'video.vob'
+
+        $ avconv -i 'video.vob' -f avi -c:v msmpeg4 -qscale 5 \
+          -c:a libmp3lame -ac 2 -ab 192k -ar 44100 'video.avi'
+
+    Hang újraigazítása (pl.: 2 másodperccel hamarabb kezdődjön a hang):
+
+        $ avconv -i 'video.avi' -ss 00:00:02 -i 'video.avi' -map 0:0 -map 1:1
+          -c:a copy -c:v copy 'javitott_video.avi'
+
+    Wav, vagy video -> mp3:
+
+        $ avconv -i 'video.avi' -vn -f mp3 -ac 2 -ar 44100 -b:a 192k \
+          'hang.mp3'
+
+    X11 screencast:
+
+        $ avconv -f alsa -i plughw:1,0 -f x11grab -r 30 -s 1360x768 -i :0.0 \
+          -vcodec libx264 -preset ultrafast -threads 4 -y screencast.mp4
+
+                            ASCII KARAKTEREK NEVEI                        {{{1
+==============================================================================
+
+OCT   HEX   DEC  CHAR  NAME
+\040  \x20  32   ' '   (space)
+\041  \x21  33   !     exclamation point (bang)
+\042  \x22  34   "     quotation mark, diaeresis
+\043  \x23  35   #     number sign (pound sign)
+\044  \x24  36   $     dollar sign
+\045  \x25  37   %     percent sign
+\046  \x26  38   &     ampersand
+\047  \x27  39   '     apostrophe, acute accent (single quote)
+\050  \x28  40   (     left parenthesis  (open parenthesis)
+\051  \x29  41   )     right parenthesis (close parenthesis)
+\052  \x2A  42   *     asterisk
+\053  \x2B  43   +     plus sign
+\054  \x2C  44   ,     comma, cedilla
+\055  \x2D  45   -     hyphen, minus sign
+\056  \x2E  46   .     period, decimal point, (full stop)
+\057  \x2F  47   /     slant (solidus), slash
+\072  \x3A  58   :     colon
+\073  \x3B  59   ;     semicolon
+\074  \x3C  60   <     less-than sign  (left angle bracket)
+\075  \x3D  61   =     equals sign
+\076  \x3E  62   >     greater-than sign  (right angle bracket)
+\077  \x3F  63   ?     question mark
+\100  \x40  64   @     commercial at
+\133  \x5B  91   [     left (square) bracket (open bracket)
+\134  \x5C  92   \     reverse slant (reverse solidus) (backslash, backslant)
+\135  \x5D  93   ]     right (square) bracket (closing bracket)
+\136  \x5E  94   ^     circumflex accent
+\137  \x5F  95   _     underline (low line)
+\140  \x60  96   `     left single quotation mark, grave accent
+\173  \x7B  123  {     left brace (left curly bracket) (open brace)
+\174  \x7C  124  |     vertical line (pipe)
+\175  \x7D  125  }     right brace (right curly bracket) (closing brace)
+\176  \x7E  126  ~     tilde (overline) (squiggle)

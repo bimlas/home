@@ -1,0 +1,256 @@
+http://hu.wikipedia.org/wiki/ISO_3166-1
+
+ORSZÁG                                             NUMERIKUS  ALPHA-3  ALPHA-2
+------------------------------------------------------------------------------
+Afganisztán                                        004        AFG      AF
+Åland                                              248        ALA      AX
+Albánia                                            008        ALB      AL
+Algéria                                            012        DZA      DZ
+USA Amerikai Csendes-óceáni szigetek               581        UMI      UM
+Amerikai Egyesült Államok                          840        USA      US
+Amerikai Szamoa                                    016        ASM      AS
+Amerikai Virgin-szigetek                           850        VIR      VI
+Andorra                                            020        AND      AD
+Angola                                             024        AGO      AO
+Anguilla                                           660        AIA      AI
+Antarktisz                                         010        ATA      AQ
+Antigua és Barbuda                                 028        ATG      AG
+Argentína                                          032        ARG      AR
+Aruba                                              533        ABW      AW
+Ausztrália                                         036        AUS      AU
+Ausztria                                           040        AUT      AT
+Azerbajdzsán                                       031        AZE      AZ
+Bahama-szigetek                                    044        BHS      BS
+Bahrein                                            048        BHR      BH
+Banglades                                          050        BGD      BD
+Barbados                                           052        BRB      BB
+Belgium                                            056        BEL      BE
+Belize                                             084        BLZ      BZ
+Benin                                              204        BEN      BJ
+Bermuda                                            060        BMU      BM
+Bhután                                             064        BTN      BT
+Bissau-Guinea                                      624        GNB      GW
+Bolívia                                            068        BOL      BO
+Bosznia-Hercegovina                                070        BIH      BA
+Botswana                                           072        BWA      BW
+Norvégia Bouvet-sziget                             074        BVT      BV
+Brazília                                           076        BRA      BR
+Brit Indiai-óceáni Terület                         086        IOT      IO
+Brit Virgin-szigetek                               092        VGB      VG
+Brunei                                             096        BRN      BN
+Bulgária                                           100        BGR      BG
+Burkina Faso                                       854        BFA      BF
+Burundi                                            108        BDI      BI
+Chile                                              152        CHL      CL
+Ciprus                                             196        CYP      CY
+Comore-szigetek                                    174        COM      KM
+Cook-szigetek                                      184        COK      CK
+Costa Rica                                         188        CRI      CR
+Csád                                               148        TCD      TD
+Csehország                                         203        CZE      CZ
+Dánia                                              208        DNK      DK
+Dél-afrikai Köztársaság                            710        ZAF      ZA
+Déli-Georgia és Déli-Sandwich-szigetek             239        SGS      GS
+Dominikai Közösség                                 212        DMA      DM
+Dominikai Köztársaság                              214        DOM      DO
+Dzsibuti                                           262        DJI      DJ
+Ecuador                                            218        ECU      EC
+Egyenlítői-Guinea                                  226        GNQ      GQ
+Egyesült Arab Emírségek                            784        ARE      AE
+Egyesült Királyság                                 826        GBR      GB
+Egyiptom                                           818        EGY      EG
+Elefántcsontpart                                   384        CIV      CI
+El Salvador                                        222        SLV      SV
+Eritrea                                            232        ERI      ER
+Északi-Mariana-szigetek                            580        MNP      MP
+Észtország                                         233        EST      EE
+Etiópia                                            231        ETH      ET
+Falkland-szigetek                                  238        FLK      FK
+Fehéroroszország                                   112        BLR      BY
+Feröer                                             234        FRO      FO
+Fidzsi                                             242        FJI      FJ
+Finnország                                         246        FIN      FI
+Francia déli és antarktiszi területek              260        ATF      TF
+Francia Guyana                                     254        GUF      GF
+Franciaország                                      250        FRA      FR
+Francia Polinézia                                  258        PYF      PF
+Fülöp-szigetek                                     608        PHL      PH
+Gabon                                              266        GAB      GA
+Gambia                                             270        GMB      GM
+Ghána                                              288        GHA      GH
+Gibraltár                                          292        GIB      GI
+Görögország                                        300        GRC      GR
+Grenada                                            308        GRD      GD
+Grönland                                           304        GRL      GL
+Grúzia                                             268        GEO      GE
+Guadeloupe                                         312        GLP      GP
+Guam                                               316        GUM      GU
+Guatemala                                          320        GTM      GT
+Guinea                                             324        GIN      GN
+Guyana                                             328        GUY      GY
+Haiti                                              332        HTI      HT
+Heard-sziget és McDonald-szigetek                  334        HMD      HM
+Holland Antillák                                   530        ANT      AN
+Hollandia                                          528        NLD      NL
+Honduras                                           340        HND      HN
+Hongkong                                           344        HKG      HK
+Horvátország                                       191        HRV      HR
+India                                              356        IND      IN
+Indonézia                                          360        IDN      ID
+Irak                                               368        IRQ      IQ
+Irán                                               364        IRN      IR
+Írország                                           372        IRL      IE
+Izland                                             352        ISL      IS
+Izrael                                             376        ISR      IL
+Jamaica                                            388        JAM      JM
+Japán                                              392        JPN      JP
+Jemen                                              887        YEM      YE
+Jordánia                                           400        JOR      JO
+Kajmán-szigetek                                    136        CYM      KY
+Kambodzsa                                          116        KHM      KH
+Kamerun                                            120        CMR      CM
+Kanada                                             124        CAN      CA
+Karácsony-sziget                                   162        CXR      CX
+Katar                                              634        QAT      QA
+Kazahsztán                                         398        KAZ      KZ
+Kelet-Timor                                        626        TLS      TL
+Kenya                                              404        KEN      KE
+Kína                                               156        CHN      CN
+Kirgizisztán                                       417        KGZ      KG
+Kiribati                                           296        KIR      KI
+Kókusz (Keeling)-szigetek                          166        CCK      CC
+Kolumbia                                           170        COL      CO
+Kongói Demokratikus Köztársaság (Zaire)            180        COD      CD
+Kongói Köztársaság (Kongó)                         178        COG      CG
+Dél-Korea (Koreai Köztársaság)                     410        KOR      KR
+Észak-Korea (Koreai NDK)                           408        PRK      KP
+Közép-Afrika                                       140        CAF      CF
+Kuba                                               192        CUB      CU
+Kuvait                                             414        KWT      KW
+Laosz                                              418        LAO      LA
+Lengyelország                                      616        POL      PL
+Lesotho                                            426        LSO      LS
+Lettország                                         428        LVA      LV
+Libanon                                            422        LBN      LB
+Libéria                                            430        LBR      LR
+Líbia                                              434        LBY      LY
+Liechtenstein                                      438        LIE      LI
+Litvánia                                           440        LTU      LT
+Luxemburg                                          442        LUX      LU
+Macedónia                                          807        MKD      MK
+Madagaszkár                                        450        MDG      MG
+Magyarország                                       348        HUN      HU
+Makaó                                              446        MAC      MO
+Malajzia                                           458        MYS      MY
+Malawi                                             454        MWI      MW
+Maldív-szigetek                                    462        MDV      MV
+Mali                                               466        MLI      ML
+Málta                                              470        MLT      MT
+Marokkó                                            504        MAR      MA
+Marshall-szigetek                                  584        MHL      MH
+Martinique Martinique                              474        MTQ      MQ
+Mauritánia                                         478        MRT      MR
+Mauritius                                          480        MUS      MU
+Mayotte                                            175        MYT      YT
+Mexikó                                             484        MEX      MX
+Mianmar                                            104        MMR      MM
+Mikronézia                                         583        FSM      FM
+Moldova                                            498        MDA      MD
+Monaco                                             492        MCO      MC
+Mongólia                                           496        MNG      MN
+Montenegró                                         499        MNE      ME
+Montserrat                                         500        MSR      MS
+Mozambik                                           508        MOZ      MZ
+Namíbia                                            516        NAM      NA
+Nauru                                              520        NRU      NR
+Németország                                        276        DEU      DE
+Nepál                                              524        NPL      NP
+Nicaragua                                          558        NIC      NI
+Niger                                              562        NER      NE
+Nigéria                                            566        NGA      NG
+Niue                                               570        NIU      NU
+Norfolk-sziget                                     574        NFK      NF
+Norvégia                                           578        NOR      NO
+Nyugat-Szahara                                     732        ESH      EH
+Olaszország                                        380        ITA      IT
+Omán                                               512        OMN      OM
+Oroszország                                        643        RUS      RU
+Örményország                                       051        ARM      AM
+Pakisztán                                          586        PAK      PK
+Palau                                              585        PLW      PW
+Palesztina                                         275        PSE      PS
+Panama                                             591        PAN      PA
+Pápua Új-Guinea                                    598        PNG      PG
+Paraguay                                           600        PRY      PY
+Peru                                               604        PER      PE
+Pitcairn-szigetek                                  612        PCN      PN
+Portugália                                         620        PRT      PT
+Puerto Rico                                        630        PRI      PR
+Réunion                                            638        REU      RE
+Románia                                            642        ROU      RO
+Ruanda                                             646        RWA      RW
+Saint Kitts és Nevis                               659        KNA      KN
+Saint Lucia                                        662        LCA      LC
+Saint-Pierre és Miquelon Saint-Pierre és Miquelon  666        SPM      PM
+Saint Vincent és a Grenadine-szigetek              670        VCT      VC
+Salamon-szigetek                                   090        SLB      SB
+San Marino                                         674        SMR      SM
+São Tomé és Príncipe                               678        STP      ST
+Seychelle-szigetek                                 690        SYC      SC
+Sierra Leone                                       694        SLE      SL
+Spanyolország                                      724        ESP      ES
+Srí Lanka                                          144        LKA      LK
+Suriname                                           740        SUR      SR
+Svájc                                              756        CHE      CH
+Norvégia Svalbard (Spitzbergák) és Jan Mayen       744        SJM      SJ
+Svédország                                         752        SWE      SE
+Szamoa                                             882        WSM      WS
+Szaúd-Arábia                                       682        SAU      SA
+Szenegál                                           686        SEN      SN
+Szent Ilona                                        654        SHN      SH
+Szerbia                                            688        SRB      RS
+Szerbia és Montenegró                              891        SCG      CS
+Szingapúr                                          702        SGP      SG
+Szíria                                             760        SYR      SY
+Szlovákia                                          703        SVK      SK
+Szlovénia                                          705        SVN      SI
+Szomália                                           706        SOM      SO
+Szudán                                             736        SDN      SD
+Szváziföld                                         748        SWZ      SZ
+Tádzsikisztán                                      762        TJK      TJ
+Tajvan                                             158        TWN      TW
+Tanzánia                                           834        TZA      TZ
+Thaiföld                                           764        THA      TH
+Togo                                               768        TGO      TG
+Tokelau-szigetek                                   772        TKL      TK
+Tonga                                              776        TON      TO
+Törökország                                        792        TUR      TR
+Trinidad és Tobago                                 780        TTO      TT
+Tunézia                                            788        TUN      TN
+Turks- és Caicos-szigetek                          796        TCA      TC
+Tuvalu                                             798        TUV      TV
+Türkmenisztán                                      795        TKM      TM
+Uganda                                             800        UGA      UG
+Új-Kaledónia                                       540        NCL      NC
+Új-Zéland                                          554        NZL      NZ
+Ukrajna                                            804        UKR      UA
+Uruguay                                            858        URY      UY
+Üzbegisztán                                        860        UZB      UZ
+Vanuatu                                            548        VUT      VU
+Vatikán                                            336        VAT      VA
+Venezuela                                          862        VEN      VE
+Vietnam                                            704        VNM      VN
+Wallis és Futuna Wallis és Futuna                  876        WLF      WF
+Zambia                                             894        ZMB      ZM
+Zimbabwe                                           716        ZWE      ZW
+Zöld-foki Köztársaság                              132        CPV      CV
+Saint-Martin                                       663        MAF      MF
+Saint-Barthélemy                                   652        BLM      BL
+Bonaire, Saint Eustatius and Saba                  535        BES      BQ
+Curaçao                                            531        CUW      CW
+Guernsey                                           831        GGY      GG
+Isle of Man                                        833        IMN      IM
+Jersey                                             832        JEY      JE
+South Sudan                                        728        SSD      SS
+Sint Maarten                                       534        SXM      SX
+Koszovó                                            0          XKX      XK

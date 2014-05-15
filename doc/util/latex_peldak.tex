@@ -1,0 +1,312 @@
+% peldak.tex - Latex példák.
+%
+% A túlnyujtott rizsázásokat inkább lipsummal helyettesítsd.
+%
+% ===================== BimbaLaszlo(.co.nr|gmail.com) ==== 2014.02.03 05:18 ==
+
+\documentclass[a4paper]{report}             % book: alapból dupla-oldalas
+                                            % report: nem ismeri a 'part' egységet
+                                            % article: nem ismeri a 'part' és 'chapter' egységeket
+\usepackage[utf8]{inputenc}                 % A szöveg UTF-8 karikódolású.
+\usepackage[magyar]{babel}                  % Magyar címek és elválasztások.
+\usepackage[T1]{fontenc}                    % Valószínűleg betűtípus beállítás
+                                            % (mellőzhető)
+\PassOptionsToPackage{defaults=hu-min,labelenums=hu-A}{magyar.ldf}
+
+\usepackage{fullpage}                       % 1inch margó, a szöveg szélessége (\textwidth) 159,2mm.
+\usepackage{makeidx}                        % Csináljon indexet. ( szójegyzék )
+\makeindex
+
+% EZZEL VALAMI NAGYON NEM STIMMEL!
+\usepackage{hyperref}                       % Hiperhivatkozások használata.
+\hypersetup{
+    unicode=true,
+    colorlinks=true,
+    linkcolor=red
+}
+
+\usepackage{listings}                       % A listings típusú forráskódokhoz kell.
+\usepackage{textcomp}                       % A listings upquote beállításához.
+% Listings megjelenítéseinek beállításai.
+\lstset{showtabs=true}                      % Tabokat nyíllal jelenítse meg. (makefile kód estén pl.)
+\lstset{tab=\rightarrowfill}                % A tab egy nyíllal legyen jelölve.
+\lstset{tabsize=4}                          % 1 tab = 4 szóköz
+\lstset{showstringspaces=false}             % Idézőjeles szövegben ne jelölje a szóközt.
+\lstset{upquote=true}                       % A ` és ' kari valódi formájában jelenjen meg.
+\lstset{frameround=tftf}
+\lstset{frame=trBL}                         % A kódot körülvevő keret.
+% Értékei lehetnek:
+% single Kerettel veszi körbe a kódot.
+% t      Vonal beszúrása felülre ...
+% b     ... alulra ...
+% r     ... jobbra ...
+% l     ... balra ...
+% T     ... felülre, de dupla vonal.
+% A nagybetű mindenhol dupla vonalat eredményez.
+
+\usepackage{graphicx}                       % Képek beillesztéséhez.
+
+% _________________________________ BEGIN ____________________________________
+
+\title{  \LaTeX\ PÉLDÁK }                   % A mű címe ...
+\author{ Bimba László }                     % ... szerzője ...
+\date{   2011. február 19. -- \today }      % ... és a keletkezés dátuma.
+
+\begin{document}    % Elkezdjük a dokumentumot.
+
+\maketitle          % Cím, szerző, stb. kiírása.
+\tableofcontents    % Tartalomjegyzék kiírása. ( automatikusan generálja )
+
+% Az 'article' stílus ezeket nem ismeri:
+\part{Példák}
+\chapter{\dots még mindig}
+
+Egyszerű, de szemléletes példák. Az első bekezdésének első sora nincs behúzva.
+Ha egy szöveget (a \LaTeX\ kódban) új sorba írunk, az semmilyen látható
+változást nem eredményez. Hogy látható legyen a kész dokumentumban is, azt a
+\verb"\\" jelsorozat beszúrásával érhetjük el -- ez a soremelés. \\
+Így a szöveg valóban új sorba kerül.
+
+Ha két sor között hagyunk egy üreset, azzal új bekezdést indítunk el. Ha azt
+szeretnénk, hogy ne csak a kóban legyen térköz, hanem a kész dokumentumban is,
+akkor két soremelést kell végeznünk, de így továbbra is ugyanabban a
+bekezdésben maradunk. \\
+\\
+Ahhoz, hogy két -- valóban külön álló -- bekezdés közé is beszúrjunk egy üres
+sort, tegyük az első bekezdés végére az üres sor \verb"\\" jelét és hagyjunk
+egy üres sort a kódban, hogy új bekezdés kezdődjön.
+\\
+
+Ha a térköz nagyságát szeretnénk megadni, akkor a \verb"\\[méret]" soremelést
+használjuk, például most következzen egy 3 betű magasságú szünet:
+\verb"\\[3em]" \\[3em]
+
+A szöveg lehet \textrm{roman}, \textsf{sans serif}, \texttt{typewriter},
+\textmd{medium}, \textbf{bold}, \textup{upright}, \textit{italic},
+\textsl{slanted}, \textsc{small caps}, \emph{emphasized} és
+\underline{underline} alakú.
+\\
+
+Ha egy oldalon már nem kívánunk további szöveget megjeleníteni, akkor
+használjuk a \verb"\pagebreak" parancsot.
+
+\pagebreak
+
+\section{Főcím}
+\section*{Számozatlan főcím}
+\subsection{Alcím}
+\subsubsection{Legalja}
+
+\paragraph{Paragrafus}
+
+Bár az eredeti rendeltetését nem tudom, de definíció leírásához használhatjuk
+például, mivel a cím és az őt követő szöveg egy sorban kezdődik.
+
+\subparagraph{Alparagrafus}
+
+Behúzással különül el a fő paragrafustól, viszont ha több soron keresztül
+tart, a második és az azt követő soroknak nincs behúzása.
+
+\begin{quote}
+
+    Ez egy idézet (\verb"quot") blokk, minden sora be van húzva az őt környező
+    szöveghez képest, így külön el a fő szövegtől.
+
+\end{quote}
+
+Emez egy \verb"description":
+
+\begin{description}
+    \item[Definiálandó szöveg] Magyarázó szöveg.
+    \begin{description}
+        \item[Ezen belül] található ez.
+    \end{description}
+\end{description}
+
+% ________________________________ TÁBLÁZAT __________________________________
+
+\section{Táblázat}          % Főcím.
+\index{tabular}             % Tedd indexbe ezen oldal számát az adott szóhoz.
+
+\begin{table}[ht]           % h: here, b: bottom of page, t: top of page
+
+    \centering
+    \begin{tabular}{||c|lr|}
+
+        \hline
+        gnats       & gram      & \$13.65         \\
+        \cline{2-3}
+                    & each      & .123            \\
+        \hline
+        gnu         & stuffed   & 98.50           \\
+        \cline{1-1} \cline{3-3}
+        emu         &           & 33.33           \\
+        \hline
+        armadillo   & frozen    & 8.99            \\
+        \hline
+        lorem       & \multicolumn{2}{|c|}{ipsum} \\
+        \hline
+
+    \end{tabular}
+
+    \caption{Példa}         % Magyarázószöveg.
+    \label{tbl-pelda}       % Hivatkozás a táblázatra.
+
+\end{table}
+
+Szép, logikusan felépíthető -- lásd a forrásban. Ha a \verb"tabular" részt
+használjuk a \verb"table" nélkül, úgy nem lesz térköz a táblázat körül.
+
+% _______________________________ FORRÁSKÓD __________________________________
+
+\section{Forráskód}
+
+Ha a szövegkörnyezetben egy parancsót ki akarunk emelni, akkor tegyük a
+\verb!\verb"parancs"! jelek közé. (a \verb!"! jel helyén egyéb karakter is
+állhat, mint pl. a \verb"!", vagy \verb"$" jel)
+
+% ................................ VERBATIM ..................................
+
+\subsection{Verbatim}
+\index{verbatim}
+
+Gyakorlatilag csak a betűtípust változtatja meg, a tabulátort nem ismeri, az
+ékezeteket hülyén kezeli.
+
+% center?
+Verbatim példa (alapból nem lehet \verb"caption" (képaláírás) tulajdonsága)
+
+\begin{verbatim}
+/* Árvíztűrőtükörfúrógép. */
+
+#include <stdio.h>
+
+int
+main( void )
+{
+    printf( "Hello Kitty!" );
+
+	/* Tabulatoros sor, ` es ' jel megjelenitese. */
+
+    return( 0 );
+}
+\end{verbatim}
+
+% ................................ LISTINGS ..................................
+
+\subsection{Listings}
+\index{lstlisting}
+
+Sok dolgot be lehet állítani, de az ékezeteket például alapból nem is
+értelmezi. (UTF-8 esetén biztosan)
+
+\begin{lstlisting}[language=C,caption={Listings példa},label=lst_pelda]
+#include <stdio.h>
+
+int
+main( void )
+{
+    printf( "Hello Kitty!" );
+
+	/* Tabulatoros sor, ` es ' jel megjelenitese. */
+
+    return( 0 );
+}
+\end{lstlisting}
+
+% _______________________________ MATEMATIKA _________________________________
+
+\section{Matematika}
+
+Ha egy matematikai képletet akarunk beszúrni a szövegbe, akkor a \verb"$"
+jellel kell körül venni azt -- például a $\frac{3}{4} \times \tan \alpha$
+képletet. Ha a képletet külön sorban szeretnénk megjeleníteni, akkor
+használhatjuk a \verb"\[ 3 + 2 \]" formát \dots
+\[ 3 + 2 \]
+\dots vagy a \verb!\begin{equation}! blokkot is, így számozott képleteket
+kapunk.
+
+\begin{equation}
+    \sin \alpha + 2 = \cos ( \alpha + 90 ^{\circ} ) + \sqrt[3]{8}
+\end{equation}
+\begin{equation}
+    \sum_{k=2}^n k^2 = 2^2 + 3^2 + 4^2 + \dots + n^2
+\end{equation}
+\begin{equation}
+    x! = x_1 + x_2 + x_3 + \dots + x_{n-1} + x_{n}
+\end{equation}
+
+% ________________________________ GRAFIKA ___________________________________
+
+\section{Grafika}
+
+A \LaTeX\ alapjába véve az \verb".eps" képformátumot ismeri csak. Használhatjuk
+a MikTeX saját konvertáló programját is, hogy egy \verb".png", vagy
+\verb".jpg" képet átalakítsunk a kívánt formára:
+
+\begin{verbatim}
+bmeps.exe -c kep.png latex_kep.eps
+\end{verbatim}
+
+Ennek ellenére a MikTeX \verb"graphicx" csomagja épphogy az \verb".eps"
+kiterjesztést nem ismeri, ellenben a \verb".png" formátumot elfogadja.\\
+\\
+Sajnos eléggé korlátozottak a képmódosító képességei, így jobb, ha előbb
+magunk méretezzük át a képet, hogy ne romoljon a végeredmény minősége.\\
+\\
+\begin{em}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel libero sed
+augue hendrerit aliquam ut ultricies sapien. Aliquam condimentum viverra eros
+eget suscipit. Curabitur magna dolor, pretium non adipiscing sit amet, commodo
+nec sem. Vivamus lobortis dolor vitae mi malesuada pulvinar. Nam a rhoncus
+augue. Aliquam in malesuada felis. Nam faucibus iaculis enim ut iaculis. Nulla
+molestie enim nec tortor mollis elementum. Praesent fermentum enim lacinia
+ante suscipit sollicitudin. Quisque facilisis tortor et lorem gravida
+tristique eget ac tellus. Cras non urna at mauris euismod hendrerit et a diam.
+Integer sagittis facilisis nunc quis lobortis. Donec et leo quis est
+pellentesque accumsan. Nulla vel orci sit amet lorem dapibus feugiat vel non
+ipsum. Quisque egestas imperdiet diam vel ullamcorper. Nulla luctus sapien vel
+leo euismod in mattis nunc ultrices. Cum sociis natoque penatibus et magnis
+dis parturient montes, nascetur ridiculus mus. Nullam id ligula nunc. Maecenas
+tincidunt feugiat leo eu metus. \\
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel libero sed
+augue hendrerit aliquam ut ultricies sapien. Aliquam condimentum viverra eros
+eget suscipit. Curabitur magna dolor, pretium non adipiscing sit amet, commodo
+nec sem. Vivamus lobortis dolor vitae mi malesuada pulvinar. Nam a rhoncus
+augue. Aliquam in malesuada felis. Nam faucibus iaculis enim ut iaculis. Nulla
+molestie enim nec tortor mollis elementum. Praesent fermentum enim lacinia
+ante suscipit sollicitudin. Quisque facilisis tortor et lorem gravida
+tristique eget ac tellus. Cras non urna at mauris euismod hendrerit et a diam.
+Integer sagittis facilisis nunc quis lobortis. Donec et leo quis est
+pellentesque accumsan. Nulla vel orci sit amet lorem dapibus feugiat vel non
+ipsum. Quisque egestas imperdiet diam vel ullamcorper. Nulla luctus sapien vel
+leo euismod in mattis nunc ultrices. Cum sociis natoque penatibus et magnis
+dis parturient montes, nascetur ridiculus mus. Nullam id ligula nunc. Maecenas
+tincidunt feugiat leo eu metus.
+\end{em}
+
+\begin{figure}[ht]
+    \caption{grafika.png}
+    \includegraphics[width=\textwidth]{grafika.png}
+\end{figure}
+
+% ________________________________ FÜGGELÉK __________________________________
+
+\appendix                                   % Innentől függelékek következnek.
+
+% Alapból nem írja ki a címet és nem is rakja tartalomjegyzékbe.
+% Megoldás a 'report' és 'book' dokumentumstílus esetén:
+\addtocontents{toc}{\bigskip \textbf{Függelék} \\ }
+
+% 'article':
+%\section*{Függelék}
+%\addcontentsline{toc}{section}{Függelék}
+
+\listoftables                               % Táblázatok jegyzéke.
+Táblázat caption-re ránézni!
+
+\listoffigures                              % Ábrák jegyzéke.
+
+\printindex                                 % Tárgymutató.
+
+\end{document}

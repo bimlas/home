@@ -1,0 +1,67 @@
+! ~/.Xresources: terminalos motyok megjelenitese
+! ===================== BimbaLaszlo(.co.nr|gmail.com) ==== 2014.03.31 04:58 ==
+
+! Minden modositas utan ki kell adni a kovetkezo parancsot, kulonben nem
+! lathato a valtozas, csak restart utan:
+!
+!   xrdb ~/.Xresources
+!
+! Az ervenyesitett beallitasok listaja:
+!
+!   xrdb -query
+!
+! Ha az a celod, hogy kikapcsold az .Xresources tartalmat, akkor:
+!
+!   xrdb
+!   ^D
+!
+! Az elerheto fontok listaja:
+!
+!   fc-list
+
+Xft*dpi:             96
+Xft*antialias:       true
+! Kicsit egybefolynak a felkover betuk.
+Xft*hinting:         full
+
+XTerm*termName:      xterm-256color
+XTerm*dynamicColors: true
+XTerm*scrollBar:     false
+
+XTerm*faceName:      Droid Sans Mono
+XTerm*faceSize:      11
+
+! A Shift-+ es Shift-- ne meretezze at a betuket.
+XTerm*shiftFonts:    false
+
+XTerm*background:    #444444
+XTerm*foreground:    #999999
+
+!                                EGYENI SZINEK                            {{{1
+!         http://crunchbang.org/forums/viewtopic.php?pid=90607#p90607
+! ============================================================================
+
+! black
+XTerm*color0:           #000000
+XTerm*color8:           #555753
+! red
+XTerm*color1:           #CC0000
+XTerm*color9:           #EF2929
+! green
+XTerm*color2:           #4E9A06
+XTerm*color10:          #8AE234
+! yellow
+XTerm*color3:           #C4A000
+XTerm*color11:          #FCE94F
+! blue
+XTerm*color4:           #3465A4
+XTerm*color12:          #729FCF
+! magenta
+XTerm*color5:           #75507B
+XTerm*color13:          #AD7FA8
+! cyan
+XTerm*color6:           #06989A
+XTerm*color14:          #34E2E2
+! white
+XTerm*color7:           #D3D7CF
+XTerm*color15:          #ECEDEE

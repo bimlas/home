@@ -1,0 +1,196 @@
+latex.txt
+
+======================= BimbaLaszlo(.co.nr|gmail.com) ==== 2014.02.03 05:17 ==
+
+% Komment.
+
+UTF-8 szovegnel ez kell(het) ele:
+    \usepackage[utf8]{inputenc}
+
+Specialis karakterek:
+
+# $ % & ~ _ ^ \ { }
+
+A szovegreszek szabadon 'szabdalhatoak' a { es } karakterekkel, akar csak a
+programozasban.
+
+                                 ELOKESZITES                              {{{1
+==============================================================================
+
+\documentclass[BEALLITASOK]{OSZTALY}
+
+    A dokumentum A4-es meretben, ket oszlopban es nagyobb betukozzel fog
+    megjelenni.
+
+    __ OSZTALY ____________________________
+
+    article         Rovid irasokhoz.
+    report          Hosszabb irasokhoz. ( szerkezetileg van nemi kulonbseg )
+
+    __ BEALLITASOK ________________________
+
+    11pt            110%-os betu es sorkozmeret.
+    12pt            120% ...
+    twocolumn       Ket hasabra vagja a szoveget.
+    twoside         A lap mindket oldalara nyomtat.
+
+                                 SZINTAKTIKA                              {{{1
+==============================================================================
+
+A bekezdesek kozt legalabb egy ures sornak kell lennie.
+Egy parancs 'onmagaba' agyazasa ( pl.: \emph{dolt \emph{normal} dolt} )
+kikapcsola azt.
+
+Azok a parancsok, amelyeknek nem kell argumentum, de hatnak a szovegre
+( pl.: { \em szoveg } ) igy is felirhatoak:
+
+    \begin{em}
+    szoveg
+    \end{em]
+
+Ha nem akarunk ket szot kulon sorban latni, akkor a ~ jelet tegyuk kozejuk.
+Pl.:
+    Mr.~Smith
+
+Ha tobb szot szeretnenk egy sorban latni, vagy ha nem akarjuk, hogy
+elvalasztojel keruljon egy szoba (?) akkor:
+    \mbox{tegyuk bele ebbe}
+
+Hasonlora hasznalhato a \\* de ennek a mukodeset meg nem ertem.
+
+Zarojelek utan (mint ez)\ erdemes rakni egy \ karit, mert igy kissebb lesz a
+szokoz.
+
+`Egyszeres idezojelek koze zart szoveg.'
+``Ketszeres ..."
+``\,`Vegyesfelvagott.'\,"
+
+Egytol-egyig.
+1--9
+Mittudomen... --- mondta a szerzo.
+
+                                   FOCIMEK                                {{{1
+==============================================================================
+
+\title{ Hogyan kapjuk el a gyalogkakukkot? }
+\author{ Mr. Prerifarkas }
+\date{ 1234. 56. 78 }
+\maketitle
+
+Az alabbiak kozul barmelyiken alkalmazhatjuk a
+
+    \TIPUS*{SZOVEG}
+
+format es igy nem lesznek szamozva.
+
+\chapter{Fejezet}              Chaater 1 Fejezet ( csak 'report' osztalynal )
+\section{Focim}                1.1       Focim
+\subsection{Alcim}             1.1.1     Alcim
+\subsubsection{Legalja.hu}               Legalja.hu
+\part{Elso resz}               Part I    Elso resz
+
+Article eseten az egesz egyel 'feljebb csuszik'.
+
+\tableofcontents
+    Tartalomjegyzek generalasa.
+
+\appendix{kulcsszo}
+    A targymutatoba be lesz jegyezve a kulcsszo - semmilyen megjelenesi
+    modositast nem szenved a szoveg.
+
+                                  SZAKASZOK                               {{{1
+==============================================================================
+
+Alabb a \begin{BLOKK} es \end{BLOKK} tipusok felsorolasa lathato:
+
+document    A dokumentum.
+math        Hosszu keplet.
+quote       Idezet. ( nagyobb behuzas mindket oldalon )
+quotation   Parbeszed. ( minden ures sor utan nagyobb behuzas )
+
+                                    LISTAK                                {{{2
+______________________________________________________________________________
+
+Mindegyik tipusnal az elemek a \item parancsal kezdodnek.
+
+itemize     Pottyel jelolt felsorolas.
+enumerate   Sorszamozott ...
+description Definicio. Pl.: \item[gnu] Gnu Not Unix
+
+                                   KEPLETEK                               {{{2
+______________________________________________________________________________
+
+displaymath Hosszu kepletek irasa.
+equations   Ugyanaz, de meg is szamozza azokat.
+
+                                   TABLAZAT                               {{{2
+______________________________________________________________________________
+
+Mivel ebbol nem sokat ertek, ezert inkabb csak bemasolom a peldakodot.
+Ha jol ertem a \hline az egesz tablazaton vegigmeno vizszintes vonalat rajzol,
+a \cline{} pedig csak az adott oszlopok ala. A \begin{tabular} utani reszben a
+'|' karakterek az oszlopokat elvalaszto vertikalis vonalak szamat adak meg,
+az 'l' es 'r' karakterek az igazitas iranyat ( es egyben az oszlopok szamat )
+adjak meg.
+
+    \begin{tabular}{||c|lr|}         \hline
+    gnats     & gram    & \$13.65 \\ \cline{2-3}
+              & each    &     .01 \\ \hline
+    gnu       & stuffed &   98.50 \\ \cline{1-1} \cline{3-3}
+    emu       &         &   33.33 \\ \hline
+    armadillo & frozen  &    8.99 \\ \hline
+    \end{tabular}
+
+                                   FORMAZAS                               {{{1
+==============================================================================
+
+A masodik oszlop a szoveg hatralevo reszere van kihatassal.
+
+\textit{}   \itshape    Italic.
+\emph{}     \em         Ez is.
+\textsl{}   \slshape    Slanted. ( dolt, kicsit letisztultabb )
+\textbf{}   \bfseries   Felkover.
+\textsc{}   \scshape    Kiskapitalis.
+\textsf{}   \sffamily   Sans serif.
+\texttt{}   \ttfamily   Typewriter.
+
+                                   KEPLETEK                               {{{2
+______________________________________________________________________________
+
+A kepleteket a \( x + y = 2 \) formaban irjuk, de ehelyett akar a $x + y = 2$
+format is valaszthatjuk.
+
+alap_{index} alap^{kitevo}
+
+\frac{szamlalo}{nevezo}
+\sqrt{ennek a negyzetgyoke}
+
+                                  PARANCSOK                               {{{1
+==============================================================================
+
+A parancsok utani osszes szokoz torlodik, igy pl. ha a \ldots utan szeretnenk
+egy kis helyet hagyni, akkor a \ldots\ parancsot kell kiadni.
+
+\today
+    A datum beszurasa. ( February 20, 2011 )
+
+\ldots
+    A ... kiirasa nagyobb karakterkozokkel.
+
+\cdots
+    Vertikalisan kozepre igazitott ...
+
+\vdots
+    Vertikalis ...
+
+\marginpar{}
+    Margo-szoveg. Ha twocolumn dokumentumot keszitunk, akkor az alabbi sor a
+    megfelelo nyilat helyezi el a margora attol fuggoen, hogy a bal, vagy a
+    jobb oszlopban van a szoveg:
+
+        \marginpar[$\Rightarrow$]{$\Leftarrow$}
+
+\footnote{}
+    Labjegyzet keszitese.
+
+        GNU\footnote{Gnu Not Unix}

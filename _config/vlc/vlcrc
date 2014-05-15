@@ -1,0 +1,51 @@
+﻿[qt4] # Qt interface
+
+# Systray icon (boolean)
+qt-system-tray=0
+
+# Save the recently played items in the menu (boolean)
+qt-recentplay=0
+
+# Ask for network policy at start (boolean)
+qt-privacy-ask=0
+
+[main] # main program
+
+# Peak protection (boolean)
+audio-replay-gain-peak-protection=0
+
+# Enable time stretching audio (boolean)
+audio-time-stretch=0
+
+# Allow only one running instance (boolean)
+one-instance=1
+
+# Short backwards jump (string)
+key-jump-short=Left
+
+# Short forward jump (string)
+key-jump+short=Right
+
+# Medium backwards jump (string)
+key-jump-medium=Down
+
+# Medium forward jump (string)
+key-jump+medium=Up
+
+# Long backwards jump (string)
+key-jump-long=Page Down
+
+# Long forward jump (string)
+key-jump+long=Page Up
+
+# Navigate up (string)
+key-nav-up=Unset
+
+# Navigate down (string)
+key-nav-down=Unset
+
+# Navigate left (string)
+key-nav-left=Unset
+
+# Navigate right (string)
+key-nav-right=Unset

@@ -1,0 +1,102 @@
+docbook.txt
+
+======================= BimbaLaszlo(.co.nr|gmail.com) ==== 2014.02.03 05:14 ==
+
+sudo apt-get inst docbook5 [docbook-xsl-ns] libsaxon-java libmsv-java fop rxp
+libxml2-utils libxslthl-java (source highlighting)
+
+SYNTAX CHECK
+
+  rxp -Nsx docbook.xml
+  VAGY
+  xmllint --relaxng /path/to/docbookxi.rng --noout docbook.xml
+
+BASHRC
+
+  # Az alap saxon-xslt-nek nem tudom atadni, hogy hasznalja a saxon extensions-t
+  # es xerces legyen az xml parser (ha argumentumkent adjuk at a classpath-ot,
+  # akkor a $CLASSPATH figyelmen kivul lesz hagyva).
+  if [ -f '/usr/share/java/saxon.jar' ]; then
+    saxon='java -classpath /usr/share/java/saxon.jar'
+    if [ -f '/usr/share/java/docbook-xsl-saxon.jar' ]; then
+      saxon+=':/usr/share/java/docbook-xsl-saxon.jar'
+    fi
+    if [ -f '/usr/share/java/xercesImpl.jar' ]; then
+      saxon+=':/usr/share/java/xercesImpl.jar                                                              \
+              -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
+              -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl'
+    fi
+    alias saxon="$saxon com.icl.saxon.StyleSheet"
+  fi
+
+  # Docbook validation.
+  if [ -f '/usr/share/java/msv-core.jar' ]; then
+    msv='java -classpath /usr/share/java/xsdlib.jar'
+    msv+=':/usr/share/java/isorelax.jar'
+    msv+=':/usr/share/java/relaxngDatatype.jar'
+    msv+=':/usr/share/java/msv-testharness.jar'
+    msv+=':/usr/share/java/xercesImpl.jar'
+    msv+=':/usr/share/java/xml-apis.jar'
+    msv+=':/usr/share/java/ant.jar'
+    msv+=':/usr/share/java/ant-launcher.jar'
+    msv+=':/usr/share/java/xml-resolver.jar'
+    msv+=':/usr/share/java/msv-core.jar'
+    msv+=' com.sun.msv.driver.textui.Driver'
+
+    alias msv="$msv"
+  fi
+
+UGYANEZ WIN-EN
+
+  java -cp "%~dp0\saxon\saxon.jar;%~dp0\xerces\xercesImpl.jar;%~dp0\xerces\resolver.jar;%~dp0\xerces;%~dp0\docbook-xsl-saxon\saxon65.jar" -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration com.icl.saxon.StyleSheet -x org.apache.xml.resolver.tools.ResolvingXMLReader -y org.apache.xml.resolver.tools.ResolvingXMLReader -r org.apache.xml.resolver.tools.CatalogResolver %*
+
+  java -Xss512K -classpath "%~dp0\msv\xsdlib.jar;%~dp0\msv\isorelax.jar;%~dp0\msv\relaxngDatatype.jar;%~dp0\msv\msv-testharness.jar;%~dp0\msv\xercesImpl.jar;%~dp0\msv\xml-apis.jar;%~dp0\msv\ant.jar;%~dp0\msv\ant-launcher.jar;%~dp0\msv\xml-resolver.jar;%~dp0\msv\msv-core.jar" com.sun.msv.driver.textui.Driver %*
+
+HASZNALAT
+
+  rxp -Nxs docbook.xml
+  msv /usr/share/xml/docbook/schema/rng/5.0/docbookxi.rng docbook.xml
+  saxon -o docbook.html docbook.xml /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl PARAMETER=ERTEK
+
+EGYEB
+
+UTF8 karikodolashoz ezt az xsl-t hasznald:
+    <?xml version='1.0'?>
+    <xsl:stylesheet  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                     version="1.0">
+
+    <xsl:import href="/path/to/html/docbook.xsl"/>
+    <xsl:output method="html"
+                encoding="UTF-8"
+                indent="no"/>
+
+    </xsl:stylesheet>
+
+Ha chunk-ed lesz az oldal, akkor eleg ez:
+
+HTML
+  saxon -o docbook.html docbook.xml /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl
+
+HTML SZEKCIONKENT KULON OLDALLAL
+  saxon -o docbook.html docbook.xml /usr/share/xml/docbook/stylesheet/nwalsh/html/chunk.xsl
+
+PDF
+  saxon -o docbook.fo docbook.xml /usr/share/xml/docbook/stylesheet/docbook-xsl/fo/docbook.xsl
+  fop -pdf docbook.pdf -fo docbook.fo
+
+                                 OREILLY XSL                              {{{1
+==============================================================================
+
+user:guest pass:nincs
+
+XSL
+
+  svn checkout --username guest https://prod.oreilly.com/external/tools/docbook/prod/trunk/ .
+
+XML
+
+  https://github.com/oreillymedia/docbook_samples
+
+A legegyszerubb, ha letoltod az egeszet:
+
+  svn checkout --username guest https://prod.oreilly.com/external/tools/ .

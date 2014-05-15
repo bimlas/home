@@ -1,0 +1,359 @@
+Windows Registry Editor Version 5.00
+
+; system_setup.reg - sajat win7 beallitasok
+;
+; Ha ezt a fajlt alkalmazod es hibauzenetet dob, akkor valoszinuleg nem vagy
+; admin.
+; Hogy lasd a hatast, jelentkezz be ujra a profilodba.
+;
+============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.12 08:43 ==
+
+;                   IKONOK MELLETTI NYILACSKA ELTUNTETESE                 {{{1
+; ============================================================================
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]
+;
+; Elotte masold az ikont a konyvtarba
+"29"="C:\\blank.ico,0"
+
+;                         SZOLGALTATASOK TILTASA                          {{{1
+; ============================================================================
+;
+; http://www.blackviper.com/service-configurations/black-vipers-windows-7-service-configurations/
+
+;                                  SAFE                                   {{{2
+; ____________________________________________________________________________
+
+; Application Management
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\AppMgmt]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Bluetooth Support Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\bthserv]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; BranchCache
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PeerDistSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Certificate Propagation
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\CertPropSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Distributed Link Tracking Client
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TrkWks]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; IP Helper
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\iphlpsvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Microsoft iSCSI Initiator Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\MSiSCSI]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Netlogon
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Netlogon]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Network Access Protection Agent
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\napagent]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Offline Files
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\CscService]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Parental Controls
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WPCSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Remote Procedure Call (RPC) Locator
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\RpcLocator]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Remote Registry
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\RemoteRegistry]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Smart Card
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SCardSvr]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Smart Card Removal Policy
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SCPolicySvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; SNMP Trap
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SNMPTRAP]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Storage Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\StorSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Connect Now – Config Registrar
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\wcncsvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Media Player Network Sharing Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WMPNetworkSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Search
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WSearch]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+;                                 TWEAKED                                 {{{2
+; ____________________________________________________________________________
+
+; Diagnostic Policy Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\DPS]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Function Discovery Resource Publication
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\FDResPub]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; ActiveX Installer (AxInstSV)
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\AxInstSV]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Adaptive Brightness
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SensrSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Application Layer Gateway Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\ALG]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; BitLocker Drive Encryption Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BDESVC]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Credential Manager
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\VaultSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Diagnostic Service Host
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WdiServiceHost]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Encrypting File System (EFS)
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\EFS]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Fax
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Fax]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Function Discovery Provider Host
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\fdPHost]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Health Key and Certificate Management
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\hkmsvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Human Interface Device Access
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\hidserv]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Interactive Services Detection
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\UI0Detect]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Link-Layer Topology Discovery Mapper
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\lltdsvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Peer Name Resolution Protocol
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PNRPsvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Peer Networking Grouping
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\p2psvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Peer Networking Identity Manager
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\p2pimsvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; PnP-X IP Bus Enumerator
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\IPBusEnum]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; PNRP Machine Name Publication Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PNRPAutoReg]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Portable Device Enumerator Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WPDBusEnum]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Problem Reports and Solutions Control Panel Support
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\wercplsupport]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Program Compatibility Assistant Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PcaSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Quality Windows Audio Video Experience
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\QWAVE]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Remote Desktop Configuration
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SessionEnv]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Remote Desktop Services
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TermService]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Remote Desktop Services UserMode Port Redirector
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\UmRdpService]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Tablet PC Input Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TabletInputService]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; TPM Base Services
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TBS]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; WebClient
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WebClient]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Biometric Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WbioSrvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows CardSpace
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\idsvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Color System
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WcsPlugInService]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Error Reporting Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WerSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Media Center Receiver Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\ehRecvr]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Media Center Scheduler Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\ehSched]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Remote Management (WS-Management)
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WinRM]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; WinHTTP Web Proxy Auto-Discovery Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WinHttpAutoProxySvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; WWAN AutoConfig
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WwanSvc]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+;                               BARE BONES                                {{{2
+; ____________________________________________________________________________
+
+; Background Intelligent Transfer Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BITS]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Block Level Backup Engine Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\wbengine]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Defender
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WinDefend]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Telephony
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TapiSrv]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+; Windows Update
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\wuauserv]
+"Start"=dword:00000004
+"DelayedAutostart"=dword:00000000
+
+;                              ENGEDELYEZVE                               {{{2
+; ____________________________________________________________________________
+
+; Windows Firewall
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\MpsSvc]
+"Start"=dword:00000002
+"DelayedAutostart"=dword:00000000

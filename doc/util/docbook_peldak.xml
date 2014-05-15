@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xml:id="peldak" xmlns="http://docbook.org/ns/docbook" version="5.0">
+
+  <info>
+    <author><firstname>László</firstname><surname>Bimba</surname></author>
+    <title>Docbook példák</title>
+  </info>
+
+  <para>Egyszerű gyakorlati példák a docbook használatára. A konvertáláshoz a <command>saxon-xslt</command> parancsot használjuk:</para>
+
+  <itemizedlist>
+    <listitem>html
+      <screen><prompt>$ </prompt><userinput>saxon-xslt -o peldak.html peldak.xml \
+  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl</userinput></screen>
+    </listitem>
+    <listitem>pdf
+      <screen><prompt>$ </prompt><userinput>saxon-xslt -o peldak.fo peldak.xml \
+  /usr/share/xml/docbook/stylesheet/docbook-xsl/fo/fop.xsl</userinput>
+<prompt>$ </prompt><userinput>fop -fo peldak.fo -pdf peldak.pdf</userinput></screen>
+      <para>Ugyanez egyszerűbb formában:</para>
+      <screen><prompt>$ </prompt><userinput>fop -xml peldak.xml -pdf peldak.pdf \
+  -xsl /usr/share/xml/docbook/stylesheet/docbook-xsl/fo/fop.xsl</userinput></screen>
+    </listitem>
+  </itemizedlist>
+
+  <section xml:id="screen">
+    <info>
+      <title><literal>screen</literal></title>
+    </info>
+
+    <screen><prompt>$ </prompt><userinput>ls -l
+  még egy parancs</userinput>
+<computeroutput>Ez a kimenet.</computeroutput></screen>
+
+  </section>
+
+  <section xml:id="programlisting">
+    <info>
+      <title><literal>programlisting</literal></title>
+    </info>
+
+    <para> A <literal>linenumbering</literal> paraméter fordító-függő,
+      jelenleg csak a java fordítók támogatják
+      (<literal>saxon</literal>, <literal>xalan</literal>), de a
+      megfelelő kiegészítések is telepítve kell, hogy legyenek
+      (<literal>saxon</literal> esetében pl.
+      <literal>docbook-xsl-saxon</literal>), ezenkívül a kiegészítőket
+      is aktiválni kell fordítás közben:
+    </para>
+
+    <screen><prompt>$ </prompt><userinput>saxon-xslt -o peldak.html peldak.xml \
+  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
+  use.extensions=1 linenumbering.extension=1</userinput></screen>
+
+    <programlisting linenumbering="numbered" lang="c"><![CDATA[
+#include <stdio.h>
+
+int
+factorial( int n )
+{
+  int
+    ret = 1;
+
+  while( n > 0 )
+  {
+    ret *= n--;
+  }
+
+  return( ret );
+}
+
+int
+main( void )
+{
+  int
+    t = 0, /* Tesztesetek szama. */
+    m = 0; /* Matrix merete.   */
+
+  for( scanf( "%d", &t ) ; t > 0 ; --t )
+  {
+    scanf( "%d", &m );
+    printf( "%d\n", factorial( 2 * m ) / (factorial( m ) * factorial( m )) );
+  }
+
+  return( 0 );
+}]]>
+    </programlisting>
+
+  </section>
+
+  <section xml:id="warning">
+    <info>
+      <title><literal>warning</literal></title>
+    </info>
+
+    <warning><para>Hasznos lesz ez, ha megismerem.</para></warning>
+  </section>
+
+</article>

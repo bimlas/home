@@ -1,0 +1,6 @@
+# ~/.inputrc - bash billentyuparancsok felulbiralasa
+# man bash -> /^READLINE
+
+# Ha ketszer nyomunk TAB-ot, a lehetseges kiegesziteseket balrol jobbra irja
+# ki, ne pedig fentrol lefele.
+# set print-completions-horizontally 1

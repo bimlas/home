@@ -1,0 +1,38 @@
+[user]
+
+  name         = "BimbaLaszlo"
+  email        = "bimbalaszlo@gmail.com"
+
+[alias]
+
+  glog         = "log --graph --decorate --all --name-status"
+  slog         = "log --graph --decorate --format=oneline"
+  tree         = "ls-tree -r --name-only"
+
+[color]
+
+  ui           = "true"
+
+[log]
+
+; Roviditett SHA.
+  abbrevCommit = "true"
+
+; 2014-03-25 12:34:56 +0100
+  date         = "iso"
+
+[core]
+
+  editor       = "vim"
+
+[diff]
+
+  tool         = "vimdiff"
+
+[merge]
+
+  tool         = "vimdiff"
+
+[push]
+
+  default      = "simple"
