@@ -9,5 +9,8 @@ A commit üzenetek sokszor hanyagok, ha épp nem tudom egy mondatban
 Érdemes belelesni a konfig fájlokba, mert van, hogy oda jegyzetelek, hogy
 mindig kéznél legyen a program leírása.
 
+A [releases](https://github.com/BimbaLaszlo/home/releases) ponton belül egyéb
+hasznos fájlokat is találhatsz.
+
 Ha bármilyen kérdésed / észrevételed / ötleted van, szívesen reagálok rá
 (issue tracker-ben is jelezheted).
