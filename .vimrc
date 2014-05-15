@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.05.13 12:17 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.05.15 20:30 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -713,8 +713,8 @@ if exists( '*vundle#rc' )
 
   " __ OTHER REPOS ____________________________
 
-  Plugin 'https://bimbalaszlo@bitbucket.org/bimbalaszlo/vim-eightheader.git'
-  Plugin 'https://bimbalaszlo@www.bitbucket.org/bimbalaszlo/vim-mixed.git'
+  Plugin 'https://bimbalaszlo@github.com/bimbalaszlo/vim-eightheader.git'
+  Plugin 'https://bimbalaszlo@github.com/bimbalaszlo/vim-mixed.git'
 
   " __ LOCAL REPOS ____________________________
 

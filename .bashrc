@@ -3,7 +3,7 @@
 # TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 # konyvjelzot.
 #
-# ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.04.25 08:46 ==
+# ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.05.15 20:29 ==
 
 # Ha nem interaktiv modban vagyunk, ne csinaljunk semmit.
 if [ -z "$PS1" ]; then
@@ -135,7 +135,7 @@ x()
 }
 
 # Szotar, letoltheto:
-# https://bitbucket.org/BimbaLaszlo/vim-mixed/src > doc/szotar.txt
+# https://github.com/BimbaLaszlo/vim-mixed/blob/master/doc/szotar.txt
 
 szotar()
 {

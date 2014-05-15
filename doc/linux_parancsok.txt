@@ -41,7 +41,7 @@ A 'regex' alatt regex (reguláris) kifejezést értek.
 TIPP: Ha vim-ben nyitottad meg, de nem ismered a folding használatát, a zR
 kinyitja az összes könyvjelzőt.
 
-============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.15 20:04 ==
+============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.15 20:30 ==
 
                                ÁLTALÁNOS INFÓK                            {{{1
 ==============================================================================
@@ -2184,7 +2184,7 @@ git
     Ha nem jött létre a remote branch, vagy nem megfelelo commit-ra mutat:
 
         $ git remote rm origin
-        $ git remote add origin https://user@bitbucket.org/user/repo.git
+        $ git remote add origin https://user@github.com/user/repo.git
         $ git push -u origin
 
     Távoli szerveren lévő verzió beágyazása a helyi repo-ba:

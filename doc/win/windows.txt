@@ -1,5 +1,5 @@
 windows.txt - win tippek
-============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.10 14:00 ==
+============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.15 20:46 ==
 
 A bejelentkezesi kepernyon ketszer lenyomva a Ctrl + Alt + Del parositast
 lehetosegunk nyilik belepni a rendszergazda neveben.
@@ -285,7 +285,7 @@ Ha batch fajlbol akarjuk futtatni a regedit-et, akkor:
 ==============================================================================
 
 A legtobb beallitas ervenyesitheto a
-  https://bitbucket.org/BimbaLaszlo/home/src -> __win/setup.reg
+    https://github.com/BimbaLaszlo/home/tree/master/__win -> *_setup.reg
 fajl alkalmazasaval.
 
 God-mode: az asztalon csinalj egy uj konyvtarat ezen a neven:
@@ -422,7 +422,7 @@ Ikonok melletti nyilacska eltuntetese:
     eloszor egy fekete ikon lesz a nyilacska helyen.
 
     A blank.ico egy atlatszo ikon, itt talalhatsz egyet:
-      https://bitbucket.org/BimbaLaszlo/home/downloads/blank.ico
+      https://github.com/BimbaLaszlo/home/releases/download/blank.ico/blank.ico
 
 Ikonok alatti szoveg eltuntetese:
 
