@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ============ BimbaLaszlo(.co.nr|gmail.com) ============ 2014.05.13 13:19 ==
+// ============ BimbaLaszlo(.co.nr|gmail.com) ============ 2014.05.16 17:37 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -73,6 +73,7 @@ user_pref( "signon.rememberSignons", false );
 
 /* Bezaraskor torolje... */
 user_pref( "privacy.sanitize.sanitizeOnShutdown" , true );
+user_pref( "privacy.clearOnShutdown.cache"       , true );
 user_pref( "privacy.clearOnShutdown.cookies"     , true );
 user_pref( "privacy.clearOnShutdown.sessions"    , true );
 user_pref( "privacy.clearOnShutdown.offlineApps" , true );
@@ -80,7 +81,6 @@ user_pref( "privacy.clearOnShutdown.passwords"   , true );
 user_pref( "privacy.clearOnShutdown.siteSettings", true );
 
 /* ... ezeket viszon ne. */
-user_pref( "privacy.clearOnShutdown.cache"       , false );
 user_pref( "privacy.clearOnShutdown.history"     , false );
 user_pref( "privacy.clearOnShutdown.formdata"    , false );
 user_pref( "privacy.clearOnShutdown.downloads"   , false );
