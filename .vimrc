@@ -693,6 +693,9 @@ if exists( '*vundle#rc' )
 
   " __ GITHUB _________________________________
 
+  Plugin 'bimbalaszlo/vim-eightheader'
+  Plugin 'bimbalaszlo/vim-mixed'
+
   Plugin 'altercation/vim-colors-solarized'
   Plugin 'itchyny/lightline.vim'
   Plugin 'scrooloose/nerdtree'
@@ -713,12 +716,11 @@ if exists( '*vundle#rc' )
 
   " __ OTHER REPOS ____________________________
 
-  Plugin 'https://bimbalaszlo@github.com/bimbalaszlo/vim-eightheader.git'
-  Plugin 'https://bimbalaszlo@github.com/bimbalaszlo/vim-mixed.git'
+  " Plugin 'https://www.bitbucket.org/user/repo'
 
   " __ LOCAL REPOS ____________________________
 
-  " Plugin 'file://~/.vim/bundle/vegyes'
+  " Plugin 'file://~/.vim/bundle/repo'
 
 endif
 

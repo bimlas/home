@@ -41,7 +41,7 @@ A 'regex' alatt regex (reguláris) kifejezést értek.
 TIPP: Ha vim-ben nyitottad meg, de nem ismered a folding használatát, a zR
 kinyitja az összes könyvjelzőt.
 
-============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.15 20:30 ==
+============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.16 09:48 ==
 
                                ÁLTALÁNOS INFÓK                            {{{1
 ==============================================================================
@@ -2226,6 +2226,35 @@ git
         2013.12.07_08.36
         2013.12.07_15.50_limitek_jo
         2013.12.09_11.48
+
+    Commit-ok mentése külön könyvtárakba:
+
+        $ mkdir backup
+        $ cp amit_menteni_akarunk backup
+        $ cd backup/amit_menteni_akarunk
+        $ commit2dir.sh
+
+        COMMIT2DIR.SH
+
+            num=0
+            for sha in $(git log --reverse --pretty=format:"%h"); do
+              num=$(($num + 1))
+              path=$(printf '%02d_%s' $num $sha)
+              git checkout --force $sha
+              mkdir ../$path
+              cp -r * ../$path
+              git log > ../$path/changelog.txt
+            done
+
+    FIGYELEM! Mielőtt futtatod a szkriptet, töröld azokat a fájlokat, amik a
+    .gitignore fájlban szerepelnek!
+    A könyvtárnevek a commit sorszámából és az SHA-ból fognak állni, ezen
+    kívül minden könyvtárba elmenti a commit előzményeit changelog.txt néven.
+    Pl.:
+
+        01_7eaac93
+        02_133def9
+        03_5561f6d
 
                                    HÁLÓZAT                                {{{1
 ==============================================================================
