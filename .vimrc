@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.05.16 21:34 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.05.24 21:09 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -36,6 +36,7 @@ if exists( '*vundle#rc' )
   " __ GITHUB _________________________________
 
   Plugin 'bimbalaszlo/vim-eightheader'
+  Plugin 'bimbalaszlo/vim-numutils'
   Plugin 'bimbalaszlo/vim-mixed'
 
   Plugin 'altercation/vim-colors-solarized'
@@ -53,7 +54,6 @@ if exists( '*vundle#rc' )
   Plugin 'Align'
   Plugin 'EasyGrep'
   Plugin 'locator'
-  Plugin 'NumUtils'
   Plugin 'vis'
 
   " __ OTHER REPOS ____________________________
@@ -1535,6 +1535,8 @@ imap                       <S-Insert>   <C-O><S-Insert>
 
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>          K            :call Help( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
+
+noremap  <silent>          L            :Szotar <C-R>=expand( '<cword>' )<CR><CR>
 
 " Komment.
 map                        <C-D>        <plug>NERDCommenterComment
