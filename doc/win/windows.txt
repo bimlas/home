@@ -1,5 +1,5 @@
 windows.txt - win tippek
-============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.15 20:46 ==
+============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.22 15:17 ==
 
 A bejelentkezesi kepernyon ketszer lenyomva a Ctrl + Alt + Del parositast
 lehetosegunk nyilik belepni a rendszergazda neveben.
@@ -213,6 +213,27 @@ net
     Jelszo megvaltoztatasa:
 
         $ net user USER *
+
+                        FELHASZNALOK BEALLITASAI                          {{{1
+==============================================================================
+
+gpedit.msc
+
+    A jelenlegi felhasznalo es a szamitogep beallitasai.
+
+mmc
+
+    Sajat kezelopult letrehozasa.
+
+    A 'Fajl / Beepulo modul hozzaadasa' pontban lehet uj elemeket felvenni.
+
+    Felhasznalok egyeni kezelesehez pl. vegyuk fel a
+    Csoporthazirendobjektum-ot, majd a megjeleno ablakban a 'Tallozas /
+    Felhasznalok' pontban valasszuk ki a kezelni kivant felhasznalot.
+
+    Ha egy felhasznalonak csak egyetlen programot akarunk engedelyezni, akkor
+    a 'Csak a megadott Windows-programok engedelyezese' pontban lehet megadni,
+    hogy melyik programot futtathassa. (pl.: 'cmd.exe', 'msaccess.exe')
 
                                    HALOZAT                                {{{1
 ==============================================================================
