@@ -1,6 +1,6 @@
 python.txt: sajat jegyzetek
 
-======================= BimbaLaszlo(.co.nr|gmail.com) ==== 2014.03.19 19:19 ==
+============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.27 15:51 ==
 
                           PIP TELEPÍTÉSE WINDOWS-RA                       {{{1
 ==============================================================================
@@ -373,3 +373,10 @@ python.txt: sajat jegyzetek
 
     minden_talalat = re.findall( 'X(\d+)', 'X1 X2 X3' )
     pprint( minden_talalat )
+
+                                   TIME                                   {{{2
+  ____________________________________________________________________________
+
+    import time
+
+    print( time.strftime( '%Y.%m.%d %H:%M' ) )
