@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.05.26 12:46 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.05.28 13:07 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -121,31 +121,6 @@ endfunction
 
 function HighTerm()
   return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
-endfunction
-
-"                               TOGGLEBROWSER                             {{{2
-" ____________________________________________________________________________
-"
-" A megfelelo fajlbongeszo kinyitasa: tavoli fajloknal netrw, helyi fajloknal
-" nerdtree.
-
-function ToggleBrowser()
-
-  " Ha egy netrw-vel megnyitott (tavoli) fajlban vagyunk, akkor nyissuk meg a
-  " bongeszot a fajl konyvtaraban.
-  if exists( 'b:netrw_tmpfile' )
-    let g:netrw_browse_split = 0
-    if exists( 'w:netrw_rexlocal' )
-      Rexplore
-    else
-      exe 'Explore ' . g:netrw_choice
-    endif
-
-  " Egyebkent pedig az oldalso bongeszot.
-  else
-    Lexplore
-  endif
-
 endfunction
 
 "                                SHORTTABLINE                             {{{2
@@ -1559,7 +1534,7 @@ imap                       <F6>         <C-O><F6>
 
 " Bongeszes a konyvtarban netrw-vel (v150 verzio kell hozza).
 " nnoremap  <silent>         <F7>         :call ToggleBrowser()<CR>
-nnoremap  <silent>         <F7>         :NERDTreeToggle<CR>
+nnoremap  <silent>         <F7>         :Lexplore<CR>
 imap                       <F7>         <C-O><F7>
 
 " Tagbar megnyitasa.
