@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.05.28 13:07 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.05 17:46 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1563,14 +1563,44 @@ nnoremap                   <leader>2    :silent call EightHeader( &tw, 'center',
 nnoremap                   <leader>3    :silent call EightHeader( &tw, 'center', 0, '.', '', '' )<CR><CR>
 nnoremap                   <leader>9    :silent call EightHeader( 0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "' )<CR><CR>
 
+"                                     HELP
+" ............................................................................
+
 autocmd  FileType  help  nnoremap <buffer>  <leader>1
 \ :call EightHeader( 78, 'left', 1, ' ', '\= "*".matchstr( s:str, ";\\@<=.*" )."*"', '\= matchstr( s:str, ".*;\\@=" )' )<CR><CR>
 
 autocmd  FileType  help  noremap <buffer>  <leader>2
 \ :call EightHeader( 78, 'left', 1, '.', '\= "\|".matchstr( s:str, ";\\@<=.*" )."\|"', '\= matchstr( s:str, ".*;\\@=" )' )<CR><CR>
 
+"                                   MARKDOWN
+" ............................................................................
+
 autocmd  FileType  markdown  nnoremap <buffer>  <leader>1
 \ :call EightHeader( '\=0-s:strLen', 'left', 0, '=', '', '' )<CR><CR>
+
+autocmd  FileType  markdown  nnoremap <buffer>  <leader>2
+\ :call EightHeader( '\=0-s:strLen', 'left', 0, '-', '', '' )<CR><CR>
+
+autocmd  FileType  markdown  nnoremap <buffer>  <leader>3
+\ :call EightHeader( '\=0-(s:strLen+4)', 'right', 1, ['', '#', ''] , '', '\=" ".s:str' )<CR><CR>
+
+autocmd  FileType  markdown  nnoremap <buffer>  <leader>4
+\ :call EightHeader( '\=0-(s:strLen+5)', 'right', 1, ['', '#', ''] , '', '\=" ".s:str' )<CR><CR>
+
+"                                   ASCIIDOC
+" ............................................................................
+
+autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>1
+\ :call EightHeader( '\=0-s:strLen', 'left', 0, '=', '', '' )<CR><CR>
+
+autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>2
+\ :call EightHeader( '\=0-s:strLen', 'left', 0, '~', '', '' )<CR><CR>
+
+autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>3
+\ :call EightHeader( '\=0-s:strLen', 'left', 0, '^', '', '' )<CR><CR>
+
+autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>4
+\ :call EightHeader( '\=0-s:strLen', 'left', 0, '+', '', '' )<CR><CR>
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
