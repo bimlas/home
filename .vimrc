@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.05 17:46 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.11 12:08 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1610,9 +1610,10 @@ autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>4
 
 " __ FILETYPE ___________________________
 
-autocmd  BufNewFile,BufRead  *.docbk,*.docbook  set filetype=docbk
 autocmd  BufNewFile,BufRead  *.plt              set filetype=gnuplot
 autocmd  BufNewFile,BufRead  *.md               set filetype=markdown
+autocmd  BufNewFile,BufRead  *.adoc             set filetype=asciidoc
+autocmd  BufNewFile,BufRead  *.docbk,*.docbook  set filetype=docbk
 
 " __ FAJLOK BEALLITASAI _________________
 
