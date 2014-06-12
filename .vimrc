@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.11 12:08 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.12 12:34 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -402,6 +402,38 @@ function Ekezet( start, stop ) range
     let line = tr( getline( i ), 'ÁÉÍÓÖŐÚÜŰáéíóöőúüű', 'AEIOOOUUUaeiooouuu' )
     call setline( i, line )
   endfor
+
+endfunction
+
+"                                CHINDENT                                 {{{2
+" ____________________________________________________________________________
+"
+" Szoveg behuzasanak megvaltoztatasa. Az elso parameter a regi behuzas
+" merteke, a masodik amire valtoztatni szeretnenk.
+
+command  -nargs=* -range  Chindent  call Retab( <line1>, <line2>, <f-args> )
+
+function Chindent( start, stop, oldwidth, newwidth ) range
+
+  let save_sw = &shiftwidth
+  let save_ts = &tabstop
+  let save_et = &expandtab
+
+  let &shiftwidth = a:oldwidth
+  let &tabstop    = a:oldwidth
+  set noexpandtab
+
+  silent exe a:start . ',' . a:stop . ' >'
+
+  let &shiftwidth = a:newwidth
+  let &tabstop    = a:newwidth
+  set expandtab
+
+  silent exe a:start . ',' . a:stop . ' <'
+
+  let &shiftwidth = save_sw
+  let &tabstop    = save_ts
+  let &expandtab  = save_et
 
 endfunction
 
