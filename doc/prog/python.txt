@@ -1,6 +1,6 @@
 python.txt: sajat jegyzetek
 
-============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.27 15:51 ==
+============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.06.13 09:34 ==
 
                           PIP TELEPÍTÉSE WINDOWS-RA                       {{{1
 ==============================================================================
@@ -124,28 +124,62 @@ python.txt: sajat jegyzetek
 
       next( reversed( OrderedDict ) )
 
-    A 'copy'-val másolatot készítünk, az értékadással hivatkozást.
+    A `copy`-val másolatot készítünk, az értékadással hivatkozást. Mivel a
+    `copy` az objektumon belüli összetett objektumokat (listák, dictionary-k)
+    nem másolja, csak a referenciájukat (mutató), ezért (ha csak nincs rá
+    különösebb okunk) minidg a `copy.deepcopy()` függvényt használjuk
+    másolatok készítéséhez.
 
-      d  = { 'nev' : 'd' }
+      import copy
+      import pprint
 
-      dc = d.copy()
-      dc['nev'] = 'dc'
+      var         = { 'nev' : 'var', 'lista' : ['var listaja'] }
 
-      print( 'd: ', d  )
-      print( 'dc:', dc )
+      vareq       = var
+      varcopy     = var.copy()
+      vardeepcopy = copy.deepcopy( var )
 
-      de = d
-      de['nev'] = 'de'
+      pprint.pprint( ['VAR:',         var        ] )
+      pprint.pprint( ['VAREQ:',       vareq      ] )
+      pprint.pprint( ['VARCOPY:',     varcopy    ] )
+      pprint.pprint( ['VARDEEPCOPY:', vardeepcopy] )
 
-      print( 'd: ', d  )
-      print( 'de:', de )
+      print( '\nvar["nev"] = "modositott nev"\n' )
+      var['nev'] = 'modositott nev'
+
+      pprint.pprint( ['VAR:',         var        ] )
+      pprint.pprint( ['VAREQ:',       vareq      ] )
+      pprint.pprint( ['VARCOPY:',     varcopy    ] )
+      pprint.pprint( ['VARDEEPCOPY:', vardeepcopy] )
+
+      print( '\nvar["lista"][0] = "modositott lista"\n' )
+      var['lista'][0] = 'modositott lista'
+
+      pprint.pprint( ['VAR:',         var        ] )
+      pprint.pprint( ['VAREQ:',       vareq      ] )
+      pprint.pprint( ['VARCOPY:',     varcopy    ] )
+      pprint.pprint( ['VARDEEPCOPY:', vardeepcopy] )
 
       __ KIMENET ____________________________
 
-      d:  {'nev': 'd'}
-      dc: {'nev': 'dc'}
-      d:  {'nev': 'de'}
-      de: {'nev': 'de'}
+      ['VAR:'         , {'lista': ['var listaja']     , 'nev': 'var'}]
+      ['VAREQ:'       , {'lista': ['var listaja']     , 'nev': 'var'}]
+      ['VARCOPY:'     , {'lista': ['var listaja']     , 'nev': 'var'}]
+      ['VARDEEPCOPY:' , {'lista': ['var listaja']     , 'nev': 'var'}]
+
+      var["nev"] = "modositott nev"
+
+      ['VAR:'         , {'lista': ['var listaja']     , 'nev': 'modositott nev'}]
+      ['VAREQ:'       , {'lista': ['var listaja']     , 'nev': 'modositott nev'}]
+      ['VARCOPY:'     , {'lista': ['var listaja']     , 'nev': 'var'}]
+      ['VARDEEPCOPY:' , {'lista': ['var listaja']     , 'nev': 'var'}]
+
+      var["lista"][0] = "modositott lista"
+
+      ['VAR:'         , {'lista': ['modositott lista'], 'nev': 'modositott nev'}]
+      ['VAREQ:'       , {'lista': ['modositott lista'], 'nev': 'modositott nev'}]
+      ['VARCOPY:'     , {'lista': ['modositott lista'], 'nev': 'var'}]
+      ['VARDEEPCOPY:' , {'lista': ['var listaja']     , 'nev': 'var'}]
 
                                 INLINE MOTYESZ                            {{{2
   ____________________________________________________________________________

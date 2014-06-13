@@ -41,7 +41,7 @@ A 'regex' alatt regex (reguláris) kifejezést értek.
 TIPP: Ha vim-ben nyitottad meg, de nem ismered a folding használatát, a zR
 kinyitja az összes könyvjelzőt.
 
-============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.16 09:48 ==
+ BimbaLaszlo(.co.nr|gmail.com)  2014.06.13 09:56 ==
 
                                ÁLTALÁNOS INFÓK                            {{{1
 ==============================================================================
@@ -2236,10 +2236,10 @@ git
 
         COMMIT2DIR.SH
 
-            num=0
-            for sha in $(git log --reverse --pretty=format:"%h"); do
-              num=$(($num + 1))
-              path=$(printf '%02d_%s' $num $sha)
+            for sha in $(git log --pretty=format:"%h"); do
+              date=$(git log -n1 --format='%at' $sha | awk '{print strftime("%Y-%m-%d_%H-%M_",$1)}')
+              sum=$(git log -n1 --pretty=format:"%h_%f" $sha)
+              path=$date$sum
               git checkout --force $sha
               mkdir ../$path
               cp -r * ../$path
