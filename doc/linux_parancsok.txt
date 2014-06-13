@@ -2248,13 +2248,11 @@ git
 
     FIGYELEM! Mielőtt futtatod a szkriptet, töröld azokat a fájlokat, amik a
     .gitignore fájlban szerepelnek!
-    A könyvtárnevek a commit sorszámából és az SHA-ból fognak állni, ezen
-    kívül minden könyvtárba elmenti a commit előzményeit changelog.txt néven.
-    Pl.:
+    A könyvtárnevei ehhez hasonloak lesznek (AZ IDŐPONTOK UTC SZERINT VANNAK):
 
-        01_7eaac93
-        02_133def9
-        03_5561f6d
+        2014-06-12_12-06_b306a90_szabdalas-hibajavitas
+        2014-06-12_12-45_dcd877e_tmp
+        2014-06-13_07-06_b5962f9_vetitett-ertekek-javitasa
 
                                    HÁLÓZAT                                {{{1
 ==============================================================================

@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.12 12:34 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.13 13:02 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -411,7 +411,7 @@ endfunction
 " Szoveg behuzasanak megvaltoztatasa. Az elso parameter a regi behuzas
 " merteke, a masodik amire valtoztatni szeretnenk.
 
-command  -nargs=* -range  Chindent  call Retab( <line1>, <line2>, <f-args> )
+command  -nargs=* -range  Chindent  call Chindent( <line1>, <line2>, <f-args> )
 
 function Chindent( start, stop, oldwidth, newwidth ) range
 
@@ -1619,6 +1619,9 @@ autocmd  FileType  markdown  nnoremap <buffer>  <leader>3
 autocmd  FileType  markdown  nnoremap <buffer>  <leader>4
 \ :call EightHeader( '\=0-(s:strLen+5)', 'right', 1, ['', '#', ''] , '', '\=" ".s:str' )<CR><CR>
 
+autocmd  FileType  markdown  nnoremap <buffer>  <leader>9
+\ :call setline( '.', '```' )<CR><CR>
+
 "                                   ASCIIDOC
 " ............................................................................
 
@@ -1626,13 +1629,22 @@ autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>1
 \ :call EightHeader( '\=0-s:strLen', 'left', 0, '=', '', '' )<CR><CR>
 
 autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>2
-\ :call EightHeader( '\=0-s:strLen', 'left', 0, '~', '', '' )<CR><CR>
+\ :call EightHeader( '\=0-s:strLen', 'left', 0, '-', '', '' )<CR><CR>
 
 autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>3
-\ :call EightHeader( '\=0-s:strLen', 'left', 0, '^', '', '' )<CR><CR>
+\ :call EightHeader( '\=0-s:strLen', 'left', 0, '~', '', '' )<CR><CR>
 
 autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>4
+\ :call EightHeader( '\=0-s:strLen', 'left', 0, '^', '', '' )<CR><CR>
+
+autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>5
 \ :call EightHeader( '\=0-s:strLen', 'left', 0, '+', '', '' )<CR><CR>
+
+autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>9
+\ :call setline( '.', repeat( '-', &textwidth ) )<CR><CR>
+
+autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>8
+\ :call setline( '.', repeat( '*', &textwidth ) )<CR><CR>
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
