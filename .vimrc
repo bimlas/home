@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.13 13:02 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.20 21:49 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -46,8 +46,10 @@ if exists( '*vundle#rc' )
   Plugin 'majutsushi/tagbar'
   Plugin 'fs111/pydoc.vim'
   Plugin 'scrooloose/syntastic'
-  Plugin 'tpope/vim-fugitive'
   Plugin 'gregsexton/gitv'
+  Plugin 'tpope/vim-fugitive'
+  " Nem kell nekem ez a fugitive map, ezert torlom.
+  autocmd VimEnter * unmap y<C-G>
 
   " __ VIM-SCRIPTS ____________________________
 
@@ -1342,7 +1344,7 @@ if has( 'gui_running' )
   else
 
     " let &guifont = 'DejaVu Sans Mono 11'
-    let &guifont = 'Droid Sans Mono 11'
+    let &guifont = 'Liberation Mono 11'
 
   endif
 

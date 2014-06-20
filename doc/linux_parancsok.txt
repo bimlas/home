@@ -2480,6 +2480,26 @@ mysql                                             [mysql-server, mysql-client]
     -h HOST         Kapcsolódás távoli szerverhez.
     -P PORT         Port száma.
 
+                       LINUX-WINDOWS FÁJLMEGOSZTÁS                        {{{2
+______________________________________________________________________________
+
+Telepítsd a samba csomagot, majd az /etc/samba/smb.conf fájl végéhez add
+hozzá ezeket a sorokat:
+
+    [megosztott]
+    path = /home/user/megosztott
+    available = yes
+    read only = no
+    browsable = yes
+    public = yes
+    writable = yes
+
+... majd indítsd újra a samba szervert:
+
+    $ sudo service smbd restart
+
+Ha egy fájlt beleteszel ebbe a könyvtárba, akkor windows-ról is el lehet érni.
+
                                   EGYÉB                                   {{{2
 ______________________________________________________________________________
 
