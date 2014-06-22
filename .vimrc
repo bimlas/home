@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.20 21:49 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.22 23:17 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -48,8 +48,6 @@ if exists( '*vundle#rc' )
   Plugin 'scrooloose/syntastic'
   Plugin 'gregsexton/gitv'
   Plugin 'tpope/vim-fugitive'
-  " Nem kell nekem ez a fugitive map, ezert torlom.
-  autocmd VimEnter * unmap y<C-G>
 
   " __ VIM-SCRIPTS ____________________________
 

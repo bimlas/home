@@ -2955,14 +2955,18 @@ ffmpeg
         $ avconv -i 'kep.jpg' -i 'hang.mp3' -s 854x480 -b:v 2500k -c:a mp3 \
           -ac 2 -b:a 192k -ar 44100 -loop 1 -shortest 'video.flv'
 
-    Video -> avi
-                              LEHET, HOGY MPEG4 JOBB LENNE (H264 vcodec + MP3)
+    Video -> mpg
 
         Ha DVD-t akarsz konvertalni, akkor elotté fűzd össze a fájlokat:
         $ cat VTS_01_*.VOB > 'video.vob'
 
         $ avconv -i 'video.vob' -f avi -c:v msmpeg4 -qscale 5 \
           -c:a libmp3lame -ac 2 -ab 192k -ar 44100 'video.avi'
+
+        Elvileg ez lenne a legegyszerűbb megoldás, de valamiért linux-on és
+        win-en más eredményt ad. (kockás a kép linux-on)
+
+        $ avconv -i 'video.vob' -target pal-dvd 'video.mpg'
 
     Hang újraigazítása (pl.: 2 másodperccel hamarabb kezdődjön a hang):
 
