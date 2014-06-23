@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.22 23:17 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.23 15:32 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -44,7 +44,7 @@ if exists( '*vundle#rc' )
   Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'majutsushi/tagbar'
-  Plugin 'fs111/pydoc.vim'
+  Plugin 'davidhalter/jedi-vim'
   Plugin 'scrooloose/syntastic'
   Plugin 'gregsexton/gitv'
   Plugin 'tpope/vim-fugitive'
@@ -1731,10 +1731,13 @@ autocmd  QuickFixCmdPost  *  botright cwindow
 
 if $USERNAME == 'Laci'
 
-  let $PYTHONPATH  = 'c:/users/Laci/Documents/python32'
-  let $PATH       .= ';' . $PYTHONPATH
-  let $PATH       .= ';' . $PYTHONPATH . '/scripts'
-  let $PYTHONPATH .= ';' . $PYTHONPATH . '/lib'
+  let pythontwo   = 'c:/Users/Laci/Documents/python27'
+  let pythonthree = 'c:/Users/Laci/Documents/python32'
+
+  let $PATH       .= ';' . pythonthree              . ';' . pythontwo
+  let $PATH       .= ';' . pythonthree . '/scripts' . ';' . pythontwo . '/scripts'
+  let $PYTHONPATH  = pythonthree                    . ';' . pythontwo
+  let $PYTHONPATH  = pythonthree . '/lib'           . ';' . pythontwo . '/lib'
 
   autocmd  BufNewFile  *.txt  set fileencoding=default
   autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileencoding=default | endif
