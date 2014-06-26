@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.23 15:32 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.26 09:36 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1517,6 +1517,8 @@ imap                       <C-CR>       <C-O><C-CR>
 
 " Gyorsabb omni completion.
 inoremap                   <C-Space>    <C-X><C-O>
+" Terminal-ban a <Nul> a <C-Space> megfeleloje.
+inoremap                   <Nul>        <C-X><C-O>
 
 " Minden modositas visszavonasa az utolso mentesig.
 nnoremap                   U            :earlier 1f<CR>
