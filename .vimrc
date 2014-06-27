@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.26 09:36 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.27 21:43 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -41,7 +41,6 @@ if exists( '*vundle#rc' )
 
   Plugin 'altercation/vim-colors-solarized'
   Plugin 'itchyny/lightline.vim'
-  Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'majutsushi/tagbar'
   Plugin 'davidhalter/jedi-vim'
@@ -1122,7 +1121,7 @@ set complete=.,i,t
 " Kiegeszites menujenek mukodese:
 " menuone  Egyetlen lehetoseg eseten is popup menu.
 " longest  Nem valasztja ki magatol az elso lehetoseget.
-set completeopt=menuone,longest
+set completeopt=menuone,longest,preview
 
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
@@ -1464,16 +1463,15 @@ map                        <kPlus>      +
 map                        <kMinus>     -
 map                        <kDivide>    /
 
-" Backspace a nyilakhoz kozel.
-inoremap                   <S-Del>      <BS>
-cnoremap                   <S-Del>      <BS>
-
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
 nnoremap                   Q            <Nop>
 
 " Az InsertLeave esemeny nem tortenik meg a <C-C> hatasara.
 noremap                    <C-C>        <Esc>
+
+" Gyorsabb hozzaferes a <C-O>-hoz.
+inoremap                   <C-k0>       <C-O>
 
 " Insert modba lepes bal kezhez kozel.
 nnoremap                   a            i
@@ -1704,9 +1702,6 @@ if filereadable( $VIMRUNTIME . '/autoload/syntaxcomplete.vim' )
   autocmd  FileType  *  if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
 endif
 
-" Python3 legyen az alapertelmezes.
-autocmd FileType  python setlocal omnifunc=python3complete#Complete
-
 " __ MEGJELENES _________________________
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
@@ -1726,7 +1721,6 @@ autocmd  QuickFixCmdPost  *  botright cwindow
 " A netrw viszont nem foglalkozik vele, pl. mindig a megnyitott url-hez
 " viszonyitva kell megadni az uj fajlok nevet.
 " autocmd  BufEnter  *://*  set noautochdir
-
                                                                         " }}}1
 "                           MUNKAHELYI BEALLITASOK
 " ============================================================================
