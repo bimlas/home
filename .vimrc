@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.27 21:43 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.01 12:33 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1725,15 +1725,34 @@ autocmd  QuickFixCmdPost  *  botright cwindow
 "                           MUNKAHELYI BEALLITASOK
 " ============================================================================
 
+" A magyarbol masold ki a meretet es az elso ar oszlopot nvu-ban, majd ereszd
+" ezt a fuggvenyt.
+
+function AngolArak()
+
+  let save_format = g:NumUtils_format
+  let g:NumUtils_format = '.2'
+
+  silent %s/\(.\{-}\t.\{-}\)\t/\1\r/g
+  silent %s/^\(\d\+\)\(.\{-}\)\t/\1"\2 (\1\t/
+  silent %s/ x \(\d\+\)\(.\{-}\t\@=\)/ x \1"\2 x \1)mm/
+  %NumUtilsDiv 25.4, '^!NUM!'
+  %NumUtilsDiv 25.4, ' x !NUM!"'
+  %NumUtilsDiv 350, '!NUM! Ft'
+
+  let g:NumUtils_format = save_format
+
+endfunction
+
 if $USERNAME == 'Laci'
 
   let pythontwo   = 'c:/Users/Laci/Documents/python27'
   let pythonthree = 'c:/Users/Laci/Documents/python32'
 
-  let $PATH       .= ';' . pythonthree              . ';' . pythontwo
-  let $PATH       .= ';' . pythonthree . '/scripts' . ';' . pythontwo . '/scripts'
-  let $PYTHONPATH  = pythonthree                    . ';' . pythontwo
-  let $PYTHONPATH  = pythonthree . '/lib'           . ';' . pythontwo . '/lib'
+  " let $PATH       .= ';' . pythonthree              . ';' . pythontwo
+  " let $PATH       .= ';' . pythonthree . '/scripts' . ';' . pythontwo . '/scripts'
+  " let $PYTHONPATH  = pythonthree                    . ';' . pythontwo
+  " let $PYTHONPATH  = pythonthree . '/lib'           . ';' . pythontwo . '/lib'
 
   autocmd  BufNewFile  *.txt  set fileencoding=default
   autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileencoding=default | endif
