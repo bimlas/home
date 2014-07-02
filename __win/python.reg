@@ -1,0 +1,27 @@
+Windows Registry Editor Version 5.00
+
+; python.reg - for copy/paste python
+;
+; Vim on windows sometimes not works with portablepython, so i installed the
+; default pythons on my machine (just for me, not systemwide) and moved those
+; directories to dropbox to use at my work. Since python 3.3 there is a
+; pylauncher to work with multiply versions of python, but that needs these
+; registry keys.
+
+[HKEY_CURRENT_USER\Software\Python\PythonCore\Python\PythonCore\2.7]
+
+[HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\Help]
+
+[HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\Help\MainPythonDocumentation]
+@="C:\\Python27\\Doc\\python26.chm"
+
+[HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\InstallPath]
+@="C:\\Python27\\"
+
+[HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\InstallPath\InstallGroup]
+@="Python 2.7"
+
+[HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\Modules]
+
+[HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\PythonPath]
+@="C:\\Python27\\Lib;C:\\Python27\\DLLs;C:\\Python27\\Lib\\lib-tk"

@@ -1,5 +1,5 @@
 windows.txt - win tippek
-============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.22 15:17 ==
+============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.07.02 22:03 ==
 
 A bejelentkezesi kepernyon ketszer lenyomva a Ctrl + Alt + Del parositast
 lehetosegunk nyilik belepni a rendszergazda neveben.
@@ -295,6 +295,10 @@ Windows Registry Editor Version 5.00
 ; Kotelezo ures sor, elem torlese.
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]
 "29"=-
+
+; Kotelezo ures sor, alapertelmezett ertek.
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]
+@="ertek"
 
 __ PELDA.REG VEGE _________________________
 
