@@ -7,6 +7,8 @@ Windows Registry Editor Version 5.00
 ; directories to dropbox to use at my work. Since python 3.3 there is a
 ; pylauncher to work with multiply versions of python, but that needs these
 ; registry keys.
+; Delete PYTHONPATH variable if you set up it.
+; To debug pylauncher, set PYLAUNCH_DEBUG = 1 environment variable.
 
 ;                               PYTHON 2.7                                {{{1
 ; ============================================================================
@@ -16,10 +18,10 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\Help]
 
 [HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\Help\MainPythonDocumentation]
-@="C:\\Python27\\Doc\\python276.chm"
+@="c:\\users\\laci\\documents\\python\\python27\\doc\\python276.chm"
 
 [HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\InstallPath]
-@="C:\\Python27\\"
+@="c:\\users\\laci\\documents\\python\\python27\\"
 
 [HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\InstallPath\InstallGroup]
 @="Python 2.7"
@@ -27,7 +29,7 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\Modules]
 
 [HKEY_CURRENT_USER\Software\Python\PythonCore\2.7\PythonPath]
-@="C:\\Python27\\Lib;C:\\Python27\\DLLs;C:\\Python27\\Lib\\lib-tk"
+@="c:\\users\\laci\\documents\\python\\python27\\lib;c:\\users\\laci\\documents\\python\\python27\\dlls;c:\\users\\laci\\documents\\python\\python27\\lib\\lib-tk"
 
 ;                               PYTHON 3.3                                {{{1
 ; ============================================================================
@@ -37,10 +39,10 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Python\PythonCore\3.3\Help]
 
 [HKEY_CURRENT_USER\Software\Python\PythonCore\3.3\Help\MainPythonDocumentation]
-@="C:\\Python33\\Doc\\python335.chm"
+@="c:\\Users\\Laci\\Documents\\python\\python33\\Doc\\python335.chm"
 
 [HKEY_CURRENT_USER\Software\Python\PythonCore\3.3\InstallPath]
-@="C:\\Python33\\"
+@="c:\\Users\\Laci\\Documents\\python\\python33\\"
 
 [HKEY_CURRENT_USER\Software\Python\PythonCore\3.3\InstallPath\InstallGroup]
 @="Python 3.3"
@@ -48,4 +50,4 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Python\PythonCore\3.3\Modules]
 
 [HKEY_CURRENT_USER\Software\Python\PythonCore\3.3\PythonPath]
-@="C:\\Python33\\Lib;C:\\Python33\\DLLs;C:\\Python33\\Lib\\lib-tk"
+@="c:\\Users\\Laci\\Documents\\python\\python33\\Lib;c:\\Users\\Laci\\Documents\\python\\python33\\DLLs;c:\\Users\\Laci\\Documents\\python\\python33\\Lib\\lib-tk"
