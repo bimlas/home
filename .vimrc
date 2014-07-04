@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.03 21:40 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.04 21:25 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -15,7 +15,6 @@ set regexpengine=1
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
 " kapcsolva. (:DoMatchParen kapcsolja be)
 autocmd VimEnter * if exists( ':NoMatchParen' ) | execute 'NoMatchParen' | endif
-
 " Ezek sem segitenek:
 " let g:matchparen_timeout = 5
 " let g:matchparen_insert_timeout = 5
@@ -1174,6 +1173,15 @@ endif
 let g:EightHeader_comment   = 'call NERDComment( "n", "comment" )'
 let g:EightHeader_uncomment = 'call NERDComment( "n", "uncomment" )'
 
+"                               EASYMOTION                                {{{2
+" ____________________________________________________________________________
+
+" Enter leutesere az elso talalatra ugrik.
+let g:EasyMotion_enter_jump_first = 1
+
+" Kis/nagybetu erzekenyseg, ha nagybetu van a beirt szovegben.
+let g:EasyMotion_smartcase = 1
+
 "                                EASYGREP                                 {{{2
 " ____________________________________________________________________________
 
@@ -1456,7 +1464,7 @@ imap                       <C-S-Left>   <C-O><C-S-Left>
 nnoremap                   <C-S-Down>   <C-^>
 nnoremap                   B            <C-^>
 
-"                           KENYELMESEBB REMAP-OK                         {{{2
+"                                 VEGYES                                  {{{2
 " ____________________________________________________________________________
 
 " Numpad atiranyitasa az eredeti karakterekre.
@@ -1507,9 +1515,6 @@ nnoremap                   z-           zM
 map                        <S-kPlus>    z+
 map                        <S-kMinus>   z-
 
-"                              VALODI REMAP-OK                            {{{2
-" ____________________________________________________________________________
-
 " Gyorsabb hozzaferes a commadline-hoz.
 noremap                    <C-CR>       :
 imap                       <C-CR>       <C-O><C-CR>
@@ -1537,6 +1542,9 @@ noremap                    <Del>        "_<Del>
 noremap                    <C-Insert>   "+y
 noremap                    <S-Insert>   "+P
 imap                       <S-Insert>   <C-O><S-Insert>
+
+" Easymotion.
+map                        s            <Plug>(easymotion-s)
 
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>          K            :call Help( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
