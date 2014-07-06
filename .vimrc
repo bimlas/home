@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.04 21:25 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.06 21:47 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -40,6 +40,7 @@ if exists( '*vundle#rc' )
 
   Plugin 'altercation/vim-colors-solarized'
   Plugin 'itchyny/lightline.vim'
+  Plugin 'thinca/vim-visualstar'
   Plugin 'lokaltog/vim-easymotion'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'majutsushi/tagbar'
