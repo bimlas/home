@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.09 07:45 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.09 11:30 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -30,37 +30,80 @@ if exists( '*vundle#rc' )
   filetype off
   call vundle#rc()
 
+  " plugin-ok automatizalt telepitese git-en keresztul (is)
   Plugin 'gmarik/vundle'
 
-  " __ GITHUB _________________________________
+  " __ GITHUB _____________________________
 
+  " .. SAJAT ..............................
+
+  " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
   Plugin 'bimbalaszlo/vim-eightheader'
+
+  " szamok manipulalasa regex segitsegevel
   Plugin 'bimbalaszlo/vim-numutils'
+
+  " vegyes
   Plugin 'bimbalaszlo/vim-mixed'
 
+  " .. MEGJELENES .........................
+
+  " nagyon szep colorscheme (light es dark is)
   Plugin 'altercation/vim-colors-solarized'
+
+  " divatos, de minimalista statusline
   Plugin 'itchyny/lightline.vim'
-  Plugin 'thinca/vim-visualstar'
-  Plugin 'lokaltog/vim-easymotion'
-  Plugin 'scrooloose/nerdcommenter'
-  Plugin 'godlygeek/tabular'
-  Plugin 'majutsushi/tagbar'
-  Plugin 'davidhalter/jedi-vim'
-  Plugin 'scrooloose/syntastic'
-  Plugin 'gregsexton/gitv'
-  Plugin 'tpope/vim-fugitive'
 
-  " __ VIM-SCRIPTS ____________________________
+  " .. ALAPVETO ...........................
 
-  Plugin 'easygrep'
+  " info a kurzor poziciojaraol (fold, fuggveny, osztaly)
   Plugin 'locator'
+
+  " tuningolt vimgrep
+  Plugin 'easygrep'
+
+  " parancsok futtatasa visual block-on
   Plugin 'vis'
 
-  " __ OTHER REPOS ____________________________
+  " kijelolt szoveg keresese * gombbal
+  Plugin 'thinca/vim-visualstar'
+
+  " gyors ugras a szoveg barmely reszere
+  Plugin 'lokaltog/vim-easymotion'
+
+  " szoveg igazitasa regex kifejezesekkel
+  Plugin 'godlygeek/tabular'
+
+  " doppingolt substitude
+  Plugin 'tpope/vim-abolish'
+
+  " .. PROGRAMOZAS ........................
+
+  " szovegreszek kommentelese (akar oszlopok is)
+  Plugin 'scrooloose/nerdcommenter'
+
+  " a fajlban talalhato tag-ek listaja
+  Plugin 'majutsushi/tagbar'
+
+  " python irasat nagyban megkonnyito kiegeszitesek / sugok
+  Plugin 'davidhalter/jedi-vim'
+
+  " syntax checker
+  Plugin 'scrooloose/syntastic'
+
+  " .. GIT ................................
+
+  " git integracio
+  Plugin 'tpope/vim-fugitive'
+
+  " gitk a vim-en belul
+  Plugin 'gregsexton/gitv'
+
+  " __ NEM GITHUB _________________________
 
   " Plugin 'https://www.bitbucket.org/user/repo'
 
-  " __ LOCAL REPOS ____________________________
+  " __ HELYI ______________________________
 
   " Plugin 'file://~/.vim/bundle/repo'
 
@@ -1457,6 +1500,7 @@ noremap                    <C-C>        <Esc>
 
 " Gyorsabb hozzaferes a <C-O>-hoz.
 inoremap                   <C-k0>       <C-O>
+inoremap                   <C-CR>       <C-O>
 
 " Insert modba lepes bal kezhez kozel.
 nnoremap                   a            i
@@ -1490,10 +1534,6 @@ nnoremap                   z+           zR
 nnoremap                   z-           zM
 map                        <S-kPlus>    z+
 map                        <S-kMinus>   z-
-
-" Gyorsabb hozzaferes a commadline-hoz.
-noremap                    <C-CR>       :
-imap                       <C-CR>       <C-O><C-CR>
 
 " Gyorsabb omni completion.
 inoremap                   <C-Space>    <C-X><C-O>
