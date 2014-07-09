@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.06 21:47 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.08 08:34 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -676,13 +676,10 @@ set laststatus=2
 " syntastic figyelmeztetesek
 " virtcol | sorszam:osszes sor szama
 
-let stat_filename = '%w%t%r%m'
-
+let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-
-let stat_path = '%<%{StatPath()}'
-
-let stat_lineinfo = '%3v|%4l:%3p%%'
+let stat_path       = '%<%F'
+let stat_lineinfo   = '%3v|%4l:%3p%%'
 
 let &statusline  = stat_filename . ' | '
 let &statusline .= stat_fileformat . ' | '
@@ -762,21 +759,6 @@ let g:lightline#colorscheme#solarized#palette = {
 \   }
 \ }
 
-" __ STATPATH _______________________________
-"
-" A fajl konyvtara.
-
-function StatPath()
-
-  let path  = expand( '%:p:h' ) . (has( 'win32' ) ? '\' : '/')
-  if path =~ '^fugitive'
-    let path = substitute( path, '^fugitive:[\\/]\+\(.*\)[\\/].git[\\/]\+[^\\/]\+\(.*\).*', '\1\2', '' )
-  endif
-
-  return path
-
-endfunction
-
 " __ STATSYNTASTIC __________________________
 "
 " Syntastic figyelmeztetesek sorszamai.
@@ -797,18 +779,11 @@ endfunction
 
 function StatFugitive()
 
-  if ! exists( '*fugitive#head' )
+  if ! exists( '*fugitive#statusline' )
     return ''
   endif
 
-  let branch = fugitive#head()
-
-  if ! len( branch )
-    return ''
-  endif
-
-  let commit = fugitive#buffer().commit()
-  return branch . (len( commit ) ? ':' . commit[0:6] : '')
+  return fugitive#statusline()
 
 endfunction
 
