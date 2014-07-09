@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.09 11:30 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.09 20:10 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -609,7 +609,6 @@ command  -nargs=*  Commit  silent Git add --all | Gcommit <args>
 
 " Fajltipus felismeres bekapcsolasa, a ra jellemzo formazas (pl. kommentkari)
 " es behuzas stilusanak betoltese.
-" TODO: vim.tiny helyesen fog mukodni?
 if exists( ':filetype' )
   filetype plugin indent on
 endif
@@ -1368,7 +1367,6 @@ if has( 'gui_running' )
 
   else
 
-    " let &guifont = 'DejaVu Sans Mono 11'
     let &guifont = 'Liberation Mono 11'
 
   endif
@@ -1390,11 +1388,12 @@ if has( 'gui_running' )
   " Menusor kikapcsolasa.
   " set guioptions-=m
 
-  " Minden scroll mindig latszodjon.
-  set guioptions+=l
-  " set guioptions-=L
-  set guioptions+=r
-  " set guioptions-=R
+  " A scroll-ok csak akkor latszodjanak, ha szukseg van rajuk?
+  " set guioptions+=L
+  " set guioptions+=R
+  " Mindig latszodjanak?
+  set guioptions-=l
+  set guioptions-=r
   set guioptions+=b
 
   " A tabok neve ele irja ki a tab szamat.
@@ -1571,11 +1570,11 @@ map                        <C-D>        <plug>NERDCommenterComment
 map                        <C-F>        <plug>NERDCommenterUncomment
 
 " Tabular.
-map                        <leader>tsp  :Tabularize / /<CR>
-map                        <leader>t\|  :Tabularize /\|/<CR>
-map                        <leader>t,   :Tabularize /,\zs/<CR>
-map                        <leader>t:   :Tabularize /:\zs/<CR>
-map                        <leader>t=   :Tabularize /[+-\*\/]\?=/l1c1<CR>
+noremap                    <leader>tsp  :Tabularize / /<CR>
+noremap                    <leader>t\|  :Tabularize /\|/<CR>
+noremap                    <leader>t,   :Tabularize /,\zs/<CR>
+noremap                    <leader>t:   :Tabularize /:\zs/<CR>
+noremap                    <leader>t=   :Tabularize /[+-\*\/]\?=/l1c1<CR>
 
 " Terminal megnyitasa.
 nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start cmd<CR>' : ':silent !xterm &<CR>'
