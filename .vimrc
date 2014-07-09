@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.08 08:34 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.09 07:45 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -43,6 +43,7 @@ if exists( '*vundle#rc' )
   Plugin 'thinca/vim-visualstar'
   Plugin 'lokaltog/vim-easymotion'
   Plugin 'scrooloose/nerdcommenter'
+  Plugin 'godlygeek/tabular'
   Plugin 'majutsushi/tagbar'
   Plugin 'davidhalter/jedi-vim'
   Plugin 'scrooloose/syntastic'
@@ -51,7 +52,6 @@ if exists( '*vundle#rc' )
 
   " __ VIM-SCRIPTS ____________________________
 
-  Plugin 'align'
   Plugin 'easygrep'
   Plugin 'locator'
   Plugin 'vis'
@@ -1524,22 +1524,28 @@ map                        s            <Plug>(easymotion-s)
 
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>          K            :call Help( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
-
 noremap  <silent>          L            :Szotar <C-R>=expand( '<cword>' )<CR><CR>
 
-" Komment.
+" Nerdcommenter.
 map                        <C-D>        <plug>NERDCommenterComment
 map                        <C-F>        <plug>NERDCommenterUncomment
+
+" Tabular.
+map                        <leader>tsp  :Tabularize / /<CR>
+map                        <leader>t\|  :Tabularize /\|/<CR>
+map                        <leader>t,   :Tabularize /,\zs/<CR>
+map                        <leader>t:   :Tabularize /:\zs/<CR>
+map                        <leader>t=   :Tabularize /[+-\*\/]\?=/l1c1<CR>
 
 " Terminal megnyitasa.
 nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start cmd<CR>' : ':silent !xterm &<CR>'
 imap                       <F2>         <C-O><F2>
 
-" Git commit-ok amelyben a fajl valtozott.
+" Gitv - git commit-ok amelyben a fajl valtozott.
 nnoremap                   <F3>         :Gitv!<CR>
 imap                       <F3>         <C-O><F3>
 
-" Gitk-szeru log.
+" Gitv - gitk-szeru log.
 nnoremap           <expr>  <F4>         &filetype =~ 'gitv' ? ':normal q<CR>' : ':Gitv<CR>'
 imap                       <F4>         <C-O><F4>
 
@@ -1573,7 +1579,7 @@ imap                       <F12>        <C-O><F12>
 "                              HEADER MAP-OK                              {{{2
 " ____________________________________________________________________________
 
-" A sor foldheader-re alakitasa.
+" Eightheader - a sor foldheader-re alakitasa.
 nnoremap                   <leader>0    :silent call MyHeader()<CR><CR>
 nnoremap                   <leader>1    :silent call EightHeader( &tw, 'center', 0, '=', ' {' . '{{1', '' )<CR><CR>
 nnoremap                   <leader>2    :silent call EightHeader( &tw, 'center', 0, '_', ' {' . '{{2', '' )<CR><CR>
