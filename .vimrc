@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.09 20:10 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.10 11:24 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -819,13 +819,23 @@ endfunction
 "
 " Branch : commit
 
+" Halozati meghajton nagyon belassit.
+let g:statfugitive_disabled = 0
+
 function StatFugitive()
 
-  if ! exists( '*fugitive#statusline' )
+  if ! exists( '*fugitive#head' ) || g:statfugitive_disabled
     return ''
   endif
 
-  return fugitive#statusline()
+  let branch = fugitive#head(7)
+
+  if ! len( branch )
+    return ''
+  endif
+
+  let commit = fugitive#buffer().commit()
+  return branch . (len( commit ) ? ':' . commit[0:6] : '')
 
 endfunction
 
