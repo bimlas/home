@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.10 11:24 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.11 17:25 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1399,8 +1399,8 @@ if has( 'gui_running' )
   " set guioptions-=m
 
   " A scroll-ok csak akkor latszodjanak, ha szukseg van rajuk?
-  " set guioptions+=L
-  " set guioptions+=R
+  set guioptions-=L
+  set guioptions-=R
   " Mindig latszodjanak?
   set guioptions-=l
   set guioptions-=r
