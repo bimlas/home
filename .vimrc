@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.11 17:25 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.12 13:40 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -718,16 +718,14 @@ set laststatus=2
 " syntastic figyelmeztetesek
 " virtcol | sorszam:osszes sor szama
 
-let stat_filename   = '%w%t%r%m'
+let stat_filename   = '%w%<%F%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-let stat_path       = '%<%F'
 let stat_lineinfo   = '%3v|%4l:%3p%%'
 
 let &statusline  = stat_filename . ' | '
 let &statusline .= stat_fileformat . ' | '
 let &statusline .= '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed . " | " : ""}'
 let &statusline .= '%{len( StatFugitive() ) ? StatFugitive() . " | " : ""}'
-let &statusline .= stat_path
 let &statusline .= '%= '
 let &statusline .= '%{len( StatSyntastic() ) ? StatSyntastic() . " | " : ""}'
 let &statusline .= stat_lineinfo
@@ -748,12 +746,12 @@ if !exists( 'g:lightline' )
 endif
 
 let g:lightline.active = {
-\     'left'       : [ ['filename'], ['fileformat'], ['mixed'], ['fugitive'], ['path'] ],
+\     'left'       : [ ['filename'], ['fileformat'], ['mixed'], ['fugitive'] ],
 \     'right'      : [ ['lineinfo'], ['syntastic'] ]
 \   }
 
 let g:lightline.inactive = {
-\     'left'       : [ ['filename'], ['fugitive'], ['path'] ],
+\     'left'       : [ ['filename'], ['fugitive'] ],
 \     'right'      : [ [] ]
 \   }
 
@@ -761,7 +759,6 @@ let g:lightline.component = {
 \     'filename'   : stat_filename,
 \     'fileformat' : stat_fileformat,
 \     'mixed'      : '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed : ""}',
-\     'path'       : stat_path,
 \     'lineinfo'   : stat_lineinfo
 \   }
 
