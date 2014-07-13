@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.12 13:40 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.13 13:26 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -42,6 +42,9 @@ if exists( '*vundle#rc' )
 
   " szamok manipulalasa regex segitsegevel
   Plugin 'bimbalaszlo/vim-numutils'
+
+  " rovid leirasok programokhoz es programozasi nyelvekhez help formaban
+  Plugin 'bimbalaszlo/vim-cheatsheets'
 
   " vegyes
   Plugin 'bimbalaszlo/vim-mixed'
