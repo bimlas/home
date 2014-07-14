@@ -36,3 +36,11 @@
 [push]
 
   default      = "simple"
+
+[web]
+
+  browser      = "firefoxx"
+
+[browser "firefoxx"]
+
+  cmd          = "/opt/firefox/firefox"
