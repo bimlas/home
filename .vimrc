@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.13 13:26 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.15 17:46 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1581,10 +1581,10 @@ map                        <C-F>        <plug>NERDCommenterUncomment
 
 " Tabular.
 noremap                    <leader>tsp  :Tabularize / /<CR>
-noremap                    <leader>t\|  :Tabularize /\|/<CR>
+noremap                    <leader>t\|  :Tabularize /\|/l0<CR>
 noremap                    <leader>t,   :Tabularize /,\zs/<CR>
 noremap                    <leader>t:   :Tabularize /:\zs/<CR>
-noremap                    <leader>t=   :Tabularize /[+-\*\/]\?=/l1c1<CR>
+noremap                    <leader>t=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
 
 " Terminal megnyitasa.
 nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start cmd<CR>' : ':silent !xterm &<CR>'
