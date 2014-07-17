@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.16 08:48 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.17 12:25 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -807,11 +807,7 @@ let g:lightline#colorscheme#solarized#palette = {
 
 function StatSyntastic()
 
-  if ! exists( ':SyntasticCheck' )
-    return ''
-  endif
-
-  return SyntasticStatuslineFlag()
+  return exists( ':SyntasticCheck' ) ? SyntasticStatuslineFlag() : ''
 
 endfunction
 
