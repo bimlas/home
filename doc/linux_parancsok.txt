@@ -2243,7 +2243,7 @@ git
               git checkout --force $sha
               mkdir ../$path
               cp -r * ../$path
-              git log > ../$path/changelog.txt
+              git log --name-status > ../$path/changelog.txt
             done
 
     FIGYELEM! Mielőtt futtatod a szkriptet, töröld azokat a fájlokat, amik a
