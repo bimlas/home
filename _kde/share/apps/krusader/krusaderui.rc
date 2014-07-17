@@ -208,6 +208,12 @@
   <Action shortcut="Ctrl+Down" name="close tab"/>
   <Action shortcut="Ctrl+Up" name="duplicate tab"/>
   <Action shortcut="F12" name="bookmarks"/>
+  <Action shortcut="Alt+F1" name="left media"/>
+  <Action shortcut="Alt+F2" name="right media"/>
+  <Action shortcut="Ctrl+D" name="compare"/>
+  <Action shortcut="Alt+F7" name="find"/>
+  <Action shortcut="" name="media"/>
+  <Action shortcut="Ctrl+M" name="multirename"/>
  </ActionProperties>
 </kpartgui>
 <!--
