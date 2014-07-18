@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.17 12:25 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.18 09:54 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -219,6 +219,16 @@ function ShortTabLine()
   let ret .= '%#TabLineFill#%T'
 
   return ret
+
+endfunction
+
+"                              ADOCFOLDEXPR                               {{{2
+" ____________________________________________________________________________
+
+function AdocFoldExpr( lnum )
+
+  let line = getline( a:lnum )
+  return (line =~ '^=\+\ .\+') ? '>' . len( matchstr( line, '^=\+' ) ) : '='
 
 endfunction
 
@@ -1703,6 +1713,7 @@ endif
 autocmd  FileType  html,xml,xslt,docbk,text  set formatoptions+=t
 autocmd  FileType  python                    set formatoptions-=t
 autocmd  FileType  registry                  set commentstring=;%s
+autocmd  FileType  asciidoc                  set foldmethod=expr foldexpr=AdocFoldExpr(v:lnum)
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
 " aktualizalasa.
