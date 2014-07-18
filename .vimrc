@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.18 09:54 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.18 11:37 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -219,16 +219,6 @@ function ShortTabLine()
   let ret .= '%#TabLineFill#%T'
 
   return ret
-
-endfunction
-
-"                              ADOCFOLDEXPR                               {{{2
-" ____________________________________________________________________________
-
-function AdocFoldExpr( lnum )
-
-  let line = getline( a:lnum )
-  return (line =~ '^=\+\ .\+') ? '>' . len( matchstr( line, '^=\+' ) ) : '='
 
 endfunction
 
@@ -1639,41 +1629,8 @@ autocmd  FileType  help  nnoremap <buffer>  <leader>1
 autocmd  FileType  help  noremap <buffer>  <leader>2
 \ :call EightHeader( 78, 'left', 1, '.', '\= "\|".matchstr( s:str, ";\\@<=.*" )."\|"', '\= matchstr( s:str, ".*;\\@=" )' )<CR><CR>
 
-"                                   MARKDOWN
-" ............................................................................
-
-autocmd  FileType  markdown  nnoremap <buffer>  <leader>1
-\ :call EightHeader( '\=0-s:strLen', 'left', 0, '=', '', '' )<CR><CR>
-
-autocmd  FileType  markdown  nnoremap <buffer>  <leader>2
-\ :call EightHeader( '\=0-s:strLen', 'left', 0, '-', '', '' )<CR><CR>
-
-autocmd  FileType  markdown  nnoremap <buffer>  <leader>3
-\ :call EightHeader( '\=0-(s:strLen+4)', 'right', 1, ['', '#', ''] , '', '\=" ".s:str' )<CR><CR>
-
-autocmd  FileType  markdown  nnoremap <buffer>  <leader>4
-\ :call EightHeader( '\=0-(s:strLen+5)', 'right', 1, ['', '#', ''] , '', '\=" ".s:str' )<CR><CR>
-
-autocmd  FileType  markdown  nnoremap <buffer>  <leader>9
-\ :call setline( '.', '```' )<CR><CR>
-
 "                                   ASCIIDOC
 " ............................................................................
-
-autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>1
-\ :call EightHeader( '\=0-s:strLen', 'left', 0, '=', '', '' )<CR><CR>
-
-autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>2
-\ :call EightHeader( '\=0-s:strLen', 'left', 0, '-', '', '' )<CR><CR>
-
-autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>3
-\ :call EightHeader( '\=0-s:strLen', 'left', 0, '~', '', '' )<CR><CR>
-
-autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>4
-\ :call EightHeader( '\=0-s:strLen', 'left', 0, '^', '', '' )<CR><CR>
-
-autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>5
-\ :call EightHeader( '\=0-s:strLen', 'left', 0, '+', '', '' )<CR><CR>
 
 autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>9
 \ :call setline( '.', repeat( '-', &textwidth ) )<CR><CR>
@@ -1713,7 +1670,8 @@ endif
 autocmd  FileType  html,xml,xslt,docbk,text  set formatoptions+=t
 autocmd  FileType  python                    set formatoptions-=t
 autocmd  FileType  registry                  set commentstring=;%s
-autocmd  FileType  asciidoc                  set foldmethod=expr foldexpr=AdocFoldExpr(v:lnum)
+autocmd  FileType  asciidoc                  set foldmethod=expr foldexpr=getline(v:lnum)=~'^=\\+\\s.\\+'?'>'.len(matchstr(getline(v:lnum),'^=\\+')):'='
+autocmd  FileType  ngc                       set foldmethod=expr foldexpr=getline(v:lnum)=~'^(\\(SZERSZAM\\)\\@!'?'>1':'='
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
 " aktualizalasa.
