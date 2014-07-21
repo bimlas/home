@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.21 07:37 ==
+" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.21 08:52 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -156,7 +156,7 @@ endfunction
 " Elerhetosegek es a datum kiirasa.
 
 function MyHeader()
-  call EightHeader( &tw, 'center', 1, ['', '=', strftime(' %Y.%m.%d %H:%M ==')], '', ' BimbaLaszlo(.co.nr|gmail.com) ' )
+  call EightHeader( &tw, 'center', 1, ['', '=', strftime(' %Y.%m.%d %H:%M ==')], '', ' BimbaLaszlo(.github.io|gmail.com) ' )
 endfunction
 
 "                                  HIGHTERM                               {{{2
@@ -1565,10 +1565,10 @@ map                        <C-D>        <plug>NERDCommenterComment
 map                        <C-F>        <plug>NERDCommenterUncomment
 
 " Tabular.
-noremap                    <leader>tsp  :Tabularize / /<CR>
 noremap                    <leader>t\|  :Tabularize /\|/l0<CR>
 noremap                    <leader>t,   :Tabularize /,\zs/<CR>
 noremap                    <leader>t:   :Tabularize /:\zs/<CR>
+noremap                    <leader>tsp  :Tabularize / \+\zs/<CR>
 noremap                    <leader>t=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
 
 " Terminal megnyitasa.
