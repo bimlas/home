@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ============ BimbaLaszlo(.co.nr|gmail.com) ============ 2014.05.16 17:37 ==
+// ========== BimbaLaszlo(.github.io|gmail.com) ========== 2014.07.28 22:08 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -92,10 +92,11 @@ user_pref( "privacy.clearOnShutdown.downloads"   , false );
  * =========================================================================
  */
 
-user_pref( "network.http.max-connections"                      , 256  );
-user_pref( "network.http.max-connections-per-server"           , 16   );
-user_pref( "network.http.max-persistent-connections-per-server", 16   );
-user_pref( "network.http.max-persistent-connections-per-proxy" , 32   );
-user_pref( "network.http.pipelining"                           , true );
-user_pref( "network.http.proxy.pipelining"                     , true );
-user_pref( "network.http.pipelining.maxrequests"               , 32   );
+/* Firefox 31 ota szuksegtelennek tunnek. */
+// user_pref( "network.http.max-connections"                      , 256  );
+// user_pref( "network.http.max-connections-per-server"           , 16   );
+// user_pref( "network.http.max-persistent-connections-per-server", 16   );
+// user_pref( "network.http.max-persistent-connections-per-proxy" , 32   );
+// user_pref( "network.http.pipelining"                           , true );
+// user_pref( "network.http.proxy.pipelining"                     , true );
+// user_pref( "network.http.pipelining.maxrequests"               , 32   );
