@@ -3,7 +3,7 @@
 # TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 # konyvjelzot.
 #
-# ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.05.15 20:29 ==
+# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.02 09:34 ==
 
 # Ha nem interaktiv modban vagyunk, ne csinaljunk semmit.
 if [ -z "$PS1" ]; then
@@ -110,6 +110,8 @@ if [ -f '/usr/share/java/msv-core.jar' ]; then
 
   alias msv="$msv"
 fi
+
+alias asciidoctor="/media/nyolcas/app/asciidoctor/bin/asciidoctor -a allow-uri-read"
 
 # Manual megnyitasa bongeszoben - sajnos nem mindig mukodik.
 # if [ -f '/usr/bin/w3mman' ]; then

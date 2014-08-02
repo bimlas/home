@@ -1,10 +1,10 @@
 # .conkyrc
-# ===================== BimbaLaszlo(.co.nr|gmail.com) ==== 2014.03.04 04:48 ==
+# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.02 09:32 ==
 
 # Use Xft?
 use_xft yes
 # xftfont DejaVu Sans:size=8
-xftfont DeJavu Sans Mono:size=8
+xftfont Liberation Mono:size=8
 xftalpha 0.8
 text_buffer_size 2048
 
@@ -111,7 +111,6 @@ DISK ${hr 2}
 
 ${goto 60}USED ${goto 120}TOTAL
 ROOT${goto 60}${fs_used /root} ${goto 120}${fs_size /root}${alignr}${fs_bar 8,60 /root}
-MOUNT${goto 60}${fs_used /mnt} ${goto 120}${fs_size /mnt}${alignr}${fs_bar 8,60 /mnt}
 
 NETWORK ${hr 2}
 
