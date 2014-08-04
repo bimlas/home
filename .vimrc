@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.07.21 08:52 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.04 20:48 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1264,10 +1264,30 @@ let OmniCpp_ShowPrototypeInAbbr = 1
 let g:tagbar_autofocus = 1
 
 " Ha entert nyomunk egy tagon, akkor a tagra ugras utan zarodjon be a tagbar.
-let g:tagbar_autoclose = 1
+" let g:tagbar_autoclose = 1
 
 " Ne rendezze nev szerint a tagokat.
 let g:tagbar_sort = 0
+
+" Hogy asciidoc fajlokkal is hasznalhato legyen, mentsuk el ezeket a sorokat a
+" ~/.ctags fajlba:
+"   --langdef=asciidoc
+"   --langmap=asciidoc:.ad.adoc.asciidoc
+"   --regex-asciidoc=/^=[ \t]+(.*)/# \1/h/
+"   --regex-asciidoc=/^==[ \t]+(.*)/. \1/h/
+"   --regex-asciidoc=/^===[ \t]+(.*)/. . \1/h/
+"   --regex-asciidoc=/^====[ \t]+(.*)/. . . \1/h/
+"   --regex-asciidoc=/^=====[ \t]+(.*)/. . . . \1/h/
+"   --regex-asciidoc=/^======[ \t]+(.*)/. . . . \1/h/
+"   --regex-asciidoc=/^=======[ \t]+(.*)/. . . . \1/h/
+"   --regex-asciidoc=/\[\[([a-zA-Z0-9\\\-\._ ]+)\]\]/\1/a/
+"   --regex-asciidoc=/^\.(.*)/\1/t/
+"   --regex-asciidoc=/image::([a-zA-Z0-9\\\/\-\._ ]+)/\1/i/
+"   --regex-asciidoc=/image:([a-zA-Z0-9\\\/\-\._ ]+)/\1/I/
+let g:tagbar_type_asciidoc =
+\ { 'ctagstype' : 'asciidoc',
+\   'kinds'     : ['h:table of contents', 'a:anchors', 't:titles', 'i:images', 'I:inline images']
+\ }
 
 "                                PYTHON_PYDOC                             {{{2
 " ____________________________________________________________________________
