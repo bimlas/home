@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.04 20:48 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.05 12:07 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1271,22 +1271,29 @@ let g:tagbar_sort = 0
 
 " Hogy asciidoc fajlokkal is hasznalhato legyen, mentsuk el ezeket a sorokat a
 " ~/.ctags fajlba:
-"   --langdef=asciidoc
-"   --langmap=asciidoc:.ad.adoc.asciidoc
-"   --regex-asciidoc=/^=[ \t]+(.*)/# \1/h/
-"   --regex-asciidoc=/^==[ \t]+(.*)/. \1/h/
-"   --regex-asciidoc=/^===[ \t]+(.*)/. . \1/h/
-"   --regex-asciidoc=/^====[ \t]+(.*)/. . . \1/h/
-"   --regex-asciidoc=/^=====[ \t]+(.*)/. . . . \1/h/
-"   --regex-asciidoc=/^======[ \t]+(.*)/. . . . \1/h/
-"   --regex-asciidoc=/^=======[ \t]+(.*)/. . . . \1/h/
-"   --regex-asciidoc=/\[\[([a-zA-Z0-9\\\-\._ ]+)\]\]/\1/a/
-"   --regex-asciidoc=/^\.(.*)/\1/t/
-"   --regex-asciidoc=/image::([a-zA-Z0-9\\\/\-\._ ]+)/\1/i/
-"   --regex-asciidoc=/image:([a-zA-Z0-9\\\/\-\._ ]+)/\1/I/
+" --langdef=asciidoc
+" --langmap=asciidoc:.ad.adoc.asciidoc
+" --regex-asciidoc=/^=[ \t]+(.*)/# \1/h/
+" --regex-asciidoc=/^==[ \t]+(.*)/. \1/h/
+" --regex-asciidoc=/^===[ \t]+(.*)/. . \1/h/
+" --regex-asciidoc=/^====[ \t]+(.*)/. . . \1/h/
+" --regex-asciidoc=/^=====[ \t]+(.*)/. . . . \1/h/
+" --regex-asciidoc=/^======[ \t]+(.*)/. . . . \1/h/
+" --regex-asciidoc=/^=======[ \t]+(.*)/. . . . \1/h/
+" --regex-asciidoc=/\[\[([^]]+)\]\]/\1/a/
+" --regex-asciidoc=/^\.([^\|]+)$/\1/t/
+" --regex-asciidoc=/image::([^\[]+)/\1/i/
+" --regex-asciidoc=/image:([^:][^\[]+)/\1/I/
+" --regex-asciidoc=/include::([^\[]+)/\1/n/
 let g:tagbar_type_asciidoc =
 \ { 'ctagstype' : 'asciidoc',
-\   'kinds'     : ['h:table of contents', 'a:anchors', 't:titles', 'i:images', 'I:inline images']
+\   'kinds'     : [ 'h:table of contents',
+\                   'a:anchors:1',
+\                   't:titles:1',
+\                   'n:includes:1',
+\                   'i:images:1',
+\                   'I:inline images:1'
+\                 ]
 \ }
 
 "                                PYTHON_PYDOC                             {{{2
