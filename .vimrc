@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.05 12:07 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.05 21:34 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1281,6 +1281,7 @@ let g:tagbar_sort = 0
 " --regex-asciidoc=/^======[ \t]+(.*)/. . . . \1/h/
 " --regex-asciidoc=/^=======[ \t]+(.*)/. . . . \1/h/
 " --regex-asciidoc=/\[\[([^]]+)\]\]/\1/a/
+" --regex-asciidoc=/<<([^,]+),([^>]+)>>/\1: \2/A/
 " --regex-asciidoc=/^\.([^\|]+)$/\1/t/
 " --regex-asciidoc=/image::([^\[]+)/\1/i/
 " --regex-asciidoc=/image:([^:][^\[]+)/\1/I/
@@ -1289,6 +1290,7 @@ let g:tagbar_type_asciidoc =
 \ { 'ctagstype' : 'asciidoc',
 \   'kinds'     : [ 'h:table of contents',
 \                   'a:anchors:1',
+\                   'A:using of anchors:1',
 \                   't:titles:1',
 \                   'n:includes:1',
 \                   'i:images:1',
@@ -1698,6 +1700,7 @@ autocmd  FileType  html,xml,xslt,docbk,text  set formatoptions+=t
 autocmd  FileType  python                    set formatoptions-=t
 autocmd  FileType  registry                  set commentstring=;%s
 autocmd  FileType  asciidoc                  set foldmethod=expr foldexpr=getline(v:lnum)=~'^==\\+\\s.\\+'?'>'.(len(matchstr(getline(v:lnum),'^=\\+'))-1):'='
+autocmd  FileType  asciidoc                  set nofoldenable
 autocmd  FileType  ngc                       set foldmethod=expr foldexpr=getline(v:lnum)[0]=='('?'0':'1'
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum

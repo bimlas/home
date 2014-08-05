@@ -20,9 +20,9 @@
     <property name="custom" type="empty">
       <property name="override" type="bool" value="true"/>
       <property name="&lt;Alt&gt;F12" type="string" value="/usr/bin/xterm"/>
-      <property name="&lt;Alt&gt;F5" type="string" value="/usr/bin/firefox"/>
+      <property name="&lt;Alt&gt;F5" type="string" value="/opt/opt/firefox"/>
       <property name="&lt;Alt&gt;F9" type="string" value="/usr/bin/krusader"/>
-      <property name="&lt;Alt&gt;F10" type="string" value="/usr/bin/kcalc"/>
+      <property name="&lt;Alt&gt;F10" type="string" value="/usr/bin/qalculate"/>
       <property name="&lt;Super&gt;r" type="string" value="/usr/bin/xfce4-appfinder"/>
       <property name="Super_R" type="string" value="/usr/bin/xfce4-popup-applicationsmenu"/>
     </property>

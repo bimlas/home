@@ -8,6 +8,7 @@
 --regex-asciidoc=/^======[ \t]+(.*)/. . . . \1/h/
 --regex-asciidoc=/^=======[ \t]+(.*)/. . . . \1/h/
 --regex-asciidoc=/\[\[([^]]+)\]\]/\1/a/
+--regex-asciidoc=/<<([^,]+),([^>]+)>>/\1: \2/A/
 --regex-asciidoc=/^\.([^\|]+)$/\1/t/
 --regex-asciidoc=/image::([^\[]+)/\1/i/
 --regex-asciidoc=/image:([^:][^\[]+)/\1/I/
