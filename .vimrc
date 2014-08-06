@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.05 21:34 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.06 12:59 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1139,44 +1139,6 @@ set completeopt=menuone,longest,preview
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
 
-"                                   NETRW                                 {{{2
-" ____________________________________________________________________________
-
-" Netrw ablakanak abszolut merete:
-let g:netrw_winsize = -28
-
-" Ne legyen fejlec.
-let g:netrw_banner = 0
-
-" Eger map-ok tiltasa:
-let g:netrw_mousemaps = 0
-
-" Alapbol tree nezetben nyissa meg.
-let g:netrw_liststyle = 3
-
-" Csak az a lenyeg, hogy a konyvtarak legyenek elol.
-let g:netrw_sort_sequence = '[\/]$,*'
-
-" Mindig az elozo ablakban nyissa meg a fajlt. (:Vexplore-nal kell)
-let g:netrw_browse_split = 4
-
-"                                   CSCOPE                                {{{2
-" ____________________________________________________________________________
-
-if has( 'cscope' )
-
-  " Az altalanos tag-parancsokhoz is hasznalja a cscope-ot. (pl. definiciora
-  " ugras)
-  " set cscopetag
-
-  " Egy tag definiciojanak keresese eloszor a cscope adatbazisban tortenjen,
-  " csak utanna nezze meg a tags fajlt. (1, ha forditva akarjuk)
-  set cscopetagorder=0
-
-  set cscopequickfix=s-,c-,d-,i-,t-,e-
-
-endif
-
 "                                  PLUGINOK                               {{{1
 " ============================================================================
 
@@ -1210,52 +1172,26 @@ let EasyGrepHidden = 1
 " Soronkent tobb egyezest is talalhat. (mint pl.: :s///g)
 let EasyGrepEveryMatch = 1
 
-"                                 SYNTASTIC                               {{{2
+"                                   NETRW                                 {{{2
 " ____________________________________________________________________________
 
-let g:syntastic_stl_format = '%W{!W%fw}%E{!E%fe}'
+" Netrw ablakanak abszolut merete:
+let g:netrw_winsize = -28
 
-" Irja ki, hogy melyik checker-tol szarmazik a figyelmeztetes.
-let g:syntastic_aggregate_errors = 1
+" Ne legyen fejlec.
+let g:netrw_banner = 0
 
-" __ C ______________________________________
+" Eger map-ok tiltasa:
+let g:netrw_mousemaps = 0
 
-let g:syntastic_c_checkers = [ 'gcc', 'splint' ]
+" Alapbol tree nezetben nyissa meg.
+let g:netrw_liststyle = 3
 
-" __ PYTHON _________________________________
+" Csak az a lenyeg, hogy a konyvtarak legyenek elol.
+let g:netrw_sort_sequence = '[\/]$,*'
 
-let g:syntastic_python_checkers = [ 'pylint', 'flake8' ]
-
-" Pylint-nel nem erdekelnek a stilushibak.
-let g:syntastic_python_pylint_args = '-d line-too-long -d bad-indentation -d bad-whitespace'
-
-" Stilushibak figyelmen kivul hagyasa.
-let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
-
-"                               NERDCOMMENTER                             {{{2
-" ____________________________________________________________________________
-
-" Rakjon szokozoket a kommenterek kore.
-let NERDSpaceDelims = 1
-
-" :help NERDBlockComIgnoreEmpty
-let NERDBlockComIgnoreEmpty = 0
-
-" Az alapertelmezett map-ok kikapcsolasa. (mivel keves kommentelo parancsot
-" hasznalok es azokat sajat map-okra allitottam, igy teljesen feleslegesek)
-let NERDCreateDefaultMappings = 0
-
-"                              OMNICPPCOMPLETE                            {{{2
-" ____________________________________________________________________________
-
-" Fuggveny prototipusanak mutatasa.
-let OmniCpp_ShowPrototypeInAbbr = 1
-
-" Ne egeszitse ki automatikusan a tagot a '.', '->' es '::' utan, csak ha
-" <C-X><C-O>-t nyomunk.
-" let OmniCpp_MayCompleteDot   = 0
-" let OmniCpp_MayCompleteArrow = 0
-" let OmniCpp_MayCompleteScope = 0
+" Mindig az elozo ablakban nyissa meg a fajlt. (:Vexplore-nal kell)
+let g:netrw_browse_split = 4
 
 "                                   TAGBAR                                {{{2
 " ____________________________________________________________________________
@@ -1268,6 +1204,10 @@ let g:tagbar_autofocus = 1
 
 " Ne rendezze nev szerint a tagokat.
 let g:tagbar_sort = 0
+
+" A jobbra nyil is nyissa ki a fold-okat, a bal csukja ossze oket.
+let g:tagbar_map_openfold  = ['<Right>', '+']
+let g:tagbar_map_closefold = ['<Left>',  '-']
 
 " Hogy asciidoc fajlokkal is hasznalhato legyen, mentsuk el ezeket a sorokat a
 " ~/.ctags fajlba:
@@ -1298,14 +1238,69 @@ let g:tagbar_type_asciidoc =
 \                 ]
 \ }
 
-"                                PYTHON_PYDOC                             {{{2
+"                               NERDCOMMENTER                             {{{2
 " ____________________________________________________________________________
 
-" Win-en nincs pydoc, ezert igy oldjuk meg a problemat.
-let g:pydoc_cmd = 'python' . (has( 'python3' ) && ! has( 'win32' ) ? '3' : '') . ' -m pydoc'
+" Rakjon szokozoket a kommenterek kore.
+let NERDSpaceDelims = 1
 
-" Ne legyen kiemelve a keresett szo.
-let g:pydoc_highlight = 0
+" :help NERDBlockComIgnoreEmpty
+let NERDBlockComIgnoreEmpty = 0
+
+" Az alapertelmezett map-ok kikapcsolasa. (mivel keves kommentelo parancsot
+" hasznalok es azokat sajat map-okra allitottam, igy teljesen feleslegesek)
+let NERDCreateDefaultMappings = 0
+
+"                                 SYNTASTIC                               {{{2
+" ____________________________________________________________________________
+
+let g:syntastic_stl_format = '%W{!W%fw}%E{!E%fe}'
+
+" Irja ki, hogy melyik checker-tol szarmazik a figyelmeztetes.
+let g:syntastic_aggregate_errors = 1
+
+" __ C ______________________________________
+
+let g:syntastic_c_checkers = [ 'gcc', 'splint' ]
+
+" __ PYTHON _________________________________
+
+let g:syntastic_python_checkers = [ 'pylint', 'flake8' ]
+
+" Pylint-nel nem erdekelnek a stilushibak.
+let g:syntastic_python_pylint_args = '-d line-too-long -d bad-indentation -d bad-whitespace'
+
+" Stilushibak figyelmen kivul hagyasa.
+let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
+
+"                              OMNICPPCOMPLETE                            {{{2
+" ____________________________________________________________________________
+
+" Fuggveny prototipusanak mutatasa.
+let OmniCpp_ShowPrototypeInAbbr = 1
+
+" Ne egeszitse ki automatikusan a tagot a '.', '->' es '::' utan, csak ha
+" <C-X><C-O>-t nyomunk.
+" let OmniCpp_MayCompleteDot   = 0
+" let OmniCpp_MayCompleteArrow = 0
+" let OmniCpp_MayCompleteScope = 0
+
+"                                   CSCOPE                                {{{2
+" ____________________________________________________________________________
+
+if has( 'cscope' )
+
+  " Az altalanos tag-parancsokhoz is hasznalja a cscope-ot. (pl. definiciora
+  " ugras)
+  " set cscopetag
+
+  " Egy tag definiciojanak keresese eloszor a cscope adatbazisban tortenjen,
+  " csak utanna nezze meg a tags fajlt. (1, ha forditva akarjuk)
+  set cscopetagorder=0
+
+  set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+endif
 
 "                                    GITV                                 {{{2
 " ____________________________________________________________________________
@@ -1315,66 +1310,6 @@ let g:Gitv_TruncateCommitSubjects = 1
 
 " Control key-eket ne map-oljon.
 let g:Gitv_DoNotMapCtrlKey = 1
-
-"                  NEM HASZNALOM, DE KONFIG-OT MEGHAGYOM                  {{{2
-" ____________________________________________________________________________
-
-"                                BUFFERSAURUS                             {{{3
-" ............................................................................
-
-" A talalatra ugrasnal ne zarja be a kereso ablakot.
-let g:buffersaurus_autodismiss_on_select = 0
-
-" Ne villogtassa a talaltot, mikor ramegyunk.
-let g:buffersaurus_flash_jumped_line = 0
-
-"                              MINIBUFEXPLORER                            {{{3
-" ............................................................................
-
-" Csak egy ablakot hasznaljon - ha pl. magaban a MBE ablakaban valtunk masik
-" bufferre, akkor folyamatosan uj ablakot nyitna, ha ez nem lenne beallitva.
-let g:miniBufExplorerMoreThanOne = 0
-
-"                                  NERDTREE                               {{{3
-" ............................................................................
-
-" A netrw maradjon az alap fajlkezelo.
-let NERDTreeHijackNetrw = 0
-
-" Nyilak hasznalata a mezei karakterek helyett.
-let NERDTreeDirArrows = 1
-
-" Rejtett fajlok mutatasa.
-let NERDTreeShowHidden = 1
-
-" Win-en a '.' es '..' konyvtarakat is mutatja a rejtett fajlok kozt, de ez
-" teljesen felesleges es zavaro.
-let NERDTreeIgnore = [ '^\.$', '^\.\.$' ]
-
-"                                  TAGLIST                                {{{3
-" ............................................................................
-"
-" Ugyan mar nem ezt hasznalom, de nem art, ha megvannak a beallitasai.
-
-" A jelenleg hasznalaton kivuli fajlok taglistajat csukja ossze.
-let Tlist_File_Fold_Auto_Close = 1
-
-" A kulonbozo focimekhez tartozo elemeket csak a behuzasukkal jelezze, extra
-" karaktereket ne hasznaljon erre.
-let Tlist_Enable_Fold_Column = 0
-
-" Jobb oldalon jelenjen meg.
-let Tlist_Use_Right_Window = 1
-
-" A taglist megnyitasakkor a kurzor ugorjon ra.
-let Tlist_GainFocus_On_ToggleOpen = 1
-
-" Ha entert nyomunk egy tagon, akkor a tagra ugras utan zarodjon be a taglist.
-let Tlist_Close_On_Select = 1
-
-" Ha mar csak a taglist van nyitva, mikor ki szeretnenk lepni a vim-bol, akkor
-" zarja be es lepjen ki.
-let Tlist_Exit_OnlyWindow = 1
 
 "                                    GVIM                                 {{{1
 " ============================================================================
@@ -1702,6 +1637,8 @@ autocmd  FileType  registry                  set commentstring=;%s
 autocmd  FileType  asciidoc                  set foldmethod=expr foldexpr=getline(v:lnum)=~'^==\\+\\s.\\+'?'>'.(len(matchstr(getline(v:lnum),'^=\\+'))-1):'='
 autocmd  FileType  asciidoc                  set nofoldenable
 autocmd  FileType  ngc                       set foldmethod=expr foldexpr=getline(v:lnum)[0]=='('?'0':'1'
+
+autocmd  FileType  text,asciidoc             set spell
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
 " aktualizalasa.
