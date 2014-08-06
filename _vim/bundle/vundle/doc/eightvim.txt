@@ -1,0 +1,799 @@
+*eightvim.txt*         For Vim version 7.4          Last change: 2014. 07. 16.
+
+                                  EIGHT VIM~
+                              Vim tips, tricks.
+
+                               Git repository:
+    https://github.com/BimbaLaszlo/vim-mixed/blob/master/doc/eightvim.txt
+
+======================= BimbaLaszlo(.co.nr|gmail.com) ========================
+
+CONTENT~
+
+    Help........................................................|eightvimHelp|
+    Python support............................................|eightvimPython|
+    Binaries.....................................................|eightvimBin|
+    Plugins.......................................................|eightvimPl|
+      Using Vimball........................................|eightvimPlVimball|
+      Useful plugins..........................................|eightvimPlList|
+      Programming.............................................|eightvimPlProg|
+      Git......................................................|eightvimPlGit|
+    Navigation...................................................|eightvimNav|
+      Insert mode.............................................|eightvimNavIns|
+      Visual mode.............................................|eightvimNavVis|
+      Normal mode.............................................|eightvimNavNor|
+      Normal mode commands.................................|eightvimNavNorCmd|
+      Window management.......................................|eightvimNavWin|
+      Text objects............................................|eightvimNavObj|
+    Regex......................................................|eightvimRegex|
+    Range......................................................|eightvimRange|
+    Global....................................................|eightvimGlobal|
+    Rarely useful things......................................|eightvimUseful|
+      History................................................|eightvimHistory|
+      Settings..............................................|eightvimSettings|
+      File modification.......................................|eightvimModify|
+      Diff......................................................|eightvimDiff|
+      Script..................................................|eightvimScript|
+      Other....................................................|eightvimOther|
+    Debug......................................................|eightvimDebug|
+
+    A lot of tips:
+
+      http://vimdoc.sourceforge.net/htmldoc/vimfaq.html
+
+    Where <Tab> completion works, you can use <C-D> to list all possible
+    items.
+
+HELP                                                            *eightvimHelp*
+
+    Find functions which has 'str' in its name:
+
+      :help str*(<C-D>
+
+    Useful help topics:
+
+      |quickref|                Quick reference guide
+      |index|                   List of all commands
+      |functions|               List of builtin functions
+      :help *-functions<C-D>  ... thematically
+
+    Regenerate helptags:
+
+      :helptags ~/.vim/doc
+
+PYTHON SUPPORT                                                *eightvimPython*
+
+    If python support not works on Win, search in the output of
+
+      :version
+
+    for the python libraries, because vim works only with these versions. For
+    example:
+
+      -DDYNAMIC_PYTHON_DLL=\"python27.dll\"
+      -DDYNAMIC_PYTHON3_DLL=\"python31.dll\"
+
+    If you using portable python, don't forget to properly set up PATH and
+    PYTHONPATH variables, otherwise vim will exit with an error message when
+    trying to use python functionality. You can set these variables in |vimrc|
+    if you want:
+
+      let $PYTHONPATH  = 'c:/python32'
+      let $PATH       .= ';' . $PYTHONPATH
+      let $PATH       .= ';' . $PYTHONPATH . '/scripts'
+      let $PYTHONPATH .= ';' . $PYTHONPATH . '/lib'
+
+BINARIIES                                                        *eightvimBin*
+
+    ctags - generate tags file from sourcefiles
+
+      http://ctags.sourceforge.net/
+
+    cscope - useful functions for editing c code
+
+      http://sourceforge.net/projects/cscope/files/
+
+    libxml2 (xmllint) - validating xml files (for example docbook)
+
+      http://xmlsoft.org/sources/win32/
+
+    dtd2vim - dtd to omni completion (useful for docbook for example)
+
+      http://www.vim.org/scripts/script.php?script_id=1462
+      https://github.com/vim-scripts/dtd2vim
+
+PLUGINS                                                           *eightvimPl*
+
+  USING VIMBALL                                            *eightvimPlVimball*
+
+    See also:
+
+      |vimball|  vimball archiver
+
+    Install .vba, or .vmb plugin:
+
+      :set fileformats=unix
+      :so %
+
+    Uninstall:
+
+      :RmVimball NAME_OF_PLUGIN
+
+    You can find out the name of the plugin by overviewing
+
+      ~/.vim/.vimballrecord
+
+    To create a vimball, write the path of the files (relative to
+    |'runtimepath'|) in to a buffer, for example:
+
+      doc/help.txt
+      plugin/script.vim
+
+    ... then:
+
+      :% MkVimball NAME_OF_PLUGIN
+
+    If the files are not in the |'runtimepath'|, then add the path of the root
+    directory to the end of the command (or a dot if you are in it):
+
+      :% MkVimball NAME_OF_PLUGIN PATH/TO/PLUGIN
+
+  USEFUL PLUGINS                                              *eightvimPlList*
+
+    DrChip, the father of ton of plugins. Respect!
+
+      http://www.drchip.org/astronaut/vim/
+
+    It's sufficient to install vundle, the others can be installed easily
+    through it.
+
+      http://www.vim.org/scripts/script.php?script_id=3458
+      https://github.com/gmarik/vundle
+
+      To install a plugin: :PluginInstall GITHUB_URL
+      For example.: PluginInstall 'tpope/vim-fugitive'
+
+      Commands in :PluginList:
+
+      i  run :PluginInstall with name taken from line cursor is positioned on
+      I  same as i, but runs :PluginInstall! to update bundle
+      D  delete selected bundle (be careful not to remove local modifications)
+      c  run :PluginClean
+      s  run :PluginSearch
+      R  fetch fresh script list from server
+
+      To update a plugin use :PluginUpdate, pressing the 'u' after it will
+      print the log of the changes.
+
+      It stores the files in ~/.vim/bundle on Win too.
+
+      NOTE: if you want to modify a plugin manually (for example to remove
+      mappings that you cannot do in .vimrc) but keep it fresh, just commit
+      your changes in the local repository - the update of plugins will work.
+      (if you do not commiting, the update will not work)
+
+    solarized - bland colorscheme (light and dark)
+
+      https://github.com/altercation/vim-colors-solarized
+
+    lightline - stylish, but lightweight statusline
+
+      https://github.com/itchyny/lightline.vim
+
+    nerdtree - filebrowser
+
+      http://www.vim.org/scripts/script.php?script_id=1658
+      https://github.com/scrooloose/nerdtree
+
+    locator - info about the current position (fold, function, class)
+
+      http://www.vim.org/scripts/script.php?script_id=4166
+      https://github.com/vim-scripts/locator
+
+    vis - execute your favourite commands on visual block
+
+      http://www.vim.org/scripts/script.php?script_id=1195
+      https://github.com/vim-scripts/vis
+
+    align - align the text to act on delimiters (=, :, comments, etc.)
+
+      http://www.vim.org/scripts/script.php?script_id=294
+      https://github.com/vim-scripts/Align
+
+    eightheader - easily create custom (fold)headers, foldtext, toc, etc
+
+      http://www.vim.org/scripts/script.php?script_id=4930
+      https://github.com/BimbaLaszlo/vim-eightheader
+
+    easygrep - grep, replace on files, buffers
+
+      http://www.vim.org/scripts/script.php?script_id=2438
+      https://github.com/vim-scripts/EasyGrep
+
+    numutils - calculator with regex support
+
+      http://www.vim.org/scripts/script.php?script_id=4634
+      https://github.com/vim-scripts/NumUtils
+
+  PROGRAMMING                                                 *eightvimPlProg*
+
+    syntastic - syntax checker
+
+      http://www.vim.org/scripts/script.php?script_id=2736
+      https://github.com/scrooloose/syntastic
+
+      Checkers:
+      c       gcc, splint
+      python  flake8, pylint
+
+    nerdcommenter - commenter (works visual blocks too)
+
+      http://www.vim.org/scripts/script.php?script_id=1218
+      https://github.com/scrooloose/nerdcommenter
+
+    omnicppcomplete - omni completion (better, then the builtin)
+
+      http://www.vim.org/scripts/script.php?script_id=1520
+      https://github.com/FromtonRouge/OmniCppComplete
+
+    tagbar - list of the tags in a sidebar
+
+      http://www.vim.org/scripts/script.php?script_id=3465
+      https://github.com/majutsushi/tagbar
+
+    jedi - python completion, shows function arguments after typing '(', etc.
+
+      https://github.com/davidhalter/jedi-vim
+
+  GIT                                                          *eightvimPlGit*
+
+    fugitive - git integration
+
+      http://www.vim.org/scripts/script.php?script_id=2975
+      https://github.com/tpope/vim-fugitive
+
+      To see the power of this plugin, watch the screencasts on the github.
+
+      If the |'directory'| contains '.', or the |'autochdir'| is set, in some
+      situations will lead to error.
+
+    gitv - gitk-like interface inside vim
+
+      http://www.vim.org/scripts/script.php?script_id=3574
+      https://github.com/gregsexton/gitv
+
+      Using :Gitv! splits the window, and lists the commits where the current
+      file changed, using commands on the elements will affect only this file
+      instead of the full repository. The :Gitv (without bang) opens a
+      gitk-like tab where we can manipulate the repo itself.
+      Some commands to use on these lists:
+
+      Mode Command
+
+      n    a        switches the '--all' argument
+      n    Enter    opens a commit
+      n    s        ... in a new vsplit
+      nv   D        splitdiff against the current file, in visual mode against
+                    the top of the selection against the bottom
+      n    i        opens the commit details
+      nv   S        diffstat of everything that has changed since the commit
+                    under the cursor, in visual mode it only shows what has
+                    changed in the range of commits that are highlighted
+      n    co       checkout
+      v    m        merges the commit in either the top or bottom line of the
+                    selection in to the commit specified by the other end of
+                    the selection
+      n    u        refresh
+      n    q        quit
+
+    git-cheat - git cheatsheet
+
+      http://www.vim.org/scripts/script.php?script_id=2744
+      https://github.com/vim-scripts/git-cheat
+
+NAVIGATION                                                       *eightvimNav*
+
+    See also:
+
+      |navigation|  cursor motions
+
+  INSERT MODE                                                 *eightvimNavIns*
+
+    <C-Y>     type characters from line above
+    <C-E>     ... below
+    <C-A>     retype characters whose typed before moving (don't leave insert)
+    <C-O>     switch to normal mode to execute only one operator
+    <C-V>     insert special character by hitting it (for example:
+              <LeftMouse>) or by ascii number (|i_CTRL-V|)
+    <C-R>     insert the contents of register, or if = sign typed, then the
+              result of the evaluated expression (|i-CTRL-R|)
+    <C-K>     insert digraph - to find the wanted one, call :digraph or see
+              |digraph-table|
+              For example:
+              CHAR  DIGRAPH
+              ø     o/
+              °     DG
+
+  VISUAL MODE                                                 *eightvimNavVis*
+
+    o         jump to the other end of visual selection
+    Itext     insert text before the first char of every line in visual-block
+    Atext     ... after
+    ctext     change text to the typed one (helpful in visual-block)
+    !command  send the highlighted text to an external program (for example:
+              sed) and replace it with output of the program
+
+  NORMAL MODE                                                 *eightvimNavNor*
+
+    fX FX     jump to the next / previous X character
+    w  b      ... word
+    W  B      ... separated by white space
+    e  ge     jump to the end of next / previous word
+    E  gE     ... separated by white space
+    )  (      ... sentence
+    }  {      ... paragraph
+    ]] [[     ... '{' in the first column
+    '.        jump to the last modified line
+
+  NORMAL MODE COMMANDS                                     *eightvimNavNorCmd*
+
+    zz zb zt  redraw, line at center/bottom/top of window
+    *         find next occurrence of word under cursor
+    g*        ... if that is part of another word too
+    ga        print ascii value of character under the cursor
+    g8        hex values of the bytes used in the character under the cursor
+    #<C-A>    add # to value under the cursor
+    #<C-X>    ... subtract
+
+  WINDOW MANAGEMENT                                           *eightvimNavWin*
+
+    <C-W>=    resize all windows to same width
+    #<C-W>_   resize current window to # lines high
+    #<C-W>|   ... # columns wide
+
+    <C-W>r    rotate windows
+    <C-W>K    vertical to horizontal split conversion
+    <C-W>H    ... horizontal to vertical
+
+  TEXT OBJECTS                                                *eightvimNavObj*
+
+    See also:
+
+      |text-objects|  text object selection
+
+    The easiest way to understand the meaning of text objects is to use them
+    as the parameter of visual selection (|v|) ,but off course they works with
+    the other |operator|s too.
+
+    vaw       select a |word| (including whitespace after it)
+    vaW       ... |WORD|
+    viw viW   ... excluding whitespace
+    vas vis   ... sentence
+    vap vip   ... paragraph
+    vat vit   block of text inside xml tags (for example: <body> and </body>)
+    vab vib   block of text inside ( and )
+    vaB viB   ... { and }
+    va> vi>   i think from now clear
+    va' vi'
+    va" vi"
+    va` vi`
+
+REGEX                                                          *eightvimRegex*
+
+    See also:
+
+      |pattern-overview|      overview of pattern items
+      |sub-replace-special|   operators in {string} of :substitute
+
+    Check string with regex pattern (|expr-!~|):
+
+      =~      the string contains match on regex (for example use '^[0-9]$' if
+              the string have to be number)
+      !~      ... does not containing
+
+    Smallest possible match, for example to replace the first space in '  bar':
+
+      :s# \{-}#foo#
+
+    Substitute on more then one line (|\_x|):
+
+      :s#start\_.\{-}end#replacement#
+
+    Zero-width positive look ahead:
+
+      A match of the atom have to be after the string, but it will be
+      excluded from the full match - it is used only to check if a match can
+      be made. For example the 'ABC' will became 'abC', but nothing will
+      happen if the string is 'AB'.
+
+      :s#AB\(C\)\@=#\L&#
+
+      It must to be AFTER the string, the 's#\(A\)@=BC#\L&#' does not works.
+
+    Zero-width negative look ahead:
+
+      A match of the atom after the string is canceling the match, for example
+      'ABC' will be unchanged, but 'AB' becomes lowercase.
+
+      :s#AB\(C\)\@!#\L&#
+
+      Try out the ':s#\(A\)\@!BC#\L&#' and you will get 'Abc'.
+
+    Zero-width positive look behind:
+
+      'A' have to be before 'BC'.
+
+      :s#\(A\)\@<=BC#\L&#
+
+    Zero-width negative look behind:
+
+      'A' before 'BC' canceling the match.
+
+      :s#\(A\)\@<!BC#\L&#
+
+    To summarize the aboves, here's an example which reads the '123.45' from
+    the string 'Go 123.45 miles to east.' to a variable.
+
+      let f = str2float(matchstr('Go 123.45 miles to east.',
+              \                  '\(Go \)\@<=.\{-}\( miles\)\@='))
+
+    Search and modify a number:
+
+      :s#\([0-9]\+\)Ft#\= submatch(0) . ' = ' . (submatch(1) * 253) . 'Euro'#
+
+RANGE                                                          *eightvimRange*
+
+    See also:
+
+      |cmdline-ranges|  ex command-line ranges
+
+    To try out the examples below, save these lines into a file:
+
+      1 MAIN TITLE
+      2 START
+      3   first block
+      4 STOP
+      5 SUBTITLE
+      6 START
+      7   second block
+      8 STOP
+
+    To understood the mechanism of the ranges, create this CMD command by
+    typing in to command-line mode or yank to the end of your |vimrc| (if you
+    do it, please restart vim before continuing):
+
+      :command -range CMD <line1>,<line2>s/.*/\=printf("%s (%d:%d,%d)",
+                          \ submatch(0), i, <line1>, <line2>)/ | let i = i + 1
+
+    It will print the (ORDER:FIRST LINE,LAST LINE) to the end of each line.
+    Be sure to call this before every execution:
+
+      :let i = 0
+
+    Find REGEX between lines 2 and 4 (excluding those):
+
+      /\%>50l\%<100lREGEX/
+
+    Execute CMD between lines 2 and 4 (including those):
+
+      :2,4 CMD
+
+    Execute CMD on the nearest occurrence of REGEX forward or backward:
+
+      :/REGEX/ CMD | :?REGEX? CMD
+
+    ... on one line below:
+
+      :/REGEX/+1 CMD
+
+{{{ ITT TARTOK
+
+    Kurzor koruli, vagy ha a kurzor nem a blokkban all, akkor az azt megelozo
+    legkozelebbi blokkon hajtsa vegre (a blokk jeloloin ne):
+
+      :?START?+1,/STOP/-1 PARANCS
+
+    Kurzor utani elso FOCIMtol talalhato legkorabbi ALCIMen (tobbszoros
+    kereses):
+
+      :/FOCIM/ /ALCIM/ PARANCS
+
+    A kurzor utani START sortol a kurzor utani STOP sorig (lehet, hogy a
+    szovegben epp forditva szerepelnek es elol van a STOP, utanna a START):
+
+      :/START/,/STOP/ PARANCS
+
+    Ez erthetobb, ha a fenti peldaban a 7. sorban all a kurzor es mi kiadjuk
+    ezt a parancsot:
+
+      :2,/STOP/ PARANCS
+
+    A mintak altal kozrefogott teruleten (a kurzor utani elso talalatnal, de
+    mindenkepp ebben a sorrendben kell szerepelniuk):
+
+      :/START/;/STOP/ PARANCS
+
+    Ez erthetobb, ha a fenti peldaban a 7. sorban all a kurzor es mi kiadjuk
+    ezt a parancsot:
+
+      :2;/STOP/ PARANCS
+
+GLOBAL                                                        *eightvimGlobal*
+
+    Parancs vegrehajtasa az egesz fajlban a regex-re illeszkedo | nem
+    illeszkedo sorokon:
+
+      :g/REGEX/ PARANCS | :v/REGEX/ PARANCS
+      :g/FOCIM/ /ALCIM/ PARANCS
+      ...
+
+    Van, hogy az utasitasokat a fajl vegen adjuk ki, megis a fajl
+    elejen valtoztatnak, ez a 'wrapscan' miatt van, de ha kikapcsoljuk, akkor
+    pl. a :g parancsok az elso hibanal (nem talalja a keresett reszt)
+    megall!
+
+    Fontos, hogy mindenkepp elkulonitheto legyen a START es a STOP, pl.
+    '.html' fajlokban a PRE tagok kozotti reszekhez ezt hasznaljunk:
+
+      :g/[^/]PRE/;/\/PRE/ PARANCS
+
+    Ha nem igy teszunk, akkor jo nagy kulimajsz lesz a vege. A :v nem mindig
+    adja a :g ellentetet, ezert inkabb :g-vel jeloljuk meg a sorokat (pl.
+    egy ; elhelyezesevel a sor elejen), amiket ki szeretnenk hagyni, majd
+    ismet adjuk ki a :g parancsot a jelolo tagadasaval. (pl :g/^[^;]/)
+
+RARELY USEFUL THINGS                                          *eightvimUseful*
+
+    Parancssori kapcsolok:
+
+      vim '+parancs' -c 'parancs'     Parancs vegrehajtasa.
+      vim -es -c 'call Fuggveny()'    Batch mod.
+      vim -u NONE -U NONE             .vimrc es .gvimrc tiltasa.
+      vim --noplugin                  Plugin-ok kikapcsolasa.
+      vim --startuptime 'log.txt'     Profiling.
+
+  HISTORY                                                    *eightvimHistory*
+
+    Uzenetek visszatekintese:
+
+      :messages
+
+    History-k megtekintese / szerkesztese - jol jon, ha pl. egy hosszu
+    parancsot akarunk kimasolni, hogy feljegyezhessuk magunknak:
+
+      q:      Command-history
+      q/ q?   Search-history
+
+  SETTINGS                                                  *eightvimSettings*
+
+    Vimrc generalasa az aktualis beallitasokkal:
+
+      :browse set
+
+    Opcio eredeti ertekenek elohivasa:
+
+      :set OPCIO&
+
+    A szoveg barmely oszlopaba irhatunk, a szokozoket magatol beilleszti:
+
+      :set virtualedit=all
+
+    Fajl (ujra)megnyitasa adott beallitasokkal (|++opt|):
+
+      :edit ++encoding=utf-8 [FAJL]
+
+    Ne irjon ujsor karaktert a fajl vegere:
+
+      :set binary noendofline
+
+  FILE MODIFICATION                                           *eightvimModify*
+
+    Rendezes a sor eleji regex figyelmen kivul hagyasaval (pl. felvezeto
+    szamok):
+
+      :sort /^\d\+ /
+
+    Fajl sorainak visszafele forditasa (Linux 'tac'):
+
+      :g/^/ m 0
+
+    Tabok, vagy szokozok csereje expandtab szerint:
+
+      :retab
+      :retab!     Nem csak a sor elejen modositja.
+
+    Behuzas mertekenek megvaltoztatasa <Tab> nelkuli fajlokban:
+
+      :set shiftwidth=JELENLEGI_BEHUZAS_MERTEKE
+      :let &tabstop = &shiftwidth
+      :set noexpandtab
+      ggVG>
+      :set shiftwidth=UJ_BEHUZAS_MERTEKE
+      :let &tabstop = &shiftwidth
+      :set expandtab
+      gv<
+
+    Tobb fajlon hajtsa vegre ugyanazt a muveletet:
+
+      :set fileformats=dos
+      :args *.c *.h                     Konyvtaron beluli '.c' es '.h fajlokat
+      :argadd *.cpp                     es a '.cpp'-ken is nyissa meg.
+      :args                             Irja ki a fajlok listajat.
+      :argdo write ++fileformat=unix
+
+    Fajl | kulso parancs kimenetenek bemasolasa a fajlba a kurzortol kezdve:
+
+      :read FAJL | :read !PARANCS
+
+    Normal -> HEX nezet | HEX -> normal:
+
+      :%!xxd | :%!xxd -r
+
+    Exportalas HTML-be:
+
+      :TOhtml
+
+    Fajl encrypt-elese jelszoval (csak :w utan lathato az eredmenye):
+
+      :X
+
+  DIFF                                                          *eightvimDiff*
+
+    Diff egy masik fajllal:
+
+      :vertical diffsplit FAJL
+
+    Modositasok utan ismet hasonlitsa ossze a ket fajlt:
+
+      :diffupdate
+
+    Diff modban az adott valtozas atvetele az inaktiv ablakbol.
+    (pl. backup fajlokbol konnyen lehet valtoztatasokat visszavenni)
+
+      :diffget
+
+    Ha nem diff-ben szeretnenk ket fajlt szinkronban megtekinteni, akkor
+    mindket ablakban adjuk ki a kovetkezo utasitast:
+
+      :set scrollbind cursorbind
+
+    Hogy az ablakok ugyanazt a sort mutassak:
+
+      :syncbind
+
+  SCRIPT                                                      *eightvimScript*
+
+    See also:
+
+      |eval|        Expression evaluation (szintaxis)
+      |usr_41.txt|  Write a Vim script
+      |g@|          Visual-block hasznalata szkriptekben.
+
+    String -> Float:
+
+      let float = str2float( '123.456' )
+
+    Float -> String (E806: using Float as a String):
+
+      let str = printf( '%f', 123.456 )
+
+    Float -> Number:
+
+      let nr = float2nr( 123.456 )
+
+    Egy fuggveny kiiratasa annak ujradefinialasa helyett:
+
+      :verbose function FUGGVENY
+
+    Altalanos sablon a buffer tartalmat befolyasolo script-ekhez:
+
+      function Fuggveny()
+
+        " Kurzorpozicio mentese.
+        let save_pos = winsaveview()
+
+        " History utolso elemenek indexe.
+        let index = histnr( 'search' )
+
+        ...
+
+        " Kitoroljuk a history-bol a valtozasokat.
+        for i in range( histnr( 'search' ) - index )
+          call histdel( 'search', -1 )
+        endfor
+
+        " Kurzorpozicio visszaallitasa.
+        call winrestview( save_pos )
+
+      endfunction
+
+    Az aktualis konyvtar alatt talalhato fajlok listaja:
+
+      filter(split( globpath( getcwd(), '**' ), '\n' ),
+      \             '!isdirectory( v:val )')
+
+    Sztring hosszanak megallapitasahoz ne a len() fuggvenyt hasznald, mert az
+    a bajtokat szamolja, hanem ezt:
+
+      strdisplaywidth( 'ekezetes szoveg' )
+
+  OTHER                                                        *eightvimOther*
+
+    Ha egy konyvtarat bongeszunk a netrw-vel (pl.: :edit .) es egy specialis
+    fajlt akarunk megtekinteni (kepet, zenet, stb.), akkor nyomjunk 'x'-et
+    rajta, igy a fajltipushoz rendelt kulso programmal nyitja meg. Ha egy
+    szoveges fajlban szerepel egy fajlnev, akkor a |gx| lenyomasaval ugyanezt
+    erjuk el. (a'la |gf|)
+
+    Konnyen attekintheto netrw beallitasok:
+
+      :NetrwSettings
+
+    Csatlakozas ftp-hez:
+
+      :edit ftp://USER@KISZOLGALO/KONYVTAR
+
+    Undo a fajl utoljara elmentett valtozataig:
+
+      :earlier 1f
+
+    Ha parancsokat akarunk vegrehajtani egy fajlbol (pl. ezeket a
+    jegyzeteket), jeloljuk ki a kivant reszt, 'y' megnyomasaval kimasoljuk,
+    majd:
+
+      :@"
+
+    Ha map-olunk egy fuggvenyt es nem akarjuk, hogy megjelenjen a 'Press
+    ENTER' uzenet, akkor ket <CR>-t rakjunk a vegere:
+
+      map call fgv()<CR><CR>
+
+    Command-mode parancs kimenetenek atiranyitasa:
+
+      redir > file.txt    Fajlba ...
+      redir => valtozo    Valtozoba ...
+      redir @z            Regiszterbe masolas.
+          echo 'valami'
+      redir END
+
+    Include fajlok listaja:
+
+      :checkpath!
+
+    Parhuzamos programfuttatas Windows-on:
+
+      :!start program
+
+DEBUG                                                          *eightvimDebug*
+
+    Ha nagyon lassu a vim, akkor erdemes ezzel a kapcsoloval letiltani a
+    plugin-okat, hogy ellenorizhessuk, hogy a .vimrc-ben van-e a hiba:
+
+      vim --noplugin
+
+    Ha epp a .vimrc-t es a .gvimrc-t akarjuk letiltani:
+
+      vim -u NONE -U NONE
+
+    Parancs debug:
+
+      :debug PARANCS
+
+    Pl.:
+
+      :debug quit
+      :debug normal a<C-V><C-X><C-O>
+
+    Debug parancsok:
+
+        s[tep]                          Aktualis sor futtatasa.
+        next                            Aktualis sor atugrasa.
+        finish                          Aktualis fuggveny vegigfuttatasa.
+        breakadd func [SOR] FUGGVYENY   Breakpoint a fuggveny soraban.
+
+    Ha arra vagyunk kivancsiak, hogy milyen autocommand-ok es esemenyek
+    tortennek, akkor:
+
+      :9verbose PARANCS
+
+vim: filetype=help

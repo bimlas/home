@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.06 12:59 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.06 17:55 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -26,7 +26,6 @@ set runtimepath+=$HOME/.vim/bundle/vundle/
 runtime autoload/vundle.vim
 
 if exists( '*vundle#rc' )
-
   filetype off
   call vundle#rc()
 
@@ -45,9 +44,6 @@ if exists( '*vundle#rc' )
 
   " rovid leirasok programokhoz es programozasi nyelvekhez help formaban
   Plugin 'bimbalaszlo/vim-cheatsheets'
-
-  " vegyes
-  Plugin 'bimbalaszlo/vim-mixed'
 
   " .. MEGJELENES .........................
 
@@ -109,7 +105,6 @@ if exists( '*vundle#rc' )
   " __ HELYI ______________________________
 
   " Plugin 'file://~/.vim/bundle/repo'
-
 endif
 
 "                               INSTALLVUNDLE                             {{{2
@@ -119,7 +114,6 @@ endif
 
 command  InstallVundle  call InstallVundle()
 function InstallVundle()
-
   let vundle_repo = 'https://github.com/gmarik/vundle.git'
   let path = substitute( $HOME . '/.vim/bundle/vundle', '/', has( 'win32' ) ? '\\' : '/', 'g' )
 
@@ -144,7 +138,6 @@ function InstallVundle()
 
   echo 'Vundle installed. Please restart vim and run :PluginInstall'
   return
-
 endfunction
 
 "                                 FUGGVENYEK                              {{{1
@@ -176,7 +169,6 @@ endfunction
 " modositottam)
 
 function ShortTabLine()
-
   let ret = ''
 
   for i in range(tabpagenr('$'))
@@ -219,7 +211,6 @@ function ShortTabLine()
   let ret .= '%#TabLineFill#%T'
 
   return ret
-
 endfunction
 
 "                                  SYNCWIN                                {{{2
@@ -230,7 +221,6 @@ endfunction
 let s:sync_win = 0
 
 function SyncWin()
-
   let nr = winnr()
   let s:sync_win = 1 - s:sync_win
 
@@ -246,7 +236,6 @@ function SyncWin()
   exe nr . 'wincmd w'
   syncbind
   set scrollopt+=hor
-
 endfunction
 
 "                                    HELP                                 {{{2
@@ -259,7 +248,6 @@ endfunction
 "   http://vim-latex.sourceforge.net/
 
 function Help( word )
-
   if &filetype =~ 'vim\|help'
 
     " Ha kozvetlen a word utan egy zarojel, vagy egyenlosegjel all, azt
@@ -303,7 +291,6 @@ function Help( word )
   endif
 
   return
-
 endfunction
 
 "                                UPDATECSCOPE                             {{{2
@@ -316,7 +303,6 @@ endfunction
 " toredeket, hogy tudjam, mit, hogy csinaltam anno.
 
 function UpdateCscope( mode )
-
   if ! has( 'cscope' )
     return
   endif
@@ -341,7 +327,6 @@ function UpdateCscope( mode )
   silent! cd -
 
   exe 'cscope add ' . cscopefile . ' ' . path
-
 endfunction
 
 "                                  WRITEPRE                               {{{2
@@ -353,7 +338,6 @@ endfunction
 let g:writepre_disabled = 0
 
 function WritePre()
-
   if &binary || g:writepre_disabled
     return
   endif
@@ -384,7 +368,6 @@ function WritePre()
 
   " Kurzorpozicio visszaallitasa.
   call winrestview( save_pos )
-
 endfunction
 
 "                                 PARANCSOK                               {{{1
@@ -396,19 +379,15 @@ endfunction
 " Helptags ujrageneralasa - pathogen, vundle ota foloslegesse valt.
 
 if ! exists( '*Helptags' )
-
   command  -nargs=?  Helptags  call Helptags()
 
   function Helptags()
-
     for name in split( &runtimepath, ',' )
       if isdirectory( name . '/doc' )
         silent! exe 'helptags ' . name . '/doc'
       endif
     endfor
-
   endfunction
-
 endif
 
 "                                   SZOTAR                                {{{2
@@ -419,13 +398,11 @@ endif
 command  -nargs=* Szotar  call Szotar( <q-args> )
 
 function Szotar( word )
-
   if len( a:word )
     exe 'vimgrep /' . a:word . '/j ~/.vim/bundle/vim-mixed/doc/szotar.txt'
   else
     help szotar
   endif
-
 endfunction
 
 "                                    TAC                                  {{{2
@@ -443,12 +420,10 @@ command  -nargs=0 -range  Tac  <line1>,<line2> g/^/ m <line1>-1
 command  -nargs=0 -range  Ekezet  call Ekezet( <line1>, <line2> )
 
 function Ekezet( start, stop ) range
-
   for i in range( a:start, a:stop )
     let line = tr( getline( i ), 'ÁÉÍÓÖŐÚÜŰáéíóöőúüű', 'AEIOOOUUUaeiooouuu' )
     call setline( i, line )
   endfor
-
 endfunction
 
 "                                CHINDENT                                 {{{2
@@ -460,7 +435,6 @@ endfunction
 command  -nargs=* -range  Chindent  call Chindent( <line1>, <line2>, <f-args> )
 
 function Chindent( start, stop, oldwidth, newwidth ) range
-
   let save_sw = &shiftwidth
   let save_ts = &tabstop
   let save_et = &expandtab
@@ -480,7 +454,6 @@ function Chindent( start, stop, oldwidth, newwidth ) range
   let &shiftwidth = save_sw
   let &tabstop    = save_ts
   let &expandtab  = save_et
-
 endfunction
 
 "                                 HTMLESCAPE                              {{{2
@@ -493,7 +466,6 @@ command  -range -nargs=0  HtmlEscape    call HtmlEscape( <line1>, <line2>, 1 )
 command  -range -nargs=0  HtmlNoEscape  call HtmlEscape( <line1>, <line2>, 0 )
 
 function HtmlEscape( line1, line2, action )
-
   let search = @/
   let range = 'silent ' . a:line1 . ',' . a:line2
 
@@ -510,27 +482,6 @@ function HtmlEscape( line1, line2, action )
 
   nohl
   let @/ = search
-
-endfunction
-
-"                                  HTMLPRE                                {{{2
-" ____________________________________________________________________________
-"
-" Kodreszlet atalakitasa a sajat weboldalam formajara.
-
-command  -range  HtmlPre  call HtmlPre( <line1>, <line2> )
-
-function HtmlPre( first_line, last_line )
-
-  let range = 'silent ' . a:first_line . ',' . a:last_line
-
-  exe range . 's:^\(\$\)\?\(\s\+.*\):\1<B>\2</B>:e'
-  exe range . 's:^# \(.*\):<I># \1</I>:e'
-  exe range . 's:</B>\n<B>\|</I>\n<I>:\r:e'
-
-  call append( a:first_line - 1, '<PRE>'  )
-  call append( a:last_line  + 1, '</PRE>' )
-
 endfunction
 
 "                                   COMP                                  {{{2
@@ -545,7 +496,6 @@ command  -nargs=*  Comp  w | call Comp( '<args>' )
 let COMPFLAGS = ''
 
 function Comp( args )
-
   if a:args != ''
     let flags = a:args
   else
@@ -597,15 +547,7 @@ function Comp( args )
 
   let &makeprg = save_makeprg
   redraw!
-
 endfunction
-
-"                                   COMMIT                                {{{2
-" ____________________________________________________________________________
-"
-" Git commit fugitve-on keresztul.
-
-command  -nargs=*  Commit  silent Git add --all | Gcommit <args>
 
 "                              ALAPVETO MUKODES                           {{{1
 " ============================================================================
@@ -806,9 +748,7 @@ let g:lightline#colorscheme#solarized#palette = {
 " Syntastic figyelmeztetesek sorszamai.
 
 function StatSyntastic()
-
   return exists( ':SyntasticCheck' ) ? SyntasticStatuslineFlag() : ''
-
 endfunction
 
 " __ STATFUGITIVE ___________________________
@@ -817,11 +757,8 @@ endfunction
 
 " Halozati meghajton nagyon belassit.
 let g:statfugitive_disabled = 0
-
 function StatFugitive()
-
   return (exists( 'b:git_dir' ) && ! g:statfugitive_disabled) ? fugitive#head(7) . ':' . fugitive#buffer().commit()[0:6] : ''
-
 endfunction
 
 " __ FINDMIXED __________________________
@@ -849,7 +786,6 @@ function FindMixed()
   " amelyik nem '\r' karival vegzodik. (a normalis sorok vegen ilyenkor
   " latszodnia kell a '\r' karinak)
   if (&fileformat == 'dos') && mixed['eol']
-
     let eol = search( '[^\r]$\|^$', 'wnc' )
 
     " Ha megis csak '\r'-el vegzodik minden sor, akkor azokat jelezzuk
@@ -857,7 +793,6 @@ function FindMixed()
     if eol
       let mixed['eol'] = eol
     endif
-
   endif
 
   " __ MIXED INDENT _______________________
@@ -882,7 +817,6 @@ function FindMixed()
   let b:mixed  = mixed['indent']    ? '^' . mixed['indent']    : ''
   let b:mixed .= mixed['eol']       ? '$' . mixed['eol']       : ''
   let b:mixed .= mixed['long_line'] ? '<' . mixed['long_line'] : ''
-
 endfunction
 
 "                                 ALTALANOS                               {{{2
@@ -1083,18 +1017,6 @@ set cinoptions=(0,t0,W2
 " Behuzas szerint kulonuljenek el a blokkok.
 set foldmethod=marker
 
-" A blokkok ne csukodjanak ossze automatikusan a fajl megnyitasakor.
-" set nofoldenable
-
-" Legnagyobb blokkokat hasznalja csak, ha a foldmethod = indent.
-set foldnestmax=1
-
-" Fold-ok jelzese vizualisan, kiveve, ha TTY-ben, vagy Win-es parancssorban
-" hasznaljuk.
-" if ! ((&term =~ 'ansi\|linux\|win32') && (&columns <= 80))
-  " set foldcolumn=3
-" endif
-
 " Sajat foldheader.
 let &foldtext = "EightHeaderFolds( '\\= s:fullwidth - 2', 'left', [ repeat( '  ', v:foldlevel - 1 ), repeat( ' ', v:foldlevel - 1 ) . '.', '' ], '\\= s:foldlines . \" lines\"', '' )"
 
@@ -1289,7 +1211,6 @@ let OmniCpp_ShowPrototypeInAbbr = 1
 " ____________________________________________________________________________
 
 if has( 'cscope' )
-
   " Az altalanos tag-parancsokhoz is hasznalja a cscope-ot. (pl. definiciora
   " ugras)
   " set cscopetag
@@ -1299,7 +1220,6 @@ if has( 'cscope' )
   set cscopetagorder=0
 
   set cscopequickfix=s-,c-,d-,i-,t-,e-
-
 endif
 
 "                                    GITV                                 {{{2
@@ -1315,7 +1235,6 @@ let g:Gitv_DoNotMapCtrlKey = 1
 " ============================================================================
 
 if has( 'gui_running' )
-
   if has( 'win32' )
 
     " set guifont=DejaVu_Sans_Mono:h11
@@ -1357,7 +1276,6 @@ if has( 'gui_running' )
 
   " A tabok neve ele irja ki a tab szamat.
   let &guitablabel = " %N \| %t %m "
-
 endif
 
 "                                    MAP                                  {{{1
@@ -1376,7 +1294,6 @@ endif
 " Linux-on (az ablakkezelonek koszonhetoen).
 
 if has( 'win32' )
-
   " Ablak teljes meretuve tetelenek valtogatasa: a '~x' megnyitja az ablak
   " menujet (amit az ikonjara kattintva erhetsz el), majd az 'm'
   " maximalizalja, az 'e' pedig elozo meretuve teszi. (allapotfuggo, hogy
@@ -1387,7 +1304,6 @@ if has( 'win32' )
 
   nnoremap         <expr>  <M-Up>       ':simalt ~x' . (maximized ? 'e' : 'm') . ' \| let maximized = !maximized<CR>'
   imap                     <M-Up>       <C-O><M-Up>
-
 endif
 
 "                          MOZGAS AZ ABLAKON BELUL                        {{{2
@@ -1593,15 +1509,6 @@ autocmd  FileType  help  nnoremap <buffer>  <leader>1
 autocmd  FileType  help  noremap <buffer>  <leader>2
 \ :call EightHeader( 78, 'left', 1, '.', '\= "\|".matchstr( s:str, ";\\@<=.*" )."\|"', '\= matchstr( s:str, ".*;\\@=" )' )<CR><CR>
 
-"                                   ASCIIDOC
-" ............................................................................
-
-autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>9
-\ :call setline( '.', repeat( '-', &textwidth ) )<CR><CR>
-
-autocmd  FileType  asciidoc  nnoremap <buffer>  <leader>8
-\ :call setline( '.', repeat( '*', &textwidth ) )<CR><CR>
-
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
 "
@@ -1628,9 +1535,7 @@ autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileformat=dos 
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
 " lenne.
 autocmd  FileType  *                         set formatoptions+=co formatoptions-=l
-if v:version >= 704
-  autocmd  FileType  *                       set formatoptions+=j
-endif
+autocmd  FileType  *                         set formatoptions+=j
 autocmd  FileType  html,xml,xslt,docbk,text  set formatoptions+=t
 autocmd  FileType  python                    set formatoptions-=t
 autocmd  FileType  registry                  set commentstring=;%s
@@ -1639,6 +1544,7 @@ autocmd  FileType  asciidoc                  set nofoldenable
 autocmd  FileType  ngc                       set foldmethod=expr foldexpr=getline(v:lnum)[0]=='('?'0':'1'
 
 autocmd  FileType  text,asciidoc             set spell
+autocmd  FileType  help                      set nospell
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
 " aktualizalasa.
@@ -1690,7 +1596,6 @@ autocmd  QuickFixCmdPost  *  botright cwindow
 " ezt a fuggvenyt.
 
 function AngolArak()
-
   let save_format = g:NumUtils_format
   let g:NumUtils_format = '.2'
 
@@ -1702,23 +1607,12 @@ function AngolArak()
   %NumUtilsDiv 350, '!NUM! Ft'
 
   let g:NumUtils_format = save_format
-
 endfunction
 
 if $USERNAME == 'Laci'
-
-  let pythontwo   = 'c:/Users/Laci/Documents/python27'
-  let pythonthree = 'c:/Users/Laci/Documents/python32'
-
-  " let $PATH       .= ';' . pythonthree              . ';' . pythontwo
-  " let $PATH       .= ';' . pythonthree . '/scripts' . ';' . pythontwo . '/scripts'
-  " let $PYTHONPATH  = pythonthree                    . ';' . pythontwo
-  " let $PYTHONPATH  = pythonthree . '/lib'           . ';' . pythontwo . '/lib'
-
   autocmd  BufNewFile  *.txt  set fileencoding=default
   autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileencoding=default | endif
 
   nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start cmd /c clink<CR>' : ':silent !xterm &<CR>'
   imap                       <F2>         <C-O><F2>
-
 endif
