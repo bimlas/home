@@ -36,6 +36,9 @@ if exists( '*vundle#rc' )
 
   " .. SAJAT ..............................
 
+  " sajat fuggvenyek, parancsok, filetype, tippek, stb.
+  Plugin 'bimbalaszlo/vim-eightvim'
+
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
   Plugin 'bimbalaszlo/vim-eightheader'
 
