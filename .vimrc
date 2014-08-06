@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.06 17:55 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.06 21:31 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1540,11 +1540,8 @@ autocmd  FileType  html,xml,xslt,docbk,text  set formatoptions+=t
 autocmd  FileType  python                    set formatoptions-=t
 autocmd  FileType  registry                  set commentstring=;%s
 autocmd  FileType  asciidoc                  set foldmethod=expr foldexpr=getline(v:lnum)=~'^==\\+\\s.\\+'?'>'.(len(matchstr(getline(v:lnum),'^=\\+'))-1):'='
-autocmd  FileType  asciidoc                  set nofoldenable
+autocmd  FileType  asciidoc                  set nofoldenable spell
 autocmd  FileType  ngc                       set foldmethod=expr foldexpr=getline(v:lnum)[0]=='('?'0':'1'
-
-autocmd  FileType  text,asciidoc             set spell
-autocmd  FileType  help                      set nospell
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
 " aktualizalasa.
