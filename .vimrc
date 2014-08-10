@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.06 21:31 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.10 13:44 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -70,14 +70,8 @@ if exists( '*vundle#rc' )
   " kijelolt szoveg keresese * gombbal
   Plugin 'thinca/vim-visualstar'
 
-  " gyors ugras a szoveg barmely reszere
-  Plugin 'lokaltog/vim-easymotion'
-
   " szoveg igazitasa regex kifejezesekkel
   Plugin 'godlygeek/tabular'
-
-  " doppingolt substitude
-  Plugin 'tpope/vim-abolish'
 
   " .. PROGRAMOZAS ........................
 
@@ -1537,14 +1531,14 @@ autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileformat=dos 
 " :help fo-table. Azert autocmd, mert minden fajltipus felulirja a
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
 " lenne.
-autocmd  FileType  *                         set formatoptions+=co formatoptions-=l
-autocmd  FileType  *                         set formatoptions+=j
-autocmd  FileType  html,xml,xslt,docbk,text  set formatoptions+=t
-autocmd  FileType  python                    set formatoptions-=t
-autocmd  FileType  registry                  set commentstring=;%s
-autocmd  FileType  asciidoc                  set foldmethod=expr foldexpr=getline(v:lnum)=~'^==\\+\\s.\\+'?'>'.(len(matchstr(getline(v:lnum),'^=\\+'))-1):'='
-autocmd  FileType  asciidoc                  set nofoldenable spell
-autocmd  FileType  ngc                       set foldmethod=expr foldexpr=getline(v:lnum)[0]=='('?'0':'1'
+autocmd  FileType  *                         setlocal formatoptions+=co formatoptions-=l
+autocmd  FileType  *                         setlocal formatoptions+=j
+autocmd  FileType  html,xml,xslt,docbk,text  setlocal formatoptions+=t
+autocmd  FileType  python                    setlocal formatoptions-=t
+autocmd  FileType  registry                  setlocal commentstring=;%s
+autocmd  FileType  asciidoc                  setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^==\\+\\s.\\+'?'>'.(len(matchstr(getline(v:lnum),'^=\\+'))-1):'='
+autocmd  FileType  asciidoc                  setlocal nofoldenable spell
+autocmd  FileType  ngc                       setlocal foldmethod=expr foldexpr=getline(v:lnum)[0]=='('?'0':'1'
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
 " aktualizalasa.
@@ -1576,8 +1570,8 @@ autocmd  VimResized  *  wincmd =
 
 " Sorok szamozasanak es a specialis karakterek mutatasanak kikapcsolasa a man,
 " quickfix es pydoc buffereknel.
-autocmd  FileType  man,qf   set nonumber nolist
-autocmd  BufNew    __doc__  set nonumber nolist
+autocmd  FileType  man,qf   setlocal nonumber nolist
+autocmd  BufNew    __doc__  setlocal nonumber nolist
 
 " Make hiba eseten nyissa meg a hibaablakot.
 autocmd  QuickFixCmdPost  *  botright cwindow

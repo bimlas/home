@@ -1,0 +1,14 @@
+{
+   "bookmark_bar": {
+      "show_on_all_tabs": true
+   },
+   "download": {
+      "prompt_for_download": true
+   },
+   "profile": {
+      "password_manager_enabled": false
+   },
+   "translate": {
+      "enabled": false
+   }
+}
