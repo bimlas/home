@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.10 13:44 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.11 22:15 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -356,6 +356,10 @@ function WritePre()
   " Vimhelp modositas datumanak frissitese.
   if &filetype == 'help'
     keepjumps lockmarks 0 call EightHeader( 78, 'center', 1, ['*'.expand('%').'*', ' ', 'Last change: '.strftime('%Y. %m. %d.')], '', 'For Vim version 7.4' )
+  endif
+
+  if &filetype == 'asciidoc'
+    silent! keepjumps lockmarks 0 /:revdate:/ call setline( '.', substitute( getline( '.' ), '\(:revdate:\s*\).*', '\1' . strftime('%Y.%m.%d'), '' ) )
   endif
 
   " Kitoroljuk a history-bol a valtozasokat.
