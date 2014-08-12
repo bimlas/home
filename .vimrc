@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.11 22:15 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.12 14:36 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -359,7 +359,8 @@ function WritePre()
   endif
 
   if &filetype == 'asciidoc'
-    silent! keepjumps lockmarks 0 /:revdate:/ call setline( '.', substitute( getline( '.' ), '\(:revdate:\s*\).*', '\1' . strftime('%Y.%m.%d'), '' ) )
+    silent! keepjumps lockmarks 0 /^BimbaLaszlo\n\d\+/ call setline( line( '.' ) + 1, strftime('%Y.%m.%d') )
+    silent! keepjumps lockmarks 0 /^:revdate:/         call setline( '.', substitute( getline( '.' ), '^:revdate:\s*\zs.*', strftime('%Y.%m.%d'), '' ) )
   endif
 
   " Kitoroljuk a history-bol a valtozasokat.
