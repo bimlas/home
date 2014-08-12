@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========== BimbaLaszlo(.github.io|gmail.com) ========== 2014.08.11 21:41 ==
+// ========== BimbaLaszlo(.github.io|gmail.com) ========== 2014.08.12 22:29 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -72,18 +72,18 @@ user_pref( "signon.rememberSignons", false );
 // user_pref( "network.http.sendRefererHeader", 0 );
 
 /* Bezaraskor torolje... */
-user_pref( "privacy.sanitize.sanitizeOnShutdown" , true );
-user_pref( "privacy.clearOnShutdown.cache"       , true );
 user_pref( "privacy.clearOnShutdown.cookies"     , true );
-user_pref( "privacy.clearOnShutdown.sessions"    , true );
-user_pref( "privacy.clearOnShutdown.offlineApps" , true );
 user_pref( "privacy.clearOnShutdown.passwords"   , true );
-user_pref( "privacy.clearOnShutdown.siteSettings", true );
+user_pref( "privacy.clearOnShutdown.sessions"    , true );
+user_pref( "privacy.sanitize.sanitizeOnShutdown" , true );
 
 /* ... ezeket viszon ne. */
-user_pref( "privacy.clearOnShutdown.history"     , false );
-user_pref( "privacy.clearOnShutdown.formdata"    , false );
+user_pref( "privacy.clearOnShutdown.cache"       , false );
 user_pref( "privacy.clearOnShutdown.downloads"   , false );
+user_pref( "privacy.clearOnShutdown.formdata"    , false );
+user_pref( "privacy.clearOnShutdown.history"     , false );
+user_pref( "privacy.clearOnShutdown.offlineApps" , false );
+user_pref( "privacy.clearOnShutdown.siteSettings", false );
 
 /* Webfejlesztesnel hasznos */
 // user_pref( "network.http.use-cache", false );

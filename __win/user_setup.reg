@@ -9,7 +9,7 @@ Windows Registry Editor Version 5.00
 ; tartozo ertekeket.
 ; Hogy lasd a hatast, jelentkezz be ujra a profilodba.
 ;
-; ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.06 22:31 ==
+; ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.12 22:17 ==
 
 ;                           PARANCSSOR MEGJELENESE                        {{{1
 ; ============================================================================
@@ -500,6 +500,7 @@ Windows Registry Editor Version 5.00
 "(App)Mozilla - Cookies"="False"
 "(App)Mozilla - Internet Cache"="False"
 "(App)Mozilla - Internet History"="False"
+"(App)Adobe Flash Player"="False"
 ;
 ; Sqlite adatbazisok tomoritese - sokat gyorsit.
 "(App)Mozilla - Compact Databases"="True"
