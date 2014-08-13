@@ -3,7 +3,7 @@
 # TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 # konyvjelzot.
 #
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.02 09:34 ==
+# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.13 22:45 ==
 
 # Ha nem interaktiv modban vagyunk, ne csinaljunk semmit.
 if [ -z "$PS1" ]; then
@@ -47,9 +47,6 @@ PS1+="[\[\033[1;37m\]\A\[\033[0m\]\[\033[1;36m\]] \[\033[1;37m\]\w\[\033[0m\]\n"
 PS1+="\[\033[1;36m\]\342\224\224\342\224\200 "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo '\[\033[0;31m\]'; else echo '\[\033[1;37m\]'; fi)\\$\[\033[0m\] "
 export PS1
-
-# $PATH az Ubuntu-bol, a vegen sajat script konyvtarral.
-export PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:~/bin:~/bin/xep'
 
 #                                   ALIAS                                 {{{1
 # ============================================================================
