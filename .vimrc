@@ -1,9 +1,18 @@
 " ~/.vimrc
 "
+" TODO: Vim tippekbe profilozas:
+"
+" vim --cmd 'profile start profile.log' \
+"     --cmd 'profile func *' \
+"     --cmd 'profile file *' \
+"     -c 'profdel func *' \
+"     -c 'profdel file *' \
+"     -c 'qa!'
+"
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.14 18:12 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.15 17:53 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -139,420 +148,6 @@ function InstallVundle()
   return
 endfunction
 
-"                                 FUGGVENYEK                              {{{1
-" ============================================================================
-
-"                                MYHEADER                                 {{{2
-" ____________________________________________________________________________
-"
-" Elerhetosegek es a datum kiirasa.
-
-function MyHeader()
-  call EightHeader( &tw, 'center', 1, ['', '=', strftime(' %Y.%m.%d %H:%M ==')], '', ' BimbaLaszlo(.github.io|gmail.com) ' )
-endfunction
-
-"                                  HIGHTERM                               {{{2
-" ____________________________________________________________________________
-"
-" "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
-" vissza.
-
-function HighTerm()
-  return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
-endfunction
-
-"                                SHORTTABLINE                             {{{2
-" ____________________________________________________________________________
-"
-" Tabok listaja konzol modban is. (valahonnan a netrol guberaltam, kicsit
-" modositottam)
-
-function ShortTabLine()
-  let ret = ''
-
-  for i in range(tabpagenr('$'))
-    " select the color group for highlighting active tab
-    if i + 1 == tabpagenr()
-      let ret .= '%#TabLineSel#'
-    else
-      let ret .= '%#TabLineFill#'
-    endif
-
-    " find the buffername for the tablabel
-    let buflist = tabpagebuflist(i+1)
-    let winnr = tabpagewinnr(i+1)
-    let buffername = bufname(buflist[winnr-1])
-    let filename = fnamemodify(buffername,':t')
-
-    " check if there is no name
-    if filename == ''
-      let filename = 'noname'
-    endif
-
-    let ret .= ' '.(i+1).':'
-
-    " only show the first 6 letters of the name and
-    " .. if the filename is more than 8 letters long
-    if strlen(filename) >= 8
-      let ret .= filename[0:5].'..'
-    else
-      let ret .= filename.''
-    endif
-
-    if getbufvar(buflist[winnr-1], "&modified")
-      let ret .= '[+]'
-    endif
-
-    let ret .= ' '
-  endfor
-
-  " after the last tab fill with TabLineFill and reset tab page #
-  let ret .= '%#TabLineFill#%T'
-
-  return ret
-endfunction
-
-"                                  SYNCWIN                                {{{2
-" ____________________________________________________________________________
-"
-" A lathato ablakok szinkronizalasa diff nelkul.
-
-let s:sync_win = 0
-
-function SyncWin()
-  let nr = winnr()
-  let s:sync_win = 1 - s:sync_win
-
-  " Ha SyncWin mellett uj ablakot nyitunk es csak scrollbind! lenne a parancs,
-  " akkor az uj ablak epp ellenkezoleg mukodne, mint a tobbi.
-  if ! s:sync_win
-    windo set noscrollbind nocursorbind
-    exe nr . 'wincmd w'
-    return
-  endif
-
-  windo set scrollbind cursorbind nowrap
-  exe nr . 'wincmd w'
-  syncbind
-  set scrollopt+=hor
-endfunction
-
-"                                    HELP                                 {{{2
-" ____________________________________________________________________________
-"
-" Vim fajlok eseten a belso sugoban keres a kifejezesre, egyebkent pedig a
-" manual oldalak 3-as szekciojaban (library calls), vagy ha ott sem talal,
-" akkor a tobbi szekcioban is. A .tex fajlok sugojat is a Vim-bol lehet
-" elerni, koszonhetoen a Vim-Latex plugin-nak:
-"   http://vim-latex.sourceforge.net/
-
-function Help( word )
-  if &filetype =~ 'vim\|help'
-
-    " Ha kozvetlen a word utan egy zarojel, vagy egyenlosegjel all, azt
-    " meghagyjuk: a zarojellel biztos a fuggveny sugojara fog ugrani (es
-    " nem a parancs sugojara, mint pl. 'help substitute' es 'help
-    " substitute('), az egyenlosegjel eseteben pedig idezojelek koze
-    " tesszuk a word-ot, mert valoszinuleg 'set' valtozorol van szo -
-    " 'let' hasznalatanal szokozoket szoktam rakni az egyenlosegjel kore.
-    " Ezen kivul a valtozok nevter-jelolojet is ( pl. 'g:') es a '-'
-    " jeleket is meghagyjuk pl. a 'cmdline-ranges' tipusu helpekhez.
-    let word = matchstr( a:word, '\([bwtglsav]:\)\?\(\k\|-\)\+\((\|[+-]\?=\)\?' )
-    if word =~ '=$'
-      let word = "'" . substitute( word, '[+-]\?=', '', '' ) . "'"
-    endif
-
-    silent! exe 'help ' . word
-
-  elseif &filetype == 'tex'
-
-    " A .tex fajlokban a keyword elott \ kari van.
-
-    let word = matchstr( a:word, '.\{-}\\\?\(\k\+\).*' )
-    silent! exe 'help ' . word
-
-  else
-
-    " Man oldalak vegen a kapcsolodo linkek vesszovel vannak elvalasztva,
-    " ha ezeken is meghivjuk a Help-et, es az alabbi sor nem lenne, akkor
-    " nem mukodne helyesen a help, mert pl.  'Man 3 printf' helyett 'Man 3
-    " printf,' utasitast hajtana vegre.
-    let word = matchstr( a:word, '.\{-}\(\k\+\).*' )
-    exe 'Man 3 ' . word
-
-    return
-
-  endif
-
-  " Hogy ne jojjon elo a 'Hit Enter' uzenet, ezert megkeruljuk.
-  if v:errmsg != ''
-    echohl ErrorMsg | echo v:errmsg | echohl None
-  endif
-
-  return
-endfunction
-
-"                                UPDATECSCOPE                             {{{2
-" ____________________________________________________________________________
-"
-" Cscope adatbazis frissitese: argumentum nelkul a makefile konyvtarban, vagy
-" a jelenlegi konyvtarban, ha az argumentum == 'init', akkor csak kapcsolodik
-" hozza.
-" UZEMEN KIVUL: majd egyszer ujrairom, addig meghagyom a regi verzio
-" toredeket, hogy tudjam, mit, hogy csinaltam anno.
-
-function UpdateCscope( mode )
-  if ! has( 'cscope' )
-    return
-  endif
-
-  let cscope = FindExe( [ 'cscope' ] )
-  if cscope == ''
-    return
-  endif
-
-  let project    = Project()
-  let path       = project.path
-  let cscopefile = project.file . '.cscope'
-
-  if (a:mode == 'init') && (filereadable( cscopefile ))
-    return
-  endif
-
-  exe 'cscope kill ' . cscopefile
-
-  exe 'cd ' . path
-  silent exe '!' . cscope . ' -Rbf ' . cscopefile
-  silent! cd -
-
-  exe 'cscope add ' . cscopefile . ' ' . path
-endfunction
-
-"                                  WRITEPRE                               {{{2
-" ____________________________________________________________________________
-"
-" Sor vegi whitespace karakterek, az egymast koveto es a fajl vegi ures sorok
-" torlese, valamint a datum aktualizalasa az 'alairasomban'.
-
-let g:writepre_disabled = 0
-
-function WritePre()
-  if &binary || g:writepre_disabled
-    return
-  endif
-
-  " Kurzorpozicio mentese.
-  let save_pos = winsaveview()
-
-  " History utolso elemenek indexe.
-  let index = histnr( 'search' )
-
-  " A keepjumps miatt a jumplist nem lesz bantva.
-  silent! keepjumps lockmarks %s#\s\+$##ge          " Sor vegi szokozok torlese.
-  silent! keepjumps lockmarks %s#\n\{3,}#\r\r#ge    " Tobb ures sor egyre cserelese.
-  silent! keepjumps lockmarks %s#\n\+\%$##e         " Fajl vegi ures sorok torlese.
-  if &filetype != 'help'
-    silent! keepjumps lockmarks 0 /=\+ BimbaLaszlo/ call MyHeader()
-  endif
-
-  " Vimhelp modositas datumanak frissitese.
-  if &filetype == 'help'
-    keepjumps lockmarks 0 call EightHeader( 78, 'center', 1, ['*'.expand('%').'*', ' ', 'Last change: '.strftime('%Y. %m. %d.')], '', 'For Vim version 7.4' )
-  endif
-
-  if &filetype == 'asciidoc'
-    silent! keepjumps lockmarks 0 /^BimbaLaszlo\n\d\+/ call setline( line( '.' ) + 1, strftime('%Y.%m.%d') )
-    silent! keepjumps lockmarks 0 /^:revdate:/         call setline( '.', substitute( getline( '.' ), '^:revdate:\s*\zs.*', strftime('%Y.%m.%d'), '' ) )
-  endif
-
-  " Kitoroljuk a history-bol a valtozasokat.
-  for i in range( histnr( 'search' ) - index )
-    call histdel( 'search', -1 )
-  endfor
-
-  " Kurzorpozicio visszaallitasa.
-  call winrestview( save_pos )
-endfunction
-
-"                                 PARANCSOK                               {{{1
-" ============================================================================
-
-"                                  HELPTAGS                               {{{2
-" ____________________________________________________________________________
-"
-" Helptags ujrageneralasa - pathogen, vundle ota foloslegesse valt.
-
-if ! exists( '*Helptags' )
-  command  -nargs=?  Helptags  call Helptags()
-
-  function Helptags()
-    for name in split( &runtimepath, ',' )
-      if isdirectory( name . '/doc' )
-        silent! exe 'helptags ' . name . '/doc'
-      endif
-    endfor
-  endfunction
-endif
-
-"                                   SZOTAR                                {{{2
-" ____________________________________________________________________________
-"
-" A 'szotar' help-ben keres, a talalatokat a quickfix ablakban nyitja meg.
-
-command  -nargs=* Szotar  call Szotar( <q-args> )
-
-function Szotar( word )
-  if len( a:word )
-    exe 'vimgrep /' . a:word . '/j ~/.vim/bundle/vim-mixed/doc/szotar.txt'
-  else
-    help szotar
-  endif
-endfunction
-
-"                                    TAC                                  {{{2
-" ____________________________________________________________________________
-"
-" Kijelolt sorok visszaforditasa.
-
-command  -nargs=0 -range  Tac  <line1>,<line2> g/^/ m <line1>-1
-
-"                                   EKEZET                                {{{2
-" ____________________________________________________________________________
-"
-" Eltavolitja az ekezeteket a megadott sorokbol.
-
-command  -nargs=0 -range  Ekezet  call Ekezet( <line1>, <line2> )
-
-function Ekezet( start, stop ) range
-  for i in range( a:start, a:stop )
-    let line = tr( getline( i ), 'ÁÉÍÓÖŐÚÜŰáéíóöőúüű', 'AEIOOOUUUaeiooouuu' )
-    call setline( i, line )
-  endfor
-endfunction
-
-"                                CHINDENT                                 {{{2
-" ____________________________________________________________________________
-"
-" Szoveg behuzasanak megvaltoztatasa. Az elso parameter a regi behuzas
-" merteke, a masodik amire valtoztatni szeretnenk.
-
-command  -nargs=* -range  Chindent  call Chindent( <line1>, <line2>, <f-args> )
-
-function Chindent( start, stop, oldwidth, newwidth ) range
-  let save_sw = &shiftwidth
-  let save_ts = &tabstop
-  let save_et = &expandtab
-
-  let &shiftwidth = a:oldwidth
-  let &tabstop    = a:oldwidth
-  set noexpandtab
-
-  silent exe a:start . ',' . a:stop . ' >'
-
-  let &shiftwidth = a:newwidth
-  let &tabstop    = a:newwidth
-  set expandtab
-
-  silent exe a:start . ',' . a:stop . ' <'
-
-  let &shiftwidth = save_sw
-  let &tabstop    = save_ts
-  let &expandtab  = save_et
-endfunction
-
-"                                 HTMLESCAPE                              {{{2
-"                  http://vim.wikia.com/wiki/HTML_entities
-" ____________________________________________________________________________
-"
-" A specialis karaktereket a HTML megfeleloire alakitja.
-
-command  -range -nargs=0  HtmlEscape    call HtmlEscape( <line1>, <line2>, 1 )
-command  -range -nargs=0  HtmlNoEscape  call HtmlEscape( <line1>, <line2>, 0 )
-
-function HtmlEscape( line1, line2, action )
-  let search = @/
-  let range = 'silent ' . a:line1 . ',' . a:line2
-
-  if a:action       " must convert &amp; first
-    execute range . 'sno/&/&amp;/eg'
-    execute range . 'sno/</&lt;/eg'
-    execute range . 'sno/>/&gt;/eg'
-  else              " must convert & last
-    execute range . 'sno/&lt;/</eg'
-    execute range . 'sno/&gt;/>/eg'
-    execute range . 'sno/&quot;/"/eg'
-    execute range . 'sno/&amp;/&/eg'
-  endif
-
-  nohl
-  let @/ = search
-endfunction
-
-"                                   COMP                                  {{{2
-" ____________________________________________________________________________
-"
-" Makefile nelkuli forditas - a hibauzenetek a quickfixlist-ben jelennek meg.
-" Azert vannak elore expand-olva a sztringek, mert maskepp nem tudom kiiratni
-" a vegen.
-
-command  -nargs=*  Comp  w | call Comp( '<args>' )
-
-let COMPFLAGS = ''
-
-function Comp( args )
-  if a:args != ''
-    let flags = a:args
-  else
-    let flags = g:COMPFLAGS
-  endif
-
-  let save_makeprg = &makeprg
-
-  " __ GCC ________________________________
-
-  if &filetype =~ '^\(c\|cpp\)$'
-    compiler gcc
-
-    if &filetype == 'c'
-      let &makeprg = 'gcc'
-    elseif &filetype == 'cpp'
-      let &makeprg = 'g++'
-    endif
-
-    let &makeprg .= ' -o "' . expand( '%:r' ) . '" -Wall "' . expand( '%' ) . '" ' . flags
-  endif
-
-  " __ PYTHON______________________________
-
-  if &filetype == 'python'
-    compiler pyunit
-    let &makeprg = 'python3 "' . expand( '%' ) . '" ' . flags
-  endif
-
-  " __ DOCBOOK ____________________________
-
-  if &filetype == 'docbk'
-    compiler xmllint
-    set errorformat+=%*[^:]\ error\ :\ %m
-    let &makeprg = 'xmlto ' . (flags != '' ? flags : 'txt') . ' "' . expand( '%' ) . '"'
-  endif
-
-  " __ LATEX ______________________________
-
-  if &filetype == 'tex'
-    compiler tex
-    let &makeprg = 'pdflatex -interaction nonstopmode "' . expand( '%' ) . '" ' . flags
-  endif
-
-  " _______________________________________
-
-  echo expand( &makeprg )
-  silent make
-
-  let &makeprg = save_makeprg
-  redraw!
-endfunction
-
 "                              ALAPVETO MUKODES                           {{{1
 " ============================================================================
 
@@ -597,6 +192,13 @@ endif
 
 "                           TEMATIKUS BEALLITASOK                         {{{1
 " ============================================================================
+
+" "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
+" vissza.
+
+function HighTerm()
+  return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
+endfunction
 
 "                                   SZINEK                                {{{2
 " ____________________________________________________________________________
@@ -858,7 +460,7 @@ set wildmode=longest,list
 set showtabline=1
 
 " A tabok listazasanak modja.
-set tabline=%!ShortTabLine()
+set tabline=%!my#shorttabline#call()
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -1111,7 +713,7 @@ let g:netrw_banner = 0
 let g:netrw_mousemaps = 0
 
 " Alapbol tree nezetben nyissa meg.
-let g:netrw_liststyle = 3
+" let g:netrw_liststyle = 3
 
 " Csak az a lenyeg, hogy a konyvtarak legyenek elol.
 let g:netrw_sort_sequence = '[\/]$,*'
@@ -1198,6 +800,12 @@ let g:syntastic_python_pylint_args = '-d line-too-long -d bad-indentation -d bad
 
 " Stilushibak figyelmen kivul hagyasa.
 let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
+
+"                                JEDI-VIM                                 {{{2
+" ____________________________________________________________________________
+
+" Bufferek hasznalata tab-ok helyett.
+let g:jedi#use_tabs_not_buffers = 0
 
 "                              OMNICPPCOMPLETE                            {{{2
 " ____________________________________________________________________________
@@ -1290,6 +898,13 @@ endif
 " HA TERMINALBAN NEM MUKODNENEK A KURZORBILLENTYUK:
 "   :verbose imap <Esc>
 " Ezen map-ok valamelyike okozza a hibat.
+
+"                            TERMINAL KEYCODES                            {{{2
+" ____________________________________________________________________________
+
+if &term =~ 'xterm'
+  map [3;5~   <C-Del>
+endif
 
 "                             ABLAK ATMERETEZESE                          {{{2
 " ____________________________________________________________________________
@@ -1437,16 +1052,23 @@ noremap                    <C-Insert>   "+y
 noremap                    <S-Insert>   "+P
 imap                       <S-Insert>   <C-O><S-Insert>
 
+" Kurzor alatti parancs sugojanak megnyitasa.
+noremap  <silent>          K            :call my#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
+noremap  <silent>          L            :Szotar <C-R>=expand( '<cword>' )<CR><CR>
+
+" Lynx-szeru mozgas netrw-ben.
+autocmd  FileType  netrw  call NetrwLynxMap()
+function NetrwLynxMap()
+   map   <buffer>          <Left>       -
+   map   <buffer>          <Right>      <CR>
+endfunction
+
 " Easymotion.
 map                        s            <Plug>(easymotion-s)
 
-" Kurzor alatti parancs sugojanak megnyitasa.
-noremap  <silent>          K            :call Help( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
-noremap  <silent>          L            :Szotar <C-R>=expand( '<cword>' )<CR><CR>
-
 " Nerdcommenter.
-map                        <C-D>        <plug>NERDCommenterComment
-map                        <C-F>        <plug>NERDCommenterUncomment
+map                        <C-D>        <Plug>NERDCommenterComment
+map                        <C-F>        <Plug>NERDCommenterUncomment
 
 " Tabular.
 noremap                    <leader>t\|  :Tabularize /\|/l0<CR>
@@ -1487,7 +1109,7 @@ nnoremap  <silent>         <F8>         :TagbarToggle<CR>
 imap                       <F8>         <C-O><F8>
 
 " A lathato ablakok szinkronizalasa diff nelkul.
-nnoremap                   <F10>        :call SyncWin()<CR>
+nnoremap                   <F10>        :call my#syncwin#call()<CR>
 imap                       <F10>        <C-O><F10>
 
 " Kurzor oszlopanak kiemelesenek valtogatasa.
@@ -1502,7 +1124,7 @@ imap                       <F12>        <C-O><F12>
 " ____________________________________________________________________________
 
 " Eightheader - a sor foldheader-re alakitasa.
-nnoremap                   <leader>0    :silent call MyHeader()<CR><CR>
+nnoremap                   <leader>0    :silent call my#header#call()<CR><CR>
 nnoremap                   <leader>1    :silent call EightHeader( &tw, 'center', 0, '=', ' {' . '{{1', '' )<CR><CR>
 nnoremap                   <leader>2    :silent call EightHeader( &tw, 'center', 0, '_', ' {' . '{{2', '' )<CR><CR>
 nnoremap                   <leader>3    :silent call EightHeader( &tw, 'center', 0, '.', '', '' )<CR><CR>
@@ -1523,13 +1145,6 @@ autocmd  FileType  help  noremap <buffer>  <leader>2
 " FIGYELEM! Az azonos esemenyekre vonatkozo autocommand-ok az itt megadott
 " sorrend szerint hajtodnak vegre - ez neha nem vart eredmenyt okozhat!
 
-" __ FILETYPE ___________________________
-
-autocmd  BufNewFile,BufRead  *.plt              set filetype=gnuplot
-autocmd  BufNewFile,BufRead  *.md               set filetype=markdown
-autocmd  BufNewFile,BufRead  *.adoc             set filetype=asciidoc
-autocmd  BufNewFile,BufRead  *.docbk,*.docbook  set filetype=docbk
-
 " __ FAJLOK BEALLITASAI _________________
 
 " Az ujonnan letrehozott .txt fajloknal legyen <CR><NL> a sorvegzodes. Azert
@@ -1546,27 +1161,10 @@ autocmd  FileType  *                         setlocal formatoptions+=co formatop
 if v:version >= 704
   autocmd  FileType  *                       setlocal formatoptions+=j
 endif
-autocmd  FileType  html,xml,xslt,docbk,text  setlocal formatoptions+=t
-autocmd  FileType  python                    setlocal formatoptions-=t
-autocmd  FileType  registry                  setlocal commentstring=;%s
-autocmd  FileType  asciidoc                  setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^==\\+\\s.\\+'?'>'.(len(matchstr(getline(v:lnum),'^=\\+'))-1):'='
-autocmd  FileType  asciidoc                  setlocal nofoldenable spell
-autocmd  FileType  ngc                       setlocal foldmethod=expr foldexpr=getline(v:lnum)[0]=='('?'0':'1'
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
 " aktualizalasa.
-autocmd  BufWritePre  *  call WritePre()
-
-" __ XML ________________________________
-
-" Omni-completion mukodesehez kell, hogy megadjuk, melyik xml nevterrel
-" akarunk dolgozni.
-autocmd  Filetype  docbk  XMLns docbk50
-autocmd  Filetype  xslt   XMLns xsl xsl
-
-" Xml-szeru fajloknal automatikusan zarja le a tagokat.
-autocmd  Filetype  html,xml,xslt,docbk  imap  <buffer>  <lt>/          </<C-X><C-O><C-N><C-Y>
-autocmd  Filetype  html,xml,xslt,docbk  imap  <buffer>  <lt><kDivide>  </
+autocmd  BufWritePre  *  call my#writepre#call()
 
 " __ COMPLETION _________________________
 
@@ -1595,28 +1193,3 @@ autocmd  QuickFixCmdPost  *  botright cwindow
 " A netrw viszont nem foglalkozik vele, pl. mindig a megnyitott url-hez
 " viszonyitva kell megadni az uj fajlok nevet.
 " autocmd  BufEnter  *://*  set noautochdir
-                                                                        " }}}1
-"                           MUNKAHELYI BEALLITASOK
-" ============================================================================
-
-" A magyarbol masold ki a meretet es az elso ar oszlopot nvu-ban, majd ereszd
-" ezt a fuggvenyt.
-
-function AngolArak()
-  let save_format = g:NumUtils_format
-  let g:NumUtils_format = '.2'
-
-  silent %s/\(.\{-}\t.\{-}\)\t/\1\r/g
-  silent %s/^\(\d\+\)\(.\{-}\)\t/\1"\2 (\1\t/
-  silent %s/ x \(\d\+\)\(.\{-}\t\@=\)/ x \1"\2 x \1)mm/
-  %NumUtilsDiv 25.4, '^!NUM!'
-  %NumUtilsDiv 25.4, ' x !NUM!"'
-  %NumUtilsDiv 350, '!NUM! Ft'
-
-  let g:NumUtils_format = save_format
-endfunction
-
-if $USERNAME == 'Laci'
-  autocmd  BufNewFile  *.txt  set fileencoding=default
-  autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileencoding=default | endif
-endif
