@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.14 18:12 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.14 23:08 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1290,6 +1290,13 @@ endif
 " HA TERMINALBAN NEM MUKODNENEK A KURZORBILLENTYUK:
 "   :verbose imap <Esc>
 " Ezen map-ok valamelyike okozza a hibat.
+
+"                            TERMINAL KEYCODES                            {{{2
+" ____________________________________________________________________________
+
+if &term =~ 'xterm'
+  map [3;5~   <C-Del>
+endif
 
 "                             ABLAK ATMERETEZESE                          {{{2
 " ____________________________________________________________________________
