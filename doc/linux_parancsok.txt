@@ -2089,6 +2089,10 @@ git
         # Miután megnéztük amit akartunk, álljunk vissza az eredeti állapotra:
         $ git checkout master
 
+    Módosítások visszavonása a HEAD-ig:
+
+        $ git reset --hard
+
     Korábbi verzió visszaállítása (FIGYELEM! Végleges a visszaállás, az újabb
     verziók ezután nem érhetőek el):
 

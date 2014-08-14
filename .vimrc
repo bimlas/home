@@ -3,13 +3,15 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.12 14:36 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.14 15:56 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
 
 " Gyorsitja a vim mukodeset.
-set regexpengine=1
+if v:version >= 704
+  set regexpengine=1
+endif
 
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
@@ -1266,7 +1268,7 @@ if has( 'gui_running' )
   set guioptions-=T
 
   " Menusor kikapcsolasa.
-  " set guioptions-=m
+  set guioptions-=m
 
   " A scroll-ok csak akkor latszodjanak, ha szukseg van rajuk?
   set guioptions-=L
@@ -1453,8 +1455,12 @@ noremap                    <leader>t:   :Tabularize /:\zs/<CR>
 noremap                    <leader>tsp  :Tabularize / \+\zs/<CR>
 noremap                    <leader>t=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
 
+" Menusor megjelenitese/elrejtese.
+nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
+imap                       <F1>         <C-O><F2>
+
 " Terminal megnyitasa.
-nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start cmd<CR>' : ':silent !xterm &<CR>'
+nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start cmd.exe<CR>' : ':silent !xterm &<CR>'
 imap                       <F2>         <C-O><F2>
 
 " Gitv - git commit-ok amelyben a fajl valtozott.
@@ -1537,7 +1543,9 @@ autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileformat=dos 
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
 " lenne.
 autocmd  FileType  *                         setlocal formatoptions+=co formatoptions-=l
-autocmd  FileType  *                         setlocal formatoptions+=j
+if v:version >= 704
+  autocmd  FileType  *                       setlocal formatoptions+=j
+endif
 autocmd  FileType  html,xml,xslt,docbk,text  setlocal formatoptions+=t
 autocmd  FileType  python                    setlocal formatoptions-=t
 autocmd  FileType  registry                  setlocal commentstring=;%s
@@ -1612,6 +1620,6 @@ if $USERNAME == 'Laci'
   autocmd  BufNewFile  *.txt  set fileencoding=default
   autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileencoding=default | endif
 
-  nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start cmd /c clink<CR>' : ':silent !xterm &<CR>'
+  nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start conemu.exe<CR>' : ':silent !xterm &<CR>'
   imap                       <F2>         <C-O><F2>
 endif
