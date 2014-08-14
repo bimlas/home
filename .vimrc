@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.14 15:56 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.14 18:12 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1460,7 +1460,7 @@ nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' 
 imap                       <F1>         <C-O><F2>
 
 " Terminal megnyitasa.
-nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start cmd.exe<CR>' : ':silent !xterm &<CR>'
+nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start conemu.exe<CR>' : ':silent !xterm &<CR>'
 imap                       <F2>         <C-O><F2>
 
 " Gitv - git commit-ok amelyben a fajl valtozott.
@@ -1619,7 +1619,4 @@ endfunction
 if $USERNAME == 'Laci'
   autocmd  BufNewFile  *.txt  set fileencoding=default
   autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileencoding=default | endif
-
-  nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start conemu.exe<CR>' : ':silent !xterm &<CR>'
-  imap                       <F2>         <C-O><F2>
 endif
