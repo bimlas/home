@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.14 23:08 ==
+" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.15 11:05 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1111,7 +1111,7 @@ let g:netrw_banner = 0
 let g:netrw_mousemaps = 0
 
 " Alapbol tree nezetben nyissa meg.
-let g:netrw_liststyle = 3
+" let g:netrw_liststyle = 3
 
 " Csak az a lenyeg, hogy a konyvtarak legyenek elol.
 let g:netrw_sort_sequence = '[\/]$,*'
@@ -1198,6 +1198,12 @@ let g:syntastic_python_pylint_args = '-d line-too-long -d bad-indentation -d bad
 
 " Stilushibak figyelmen kivul hagyasa.
 let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
+
+"                                JEDI-VIM                                 {{{2
+" ____________________________________________________________________________
+
+" Bufferek hasznalata tab-ok helyett.
+let g:jedi#use_tabs_not_buffers = 0
 
 "                              OMNICPPCOMPLETE                            {{{2
 " ____________________________________________________________________________
@@ -1444,16 +1450,23 @@ noremap                    <C-Insert>   "+y
 noremap                    <S-Insert>   "+P
 imap                       <S-Insert>   <C-O><S-Insert>
 
-" Easymotion.
-map                        s            <Plug>(easymotion-s)
-
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>          K            :call Help( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
 noremap  <silent>          L            :Szotar <C-R>=expand( '<cword>' )<CR><CR>
 
+" Lynx-szeru mozgas netrw-ben.
+autocmd  FileType  netrw  call NetrwLynxMap()
+function NetrwLynxMap()
+   map   <buffer>          <Left>       -
+   map   <buffer>          <Right>      <CR>
+endfunction
+
+" Easymotion.
+map                        s            <Plug>(easymotion-s)
+
 " Nerdcommenter.
-map                        <C-D>        <plug>NERDCommenterComment
-map                        <C-F>        <plug>NERDCommenterUncomment
+map                        <C-D>        <Plug>NERDCommenterComment
+map                        <C-F>        <Plug>NERDCommenterUncomment
 
 " Tabular.
 noremap                    <leader>t\|  :Tabularize /\|/l0<CR>
@@ -1554,7 +1567,7 @@ if v:version >= 704
   autocmd  FileType  *                       setlocal formatoptions+=j
 endif
 autocmd  FileType  html,xml,xslt,docbk,text  setlocal formatoptions+=t
-autocmd  FileType  python                    setlocal formatoptions-=t
+autocmd  FileType  python                    setlocal formatoptions-=t shiftwidth=2 softtabstop=2
 autocmd  FileType  registry                  setlocal commentstring=;%s
 autocmd  FileType  asciidoc                  setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^==\\+\\s.\\+'?'>'.(len(matchstr(getline(v:lnum),'^=\\+'))-1):'='
 autocmd  FileType  asciidoc                  setlocal nofoldenable spell

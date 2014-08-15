@@ -1,5 +1,5 @@
 ! ~/.Xresources: terminalos motyok megjelenitese
-! ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.14 22:04 ==
+! ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.18 15:32 ==
 
 ! Minden modositas utan ki kell adni a kovetkezo parancsot, kulonben nem
 ! lathato a valtozas, csak restart utan:
@@ -38,8 +38,8 @@ XTerm*shiftFonts:    false
 !         http://crunchbang.org/forums/viewtopic.php?pid=90607#p90607
 ! ============================================================================
 
-XTerm*background:    #443322
-XTerm*foreground:    #AA9988
+XTerm*background:    #212B35
+XTerm*foreground:    #99A3AD
 
 ! black
 XTerm*color0:        #000000
