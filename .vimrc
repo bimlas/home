@@ -1,5 +1,14 @@
 " ~/.vimrc
 "
+" TODO: Vim tippekbe profilozas:
+"
+" vim --cmd 'profile start profile.log' \
+"     --cmd 'profile func *' \
+"     --cmd 'profile file *' \
+"     -c 'profdel func *' \
+"     -c 'profdel file *' \
+"     -c 'qa!'
+"
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
