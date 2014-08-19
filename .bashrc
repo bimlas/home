@@ -3,7 +3,7 @@
 # TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 # konyvjelzot.
 #
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.13 22:45 ==
+# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.19 20:20 ==
 
 # Ha nem interaktiv modban vagyunk, ne csinaljunk semmit.
 if [ -z "$PS1" ]; then
@@ -40,10 +40,20 @@ shopt -s extglob
 # Minden parancs utan mentse el a terminal mereteit. (LINES, COLUMNS)
 shopt -s checkwinsize
 
+gitprompt=$(locate git-prompt)
+if [ $gitprompt ]; then
+  gitprompt='$(__git_ps1 "%s")'
+  GIT_PS1_SHOWCOLORHINTS=true
+  GIT_PS1_SHOWDIRTYSTATE=true
+  GIT_PS1_SHOWSTASHSTATE=true
+  GIT_PS1_SHOWUNTRACKEDFILES=true
+  GIT_PS1_DESCRIBE_STYLE=default
+fi
+
 # Archlinux-szeru prompt.
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 PS1="\n\[\033[1;36m\]\342\224\214\342\224\200"
-PS1+="[\[\033[1;37m\]\A\[\033[0m\]\[\033[1;36m\]] \[\033[1;37m\]\w\[\033[0m\]\n"
+PS1+="[\[\033[1;37m\]\A\[\033[0m\]\[\033[1;36m\]] \[\033[1;37m\]\w\[\033[0m\]\[\033[1;36m\] $gitprompt \n"
 PS1+="\[\033[1;36m\]\342\224\224\342\224\200 "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo '\[\033[0;31m\]'; else echo '\[\033[1;37m\]'; fi)\\$\[\033[0m\] "
 export PS1
