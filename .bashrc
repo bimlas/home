@@ -3,7 +3,7 @@
 # TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 # konyvjelzot.
 #
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.19 20:20 ==
+# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.19 20:23 ==
 
 # Ha nem interaktiv modban vagyunk, ne csinaljunk semmit.
 if [ -z "$PS1" ]; then
@@ -47,6 +47,7 @@ if [ $gitprompt ]; then
   GIT_PS1_SHOWDIRTYSTATE=true
   GIT_PS1_SHOWSTASHSTATE=true
   GIT_PS1_SHOWUNTRACKEDFILES=true
+  GIT_PS1_SHOWUPSTREAM=true
   GIT_PS1_DESCRIBE_STYLE=default
 fi
 
