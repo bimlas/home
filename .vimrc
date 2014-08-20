@@ -1,14 +1,5 @@
 " ~/.vimrc
 "
-" TODO: Vim tippekbe profilozas:
-"
-" vim --cmd 'profile start profile.log' \
-"     --cmd 'profile func *' \
-"     --cmd 'profile file *' \
-"     -c 'profdel func *' \
-"     -c 'profdel file *' \
-"     -c 'qa!'
-"
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
@@ -48,7 +39,7 @@ if exists( '*vundle#rc' )
   " .. SAJAT ..............................
 
   " sajat fuggvenyek, parancsok, filetype, tippek, stb.
-  Plugin 'bimbalaszlo/vim-eightvim'
+  Plugin 'bimbalaszlo/vim-eight'
 
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
   Plugin 'bimbalaszlo/vim-eightheader'
