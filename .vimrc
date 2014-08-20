@@ -16,10 +16,17 @@ endif
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
 " kapcsolva. (:DoMatchParen kapcsolja be)
-autocmd VimEnter * if exists( ':NoMatchParen' ) | execute 'NoMatchParen' | endif
+" autocmd VimEnter * if exists( ':NoMatchParen' ) | execute 'NoMatchParen' | endif
 " Ezek sem segitenek:
 " let g:matchparen_timeout = 5
 " let g:matchparen_insert_timeout = 5
+
+" "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
+" vissza.
+
+function HighTerm()
+  return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
+endfunction
 
 "                    VUNDLE CSOMAGKEZELO PLUGIN INDITASA                  {{{1
 " ============================================================================
@@ -183,13 +190,6 @@ endif
 
 "                           TEMATIKUS BEALLITASOK                         {{{1
 " ============================================================================
-
-" "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
-" vissza.
-
-function HighTerm()
-  return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
-endfunction
 
 "                                   SZINEK                                {{{2
 " ____________________________________________________________________________
