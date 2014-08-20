@@ -6,7 +6,7 @@
 [alias]
 
   glog         = "log --graph --decorate --all --name-status"
-  slog         = "log --graph --decorate --format=oneline"
+  slog         = "log --graph --decorate --all --format=oneline"
   tree         = "ls-tree -r --name-only"
 
 [color]
