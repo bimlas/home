@@ -460,7 +460,7 @@ set wildmode=longest,list
 set showtabline=1
 
 " A tabok listazasanak modja.
-set tabline=%!my#shorttabline#call()
+set tabline=%!eight#shorttabline#call()
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -1053,7 +1053,7 @@ noremap                    <S-Insert>   "+P
 imap                       <S-Insert>   <C-O><S-Insert>
 
 " Kurzor alatti parancs sugojanak megnyitasa.
-noremap  <silent>          K            :call my#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
+noremap  <silent>          K            :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
 noremap  <silent>          L            :Szotar <C-R>=expand( '<cword>' )<CR><CR>
 
 " Lynx-szeru mozgas netrw-ben.
@@ -1109,7 +1109,7 @@ nnoremap  <silent>         <F8>         :TagbarToggle<CR>
 imap                       <F8>         <C-O><F8>
 
 " A lathato ablakok szinkronizalasa diff nelkul.
-nnoremap                   <F10>        :call my#syncwin#call()<CR>
+nnoremap                   <F10>        :call eight#syncwin#call()<CR>
 imap                       <F10>        <C-O><F10>
 
 " Kurzor oszlopanak kiemelesenek valtogatasa.
@@ -1124,7 +1124,7 @@ imap                       <F12>        <C-O><F12>
 " ____________________________________________________________________________
 
 " Eightheader - a sor foldheader-re alakitasa.
-nnoremap                   <leader>0    :silent call my#header#call()<CR><CR>
+nnoremap                   <leader>0    :silent call eight#contact#call()<CR><CR>
 nnoremap                   <leader>1    :silent call EightHeader( &tw, 'center', 0, '=', ' {' . '{{1', '' )<CR><CR>
 nnoremap                   <leader>2    :silent call EightHeader( &tw, 'center', 0, '_', ' {' . '{{2', '' )<CR><CR>
 nnoremap                   <leader>3    :silent call EightHeader( &tw, 'center', 0, '.', '', '' )<CR><CR>
@@ -1164,7 +1164,7 @@ endif
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
 " aktualizalasa.
-autocmd  BufWritePre  *  call my#writepre#call()
+autocmd  BufWritePre  *  call eight#writepre#call()
 
 " __ COMPLETION _________________________
 
