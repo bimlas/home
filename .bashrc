@@ -6,7 +6,7 @@
 # ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.19 20:49 ==
 
 # Ha nem interaktiv modban vagyunk, ne csinaljunk semmit.
-if [ -z "$PS1" ]; then
+if [[ -z "$PS1" ]]; then
   return
 fi
 
@@ -40,15 +40,21 @@ shopt -s extglob
 # Minden parancs utan mentse el a terminal mereteit. (LINES, COLUMNS)
 shopt -s checkwinsize
 
-gitprompt=$(locate git-prompt)
-if [ $gitprompt ]; then
+# Argumentumok kiegeszitese nehany programnal.
+if [[ -e '/etc/bash_completion' ]]; then
+  source '/etc/bash_completion'
+fi
+
+if [[ -e '/etc/bash_completion.d/git-prompt' ]]; then
+  source '/etc/bash_completion.d/git-prompt'
   gitprompt='$(__git_ps1 "[\[\033[1;37m\]%s\[\033[1;36m\]]")'
-  GIT_PS1_SHOWCOLORHINTS=true
   GIT_PS1_SHOWDIRTYSTATE=true
   GIT_PS1_SHOWSTASHSTATE=true
   GIT_PS1_SHOWUNTRACKEDFILES=true
   GIT_PS1_SHOWUPSTREAM=true
-  GIT_PS1_DESCRIBE_STYLE=default
+  GIT_PS1_DESCRIBE_STYLE=describe
+else
+  gitprompt=
 fi
 
 # Archlinux-szeru prompt.
@@ -63,11 +69,6 @@ export PS1
 
 #                                   ALIAS                                 {{{1
 # ============================================================================
-
-# Argumentumok kiegeszitese nehany programnal.
-if [ -f '/etc/bash_completion' ]; then
-  source /etc/bash_completion
-fi
 
 alias pm-hibernate='echo "SOSE HASZNALD!"'
 
@@ -84,19 +85,19 @@ alias grep='grep --color'
 alias du='du -b'
 
 # vim.tiny ne akarjon .vimrc-t hasznalni
-if [ -f '/usr/bin/vim.tiny' ]; then
+if [[ -e '/usr/bin/vim.tiny' ]]; then
   alias vim.tiny='vim.tiny -u NONE'
 fi
 
 # Az alap saxon-xslt-nek nem tudom atadni, hogy hasznalja a saxon extensions-t
 # es xerces legyen az xml parser (ha argumentumkent adjuk at a classpath-ot,
 # akkor a $CLASSPATH figyelmen kivul lesz hagyva).
-if [ -f '/usr/share/java/saxon.jar' ]; then
+if [[ -e '/usr/share/java/saxon.jar' ]]; then
   saxon='java -classpath /usr/share/java/saxon.jar'
-  if [ -f '/usr/share/java/docbook-xsl-saxon.jar' ]; then
+  if [[ -e '/usr/share/java/docbook-xsl-saxon.jar' ]]; then
     saxon+=':/usr/share/java/docbook-xsl-saxon.jar'
   fi
-  if [ -f '/usr/share/java/xercesImpl.jar' ]; then
+  if [[ -e '/usr/share/java/xercesImpl.jar' ]]; then
     saxon+=':/usr/share/java/xercesImpl.jar                                                              \
             -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl \
             -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl'
@@ -105,7 +106,7 @@ if [ -f '/usr/share/java/saxon.jar' ]; then
 fi
 
 # Docbook validation.
-if [ -f '/usr/share/java/msv-core.jar' ]; then
+if [[ -e '/usr/share/java/msv-core.jar' ]]; then
   msv='java -classpath /usr/share/java/xsdlib.jar'
   msv+=':/usr/share/java/isorelax.jar'
   msv+=':/usr/share/java/relaxngDatatype.jar'
@@ -124,12 +125,12 @@ fi
 alias asciidoctor="/media/nyolcas/app/asciidoctor/bin/asciidoctor -a allow-uri-read"
 
 # Manual megnyitasa bongeszoben - sajnos nem mindig mukodik.
-# if [ -f '/usr/bin/w3mman' ]; then
+# if [[ -e '/usr/bin/w3mman' ]]; then
   # alias man='w3mman'
 # fi
 
 # A kepet ne zarja be a gnuplot kilepese utan.
-if [ -f '/usr/bin/gnuplot' ]; then
+if [[ -e '/usr/bin/gnuplot' ]]; then
   alias gnuplot='gnuplot -persist'
 fi
 
@@ -160,7 +161,7 @@ sysinfo()
 {
   find_sbin_cmd() {
     for base in / /usr/ /usr/local; do
-      if [ -e $base/sbin/$1 ]; then
+      if [[ -e $base/sbin/$1 ]]; then
         echo $base/sbin/$1
         exit
       fi
@@ -169,26 +170,26 @@ sysinfo()
   FDISK=`which fdisk 2>/dev/null`
   LSUSB=`which lsusb 2>/dev/null`
   LSPCI=`which lspci 2>/dev/null`
-  [ -z "$FDISK" ] && FDISK=`find_sbin_cmd fdisk`
-  [ -z "$LSUSB" ] && LSUSB=`find_sbin_cmd lsusb`
-  [ -z "$LSPCI" ] && LSPCI=`find_sbin_cmd lspci`
+  [[ -z "$FDISK" ]] && FDISK=`find_sbin_cmd fdisk`
+  [[ -z "$LSUSB" ]] && LSUSB=`find_sbin_cmd lsusb`
+  [[ -z "$LSPCI" ]] && LSPCI=`find_sbin_cmd lspci`
 
   echo "============= Drives ============="
   (
   sed -n 's/.* \([hs]d[a-f]$\)/\1/p' < /proc/partitions
-  [ -e /dev/cdrom ] && readlink -f /dev/cdrom | cut -d/ -f3
+  [[ -e /dev/cdrom ]] && readlink -f /dev/cdrom | cut -d/ -f3
   ) |
   sort | uniq |
   while read disk; do
     echo -n "/dev/$disk: "
-    if [ ! -r /dev/$disk ]; then
+    if [[ ! -r /dev/$disk ]]; then
       echo "permission denied" #could parse /proc for all but
     else
       size=`$FDISK -l /dev/$disk | grep Disk | cut -d' ' -f3-4 | tr -d ,`
       rest=`/sbin/hdparm -i /dev/$disk 2>/dev/null | grep Model`
       rest=`echo $rest` #strip spaces
       echo -n "$rest"
-      if [ ! -z "$size" ]; then
+      if [[ ! -z "$size" ]]; then
         echo ", Size=$size"
       else
         echo
@@ -196,7 +197,7 @@ sysinfo()
     fi
   done
 
-  #if [ `id -u` == "0" ]; then
+  #if [[ `id -u` == "0" ]]; then
   #echo "========== Partitions =========="
   #$FDISK -l 2>/dev/null
   #fi
@@ -254,22 +255,22 @@ lscolors()
 
 lsdep()
 {
-  if [ ! -f /usr/bin/dpkg-shlibdeps ]; then
+  if [[ ! -e /usr/bin/dpkg-shlibdeps ]]; then
     echo "A dpkg-shlibdeps nincs telepitve."
     return 1
   fi
 
-  if [ $# -ne 1 ]; then
+  if [[ $# -ne 1 ]]; then
     echo "Hasznalat: lsdep FAJL" >&2
     return 1
   fi
 
-  if [ ! -f $1 ]; then
+  if [[ ! -e $1 ]]; then
     echo "$1: A fajl nem letezik." >&2
     return 1
   fi
 
-  if [ -f debian ]; then
+  if [[ -e debian ]]; then
     echo "A vegrehajtashoz szukseges a 'debian' konyvtar" \
          "letrehozasa, de mar letezik ilyen nevu fajl."   >&2
     return 1
@@ -290,7 +291,7 @@ lsdep()
   column -t
 
   # Ha csak ures fajlok vannak a konyvtarban, toroljuk.
-  if [ -z `find debian -type f -size +0` ]; then
+  if [[ -z `find debian -type f -size +0` ]]; then
     rm -rf debian
   fi
 
