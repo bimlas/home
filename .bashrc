@@ -148,11 +148,11 @@ x()
 }
 
 # Szotar, letoltheto:
-# https://github.com/BimbaLaszlo/vim-mixed/blob/master/doc/szotar.txt
+# https://github.com/BimbaLaszlo/vim-eight/blob/master/doc/szotar.txt
 
 szotar()
 {
-  grep "$@" $HOME/.vim/bundle/vim-mixed/doc/szotar.txt
+  grep "$@" $HOME/.vim/bundle/vim-eight/doc/szotar.txt
 }
 
 # Rendszerinformaciok osszegzese. (pixelbeat.org)
