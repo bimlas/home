@@ -1073,7 +1073,7 @@ nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' 
 imap                       <F1>         <C-O><F2>
 
 " Terminal megnyitasa.
-nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start conemu /cmd "d:\git\bin\sh.exe --login -i"<CR>' : ':silent !xterm &<CR>'
+nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start conemu<CR>' : ':silent !xterm &<CR>'
 imap                       <F2>         <C-O><F2>
 
 " Gitv - git commit-ok amelyben a fajl valtozott.
