@@ -22,6 +22,8 @@ function msysgitdir()
     local file = io.popen("where git")
     local output = trim(file:read('*all'))
     local rc = {file:close()}
+                                                                       -- TODO
+                                                   -- replace bin\\git.exe too
     return string.gsub(output, "cmd\\git.exe", "")
 end
 
@@ -35,7 +37,7 @@ function git_prompt_filter()
     -- get the output of __git_ps1.
     if cmd == nil then
       cmd = msysgitdir()                                ..
-            "\\bin\\sh.exe --noprofile -c "             ..
+            "\\bin\\sh.exe --noprofile --norc -c "      ..
             "'PATH=/bin; source /etc/git-prompt.sh; "   ..
             "GIT_PS1_SHOWDIRTYSTATE=true; "             ..
             "GIT_PS1_SHOWSTASHSTATE=true; "             ..
