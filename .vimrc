@@ -732,7 +732,7 @@ let g:tagbar_map_closefold = ['<Left>',  '-']
 " ~/.ctags fajlba:
 " --langdef=asciidoc
 " --langmap=asciidoc:.ad.adoc.asciidoc
-" --regex-asciidoc=/^=[ \t]+(.*)/# \1/h/
+" --regex-asciidoc=/^=[ \t]+(.*)/\1/h/
 " --regex-asciidoc=/^==[ \t]+(.*)/. \1/h/
 " --regex-asciidoc=/^===[ \t]+(.*)/. . \1/h/
 " --regex-asciidoc=/^====[ \t]+(.*)/. . . \1/h/
@@ -755,6 +755,17 @@ let g:tagbar_type_asciidoc =
 \                   'i:images:1',
 \                   'I:inline images:1'
 \                 ]
+\ }
+
+" ~/.ctags:
+" --langdef=text
+" --langmap=text:.txt
+" --regex-text=/^[ \t]*(.*)\{\{\{1/\1/h/
+" --regex-text=/^[ \t]*(.*)\{\{\{2/. \1/h/
+" --regex-text=/^[ \t]*(.*)\{\{\{3/. . \1/h/
+let g:tagbar_type_text =
+\ { 'ctagstype' : 'text',
+\   'kinds'     : [ 'h:table of contents' ]
 \ }
 
 "                               NERDCOMMENTER                             {{{2

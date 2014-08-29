@@ -22,9 +22,7 @@ function msysgitdir()
     local file = io.popen("where git")
     local output = trim(file:read('*all'))
     local rc = {file:close()}
-                                                                       -- TODO
-                                                   -- replace bin\\git.exe too
-    return string.gsub(output, "cmd\\git.exe", "")
+    return string.gsub( string.gsub(output, "cmd\\git.exe", ""), "bin\\git.exe", "")
 end
 
 -- Print the output of __git_ps1 to the end of the prompt.
