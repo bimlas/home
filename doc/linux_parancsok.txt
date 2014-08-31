@@ -92,6 +92,8 @@ Ugyan a sysv-rc-conf programmal a futási szinteket külön-külön is be lehet
 állítani, de mivel a script-ek tartalmazzák ezt az infót, elegendő az rcconf
 is.
 
+A bum csomag desktop-on jó.
+
                                ÁLTALÁNOS INFÓK                            {{{1
 ==============================================================================
 

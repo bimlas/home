@@ -20,7 +20,7 @@ xset b off
 HISTCONTROL=ignoreboth
 
 HISTSIZE=1000
-HISTFILESIZE=2000
+HISTFILESIZE=1000
 
 #                                  SHOPT                                  {{{1
 # ============================================================================
