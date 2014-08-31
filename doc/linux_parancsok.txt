@@ -43,6 +43,55 @@ kinyitja az összes könyvjelzőt.
 
  BimbaLaszlo(.co.nr|gmail.com)  2014.06.13 09:56 ==
 
+                             TESZTELÉS ALATT                              {{{1
+==============================================================================
+
+http://pclinuxos2007.blogspot.hu/2010/09/speeding-up-debian-gnulinux-desktop.html
+
+                           [OK] SPEED UP /TMP                             {{{2
+______________________________________________________________________________
+
+Move /tmp and /var/tmp to tmpfs in RAM. Add these two lines in /etc/fstab file
+
+tmpfs /tmp tmpfs defaults,noatime,mode=1777 0 0
+tmpfs /var/tmp tmpfs defaults,noatime,mode=1777 0 0
+
+Also, speed up flash rendering in firefox by deleting the directory
+~/.macromedia, then creating a symbolic link to /tmp as mentioned below.
+
+rm -r ~/.macromedia
+ln -s /tmp ~/.macromedia
+
+After, all these changes done, you may reboot your system or just issue the
+following command in your terminal.
+
+mount -o remount /
+
+                             [OK] FILESYSTEM                              {{{2
+______________________________________________________________________________
+
+The default filesystem parameters in Linux lean more towards
+security/stability sometimes hampering performance. You can set
+"data_writeback" option to all the partitions using tune2fs utility, and add
+"noatime" option in /etc/fstab. It will speedup the file system.
+
+/dev/sda1  /      ext3  noatime,errors=remount-ro  0  1
+/dev/sda1  /home  ext3  noatime                    0  0
+/dev/sda1  /win   ntfs  defaults                   0  0
+
+As you can see in the above screenshot there is no entry for "swap" in my
+fstab. I've deliberately removed swap partition after observing no use for it
+on my bare usage. You may also delete the swap, if you have enough RAM (more
+than 1GB) and you never notice it to run out. Removing swap and using only
+physical memory speeds up overall responsiveness to a great extent.
+
+                 [OK] RCCONF SZOLGÁLTATÁSOK KEZELÉSÉSHEZ                  {{{2
+______________________________________________________________________________
+
+Ugyan a sysv-rc-conf programmal a futási szinteket külön-külön is be lehet
+állítani, de mivel a script-ek tartalmazzák ezt az infót, elegendő az rcconf
+is.
+
                                ÁLTALÁNOS INFÓK                            {{{1
 ==============================================================================
 
@@ -137,6 +186,11 @@ ______________________________________________________________________________
 ~
 
     Nem valódi könyvtár, de a shell a '/home/USER/' könyvtárat érti alatta.
+
+~/.fonts/
+
+    Az otf, ttf betűkészleteket ide lehet betenni, hogy a programok elérhessék
+    őket.
 
 ~/.netrc
 
