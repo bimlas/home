@@ -13,20 +13,8 @@ fi
 # Turn off speaker.
 xset b off
 
-#                                 HISTORY                                 {{{1
-# ============================================================================
-
-# Disable duplicated and blank lines in history.
-HISTCONTROL=ignoreboth
-
-HISTSIZE=1000
-HISTFILESIZE=1000
-
 #                                  SHOPT                                  {{{1
 # ============================================================================
-
-# Continue the history instead of starting a new.
-shopt -s histappend
 
 # Extended pattern matching.
 # man bash /extglob
@@ -34,6 +22,25 @@ shopt -s extglob
 
 # Save the dimensions of terminal after each command. ($LINES, $COLUMNS)
 shopt -s checkwinsize
+
+# Continue the history instead of starting a new.
+shopt -s histappend
+
+# Save multiline commands to one line.
+shopt -s cmdhist
+
+#                                 HISTORY                                 {{{1
+# ============================================================================
+
+HISTSIZE=10000
+HISTFILESIZE=10000
+
+# Disable duplicated and blank lines in history.
+HISTCONTROL=ignoreboth
+
+# Save the command to the history when entering it instead of when leaving
+# bash.
+PROMPT_COMMAND='history -a'
 
 #                    ENVIRONMENT VARIABLES, COMPLETION                    {{{1
 # ============================================================================
@@ -49,10 +56,10 @@ if [[ -e $HOME/bin ]] && [[ ! $PATH =~ $HOME/bin ]]; then
 fi
 
 # Custom prompt.
-ps1_default="\033[0m"
-ps1_cyan="\033[1;36m"
-ps1_white="\033[1;37m"
-ps1_red="\033[0;31m"
+ps1_default="\e[0m"
+ps1_cyan="\e[1;36m"
+ps1_white="\e[1;37m"
+ps1_red="\e[0;31m"
 
 ps1_topleft="\342\224\214"
 ps1_bottomleft="\342\224\224"
