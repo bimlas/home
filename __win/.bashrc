@@ -38,6 +38,6 @@ PS1+="$ps1_cyan$ps1_bottomleft$ps1_vertical "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo $ps1_red; else echo $ps1_white; fi)\\$ $ps1_default"
 export PS1
 
-alias ls='ls -Av --color --group-directories-first'
+alias ls='ls -Av --color'
 alias grep='grep --color'
 alias du='du -b'
