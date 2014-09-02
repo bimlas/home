@@ -19,10 +19,10 @@
 !
 !   fc-list
 
+! 96 DPI is not a standard. You should use your monitors actual DPI to get
+! proper font rendering, especially when using subpixel rendering.
 Xft*dpi:             96
 Xft*antialias:       true
-! Kicsit egybefolynak a felkover betuk.
-Xft*hinting:         full
 
 XTerm*termName:      xterm-256color
 XTerm*dynamicColors: true
@@ -38,8 +38,9 @@ XTerm*shiftFonts:    false
 !         http://crunchbang.org/forums/viewtopic.php?pid=90607#p90607
 ! ============================================================================
 
-XTerm*background:    #212B35
 XTerm*foreground:    #99A3AD
+XTerm*background:    #333333
+! XTerm*background:    #212B35
 
 ! black
 XTerm*color0:        #000000
