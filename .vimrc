@@ -188,11 +188,8 @@ if has( 'win32' )
 
 endif
 
-"                           TEMATIKUS BEALLITASOK                         {{{1
+"                                   SZINEK                                {{{1
 " ============================================================================
-
-"                                   SZINEK                                {{{2
-" ____________________________________________________________________________
 
 " Szinsema beallitasa.
 if has( 'gui_running' ) && len( globpath( &runtimepath, 'colors/solarized.vim' ) )
@@ -239,8 +236,8 @@ highlight TagbarHighlight term=inverse ctermfg=White
 " A highlight-ok felulirasa nekem jobban tetszo szinekre.
 highlight TagListTagName term=inverse ctermfg=White
 
-"                           STATUSLINE (LIGHTLINE)                        {{{2
-" ____________________________________________________________________________
+"                           STATUSLINE (LIGHTLINE)                        {{{1
+" ============================================================================
 
 " Mindig mutassa a statusline-t.
 set laststatus=2
@@ -416,8 +413,8 @@ function FindMixed()
   let b:mixed .= mixed['long_line'] ? '<' . mixed['long_line'] : ''
 endfunction
 
-"                                 ALTALANOS                               {{{2
-" ____________________________________________________________________________
+"                                 ALTALANOS                               {{{1
+" ============================================================================
 
 " Szoveg szelessege - ugyan a fajlok beallitasahoz kene tenni, de szamitasok
 " miatt itt mar be kell allitani.
@@ -515,8 +512,8 @@ let html_use_css      = 0
 " SQL beallitasok.
 let g:ftplugin_sql_omni_key = '<C-X>'
 
-"                             FAJLOK BEALLITASAI                          {{{2
-" ____________________________________________________________________________
+"                             FAJLOK BEALLITASAI                          {{{1
+" ============================================================================
 
 " Fajlok elore megadott beallitasait hasznalhatja. (fajl elejen, vagy vegen
 " talalhato vim-specifikus beallitasok)
@@ -547,8 +544,8 @@ let &fileencoding = matchstr( &fileencodings, '^[^,]\+' )
 " TODO: tempname()-bol fejtse vissza.
 let &directory = has( 'win32' ) ? expand( '$TMP' ) : '/var/tmp,/tmp'
 
-"                                  KERESES                                {{{2
-" ____________________________________________________________________________
+"                                  KERESES                                {{{1
+" ============================================================================
 
 " Case insensitive keresesnel, de nagybetus szoveg eseten case sensitive-re
 " valt.
@@ -561,8 +558,8 @@ set hlsearch
 " Kereses begepelese kozben mar emelje ki a talalatokat.
 set incsearch
 
-"                             SZINTAXIS KIEMELES                          {{{2
-" ____________________________________________________________________________
+"                             SZINTAXIS KIEMELES                          {{{1
+" ============================================================================
 
 " Shell-scrip-eknel ne jelezze hibanak: $()
 let is_posix = 1
@@ -577,8 +574,8 @@ let &showbreak = '↑ '
 " Helyesiras ellenorzes magyarra allitasa.
 set spelllang=hu
 
-"                                  BEHUZAS                                {{{2
-" ____________________________________________________________________________
+"                                  BEHUZAS                                {{{1
+" ============================================================================
 
 " Automatikus behuzas { utan is.
 set autoindent
@@ -608,8 +605,8 @@ set backspace=2
 "       kezdi.
 set cinoptions=(0,t0,W2
 
-"                                  FOLDING                                {{{2
-" ____________________________________________________________________________
+"                                  FOLDING                                {{{1
+" ============================================================================
 
 " Behuzas szerint kulonuljenek el a blokkok.
 set foldmethod=marker
@@ -617,8 +614,8 @@ set foldmethod=marker
 " Sajat foldheader.
 let &foldtext = "EightHeaderFolds( '\\= s:fullwidth - 2', 'left', [ repeat( '  ', v:foldlevel - 1 ), repeat( ' ', v:foldlevel - 1 ) . '.', '' ], '\\= s:foldlines . \" lines\"', '' )"
 
-"                                  DIFFEXPR                               {{{2
-" ____________________________________________________________________________
+"                                  DIFFEXPR                               {{{1
+" ============================================================================
 "
 " :help diff-diffexpr: a --minimal kapcsolot hozzatettem.
 " A diff manual-bol:
@@ -641,8 +638,8 @@ function MyDiff()
     silent execute '!diff -a --binary --minimal ' . opt . ' "' . v:fname_in . '" "' . v:fname_new . '" > "' . v:fname_out . '"'
 endfunction
 
-"                               KODKIEGESZITES                            {{{2
-" ____________________________________________________________________________
+"                               KODKIEGESZITES                            {{{1
+" ============================================================================
 
 " <C-N> kiegeszitesnel a sztringeket vegye:
 " .  ebbol a fajlbol
@@ -1050,9 +1047,11 @@ noremap                    <Del>        "_<Del>
 
 " Az ablakkezelo vagolapjanak hasznalata - command-modban hatastalan, a
 " kijelolt szoveget illeszti be, nem pedig azt, amire <C-Insert>-et nyomtunk.
-noremap                    <C-Insert>   "+y
-noremap                    <S-Insert>   "+P
-imap                       <S-Insert>   <C-O><S-Insert>
+if has( 'win32' )
+  noremap                  <C-Insert>   "+y
+  noremap                  <S-Insert>   "+P
+  imap                     <S-Insert>   <C-O><S-Insert>
+endif
 
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>          K            :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
