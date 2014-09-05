@@ -247,17 +247,9 @@ set laststatus=2
 " Azert hasznalok valtozokat, hogy konnyebb legyen szinkronba hozni a
 " statusline-t es a lightline-t.
 
-" A statusline felepitese a kovetkezo:
-" [Preview]fajlnev[readonly][modified, vagy nomodifiable]
-" [binary], vagy [fileencoding fileformat]
-" ^mixed_indent$mixed_eol<long_line
-" git branch:commit
-" utvonal
-" jobbra rendezes
-" syntastic figyelmeztetesek
-" virtcol | sorszam:osszes sor szama
-
-let stat_filename   = '%w%<%F%r%m'
+autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand( "%:p:h" )
+let stat_filedir    = '%<%{b:stat_curfiledir}'
+let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
 let stat_lineinfo   = '%3v|%4l:%3p%%'
 
@@ -265,6 +257,7 @@ let &statusline  = stat_filename . ' | '
 let &statusline .= stat_fileformat . ' | '
 let &statusline .= '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed . " | " : ""}'
 let &statusline .= '%{len( StatFugitive() ) ? StatFugitive() . " | " : ""}'
+let &statusline .= stat_filedir . ' | '
 let &statusline .= '%= '
 let &statusline .= '%{len( StatSyntastic() ) ? StatSyntastic() . " | " : ""}'
 let &statusline .= stat_lineinfo
@@ -285,55 +278,57 @@ if !exists( 'g:lightline' )
 endif
 
 let g:lightline.active = {
-\     'left'       : [ ['filename'], ['fileformat'], ['mixed'], ['fugitive'] ],
-\     'right'      : [ ['lineinfo'], ['syntastic'] ]
+\     'left'          : [ ['filename'], ['fileformat'], ['mixed'], ['fugitive'], ['filedir'] ],
+\     'right'         : [ ['lineinfo'], ['syntastic'] ]
 \   }
 
 let g:lightline.inactive = {
-\     'left'       : [ ['filename'], ['fugitive'] ],
-\     'right'      : [ [] ]
+\     'left'          : [ ['fullfilename'], ['fugitive'] ],
+\     'right'         : [ [] ]
 \   }
 
 let g:lightline.component = {
-\     'filename'   : stat_filename,
-\     'fileformat' : stat_fileformat,
-\     'mixed'      : '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed : ""}',
-\     'lineinfo'   : stat_lineinfo
+\     'filename'      : stat_filename,
+\     'fullfilename'  : '%F',
+\     'filedir'       : stat_filedir,
+\     'fileformat'    : stat_fileformat,
+\     'mixed'         : '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed : ""}',
+\     'lineinfo'      : stat_lineinfo
 \   }
 
 let g:lightline.component_function = {
-\     'fugitive'   : 'StatFugitive',
-\     'syntastic'  : 'StatSyntastic'
+\     'fugitive'      : 'StatFugitive',
+\     'syntastic'     : 'StatSyntastic'
 \   }
 
 let g:lightline#colorscheme#solarized#palette = {
 \   'normal': {
-\     'left'       : [ s:statcolor_green,  s:statcolor_dgrey, s:statcolor_red, s:statcolor_lgrey ],
-\     'middle'     : [ s:statcolor_sand ],
-\     'right'      : [ s:statcolor_dgrey,  s:statcolor_red ]
+\     'left'          : [ s:statcolor_green,  s:statcolor_dgrey, s:statcolor_red, s:statcolor_lgrey ],
+\     'middle'        : [ s:statcolor_sand ],
+\     'right'         : [ s:statcolor_dgrey,  s:statcolor_red ]
 \   },
 \   'inactive': {
-\     'left'       : [ s:statcolor_dgrey ],
-\     'middle'     : [ s:statcolor_lgrey ],
-\     'right'      : [ s:statcolor_lgrey ]
+\     'left'          : [ s:statcolor_dgrey ],
+\     'middle'        : [ s:statcolor_lgrey ],
+\     'right'         : [ s:statcolor_lgrey ]
 \   },
 \   'insert': {
-\     'left'       : [ s:statcolor_green,  s:statcolor_green, s:statcolor_red, s:statcolor_lgrey ],
-\     'right'      : [ s:statcolor_green,  s:statcolor_red ]
+\     'left'          : [ s:statcolor_green,  s:statcolor_green, s:statcolor_red, s:statcolor_lgrey ],
+\     'right'         : [ s:statcolor_green,  s:statcolor_red ]
 \   },
 \   'visual': {
-\     'left'       : [ s:statcolor_blue,   s:statcolor_dgrey, s:statcolor_red, s:statcolor_lgrey ],
-\     'right'      : [ s:statcolor_dgrey,  s:statcolor_red ]
+\     'left'          : [ s:statcolor_blue,   s:statcolor_dgrey, s:statcolor_red, s:statcolor_lgrey ],
+\     'right'         : [ s:statcolor_dgrey,  s:statcolor_red ]
 \   },
 \   'replace': {
-\     'left'       : [ s:statcolor_yellow, s:statcolor_dgrey, s:statcolor_red, s:statcolor_lgrey ],
-\     'right'      : [ s:statcolor_dgrey,  s:statcolor_red ]
+\     'left'          : [ s:statcolor_yellow, s:statcolor_dgrey, s:statcolor_red, s:statcolor_lgrey ],
+\     'right'         : [ s:statcolor_dgrey,  s:statcolor_red ]
 \   },
 \   'tabline': {
-\     'left'       : [ ['#073642', '#93a1a1', 24,  109, 'bold'] ],
-\     'middle'     : [ ['#93a1a1', '#073642', 109, 24,  'bold'] ],
-\     'right'      : [ s:statcolor_dgrey, ['#586e75', '#93a1a1', 241, 109, 'bold'] ],
-\     'tabsel'     : [ ['#073642', '#fdf6e3', 24,  230, 'bold'] ]
+\     'left'          : [ ['#073642', '#93a1a1', 24,  109, 'bold'] ],
+\     'middle'        : [ ['#93a1a1', '#073642', 109, 24,  'bold'] ],
+\     'right'         : [ s:statcolor_dgrey, ['#586e75', '#93a1a1', 241, 109, 'bold'] ],
+\     'tabsel'        : [ ['#073642', '#fdf6e3', 24,  230, 'bold'] ]
 \   }
 \ }
 
@@ -415,6 +410,9 @@ endfunction
 
 "                                 ALTALANOS                               {{{1
 " ============================================================================
+
+" Current working directory kiirasa a cimsorban.
+set titlestring=CWD:\ %{getcwd()}
 
 " Szoveg szelessege - ugyan a fajlok beallitasahoz kene tenni, de szamitasok
 " miatt itt mar be kell allitani.
