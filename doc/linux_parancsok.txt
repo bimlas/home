@@ -2145,12 +2145,8 @@ git
         # Miután megnéztük amit akartunk, álljunk vissza az eredeti állapotra:
         $ git checkout master
 
-    Módosítások visszavonása a HEAD-ig:
-
-        $ git reset --hard
-
-    Korábbi verzió visszaállítása (FIGYELEM! Végleges a visszaállás, az újabb
-    verziók ezután nem érhetőek el):
+    Korábbi verzió visszaállítása - SHA nélkül a HEAD-ig (FIGYELEM! Végleges a
+    visszaállás, az újabb verziók ezután nem érhetőek el):
 
         $ git reset --hard SHA
 
@@ -2175,9 +2171,14 @@ git
     Ha egy korábbi commit üzenetét szeretnénk módosítani, akkor az alábbi
     parancs lesz a segítségünkre. A kívánt commit előtti 'pick'-et írjuk át
     'reword'-re.
-    FIGYELEM! NEM SZABAD PUSH UTÁNI COMMIT-OKAT MÓDOSÍTANI!
 
         $ git rebase --interactive SHA~
+
+    FIGYELEM! NEM SZABAD PUSH UTÁNI COMMIT-OKAT MÓDOSÍTANI, mivel így a HEAD
+    SHA-ja is megváltozik és a git pull nem fog működni, csak a --force
+    kapcsolóval. Tehát nyilvános repository-n sose tegyünk ilyet. Ha
+    mindenképp rebase-elni akrunk, akkor a git push --force engedi a
+    feltöltést.
 
     A verziók közti különbséget is megtekinthetjük:
 
