@@ -1,0 +1,232 @@
+[$Version]
+update_info=konsole_remove_background_mode.upd:2.11.0-remove-background-mode,ksmserver_shortcuts.upd:kde4.10,ksmserver_shortcuts.upd:kde4.10-remove-group-kscreenlocker,kscreenlocker_locksession-shortcut.upd:4.9-locksession-shortcut,plasma-to-plasmadesktop-shortcuts.upd:4.3plasma-desktop-shortcuts
+
+[KDE Keyboard Layout Switcher]
+Switch to Next Keyboard Layout=Ctrl+Alt+K,Ctrl+Alt+K,Váltás a következő billentyűzetkiosztásra
+_k_friendly_name=KDE billentyűzetkiosztás-váltó
+
+[kactivitymanagerd]
+_k_friendly_name=KDE aktivitáskezelő
+switch-to-activity-64a860ae-af6a-4de6-bb25-2f6c43583c15=none,none,Switch to activity "Új aktivitás"
+switch-to-activity-73d5a8ee-0cf5-4c80-8554-60030951de6a=none,none,Switch to activity "Desktop"
+
+[kded]
+Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Billentyűzet fényerejének csökkentése
+Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Képernyő fényerejének csökkentése
+Hibernate=Hibernate,Hibernate,Hibernálás
+Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Billentyűzet fényerejének növelése
+Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Képernyő fényerejének növelése
+PowerOff=Power Off,Power Off,
+Sleep=Sleep,Sleep,Felfüggesztés
+Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Billentyűzet háttérvilágításának váltása
+_k_friendly_name=KDE-szolgáltatás
+display=Display,Display,Képernyőváltás
+
+[khotkeys]
+_k_friendly_name=khotkeys
+{2cd60af8-140f-46c1-82c9-40f6e100946a}=Ctrl+Alt+Del,none,ksysguard
+{2f33c0af-f0ee-4f6e-a746-cadcf951c309}=Alt+F5,none,firefox
+{31c3dbe3-30d4-433d-9241-4e073fba3dac}=Alt+F9,none,krusader
+{50e1ac75-3925-4ea0-b0c8-5c3a560d2f5c}=Alt+F12,none,xterm
+{88710047-575d-4e0e-ad8e-879743ed7154}=Alt+F10,none,kcalc
+{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=Search,none,Search
+{db1cdb33-4ee2-484c-b985-d88e90843aa9}=Print,none,PrintScreen
+
+[klipper]
+_k_friendly_name=Klipper
+clear-history=none,none,A műveletnapló törlése
+clipboard_action=Ctrl+Alt+X,Ctrl+Alt+X,Vágólapműveletek bekapcsolása
+cycleNextAction=none,none,Következő előzményelem
+cyclePrevAction=none,none,Előző előzményelem
+edit_clipboard=none,none,A tartalom szerkesztése...
+repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Művelet végrehajtása az aktuális vágólapon
+show-barcode=none,none,Vonalkód megjelenítése…
+show-on-mouse-pos=none,none,A Klipper megnyitása a kurzorpozíciónál
+
+[krunner]
+PowerDevil=none,none,Parancs futtatása (csak a(z) „Power Devil” indító)
+Run Command=Meta+R,Alt+F2,Parancsindító
+Run Command on clipboard contents=Alt+Shift+F2,Alt+Shift+F2,Parancs futtatása a vágólap tartalmával
+Show System Activity=Ctrl+Esc,Ctrl+Esc,Rendszeraktivitás
+Switch User=Ctrl+Alt+Ins,Ctrl+Alt+Ins,Váltás más felhasználóra
+_k_friendly_name=Parancsindító felület
+bookmarks=none,none,Parancs futtatása (csak a(z) „Könyvjelzők” indító)
+desktopsessions=none,none,Parancs futtatása (csak a(z) „Asztali munkamenetek” indító)
+locations=none,none,Parancs futtatása (csak a(z) „Helyek” indító)
+nepomuksearch=none,none,Parancs futtatása (csak a(z) „Nepomuk asztali keresés” indító)
+org.kde.activities=none,none,Parancs futtatása (csak a(z) „Aktivitások” indító)
+org.kde.windowedwidgets=none,none,Parancs futtatása (csak a(z) „Önálló widgetek” indító)
+recentdocuments=none,none,Parancs futtatása (csak a(z) „Nemrég használt dokumentumok” indító)
+services=none,none,Parancs futtatása (csak a(z) „Alkalmazások” indító)
+shell=none,none,Parancs futtatása (csak a(z) „Parancssor” indító)
+solid=none,none,Parancs futtatása (csak a(z) „Eszközök” indító)
+webshortcuts=none,none,Parancs futtatása (csak a(z) „Keresési azonosítók” indító)
+windows=none,none,Parancs futtatása (csak a(z) „Ablakok” indító)
+
+[krusader]
+_k_friendly_name=Krusader
+bring_main_window_to_top=none,none,A főablak felülre hozása
+
+[ksmserver]
+Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,Ctrl+Alt+Shift+PgDown,Leállítás megerősítés nélkül
+Lock Session=Ctrl+Alt+L,Ctrl+Alt+L,Lock Session
+Log Out=,Ctrl+Alt+Del,Kijelentkezés
+Log Out Without Confirmation=Ctrl+Alt+Shift+Del,Ctrl+Alt+Shift+Del,Kijelentkezés megerősítés nélkül
+Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,Ctrl+Alt+Shift+PgUp,Újraindítás megerősítés nélkül
+_k_friendly_name=KDE munkamenetkezelő
+
+[kwin]
+Activate Window Demanding Attention=Ctrl+Alt+A,Ctrl+Alt+A,Beavatkozást igénylő ablak aktiválása
+Decrease Opacity=none,none,Az aktív ablak átlátszóságának csökkentése 5%-kal
+Expose=Ctrl+F9,Ctrl+F9,A jelenlegi ablakok átváltása (ezen az asztalon)
+ExposeAll=Ctrl+F10,Ctrl+F10,A jelenlegi ablakok átváltása (az összes asztalon)
+ExposeClass=Ctrl+F7,Ctrl+F7,A jelenlegi ablakok átváltása (ablak osztály)
+Increase Opacity=none,none,Az aktív ablak átlátszóságának növelése 5%-kal
+Invert Screen Colors=none,none,Képernyőszínek invertálása
+Kill Window=Ctrl+Alt+Esc,Ctrl+Alt+Esc,Ablak kilövése
+MoveMouseToCenter=Meta+F6,Meta+F6,Egér mozgatása középre
+MoveMouseToFocus=Meta+F5,Meta+F5,Egér mozgatása a fókuszhoz
+MoveZoomDown=,Meta+Down,Nagyított terület mozgatása lefelé
+MoveZoomLeft=,Meta+Left,Nagyított terület mozgatása balra
+MoveZoomRight=,Meta+Right,Nagyított terület mozgatása jobbra
+MoveZoomUp=,Meta+Up,Nagyított terület mozgatása felfelé
+Remove Window From Group=none,none,Ablak eltávolítása a csoportból
+Setup Window Shortcut=none,none,Billentyűparancs rendelése ablakhoz
+Show Desktop=Meta+D,none,Asztal megjelenítése
+ShowDesktopGrid=Ctrl+F8,Ctrl+F8,Rácsozott asztal
+Suspend Compositing=Alt+Shift+F12,Alt+Shift+F12,A kompozit kiterjesztés felfüggesztése
+Switch One Desktop Down=none,none,
+Switch One Desktop Up=none,none,
+Switch One Desktop to the Left=,none,
+Switch One Desktop to the Right=,none,
+Switch Window Down=Meta+Alt+Down,Meta+Alt+Down,Váltás a felfelé levő ablakra
+Switch Window Left=Meta+Alt+Left,Meta+Alt+Left,Váltás a balra eső ablakra
+Switch Window Right=Meta+Alt+Right,Meta+Alt+Right,Váltás a jobbra eső ablakra
+Switch Window Up=Meta+Alt+Up,Meta+Alt+Up,Váltás a lefelé levő ablakra
+Switch to Desktop 1=Ctrl+F1,Ctrl+F1,Váltás a(z) 1. asztalra
+Switch to Desktop 10=none,none,Váltás a(z) 10. asztalra
+Switch to Desktop 11=none,none,Váltás a(z) 11. asztalra
+Switch to Desktop 12=none,none,Váltás a(z) 12. asztalra
+Switch to Desktop 13=none,none,Váltás a(z) 13. asztalra
+Switch to Desktop 14=none,none,Váltás a(z) 14. asztalra
+Switch to Desktop 15=none,none,Váltás a(z) 15. asztalra
+Switch to Desktop 16=none,none,Váltás a(z) 16. asztalra
+Switch to Desktop 17=none,none,Váltás a(z) 17. asztalra
+Switch to Desktop 18=none,none,Váltás a(z) 18. asztalra
+Switch to Desktop 19=none,none,Váltás a(z) 19. asztalra
+Switch to Desktop 2=Ctrl+F2,Ctrl+F2,Váltás a(z) 2. asztalra
+Switch to Desktop 20=none,none,Váltás a(z) 20. asztalra
+Switch to Desktop 3=Ctrl+F3,Ctrl+F3,Váltás a(z) 3. asztalra
+Switch to Desktop 4=Ctrl+F4,Ctrl+F4,Váltás a(z) 4. asztalra
+Switch to Desktop 5=none,none,Váltás a(z) 5. asztalra
+Switch to Desktop 6=none,none,Váltás a(z) 6. asztalra
+Switch to Desktop 7=none,none,Váltás a(z) 7. asztalra
+Switch to Desktop 8=none,none,Váltás a(z) 8. asztalra
+Switch to Desktop 9=none,none,Váltás a(z) 9. asztalra
+Switch to Next Desktop=,none,
+Switch to Next Screen=none,none,Váltás a következő képernyőre
+Switch to Previous Desktop=,none,
+Switch to Previous Screen=none,none,Váltás az előző képernyőre
+Switch to Screen 0=none,none,Váltás a(z) 0. képernyőre
+Switch to Screen 1=none,none,Váltás a(z) 1. képernyőre
+Switch to Screen 2=none,none,Váltás a(z) 2. képernyőre
+Switch to Screen 3=none,none,Váltás a(z) 3. képernyőre
+Switch to Screen 4=none,none,Váltás a(z) 4. képernyőre
+Switch to Screen 5=none,none,Váltás a(z) 5. képernyőre
+Switch to Screen 6=none,none,Váltás a(z) 6. képernyőre
+Switch to Screen 7=none,none,Váltás a(z) 7. képernyőre
+Toggle Window Raise/Lower=none,none,Ablak előre/hátra váltása
+Walk Through Desktop List=none,none,Lépegetés a munkaasztal-listában
+Walk Through Desktop List (Reverse)=none,none,Lépegetés a munkaasztal-listában (visszafelé)
+Walk Through Desktops=none,none,Lépegetés a munkaasztalok között
+Walk Through Desktops (Reverse)=none,none,Lépegetés a munkaasztalok között (visszafelé)
+Walk Through Window Tabs=none,none,Lépegetés az ablaklapok között
+Walk Through Window Tabs (Reverse)=none,none,Lépegetés az ablaklapok között (visszafelé)
+Walk Through Windows=Alt+Tab,Alt+Tab,Lépegetés az ablakok között
+Walk Through Windows (Reverse)=Alt+Shift+Backtab,Alt+Shift+Backtab,Lépegetés az ablakok között (visszafelé)
+Walk Through Windows Alternative=none,none,Lépegetés az ablakalternatívák között (visszafelé)
+Walk Through Windows Alternative (Reverse)=none,none,Lépegetés az ablakalternatívák között (visszafelé)
+Walk Through Windows of Current Application=Alt+`,Alt+`,Lépegetés a jelenlegi alkalmazások ablakai között
+Walk Through Windows of Current Application (Reverse)=Alt+~,Alt+~,Lépegetés a jelenlegi alkalmazások ablakai között (visszafelé)
+Walk Through Windows of Current Application Alternative=none,none,Lépegetés a jelenlegi alkalmazásalternatívák ablakai között
+Walk Through Windows of Current Application Alternative (Reverse)=none,none,Lépegetés a jelenlegi alkalmazásalternatívák ablakai között (visszafelé)
+Window Above Other Windows=none,none,Az ablak a többi fölé kerüljön
+Window Below Other Windows=none,none,Az ablak a többi alá kerüljön
+Window Close=Alt+F4,Alt+F4,Ablak bezárása
+Window Fullscreen=none,none,Ablak teljes képernyőre váltása
+Window Grow Horizontal=none,none,Ablak vízszintes megnövelése
+Window Grow Vertical=none,none,Ablak függőleges megnövelése
+Window Lower=none,none,Ablak hátraengedése
+Window Maximize=Meta+Up,none,Ablak maximalizálása
+Window Maximize Horizontal=none,none,Ablak vízszintes maximalizálása
+Window Maximize Vertical=Meta+Down,none,Ablak függőleges maximalizálása
+Window Minimize=none,none,Ablak minimalizálása
+Window Move=none,none,Ablak mozgatása
+Window No Border=none,none,Az ablakkeret elrejtése
+Window On All Desktops=none,none,Ablak megjelenítése az összes munkaasztalon
+Window One Desktop Down=none,none,Váltás a lefelé levő asztalra
+Window One Desktop Up=none,none,Váltás a felfelé levő asztalra
+Window One Desktop to the Left=Meta+Left,none,Váltás a balra levő asztalra
+Window One Desktop to the Right=Meta+Right,none,Váltás a jobbra levő asztalra
+Window Operations Menu=Alt+F3,Alt+F3,Az ablakműveletek menü
+Window Pack Down=none,none,Ablak lefelé gördítése
+Window Pack Left=none,none,Ablak balra gördítése
+Window Pack Right=none,none,Ablak jobbra gördítése
+Window Pack Up=none,none,Ablak felfelé gördítése
+Window Quick Tile Bottom Left=none,none,Ablak áthelyezése bal alulra
+Window Quick Tile Bottom Right=none,none,Ablak áthelyezése jobb alulra
+Window Quick Tile Left=none,none,Ablak áthelyezése balra
+Window Quick Tile Right=none,none,Ablak áthelyezése jobbra
+Window Quick Tile Top Left=none,none,Ablak áthelyezése bal felülre
+Window Quick Tile Top Right=none,none,Ablak áthelyezése jobb felülre
+Window Raise=none,none,Ablak előrehozása
+Window Resize=none,none,Ablak átméretezése
+Window Shade=none,none,Ablak felgördítése
+Window Shrink Horizontal=none,none,Ablak vízszintes lecsökkentése
+Window Shrink Vertical=none,none,Ablak függőleges lecsökkentése
+Window to Desktop 1=none,none,Az ablak a(z) 1. munkaasztalra
+Window to Desktop 10=none,none,Az ablak a(z) 10. munkaasztalra
+Window to Desktop 11=none,none,Az ablak a(z) 11. munkaasztalra
+Window to Desktop 12=none,none,Az ablak a(z) 12. munkaasztalra
+Window to Desktop 13=none,none,Az ablak a(z) 13. munkaasztalra
+Window to Desktop 14=none,none,Az ablak a(z) 14. munkaasztalra
+Window to Desktop 15=none,none,Az ablak a(z) 15. munkaasztalra
+Window to Desktop 16=none,none,Az ablak a(z) 16. munkaasztalra
+Window to Desktop 17=none,none,Az ablak a(z) 17. munkaasztalra
+Window to Desktop 18=none,none,Az ablak a(z) 18. munkaasztalra
+Window to Desktop 19=none,none,Az ablak a(z) 19. munkaasztalra
+Window to Desktop 2=none,none,Az ablak a(z) 2. munkaasztalra
+Window to Desktop 20=none,none,Az ablak a(z) 20. munkaasztalra
+Window to Desktop 3=none,none,Az ablak a(z) 3. munkaasztalra
+Window to Desktop 4=none,none,Az ablak a(z) 4. munkaasztalra
+Window to Desktop 5=none,none,Az ablak a(z) 5. munkaasztalra
+Window to Desktop 6=none,none,Az ablak a(z) 6. munkaasztalra
+Window to Desktop 7=none,none,Az ablak a(z) 7. munkaasztalra
+Window to Desktop 8=none,none,Az ablak a(z) 8. munkaasztalra
+Window to Desktop 9=none,none,Az ablak a(z) 9. munkaasztalra
+Window to Next Desktop=none,none,Az ablak a következő munkaasztalra
+Window to Next Screen=none,none,Ablak áthelyezése a következő képernyőre
+Window to Previous Desktop=none,none,Az ablak az előző munkaasztalra
+Window to Previous Screen=none,none,Ablak áthelyezése az előző képernyőre
+Window to Screen 0=none,none,Ablak áthelyezése a(z) 0. képernyőre
+Window to Screen 1=none,none,Ablak áthelyezése a(z) 1. képernyőre
+Window to Screen 2=none,none,Ablak áthelyezése a(z) 2. képernyőre
+Window to Screen 3=none,none,Ablak áthelyezése a(z) 3. képernyőre
+Window to Screen 4=none,none,Ablak áthelyezése a(z) 4. képernyőre
+Window to Screen 5=none,none,Ablak áthelyezése a(z) 5. képernyőre
+Window to Screen 6=none,none,Ablak áthelyezése a(z) 6. képernyőre
+Window to Screen 7=none,none,Ablak áthelyezése a(z) 7. képernyőre
+_k_friendly_name=KWin
+view_actual_size=Meta+0,Meta+0,Tényleges méret
+view_zoom_in=Meta+=,Meta+=,Nagyítás
+view_zoom_out=Meta+-,Meta+-,Kicsinyítés
+
+[plasma-desktop]
+Next Activity=Meta+Tab,Meta+Tab,Következő aktivitás
+Previous Activity=Meta+Shift+Tab,Meta+Shift+Tab,Előző aktivitás
+Show Dashboard=Ctrl+F12,Ctrl+F12,A pult megjelenítése
+Stop Activity=Meta+S,Meta+S,Jelenlegi aktivitás leállítása
+SystemTray-Klipper-27=,Ctrl+Alt+V,
+SystemTray-Klipper-6=Ctrl+Alt+V,Ctrl+Alt+V,
+_k_friendly_name=Plazma asztali héj
+manage activities=Meta+Q,Meta+Q,Aktivitások…

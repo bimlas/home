@@ -38,8 +38,9 @@ XTerm*shiftFonts:    false
 !         http://crunchbang.org/forums/viewtopic.php?pid=90607#p90607
 ! ============================================================================
 
-XTerm*foreground:    #99A3AD
-XTerm*background:    #333333
+XTerm*foreground:    #AAAAAA
+! XTerm*foreground:    #99A3AD
+XTerm*background:    #444444
 ! XTerm*background:    #212B35
 
 ! black

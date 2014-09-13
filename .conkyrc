@@ -15,10 +15,14 @@ update_interval 2
 # Set to zero to run forever.
 total_run_times 0
 
+# Do not use background.
+background no
+
 # Create own window instead of using desktop (required in nautilus)
 own_window             yes
+# Kde needs own_window_type to be 'normal', for xfce set it to 'desktop'.
+own_window_type        normal
 own_window_transparent yes
-own_window_type        desktop
 own_window_argb_visual yes
 own_window_argb_value  100
 own_window_colour      000000
@@ -97,8 +101,8 @@ ${top name 3} $alignr ${top pid 3} ${top cpu 3} ${top mem 3}
 ${top name 4} $alignr ${top pid 4} ${top cpu 4} ${top mem 4}
 ${top name 5} $alignr ${top pid 5} ${top cpu 5} ${top mem 5}
 
-RAM${goto 60}$memperc% ${alignr}${membar 8,60}
-SWAP${goto 60}$swapperc% ${alignr}${swapbar 8,60}
+RAM${goto 60}$mem/$memmax ${alignr}${membar 8,60}
+SWAP${goto 60}$swap/$swapmax ${alignr}${swapbar 8,60}
 
 NAME $alignr  PID    CPU    MEM
 ${top_mem name 1} $alignr ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}

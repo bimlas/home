@@ -1,0 +1,5 @@
+[Compositing]
+Backend=OpenGL
+GLCore=false
+GLLegacy=false
+GraphicsSystem=raster

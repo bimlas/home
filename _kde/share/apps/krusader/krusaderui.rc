@@ -205,15 +205,20 @@
  </ToolBar>
  <ActionProperties>
   <Action accel="" name="sysinfo"/>
-  <Action shortcut="Ctrl+Down" name="close tab"/>
-  <Action shortcut="Ctrl+Up" name="duplicate tab"/>
-  <Action shortcut="F12" name="bookmarks"/>
+  <Action shortcut="" name="media"/>
+  <Action shortcut="" name="mountman"/>
+  <Action shortcut="Alt+/" name="root"/>
   <Action shortcut="Alt+F1" name="left media"/>
   <Action shortcut="Alt+F2" name="right media"/>
-  <Action shortcut="Ctrl+D" name="compare"/>
   <Action shortcut="Alt+F7" name="find"/>
-  <Action shortcut="" name="media"/>
+  <Action shortcut="Ctrl+D" name="compare"/>
+  <Action shortcut="Ctrl+Del" name="close tab"/>
+  <Action shortcut="Ctrl+Down" name="toggle command line"/>
+  <Action shortcut="Ctrl+Left" name="previous tab"/>
   <Action shortcut="Ctrl+M" name="multirename"/>
+  <Action shortcut="Ctrl+Right" name="next tab"/>
+  <Action shortcut="Ctrl+Up" name="duplicate tab"/>
+  <Action shortcut="F12" name="bookmarks"/>
  </ActionProperties>
 </kpartgui>
 <!--
