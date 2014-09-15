@@ -6,6 +6,10 @@
 # megfelelojere fog linkelni.
 # (pl.: /mnt)
 #
+# TODO: felulirt fajlok mentese .bak kiterjesztessel (a letezo .bak-ot
+# felulirja a a 'never' miatt):
+# cp --backup=never --suffix=.bak
+#
 # ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.16 21:43 ==
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
