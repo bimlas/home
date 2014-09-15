@@ -15,27 +15,37 @@
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd $here
 
-# Az /etc/fstab-ba is tedd bele, hogy reboot utan is elerheto legyen ez a
-# konyvtar.
-
-for fajl in $(find -maxdepth 1 -not -regex '.\|./_.*\|./\.git\|./readme.adoc')
+for fajl in $(find -maxdepth 1 -not -regex '.\|./\.git\|./readme.adoc')
 do
     # Levesszuk az elejerol a ./ reszt.
     fajl=${fajl##*/}
 
-    # Ha meg nem letezik a link ...
-    if [ ! -L $HOME/$fajl ]; then
+    # Leave out.
+    if [ fajl ~= '^__' ]; then
+      continue
 
-        # De egy ugyanilyen nevu fajl mar igen, akkor azt elmentjuk '.bak'
-        # kitersjesztessel ...
-        mv $HOME/$fajl $HOME/$fajl.bak 2> /dev/null
+    # COPY the files and directories and change '_' to '.'.
+    elif [ fajl ~= '^_' ]; then
+      cp -r --backup=never --suffix=.bak --parents $fajl $HOME/${fajl/^_/.}
 
-        # ... utanna letrehozzuk a symlink-et.
-        ln -s $here/$fajl $HOME/$fajl
-    fi
+    # SYMLINK for files and folders in this directory.
+    elif
+
+      # Ha meg nem letezik a link ...
+      if [ ! -L $HOME/$fajl ]; then
+
+          # De egy ugyanilyen nevu fajl mar igen, akkor azt elmentjuk '.bak'
+          # kitersjesztessel ...
+          mv $HOME/$fajl $HOME/$fajl.bak 2> /dev/null
+
+          # ... utanna letrehozzuk a symlink-et.
+          ln -s $here/$fajl $HOME/$fajl
+      fi
 done
 
 # Symlink letrehozasa a mount-olt meghajtomhoz.
+# Az /etc/fstab-ba is tedd bele, hogy reboot utan is elerheto legyen ez a
+# konyvtar.
 if [ ! -L $HOME/cuccok ]; then
   cd ../../
   ln -si $(pwd) $HOME/cuccok
