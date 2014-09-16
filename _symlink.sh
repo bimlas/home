@@ -1,47 +1,45 @@
 #!/bin/bash
-# symlink.sh: symlink-ek letrehozasa az rc fajlokhoz
+# symlink.sh - automatically symlink/copy files in this directory to $HOME
 #
-# A $HOME konyvtarba minden fajlrol es konyvtarrol, ami nem _ karakterrel
-# kezdodik csinal egy linket ami a script aktualis konyvtaraban levo
-# megfelelojere fog linkelni.
-# (pl.: /mnt)
+# The working mechanism is based on the name. If the file/directory name in
+# this directory starts with:
+# __        the script does nothing with it
+# _         the file, or the contents of the directory will be copied (the
+#           destination will be backuped as '*.bak' if already exists)
+# otherwise a symlink will be made
 #
 # ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.16 21:43 ==
 
+tmpdir=$(mktemp --directory)
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd $here
 
-                                                               # TODO: tmpname
-tmpdir=$HOME/tmp$RANDOM
-mkdir $tmpdir
-
-for fajl in $(find -maxdepth 1 -not -regex '.\|./\.git\|./readme.adoc')
+for file in $(find -maxdepth 1 -not -regex '.\|./\.git\|./readme.adoc')
 do
-    # Levesszuk az elejerol a ./ reszt.
-    fajl=${fajl##*/}
+    # Remove ./ from the beginning of the filename.
+    file=${file##*/}
 
-                                                          # TODO: [[ x =~ y ]]
     # Leave out.
-    if ( echo $fajl | grep -E '^__' ); then
+    if [[ $file =~ ^__ ]]; then
       continue
 
-    # COPY the files and directories and change '_' to '.'.
-    elif (echo $fajl | grep -E '^_' ); then
-      tmpfile=$tmpdir/${fajl/_/.}
-      cp -r $fajl $tmpfile
+    # COPY the files and directories and change the '_' to '.'.
+    elif [[ $file =~ ^_ ]]; then
+      tmpfile=$tmpdir/${file/_/.}
+      cp -r $file $tmpfile
       cp -r --backup=simple --suffix=.bak $tmpfile $HOME
 
-    # SYMLINK for files and folders in this directory.
-    elif [ ! -L $HOME/$fajl ]; then
-      cp --symbolic-link --backup=simple --suffix=.bak $tmpfile $HOME
+    # SYMLINK for files and folders in this directory. (cp cannot create
+    # symlink for directories)
+    elif [ ! -L $HOME/$file ]; then
+      mv $HOME/$file $HOME/$file.bak 2> /dev/null
+      ln -s $here/$file $HOME/$file
     fi
 done
 
 rm -rf $tmpdir
 
-# Symlink letrehozasa a mount-olt meghajtomhoz.
-# Az /etc/fstab-ba is tedd bele, hogy reboot utan is elerheto legyen ez a
-# konyvtar.
+# Symlink for my mounted partition.
 if [ ! -L $HOME/cuccok ]; then
   cd ../../
   ln -si $(pwd) $HOME/cuccok
