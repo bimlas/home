@@ -6,42 +6,38 @@
 # megfelelojere fog linkelni.
 # (pl.: /mnt)
 #
-# TODO: felulirt fajlok mentese .bak kiterjesztessel (a letezo .bak-ot
-# felulirja a a 'never' miatt):
-# cp --backup=never --suffix=.bak
-#
 # ============ BimbaLaszlo(.co.nr|gmail.com) ============= 2014.06.16 21:43 ==
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd $here
+
+                                                               # TODO: tmpname
+tmpdir=$HOME/tmp$RANDOM
+mkdir $tmpdir
 
 for fajl in $(find -maxdepth 1 -not -regex '.\|./\.git\|./readme.adoc')
 do
     # Levesszuk az elejerol a ./ reszt.
     fajl=${fajl##*/}
 
+                                                          # TODO: [[ x =~ y ]]
     # Leave out.
-    if [ fajl ~= '^__' ]; then
+    if ( echo $fajl | grep -E '^__' ); then
       continue
 
     # COPY the files and directories and change '_' to '.'.
-    elif [ fajl ~= '^_' ]; then
-      cp -r --backup=never --suffix=.bak --parents $fajl $HOME/${fajl/^_/.}
+    elif (echo $fajl | grep -E '^_' ); then
+      tmpfile=$tmpdir/${fajl/_/.}
+      cp -r $fajl $tmpfile
+      cp -r --backup=simple --suffix=.bak $tmpfile $HOME
 
     # SYMLINK for files and folders in this directory.
-    elif
-
-      # Ha meg nem letezik a link ...
-      if [ ! -L $HOME/$fajl ]; then
-
-          # De egy ugyanilyen nevu fajl mar igen, akkor azt elmentjuk '.bak'
-          # kitersjesztessel ...
-          mv $HOME/$fajl $HOME/$fajl.bak 2> /dev/null
-
-          # ... utanna letrehozzuk a symlink-et.
-          ln -s $here/$fajl $HOME/$fajl
-      fi
+    elif [ ! -L $HOME/$fajl ]; then
+      cp --symbolic-link --backup=simple --suffix=.bak $tmpfile $HOME
+    fi
 done
+
+rm -rf $tmpdir
 
 # Symlink letrehozasa a mount-olt meghajtomhoz.
 # Az /etc/fstab-ba is tedd bele, hogy reboot utan is elerheto legyen ez a
@@ -50,5 +46,3 @@ if [ ! -L $HOME/cuccok ]; then
   cd ../../
   ln -si $(pwd) $HOME/cuccok
 fi
-
-xrdb ~/.Xresources
