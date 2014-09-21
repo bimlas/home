@@ -91,7 +91,7 @@ if [[ -e '/etc/bash_completion' ]]; then
 fi
 
 # Add ~/bin to $PATh.
-if [[ -e $HOME/bin ]] && [[ ! $PATH =~ $HOME/bin ]]; then
+if [[ ! $PATH =~ $HOME/bin ]]; then
   PATH=$HOME/bin:$PATH
 fi
 
@@ -122,8 +122,6 @@ alias pm-hibernate='echo "NEVER USE IT!"'
 alias ls='ls -Av --color --group-directories-first'
 alias grep='grep --color'
 alias du='du -b'
-
-alias asciidoctor="/media/nyolcas/app/asciidoctor/bin/asciidoctor -a allow-uri-read"
 
 # Disable .vimrc in vim.tiny.
 if [[ -e '/usr/bin/vim.tiny' ]]; then
