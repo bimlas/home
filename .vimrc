@@ -79,6 +79,9 @@ if exists( '*vundle#rc' )
   " kijelolt szoveg keresese * gombbal
   Plugin 'thinca/vim-visualstar'
 
+  " sajat text-object
+  Plugin 'kana/vim-textobj-user'
+
   " szoveg igazitasa regex kifejezesekkel
   Plugin 'godlygeek/tabular'
 
@@ -1119,7 +1122,7 @@ imap                       <F11>        <C-O><F11>
 nnoremap  <silent>         <F12>        :nohlsearch<CR>
 imap                       <F12>        <C-O><F12>
 
-"                              HEADER MAP-OK                              {{{2
+"                                 HEADER                                  {{{2
 " ____________________________________________________________________________
 
 " Eightheader - a sor foldheader-re alakitasa.
@@ -1137,6 +1140,42 @@ autocmd  FileType  help  nnoremap <buffer>  <leader>1
 
 autocmd  FileType  help  noremap <buffer>  <leader>2
 \ :call EightHeader( 78, 'left', 1, '.', '\= "\|".matchstr( s:str, ";\\@<=.*" )."\|"', '\= matchstr( s:str, ".*;\\@=" )' )<CR><CR>
+
+"                              TEXTOBJ-USER                               {{{2
+" ____________________________________________________________________________
+
+call textobj#user#plugin( 'sharp', {
+\   'sharp-i': {
+\     'pattern': '#\zs[^#]*\ze#',
+\     'select':  ['i#']
+\   },
+\   'sharp-a': {
+\     'pattern': '#[^#]*#',
+\     'select':  ['a#']
+\   }
+\ })
+
+call textobj#user#plugin( 'colon', {
+\   'colon-i': {
+\     'pattern': ':\zs[^:]*\ze:',
+\     'select':  ['i:']
+\   },
+\   'colon-a': {
+\     'pattern': ':[^:]*:',
+\     'select':  ['a:']
+\   }
+\ })
+
+call textobj#user#plugin( 'asterisk', {
+\   'asterisk-i': {
+\     'pattern': '\*\zs[^\*]*\ze\*',
+\     'select':  ['i*']
+\   },
+\   'asterisk-a': {
+\     'pattern': '\*[^\*]*\*',
+\     'select':  ['a*']
+\   }
+\ })
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
