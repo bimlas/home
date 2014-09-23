@@ -5,3 +5,4 @@ Timeout=30
 
 [FeedbackStyle]
 BusyCursor=true
+TaskbarButton=false

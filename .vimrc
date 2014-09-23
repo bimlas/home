@@ -1144,38 +1144,40 @@ autocmd  FileType  help  noremap <buffer>  <leader>2
 "                              TEXTOBJ-USER                               {{{2
 " ____________________________________________________________________________
 
-call textobj#user#plugin( 'sharp', {
-\   'sharp-i': {
-\     'pattern': '#\zs[^#]*\ze#',
-\     'select':  ['i#']
-\   },
-\   'sharp-a': {
-\     'pattern': '#[^#]*#',
-\     'select':  ['a#']
-\   }
-\ })
+if exists( '*textobj#user#plugin' )
+  call textobj#user#plugin( 'sharp', {
+  \   'sharp-i': {
+  \     'pattern': '#\zs[^#]*\ze#',
+  \     'select':  ['i#']
+  \   },
+  \   'sharp-a': {
+  \     'pattern': '#[^#]*#',
+  \     'select':  ['a#']
+  \   }
+  \ })
 
-call textobj#user#plugin( 'colon', {
-\   'colon-i': {
-\     'pattern': ':\zs[^:]*\ze:',
-\     'select':  ['i:']
-\   },
-\   'colon-a': {
-\     'pattern': ':[^:]*:',
-\     'select':  ['a:']
-\   }
-\ })
+  call textobj#user#plugin( 'colon', {
+  \   'colon-i': {
+  \     'pattern': ':\zs[^:]*\ze:',
+  \     'select':  ['i:']
+  \   },
+  \   'colon-a': {
+  \     'pattern': ':[^:]*:',
+  \     'select':  ['a:']
+  \   }
+  \ })
 
-call textobj#user#plugin( 'asterisk', {
-\   'asterisk-i': {
-\     'pattern': '\*\zs[^\*]*\ze\*',
-\     'select':  ['i*']
-\   },
-\   'asterisk-a': {
-\     'pattern': '\*[^\*]*\*',
-\     'select':  ['a*']
-\   }
-\ })
+  call textobj#user#plugin( 'asterisk', {
+  \   'asterisk-i': {
+  \     'pattern': '\*\zs[^\*]*\ze\*',
+  \     'select':  ['i*']
+  \   },
+  \   'asterisk-a': {
+  \     'pattern': '\*[^\*]*\*',
+  \     'select':  ['a*']
+  \   }
+  \ })
+endif
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
