@@ -251,7 +251,7 @@ set laststatus=2
 " statusline-t es a lightline-t.
 
 autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand( "%:p:h" )
-let stat_filedir    = '%<%{b:stat_curfiledir}'
+let stat_filedir    = '%<%{exists( "b:stat_curfiledir" ) ? b:stat_curfiledir : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
 let stat_lineinfo   = '%3v|%4l:%3p%%'
