@@ -2464,6 +2464,11 @@ wget                                                                    [wget]
                 Egyszóval: letölti a komplett oldalt / internetet.
     -S          Response header kiírása.
 
+    Webhelytérkép (sitemap) generálása:
+
+        $ wget --spider --recursive --no-verbose --output-file=wgetlog.txt http://somewebsite.com
+        $ sed -n "s@.\+ URL:\([^ ]\+\) .\+@\1@p" wgetlog.txt | sed "s@&@\&amp;@" > sedlog.txt
+
     Egy weboldal letöltése:
 
         $ wget -LkErp -nc -np 'www.akarmi.com/aloldal/'
