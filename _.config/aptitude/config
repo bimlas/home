@@ -1,8 +1,6 @@
 aptitude "";
 aptitude::Keep-Unused-Pattern "";
 aptitude::Delete-Unused-Pattern "";
-aptitude::UI "";
-aptitude::UI::InfoAreaTabs "false";
-aptitude::UI::ViewTabs "true";
+aptitude::AutoClean-After-Update "true";
 aptitude::Forget-New-On-Update "true";
 aptitude::Forget-New-On-Install "true";
