@@ -2146,9 +2146,16 @@ git
         $ git checkout master
 
     Korábbi verzió visszaállítása - SHA nélkül a HEAD-ig (FIGYELEM! Végleges a
-    visszaállás, az újabb verziók ezután nem érhetőek el):
+    visszaállás, az újabb verziók ezután valószínűleg nem érhetőek el):
 
         $ git reset --hard SHA
+
+    Egy esélyünk van: ha nem néztük meg az aktuális SHA-t visszaállítás előtt,
+    de a visszaállítás után megbántuk, amit tettünk, akkor nézzünk bele a
+    .git/logs könyvtárba: ott minden fel van jegyezve, így megpróbálkozhatunk
+    a visszaállítás előtti állapotra visszatérni:
+
+      $ git reset --hard KIGUBERÁLT_SHA
 
     Ha csak egy fájlt szeretnénk visszaállítani:
 

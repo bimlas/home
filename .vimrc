@@ -843,53 +843,6 @@ let g:Gitv_TruncateCommitSubjects = 1
 " Control key-eket ne map-oljon.
 let g:Gitv_DoNotMapCtrlKey = 1
 
-"                                    GVIM                                 {{{1
-" ============================================================================
-
-if has( 'gui_running' )
-  if has( 'win32' )
-
-    " set guifont=DejaVu_Sans_Mono:h11
-    set guifont=Consolas:h11
-
-    " Ablak teljes meretuve tetele.
-    autocmd  GUIEnter  *  simalt ~xm
-
-  else
-
-    let &guifont = 'Liberation Mono 11'
-
-  endif
-
-  " Ablak mereteinek megadasa.
-  set lines=50
-  let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
-
-  " Ne villogjon a 'visualbell'.
-  autocmd  GUIEnter  *  set vb t_vb=
-
-  " Linux-on belassul tole... (-_-')
-  " set cursorcolumn
-  " set cursorline
-
-  " Toolbar kikapcsolasa.
-  set guioptions-=T
-
-  " Menusor kikapcsolasa.
-  set guioptions-=m
-
-  " A scroll-ok csak akkor latszodjanak, ha szukseg van rajuk?
-  set guioptions-=L
-  set guioptions-=R
-  " Mindig latszodjanak?
-  set guioptions-=l
-  set guioptions-=r
-  set guioptions+=b
-
-  " A tabok neve ele irja ki a tab szamat.
-  let &guitablabel = " %N \| %t %m "
-endif
-
 "                                    MAP                                  {{{1
 " ============================================================================
 "
@@ -904,25 +857,6 @@ endif
 
 if &term =~ 'xterm'
   map [3;5~   <C-Del>
-endif
-
-"                             ABLAK ATMERETEZESE                          {{{2
-" ____________________________________________________________________________
-
-" Windows-on is lehessen iranygombokkal atmeretezni az ablakot, ne csak
-" Linux-on (az ablakkezelonek koszonhetoen).
-
-if has( 'win32' )
-  " Ablak teljes meretuve tetelenek valtogatasa: a '~x' megnyitja az ablak
-  " menujet (amit az ikonjara kattintva erhetsz el), majd az 'm'
-  " maximalizalja, az 'e' pedig elozo meretuve teszi. (allapotfuggo, hogy
-  " mikor melyik lep ervenybe) Ezek magyar Win-nel mukodnek, mas nyelveknel
-  " mas lehet a gyorsgombok neve.
-
-  let maximized = 1
-
-  nnoremap         <expr>  <M-Up>       ':simalt ~x' . (maximized ? 'e' : 'm') . ' \| let maximized = !maximized<CR>'
-  imap                     <M-Up>       <C-O><M-Up>
 endif
 
 "                          MOZGAS AZ ABLAKON BELUL                        {{{2
