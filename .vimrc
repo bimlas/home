@@ -1011,6 +1011,7 @@ noremap                    <leader>t\|  :Tabularize /\|/l0<CR>
 noremap                    <leader>t,   :Tabularize /,\zs/<CR>
 noremap                    <leader>t:   :Tabularize /:\zs/<CR>
 noremap                    <leader>tsp  :Tabularize / \+\zs/<CR>
+noremap                    <leader>ttab :Tabularize /\t\+\zs/<CR>
 noremap                    <leader>t=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
 
 " Menusor megjelenitese/elrejtese.
