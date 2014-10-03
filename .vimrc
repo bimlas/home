@@ -67,6 +67,9 @@ if exists( '*vundle#rc' )
 
   " .. ALAPVETO ...........................
 
+  " fajlok gyors keresese
+  Plugin 'kien/ctrlp.vim'
+
   " info a kurzor poziciojaraol (fold, fuggveny, osztaly)
   Plugin 'locator'
 
@@ -674,6 +677,19 @@ let g:EasyMotion_enter_jump_first = 1
 " Kis/nagybetu erzekenyseg, ha nagybetu van a beirt szovegben.
 let g:EasyMotion_smartcase = 1
 
+"                                  CTRLP                                  {{{2
+" ____________________________________________________________________________
+
+" A kereses a helyi konyvtaron belul kezdodjon, vagy a legkozelebbi .git
+" szintjen.
+let g:ctrlp_working_path_mode = 'raw'
+
+" Fuzzy helyett regex mod legyen.
+let g:ctrlp_regexp = 1
+
+" Hol keressen?
+let g:ctrlp_extensions = ['tag', 'buffertag']
+
 "                                EASYGREP                                 {{{2
 " ____________________________________________________________________________
 
@@ -998,6 +1014,9 @@ function NetrwLynxMap()
    map   <buffer>          <Left>       -
    map   <buffer>          <Right>      <CR>
 endfunction
+
+" Ctrlp kereses a tag-ok kozt a bufferen belul.
+nnoremap                   <C-T>        :CtrlPBufTag<CR>
 
 " Easymotion.
 map                        s            <Plug>(easymotion-s)

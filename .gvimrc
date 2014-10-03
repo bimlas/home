@@ -1,24 +1,17 @@
 " Ne adjon ki hangot.
 set vb t_vb=
-set visualbell
 
 if has( 'win32' )
-
-  " set guifont=DejaVu_Sans_Mono:h11
   set guifont=Consolas:h11
-
-  " Ablak teljes meretuve tetele.
-  autocmd  GUIEnter  *  simalt ~xm
-
 else
-
   let &guifont = 'Liberation Mono 11'
-
 endif
 
 " Ablak mereteinek megadasa.
-set lines=50
-let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
+" set lines=50
+" let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
+set lines=999
+set columns=999
 
 " Linux-on belassul tole... (-_-')
 " set cursorcolumn

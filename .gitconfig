@@ -7,7 +7,7 @@
 
   glog         = "log --graph --decorate --all --name-status"
   slog         = "log --graph --decorate --all --format=oneline"
-  flog         = "diff --name-only"
+  flog         = "diff --name-status"
   tree         = "ls-tree -r --name-only"
 
 [color]
