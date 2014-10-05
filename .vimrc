@@ -680,6 +680,9 @@ let g:EasyMotion_enter_jump_first = 1
 " Kis/nagybetu erzekenyseg, ha nagybetu van a beirt szovegben.
 let g:EasyMotion_smartcase = 1
 
+" A helymeghatarozashoz hasznalt betuk.
+let g:EasyMotion_keys = 'aqswdefryxcvgtbhznjumkilop'
+
 "                                  CTRLP                                  {{{2
 " ____________________________________________________________________________
 
