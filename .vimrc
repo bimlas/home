@@ -70,6 +70,9 @@ if exists( '*vundle#rc' )
   " fajlok gyors keresese
   Plugin 'kien/ctrlp.vim'
 
+  " gyors mozgas a buffer-en belul
+  Plugin 'lokaltog/vim-easymotion'
+
   " info a kurzor poziciojaraol (fold, fuggveny, osztaly)
   Plugin 'locator'
 
@@ -680,9 +683,15 @@ let g:EasyMotion_smartcase = 1
 "                                  CTRLP                                  {{{2
 " ____________________________________________________________________________
 
+" Ne torolje a cache-t, mivel sok ideig tart felterkepezni a fajlokat.
+let g:ctrlp_clear_cache_on_exit = 0
+
 " A kereses a helyi konyvtaron belul kezdodjon, vagy a legkozelebbi .git
 " szintjen.
 let g:ctrlp_working_path_mode = 'raw'
+
+" Rejtett fajlokat is listazza.
+let g:ctrlp_show_hidden = 1
 
 " Fuzzy helyett regex mod legyen.
 let g:ctrlp_regexp = 1

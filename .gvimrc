@@ -4,7 +4,7 @@ set vb t_vb=
 if has( 'win32' )
   set guifont=Consolas:h11
 else
-  let &guifont = 'Liberation Mono 11'
+  let &guifont = 'Monospace 11'
 endif
 
 " Ablak mereteinek megadasa.
