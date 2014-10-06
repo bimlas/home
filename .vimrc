@@ -703,7 +703,11 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_regexp = 1
 
 " Hol keressen?
-let g:ctrlp_extensions = ['tag']
+let g:ctrlp_extensions = ['mixed', 'tag']
+
+" A jelenlegi konyvtar tartalma mellett a leggyakrabban hasznalt fajlok (mru)
+" kozott is keressen.
+let g:ctrlp_cmd = 'CtrlPMixed'
 
 "                                EASYGREP                                 {{{2
 " ____________________________________________________________________________
