@@ -105,6 +105,9 @@ if exists( '*vundle#rc' )
   " syntax checker
   Plugin 'scrooloose/syntastic'
 
+  " tags fajl automatikus generalasa
+  Plugin 'szw/vim-tags'
+
   " .. GIT ................................
 
   " git integracio
@@ -700,7 +703,7 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_regexp = 1
 
 " Hol keressen?
-let g:ctrlp_extensions = ['tag', 'buffertag']
+let g:ctrlp_extensions = ['tag']
 
 "                                EASYGREP                                 {{{2
 " ____________________________________________________________________________
@@ -1028,7 +1031,7 @@ function NetrwLynxMap()
 endfunction
 
 " Ctrlp kereses a tag-ok kozt a bufferen belul.
-nnoremap                   <C-T>        :CtrlPBufTag<CR>
+nnoremap                   <C-T>        :CtrlPTag<CR>
 
 " Easymotion.
 map                        s            <Plug>(easymotion-s)

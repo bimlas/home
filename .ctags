@@ -1,3 +1,4 @@
+# asciidoc
 --langdef=asciidoc
 --langmap=asciidoc:.ad.adoc.asciidoc
 --regex-asciidoc=/^=[ \t]+(.*)/\1/h/
@@ -13,6 +14,8 @@
 --regex-asciidoc=/image::([^\[]+)/\1/i/
 --regex-asciidoc=/image:([^:][^\[]+)/\1/I/
 --regex-asciidoc=/include::([^\[]+)/\1/n/
+
+# vim foldmarkers in text files
 --langdef=text
 --langmap=text:.txt
 --regex-text=/^[ \t]*(.*)\{\{\{1/\1/h/
