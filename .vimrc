@@ -7,7 +7,6 @@
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
-
 " Gyorsitja a vim mukodeset.
 if v:version >= 704
   set regexpengine=1
@@ -96,24 +95,33 @@ if exists( '*vundle#rc' )
   " szovegreszek kommentelese (akar oszlopok is)
   Plugin 'scrooloose/nerdcommenter'
 
-  " a fajlban talalhato tag-ek listaja
-  Plugin 'majutsushi/tagbar'
+  " tags fajl automatikus generalasa
+  " $ install ctags
+  Plugin 'szw/vim-tags'
 
-  " python irasat nagyban megkonnyito kiegeszitesek / sugok
-  Plugin 'davidhalter/jedi-vim'
+  " a fajlban talalhato tag-ek listaja
+  " $ install ctags
+  Plugin 'majutsushi/tagbar'
 
   " syntax checker
   Plugin 'scrooloose/syntastic'
 
-  " tags fajl automatikus generalasa
-  Plugin 'szw/vim-tags'
+  " python irasat nagyban megkonnyito kiegeszitesek / sugok
+  " $ pip install jedi
+  Plugin 'davidhalter/jedi-vim'
+
+  " automatikus kodkiegeszites
+  " lua kell hozza (:version +lua)
+  Plugin 'shougo/neocomplete.vim'
 
   " .. GIT ................................
 
   " git integracio
+  " $ install git
   Plugin 'tpope/vim-fugitive'
 
   " gitk a vim-en belul
+  " $ install git
   Plugin 'gregsexton/gitv'
 
   " __ NEM GITHUB _________________________
@@ -841,6 +849,21 @@ let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
 
 " Bufferek hasznalata tab-ok helyett.
 let g:jedi#use_tabs_not_buffers = 0
+
+"                               NEOCOMPLETE                               {{{2
+" ____________________________________________________________________________
+
+" Engedelyezes.
+let g:neocomplete#enable_at_startup = 1
+
+" Smartcase.
+let g:neocomplete#enable_smart_case = 1
+
+" A kiegeszitesek mire legyenek ervenyesek, honnan vegye?
+if !exists( 'g:neocomplete#sources' )
+  let g:neocomplete#sources = {}
+endif
+let g:neocomplete#sources._ = [ 'file', 'syntax', 'omni', 'tag', 'member', 'vim' ]
 
 "                              OMNICPPCOMPLETE                            {{{2
 " ____________________________________________________________________________
