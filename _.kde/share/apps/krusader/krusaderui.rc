@@ -220,6 +220,7 @@
   <Action shortcut="Ctrl+Up" name="duplicate tab"/>
   <Action shortcut="Shift+F6" name="F9_Rename"/>
   <Action shortcut="F12" name="bookmarks"/>
+  <Action shortcut="" name="F6_Move_Queue"/>
  </ActionProperties>
 </kpartgui>
 <!--

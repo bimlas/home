@@ -901,9 +901,12 @@ endif
 
 " A softbreak-kel tordelt sorokban is lepegethetunk.
 noremap                    <Up>         g<Up>
-imap               <expr>  <Up>         pumvisible() ? "<Up>"   : "<C-O><Up>"
 noremap                    <Down>       g<Down>
-imap               <expr>  <Down>       pumvisible() ? "<Down>" : "<C-O><Down>"
+imap                       <Up>         <C-O><Up>
+imap                       <Down>       <C-O><Down>
+
+inoremap           <expr>  <C-Up>       pumvisible() ? "<Up>" : ""
+inoremap           <expr>  <C-Down>     pumvisible() ? "<Down>" : ""
 
 " Az <C-Left/Right> insert modban a legkozelebbi word helyett WORD-re ugorjon.
 inoremap                   <C-Left>     <C-O><C-Left>
@@ -926,10 +929,6 @@ cmap                       <S-Right>    <End>
 "                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
 " ____________________________________________________________________________
 
-noremap                    <C-Up>       <C-W><Up>
-imap                       <C-Up>       <C-O><C-Up>
-noremap                    <C-Down>     <C-W><Down>
-imap                       <C-Down>     <C-O><C-Down>
 nnoremap                   <Tab>        <C-W>w
 nnoremap                   <S-Tab>      <C-W>W
 noremap                    <C-Del>      <C-W>q
