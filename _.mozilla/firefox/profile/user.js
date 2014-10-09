@@ -41,6 +41,8 @@
  *       cache      cache tartalma
  *       telemetry  a telemetria ezeket az adatokat kuldi el
  *                                                                        }}}1
+ * Webfejlesztesnel hasznos:
+ * user_pref( "network.http.use-cache", false );
  */
 
 /* Mindig kerdezzen ra, hogy hova toltse le a cuccokat. */
@@ -84,9 +86,6 @@ user_pref( "privacy.clearOnShutdown.formdata"    , false );
 user_pref( "privacy.clearOnShutdown.history"     , false );
 user_pref( "privacy.clearOnShutdown.offlineApps" , false );
 user_pref( "privacy.clearOnShutdown.siteSettings", false );
-
-/* Webfejlesztesnel hasznos */
-// user_pref( "network.http.use-cache", false );
 
 /*                                TWEAK                                 {{{1
  * =========================================================================

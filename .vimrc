@@ -66,8 +66,10 @@ if exists( '*vundle#rc' )
 
   " .. ALAPVETO ...........................
 
-  " fajlok gyors keresese
-  Plugin 'kien/ctrlp.vim'
+  " fajlok/tag-ok/stb. gyors keresese
+  Plugin 'shougo/unite.vim'
+  Plugin 'shougo/neomru.vim'
+  Plugin 'tsukkee/unite-tag'
 
   " gyors mozgas a buffer-en belul
   Plugin 'lokaltog/vim-easymotion'
@@ -694,29 +696,6 @@ let g:EasyMotion_smartcase = 1
 " A helymeghatarozashoz hasznalt betuk.
 let g:EasyMotion_keys = 'aAsSdDfFqQwWeErRcCvV'
 
-"                                  CTRLP                                  {{{2
-" ____________________________________________________________________________
-
-" Ne torolje a cache-t, mivel sok ideig tart felterkepezni a fajlokat.
-let g:ctrlp_clear_cache_on_exit = 0
-
-" A kereses a helyi konyvtaron belul kezdodjon, vagy a legkozelebbi .git
-" szintjen.
-let g:ctrlp_working_path_mode = 'raw'
-
-" Rejtett fajlokat is listazza.
-let g:ctrlp_show_hidden = 1
-
-" Fuzzy helyett regex mod legyen.
-let g:ctrlp_regexp = 1
-
-" Hol keressen?
-let g:ctrlp_extensions = ['mixed', 'tag']
-
-" A jelenlegi konyvtar tartalma mellett a leggyakrabban hasznalt fajlok (mru)
-" kozott is keressen.
-let g:ctrlp_cmd = 'CtrlPMixed'
-
 "                                EASYGREP                                 {{{2
 " ____________________________________________________________________________
 
@@ -1057,8 +1036,14 @@ function NetrwLynxMap()
    map   <buffer>          <Right>      <CR>
 endfunction
 
-" Ctrlp kereses a tag-ok kozt a bufferen belul.
-nnoremap                   <C-T>        :CtrlPTag<CR>
+" Kereses a project fajlok kozott.
+nnoremap                   <C-P>        :UniteWithProjectDir -start-insert file_rec<CR>
+
+" Kereses az mru listaban
+nnoremap                   <C-M>        :Unite -start-insert file_mru directory_mru<CR>
+
+" Kereses a tag-ok kozott.
+nnoremap                   <C-T>        :Unite -auto-preview -start-insert tag<CR>
 
 " Easymotion.
 map                        s            <Plug>(easymotion-s)
