@@ -66,7 +66,7 @@ if exists( '*vundle#rc' )
 
   " .. ALAPVETO ...........................
 
-  " fajlok/tag-ok/stb. gyors keresese
+  " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
   Plugin 'shougo/unite.vim'
   Plugin 'shougo/neomru.vim'
   Plugin 'tsukkee/unite-tag'
@@ -311,7 +311,7 @@ let g:lightline.inactive = {
 
 let g:lightline.component = {
 \     'filename'      : stat_filename,
-\     'fullfilename'  : '%F',
+\     'fullfilename'  : '%w%F%r%m',
 \     'filedir'       : stat_filedir,
 \     'fileformat'    : stat_fileformat,
 \     'mixed'         : '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed : ""}',
@@ -905,18 +905,15 @@ noremap                    <Down>       g<Down>
 imap                       <Up>         <C-O><Up>
 imap                       <Down>       <C-O><Down>
 
-inoremap           <expr>  <C-Up>       pumvisible() ? "<Up>" : ""
-inoremap           <expr>  <C-Down>     pumvisible() ? "<Down>" : ""
-
 " Az <C-Left/Right> insert modban a legkozelebbi word helyett WORD-re ugorjon.
 inoremap                   <C-Left>     <C-O><C-Left>
 inoremap                   <C-Right>    <C-O><C-Right>
 
 " PageUp/Down, ami a legelso/utolso sorra is elvisz.
 noremap                    <S-Up>       <C-U>
-imap               <expr>  <S-Up>       pumvisible() ? "<PageUp>"   : "<C-O><S-Up>"
+imap               <expr>  <S-Up>       pumvisible() ? "<C-P>"   : "<C-O><S-Up>"
 noremap                    <S-Down>     <C-D>
-imap               <expr>  <S-Down>     pumvisible() ? "<PageDown>" : "<C-O><S-Down>"
+imap               <expr>  <S-Down>     pumvisible() ? "<C-N>" : "<C-O><S-Down>"
 
 " SmartHome/End.
 noremap            <expr>  <S-Left>     virtcol( '.' ) == match( getline( '.' ), '\S' ) + 1 ? 'g0' : 'g^'
@@ -931,6 +928,10 @@ cmap                       <S-Right>    <End>
 
 nnoremap                   <Tab>        <C-W>w
 nnoremap                   <S-Tab>      <C-W>W
+noremap                    <C-Up>       <C-W><Up>
+noremap                    <C-Down>     <C-W><Down>
+imap                       <C-Up>       <C-O><C-Up>
+imap                       <C-Down>     <C-O><C-Down>
 noremap                    <C-Del>      <C-W>q
 imap                       <C-Del>      <C-O><C-Del>
 
@@ -1003,9 +1004,6 @@ inoremap                   <C-Space>    <C-X><C-O>
 " Terminal-ban a <Nul> a <C-Space> megfeleloje.
 inoremap                   <Nul>        <C-X><C-O>
 
-" Minden modositas visszavonasa az utolso mentesig.
-nnoremap                   U            :earlier 1f<CR>
-
 " A torles ne masolja a vagolapra a szoveget.
 noremap                    s            "_s
 noremap                    S            "_S
@@ -1039,7 +1037,7 @@ endfunction
 nnoremap                   <C-P>        :UniteWithProjectDir -start-insert file_rec<CR>
 
 " Kereses az mru listaban
-nnoremap                   <C-M>        :Unite -start-insert file_mru directory_mru<CR>
+nnoremap                   <C-H>        :Unite -start-insert file_mru directory_mru<CR>
 
 " Kereses a tag-ok kozott.
 nnoremap                   <C-T>        :Unite -auto-preview -start-insert tag<CR>
@@ -1124,40 +1122,38 @@ autocmd  FileType  help  noremap <buffer>  <leader>2
 "                              TEXTOBJ-USER                               {{{2
 " ____________________________________________________________________________
 
-if exists( '*textobj#user#plugin' )
-  call textobj#user#plugin( 'sharp', {
-  \   'sharp-i': {
-  \     'pattern': '#\zs[^#]*\ze#',
-  \     'select':  ['i#']
-  \   },
-  \   'sharp-a': {
-  \     'pattern': '#[^#]*#',
-  \     'select':  ['a#']
-  \   }
-  \ })
+call textobj#user#plugin( 'sharp', {
+\   'sharp-i': {
+\     'pattern': '#\zs[^#]*\ze#',
+\     'select':  ['i#']
+\   },
+\   'sharp-a': {
+\     'pattern': '#[^#]*#',
+\     'select':  ['a#']
+\   }
+\ })
 
-  call textobj#user#plugin( 'colon', {
-  \   'colon-i': {
-  \     'pattern': ':\zs[^:]*\ze:',
-  \     'select':  ['i:']
-  \   },
-  \   'colon-a': {
-  \     'pattern': ':[^:]*:',
-  \     'select':  ['a:']
-  \   }
-  \ })
+call textobj#user#plugin( 'colon', {
+\   'colon-i': {
+\     'pattern': ':\zs[^:]*\ze:',
+\     'select':  ['i:']
+\   },
+\   'colon-a': {
+\     'pattern': ':[^:]*:',
+\     'select':  ['a:']
+\   }
+\ })
 
-  call textobj#user#plugin( 'asterisk', {
-  \   'asterisk-i': {
-  \     'pattern': '\*\zs[^\*]*\ze\*',
-  \     'select':  ['i*']
-  \   },
-  \   'asterisk-a': {
-  \     'pattern': '\*[^\*]*\*',
-  \     'select':  ['a*']
-  \   }
-  \ })
-endif
+call textobj#user#plugin( 'asterisk', {
+\   'asterisk-i': {
+\     'pattern': '\*\zs[^\*]*\ze\*',
+\     'select':  ['i*']
+\   },
+\   'asterisk-a': {
+\     'pattern': '\*[^\*]*\*',
+\     'select':  ['a*']
+\   }
+\ })
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
