@@ -68,7 +68,6 @@ if exists( '*vundle#rc' )
 
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
   Plugin 'shougo/unite.vim'
-  Plugin 'shougo/neomru.vim'
   Plugin 'tsukkee/unite-tag'
 
   " gyors mozgas a buffer-en belul
@@ -838,23 +837,20 @@ let g:neocomplete#enable_at_startup = 1
 " Smartcase.
 let g:neocomplete#enable_smart_case = 1
 
+" Nem szeretnek fuzzy completion-t.
+let g:neocomplete#enable_fuzzy_completion = 0
+
+" Csak iras kozben jelenjen meg, mozgas kozben ne.
+let g:neocomplete#enable_insert_char_pre = 1
+
+" Automatikusan valassza ki az elso lehetoseget.
+let g:neocomplete#enable_auto_select = 1
+
 " A kiegeszitesek mire legyenek ervenyesek, honnan vegye?
 if !exists( 'g:neocomplete#sources' )
   let g:neocomplete#sources = {}
 endif
 let g:neocomplete#sources._ = [ 'file', 'syntax', 'omni', 'tag', 'member', 'vim' ]
-
-"                              OMNICPPCOMPLETE                            {{{2
-" ____________________________________________________________________________
-
-" Fuggveny prototipusanak mutatasa.
-let OmniCpp_ShowPrototypeInAbbr = 1
-
-" Ne egeszitse ki automatikusan a tagot a '.', '->' es '::' utan, csak ha
-" <C-X><C-O>-t nyomunk.
-" let OmniCpp_MayCompleteDot   = 0
-" let OmniCpp_MayCompleteArrow = 0
-" let OmniCpp_MayCompleteScope = 0
 
 "                                   CSCOPE                                {{{2
 " ____________________________________________________________________________
@@ -902,8 +898,16 @@ endif
 " A softbreak-kel tordelt sorokban is lepegethetunk.
 noremap                    <Up>         g<Up>
 noremap                    <Down>       g<Down>
-imap                       <Up>         <C-O><Up>
-imap                       <Down>       <C-O><Down>
+imap               <expr>  <Up>         pumvisible() ? "<C-P>" : "<C-O><Up>"
+imap               <expr>  <Down>       pumvisible() ? "<C-N>" : "<C-O><Down>"
+
+" Completion menu eseten az enter csak valassza ki az elemet, az esc meg
+" allitsa vissza az eredeti szoveget. (terminalban az utobbi elcseszi a
+" nyilakkal valo mozgast)
+inoremap           <expr>  <CR>         pumvisible() ? "<C-Y>" : "<CR>"
+if has( 'gui_running' )
+  inoremap         <expr>  <Esc>        pumvisible() ? "<C-E>" : "<Esc>"
+endif
 
 " Az <C-Left/Right> insert modban a legkozelebbi word helyett WORD-re ugorjon.
 inoremap                   <C-Left>     <C-O><C-Left>
@@ -911,9 +915,9 @@ inoremap                   <C-Right>    <C-O><C-Right>
 
 " PageUp/Down, ami a legelso/utolso sorra is elvisz.
 noremap                    <S-Up>       <C-U>
-imap               <expr>  <S-Up>       pumvisible() ? "<C-P>"   : "<C-O><S-Up>"
+imap                       <S-Up>       <C-O><S-Up>
 noremap                    <S-Down>     <C-D>
-imap               <expr>  <S-Down>     pumvisible() ? "<C-N>" : "<C-O><S-Down>"
+imap                       <S-Down>     <C-O><S-Down>
 
 " SmartHome/End.
 noremap            <expr>  <S-Left>     virtcol( '.' ) == match( getline( '.' ), '\S' ) + 1 ? 'g0' : 'g^'
@@ -999,8 +1003,8 @@ nnoremap                   z-           zM
 map                        <S-kPlus>    z+
 map                        <S-kMinus>   z-
 
-" Gyorsabb omni completion.
-inoremap                   <C-Space>    <C-X><C-O>
+" Completion.
+inoremap           <expr>  <C-Space>    (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
 " Terminal-ban a <Nul> a <C-Space> megfeleloje.
 inoremap                   <Nul>        <C-X><C-O>
 
@@ -1036,11 +1040,21 @@ endfunction
 " Kereses a project fajlok kozott.
 nnoremap                   <C-P>        :UniteWithProjectDir -start-insert file_rec<CR>
 
-" Kereses az mru listaban
-nnoremap                   <C-H>        :Unite -start-insert file_mru directory_mru<CR>
+" Kereses az konyjelzok kozott.
+nnoremap                   <C-B>        :Unite -start-insert bookmark<CR>
 
 " Kereses a tag-ok kozott.
-nnoremap                   <C-T>        :Unite -auto-preview -start-insert tag<CR>
+nnoremap                   <C-T>        :Unite -start-insert tag<CR>
+
+autocmd  FileType  unite  call UniteMaps()
+function UniteMaps()
+  " <Esc> mindig lepjen ki a unite bufferbol.
+  " Terminalban a nyilak is az <Esc>-et hasznaljak, ezert nem mukodnek.
+  if has( 'gui_running' )
+    map    <buffer>        <Esc>        <Plug>(unite_exit)
+    imap   <buffer>        <Esc>        <Plug>(unite_exit)
+  endif
+endfunction
 
 " Easymotion.
 map                        s            <Plug>(easymotion-s)
