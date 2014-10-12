@@ -1,0 +1,5 @@
+#!/bin/sh
+# ~/.xsessionrc - xorg settings
+
+# Turn off speaker.
+xset b off

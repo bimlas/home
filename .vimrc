@@ -96,10 +96,6 @@ if exists( '*vundle#rc' )
   " szovegreszek kommentelese (akar oszlopok is)
   Plugin 'scrooloose/nerdcommenter'
 
-  " tags fajl automatikus generalasa
-  " $ install ctags
-  Plugin 'szw/vim-tags'
-
   " a fajlban talalhato tag-ek listaja
   " $ install ctags
   Plugin 'majutsushi/tagbar'
@@ -787,19 +783,6 @@ let g:tagbar_type_text =
 \   'kinds'     : [ 'h:table of contents' ]
 \ }
 
-"                               NERDCOMMENTER                             {{{2
-" ____________________________________________________________________________
-
-" Rakjon szokozoket a kommenterek kore.
-let NERDSpaceDelims = 1
-
-" :help NERDBlockComIgnoreEmpty
-let NERDBlockComIgnoreEmpty = 0
-
-" Az alapertelmezett map-ok kikapcsolasa. (mivel keves kommentelo parancsot
-" hasznalok es azokat sajat map-okra allitottam, igy teljesen feleslegesek)
-let NERDCreateDefaultMappings = 0
-
 "                                 SYNTASTIC                               {{{2
 " ____________________________________________________________________________
 
@@ -822,11 +805,18 @@ let g:syntastic_python_pylint_args = '-d line-too-long -d bad-indentation -d bad
 " Stilushibak figyelmen kivul hagyasa.
 let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
 
-"                                JEDI-VIM                                 {{{2
+"                               NERDCOMMENTER                             {{{2
 " ____________________________________________________________________________
 
-" Bufferek hasznalata tab-ok helyett.
-let g:jedi#use_tabs_not_buffers = 0
+" Rakjon szokozoket a kommenterek kore.
+let NERDSpaceDelims = 1
+
+" :help NERDBlockComIgnoreEmpty
+let NERDBlockComIgnoreEmpty = 0
+
+" Az alapertelmezett map-ok kikapcsolasa. (mivel keves kommentelo parancsot
+" hasznalok es azokat sajat map-okra allitottam, igy teljesen feleslegesek)
+let NERDCreateDefaultMappings = 0
 
 "                               NEOCOMPLETE                               {{{2
 " ____________________________________________________________________________
@@ -850,7 +840,13 @@ let g:neocomplete#enable_auto_select = 1
 if !exists( 'g:neocomplete#sources' )
   let g:neocomplete#sources = {}
 endif
-let g:neocomplete#sources._ = [ 'file', 'syntax', 'omni', 'tag', 'member', 'vim' ]
+let g:neocomplete#sources._ = [ 'file', 'syntax', 'omni', 'tag', 'vim' ]
+
+"                                JEDI-VIM                                 {{{2
+" ____________________________________________________________________________
+
+" Bufferek hasznalata tab-ok helyett.
+let g:jedi#use_tabs_not_buffers = 0
 
 "                                   CSCOPE                                {{{2
 " ____________________________________________________________________________
@@ -1187,9 +1183,9 @@ autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileformat=dos 
 " :help fo-table. Azert autocmd, mert minden fajltipus felulirja a
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
 " lenne.
-autocmd  FileType  *                         setlocal formatoptions+=co formatoptions-=l
+autocmd  FileType  *    setlocal formatoptions+=co formatoptions-=l
 if v:version >= 704
-  autocmd  FileType  *                       setlocal formatoptions+=j
+  autocmd  FileType  *  setlocal formatoptions+=j
 endif
 
 " Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
