@@ -1033,8 +1033,9 @@ function NetrwLynxMap()
    map   <buffer>          <Right>      <CR>
 endfunction
 
-" Kereses a project fajlok kozott.
-nnoremap                   <C-P>        :UniteWithProjectDir -start-insert file_rec<CR>
+" Kereses a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
+" konyvtarban.
+nnoremap                   <C-P>        :UniteWithProjectDir -start-insert file<CR>
 
 " Kereses az konyjelzok kozott.
 nnoremap                   <C-B>        :Unite -start-insert bookmark<CR>
