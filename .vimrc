@@ -1034,14 +1034,17 @@ function NetrwLynxMap()
 endfunction
 
 " Kereses a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
-" konyvtarban.
-nnoremap                   <C-P>        :UniteWithProjectDir -start-insert file<CR>
+" konyvtarban. (rekurziv)
+nnoremap                   <Leader>up   :UniteWithProjectDir -start-insert file_rec<CR>
+
+" Kereses csak a jelenlegi konyvtarban
+nnoremap                   <Leader>uf   :Unite -start-insert file<CR>
 
 " Kereses az konyjelzok kozott.
-nnoremap                   <C-B>        :Unite -start-insert bookmark<CR>
+nnoremap                   <Leader>ub   :Unite -start-insert bookmark<CR>
 
 " Kereses a tag-ok kozott.
-nnoremap                   <C-T>        :Unite -start-insert tag<CR>
+nnoremap                   <Leader>ut   :Unite -start-insert tag<CR>
 
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
@@ -1061,12 +1064,12 @@ map                        <C-D>        <Plug>NERDCommenterComment
 map                        <C-F>        <Plug>NERDCommenterUncomment
 
 " Tabular.
-noremap                    <leader>t\|  :Tabularize /\|/l0<CR>
-noremap                    <leader>t,   :Tabularize /,\zs/<CR>
-noremap                    <leader>t:   :Tabularize /:\zs/<CR>
-noremap                    <leader>tsp  :Tabularize / \+\zs/<CR>
-noremap                    <leader>ttab :Tabularize /\t\+\zs/<CR>
-noremap                    <leader>t=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
+noremap                    <Leader>t\|  :Tabularize /\|/l0<CR>
+noremap                    <Leader>t,   :Tabularize /,\zs/<CR>
+noremap                    <Leader>t:   :Tabularize /:\zs/<CR>
+noremap                    <Leader>tsp  :Tabularize / \+\zs/<CR>
+noremap                    <Leader>ttab :Tabularize /\t\+\zs/<CR>
+noremap                    <Leader>t=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
 
 " Menusor megjelenitese/elrejtese.
 nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
@@ -1115,19 +1118,19 @@ imap                       <F12>        <C-O><F12>
 " ____________________________________________________________________________
 
 " Eightheader - a sor foldheader-re alakitasa.
-nnoremap                   <leader>0    :silent call eight#contact#call()<CR><CR>
-nnoremap                   <leader>1    :silent call EightHeader( &tw, 'center', 0, '=', ' {' . '{{1', '' )<CR><CR>
-nnoremap                   <leader>2    :silent call EightHeader( &tw, 'center', 0, '_', ' {' . '{{2', '' )<CR><CR>
-nnoremap                   <leader>3    :silent call EightHeader( &tw, 'center', 0, '.', '', '' )<CR><CR>
-nnoremap                   <leader>9    :silent call EightHeader( 0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "' )<CR><CR>
+nnoremap                   <Leader>0    :silent call eight#contact#call()<CR><CR>
+nnoremap                   <Leader>1    :silent call EightHeader( &tw, 'center', 0, '=', ' {' . '{{1', '' )<CR><CR>
+nnoremap                   <Leader>2    :silent call EightHeader( &tw, 'center', 0, '_', ' {' . '{{2', '' )<CR><CR>
+nnoremap                   <Leader>3    :silent call EightHeader( &tw, 'center', 0, '.', '', '' )<CR><CR>
+nnoremap                   <Leader>9    :silent call EightHeader( 0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "' )<CR><CR>
 
 "                                     HELP
 " ............................................................................
 
-autocmd  FileType  help  nnoremap <buffer>  <leader>1
+autocmd  FileType  help  nnoremap <buffer>  <Leader>1
 \ :call EightHeader( 78, 'left', 1, ' ', '\= "*".matchstr( s:str, ";\\@<=.*" )."*"', '\= matchstr( s:str, ".*;\\@=" )' )<CR><CR>
 
-autocmd  FileType  help  noremap <buffer>  <leader>2
+autocmd  FileType  help  noremap <buffer>  <Leader>2
 \ :call EightHeader( 78, 'left', 1, '.', '\= "\|".matchstr( s:str, ";\\@<=.*" )."\|"', '\= matchstr( s:str, ".*;\\@=" )' )<CR><CR>
 
 "                              TEXTOBJ-USER                               {{{2
