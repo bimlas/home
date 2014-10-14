@@ -834,7 +834,7 @@ let g:neocomplete#enable_fuzzy_completion = 0
 let g:neocomplete#enable_insert_char_pre = 1
 
 " Automatikusan valassza ki az elso lehetoseget.
-let g:neocomplete#enable_auto_select = 1
+" let g:neocomplete#enable_auto_select = 1
 
 " A kiegeszitesek mire legyenek ervenyesek, honnan vegye?
 if !exists( 'g:neocomplete#sources' )
@@ -1034,11 +1034,11 @@ function NetrwLynxMap()
 endfunction
 
 " Kereses a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
-" konyvtarban. (rekurziv)
-nnoremap                   <Leader>up   :UniteWithProjectDir -start-insert file_rec<CR>
+" konyvtarban rekurzivan.
+nnoremap                   <Leader>ur   :UniteWithProjectDir -start-insert file_rec<CR>
 
-" Kereses csak a jelenlegi konyvtarban
-nnoremap                   <Leader>uf   :Unite -start-insert file<CR>
+" ... nem rekurzivan.
+nnoremap                   <Leader>uf   :UniteWithProjectDir -start-insert file<CR>
 
 " Kereses az konyjelzok kozott.
 nnoremap                   <Leader>ub   :Unite -start-insert bookmark<CR>
@@ -1197,6 +1197,9 @@ endif
 autocmd  BufWritePre  *  call eight#writepre#call()
 
 " __ COMPLETION _________________________
+
+" Tags fajl ujrageneralasa, ha a fajl egy git repository-ban van.
+autocmd  BufWritePost  *  call Tags()
 
 " Fajltipus alapjan allitsa be a user-completion-t (<C-X><C-U>), hogy ha az
 " omnifunc nem is mukodik, azert legyen valami kiegeszites.

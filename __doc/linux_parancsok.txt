@@ -3019,6 +3019,13 @@ ffmpeg
     -t HH:MM:SS             Csak ilyen hosszú rész kerüljön a kimenetre a
                             bemeneti csatornából.
 
+    Képek átméretezése négyzet alakúvá, keret hozzáadása (a +1 nélkül néha
+    hibát dob):
+
+        $ avconv -i kep.jpg -vf
+          "pad=width=max(iw\,ih)+1:height=max(iw\,ih)+1:x=(ow-iw)/2:y=(oh-ih)/2:color=white"
+          kep_kesz.jpg
+
     Részlet kivágása - elcsúszhat a hang:
 
         $ avconv -ss 00:00:00 -i 'video.avi' -t 00:30:00 'reszlet.avi'
