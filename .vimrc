@@ -1060,8 +1060,8 @@ endfunction
 map                        s            <Plug>(easymotion-s)
 
 " Nerdcommenter.
-map                        <C-D>        <Plug>NERDCommenterComment
-map                        <C-F>        <Plug>NERDCommenterUncomment
+map                        <C-F>        <Plug>NERDCommenterComment
+map                        <C-G>        <Plug>NERDCommenterUncomment
 
 " Tabular.
 noremap                    <Leader>t\|  :Tabularize /\|/l0<CR>
