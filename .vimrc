@@ -441,7 +441,7 @@ set numberwidth=6
 " Sorok szamozasa, kiveve ha TTY, vagy Win-es parancssor alatt hasznaljuk es
 " a szovegterulet nem elegendoen szeles.
 if HighTerm()
-  set number
+  set number relativenumber
 endif
 
 " Minden valtoztatasrol tajekoztasson.
@@ -706,6 +706,12 @@ let EasyGrepHidden = 1
 " Soronkent tobb egyezest is talalhat. (mint pl.: :s///g)
 let EasyGrepEveryMatch = 1
 
+" A fajl konyvtaraban keressen, ne a cwd-ben.
+let EasyGrepSearchCurrentBufferDir = 1
+
+" Ne nyisson uj tab-okat.
+let EasyGrepReplaceWindowMode = 2
+
 "                                   NETRW                                 {{{2
 " ____________________________________________________________________________
 
@@ -885,17 +891,15 @@ let g:Gitv_DoNotMapCtrlKey = 1
 " ____________________________________________________________________________
 
 if &term =~ 'xterm'
-  map [3;5~   <C-Del>
+  map                      [3;5~      <C-Del>
 endif
 
 "                          MOZGAS AZ ABLAKON BELUL                        {{{2
 " ____________________________________________________________________________
 
-" A softbreak-kel tordelt sorokban is lepegethetunk.
-noremap                    <Up>         g<Up>
-noremap                    <Down>       g<Down>
-imap               <expr>  <Up>         pumvisible() ? "<C-P>" : "<C-O><Up>"
-imap               <expr>  <Down>       pumvisible() ? "<C-N>" : "<C-O><Down>"
+" Ugras a sor elejere/vegere.
+noremap            <expr>  H            virtcol( '.' ) == match( getline( '.' ), '\S' ) + 1 ? 'g0' : 'g^'
+noremap            <expr>  L            virtcol( '.' ) == virtcol( '$' ) - 1 ? 'g_' : 'g$'
 
 " Completion menu eseten az enter csak valassza ki az elemet, az esc meg
 " allitsa vissza az eredeti szoveget. (terminalban az utobbi elcseszi a
@@ -905,55 +909,23 @@ if has( 'gui_running' )
   inoremap         <expr>  <Esc>        pumvisible() ? "<C-E>" : "<Esc>"
 endif
 
-" Az <C-Left/Right> insert modban a legkozelebbi word helyett WORD-re ugorjon.
-inoremap                   <C-Left>     <C-O><C-Left>
-inoremap                   <C-Right>    <C-O><C-Right>
-
-" PageUp/Down, ami a legelso/utolso sorra is elvisz.
-noremap                    <S-Up>       <C-U>
-imap                       <S-Up>       <C-O><S-Up>
-noremap                    <S-Down>     <C-D>
-imap                       <S-Down>     <C-O><S-Down>
-
-" SmartHome/End.
-noremap            <expr>  <S-Left>     virtcol( '.' ) == match( getline( '.' ), '\S' ) + 1 ? 'g0' : 'g^'
-imap                       <S-Left>     <C-O><S-Left>
-noremap            <expr>  <S-Right>    virtcol( '.' ) == virtcol( '$' ) - 1 ? 'g_' : 'g$'
-imap                       <S-Right>    <C-O><S-Right>
-cmap                       <S-Left>     <Home>
-cmap                       <S-Right>    <End>
-
 "                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
 " ____________________________________________________________________________
 
+nnoremap                   <C-H>        <C-W>q
+nnoremap                   <C-J>        <C-W>j
+nnoremap                   <C-K>        <C-W>k
 nnoremap                   <Tab>        <C-W>w
 nnoremap                   <S-Tab>      <C-W>W
-noremap                    <C-Up>       <C-W><Up>
-noremap                    <C-Down>     <C-W><Down>
-imap                       <C-Up>       <C-O><C-Up>
-imap                       <C-Down>     <C-O><C-Down>
-noremap                    <C-Del>      <C-W>q
-imap                       <C-Del>      <C-O><C-Del>
-
-"                          MOZGAS A BUFFEREK KOZOTT                       {{{2
-" ____________________________________________________________________________
-
-noremap   <silent>         <C-S-Right>  :bn<CR>
-imap                       <C-S-Right>  <C-O><C-S-Right>
-noremap   <silent>         <C-S-Left>   :bp<CR>
-imap                       <C-S-Left>   <C-O><C-S-Left>
-
-" Az alternativ buferre ugras.
-nnoremap                   <C-S-Down>   <C-^>
-nnoremap                   B            <C-^>
 
 "                                 VEGYES                                  {{{2
 " ____________________________________________________________________________
 
-" Numpad atiranyitasa az eredeti karakterekre.
-map                        <kPlus>      +
-map                        <kMinus>     -
-map                        <kDivide>    /
+" Insert modba lepes bal kezhez kozel.
+nnoremap                   a            i
+noremap                    A            I
+nnoremap                   y            a
+noremap                    Y            A
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
@@ -962,24 +934,11 @@ nnoremap                   Q            <Nop>
 " Az InsertLeave esemeny nem tortenik meg a <C-C> hatasara.
 noremap                    <C-C>        <Esc>
 
-" Gyorsabb hozzaferes a <C-O>-hoz.
-inoremap                   <C-k0>       <C-O>
-inoremap                   <C-CR>       <C-O>
-
-" Insert modba lepes bal kezhez kozel.
-nnoremap                   a            i
-noremap                    A            I
-nnoremap                   y            a
-noremap                    Y            A
-
 " Ha egy help dokumentumban nyomunk <Space>-t, akkor a kurzor alatti linket
 " nyissa meg, ha forraskodban egy azonositon (fuggveny, vagy valtozo neven)
 " nyomtuk meg, akkor a fuggveny definiciojahoz ugrik (tags, vagy cscope fajl
 " szukseges hozza).
 noremap                    <Space>      <C-]>
-
-" A backspace normal modban visszaugrik az elozo 'oldalra'. (:help CTRL-T)
-nnoremap                   <BS>         <C-T>
 
 " Azon fuggvenyek listaja, amelyek meghivjak a kurzor alatti fuggvenyt.
 " noremap                    ,            :scscope find c <C-R>=expand( '<cword>' )<CR><CR>
@@ -991,18 +950,10 @@ nnoremap                   <BS>         <C-T>
 noremap                    ;            ,
 noremap                    ,            ;
 
-" Fold-ok kinyitasa / becsukasa.
-nnoremap                   +            zo
-nnoremap                   -            zc
-nnoremap                   z+           zR
-nnoremap                   z-           zM
-map                        <S-kPlus>    z+
-map                        <S-kMinus>   z-
-
 " Completion.
 inoremap           <expr>  <C-Space>    (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
 " Terminal-ban a <Nul> a <C-Space> megfeleloje.
-inoremap                   <Nul>        <C-X><C-O>
+inoremap           <expr>  <Nul>        (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
 
 " A torles ne masolja a vagolapra a szoveget.
 noremap                    s            "_s
@@ -1024,7 +975,6 @@ endif
 
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>          K            :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
-noremap  <silent>          L            :Szotar <C-R>=expand( '<cword>' )<CR><CR>
 
 " Lynx-szeru mozgas netrw-ben.
 autocmd  FileType  netrw  call NetrwLynxMap()
@@ -1040,10 +990,12 @@ nnoremap                   <Leader>ur   :UniteWithProjectDir -start-insert file_
 " ... nem rekurzivan.
 nnoremap                   <Leader>uf   :UniteWithProjectDir -start-insert file<CR>
 
-" Kereses az konyjelzok kozott.
-nnoremap                   <Leader>ub   :Unite -start-insert bookmark<CR>
+" ... a bufferek kozott.
+nnoremap                   <Leader>ub   :Unite -start-insert buffer<CR>
 
-" Kereses a tag-ok kozott.
+" ... a konyjelzok kozott.
+nnoremap                   <Leader>uB   :Unite -start-insert bookmark<CR>
+" ... a tag-ok kozott.
 nnoremap                   <Leader>ut   :Unite -start-insert tag<CR>
 
 autocmd  FileType  unite  call UniteMaps()
@@ -1226,3 +1178,16 @@ autocmd  QuickFixCmdPost  *  botright cwindow
 " A netrw viszont nem foglalkozik vele, pl. mindig a megnyitott url-hez
 " viszonyitva kell megadni az uj fajlok nevet.
 " autocmd  BufEnter  *://*  set noautochdir
+
+" }}}1
+
+" Hard mode, amig megtanulatom uralni a vim-et.
+noremap  <Up>        <Nop>
+noremap  <Down>      <Nop>
+noremap  <Left>      <Nop>
+noremap  <Right>     <Nop>
+noremap  <Down>      <Nop>
+noremap  <PageUp>    <Nop>
+noremap  <PageDown>  <Nop>
+noremap  <BS>        <Nop>
+noremap  <CR>        <Nop>
