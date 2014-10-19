@@ -61,9 +61,6 @@ user_pref( "general.autoScroll", false );
 /* Finom gorgetes kikapcsolasa. */
 user_pref( "general.smoothScroll", false );
 
-/* Incremental search. */
-user_pref( "accessibility.typeaheadfind", true );
-
 /* Nyilakkal valo navigalas. */
 // user_pref( "accessibility.browsewithcaret", true );
 
@@ -91,11 +88,14 @@ user_pref( "privacy.clearOnShutdown.siteSettings", false );
  * =========================================================================
  */
 
-// user_pref( "network.http.max-connections"                      , 256  );
-// user_pref( "network.http.max-connections-per-server"           , 16   );
-// user_pref( "network.http.max-persistent-connections-per-server", 16   );
-// user_pref( "network.http.max-persistent-connections-per-proxy" , 32   );
-// user_pref( "network.http.pipelining"                           , true );
-// user_pref( "network.http.pipelining.ssl"                       , true );
-// user_pref( "network.http.proxy.pipelining"                     , true );
-// user_pref( "network.http.pipelining.maxrequests"               , 16   );
+user_pref( "network.http.max-persistent-connections-per-server", 16   );
+user_pref( "network.http.max-persistent-connections-per-proxy" , 32   );
+user_pref( "network.http.pipelining"                           , true );
+user_pref( "network.http.pipelining.ssl"                       , true );
+user_pref( "content.interrupt.parsing"                         , true );
+user_pref( "content.notify.backoffcount"                       , 5    );
+user_pref( "nglayout.initialpaint.delay"                       , 0    );
+
+user_pref( "content.notify.interval"                       , 50000 );
+user_pref( "content.notify.ontimer"                       , true );
+user_pref( "content.switch.threshold"                       , 250000 );

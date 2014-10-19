@@ -1146,6 +1146,17 @@ find                                                               [findutils]
         /home/user/.toprc
         # ...
 
+    Ha a * operátort is használni akarjuk, akkor mindenképp fogjuk idézőjelek
+    közé a kifejezést, mert ha pl. a '*.bak' fájlokat keressük az
+    alkönyvtárakban a
+
+        $ find -name *.bak
+
+    utasítással, viszont a jelenlegi könyvtárban van egy 'valami.bak', akkor a
+    parancsértelmező így fogja értelmezni a fenti utasítást:
+
+        $ find -name valami.bak
+
     __ KAPCSOLÓK __________________________
 
     -name REGEX     Regex keresése a fájlnevekben.

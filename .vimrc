@@ -14,15 +14,13 @@ endif
 
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
-" kapcsolva. (:DoMatchParen kapcsolja be)
-" autocmd VimEnter * if exists( ':NoMatchParen' ) | execute 'NoMatchParen' | endif
+" kapcsolva. (:DoMatchParen kapcsolja be) autocmd VimEnter * if exists( ':NoMatchParen' ) | execute 'NoMatchParen' | endif
 " Ezek sem segitenek:
 " let g:matchparen_timeout = 5
 " let g:matchparen_insert_timeout = 5
 
 " "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
 " vissza.
-
 function HighTerm()
   return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
 endfunction
@@ -91,6 +89,8 @@ if exists( '*vundle#rc' )
   " szoveg igazitasa regex kifejezesekkel
   Plugin 'godlygeek/tabular'
 
+  " Css szinek megjelenitese.
+  Plugin 'ap/vim-css-color'
   " .. PROGRAMOZAS ........................
 
   " szovegreszek kommentelese (akar oszlopok is)
@@ -120,6 +120,11 @@ if exists( '*vundle#rc' )
   " gitk a vim-en belul
   " $ install git
   Plugin 'gregsexton/gitv'
+
+  " __ EGYEB ______________________________
+
+  " Hjkl gyakorlashoz.
+  Plugin 'hjkl'
 
   " __ NEM GITHUB _________________________
 
@@ -190,11 +195,6 @@ runtime macros/matchit.vim
 " ============================================================================
 
 if has( 'win32' )
-
-  " Globalis fuggvenykonyvtarak helye. A '\' karikat atalakitjuk '/' karakterre
-  " a :help 'path' szerint.
-  let mingw_path = substitute( system( 'set PATH' ), '.*[; =]\([^;]\+mingw\).*', '\1', '' )
-  let &path      = '.,,' . tr( mingw_path . '/include', '\', '/' )
 
   " :make ezt a programot hasznalja:
   set makeprg=mingw32-make
@@ -373,7 +373,6 @@ endfunction
 " keresese.
 
 autocmd BufReadPost,BufWritePost * call FindMixed()
-
 function FindMixed()
   " FIXME: a 0. sortol kezdje a keresest.
 
@@ -416,7 +415,7 @@ function FindMixed()
   "
   " FIXME: tabulator csak 1 karinak szamit.
 
-  if &filetype == 'text'
+  if (&filetype =~ '^\(text\)\?$')
     let mixed['long_line'] = search( '^.\{' . (&textwidth + 1) . ',}', 'wnc' )
   endif
 
@@ -460,10 +459,7 @@ set wildmode=longest,list
 
 " Mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret), minimum 2 tab
 " eseten.
-set showtabline=1
-
-" A tabok listazasanak modja.
-set tabline=%!eight#shorttabline#call()
+set showtabline=1 tabline=%!eight#shorttabline#call()
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -478,11 +474,10 @@ set mouse=a
 set lazyredraw
 
 " Ne adjon ki hangot - a .gvimrc-nek is tartalmaznia kell.
-set vb t_vb=
-set visualbell
+set visualbell vb t_vb=
 
-" Tordelje el a hosszu sorokat. (softbreak)
-set wrap
+" Tordelje el a hosszu sorokat a szavak vegenel. (softbreak)
+set wrap linebreak
 
 " Sorok osszefuzesenel ket szokoz helyett csak egyet tegyen.
 set nojoinspaces
@@ -492,20 +487,17 @@ set hidden
 
 " Mindig az aktualis fajl konyvtara legyen a cwd.
 " Tapasztalatbol mondhatom, hogy nem minden plugin szereti (pl. netrw,
-" fugitive), de ettol fuggetlenul en szeretem, de sajnos tul sok baj van vele.
+" fugitive).
 " set autochdir
 
 " Terminalban ne varakozzon az <Esc>
-set ttimeout
-set ttimeoutlen=0
-set notimeout
+set ttimeout ttimeoutlen=0 notimeout
 
-" Mindig az ablakkezelo vagolapjat hasznalja.
+" Mindig az ablakkezelo vagolapjat hasznalja. (y, x, es a tobbi operatornal)
 " set clipboard=unnamed
 
 " Uj ablakok alulra / jobbra keruljenek. (a help is)
-set splitbelow
-set splitright
+set splitbelow splitright
 
 " Ablakok nyitasanal / bezarasanal mindig ugyanakkorara meretezze ujra oket.
 set equalalways
@@ -520,10 +512,6 @@ set encoding=utf8
 let changelog_username   = 'BimbaLaszlo  <bimbalaszlo@gmail.com>'
 let changelog_dateformat = '%Y.%m.%d'
 
-" TOhtml beallitasok.
-let html_number_lines = 0
-let html_use_css      = 0
-
 " SQL beallitasok.
 let g:ftplugin_sql_omni_key = '<C-X>'
 
@@ -535,16 +523,11 @@ let g:ftplugin_sql_omni_key = '<C-X>'
 set modeline
 
 " Ne csinaljon biztonsagi masolatokat a fajl mentese elott.
-set nobackup
-set nowritebackup
+set nobackup nowritebackup
 
-" Lehetseges sorvegzodesek. Uj fajl letrehozasanal az elso parametert
-" hasznalja.
-set fileformats=unix,dos
-
-" Lehetseges karakterkodolasok. Uj fajl letrehozasanal az elso parametert
-" hasznalja.
-set fileencodings=utf8,cp1250,default
+" Lehetseges sorvegzodesek/karakterkodolasok. Uj fajl letrehozasanal az elso
+" parametert hasznalja.
+set fileformats=unix,dos fileencodings=utf8,cp1250,default
 
 " Uj fajlok letrehozasanal nem jelzi ki a karakterkodolast e nelkul.
 let &fileencoding = matchstr( &fileencodings, '^[^,]\+' )
@@ -564,14 +547,10 @@ let &directory = has( 'win32' ) ? expand( '$TMP' ) : '/var/tmp,/tmp'
 
 " Case insensitive keresesnel, de nagybetus szoveg eseten case sensitive-re
 " valt.
-set ignorecase
-set smartcase
+set ignorecase smartcase
 
-" Kereses talalatainak kiemelese.
-set hlsearch
-
-" Kereses begepelese kozben mar emelje ki a talalatokat.
-set incsearch
+" Kereses talalatainak kiemelese mar begepeles kozben.
+set hlsearch incsearch
 
 "                             SZINTAXIS KIEMELES                          {{{1
 " ============================================================================
@@ -580,11 +559,10 @@ set incsearch
 let is_posix = 1
 
 " Specialis karakterek (tabulator, sor vegi whitespace) mutatasa.
-set list
-set listchars=tab:>-,trail:.,extends:→,precedes:←
+set list listchars=tab:>-,trail:.,extends:»,precedes:«
 
 " Sortores mutatasa.
-let &showbreak = '↑ '
+let &showbreak = '^ '
 
 " Helyesiras ellenorzes magyarra allitasa.
 set spelllang=hu
@@ -593,21 +571,17 @@ set spelllang=hu
 " ============================================================================
 
 " Automatikus behuzas { utan is.
-set autoindent
-set smartindent
+set autoindent smartindent
 
-" A behuzas merteke szokozokben megadva.
-set shiftwidth=2
-
-" A > es < karakterekkel toreno behuzasnal a shiftwidth tobbszorosere mozgassa
-" a szoveget.
-set shiftround
-
-" 1 tabulator a shiftwidth-nek megfelelo szokozt fog beirni - regi verzio.
-let &softtabstop = &sw
+" A behuzas merteke szokozokben megadva - a > es < karakterekkel toreno
+" behuzasnal a shiftwidth tobbszorosere mozgassa a szoveget.
+set shiftwidth=2 shiftround
 
 " Tab helyett szokozok hasznalata.
 set expandtab
+
+" 1 tabulator a shiftwidth-nek megfelelo szokozt fog beirni.
+let &softtabstop = &sw
 
 " A backspace ezeket torolje: indent, end of line, start
 set backspace=2
@@ -641,7 +615,6 @@ let &foldtext = "EightHeaderFolds( '\\= s:fullwidth - 2', 'left', [ repeat( '  '
 "      diff slower (sometimes much slower)
 
 set diffexpr=MyDiff()
-
 function MyDiff()
     let opt = ''
     if &diffopt =~ 'icase'
@@ -665,7 +638,7 @@ set complete=.,i,t
 " Kiegeszites menujenek mukodese:
 " menuone  Egyetlen lehetoseg eseten is popup menu.
 " longest  Nem valasztja ki magatol az elso lehetoseget.
-set completeopt=menuone,longest,preview
+set completeopt=menuone,longest
 
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
@@ -682,9 +655,6 @@ let g:EightHeader_uncomment = 'call NERDComment( "n", "uncomment" )'
 "                               EASYMOTION                                {{{2
 " ____________________________________________________________________________
 
-" Enter leutesere az elso talalatra ugrik.
-let g:EasyMotion_enter_jump_first = 1
-
 " Kis/nagybetu erzekenyseg, ha nagybetu van a beirt szovegben.
 let g:EasyMotion_smartcase = 1
 
@@ -697,6 +667,9 @@ let g:EasyMotion_keys = 'aAsSdDfFqQwWeErRcCvV'
 " Alapjaba veve a megnyitott fajl tipusaval megegyezo fajlokban keressen.
 let EasyGrepMode = 2
 
+" A fajl konyvtaraban keressen, ne a cwd-ben.
+let EasyGrepSearchCurrentBufferDir = 1
+
 " Rekurzivan keressen a konyvtarakban.
 let EasyGrepRecursive = 1
 
@@ -706,16 +679,13 @@ let EasyGrepHidden = 1
 " Soronkent tobb egyezest is talalhat. (mint pl.: :s///g)
 let EasyGrepEveryMatch = 1
 
-" A fajl konyvtaraban keressen, ne a cwd-ben.
-let EasyGrepSearchCurrentBufferDir = 1
-
-" Ne nyisson uj tab-okat.
+" Ne nyisson uj tab-okat a talalatokhoz.
 let EasyGrepReplaceWindowMode = 2
 
 "                                   NETRW                                 {{{2
 " ____________________________________________________________________________
 
-" Netrw ablakanak abszolut merete:
+" Netrw ablakanak abszolut merete.
 let g:netrw_winsize = -28
 
 " Ne legyen fejlec.
@@ -746,8 +716,8 @@ let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
 
 " A jobbra nyil is nyissa ki a fold-okat, a bal csukja ossze oket.
-let g:tagbar_map_openfold  = ['<Right>', '+']
-let g:tagbar_map_closefold = ['<Left>',  '-']
+let g:tagbar_map_openfold  = ['<Right>', 'l']
+let g:tagbar_map_closefold = ['<Left>',  'h']
 
 " Hogy asciidoc fajlokkal is hasznalhato legyen, mentsuk el ezeket a sorokat a
 " ~/.ctags fajlba:
@@ -805,10 +775,8 @@ let g:syntastic_c_checkers = [ 'gcc', 'splint' ]
 
 let g:syntastic_python_checkers = [ 'pylint', 'flake8' ]
 
-" Pylint-nel nem erdekelnek a stilushibak.
-let g:syntastic_python_pylint_args = '-d line-too-long -d bad-indentation -d bad-whitespace'
-
 " Stilushibak figyelmen kivul hagyasa.
+let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-indentation -d bad-whitespace'
 let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
 
 "                               NERDCOMMENTER                             {{{2
@@ -866,6 +834,7 @@ if has( 'cscope' )
   " csak utanna nezze meg a tags fajlt. (1, ha forditva akarjuk)
   set cscopetagorder=0
 
+  " :help cscopequickfix
   set cscopequickfix=s-,c-,d-,i-,t-,e-
 endif
 
@@ -887,27 +856,16 @@ let g:Gitv_DoNotMapCtrlKey = 1
 "   :verbose imap <Esc>
 " Ezen map-ok valamelyike okozza a hibat.
 
-"                            TERMINAL KEYCODES                            {{{2
-" ____________________________________________________________________________
-
-if &term =~ 'xterm'
-  map                      [3;5~      <C-Del>
-endif
-
 "                          MOZGAS AZ ABLAKON BELUL                        {{{2
 " ____________________________________________________________________________
+
+" A valodi sorok helyett a megjelenitett sorokban mozogjon a kurzor.
+noremap                    j            gj
+noremap                    k            gk
 
 " Ugras a sor elejere/vegere.
 noremap            <expr>  H            virtcol( '.' ) == match( getline( '.' ), '\S' ) + 1 ? 'g0' : 'g^'
 noremap            <expr>  L            virtcol( '.' ) == virtcol( '$' ) - 1 ? 'g_' : 'g$'
-
-" Completion menu eseten az enter csak valassza ki az elemet, az esc meg
-" allitsa vissza az eredeti szoveget. (terminalban az utobbi elcseszi a
-" nyilakkal valo mozgast)
-inoremap           <expr>  <CR>         pumvisible() ? "<C-Y>" : "<CR>"
-if has( 'gui_running' )
-  inoremap         <expr>  <Esc>        pumvisible() ? "<C-E>" : "<Esc>"
-endif
 
 "                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
 " ____________________________________________________________________________
@@ -921,11 +879,12 @@ nnoremap                   <S-Tab>      <C-W>W
 "                                 VEGYES                                  {{{2
 " ____________________________________________________________________________
 
-" Insert modba lepes bal kezhez kozel.
-nnoremap                   a            i
-noremap                    A            I
-nnoremap                   y            a
-noremap                    Y            A
+" Sokkal jobban kezre esnek.
+map                        <C-J>        <CR>
+imap                       <C-J>        <CR>
+noremap                    á            :
+noremap                    é            ;
+noremap                    É            ,
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
@@ -946,10 +905,6 @@ noremap                    <Space>      <C-]>
 " A sztring osszes elofordulasanak helye. (valtozoknal lehet hasznos)
 " noremap                    ;            :scscope find s <C-R>=expand( '<cword>' )<CR><CR>
 
-" A , es ; felcserelese.
-noremap                    ;            ,
-noremap                    ,            ;
-
 " Completion.
 inoremap           <expr>  <C-Space>    (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
 " Terminal-ban a <Nul> a <C-Space> megfeleloje.
@@ -967,11 +922,9 @@ noremap                    <Del>        "_<Del>
 
 " Az ablakkezelo vagolapjanak hasznalata - command-modban hatastalan, a
 " kijelolt szoveget illeszti be, nem pedig azt, amire <C-Insert>-et nyomtunk.
-if has( 'win32' )
-  noremap                  <C-Insert>   "+y
-  noremap                  <S-Insert>   "+P
-  imap                     <S-Insert>   <C-O><S-Insert>
-endif
+noremap                    <C-Insert>   "+y
+noremap                    <S-Insert>   "+P
+imap                       <S-Insert>   <C-O><S-Insert>
 
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>          K            :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
@@ -980,7 +933,9 @@ noremap  <silent>          K            :call eight#help#call( "<C-R>=escape( ex
 autocmd  FileType  netrw  call NetrwLynxMap()
 function NetrwLynxMap()
    map   <buffer>          <Left>       -
+   map   <buffer>          h            -
    map   <buffer>          <Right>      <CR>
+   map   <buffer>          l            <CR>
 endfunction
 
 " Kereses a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
@@ -995,6 +950,7 @@ nnoremap                   <Leader>ub   :Unite -start-insert buffer<CR>
 
 " ... a konyjelzok kozott.
 nnoremap                   <Leader>uB   :Unite -start-insert bookmark<CR>
+
 " ... a tag-ok kozott.
 nnoremap                   <Leader>ut   :Unite -start-insert tag<CR>
 
@@ -1036,7 +992,7 @@ nnoremap                   <F3>         :Gitv!<CR>
 imap                       <F3>         <C-O><F3>
 
 " Gitv - gitk-szeru log.
-nnoremap           <expr>  <F4>         &filetype =~ 'gitv' ? ':normal q<CR>' : ':Gitv<CR>'
+map                <expr>  <F4>         &filetype =~ 'gitv\?' ? 'q' : ':Gitv<CR>'
 imap                       <F4>         <C-O><F4>
 
 " Comp es Make egy gombnyomasra.
@@ -1046,7 +1002,6 @@ nnoremap                   <F6>         :make<CR>
 imap                       <F6>         <C-O><F6>
 
 " Bongeszes a konyvtarban netrw-vel (v150 verzio kell hozza).
-" nnoremap  <silent>         <F7>         :call ToggleBrowser()<CR>
 nnoremap  <silent>         <F7>         :Lexplore<CR>
 imap                       <F7>         <C-O><F7>
 
@@ -1073,10 +1028,10 @@ imap                       <F12>        <C-O><F12>
 nnoremap                   <Leader>0    :silent call eight#contact#call()<CR><CR>
 nnoremap                   <Leader>1    :silent call EightHeader( &tw, 'center', 0, '=', ' {' . '{{1', '' )<CR><CR>
 nnoremap                   <Leader>2    :silent call EightHeader( &tw, 'center', 0, '_', ' {' . '{{2', '' )<CR><CR>
-nnoremap                   <Leader>3    :silent call EightHeader( &tw, 'center', 0, '.', '', '' )<CR><CR>
+nnoremap                   <Leader>3    :silent call EightHeader( &tw, 'center', 0, '.', ' {' . '{{3', '' )<CR><CR>
 nnoremap                   <Leader>9    :silent call EightHeader( 0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "' )<CR><CR>
 
-"                                     HELP
+"                                     HELP                                {{{3
 " ............................................................................
 
 autocmd  FileType  help  nnoremap <buffer>  <Leader>1
@@ -1121,6 +1076,17 @@ call textobj#user#plugin( 'asterisk', {
 \   }
 \ })
 
+call textobj#user#plugin( 'bar', {
+\   'bar-i': {
+\     'pattern': '|\zs[^|]*\ze|',
+\     'select':  ['i\|']
+\   },
+\   'bar-a': {
+\     'pattern': '|[^|]*|',
+\     'select':  ['a\|']
+\   }
+\ })
+
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
 "
@@ -1130,7 +1096,7 @@ call textobj#user#plugin( 'asterisk', {
 " __ FAJLOK BEALLITASAI _________________
 
 " Az ujonnan letrehozott .txt fajloknal legyen <CR><NL> a sorvegzodes. Azert
-" kell ilyen nyakatekerten megoldani, mert ha pl. Krusader-bol, vagy Tcmd-bol
+" kell ilyen nyakatekerten megoldani, mert ha pl. krusader-bol, vagy tcmd-bol
 " hozunk letre egy uj fajt, akkor a BufNewFile nem ervenyes ra, mivel a fajl
 " mar letezik, mikor a Vim megnyitja azt.
 autocmd  BufNewFile  *.txt  set fileformat=dos
@@ -1153,8 +1119,7 @@ autocmd  BufWritePre  *  call eight#writepre#call()
 " Tags fajl ujrageneralasa, ha a fajl egy git repository-ban van.
 autocmd  BufWritePost  *  call Tags()
 
-" Fajltipus alapjan allitsa be a user-completion-t (<C-X><C-U>), hogy ha az
-" omnifunc nem is mukodik, azert legyen valami kiegeszites.
+" Fajltipus alapjan allitsa be az omni-completion-t.
 if filereadable( $VIMRUNTIME . '/autoload/syntaxcomplete.vim' )
   autocmd  FileType  *  if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
 endif
@@ -1172,22 +1137,22 @@ autocmd  BufNew    __doc__  setlocal nonumber nolist
 " Make hiba eseten nyissa meg a hibaablakot.
 autocmd  QuickFixCmdPost  *  botright cwindow
 
-" __ EGYEB __________________________________
-
-" Ftp-n a fugitive meghulyul, ha az autochdir be van kapcsolva.
-" A netrw viszont nem foglalkozik vele, pl. mindig a megnyitott url-hez
-" viszonyitva kell megadni az uj fajlok nevet.
-" autocmd  BufEnter  *://*  set noautochdir
-
 " }}}1
 
 " Hard mode, amig megtanulatom uralni a vim-et.
-noremap  <Up>        <Nop>
-noremap  <Down>      <Nop>
-noremap  <Left>      <Nop>
-noremap  <Right>     <Nop>
-noremap  <Down>      <Nop>
-noremap  <PageUp>    <Nop>
-noremap  <PageDown>  <Nop>
-noremap  <BS>        <Nop>
-noremap  <CR>        <Nop>
+noremap   <Up>        <Nop>
+noremap   <Down>      <Nop>
+noremap   <Left>      <Nop>
+noremap   <Right>     <Nop>
+noremap   <PageUp>    <Nop>
+noremap   <PageDown>  <Nop>
+noremap   <BS>        <Nop>
+noremap   <CR>        <Nop>
+inoremap  <Up>        <Nop>
+inoremap  <Down>      <Nop>
+inoremap  <Left>      <Nop>
+inoremap  <Right>     <Nop>
+inoremap  <PageUp>    <Nop>
+inoremap  <PageDown>  <Nop>
+inoremap  <BS>        <Nop>
+inoremap  <CR>        <Nop>
