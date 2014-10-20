@@ -55,9 +55,15 @@ if exists( '*vundle#rc' )
   Plugin 'bimbalaszlo/vim-cheatsheets'
 
   " .. MEGJELENES .........................
+  "
+  " http://cocopon.me/app/vim-color-gallery/
+  " http://vimcolors.com/
 
   " nagyon szep colorscheme (light es dark is)
   Plugin 'altercation/vim-colors-solarized'
+
+  " terminalban jol mutat
+  Plugin 'morhetz/gruvbox'
 
   " divatos, de minimalista statusline
   Plugin 'itchyny/lightline.vim'
@@ -211,18 +217,14 @@ endif
 " Szinsema beallitasa.
 if has( 'gui_running' ) && len( globpath( &runtimepath, 'colors/solarized.vim' ) )
 
-  set background=light
   colorscheme solarized
 
-  " A par nelkuli zarojelek kijelzese alig lathato.
-  highlight! link Error ErrorMsg
-
-  " A soremeles karakterek is egybeolvadnak a szoveggel. Ez a highlight a high
-  " visibility beallitasokol van atmasolva.
-  highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
-
-  " A tab, whitespace, stb. szinei is ilyenek legyenek.
-  highlight! link SpecialKey NonText
+  " Este sotet, nappal vilagos hatter legyen.
+  if strftime( "%H" ) >= 7 && strftime( "%H" ) <= 17
+    set background=light
+  else
+    set background=dark
+  endif
 
   " A statusline szinet is beallitjuk.
   if !exists( 'g:lightline' )
@@ -230,10 +232,19 @@ if has( 'gui_running' ) && len( globpath( &runtimepath, 'colors/solarized.vim' )
   endif
   let g:lightline.colorscheme = 'solarized'
 
+elseif len( globpath( &runtimepath, 'colors/gruvbox.vim' ) )
+
+  let g:gruvbox_invert_selection = 0
+
+  colorscheme gruvbox
+  set background=dark
+
+  highlight Normal ctermbg=none
+
 elseif len( globpath( &runtimepath, 'colors/desert.vim' ) )
 
-  set background=dark
   colorscheme desert
+  set background=dark
 
   " Popupmenu szinei nem tetszenek a desert-ben.
   highlight Pmenu      ctermbg=Black ctermfg=Gray  guibg=#FFFFCC guifg=DarkGray
@@ -242,6 +253,16 @@ elseif len( globpath( &runtimepath, 'colors/desert.vim' ) )
   highlight PmenuThumb ctermbg=White ctermfg=White guibg=Black   guifg=Black
 
 endif
+
+" A par nelkuli zarojelek kijelzese alig lathato.
+highlight! link Error ErrorMsg
+
+" A soremeles karakterek is egybeolvadnak a szoveggel. Ez a highlight a high
+" visibility beallitasokol van atmasolva.
+highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
+
+" A tab, whitespace, stb. szinei is ilyenek legyenek.
+highlight! link SpecialKey NonText
 
 " Ne legyenek alahuzva az osszecsukott foldok.
 highlight Folded term=bold cterm=bold gui=bold
@@ -559,7 +580,7 @@ set hlsearch incsearch
 let is_posix = 1
 
 " Specialis karakterek (tabulator, sor vegi whitespace) mutatasa.
-set list listchars=tab:>-,trail:.,extends:»,precedes:«
+set list listchars=tab:>-,trail:.,extends:>,precedes:<
 
 " Sortores mutatasa.
 let &showbreak = '^ '
@@ -652,6 +673,11 @@ set showfulltag
 let g:EightHeader_comment   = 'call NERDComment( "n", "comment" )'
 let g:EightHeader_uncomment = 'call NERDComment( "n", "uncomment" )'
 
+"                                  UNITE                                  {{{2
+" ____________________________________________________________________________
+
+" let g:unite_source_tag_show_location = 0
+let g:unite_source_tag_max_fname_length = 70
 "                               EASYMOTION                                {{{2
 " ____________________________________________________________________________
 
@@ -871,10 +897,7 @@ noremap            <expr>  L            virtcol( '.' ) == virtcol( '$' ) - 1 ? '
 " ____________________________________________________________________________
 
 nnoremap                   <C-H>        <C-W>q
-nnoremap                   <C-J>        <C-W>j
-nnoremap                   <C-K>        <C-W>k
-nnoremap                   <Tab>        <C-W>w
-nnoremap                   <S-Tab>      <C-W>W
+nnoremap                   <C-K>        <C-W>w
 
 "                                 VEGYES                                  {{{2
 " ____________________________________________________________________________
@@ -885,6 +908,7 @@ imap                       <C-J>        <CR>
 noremap                    á            :
 noremap                    é            ;
 noremap                    É            ,
+inoremap                   <C-L>        <Del>
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
@@ -928,14 +952,19 @@ imap                       <S-Insert>   <C-O><S-Insert>
 
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>          K            :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
+autocmd  FileType  man  call ManMap()
+function ManMap()
+  map    <buffer>          K            <C-]>
+  map    <buffer>          <CR>         <C-]>
+endfunction
 
 " Lynx-szeru mozgas netrw-ben.
 autocmd  FileType  netrw  call NetrwLynxMap()
 function NetrwLynxMap()
-   map   <buffer>          <Left>       -
-   map   <buffer>          h            -
-   map   <buffer>          <Right>      <CR>
-   map   <buffer>          l            <CR>
+  map    <buffer>          <Left>       -
+  map    <buffer>          h            -
+  map    <buffer>          <Right>      <CR>
+  map    <buffer>          l            <CR>
 endfunction
 
 " Kereses a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
@@ -1117,7 +1146,8 @@ autocmd  BufWritePre  *  call eight#writepre#call()
 " __ COMPLETION _________________________
 
 " Tags fajl ujrageneralasa, ha a fajl egy git repository-ban van.
-autocmd  BufWritePost  *  call Tags()
+autocmd  BufWritePost  *  call Tags( 1 )
+autocmd  BufReadPost   *  call Tags( 0 )
 
 " Fajltipus alapjan allitsa be az omni-completion-t.
 if filereadable( $VIMRUNTIME . '/autoload/syntaxcomplete.vim' )
@@ -1147,7 +1177,6 @@ noremap   <Right>     <Nop>
 noremap   <PageUp>    <Nop>
 noremap   <PageDown>  <Nop>
 noremap   <BS>        <Nop>
-noremap   <CR>        <Nop>
 inoremap  <Up>        <Nop>
 inoremap  <Down>      <Nop>
 inoremap  <Left>      <Nop>
@@ -1155,4 +1184,3 @@ inoremap  <Right>     <Nop>
 inoremap  <PageUp>    <Nop>
 inoremap  <PageDown>  <Nop>
 inoremap  <BS>        <Nop>
-inoremap  <CR>        <Nop>

@@ -1,10 +1,12 @@
+//                                                                    tag:html
+
 :lang:   hu
 :toc:    right
 :icons:  font
 
 = Weboldalak többnyelvűségének beállítása
 BimbaLaszlo
-2014.09.01
+2014.10.20
 
 A Google
 https://support.google.com/webmasters/answer/182192?hl=hu&ref_topic=2370587#1[Multiregionális és többnyelvű webhelyek^]

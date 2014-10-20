@@ -1,6 +1,5 @@
-# ~/.inputrc - bash billentyuparancsok felulbiralasa
+# ~/.inputrc - behaviour of "bash"
 # man bash -> /^READLINE
 
-# Ha ketszer nyomunk TAB-ot, a lehetseges kiegesziteseket balrol jobbra irja
-# ki, ne pedig fentrol lefele.
+set completion-ignore-case 1
 # set print-completions-horizontally 1

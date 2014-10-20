@@ -1,3 +1,5 @@
+                                                                       tag:irc
+
 Regisztralas:
   /msg nickserv register <jelszo> <email>
 

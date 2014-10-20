@@ -10,12 +10,10 @@ endif
 " Ablak mereteinek megadasa.
 " set lines=50
 " let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
-set lines=999
-set columns=999
+set lines=999 columns=999
 
 " Linux-on belassul tole... (-_-')
-" set cursorcolumn
-" set cursorline
+" set cursorcolumn cursorline
 
 " Toolbar kikapcsolasa.
 set guioptions-=T

@@ -93,9 +93,3 @@ user_pref( "network.http.max-persistent-connections-per-proxy" , 32   );
 user_pref( "network.http.pipelining"                           , true );
 user_pref( "network.http.pipelining.ssl"                       , true );
 user_pref( "content.interrupt.parsing"                         , true );
-user_pref( "content.notify.backoffcount"                       , 5    );
-user_pref( "nglayout.initialpaint.delay"                       , 0    );
-
-user_pref( "content.notify.interval"                       , 50000 );
-user_pref( "content.notify.ontimer"                       , true );
-user_pref( "content.switch.threshold"                       , 250000 );

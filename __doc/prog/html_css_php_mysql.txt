@@ -3,6 +3,7 @@ html_php_mysql.txt
 
                                      HTML                                 {{{1
 ==============================================================================
+                                                                      tag:html
 
     Azokban az ûrlapokban, ahol több submit button is szerepel, az enter
     megnyomása mindig az elsõt aktiválja.
@@ -25,6 +26,7 @@ html_php_mysql.txt
 
                                      CSS                                  {{{1
 ==============================================================================
+                                                                       tag:css
 
     Minden elem betûméretének növelése:
 
@@ -59,6 +61,7 @@ html_php_mysql.txt
 
                                      PHP                                  {{{1
 ==============================================================================
+                                                                       tag:php
 
                                      TÖMBÖK                               {{{2
   ____________________________________________________________________________
@@ -230,6 +233,7 @@ html_php_mysql.txt
 
                                     MYSQL                                 {{{1
 ==============================================================================
+                                                                     tag:mysql
 
     Kapcsolat karakterkódolása:
 

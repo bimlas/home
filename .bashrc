@@ -39,10 +39,9 @@ HISTCONTROL=ignoreboth
 # bash.
 PROMPT_COMMAND='history -a'
 
-#                    ENVIRONMENT VARIABLES, COMPLETION                    {{{1
+#                                 COLORS                                  {{{1
 # ============================================================================
 
-# Colors.
 clr_txtblk='\[\e[0;30m\]' # Black - Regular
 clr_txtred='\[\e[0;31m\]' # Red
 clr_txtgrn='\[\e[0;32m\]' # Green
@@ -77,6 +76,8 @@ clr_bakcyn='\[\e[46m\]'   # Cyan
 clr_bakwht='\[\e[47m\]'   # White
 clr_txtrst='\[\e[0m\]'    # Text Reset
 
+#                    ENVIRONMENT VARIABLES, COMPLETION                    {{{1
+# ============================================================================
 # Special characters.
 chr_topleft='\342\224\214'
 chr_bottomleft='\342\224\224'
@@ -111,6 +112,13 @@ PS1+="$clr_bldwht\w\n"
 PS1+="$clr_bldcyn$chr_bottomleft$chr_vertical "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo $clr_bldred; else echo $clr_bldwht; fi)\\$ $clr_txtrst"
 export PS1
+
+# View manuals in vim.
+MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |             \
+      vim -RM -c 'set ft=man ls=0 nosmd nonu nornu nolist'  \
+      -c 'map <CR> <C-]>'                                   \
+      -c 'map q :q<CR>' - \""
+export MANPAGER
 
 #                                   ALIAS                                 {{{1
 # ============================================================================
