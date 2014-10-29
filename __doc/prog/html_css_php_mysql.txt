@@ -59,6 +59,14 @@ html_php_mysql.txt
         background-color: #f5f5dc;
       }
 
+    Div igazítása a benne lévõ elemekhez:
+
+      .element {
+        width: -webkit-min-content;
+        width: -moz-min-content;
+        width: min-content;
+      }
+
                                      PHP                                  {{{1
 ==============================================================================
                                                                        tag:php

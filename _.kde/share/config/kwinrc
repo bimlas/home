@@ -21,10 +21,29 @@ TabBoxAlternative=false
 [Effect-Zoom]
 InitialZoom=1
 
+[ElectricBorders]
+Bottom=None
+BottomLeft=None
+BottomRight=None
+Left=None
+Right=None
+Top=None
+TopLeft=None
+TopRight=None
+
 [Plugins]
+desktopchangeosdEnabled=false
 kwin4_effect_coverswitchEnabled=true
+kwin4_effect_cubeslideEnabled=false
+kwin4_effect_fadedesktopEnabled=false
 kwin4_effect_flipswitchEnabled=true
 kwin4_effect_highlightwindowEnabled=true
+kwin4_effect_slideEnabled=true
+kwin4_effect_windowgeometryEnabled=false
+
+[Script-desktopchangeosd]
+PopupHideDelay=1000
+TextOnly=false
 
 [TabBox]
 ActivitiesMode=1
@@ -35,7 +54,7 @@ LayoutName=compact
 MinimizedMode=0
 MultiScreenMode=0
 ShowDesktopMode=0
-ShowTabBox=true
+ShowTabBox=false
 SwitchingMode=0
 
 [TabBoxAlternative]
@@ -49,3 +68,31 @@ MultiScreenMode=0
 ShowDesktopMode=0
 ShowTabBox=true
 SwitchingMode=0
+
+[Windows]
+ActiveMouseScreen=false
+AutoRaise=false
+AutoRaiseInterval=750
+AutogroupInForeground=true
+AutogroupSimilarWindows=false
+BorderSnapZone=10
+CenterSnapZone=0
+ClickRaise=true
+DelayFocusInterval=300
+FocusPolicy=ClickToFocus
+FocusStealingPreventionLevel=1
+GeometryTip=false
+HideUtilityWindowsForInactive=true
+InactiveTabsSkipTaskbar=false
+MaximizeButtonLeftClickCommand=Maximize
+MaximizeButtonMiddleClickCommand=Maximize (vertical only)
+MaximizeButtonRightClickCommand=Maximize (horizontal only)
+NextFocusPrefersMouse=false
+Placement=Smart
+RollOverDesktops=true
+SeparateScreenFocus=false
+ShadeHover=false
+ShadeHoverInterval=250
+SnapOnlyWhenOverlapping=false
+TitlebarDoubleClickCommand=Maximize
+WindowSnapZone=10

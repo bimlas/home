@@ -35,33 +35,72 @@ XTerm*faceSize:      11
 XTerm*shiftFonts:    false
 
 !                                EGYENI SZINEK                            {{{1
-!         http://crunchbang.org/forums/viewtopic.php?pid=90607#p90607
 ! ============================================================================
 
-XTerm*foreground:    #DDDDAA
-XTerm*background:    #3C3836
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
 
-! black
-XTerm*color0:        #000000
-XTerm*color8:        #555753
-! red
-XTerm*color1:        #CC0000
-XTerm*color9:        #EF2929
-! green
-XTerm*color2:        #4E9A06
-XTerm*color10:       #8AE234
-! yellow
-XTerm*color3:        #C4A000
-XTerm*color11:       #FCE94F
-! blue
-XTerm*color4:        #3465A4
-XTerm*color12:       #729FCF
-! magenta
-XTerm*color5:        #75507B
-XTerm*color13:       #AD7FA8
-! cyan
-XTerm*color6:        #06989A
-XTerm*color14:       #34E2E2
-! white
-XTerm*color7:        #D3D7CF
-XTerm*color15:       #ECEDEE
+! hard contrast: *background: #1d2021
+! medium contrast: *background: #282828
+! soft contrast:
+*background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
+
+! http://crunchbang.org/forums/viewtopic.php?pid=90607#p90607
+
+! XTerm*foreground:    #DDDDAA
+! XTerm*background:    #3C3836
+
+! ! black
+! XTerm*color0:        #000000
+! XTerm*color8:        #555753
+! ! red
+! XTerm*color1:        #CC0000
+! XTerm*color9:        #EF2929
+! ! green
+! XTerm*color2:        #4E9A06
+! XTerm*color10:       #8AE234
+! ! yellow
+! XTerm*color3:        #C4A000
+! XTerm*color11:       #FCE94F
+! ! blue
+! XTerm*color4:        #3465A4
+! XTerm*color12:       #729FCF
+! ! magenta
+! XTerm*color5:        #75507B
+! XTerm*color13:       #AD7FA8
+! ! cyan
+! XTerm*color6:        #06989A
+! XTerm*color14:       #34E2E2
+! ! white
+! XTerm*color7:        #D3D7CF
+! XTerm*color15:       #ECEDEE

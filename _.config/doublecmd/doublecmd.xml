@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doublecmd DCVersion="0.5.7 beta" ConfigVersion="7">
-  <Configuration Save="True">
+<doublecmd DCVersion="0.5.11 beta" ConfigVersion="7">
+  <Configuration Save="False">
     <UseConfigInProgramDir>False</UseConfigInProgramDir>
   </Configuration>
   <Colors>
-    <FileFilters>
-      <Filter>
-        <Name>Specified Executables</Name>
-        <FileMasks>*</FileMasks>
-        <Color>32768</Color>
-        <Attributes>-rwxrwxr*x</Attributes>
-      </Filter>
-      <Filter>
-        <Name>Executables</Name>
-        <FileMasks>*</FileMasks>
-        <Color>32768</Color>
-        <Attributes>-*x*</Attributes>
-      </Filter>
-    </FileFilters>
-    <Foreground>536870912</Foreground>
-    <Background>16777215</Background>
-    <Background2>16777215</Background2>
+    <FileFilters/>
+    <Foreground>-2147483640</Foreground>
+    <Background>-2147483643</Background>
+    <Background2>-2147483643</Background2>
     <Mark>255</Mark>
     <Cursor>-2147483635</Cursor>
     <CursorText>-2147483634</CursorText>
@@ -117,25 +104,66 @@
     <WlxPlugins>
       <WlxPlugin Enabled="True">
         <Name>wlxMplayer</Name>
-        <Path>%commander_path%/plugins/wlx/WlxMplayer/wlxMplayer.wlx</Path>
+        <Path>%commander_path%/plugins/wlx/wlxmplayer/wlxmplayer.wlx</Path>
         <DetectString>(EXT="MPG")|(EXT="AVI")|(EXT="MPEG")|(EXT="FLV")</DetectString>
       </WlxPlugin>
     </WlxPlugins>
   </Plugins>
   <Toolbars>
-    <MainToolbar/>
+    <MainToolbar>
+      <Row>
+        <Command>
+          <ID>{E5D6BCE2-D94E-4511-A1DD-DF190C80B335}</ID>
+          <Icon>utilities-terminal</Icon>
+          <Command>cm_RunTerm</Command>
+        </Command>
+        <Command>
+          <ID>{3F9E5A61-ABB0-4799-8E88-2AD90D86D132}</ID>
+          <Icon>list-add</Icon>
+          <Command>cm_MarkPlus</Command>
+        </Command>
+        <Command>
+          <ID>{30EA3999-73DA-4E09-A1F9-44B561AF5BA3}</ID>
+          <Icon>list-remove</Icon>
+          <Command>cm_MarkMinus</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{1454530C-76E6-4B08-B234-FB82B9AA3445}</ID>
+          <Icon>package-x-generic</Icon>
+          <Command>cm_PackFiles</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{CA9BC01F-0243-4793-AF6E-243D9CAF46FD}</ID>
+          <Icon>system-search</Icon>
+          <Command>cm_Search</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{C8DF56FB-C005-48FF-A5FB-6A06E91FB439}</ID>
+          <Icon>go-previous</Icon>
+          <Command>cm_ViewHistoryPrev</Command>
+        </Command>
+        <Command>
+          <ID>{949C2048-4974-4B53-A785-577A2E27D138}</ID>
+          <Icon>go-next</Icon>
+          <Command>cm_ViewHistoryNext</Command>
+        </Command>
+      </Row>
+    </MainToolbar>
   </Toolbars>
   <Tabs>
-    <Options>784</Options>
+    <Options>785</Options>
     <CharacterLimit>32</CharacterLimit>
     <Position>0</Position>
   </Tabs>
   <MainWindow>
     <Position>
       <Left>0</Left>
-      <Top>221</Top>
-      <Width>1278</Width>
-      <Height>607</Height>
+      <Top>203</Top>
+      <Width>1276</Width>
+      <Height>657</Height>
       <Maximized>False</Maximized>
       <Splitter>50</Splitter>
     </Position>
@@ -160,7 +188,7 @@
       <WheelScrollLines>3</WheelScrollLines>
     </Mouse>
     <AutoFillColumns>True</AutoFillColumns>
-    <AutoSizeColumn>0</AutoSizeColumn>
+    <AutoSizeColumn>1</AutoSizeColumn>
     <DateTimeFormat>yyyy/mm/dd</DateTimeFormat>
     <CutTextToColumnWidth>True</CutTextToColumnWidth>
     <ShowSystemFiles>True</ShowSystemFiles>
@@ -205,7 +233,7 @@
     <Viewer>
       <Name>Monospace</Name>
       <Size>11</Size>
-      <Style>0</Style>
+      <Style>1</Style>
     </Viewer>
     <Log>
       <Name>Monospace</Name>
@@ -235,7 +263,7 @@
     <DrivesListButton Enabled="True">
       <ShowLabel>True</ShowLabel>
       <ShowFileSystem>True</ShowFileSystem>
-      <ShowFreeSpace>False</ShowFreeSpace>
+      <ShowFreeSpace>True</ShowFreeSpace>
     </DrivesListButton>
     <DirectoryTabs>True</DirectoryTabs>
     <CurrentDirectory>True</CurrentDirectory>
@@ -246,7 +274,7 @@
     <TermWindow>False</TermWindow>
     <KeyButtons>False</KeyButtons>
     <InterfaceFlat>True</InterfaceFlat>
-    <DriveFreeSpace>True</DriveFreeSpace>
+    <DriveFreeSpace>False</DriveFreeSpace>
     <DriveIndicator>False</DriveIndicator>
     <ProgressInMenuBar>False</ProgressInMenuBar>
     <PanelOfOperationsInBackground>True</PanelOfOperationsInBackground>
@@ -265,9 +293,9 @@
   <Keyboard>
     <Typing>
       <Actions>
-        <NoModifier>1</NoModifier>
+        <NoModifier>2</NoModifier>
         <Alt>0</Alt>
-        <CtrlAlt>2</CtrlAlt>
+        <CtrlAlt>0</CtrlAlt>
       </Actions>
     </Typing>
   </Keyboard>
@@ -278,7 +306,7 @@
     <WipePassNumber>1</WipePassNumber>
     <DropReadOnlyFlag>False</DropReadOnlyFlag>
     <ProcessComments>False</ProcessComments>
-    <RenameSelOnlyName>True</RenameSelOnlyName>
+    <RenameSelOnlyName>False</RenameSelOnlyName>
     <ShowCopyTabSelectPanel>False</ShowCopyTabSelectPanel>
     <UseTrash>True</UseTrash>
     <SkipFileOpError>False</SkipFileOpError>
@@ -329,13 +357,13 @@
     <Height>128</Height>
   </Thumbnails>
   <AutoRefresh>
-    <Options>5</Options>
+    <Options>3</Options>
     <ExcludeDirs/>
     <Mode>0</Mode>
   </AutoRefresh>
   <Icons>
-    <ShowMode>3</ShowMode>
-    <ShowOverlays>True</ShowOverlays>
+    <ShowMode>1</ShowMode>
+    <ShowOverlays>False</ShowOverlays>
     <Size>16</Size>
     <Exclude>False</Exclude>
     <ExcludeDirs/>
@@ -345,7 +373,9 @@
     </ShowInMenus>
   </Icons>
   <IgnoreList Enabled="False">
+    <IgnoreListFile>/home/nyolcas/.config/doublecmd/ignorelist.txt</IgnoreListFile>
   </IgnoreList>
+  <DirectoryHotList/>
   <Viewer>
     <PreviewVisible>False</PreviewVisible>
     <ImageStretch>False</ImageStretch>
@@ -361,7 +391,7 @@
     <PaintColor>255</PaintColor>
     <BackgroundColor>0</BackgroundColor>
     <FontColor>16777215</FontColor>
-    <TextPosition>425</TextPosition>
+    <TextPosition>1510</TextPosition>
   </Viewer>
   <Lua>
     <PathToLibrary>liblua5.1.so.0</PathToLibrary>
@@ -381,7 +411,7 @@
         <Column>
           <Title>Név</Title>
           <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
-          <Width>250</Width>
+          <Width>450</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
@@ -389,9 +419,9 @@
             <Style>1</Style>
           </Font>
           <Overcolor>True</Overcolor>
-          <TextColor>536870912</TextColor>
-          <Background>16777215</Background>
-          <Background2>16777215</Background2>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
           <MarkColor>255</MarkColor>
           <CursorColor>-2147483635</CursorColor>
           <CursorText>-2147483634</CursorText>
@@ -399,7 +429,7 @@
         <Column>
           <Title>Kit</Title>
           <FuncString>[DC().GETFILEEXT{}]</FuncString>
-          <Width>80</Width>
+          <Width>50</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
@@ -407,9 +437,9 @@
             <Style>1</Style>
           </Font>
           <Overcolor>True</Overcolor>
-          <TextColor>536870912</TextColor>
-          <Background>16777215</Background>
-          <Background2>16777215</Background2>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
           <MarkColor>255</MarkColor>
           <CursorColor>-2147483635</CursorColor>
           <CursorText>-2147483634</CursorText>
@@ -417,7 +447,7 @@
         <Column>
           <Title>Méret</Title>
           <FuncString>[DC().GETFILESIZE{}]</FuncString>
-          <Width>120</Width>
+          <Width>70</Width>
           <Align>1</Align>
           <Font>
             <Name>default</Name>
@@ -425,9 +455,9 @@
             <Style>1</Style>
           </Font>
           <Overcolor>True</Overcolor>
-          <TextColor>536870912</TextColor>
-          <Background>16777215</Background>
-          <Background2>16777215</Background2>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
           <MarkColor>255</MarkColor>
           <CursorColor>-2147483635</CursorColor>
           <CursorText>-2147483634</CursorText>

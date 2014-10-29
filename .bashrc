@@ -113,10 +113,16 @@ PS1+="$clr_bldcyn$chr_bottomleft$chr_vertical "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo $clr_bldred; else echo $clr_bldwht; fi)\\$ $clr_txtrst"
 export PS1
 
-# View manuals in vim.
-MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |             \
-      vim -RM -c 'set ft=man ls=0 nosmd nonu nornu nolist'  \
-      -c 'map <CR> <C-]>'                                   \
+# View manuals in vim. I don't need these settings because exists in my
+# .vimrc, but if you don't, put below the `vim -RM` line:
+# -c 'set nocp'                                 \
+# -c 'filetype plugin on'                       \
+# -c 'syntax enable'                            \
+# -c 'runtime ftplugin/man.vim'                 \
+MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |     \
+      vim -RM                                       \
+      -c 'set ft=man ls=0 nosmd nonu nornu nolist'  \
+      -c 'map <CR> <C-]>'                           \
       -c 'map q :q<CR>' - \""
 export MANPAGER
 

@@ -21,7 +21,7 @@ endif
 
 " "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
 " vissza.
-function HighTerm()
+function BigTerm()
   return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
 endfunction
 
@@ -96,7 +96,9 @@ if exists( '*vundle#rc' )
   Plugin 'godlygeek/tabular'
 
   " Css szinek megjelenitese.
-  Plugin 'ap/vim-css-color'
+  " WARNING: Nagyon belassitja a megjelenitest.
+  " Plugin 'ap/vim-css-color'
+
   " .. PROGRAMOZAS ........................
 
   " szovegreszek kommentelese (akar oszlopok is)
@@ -215,16 +217,14 @@ endif
 " ============================================================================
 
 " Szinsema beallitasa.
-if has( 'gui_running' ) && len( globpath( &runtimepath, 'colors/solarized.vim' ) )
+" Ha nappal van es a solarized elerheto, hasznaljuk azt.
+if has( 'gui_running' )
+\ && len( globpath( &runtimepath, 'colors/solarized.vim' ) )
+\ && (strftime( "%H" ) >= 7 && strftime( "%H" ) <= 17)
 
   colorscheme solarized
 
-  " Este sotet, nappal vilagos hatter legyen.
-  if strftime( "%H" ) >= 7 && strftime( "%H" ) <= 17
-    set background=light
-  else
-    set background=dark
-  endif
+  set background=light
 
   " A statusline szinet is beallitjuk.
   if !exists( 'g:lightline' )
@@ -235,11 +235,10 @@ if has( 'gui_running' ) && len( globpath( &runtimepath, 'colors/solarized.vim' )
 elseif len( globpath( &runtimepath, 'colors/gruvbox.vim' ) )
 
   let g:gruvbox_invert_selection = 0
+  let g:gruvbox_contrast = 'soft'
 
   colorscheme gruvbox
   set background=dark
-
-  highlight Normal ctermbg=none
 
 elseif len( globpath( &runtimepath, 'colors/desert.vim' ) )
 
@@ -460,7 +459,7 @@ set numberwidth=6
 
 " Sorok szamozasa, kiveve ha TTY, vagy Win-es parancssor alatt hasznaljuk es
 " a szovegterulet nem elegendoen szeles.
-if HighTerm()
+if BigTerm()
   set number relativenumber
 endif
 
