@@ -14,7 +14,8 @@ endif
 
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
-" kapcsolva. (:DoMatchParen kapcsolja be) autocmd VimEnter * if exists( ':NoMatchParen' ) | execute 'NoMatchParen' | endif
+" kapcsolva. (:DoMatchParen kapcsolja be)
+autocmd VimEnter * if exists( ':NoMatchParen' ) | execute 'NoMatchParen' | endif
 " Ezek sem segitenek:
 " let g:matchparen_timeout = 5
 " let g:matchparen_insert_timeout = 5
@@ -460,7 +461,7 @@ set numberwidth=6
 " Sorok szamozasa, kiveve ha TTY, vagy Win-es parancssor alatt hasznaljuk es
 " a szovegterulet nem elegendoen szeles.
 if BigTerm()
-  set number relativenumber
+  set relativenumber
 endif
 
 " Minden valtoztatasrol tajekoztasson.
@@ -579,10 +580,18 @@ set hlsearch incsearch
 let is_posix = 1
 
 " Specialis karakterek (tabulator, sor vegi whitespace) mutatasa.
-set list listchars=tab:>-,trail:.,extends:>,precedes:<
+if has( 'gui_running' )
+  set list listchars=tab:▶‒,trail:∙,extends:▶,precedes:◀
+else
+  set list listchars=tab:>-,trail:.,extends:>,precedes:<
+endif
 
 " Sortores mutatasa.
-let &showbreak = '^ '
+if has( 'gui_running' )
+  let &showbreak = '↳ '
+else
+  let &showbreak = '^ '
+endif
 
 " Helyesiras ellenorzes magyarra allitasa.
 set spelllang=hu
@@ -605,6 +614,11 @@ let &softtabstop = &sw
 
 " A backspace ezeket torolje: indent, end of line, start
 set backspace=2
+
+" Ha a formatoptions-ben szerepel az 'n', akkor a mintara illeszkedo reszeket
+" fogja listaelem-jelolonek tekinteni. Mivel az asciidoc tobb karaktert is
+" hasznal a listakhoz, ezert modositani kellett ezt a beallitast.
+let &formatlistpat = '^\s*[0-9\.]\+[\]:.)}\t ]\s*'
 
 " C forraskod formazasa.
 " (0    Nyitottan maradt zarojelekel egy oszlopban kezdje az uj sort.
@@ -679,9 +693,6 @@ let g:EightHeader_uncomment = 'call NERDComment( "n", "uncomment" )'
 let g:unite_source_tag_max_fname_length = 70
 "                               EASYMOTION                                {{{2
 " ____________________________________________________________________________
-
-" Kis/nagybetu erzekenyseg, ha nagybetu van a beirt szovegben.
-let g:EasyMotion_smartcase = 1
 
 " A helymeghatarozashoz hasznalt betuk.
 let g:EasyMotion_keys = 'aAsSdDfFqQwWeErRcCvV'
@@ -889,8 +900,8 @@ noremap                    j            gj
 noremap                    k            gk
 
 " Ugras a sor elejere/vegere.
-noremap            <expr>  H            virtcol( '.' ) == match( getline( '.' ), '\S' ) + 1 ? 'g0' : 'g^'
-noremap            <expr>  L            virtcol( '.' ) == virtcol( '$' ) - 1 ? 'g_' : 'g$'
+noremap                    H            g^
+noremap                    L            g$
 
 "                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
 " ____________________________________________________________________________
@@ -1003,6 +1014,7 @@ map                        <C-G>        <Plug>NERDCommenterUncomment
 noremap                    <Leader>t\|  :Tabularize /\|/l0<CR>
 noremap                    <Leader>t,   :Tabularize /,\zs/<CR>
 noremap                    <Leader>t:   :Tabularize /:\zs/<CR>
+noremap                    <Leader>t+   :Tabularize /+$/<CR>
 noremap                    <Leader>tsp  :Tabularize / \+\zs/<CR>
 noremap                    <Leader>ttab :Tabularize /\t\+\zs/<CR>
 noremap                    <Leader>t=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
@@ -1038,7 +1050,7 @@ nnoremap  <silent>         <F8>         :TagbarToggle<CR>
 imap                       <F8>         <C-O><F8>
 
 " A lathato ablakok szinkronizalasa diff nelkul.
-nnoremap                   <F10>        :call eight#syncwin#call()<CR>
+nnoremap           <expr>  <F10>        ':set virtualedit=' . ( len( &virtualedit ) ? '' : 'all'). '<CR>'
 imap                       <F10>        <C-O><F10>
 
 " Kurzor oszlopanak kiemelesenek valtogatasa.
@@ -1133,7 +1145,7 @@ autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileformat=dos 
 " :help fo-table. Azert autocmd, mert minden fajltipus felulirja a
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
 " lenne.
-autocmd  FileType  *    setlocal formatoptions+=co formatoptions-=l
+autocmd  FileType  *    setlocal formatoptions+=con formatoptions-=l
 if v:version >= 704
   autocmd  FileType  *  setlocal formatoptions+=j
 endif
@@ -1145,8 +1157,8 @@ autocmd  BufWritePre  *  call eight#writepre#call()
 " __ COMPLETION _________________________
 
 " Tags fajl ujrageneralasa, ha a fajl egy git repository-ban van.
-autocmd  BufWritePost  *  call Tags( 1 )
-autocmd  BufReadPost   *  call Tags( 0 )
+" autocmd  BufWritePost  *  call Tags( 1 )
+" autocmd  BufReadPost   *  call Tags( 0 )
 
 " Fajltipus alapjan allitsa be az omni-completion-t.
 if filereadable( $VIMRUNTIME . '/autoload/syntaxcomplete.vim' )

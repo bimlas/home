@@ -1469,6 +1469,8 @@ grep                                                                    [grep]
     -#          A találat körüli # sort is írja ki.
     -c          Az egyezések helyett csak a számukat írja ki.
     -n          Az egyezés elé kiírja a találat sorszámát.
+    -l          Azon fájlok listája, amelyekben megtalálható a kifejezés.
+    -L          ... amelyekben nem található meg.
 
 sed                                                                      [sed]
 
@@ -2062,13 +2064,16 @@ git
     nem szükséges az egészet begépelni, de minimum az első 4 karakter kell. Az
     SHA helyett használhatjuk a verzió tag-ját is az azonosításra. Relatív
     hivatkozás az N-edik számú szülő commit-ra az SHA~N kifejezéssel
-    lehetséges, ha tartományra szeretnénk hivatkozni, akkor az SHA..SHA
-    kifejezést használjuk. ('git help rev-parse')
+    lehetséges, ha tartományra szeretnénk hivatkozni, akkor az SHA...SHA
+    kifejezést használjuk. ('git help rev-parse') ([red]#VAGY CSAK ÍRJUK
+    EGYMÁS UTÁN ŐKET?# `git log SHA SHA`)
 
     A 'HEAD' egy hivatkozás az utoljára commit-olt ("mentett") verzióra (SHA
     helyett használhatjuk), a 'staged' ('cached') szó azt az állapotot jelöli,
     amikor még nem commit-oltuk a változásokat, csak felvettük őket az 'add'
     paranccsal.
+
+    Az 'ORIG_HEAD' a pus/pull' előtti HEAD-re mutat.
 
     Ha Win-en az 'msys-git' rendszert használod és a commit üzeneteket
     'gvim'-ben akarod megírni, akkor fűzd a 'gvim.exe' könyvtárának útvonalát
@@ -2128,6 +2133,10 @@ git
 
         $ git log --graph --decorate --abbrev-commit
 
+    Az utolsó push/pull óta commit-olt változások listája:
+
+        $ git log ORIG_HEAD..
+
     Changelog készítése a commit üzenetekből:
 
         $ git log --name-status --summary > changelog.txt
@@ -2166,7 +2175,7 @@ git
     .git/logs könyvtárba: ott minden fel van jegyezve, így megpróbálkozhatunk
     a visszaállítás előtti állapotra visszatérni:
 
-      $ git reset --hard KIGUBERÁLT_SHA
+        $ git reset --hard KIGUBERÁLT_SHA
 
     Ha csak egy fájlt szeretnénk visszaállítani:
 
