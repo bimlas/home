@@ -45,6 +45,9 @@
  * user_pref( "network.http.use-cache", false );
  */
 
+/* Kezdooldal. */
+user_pref( "browser.startup.homepage", "https://www.google.hu/" );
+
 /* Mindig kerdezzen ra, hogy hova toltse le a cuccokat. */
 user_pref( "browser.download.useDownloadDir", false );
 

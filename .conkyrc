@@ -92,7 +92,7 @@ KERNEL${goto 60}${kernel}
 
 PROCESS ${hr 2}
 
-CPU${goto 60}${cpu cpu}% ${alignr}${cpubar 8,60 cpu}
+CPU${goto 60}${cpu cpu}% ${alignr}${cpugraph 8,60 cpu}
 
 NAME $alignr  PID     CPU   MEM
 ${top name 1} $alignr ${top pid 1} ${top cpu 1} ${top mem 1}

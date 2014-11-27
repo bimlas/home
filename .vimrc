@@ -29,15 +29,15 @@ endfunction
 "                    VUNDLE CSOMAGKEZELO PLUGIN INDITASA                  {{{1
 " ============================================================================
 
-set runtimepath+=$HOME/.vim/bundle/vundle/
+set runtimepath+=$HOME/.vim/bundle/Vundle.vim/
 runtime autoload/vundle.vim
 
-if exists( '*vundle#rc' )
+if exists( '*vundle#begin' )
   filetype off
-  call vundle#rc()
+  call vundle#begin()
 
   " plugin-ok automatizalt telepitese git-en keresztul (is)
-  Plugin 'gmarik/vundle'
+  Plugin 'gmarik/Vundle.vim'
 
   " __ GITHUB _____________________________
 
@@ -82,7 +82,7 @@ if exists( '*vundle#rc' )
   Plugin 'locator'
 
   " tuningolt vimgrep
-  Plugin 'easygrep'
+  Plugin 'dkprice/vim-easygrep'
 
   " parancsok futtatasa visual block-on
   Plugin 'vis'
@@ -142,6 +142,8 @@ if exists( '*vundle#rc' )
   " __ HELYI ______________________________
 
   " Plugin 'file://~/.vim/bundle/repo'
+
+  call vundle#end()
 endif
 
 "                               INSTALLVUNDLE                             {{{2
@@ -151,8 +153,8 @@ endif
 
 command  InstallVundle  call InstallVundle()
 function InstallVundle()
-  let vundle_repo = 'https://github.com/gmarik/vundle.git'
-  let path = substitute( $HOME . '/.vim/bundle/vundle', '/', has( 'win32' ) ? '\\' : '/', 'g' )
+  let vundle_repo = 'https://github.com/gmarik/Vundle.vim'
+  let path = substitute( $HOME . '/.vim/bundle/Vundle.vim', '/', has( 'win32' ) ? '\\' : '/', 'g' )
 
   if ! executable( 'git' )
     echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
@@ -448,8 +450,8 @@ endfunction
 "                                 ALTALANOS                               {{{1
 " ============================================================================
 
-" Current working directory kiirasa a cimsorban.
-set titlestring=CWD:\ %{getcwd()}
+" Fajlnev es current working directory kiirasa a cimsorban.
+let &titlestring = '%f | CWD: %{getcwd()}'
 
 " Szoveg szelessege - ugyan a fajlok beallitasahoz kene tenni, de szamitasok
 " miatt itt mar be kell allitani.
@@ -461,7 +463,7 @@ set numberwidth=6
 " Sorok szamozasa, kiveve ha TTY, vagy Win-es parancssor alatt hasznaljuk es
 " a szovegterulet nem elegendoen szeles.
 if BigTerm()
-  set relativenumber
+  " set relativenumber
 endif
 
 " Minden valtoztatasrol tajekoztasson.
@@ -907,7 +909,8 @@ noremap                    L            g$
 " ____________________________________________________________________________
 
 nnoremap                   <C-H>        <C-W>q
-nnoremap                   <C-K>        <C-W>w
+nnoremap                   <Tab>        <C-W>w
+nnoremap                   <S-Tab>      <C-W>W
 
 "                                 VEGYES                                  {{{2
 " ____________________________________________________________________________
@@ -915,10 +918,14 @@ nnoremap                   <C-K>        <C-W>w
 " Sokkal jobban kezre esnek.
 map                        <C-J>        <CR>
 imap                       <C-J>        <CR>
-noremap                    á            :
 noremap                    é            ;
 noremap                    É            ,
 inoremap                   <C-L>        <Del>
+
+" Bufferek kozti mozgas.
+nnoremap                   <C-K>        :b#<CR>
+nnoremap                   &            :bnext<CR>
+nnoremap                   #            :bprevious<CR>
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
