@@ -14,6 +14,9 @@ tmpdir=$(mktemp --directory)
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd $here
 
+#  Have to improve the creation of symlinks in directories.
+mkdir $HOME/bin
+
 for file in $(find -maxdepth 1 -not -regex '.\|./\.git\|./readme.adoc')
 do
     # Remove ./ from the beginning of the filename.
