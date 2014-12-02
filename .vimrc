@@ -578,6 +578,10 @@ set hlsearch incsearch
 "                             SZINTAXIS KIEMELES                          {{{1
 " ============================================================================
 
+" Egy soron belul max. eddig a karakterig szinezze a szoveget. (hosszu
+" soroknal nagyon belassul e nelkul)
+set synmaxcol=500
+
 " Shell-scrip-eknel ne jelezze hibanak: $()
 let is_posix = 1
 
