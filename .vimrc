@@ -697,6 +697,7 @@ let g:EightHeader_uncomment = 'call NERDComment( "n", "uncomment" )'
 
 " let g:unite_source_tag_show_location = 0
 let g:unite_source_tag_max_fname_length = 70
+
 "                               EASYMOTION                                {{{2
 " ____________________________________________________________________________
 
@@ -990,19 +991,19 @@ endfunction
 
 " Kereses a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
 " konyvtarban rekurzivan.
-nnoremap                   <Leader>ur   :UniteWithProjectDir -start-insert file_rec<CR>
+nnoremap                   <Leader>ur   :UniteWithProjectDir -start-insert file_rec -sync<CR>
 
 " ... nem rekurzivan.
-nnoremap                   <Leader>uf   :UniteWithProjectDir -start-insert file<CR>
+nnoremap                   <Leader>uf   :UniteWithProjectDir -start-insert file -sync<CR>
 
 " ... a bufferek kozott.
-nnoremap                   <Leader>ub   :Unite -start-insert buffer<CR>
+nnoremap                   <Leader>ub   :Unite -start-insert buffer -sync<CR>
 
 " ... a konyjelzok kozott.
-nnoremap                   <Leader>uB   :Unite -start-insert bookmark<CR>
+nnoremap                   <Leader>uB   :Unite -start-insert bookmark -sync<CR>
 
 " ... a tag-ok kozott.
-nnoremap                   <Leader>ut   :Unite -start-insert tag<CR>
+nnoremap                   <Leader>ut   :Unite -start-insert tag -sync<CR>
 
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
