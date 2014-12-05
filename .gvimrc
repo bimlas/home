@@ -2,7 +2,10 @@
 set vb t_vb=
 
 if has( 'win32' )
-  set guifont=Consolas:h11
+  " Mivel a consolas nem jeleniti meg nehany utf8 karaktert, igy maradok a
+  " dejavu-nal.
+  " set guifont=Consolas:h11
+  set guifont=DejaVu_Sans_Mono:h11
 else
   let &guifont = 'Monospace 11'
 endif
