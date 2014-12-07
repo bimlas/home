@@ -878,6 +878,9 @@ let g:neocomplete#sources._ = ['member', 'tag', 'syntax', 'vim', 'file', 'omni' 
 " Bufferek hasznalata tab-ok helyett.
 let g:jedi#use_tabs_not_buffers = 0
 
+" Ne valassza ki az elso lehetoseget.
+let g:jedi#popup_select_first = 0
+
 "                                   CSCOPE                                {{{2
 " ____________________________________________________________________________
 
