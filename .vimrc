@@ -67,7 +67,8 @@ if exists( '*vundle#begin' )
   Plugin 'morhetz/gruvbox'
 
   " divatos, de minimalista statusline
-  Plugin 'itchyny/lightline.vim'
+  " Plugin 'itchyny/lightline.vim'
+  Plugin 'vim-airline'
 
   " .. ALAPVETO ...........................
 
@@ -112,13 +113,16 @@ if exists( '*vundle#begin' )
   " syntax checker
   Plugin 'scrooloose/syntastic'
 
+  " automatikus kodkiegeszites
+  " lua kell hozza (:version +lua)
+  Plugin 'shougo/neocomplete.vim'
+
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
   Plugin 'davidhalter/jedi-vim'
 
-  " automatikus kodkiegeszites
-  " lua kell hozza (:version +lua)
-  Plugin 'shougo/neocomplete.vim'
+  " detto ruby-hoz
+  Plugin 'vim-ruby/vim-ruby'
 
   " .. GIT ................................
 
@@ -683,6 +687,15 @@ set completeopt=menuone,longest
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
 
+"                                  RUBY                                   {{{2
+" ____________________________________________________________________________
+
+" :help ft-ruby-omni
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+let g:rubycomplete_load_gemfile = 1
+
 "                                  PLUGINOK                               {{{1
 " ============================================================================
 
@@ -857,7 +870,7 @@ let g:neocomplete#enable_insert_char_pre = 1
 if !exists( 'g:neocomplete#sources' )
   let g:neocomplete#sources = {}
 endif
-let g:neocomplete#sources._ = [ 'file', 'syntax', 'omni', 'tag', 'vim' ]
+let g:neocomplete#sources._ = ['member', 'tag', 'syntax', 'vim', 'file', 'omni' ]
 
 "                                JEDI-VIM                                 {{{2
 " ____________________________________________________________________________

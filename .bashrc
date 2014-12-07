@@ -96,11 +96,12 @@ fi
 # Custom prompt.
 if [[ -e '/etc/bash_completion.d/git-prompt' ]]; then
   ps1_git='$(__git_ps1 "[%s]")'
-  GIT_PS1_SHOWDIRTYSTATE=true
-  GIT_PS1_SHOWSTASHSTATE=true
-  GIT_PS1_SHOWUNTRACKEDFILES=true
-  GIT_PS1_SHOWUPSTREAM=true
-  GIT_PS1_DESCRIBE_STYLE=describe
+  # Nagyon belassitja...
+  # GIT_PS1_SHOWDIRTYSTATE=true
+  # GIT_PS1_SHOWSTASHSTATE=true
+  # GIT_PS1_SHOWUNTRACKEDFILES=true
+  # GIT_PS1_SHOWUPSTREAM=true
+  # GIT_PS1_DESCRIBE_STYLE=describe
 else
   ps1_git=
 fi

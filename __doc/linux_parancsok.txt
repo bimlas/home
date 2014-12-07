@@ -2181,6 +2181,16 @@ git
 
         $ git checkout --force 'fajl'
 
+    Ez akkor működik, ha a fájl az előző commit óta lett módosítva. Ha pl. egy
+    törölt fájlról van szó, amit már jópár commit-tal ezelőtt töröltünk, akkor
+    az SHA-t is meg kell adni:
+
+        $ git checkout COMMIT_AMIBEN_TÖRÖLTÜK^ -- "FÁJL"
+
+    Hogy ne kelljen a logban keresgélni:
+
+        $ git checkout $(git rev-list -n 1 HEAD -- "FÁJL")^ -- "FÁJL"
+
     Ha bizonyos fájlokat, vagy könyvtárakat nem akarunk menteni, akkor hozzunk
     létre egy '.gitignore' fájlt és abba írjuk be a kifejezéseket. Pl.:
 
