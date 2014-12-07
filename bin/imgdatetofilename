@@ -1,0 +1,19 @@
+#!/usr/bin/python
+# imgdatetofilename - rename file.jpg to date.jpg taken from exif info
+
+import sys
+import os
+import exifread
+
+for arg in sys.argv[1:]:
+  f = open( arg, 'rb' )
+  tags = exifread.process_file( f )
+  f.close()
+  if (len( tags ) is 0) or ('EXIF DateTimeOriginal' not in tags.keys()):
+    continue
+
+  fname, fext = os.path.splitext( arg )
+
+  fname = (str( tags['EXIF DateTimeOriginal'] ) + fext).lower().replace( ':', '.' ).replace( ' ', '_' )
+  print arg + " => " + fname
+  os.rename( arg, fname )
