@@ -120,9 +120,6 @@ if exists( '*vundle#begin' )
   " $ pip install jedi
   Plugin 'davidhalter/jedi-vim'
 
-  " detto ruby-hoz
-  Plugin 'vim-ruby/vim-ruby'
-
   " .. GIT ................................
 
   " git integracio
