@@ -875,6 +875,11 @@ let g:neocomplete#sources._ = ['member', 'tag', 'syntax', 'vim', 'file', 'omni' 
 "                                JEDI-VIM                                 {{{2
 " ____________________________________________________________________________
 
+" Ha ez nincs megadva, akkor ütközik a neocomplete-tal es automatikusan ki
+" akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
+" let g:jedi#auto_vim_configuration = 0
+let g:jedi#completions_enabled = 0
+
 " Bufferek hasznalata tab-ok helyett.
 let g:jedi#use_tabs_not_buffers = 0
 
