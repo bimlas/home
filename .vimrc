@@ -67,8 +67,7 @@ if exists( '*vundle#begin' )
   Plugin 'morhetz/gruvbox'
 
   " divatos, de minimalista statusline
-  " Plugin 'itchyny/lightline.vim'
-  Plugin 'vim-airline'
+  Plugin 'itchyny/lightline.vim'
 
   " .. ALAPVETO ...........................
 
@@ -295,6 +294,7 @@ autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand( "%:p:h" )
 let stat_filedir    = '%<%{exists( "b:stat_curfiledir" ) ? b:stat_curfiledir : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
+let stat_tagbar     = '%{tagbar#currenttag("%s","")}'
 let stat_lineinfo   = '%3v|%4l:%3p%%'
 
 let &statusline  = stat_filename . ' | '
@@ -303,6 +303,7 @@ let &statusline .= '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed . " | " : 
 let &statusline .= '%{len( StatFugitive() ) ? StatFugitive() . " | " : ""}'
 let &statusline .= stat_filedir . ' | '
 let &statusline .= '%= '
+let &statusline .= stat_tagbar . ' | '
 let &statusline .= '%{len( StatSyntastic() ) ? StatSyntastic() . " | " : ""}'
 let &statusline .= stat_lineinfo
 
@@ -323,7 +324,7 @@ endif
 
 let g:lightline.active = {
 \     'left'          : [ ['filename'], ['fileformat'], ['mixed'], ['fugitive'], ['filedir'] ],
-\     'right'         : [ ['lineinfo'], ['syntastic'] ]
+\     'right'         : [ ['lineinfo'], ['syntastic'], ['tagbar'] ]
 \   }
 
 let g:lightline.inactive = {
@@ -336,6 +337,7 @@ let g:lightline.component = {
 \     'fullfilename'  : '%w%F%r%m',
 \     'filedir'       : stat_filedir,
 \     'fileformat'    : stat_fileformat,
+\     'tagbar'        : stat_tagbar,
 \     'mixed'         : '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed : ""}',
 \     'lineinfo'      : stat_lineinfo
 \   }
