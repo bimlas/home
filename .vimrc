@@ -291,12 +291,12 @@ autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand( "%:p:h" )
 let stat_filedir    = '%<%{exists( "b:stat_curfiledir" ) ? b:stat_curfiledir : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-let stat_tagbar     = '%{tagbar#currenttag("%s","")}'
+let stat_tagbar     = '%{winwidth( 0 ) > 120 ? tagbar#currenttag("%s","") : ""}'
 let stat_lineinfo   = '%4l:%3p%%|%3v'
 
 let &statusline  = stat_filename . ' | '
 let &statusline .= stat_fileformat . ' | '
-let &statusline .= '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed . " | " : ""}'
+let &statusline .= '%{exists( "b:mixed" ) && len( b:mixed ) && (winwidth(0) > 70) ? b:mixed . " | " : ""}'
 let &statusline .= '%{len( StatFugitive() ) ? StatFugitive() . " | " : ""}'
 let &statusline .= stat_filedir . ' | '
 let &statusline .= '%= '
@@ -335,7 +335,7 @@ let g:lightline.component = {
 \     'filedir'       : stat_filedir,
 \     'fileformat'    : stat_fileformat,
 \     'tagbar'        : stat_tagbar,
-\     'mixed'         : '%{exists( "b:mixed" ) && len( b:mixed ) ? b:mixed : ""}',
+\     'mixed'         : '%{exists( "b:mixed" ) && len( b:mixed ) && (winwidth(0) > 70) ? b:mixed : ""}',
 \     'lineinfo'      : stat_lineinfo
 \   }
 
