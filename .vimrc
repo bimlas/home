@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.11 10:28 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.11 22:38 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -125,6 +125,9 @@ if exists( '*vundle#begin' )
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
   Plugin 'davidhalter/jedi-vim'
+
+  " ruby motyok (pl. omni completion pontosabban mukodik)
+  Plugin 'vim-ruby/vim-ruby'
 
   " .. GIT ................................
 
@@ -862,7 +865,14 @@ let g:neocomplete#enable_insert_char_pre = 1
 if !exists( 'g:neocomplete#sources' )
   let g:neocomplete#sources = {}
 endif
-let g:neocomplete#sources._ = ['member', 'tag', 'syntax', 'vim', 'file', 'omni' ]
+let g:neocomplete#sources._ = ['omni', 'member', 'syntax', 'vim']
+
+" Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
+" tudjuk.
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 "                                JEDI-VIM                                 {{{2
 " ____________________________________________________________________________
