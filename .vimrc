@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.15 17:53 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.11 09:07 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -116,6 +116,9 @@ if exists( '*vundle#begin' )
   " lua kell hozza (:version +lua)
   Plugin 'shougo/neocomplete.vim'
 
+  " buffer, vagy kijelolt kod futtatasa
+  Plugin 'https://bitbucket.org/fboender/bexec'
+
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
   Plugin 'davidhalter/jedi-vim'
@@ -129,19 +132,6 @@ if exists( '*vundle#begin' )
   " gitk a vim-en belul
   " $ install git
   Plugin 'gregsexton/gitv'
-
-  " __ EGYEB ______________________________
-
-  " Hjkl gyakorlashoz.
-  Plugin 'hjkl'
-
-  " __ NEM GITHUB _________________________
-
-  " Plugin 'https://www.bitbucket.org/user/repo'
-
-  " __ HELYI ______________________________
-
-  " Plugin 'file://~/.vim/bundle/repo'
 
   call vundle#end()
 endif
@@ -1067,10 +1057,10 @@ imap                       <F3>         <C-O><F3>
 map                <expr>  <F4>         &filetype =~ 'gitv\?' ? 'q' : ':Gitv<CR>'
 imap                       <F4>         <C-O><F4>
 
-" Comp es Make egy gombnyomasra.
-nnoremap                   <F5>         :Comp<CR>
+" Compile es make egy gombnyomasra.
+nnoremap                   <F5>         :Bexec<CR>
 imap                       <F5>         <C-O><F5>
-nnoremap                   <F6>         :make<CR>
+nnoremap                   <F6>         :Comp<CR>
 imap                       <F6>         <C-O><F6>
 
 " Bongeszes a konyvtarban netrw-vel (v150 verzio kell hozza).
