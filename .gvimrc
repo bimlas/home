@@ -24,13 +24,17 @@ set guioptions-=T
 " Menusor kikapcsolasa.
 set guioptions-=m
 
+" Dialogus ablakok helyett a terminalban megszokott modon tegye fel a
+" kerdeseit.
+set guioptions+=c
+
 " A scroll-ok csak akkor latszodjanak, ha szukseg van rajuk?
 set guioptions-=L
 set guioptions-=R
 " Mindig latszodjanak?
 set guioptions-=l
 set guioptions-=r
-set guioptions+=b
+set guioptions-=b
 
 " A tabok neve ele irja ki a tab szamat.
 let &guitablabel = " %N \| %t %m "
