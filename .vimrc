@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.11 09:07 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.11 10:28 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -74,6 +74,9 @@ if exists( '*vundle#begin' )
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
   Plugin 'shougo/unite.vim'
   Plugin 'tsukkee/unite-tag'
+
+  " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
+  Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
   " gyors mozgas a buffer-en belul
   Plugin 'lokaltog/vim-easymotion'
@@ -1060,6 +1063,7 @@ imap                       <F4>         <C-O><F4>
 " Compile es make egy gombnyomasra.
 nnoremap                   <F5>         :Bexec<CR>
 imap                       <F5>         <C-O><F5>
+vnoremap                   <F5>         :call BexecVisual()<CR>
 nnoremap                   <F6>         :Comp<CR>
 imap                       <F6>         <C-O><F6>
 
