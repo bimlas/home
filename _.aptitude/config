@@ -1,6 +1,5 @@
 aptitude "";
 aptitude::Keep-Unused-Pattern "";
 aptitude::Delete-Unused-Pattern "";
-aptitude::AutoClean-After-Update "true";
 aptitude::Forget-New-On-Update "true";
 aptitude::Forget-New-On-Install "true";
