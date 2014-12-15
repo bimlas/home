@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.11 22:38 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.15 13:14 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -26,7 +26,7 @@ function BigTerm()
   return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
 endfunction
 
-"                    VUNDLE CSOMAGKEZELO PLUGIN INDITASA                  {{{1
+"                      VUNDLE PLUGIN-KEZELO INDITASA                      {{{1
 " ============================================================================
 
 set runtimepath+=$HOME/.vim/bundle/Vundle.vim/
@@ -71,21 +71,18 @@ if exists( '*vundle#begin' )
 
   " .. ALAPVETO ...........................
 
-  " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
-  Plugin 'shougo/unite.vim'
-  Plugin 'tsukkee/unite-tag'
-
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
   Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
   " gyors mozgas a buffer-en belul
   Plugin 'lokaltog/vim-easymotion'
 
-  " info a kurzor poziciojaraol (fold, fuggveny, osztaly)
-  Plugin 'locator'
-
   " tuningolt vimgrep
   Plugin 'dkprice/vim-easygrep'
+
+  " quickfix-en beluli fajlokon parancsok vegrehajtasa (Qdo) es masolasa az
+  " args-ba (Qargs)
+  Plugin 'henrik/vim-qargs'
 
   " parancsok futtatasa visual block-on
   Plugin 'vis'
@@ -95,6 +92,10 @@ if exists( '*vundle#begin' )
 
   " sajat text-object
   Plugin 'kana/vim-textobj-user'
+
+  " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
+  Plugin 'shougo/unite.vim'
+  Plugin 'tsukkee/unite-tag'
 
   " szoveg igazitasa regex kifejezesekkel
   Plugin 'godlygeek/tabular'

@@ -5,6 +5,9 @@
 
 [alias]
 
+  s            = "status"
+  ada          = "add --all :/"
+  c            = "commit"
   glog         = "log --graph --decorate --all --name-status"
   slog         = "log --graph --decorate --all --format=oneline"
   changelog    = "log --graph --decorate --all --name-status ORIG_HEAD.."
