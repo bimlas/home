@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.15 13:14 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.16 09:35 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -293,7 +293,7 @@ let stat_lineinfo   = '%4l:%3p%%|%3v'
 
 let &statusline  = stat_filename . ' | '
 let &statusline .= stat_fileformat . ' | '
-let &statusline .= '%{exists( "b:mixed" ) && len( b:mixed ) && (winwidth(0) > 70) ? b:mixed . " | " : ""}'
+let &statusline .= '(winwidth(0) > 70) ? StatWarn() . " | " : ""}'
 let &statusline .= '%{len( StatFugitive() ) ? StatFugitive() . " | " : ""}'
 let &statusline .= stat_filedir . ' | '
 let &statusline .= '%= '
@@ -317,7 +317,7 @@ if !exists( 'g:lightline' )
 endif
 
 let g:lightline.active = {
-\     'left'          : [ ['filename'], ['fileformat'], ['mixed'], ['fugitive'], ['filedir'] ],
+\     'left'          : [ ['filename'], ['fileformat'], ['statwarn'], ['fugitive'], ['filedir'] ],
 \     'right'         : [ ['lineinfo'], ['syntastic'], ['tagbar'] ]
 \   }
 
@@ -332,11 +332,11 @@ let g:lightline.component = {
 \     'filedir'       : stat_filedir,
 \     'fileformat'    : stat_fileformat,
 \     'tagbar'        : stat_tagbar,
-\     'mixed'         : '%{exists( "b:mixed" ) && len( b:mixed ) && (winwidth(0) > 70) ? b:mixed : ""}',
 \     'lineinfo'      : stat_lineinfo
 \   }
 
 let g:lightline.component_function = {
+\     'statwarn'      : 'StatWarn',
 \     'fugitive'      : 'StatFugitive',
 \     'syntastic'     : 'StatSyntastic'
 \   }
@@ -390,61 +390,37 @@ function StatFugitive()
   return (exists( 'b:git_dir' ) && ! g:statfugitive_disabled) ? fugitive#head(7) . ':' . fugitive#buffer().commit()[0:6] : ''
 endfunction
 
-" __ FINDMIXED __________________________
+" __ STATWARN ___________________________
 "
 " Mixed end-of-line es -indent, valamint a textwidth-nel hosszabb sorok
 " keresese.
 
-autocmd BufReadPost,BufWritePost * call FindMixed()
-function FindMixed()
-  " FIXME: a 0. sortol kezdje a keresest.
+" b:statwarn = [ [pattern, str], [pattern, str], ...]
+" Set up after &textwidth.
+" TODO: feltetelhez kotott elemek
+let g:statwarn = [ ['^ .*\n\zs\t\|^\t.*\n\zs ', '^%d'],
+\                  ['^.\{79,}',                 '>%d'],
+\                  ['\r',                       '$%d']
+\                ]
 
-  let mixed = { 'eol' : 0, 'indent' : 0, 'long_line' : 0 }
+autocmd BufReadPost,BufWritePost * silent! unlet b:statwarn
+function StatWarn()
 
-  " Binary modban ne csinaljon semmit.
-  if &binary
-    let b:mixed = ''
-  endif
+  if exists( 'b:statwarn' ) | return b:statwarn | endif
 
-  " __ MIXED EOL __________________________
+  let b:statwarn = ''
 
-  let mixed['eol'] = search( '\r', 'wnc' )
+  if &binary | return '' | endif
 
-  " Ha a fileformat 'dos'-ra van allitva, akkor az a sor szamit hibasnak,
-  " amelyik nem '\r' karival vegzodik. (a normalis sorok vegen ilyenkor
-  " latszodnia kell a '\r' karinak)
-  if (&fileformat == 'dos') && mixed['eol']
-    let eol = search( '[^\r]$\|^$', 'wnc' )
-
-    " Ha megis csak '\r'-el vegzodik minden sor, akkor azokat jelezzuk
-    " hibasnak.
-    if eol
-      let mixed['eol'] = eol
+  for searchfor in g:statwarn
+    let found = search( searchfor[0], 'wnc' )
+    if found != 0
+      let b:statwarn .= printf( searchfor[1], found )
     endif
-  endif
+  endfor
 
-  " __ MIXED INDENT _______________________
+  return b:statwarn
 
-  let tab   = search( '^ *\t', 'wnc' )
-  let space = search( '^\t* ', 'wnc' )
-
-  if tab && space
-    let mixed['indent'] = (tab > space) ? tab : space
-  else
-    let mixed['indent'] = 0
-  endif
-
-  " __ LONG LINE ______________________________
-  "
-  " FIXME: tabulator csak 1 karinak szamit.
-
-  if (&filetype =~ '^\(text\)\?$')
-    let mixed['long_line'] = search( '^.\{' . (&textwidth + 1) . ',}', 'wnc' )
-  endif
-
-  let b:mixed  = mixed['indent']    ? '^' . mixed['indent']    : ''
-  let b:mixed .= mixed['eol']       ? '$' . mixed['eol']       : ''
-  let b:mixed .= mixed['long_line'] ? '<' . mixed['long_line'] : ''
 endfunction
 
 "                                 ALTALANOS                               {{{1
