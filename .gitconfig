@@ -8,6 +8,7 @@
   s            = "status"
   ada          = "add --all :/"
   c            = "commit"
+  cm           = "commit -m"
   glog         = "log --graph --decorate --all --name-status"
   slog         = "log --graph --decorate --all --format=oneline"
   changelog    = "log --graph --decorate --all --name-status ORIG_HEAD.."
@@ -41,11 +42,3 @@
 [push]
 
   default      = "simple"
-
-[web]
-
-  browser      = "firefoxx"
-
-[browser "firefoxx"]
-
-  cmd          = "/opt/firefox/firefox"

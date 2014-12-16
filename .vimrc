@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.16 09:35 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.16 13:28 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -293,7 +293,7 @@ let stat_lineinfo   = '%4l:%3p%%|%3v'
 
 let &statusline  = stat_filename . ' | '
 let &statusline .= stat_fileformat . ' | '
-let &statusline .= '(winwidth(0) > 70) ? StatWarn() . " | " : ""}'
+let &statusline .= '%{(winwidth(0) > 70) ? StatWarn() . " | " : ""}'
 let &statusline .= '%{len( StatFugitive() ) ? StatFugitive() . " | " : ""}'
 let &statusline .= stat_filedir . ' | '
 let &statusline .= '%= '
@@ -851,6 +851,12 @@ if !exists('g:neocomplete#force_omni_input_patterns')
 endif
 let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
+"                                  BEXEC                                  {{{2
+" ____________________________________________________________________________
+
+" Fajltipus beallitasok.
+let g:bexec_filter_types = {'asciidoc': 'asciidoctor'}
+
 "                                JEDI-VIM                                 {{{2
 " ____________________________________________________________________________
 
@@ -909,6 +915,10 @@ noremap                    k            gk
 " Ugras a sor elejere/vegere.
 noremap                    H            g^
 noremap                    L            g$
+
+" Keresesnel a kovetkezo talalat az ablak kozepen jelenjen meg mindig.
+nnoremap                   n            nzz
+nnoremap                   N            Nzz
 
 "                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
 " ____________________________________________________________________________
@@ -989,12 +999,18 @@ function NetrwLynxMap()
   map    <buffer>          l            <CR>
 endfunction
 
-" Kereses a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
-" konyvtarban rekurzivan.
-nnoremap                   <Leader>ur   :UniteWithProjectDir -start-insert file_rec -sync<CR>
+" Kereses a buffer konyvtaraban rekurzivan.
+nnoremap                   <Leader>ur   :UniteWithBufferDir -start-insert file_rec -sync<CR>
 
 " ... nem rekurzivan.
-nnoremap                   <Leader>uf   :UniteWithProjectDir -start-insert file -sync<CR>
+nnoremap                   <Leader>uf   :UniteWithBufferDir -start-insert file -sync<CR>
+
+" ... a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
+" konyvtarban (pwd) rekurzivan.
+nnoremap                   <Leader>upr  :UniteWithProjectDir -start-insert file_rec -sync<CR>
+
+" ... nem rekurzivan.
+nnoremap                   <Leader>upf  :UniteWithProjectDir -start-insert file -sync<CR>
 
 " ... a bufferek kozott.
 nnoremap                   <Leader>ub   :Unite -start-insert buffer -sync<CR>
