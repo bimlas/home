@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.16 13:28 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.17 07:53 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -395,15 +395,18 @@ endfunction
 " Mixed end-of-line es -indent, valamint a textwidth-nel hosszabb sorok
 " keresese.
 
-" b:statwarn = [ [pattern, str], [pattern, str], ...]
 " Set up after &textwidth.
-" TODO: feltetelhez kotott elemek
-let g:statwarn = [ ['^ .*\n\zs\t\|^\t.*\n\zs ', '^%d'],
-\                  ['^.\{79,}',                 '>%d'],
-\                  ['\r',                       '$%d']
+let g:statwarn = [ { 'pattern' : '^ .*\n\zs\t\|^\t.*\n\zs ', 'format' : '^%d' },
+\                  { 'pattern' : '^.\{79,}',                 'format' : '>%d', 'whitelist' : ['text', ''] },
+\                  { 'pattern' : '\r',                       'format' : '$%d' },
+\                  { 'pattern' : 'TODO\|FIXME',              'format' : 'T%d' }
 \                ]
 
-autocmd BufReadPost,BufWritePost * silent! unlet b:statwarn
+" TODO:
+" Cursorhold max lines.
+let g:statwarn_max_lines = 10000
+
+autocmd BufReadPost,BufWritePost,CursorHold * silent! unlet b:statwarn
 function StatWarn()
 
   if exists( 'b:statwarn' ) | return b:statwarn | endif
@@ -413,9 +416,14 @@ function StatWarn()
   if &binary | return '' | endif
 
   for searchfor in g:statwarn
-    let found = search( searchfor[0], 'wnc' )
+    if (has_key( searchfor, 'whitelist' ) && (index( searchfor['whitelist'], &filetype ) <  0)) ||
+    \  (has_key( searchfor, 'blacklist' ) && (index( searchfor['blacklist'], &filetype ) >= 0))
+      continue
+    endif
+
+    let found = search( searchfor['pattern'], 'wnc' )
     if found != 0
-      let b:statwarn .= printf( searchfor[1], found )
+      let b:statwarn .= printf( searchfor['format'], found )
     endif
   endfor
 
