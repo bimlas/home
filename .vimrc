@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.17 09:28 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.17 10:40 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -696,7 +696,7 @@ let g:unite_source_tag_max_fname_length = 70
 " ____________________________________________________________________________
 
 " A helymeghatarozashoz hasznalt betuk.
-let g:EasyMotion_keys = 'aAsSdDfFqQwWeErRcCvV'
+let g:EasyMotion_keys = 'asdfgqwerhjkluiopASDFGQWERHJKLUIOP'
 
 "                                EASYGREP                                 {{{2
 " ____________________________________________________________________________
