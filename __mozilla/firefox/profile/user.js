@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========== BimbaLaszlo(.github.io|gmail.com) ========== 2014.08.12 22:29 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.19 10:58 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -70,29 +70,32 @@ user_pref( "general.smoothScroll", false );
 /* Ne jegyezze meg a jelszavakat. */
 user_pref( "signon.rememberSignons", false );
 
-/* Ne kuldje el az elozo weboldal cimet - nehany oldal hianyolja. */
-// user_pref( "network.http.sendRefererHeader", 0 );
-
 /* Bezaraskor torolje... */
-user_pref( "privacy.clearOnShutdown.cookies"     , true );
-user_pref( "privacy.clearOnShutdown.passwords"   , true );
-user_pref( "privacy.clearOnShutdown.sessions"    , true );
-user_pref( "privacy.sanitize.sanitizeOnShutdown" , true );
+user_pref( "privacy.clearOnShutdown.cache",         true );
+user_pref( "privacy.clearOnShutdown.cookies",       true );
+user_pref( "privacy.clearOnShutdown.passwords",     true );
+user_pref( "privacy.clearOnShutdown.sessions",      true );
+user_pref( "privacy.sanitize.sanitizeOnShutdown",   true );
 
 /* ... ezeket viszon ne. */
-user_pref( "privacy.clearOnShutdown.cache"       , false );
-user_pref( "privacy.clearOnShutdown.downloads"   , false );
-user_pref( "privacy.clearOnShutdown.formdata"    , false );
-user_pref( "privacy.clearOnShutdown.history"     , false );
-user_pref( "privacy.clearOnShutdown.offlineApps" , false );
-user_pref( "privacy.clearOnShutdown.siteSettings", false );
+user_pref( "privacy.clearOnShutdown.downloads",     false );
+user_pref( "privacy.clearOnShutdown.formdata",      false );
+user_pref( "privacy.clearOnShutdown.history",       false );
+user_pref( "privacy.clearOnShutdown.offlineApps",   false );
+user_pref( "privacy.clearOnShutdown.siteSettings",  false );
 
 /*                                TWEAK                                 {{{1
  * =========================================================================
  */
 
-user_pref( "content.interrupt.parsing"                         , true );
-// user_pref( "network.http.max-persistent-connections-per-server", 16   );
-// user_pref( "network.http.max-persistent-connections-per-proxy" , 32   );
-// user_pref( "network.http.pipelining"                           , true );
-// user_pref( "network.http.pipelining.ssl"                       , true );
+// A lemez helyett a memoriaban legyen a cache, a merete legyen X kbyte, vagy
+// -1 eseten magatol hatarozza meg.
+user_pref( "browser.cache.disk.enable",      false );
+user_pref( "browser.cache.memory.enable",    true );
+user_pref( "browser.cache.memory.capacity",  -1 );
+
+user_pref( "content.interrupt.parsing",                           true );
+// user_pref( "network.http.max-persistent-connections-per-server",  16   );
+// user_pref( "network.http.max-persistent-connections-per-proxy",   32   );
+// user_pref( "network.http.pipelining",                             true );
+// user_pref( "network.http.pipelining.ssl",                         true );
