@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.19 10:58 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.21 09:41 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -92,7 +92,7 @@ user_pref( "privacy.clearOnShutdown.siteSettings",  false );
 // -1 eseten magatol hatarozza meg.
 user_pref( "browser.cache.disk.enable",      false );
 user_pref( "browser.cache.memory.enable",    true );
-user_pref( "browser.cache.memory.capacity",  -1 );
+user_pref( "browser.cache.memory.capacity",  1000000 );
 
 user_pref( "content.interrupt.parsing",                           true );
 // user_pref( "network.http.max-persistent-connections-per-server",  16   );

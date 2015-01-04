@@ -1,7 +1,18 @@
-﻿[qt4] # Qt interface
+﻿[alsa] # ALSA audio output
+
+# Audio output device (string)
+alsa-audio-device=sysdefault
+
+# Software gain (float)
+alsa-gain=1.000000
+
+[qt4] # Qt interface
 
 # Systray icon (boolean)
-qt-system-tray=0
+qt-system-tray=1
+
+# Show notification popup on track change (integer)
+qt-notification=2
 
 # Save the recently played items in the menu (boolean)
 qt-recentplay=0
@@ -16,6 +27,9 @@ audio-replay-gain-peak-protection=0
 
 # Enable time stretching audio (boolean)
 audio-time-stretch=0
+
+# Audio output module (string)
+aout=alsa
 
 # Allow only one running instance (boolean)
 one-instance=1

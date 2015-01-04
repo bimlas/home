@@ -26,13 +26,13 @@ display=Display,Display,Képernyőváltás
 
 [khotkeys]
 _k_friendly_name=khotkeys
-{2cd60af8-140f-46c1-82c9-40f6e100946a}=Ctrl+Alt+Del,none,ksysguard
 {2f33c0af-f0ee-4f6e-a746-cadcf951c309}=Alt+F5,none,firefox
 {31c3dbe3-30d4-433d-9241-4e073fba3dac}=Alt+F9,none,krusader
 {50e1ac75-3925-4ea0-b0c8-5c3a560d2f5c}=Alt+F12,none,xterm
 {88710047-575d-4e0e-ad8e-879743ed7154}=Alt+F10,none,kcalc
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=Search,none,Search
 {db1cdb33-4ee2-484c-b985-d88e90843aa9}=Print,none,PrintScreen
+{f8203049-de0d-4abb-af1d-0e8dc7d65efd}=Alt+F6,none,thunderbird
 
 [klipper]
 _k_friendly_name=Klipper

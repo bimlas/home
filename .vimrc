@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.17 10:40 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.01 16:04 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -121,7 +121,8 @@ if exists( '*vundle#begin' )
   Plugin 'shougo/neocomplete.vim'
 
   " buffer, vagy kijelolt kod futtatasa
-  Plugin 'https://bitbucket.org/fboender/bexec'
+  Plugin 'https://bitbucket.org/bimbalaszlo/bexec'
+  Plugin 'thinca/vim-quickrun'
 
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
@@ -286,7 +287,7 @@ set laststatus=2
 
 autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand( "%:p:h" )
 let stat_filedir    = '%<%{exists( "b:stat_curfiledir" ) ? b:stat_curfiledir : ""}'
-let stat_filename   = '%w%t%r%m'
+let stat_filename   = '%{&buflisted ? bufnr( "%" ) . ":" : ""}%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
 let stat_tagbar     = '%{winwidth( 0 ) > 120 ? tagbar#currenttag("%s","") : ""}'
 let stat_lineinfo   = '%4l:%3p%%|%3v'
@@ -866,6 +867,17 @@ let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " Fajltipus beallitasok.
 let g:bexec_filter_types = {'asciidoc': 'asciidoctor'}
 
+"                                QUICKRUN                                 {{{2
+" ____________________________________________________________________________
+
+let g:quickrun_config = {
+\ '_':
+\   {
+\     'outputter': 'multi',
+\     'outputter/multi/targets': ['buffer', 'quickfix']
+\   }
+\ }
+
 "                                JEDI-VIM                                 {{{2
 " ____________________________________________________________________________
 
@@ -924,10 +936,6 @@ noremap                    k            gk
 " Ugras a sor elejere/vegere.
 noremap                    H            g^
 noremap                    L            g$
-
-" Keresesnel a kovetkezo talalat az ablak kozepen jelenjen meg mindig.
-nnoremap                   n            nzz
-nnoremap                   N            Nzz
 
 "                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
 " ____________________________________________________________________________
@@ -1073,9 +1081,8 @@ map                <expr>  <F4>         &filetype =~ 'gitv\?' ? 'q' : ':Gitv<CR>
 imap                       <F4>         <C-O><F4>
 
 " Compile es make egy gombnyomasra.
-nnoremap                   <F5>         :Bexec<CR>
+noremap                    <F5>         :QuickRun<CR>
 imap                       <F5>         <C-O><F5>
-vnoremap                   <F5>         :call BexecVisual()<CR>
 nnoremap                   <F6>         :Comp<CR>
 imap                       <F6>         <C-O><F6>
 

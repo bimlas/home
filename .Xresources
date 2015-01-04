@@ -1,5 +1,5 @@
 ! ~/.Xresources: terminalos motyok megjelenitese
-! ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.18 15:32 ==
+! ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.04 16:00 ==
 
 ! Minden modositas utan ki kell adni a kovetkezo parancsot, kulonben nem
 ! lathato a valtozas, csak restart utan:
@@ -28,7 +28,7 @@ XTerm*termName:      xterm-256color
 XTerm*dynamicColors: true
 XTerm*scrollBar:     false
 
-XTerm*faceName:      Droid Sans Mono
+XTerm*faceName:      DeJavu Sans Mono
 XTerm*faceSize:      11
 
 ! A Shift-+ es Shift-- ne meretezze at a betuket.

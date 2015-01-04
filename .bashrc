@@ -3,7 +3,7 @@
 # TIPP: If you opened in vim and don't know folding, press zR to open all
 # folds.
 #
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.19 20:49 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.04 15:35 ==
 
 # Exit if the shell is not interactive.
 if [[ -z "$PS1" ]]; then
@@ -78,6 +78,9 @@ clr_txtrst='\[\e[0m\]'    # Text Reset
 
 #                    ENVIRONMENT VARIABLES, COMPLETION                    {{{1
 # ============================================================================
+
+export EDITOR=vim
+
 # Special characters.
 chr_topleft='\342\224\214'
 chr_bottomleft='\342\224\224'
@@ -96,7 +99,7 @@ fi
 # Custom prompt.
 if [[ -e '/etc/bash_completion.d/git-prompt' ]]; then
   ps1_git='$(__git_ps1 "[%s]")'
-  # Nagyon belassitja...
+  # Slows down the prompt...
   # GIT_PS1_SHOWDIRTYSTATE=true
   # GIT_PS1_SHOWSTASHSTATE=true
   # GIT_PS1_SHOWUNTRACKEDFILES=true
@@ -114,18 +117,16 @@ PS1+="$clr_bldcyn$chr_bottomleft$chr_vertical "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo $clr_bldred; else echo $clr_bldwht; fi)\\$ $clr_txtrst"
 export PS1
 
-# View manuals in vim. I don't need these settings because exists in my
-# .vimrc, but if you don't, put below the `vim -RM` line:
-# -c 'set nocp'                                 \
-# -c 'filetype plugin on'                       \
-# -c 'syntax enable'                            \
-# -c 'runtime ftplugin/man.vim'                 \
-MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |     \
-      vim -RM                                       \
-      -c 'set ft=man ls=0 nosmd nonu nornu nolist'  \
-      -c 'map <CR> <C-]>'                           \
-      -c 'map q :q<CR>' - \""
-export MANPAGER
+# View manuals in vim.
+export MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |         \
+                 vim -RM                                       \
+                 -c 'set nocp'                                 \
+                 -c 'filetype plugin on'                       \
+                 -c 'syntax enable'                            \
+                 -c 'runtime ftplugin/man.vim'                 \
+                 -c 'set ft=man ls=0 nosmd nonu nornu nolist'  \
+                 -c 'map <CR> <C-]>'                           \
+                 -c 'map q :q<CR>' - \""
 
 #                                   ALIAS                                 {{{1
 # ============================================================================
@@ -140,11 +141,6 @@ if [[ -e '/usr/bin/vim.tiny' ]]; then
   alias vim.tiny='vim.tiny -u NONE'
 fi
 
-# Use w3m as manual pager (in some case it does not works)
-# if [[ -e '/usr/bin/w3mman' ]]; then
-  # alias man='w3mman'
-# fi
-
 # Do not close the image after gnuplot.
 if [[ -e '/usr/bin/gnuplot' ]]; then
   alias gnuplot='gnuplot -persist'
@@ -153,7 +149,7 @@ fi
 #                                FUNCTIONS                                {{{1
 # ============================================================================
 
-# Start program then give back the prompt (to run programs with GUI)
+# Start program then give back the prompt (to run programs with GUI).
 x()
 {
   nohup $* &> /dev/null &
