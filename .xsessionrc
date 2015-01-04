@@ -2,7 +2,7 @@
 # ~/.xsessionrc - xorg settings
 #
 # debian: ~/.xsessionrc
-# arch: ~/.xinitrc
+# arch: ~/.xprofile
 
 # Turn off speaker.
 xset b off
