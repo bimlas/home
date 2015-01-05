@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.05 09:11 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.05 14:16 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -38,6 +38,10 @@ if exists( '*vundle#begin' )
 
   " plugin-ok automatizalt telepitese git-en keresztul (is)
   Plugin 'gmarik/Vundle.vim'
+
+  " Nehany plugin hasznalja. Windows dll:
+  " https://github.com/Shougo/vimproc.vim/downloads
+  " Plugin 'shougo/vimproc'
 
   " __ GITHUB _____________________________
 
@@ -695,6 +699,15 @@ let g:EightHeader_uncomment = 'call NERDComment( "n", "uncomment" )'
 
 " let g:unite_source_tag_show_location = 0
 let g:unite_source_tag_max_fname_length = 70
+
+"                                VIMFILER                                 {{{2
+" ____________________________________________________________________________
+
+let g:vimfiler_tree_leaf_icon   = ' '
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon        = '-'
+let g:vimfiler_marked_file_icon = '*'
 
 "                               EASYMOTION                                {{{2
 " ____________________________________________________________________________
