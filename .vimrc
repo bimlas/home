@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.01 16:04 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.05 09:11 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -96,6 +96,8 @@ if exists( '*vundle#begin' )
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
   Plugin 'shougo/unite.vim'
   Plugin 'tsukkee/unite-tag'
+  " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
+  Plugin 'shougo/vimfiler.vim'
 
   " szoveg igazitasa regex kifejezesekkel
   Plugin 'godlygeek/tabular'
@@ -123,6 +125,7 @@ if exists( '*vundle#begin' )
   " buffer, vagy kijelolt kod futtatasa
   Plugin 'https://bitbucket.org/bimbalaszlo/bexec'
   Plugin 'thinca/vim-quickrun'
+  Plugin 'tyru/open-browser.vim'
 
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
@@ -870,11 +873,18 @@ let g:bexec_filter_types = {'asciidoc': 'asciidoctor'}
 "                                QUICKRUN                                 {{{2
 " ____________________________________________________________________________
 
+" Alapertelmezesben nyissa meg a quickfix-et is, ha hiba tortent.
 let g:quickrun_config = {
 \ '_':
 \   {
 \     'outputter': 'multi',
 \     'outputter/multi/targets': ['buffer', 'quickfix']
+\   },
+\ 'asciidoc':
+\   {
+\     'type': 'asciidoctor',
+\     'cmdopt': '-o -',
+\     'outputter': 'browser'
 \   }
 \ }
 
@@ -1086,9 +1096,13 @@ imap                       <F5>         <C-O><F5>
 nnoremap                   <F6>         :Comp<CR>
 imap                       <F6>         <C-O><F6>
 
-" Bongeszes a konyvtarban netrw-vel (v150 verzio kell hozza).
-nnoremap  <silent>         <F7>         :Lexplore<CR>
+" Bongeszes a konyvtarban.
+nnoremap  <silent>         <F7>         :VimFilerExplorer -project<CR>
 imap                       <F7>         <C-O><F7>
+
+" Ketpaneles commander megnyitasa.
+nnoremap  <silent>         <S-F7>       :VimFilerDouble<CR>
+imap                       <S-F7>       <C-O><S-F7>
 
 " Tagbar megnyitasa.
 nnoremap  <silent>         <F8>         :TagbarToggle<CR>
