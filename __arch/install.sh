@@ -7,7 +7,7 @@ echo "UPDATING PACKAGES LIST..."
 pacman -Syu
 
 echo "INSTALLING BASIC PACKAGES..."
-pacman -S linux-firmware yaourt archey3 mc gvim-python3 git jre8-openjdk python python-pip python2 python2-pip ruby
+pacman -S linux-firmware yaourt archey3 mlocate mc gvim-python3 git jre8-openjdk python python-pip python2 python2-pip ruby
 
 echo "INSTALLING KDE PACKAGES..."
 pacman -S kde-meta-kdebase kde-l10n-hu qtcurve-kde4 qtcurve-gtk2 kio-mtp kdemultimedia-kmix kde-gtk-config krusader krename kdegraphics-gwenview

@@ -3,7 +3,7 @@
 # TIPP: If you opened in vim and don't know folding, press zR to open all
 # folds.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.04 15:35 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.05 18:43 ==
 
 # Exit if the shell is not interactive.
 if [[ -z "$PS1" ]]; then
@@ -97,16 +97,21 @@ if [[ ! $PATH =~ $HOME/bin ]]; then
 fi
 
 # Custom prompt.
+# Slows down the prompt...
+# GIT_PS1_SHOWDIRTYSTATE=true
+# GIT_PS1_SHOWSTASHSTATE=true
+# GIT_PS1_SHOWUNTRACKEDFILES=true
+# GIT_PS1_SHOWUPSTREAM=true
+# GIT_PS1_DESCRIBE_STYLE=describe
+ps1_git=
+# debian
 if [[ -e '/etc/bash_completion.d/git-prompt' ]]; then
+  source /etc/bash_completion.d/git-prompt
   ps1_git='$(__git_ps1 "[%s]")'
-  # Slows down the prompt...
-  # GIT_PS1_SHOWDIRTYSTATE=true
-  # GIT_PS1_SHOWSTASHSTATE=true
-  # GIT_PS1_SHOWUNTRACKEDFILES=true
-  # GIT_PS1_SHOWUPSTREAM=true
-  # GIT_PS1_DESCRIBE_STYLE=describe
-else
-  ps1_git=
+# arch
+elif [[ -e '/usr/share/git/git-prompt.sh' ]]; then
+  source /usr/share/git/git-prompt.sh
+  ps1_git='$(__git_ps1 "[%s]")'
 fi
 
 PS1="\n$clr_bldcyn$chr_topleft$chr_vertical"
