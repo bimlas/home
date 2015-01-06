@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.21 09:41 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.06 15:24 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -28,6 +28,9 @@
  * vlc youtube shortcut - video kozvetlenul a vlc-ben (jobbgombos menu)
  * FIGYELEM: mintha kicsit lassitana a firefox-on
  *  https://addons.mozilla.org/hu/firefox/addon/vlc-youtube-shortcut/
+ *
+ * firebug - hiaba a beepitett hibakereso - ez ezerszer jobb
+ *  https://addons.mozilla.org/hu/firefox/addon/firebug/
  *
  * web developer - hasznos lehetosegeket kinal (pl. osszes checkbox pipalasa)
  *  https://addons.mozilla.org/hu/firefox/addon/web-developer/?src=search
