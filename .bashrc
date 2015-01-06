@@ -3,7 +3,7 @@
 # TIPP: If you opened in vim and don't know folding, press zR to open all
 # folds.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.05 18:43 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.06 17:42 ==
 
 # Exit if the shell is not interactive.
 if [[ -z "$PS1" ]]; then
@@ -91,9 +91,9 @@ if [[ -e '/etc/bash_completion' ]]; then
   source '/etc/bash_completion'
 fi
 
-# Add ~/bin to $PATh.
+# Add ~/bin to $PATH.
 if [[ ! $PATH =~ $HOME/bin ]]; then
-  PATH=$HOME/bin:$PATH
+  PATH=$HOME/bin:$HOME/.gem/ruby/2.1.0/bin:$PATH
 fi
 
 # Custom prompt.

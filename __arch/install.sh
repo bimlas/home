@@ -25,3 +25,6 @@ yaourt -S kawoken-icons
 
 echo "INSTALLING CHROMIUM PEPPER FLASH... (dont forget to enable in about:plugins)"
 yaourt -S chromium-pepper-flash
+
+echo "INSTALLING OTHER THINGS..."
+gem install bundler

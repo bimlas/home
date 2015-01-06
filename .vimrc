@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.05 14:16 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.06 18:33 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1253,17 +1253,4 @@ autocmd  QuickFixCmdPost  *  botright cwindow
 " }}}1
 
 " Hard mode, amig megtanulatom uralni a vim-et.
-noremap   <Up>        <Nop>
-noremap   <Down>      <Nop>
-noremap   <Left>      <Nop>
-noremap   <Right>     <Nop>
-" noremap   <PageUp>    <Nop>
-" noremap   <PageDown>  <Nop>
-noremap   <BS>        <Nop>
-inoremap  <Up>        <Nop>
-inoremap  <Down>      <Nop>
-inoremap  <Left>      <Nop>
-inoremap  <Right>     <Nop>
-inoremap  <PageUp>    <Nop>
-inoremap  <PageDown>  <Nop>
-inoremap  <BS>        <Nop>
+noremap  w  <Nop>
