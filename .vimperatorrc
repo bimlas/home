@@ -19,3 +19,7 @@ cnoremap  <C-N>  <Tab>
 cnoremap  <C-P>  <S-Tab>
 nnoremap  a      i
 nnoremap  s      f
+
+" Scroll gyorsitasa.
+nnoremap  j      3j
+nnoremap  k      3k
