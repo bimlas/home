@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.07 07:31 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.07 10:34 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -41,7 +41,7 @@ if exists( '*vundle#begin' )
 
   " Nehany plugin hasznalja. Windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
-  " Plugin 'shougo/vimproc'
+  Plugin 'shougo/vimproc'
 
   " __ GITHUB _____________________________
 
@@ -906,7 +906,9 @@ let g:quickrun_config = {
 \ '_':
 \   {
 \     'outputter': 'multi',
-\     'outputter/multi/targets': ['buffer', 'quickfix']
+\     'outputter/multi/targets': ['buffer', 'quickfix'],
+\     'runner/vimproc/updatetime': 1000,
+\     'outputter/buffer/running_mark': '... RUNNING ...'
 \   },
 \ 'asciidoc':
 \   {
@@ -1119,7 +1121,7 @@ map                <expr>  <F4>         &filetype =~ 'gitv\?' ? 'q' : ':Gitv<CR>
 imap                       <F4>         <C-O><F4>
 
 " Compile es make egy gombnyomasra.
-noremap                    <F5>         :QuickRun<CR>
+noremap                    <F5>         :QuickRun -runner vimproc<CR>
 imap                       <F5>         <C-O><F5>
 nnoremap                   <F6>         :Comp<CR>
 imap                       <F6>         <C-O><F6>
@@ -1268,4 +1270,4 @@ autocmd  QuickFixCmdPost  *  botright cwindow
 " }}}1
 
 " Hard mode, amig megtanulatom uralni a vim-et.
-noremap  <w>  <Nop>
+noremap  w  <Nop>
