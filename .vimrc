@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.06 18:33 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.07 07:31 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -703,11 +703,26 @@ let g:unite_source_tag_max_fname_length = 70
 "                                VIMFILER                                 {{{2
 " ____________________________________________________________________________
 
+" Egyeni ikonok.
 let g:vimfiler_tree_leaf_icon   = ' '
 let g:vimfiler_tree_opened_icon = '▾'
 let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_file_icon        = '-'
 let g:vimfiler_marked_file_icon = '*'
+
+" Az alternate buffer maradjon a vimfiler, igy a ketpaneles modba konnyebb
+" visszavaltani.
+let g:vimfiler_restore_alternate_file = 0
+
+" A rejtett fajlokat is mutassa.
+let g:vimfiler_ignore_pattern = ''
+
+" Ne ugorjon a konyvtar kinyitasa utan.
+let g:vimfiler_expand_jump_to_first_child = 0
+
+" Egyeni beallitasok.
+" 'sort_type': 'extension'
+call vimfiler#custom#profile( 'default', 'context', { 'safe': 0 } )
 
 "                               EASYMOTION                                {{{2
 " ____________________________________________________________________________
@@ -964,8 +979,8 @@ noremap                    L            g$
 " ____________________________________________________________________________
 
 nnoremap                   <C-H>        <C-W>q
-nnoremap                   <Tab>        <C-W>w
-nnoremap                   <S-Tab>      <C-W>W
+nnoremap                   <C-Y>        <C-W>w
+nnoremap                   <C-E>        <C-W>W
 
 "                                 VEGYES                                  {{{2
 " ____________________________________________________________________________
@@ -1110,7 +1125,7 @@ nnoremap                   <F6>         :Comp<CR>
 imap                       <F6>         <C-O><F6>
 
 " Bongeszes a konyvtarban.
-nnoremap  <silent>         <F7>         :VimFilerExplorer -project<CR>
+nnoremap  <silent>         <F7>         :VimFiler<CR>
 imap                       <F7>         <C-O><F7>
 
 " Ketpaneles commander megnyitasa.
@@ -1253,4 +1268,4 @@ autocmd  QuickFixCmdPost  *  botright cwindow
 " }}}1
 
 " Hard mode, amig megtanulatom uralni a vim-et.
-noremap  w  <Nop>
+noremap  <w>  <Nop>
