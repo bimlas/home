@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.07 10:34 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.08 14:05 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -993,6 +993,12 @@ imap                       <C-J>        <CR>
 noremap                    é            ;
 noremap                    É            ,
 inoremap                   <C-L>        <Del>
+
+" Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
+" elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
+" a felfele nyillal keresed az elozmenyeket)
+cnoremap                   <C-N>        <Up>
+cnoremap                   <C-P>        <Down>
 
 " Bufferek kozti mozgas.
 nnoremap                   <C-K>        :b#<CR>

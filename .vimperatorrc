@@ -1,7 +1,3 @@
-" Amig lehet, maradjon normal modban. (pl. Google megnyitasanal ne menjen az
-" inputfield-be)
-" set focuscontent
-
 " Kenyelmesebben elerheto billentyuk a navigalashoz.
 set hintchars=asdfghjklqwertzuiop
 
@@ -9,17 +5,26 @@ set hintchars=asdfghjklqwertzuiop
 highlight Hint font-size:16px;color:white;background-color:red;padding:2px;
 
 " Map.
-nnoremap  <C-J>  <CR>
+noremap   <C-J>  <CR>
 inoremap  <C-J>  <CR>
 cnoremap  <C-J>  <CR>
-nnoremap  <C-C>  <Esc>
+noremap   <C-C>  <Esc>
 inoremap  <C-C>  <Esc>
 cnoremap  <C-C>  <Esc>
 cnoremap  <C-N>  <Tab>
 cnoremap  <C-P>  <S-Tab>
-nnoremap  a      i
-nnoremap  s      f
+noremap   s      f
+noremap   <C-H>  d
+inoremap  <C-L>  <Del>
+nnoremap  <C-L>  :reload!<CR>
+nnoremap  <F12>  :nohlsearch<CR>
 
 " Scroll gyorsitasa.
 nnoremap  j      3j
 nnoremap  k      3k
+
+" Command.
+command  -nargs=+ -complete url  e     open <args>
+command  -nargs=+ -complete url  tabe  tabopen <args>
+
+" vim: filetype=vim
