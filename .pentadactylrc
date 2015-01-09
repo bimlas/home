@@ -1,3 +1,5 @@
+" Lasd: :listoptions
+
 " Mutassa a konyvjelzosavot es a toolbar-t.
 set guioptions+=BT
 
@@ -7,11 +9,22 @@ set guioptions+=c
 " Mutassa a tabok sorszamat.
 set guioptions+=n
 
+" Kiegeszitesek url begepelesenel.
+set complete+=location
+set complete+=bookmark
+set complete-=history
+set complete-=file
+set complete-=search
+set complete-=suggestions
+
 " Kenyelmesebben elerheto billentyuk a navigalashoz.
 set hintkeys=asdfghjklqwertzuiop
 
 " Jobban lathato karakterek a navigalashoz.
-highlight Hint font-size:16px;color:white;background-color:red;padding:2px;
+highlight -a Hint font-size: 16px !important; padding: 0px 5px; text-decoration: bold; text-transform: uppercase; background-color: white;
+
+" Ne mutassa az alt szoveget.
+highlight Hint::after content: attr(number) !important;
 
 " Map.
 map  -builtin  <C-J>  <CR>
