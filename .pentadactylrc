@@ -9,6 +9,12 @@ set guioptions+=c
 " Mutassa a tabok sorszamat.
 set guioptions+=n
 
+" Emelejen ki minden talalatot.
+set hlfind
+
+" Csak a <Tab> megnyomasara egeszitsen ki.
+set autocomplete=
+
 " Kiegeszitesek url begepelesenel.
 set complete+=location
 set complete+=bookmark
@@ -39,7 +45,7 @@ map  -builtin  s      f
 map  -builtin  <C-H>  d
 imap -builtin  <C-L>  <Del>
 nmap -builtin  <C-L>  :reload!<CR>
-nmap -builtin  <F12>  :nohlsearch<CR>
+nmap -builtin  <F12>  :nohlfind<CR>
 
 " Scroll gyorsitasa.
 nmap -builtin  j      3j

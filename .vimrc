@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.08 14:05 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.09 11:25 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -703,6 +703,9 @@ let g:unite_source_tag_max_fname_length = 70
 "                                VIMFILER                                 {{{2
 " ____________________________________________________________________________
 
+" Ez legyen az alapertelmezett bongeszo.
+let g:vimfiler_as_default_explorer = 1
+
 " Egyeni ikonok.
 let g:vimfiler_tree_leaf_icon   = ' '
 let g:vimfiler_tree_opened_icon = '▾'
@@ -741,6 +744,9 @@ let EasyGrepSearchCurrentBufferDir = 1
 
 " Rekurzivan keressen a konyvtarakban.
 let EasyGrepRecursive = 1
+
+" De hagyja ki a kovetkezoket...
+let g:EasyGrepFilesToExclude = ".svn,.git"
 
 " Rejtett fajlokban is keressen.
 let EasyGrepHidden = 1
