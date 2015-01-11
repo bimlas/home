@@ -6,7 +6,7 @@ Windows Registry Editor Version 5.00
 ; admin.
 ; Hogy lasd a hatast, jelentkezz be ujra a profilodba.
 ;
-============= BimbaLaszlo(.co.nr|gmail.com) ============== 2014.05.28 07:56 ==
+=========== BimbaLaszlo (.github.io|gmail.com) =========== 2015.01.10 13:43 ==
 
 ;                   IKONOK MELLETTI NYILACSKA ELTUNTETESE                 {{{1
 ; ============================================================================
@@ -376,6 +376,13 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction]
 "Enable"="y"
 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager]
+"AutoChkTimeOut"=dword:00000005
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+"DisablePagingExecutive"=dword:00000001
+"IoPageLockLimit"=dword:08000000
+
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]
 "DisablePagingExecutive"=dword:00000001
 "IoPageLockLimit"=dword:08000000
@@ -413,3 +420,9 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\PriorityControl]
 "Win32PrioritySeparation"=dword:00000026
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER]
+"iexplore.exe"=dword:0000000a
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER]
+"iexplore.exe"=dword:0000000a
