@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.09 11:25 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.12 12:23 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1069,17 +1069,17 @@ function NetrwLynxMap()
 endfunction
 
 " Kereses a buffer konyvtaraban rekurzivan.
-nnoremap                   <Leader>ur   :UniteWithBufferDir -start-insert file_rec -sync<CR>
+nnoremap                   <Leader>ur   :UniteWithBufferDir file_rec -sync<CR>
 
 " ... nem rekurzivan.
-nnoremap                   <Leader>uf   :UniteWithBufferDir -start-insert file -sync<CR>
+nnoremap                   <Leader>uf   :UniteWithBufferDir file -sync<CR>
 
 " ... a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
 " konyvtarban (pwd) rekurzivan.
-nnoremap                   <Leader>upr  :UniteWithProjectDir -start-insert file_rec -sync<CR>
+nnoremap                   <Leader>upr  :UniteWithProjectDir file_rec -sync<CR>
 
 " ... nem rekurzivan.
-nnoremap                   <Leader>upf  :UniteWithProjectDir -start-insert file -sync<CR>
+nnoremap                   <Leader>upf  :UniteWithProjectDir file -sync<CR>
 
 " ... a bufferek kozott.
 nnoremap                   <Leader>ub   :Unite -start-insert buffer -sync<CR>
@@ -1092,11 +1092,11 @@ nnoremap                   <Leader>ut   :Unite -start-insert tag -sync<CR>
 
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
-  " <Esc> mindig lepjen ki a unite bufferbol.
-  " Terminalban a nyilak is az <Esc>-et hasznaljak, ezert nem mukodnek.
   if has( 'gui_running' )
-    map    <buffer>        <Esc>        <Plug>(unite_exit)
-    imap   <buffer>        <Esc>        <Plug>(unite_exit)
+    map    <buffer>        <Esc>        <Plug>(unite_all_exit)
+    nmap   <buffer>        h            i<C-C>A../<C-C>
+    nmap   <buffer>        l            <CR>
+    nmap   <buffer>        x            astart<CR>
   endif
 endfunction
 
@@ -1280,6 +1280,3 @@ autocmd  BufNew    __doc__  setlocal nonumber nolist
 autocmd  QuickFixCmdPost  *  botright cwindow
 
 " }}}1
-
-" Hard mode, amig megtanulatom uralni a vim-et.
-noremap  w  <Nop>

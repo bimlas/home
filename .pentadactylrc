@@ -23,24 +23,30 @@ set complete-=file
 set complete-=search
 set complete-=suggestions
 
+" j/k scroll eleg lassu e nelkul.
+set scrollsteps=1
+
 " Kenyelmesebben elerheto billentyuk a navigalashoz.
 set hintkeys=asdfghjklqwertzuiop
 
+" A ;-ben valaztott mod (pl. ;?) a megadott elemeket tegye kivalaszthatova.
+set extendedhinttags+=[?]:a,img
+
 " Jobban lathato karakterek a navigalashoz.
-highlight -a Hint font-size: 16px !important; padding: 0px 5px; text-decoration: bold; text-transform: uppercase; background-color: white;
+highlight -a Hint font-family: monospace; font-size: 16px !important; padding: 0px 5px; text-decoration: bold; text-transform: uppercase; color: black; background-color: white;
 
 " Ne mutassa az alt szoveget.
 highlight Hint::after content: attr(number) !important;
 
 " Map.
-map  -builtin  <C-J>  <CR>
-imap -builtin  <C-J>  <CR>
-cmap -builtin  <C-J>  <CR>
 map  -builtin  <C-C>  <Esc>
 imap -builtin  <C-C>  <Esc>
 cmap -builtin  <C-C>  <Esc>
 cmap -builtin  <C-N>  <Tab>
 cmap -builtin  <C-P>  <S-Tab>
+map  -builtin  H      0
+map  -builtin  L      $
+vmap -builtin  y      y<Esc>
 map  -builtin  s      f
 map  -builtin  <C-H>  d
 imap -builtin  <C-L>  <Del>

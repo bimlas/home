@@ -1,8 +1,33 @@
+" Lasd: :listoptions
+
+" Mutassa a konyvjelzosavot es a toolbar-t.
+set gui+=bookmarks
+
+" Mutassa a tabok sorszamat.
+set tabnumbers
+
+" Emelejen ki minden talalatot.
+set hlsearch
+
+" Csak a <Tab> megnyomasara egeszitsen ki.
+set noautocomplete
+
+" Kiegeszitesek url begepelesenel.
+set complete+=l
+set complete+=b
+set complete-=h
+set complete-=f
+set complete-=s
+set complete-=S
+
 " Kenyelmesebben elerheto billentyuk a navigalashoz.
 set hintchars=asdfghjklqwertzuiop
 
+" Ezekrol az elemekrol is lehessen informaciot kerni.
+set extendedhinttags+=" | //img"
+
 " Jobban lathato karakterek a navigalashoz.
-highlight Hint font-size:16px;color:white;background-color:red;padding:2px;
+highlight Hint font-family: monospace; font-size: 16px !important; padding: 0px 5px; text-decoration: bold; text-transform: uppercase; color: black; background-color: white;
 
 " Map.
 noremap   <C-J>  <CR>
@@ -18,6 +43,8 @@ noremap   <C-H>  d
 inoremap  <C-L>  <Del>
 nnoremap  <C-L>  :reload!<CR>
 nnoremap  <F12>  :nohlsearch<CR>
+vnoremap  H      0
+vnoremap  L      $
 
 " Scroll gyorsitasa.
 nnoremap  j      3j

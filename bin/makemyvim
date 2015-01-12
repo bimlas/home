@@ -1,7 +1,10 @@
+# #!/bin/sh - build vim - execute in source root
+#
 # https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
 #
-# sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
-#     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+# Try out withou gnome.
+# sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev        \
+#     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev                         \
 #     libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev python3-dev \
 #     ruby-dev
 
