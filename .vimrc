@@ -732,7 +732,9 @@ let g:vimfiler_expand_jump_to_first_child = 0
 
 " Egyeni beallitasok.
 " 'sort_type': 'extension'
-call vimfiler#custom#profile( 'default', 'context', { 'safe': 0 } )
+if exists( '*vimfiler#custom#profile' )
+  call vimfiler#custom#profile( 'default', 'context', { 'safe': 0 } )
+endif
 
 "                               EASYMOTION                                {{{2
 " ____________________________________________________________________________
@@ -1191,49 +1193,52 @@ autocmd  FileType  help  noremap <buffer>  <Leader>2
 "                              TEXTOBJ-USER                               {{{2
 " ____________________________________________________________________________
 
-call textobj#user#plugin( 'sharp', {
-\   'sharp-i': {
-\     'pattern': '#\zs[^#]*\ze#',
-\     'select':  ['i#']
-\   },
-\   'sharp-a': {
-\     'pattern': '#[^#]*#',
-\     'select':  ['a#']
-\   }
-\ })
+if exists( '*textobj#user#plugin' )
+  call textobj#user#plugin( 'sharp', {
+  \   'sharp-i': {
+  \     'pattern': '#\zs[^#]*\ze#',
+  \     'select':  ['i#']
+  \   },
+  \   'sharp-a': {
+  \     'pattern': '#[^#]*#',
+  \     'select':  ['a#']
+  \   }
+  \ })
 
-call textobj#user#plugin( 'colon', {
-\   'colon-i': {
-\     'pattern': ':\zs[^:]*\ze:',
-\     'select':  ['i:']
-\   },
-\   'colon-a': {
-\     'pattern': ':[^:]*:',
-\     'select':  ['a:']
-\   }
-\ })
+  call textobj#user#plugin( 'colon', {
+  \   'colon-i': {
+  \     'pattern': ':\zs[^:]*\ze:',
+  \     'select':  ['i:']
+  \   },
+  \   'colon-a': {
+  \     'pattern': ':[^:]*:',
+  \     'select':  ['a:']
+  \   }
+  \ })
 
-call textobj#user#plugin( 'asterisk', {
-\   'asterisk-i': {
-\     'pattern': '\*\zs[^\*]*\ze\*',
-\     'select':  ['i*']
-\   },
-\   'asterisk-a': {
-\     'pattern': '\*[^\*]*\*',
-\     'select':  ['a*']
-\   }
-\ })
+  call textobj#user#plugin( 'asterisk', {
+  \   'asterisk-i': {
+  \     'pattern': '\*\zs[^\*]*\ze\*',
+  \     'select':  ['i*']
+  \   },
+  \   'asterisk-a': {
+  \     'pattern': '\*[^\*]*\*',
+  \     'select':  ['a*']
+  \   }
+  \ })
 
-call textobj#user#plugin( 'bar', {
-\   'bar-i': {
-\     'pattern': '|\zs[^|]*\ze|',
-\     'select':  ['i\|']
-\   },
-\   'bar-a': {
-\     'pattern': '|[^|]*|',
-\     'select':  ['a\|']
-\   }
-\ })
+  call textobj#user#plugin( 'bar', {
+  \   'bar-i': {
+  \     'pattern': '|\zs[^|]*\ze|',
+  \     'select':  ['i\|']
+  \   },
+  \   'bar-a': {
+  \     'pattern': '|[^|]*|',
+  \     'select':  ['a\|']
+  \   }
+  \ })
+endif
+
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
