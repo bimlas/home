@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.12 13:55 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.13 14:18 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -133,7 +133,6 @@ if isdirectory( neobundle_dir )
   NeoBundle 'shougo/neocomplete.vim'
 
   " buffer, vagy kijelolt kod futtatasa
-  NeoBundle 'https://bitbucket.org/bimbalaszlo/bexec'
   NeoBundle 'thinca/vim-quickrun'
   NeoBundle 'tyru/open-browser.vim'
 
@@ -155,7 +154,8 @@ if isdirectory( neobundle_dir )
   NeoBundle 'gregsexton/gitv'
 
   call neobundle#end()
-  NeoBundleCheck
+
+  " Meg van egy utasitas lejebb, a 'filetype plugin indent on' utan.
 endif
 
 "                               INSTALLVUNDLE                             {{{2
@@ -198,6 +198,11 @@ endfunction
 " es behuzas stilusanak betoltese.
 if exists( ':filetype' )
   filetype plugin indent on
+endif
+
+" Itt kell lennie.
+if exists( ':NeoBundleCheck' )
+  NeoBundleCheck
 endif
 
 " Szintaxiskiemeles.
@@ -740,7 +745,7 @@ endif
 " ____________________________________________________________________________
 
 " A helymeghatarozashoz hasznalt betuk.
-let g:EasyMotion_keys = 'asdfgqwerhjkluiopASDFGQWERHJKLUIOP'
+let g:EasyMotion_keys = 'asdfghjkluiopqwer'
 
 "                                EASYGREP                                 {{{2
 " ____________________________________________________________________________
@@ -1008,6 +1013,8 @@ imap                       <C-J>        <CR>
 noremap                    é            ;
 noremap                    É            ,
 inoremap                   <C-L>        <Del>
+cnoremap                   <C-B>        <C-Left>
+cnoremap                   <C-E>        <C-Right>
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
@@ -1193,7 +1200,9 @@ autocmd  FileType  help  noremap <buffer>  <Leader>2
 "                              TEXTOBJ-USER                               {{{2
 " ____________________________________________________________________________
 
-if exists( '*textobj#user#plugin' )
+autocmd  VimEnter  *  if isdirectory( $HOME . '/.vim/bundle/vim-textobj-user' ) | call TextObjMaps() | endif
+
+function! TextObjMaps()
   call textobj#user#plugin( 'sharp', {
   \   'sharp-i': {
   \     'pattern': '#\zs[^#]*\ze#',
@@ -1237,8 +1246,7 @@ if exists( '*textobj#user#plugin' )
   \     'select':  ['a\|']
   \   }
   \ })
-endif
-
+endfunction
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================

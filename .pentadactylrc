@@ -42,6 +42,7 @@ highlight Hint::after content: attr(number) !important;
 map  -builtin  <C-C>  <Esc>
 imap -builtin  <C-C>  <Esc>
 cmap -builtin  <C-C>  <Esc>
+imap -builtin  <C-J>  <CR>
 cmap -builtin  <C-N>  <Tab>
 cmap -builtin  <C-P>  <S-Tab>
 map  -builtin  H      0
