@@ -43,12 +43,14 @@ map  -builtin  <C-C>  <Esc>
 imap -builtin  <C-C>  <Esc>
 cmap -builtin  <C-C>  <Esc>
 imap -builtin  <C-J>  <CR>
+imap -builtin  <C-L>  <Del>
 cmap -builtin  <C-N>  <Tab>
 cmap -builtin  <C-P>  <S-Tab>
 map  -builtin  H      0
 map  -builtin  L      $
 vmap -builtin  y      y<Esc>
 map  -builtin  s      f
+map  -builtin  gs     F
 map  -builtin  <C-H>  d
 imap -builtin  <C-L>  <Del>
 nmap -builtin  <C-L>  :reload!<CR>

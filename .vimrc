@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.14 13:08 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.15 12:23 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -115,10 +115,6 @@ if isdirectory( neobundle_dir )
   " Css szinek megjelenitese.
   " WARNING: Nagyon belassitja a megjelenitest.
   " Plugin 'ap/vim-css-color'
-
-  " log fajlokhoz, mint pl. user.log
-  " TODO: automatikus szintaxis felismeres
-  NeoBundle 'rfc5424'
 
   " .. PROGRAMOZAS ........................
 
