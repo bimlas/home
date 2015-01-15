@@ -56,10 +56,6 @@ imap -builtin  <C-L>  <Del>
 nmap -builtin  <C-L>  :reload!<CR>
 nmap -builtin  <F12>  :nohlfind<CR>
 
-" Scroll gyorsitasa.
-nmap -builtin  j      3j
-nmap -builtin  k      3k
-
 " Command.
 command  -nargs=+ -complete url  e     open <args>
 command  -nargs=+ -complete url  tabe  tabopen <args>
