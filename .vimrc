@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.15 12:23 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.16 13:50 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -102,6 +102,8 @@ if isdirectory( neobundle_dir )
 
   " sajat text-object
   NeoBundle 'kana/vim-textobj-user'
+" ifX, afX az X-eken beluli kivalasztahoz
+  NeoBundle 'thinca/vim-textobj-between'
 
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
   NeoBundle 'shougo/unite.vim'
@@ -986,12 +988,17 @@ let g:Gitv_DoNotMapCtrlKey = 1
 "   :verbose imap <Esc>
 " Ezen map-ok valamelyike okozza a hibat.
 
+" Jobban kézre esik, mint a \.
+let mapleader='á'
+
 "                          MOZGAS AZ ABLAKON BELUL                        {{{2
 " ____________________________________________________________________________
 
-" A valodi sorok helyett a megjelenitett sorokban mozogjon a kurzor.
-noremap                    j            gj
-noremap                    k            gk
+" A valodi sorok helyett a megjelenitett sorokban mozogjon a kurzor, ha a
+" nyilakkal mozgatom. (a relativnumber miatt jobb, ha alapbol a valodi sorok
+" kozt mozgok)
+noremap                    <Up>         gk
+noremap                    <Down>       gj
 
 " Ugras a sor elejere/vegere.
 noremap                    H            g^
@@ -1001,8 +1008,7 @@ noremap                    L            g$
 " ____________________________________________________________________________
 
 nnoremap                   <C-H>        <C-W>q
-nnoremap                   <C-Y>        <C-W>w
-nnoremap                   <C-E>        <C-W>W
+nnoremap                   <C-K>        <C-W>w
 
 "                                 VEGYES                                  {{{2
 " ____________________________________________________________________________
@@ -1023,9 +1029,8 @@ cnoremap                   <C-N>        <Up>
 cnoremap                   <C-P>        <Down>
 
 " Bufferek kozti mozgas.
-nnoremap                   <C-K>        :b#<CR>
-nnoremap                   &            :bnext<CR>
-nnoremap                   #            :bprevious<CR>
+nnoremap                   <C-E>        :bnext<CR>
+nnoremap                   <C-Y>        :bprevious<CR>
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
@@ -1200,52 +1205,29 @@ autocmd  FileType  help  noremap <buffer>  <Leader>2
 "                              TEXTOBJ-USER                               {{{2
 " ____________________________________________________________________________
 
+" Roviditesek a thinca/vim-textobj-between pluginnak koszonhetoen.
+omap                       i*           <Plug>(textobj-between-i)*
+vmap                       i*           <Plug>(textobj-between-i)*
+omap                       a*           <Plug>(textobj-between-a)*
+vmap                       a*           <Plug>(textobj-between-a)*
+omap                       i:           <Plug>(textobj-between-i):
+vmap                       i:           <Plug>(textobj-between-i):
+omap                       a:           <Plug>(textobj-between-a):
+vmap                       a:           <Plug>(textobj-between-a):
+omap                       i\|          <Plug>(textobj-between-i)<Bar>
+vmap                       i\|          <Plug>(textobj-between-i)<Bar>
+omap                       a\|          <Plug>(textobj-between-a)<Bar>
+vmap                       a\|          <Plug>(textobj-between-a)<Bar>
+
 autocmd  VimEnter  *  if isdirectory( $HOME . '/.vim/bundle/vim-textobj-user' ) | call TextObjMaps() | endif
 
 function! TextObjMaps()
-  call textobj#user#plugin( 'sharp', {
-  \   'sharp-i': {
-  \     'pattern': '#\zs[^#]*\ze#',
-  \     'select':  ['i#']
-  \   },
-  \   'sharp-a': {
-  \     'pattern': '#[^#]*#',
-  \     'select':  ['a#']
-  \   }
-  \ })
-
-  call textobj#user#plugin( 'colon', {
-  \   'colon-i': {
-  \     'pattern': ':\zs[^:]*\ze:',
-  \     'select':  ['i:']
-  \   },
-  \   'colon-a': {
-  \     'pattern': ':[^:]*:',
-  \     'select':  ['a:']
-  \   }
-  \ })
-
-  call textobj#user#plugin( 'asterisk', {
-  \   'asterisk-i': {
-  \     'pattern': '\*\zs[^\*]*\ze\*',
-  \     'select':  ['i*']
-  \   },
-  \   'asterisk-a': {
-  \     'pattern': '\*[^\*]*\*',
-  \     'select':  ['a*']
-  \   }
-  \ })
-
-  call textobj#user#plugin( 'bar', {
-  \   'bar-i': {
-  \     'pattern': '|\zs[^|]*\ze|',
-  \     'select':  ['i\|']
-  \   },
-  \   'bar-a': {
-  \     'pattern': '|[^|]*|',
-  \     'select':  ['a\|']
-  \   }
-  \ })
+  " call textobj#user#plugin( 'endofsentence', {
+  " \   'bar-i': {
+  " \     'pattern': '\_.*[?!\.][ \t$]',
+  " \     'select':  ['is']
+  " \   },
+  " \ })
 endfunction
 
 "                                AUTOCOMMAND                              {{{1
@@ -1298,5 +1280,11 @@ autocmd  BufNew    __doc__  setlocal nonumber nolist
 
 " Make hiba eseten nyissa meg a hibaablakot.
 autocmd  QuickFixCmdPost  *  botright cwindow
+
+" __ VEGYES _____________________________
+
+" Nem szeretnem, hogy a parancssorbol telepitett plugin-ok megmaradjanak.
+let s:extra_bundles = $HOME . '/.vim/bundle/extra_bundles.vim'
+autocmd VimLeavePre  *  if filewritable( s:extra_bundles ) | call delete( s:extra_bundles ) | endif
 
 " }}}1
