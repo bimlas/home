@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.16 13:50 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.17 09:43 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -82,7 +82,7 @@ if isdirectory( neobundle_dir )
   " .. ALAPVETO ...........................
 
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
-  NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
+  " NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
   " gyors mozgas a buffer-en belul
   NeoBundle 'lokaltog/vim-easymotion'
@@ -1018,7 +1018,7 @@ map                        <C-J>        <CR>
 imap                       <C-J>        <CR>
 noremap                    é            ;
 noremap                    É            ,
-inoremap                   <C-L>        <Del>
+inoremap                   <C-L>        <C-O>de
 cnoremap                   <C-B>        <C-Left>
 cnoremap                   <C-E>        <C-Right>
 

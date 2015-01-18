@@ -1,5 +1,5 @@
 # .conkyrc
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.02 09:32 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.18 15:04 ==
 
 # Use Xft?
 use_xft yes
@@ -56,7 +56,7 @@ border_margin 5
 border_width 1
 
 # Default colors and also border colors
-default_color white
+default_color black
 # own_window_colour white
 
 # Text alignment, other possible values are commented
