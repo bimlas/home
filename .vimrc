@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.17 09:43 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.19 14:56 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1214,6 +1214,10 @@ omap                       i:           <Plug>(textobj-between-i):
 vmap                       i:           <Plug>(textobj-between-i):
 omap                       a:           <Plug>(textobj-between-a):
 vmap                       a:           <Plug>(textobj-between-a):
+omap                       i#           <Plug>(textobj-between-i)#
+vmap                       i#           <Plug>(textobj-between-i)#
+omap                       a#           <Plug>(textobj-between-a)#
+vmap                       a#           <Plug>(textobj-between-a)#
 omap                       i\|          <Plug>(textobj-between-i)<Bar>
 vmap                       i\|          <Plug>(textobj-between-i)<Bar>
 omap                       a\|          <Plug>(textobj-between-a)<Bar>

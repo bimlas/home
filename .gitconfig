@@ -15,21 +15,34 @@
   flog         = "diff --name-status"
   tree         = "ls-tree -r --name-only"
 
+[core]
+
+  editor       = "vim"
+
+  ; Windows halozati meghajtokon nagyon lassu, ez gyorsitja a dolgokat, de
+  ; legalabb 1.9.4 verzio kell.
+  ; http://stackoverflow.com/a/24045966
+  preloadindex = "true"
+  fscache      = "true"
+
 [color]
 
   ui           = "true"
 
+[init]
+
+  ; A konyvtar, amit init es clone eseten bemasol a .git konvytarba. Pl.:
+  ; templatedir/hooks -> .git/hooks
+  ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+  templatedir  = "~/.git_template"
+
 [log]
 
-; Roviditett SHA.
+  ; Roviditett SHA.
   abbrevCommit = "true"
 
-; 2014-03-25 12:34:56 +0100
+  ; 2014-03-25 12:34:56 +0100
   date         = "iso"
-
-[core]
-
-  editor       = "vim"
 
 [diff]
 

@@ -2311,7 +2311,8 @@ git
         $ git archive SHA -o 'regi.tar'
         $ git archive SHA --format=zip -o 'regi.zip'
 
-    Könyvtárakba rendezett backup-ok git-be mentése:
+    Könyvtárakba rendezett backup-ok (a backup könyvtárban) git-be mentése (a
+    repo könyvtárba):
 
         $ shopt -s extglob
         $ cd repo
@@ -2325,32 +2326,29 @@ git
         2013.12.07_15.50_limitek_jo
         2013.12.09_11.48
 
-    Commit-ok mentése külön könyvtárakba:
+    Commit-ok mentése külön zip-ekbe a repo/backup könyvtárba (aminek már
+    léteznie kell a szkript futtatása előtt és bele kell tenni a .gitignore
+    fájlba is):
 
-        $ mkdir backup
-        $ cp amit_menteni_akarunk backup
-        $ cd backup/amit_menteni_akarunk
-        $ commit2dir.sh
+        cd repo
+        for sha in $(git log --pretty=format:"%h"); do
+          date=$(git log -n1 --format='%at' $sha | awk '{print strftime("%Y-%m-%d_%H-%M_",$1)}')
+          sum=$(git log -n1 --pretty=format:"%h_%f" $sha)
+          path=backup/$date$sum.zip
+          git archive $sha --format=zip -o $path
+        done
 
-        COMMIT2DIR.SH
+    A .git/hooks/commit-msg (.sample kiterjesztes nelkul) fájl buherálásával a
+    commit-olás után szkriptet futtahatunk, pl. elmenthetjük a commit-ot egy
+    zip fájlba is:
 
-            for sha in $(git log --pretty=format:"%h"); do
-              date=$(git log -n1 --format='%at' $sha | awk '{print strftime("%Y-%m-%d_%H-%M_",$1)}')
-              sum=$(git log -n1 --pretty=format:"%h_%f" $sha)
-              path=$date$sum
-              git checkout --force $sha
-              mkdir ../$path
-              cp -r * ../$path
-              git log --name-status > ../$path/changelog.txt
-            done
+        date=$(git log -n1 --format='%at' HEAD | awk '{print strftime("%Y-%m-%d_%H-%M_",$1)}')
+        sum=$(git log -n1 --pretty=format:"%h_%f" HEAD)
+        path=backup/$date$sum.zip
+        git archive HEAD --format=zip -o $path
 
-    FIGYELEM! Mielőtt futtatod a szkriptet, töröld azokat a fájlokat, amik a
-    .gitignore fájlban szerepelnek!
-    A könyvtárnevei ehhez hasonloak lesznek (AZ IDŐPONTOK UTC SZERINT VANNAK):
-
-        2014-06-12_12-06_b306a90_szabdalas-hibajavitas
-        2014-06-12_12-45_dcd877e_tmp
-        2014-06-13_07-06_b5962f9_vetitett-ertekek-javitasa
+    Ne felejtsük el a backup könyvtárat betenni a .gitignore-ba. Ez windows-on
+    is működni fog, mivel a git beépített bash shell-jét használja.
 
                                        __ TODO _______________________________
 

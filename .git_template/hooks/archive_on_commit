@@ -1,0 +1,13 @@
+#!/bin/sh
+# Create a zip archive after commiting in to the backup directory.
+# Put in to post-commit if you would like to use it:
+#
+#   #!/bin/sh
+#   .git/hooks/archive_on_commit >/dev/null 2>&1 &
+#
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.19 12:23 ==
+
+date=$(git log -n1 --format='%at' | awk '{print strftime("%Y-%m-%d_%H-%M_",$1)}')
+sum=$(git log -n1 --pretty=format:"%h_%f")
+path=backup/$date$sum.zip
+git archive HEAD --format=zip -o $path
