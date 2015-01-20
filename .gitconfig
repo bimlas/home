@@ -55,3 +55,8 @@
 [push]
 
   default      = "simple"
+
+[gc]
+
+  ; Fajlok szamanak minimalizalasa a .git konyvtarban. (valamennit gyorsit)
+  auto         = 256
