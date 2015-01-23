@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.19 14:56 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.23 17:52 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -26,44 +26,39 @@ function BigTerm()
   return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
 endfunction
 
-"                    NEOBUNDLE PLUGIN-KEZELO INDITASA                     {{{1
+"                      VUNDLE PLUGIN-KEZELO INDITASA                      {{{1
 " ============================================================================
 
-let neobundle_dir = $HOME . '/.vim/bundle/neobundle.vim'
+let vundle_dir = $HOME . '/.vim/bundle/vundle.vim'
 
-if isdirectory( neobundle_dir )
+if isdirectory( vundle_dir )
 
-  exe 'set runtimepath+=' . neobundle_dir
-  call neobundle#begin( $HOME . '/.vim/bundle' )
+  exe 'set runtimepath+=' . vundle_dir
+  call vundle#begin( $HOME . '/.vim/bundle' )
   filetype off
 
   " plugin-ok automatizalt telepitese git-en keresztul (is)
-  NeoBundleFetch 'shougo/neobundle.vim'
+  Plugin 'gmarik/vundle.vim'
 
   " Nehany plugin hasznalja. Windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
-  NeoBundle 'Shougo/vimproc.vim', {
-  \         'build' : {
-  \             'windows' : 'mingw32-make -f make_mingw32.mak',
-  \             'linux'   : 'make -f make_unix.mak',
-  \            },
-  \         }
+  Plugin 'Shougo/vimproc.vim'
 
   " __ GITHUB _____________________________
 
   " .. SAJAT ..............................
 
   " sajat fuggvenyek, parancsok, filetype, tippek, stb.
-  NeoBundle 'bimbalaszlo/vim-eight'
+  Plugin 'bimbalaszlo/vim-eight'
 
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
-  NeoBundle 'bimbalaszlo/vim-eightheader'
+  Plugin 'bimbalaszlo/vim-eightheader'
 
   " szamok manipulalasa regex segitsegevel
-  NeoBundle 'bimbalaszlo/vim-numutils'
+  Plugin 'bimbalaszlo/vim-numutils'
 
   " rovid leirasok programokhoz es programozasi nyelvekhez help formaban
-  NeoBundle 'bimbalaszlo/vim-cheatsheets'
+  Plugin 'bimbalaszlo/vim-cheatsheets'
 
   " .. MEGJELENES .........................
   "
@@ -71,48 +66,48 @@ if isdirectory( neobundle_dir )
   " http://vimcolors.com/
 
   " nagyon szep colorscheme (light es dark is)
-  NeoBundle 'altercation/vim-colors-solarized'
+  Plugin 'altercation/vim-colors-solarized'
 
   " terminalban jol mutat
-  NeoBundle 'morhetz/gruvbox'
+  Plugin 'morhetz/gruvbox'
 
   " divatos, de minimalista statusline
-  NeoBundle 'itchyny/lightline.vim'
+  Plugin 'itchyny/lightline.vim'
 
   " .. ALAPVETO ...........................
 
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
-  " NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
+  " Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
   " gyors mozgas a buffer-en belul
-  NeoBundle 'lokaltog/vim-easymotion'
+  Plugin 'lokaltog/vim-easymotion'
 
   " tuningolt vimgrep
-  NeoBundle 'dkprice/vim-easygrep'
+  Plugin 'dkprice/vim-easygrep'
 
   " quickfix-en beluli fajlokon parancsok vegrehajtasa (Qdo) es masolasa az
   " args-ba (Qargs)
-  NeoBundle 'henrik/vim-qargs'
+  Plugin 'henrik/vim-qargs'
 
   " parancsok futtatasa visual block-on
-  NeoBundle 'vis'
+  Plugin 'vis'
 
   " kijelolt szoveg keresese * gombbal
-  NeoBundle 'thinca/vim-visualstar'
+  Plugin 'thinca/vim-visualstar'
 
   " sajat text-object
-  NeoBundle 'kana/vim-textobj-user'
+  Plugin 'kana/vim-textobj-user'
 " ifX, afX az X-eken beluli kivalasztahoz
-  NeoBundle 'thinca/vim-textobj-between'
+  Plugin 'thinca/vim-textobj-between'
 
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
-  NeoBundle 'shougo/unite.vim'
-  NeoBundle 'tsukkee/unite-tag'
+  Plugin 'shougo/unite.vim'
+  Plugin 'tsukkee/unite-tag'
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
-  NeoBundle 'shougo/vimfiler.vim'
+  Plugin 'shougo/vimfiler.vim'
 
   " szoveg igazitasa regex kifejezesekkel
-  NeoBundle 'godlygeek/tabular'
+  Plugin 'godlygeek/tabular'
 
   " Css szinek megjelenitese.
   " WARNING: Nagyon belassitja a megjelenitest.
@@ -121,41 +116,41 @@ if isdirectory( neobundle_dir )
   " .. PROGRAMOZAS ........................
 
   " szovegreszek kommentelese (akar oszlopok is)
-  NeoBundle 'scrooloose/nerdcommenter'
+  Plugin 'scrooloose/nerdcommenter'
 
   " a fajlban talalhato tag-ek listaja
   " $ install ctags
-  NeoBundle 'majutsushi/tagbar'
+  Plugin 'majutsushi/tagbar'
 
   " syntax checker
-  NeoBundle 'scrooloose/syntastic'
+  Plugin 'scrooloose/syntastic'
 
   " automatikus kodkiegeszites
   " lua kell hozza (:version +lua)
-  NeoBundle 'shougo/neocomplete.vim'
+  Plugin 'shougo/neocomplete.vim'
 
   " buffer, vagy kijelolt kod futtatasa
-  NeoBundle 'thinca/vim-quickrun'
-  NeoBundle 'tyru/open-browser.vim'
+  Plugin 'thinca/vim-quickrun'
+  Plugin 'tyru/open-browser.vim'
 
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
-  NeoBundle 'davidhalter/jedi-vim'
+  Plugin 'davidhalter/jedi-vim'
 
   " ruby motyok (pl. omni completion pontosabban mukodik)
-  NeoBundle 'vim-ruby/vim-ruby'
+  Plugin 'vim-ruby/vim-ruby'
 
   " .. GIT ................................
 
   " git integracio
   " $ install git
-  NeoBundle 'tpope/vim-fugitive'
+  Plugin 'tpope/vim-fugitive'
 
   " gitk a vim-en belul
   " $ install git
-  NeoBundle 'gregsexton/gitv'
+  Plugin 'gregsexton/gitv'
 
-  call neobundle#end()
+  call vundle#end()
 
   " Meg van egy utasitas lejebb, a 'filetype plugin indent on' utan.
 endif
@@ -165,10 +160,10 @@ endif
 "
 " Cloning vundle to ~/.vim/bundle/vundle
 
-command  InstallNeoBundle  call InstallNeoBundle()
-function InstallNeoBundle()
-  let neobundle_repo = 'https://github.com/shougo/neobundle.vim'
-  let path = substitute( $HOME . '/.vim/bundle/neobundle.vim', '/', has( 'win32' ) ? '\\' : '/', 'g' )
+command  InstallVundle  call InstallVundle()
+function InstallVundle()
+  let vundle_repo = 'https://github.com/gmarik/vundle.vim'
+  let path = substitute( $HOME . '/.vim/bundle/vundle.vim', '/', has( 'win32' ) ? '\\' : '/', 'g' )
 
   if ! executable( 'git' )
     echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
@@ -182,14 +177,14 @@ function InstallNeoBundle()
     endif
   endif
 
-  echo 'Cloning neobundle...'
-  let msg = system( 'git clone "' . neobundle_repo . '" "' . path . '"'  )
+  echo 'Cloning Vundle...'
+  let msg = system( 'git clone "' . vundle_repo . '" "' . path . '"'  )
   if msg =~ 'fatal'
-    echohl ErrorMsg | echomsg 'Cannot clone ' . neobundle_repo . ' to ' . path . ':' | echomsg msg | echohl None
+    echohl ErrorMsg | echomsg 'Cannot clone ' . vundle_repo . ' to ' . path . ':' | echomsg msg | echohl None
     return
   endif
 
-  echo 'NoeBundle installed. Please restart vim.'
+  echo 'Vundle installed. Please restart vim and run :PluginInstall'
   return
 endfunction
 
@@ -200,11 +195,6 @@ endfunction
 " es behuzas stilusanak betoltese.
 if exists( ':filetype' )
   filetype plugin indent on
-endif
-
-" Itt kell lennie.
-if exists( ':NeoBundleCheck' )
-  NeoBundleCheck
 endif
 
 " Szintaxiskiemeles.
@@ -1284,11 +1274,5 @@ autocmd  BufNew    __doc__  setlocal nonumber nolist
 
 " Make hiba eseten nyissa meg a hibaablakot.
 autocmd  QuickFixCmdPost  *  botright cwindow
-
-" __ VEGYES _____________________________
-
-" Nem szeretnem, hogy a parancssorbol telepitett plugin-ok megmaradjanak.
-let s:extra_bundles = $HOME . '/.vim/bundle/extra_bundles.vim'
-autocmd VimLeavePre  *  if filewritable( s:extra_bundles ) | call delete( s:extra_bundles ) | endif
 
 " }}}1
