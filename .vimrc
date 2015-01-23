@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.19 14:56 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.23 07:22 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -496,6 +496,10 @@ let &fillchars = 'vert: ,stl: ,stlnc: '
 
 " Kurzor koruli 'ter' gorgetesnel.
 set scrolloff=3
+
+" A sor utolso karaktere utan egyel is allhat a kurzor.
+" NAGYON HASZNOS TUD LENNI!
+set virtualedit=onemore
 
 " Mindig legyen eger.
 set mouse=a
@@ -1018,7 +1022,6 @@ map                        <C-J>        <CR>
 imap                       <C-J>        <CR>
 noremap                    é            ;
 noremap                    É            ,
-inoremap                   <C-L>        <C-O>de
 cnoremap                   <C-B>        <C-Left>
 cnoremap                   <C-E>        <C-Right>
 
@@ -1031,6 +1034,12 @@ cnoremap                   <C-P>        <Down>
 " Bufferek kozti mozgas.
 nnoremap                   <C-E>        :bnext<CR>
 nnoremap                   <C-Y>        :bprevious<CR>
+
+" Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
+" nem torli a d:call search().
+" Kell hozza: set virtualedit=onemore
+" inoremap           <expr>  <C-W>        (col( "." ) == 1         ) ? "<BS>"  : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb' )<CR>"
+inoremap           <expr>  <C-L>        (col( "." ) == col( "$" )) ? "<Del>" : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W' )<CR>"
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
@@ -1068,6 +1077,7 @@ noremap                    <Del>        "_<Del>
 
 " Az ablakkezelo vagolapjanak hasznalata - command-modban hatastalan, a
 " kijelolt szoveget illeszti be, nem pedig azt, amire <C-Insert>-et nyomtunk.
+" Kell hozza: set virtualedit=onemore
 noremap                    <C-Insert>   "+y
 noremap                    <S-Insert>   "+P
 imap                       <S-Insert>   <C-O><S-Insert>
@@ -1172,7 +1182,7 @@ nnoremap  <silent>         <F8>         :TagbarToggle<CR>
 imap                       <F8>         <C-O><F8>
 
 " A lathato ablakok szinkronizalasa diff nelkul.
-nnoremap           <expr>  <F10>        ':set virtualedit=' . ( len( &virtualedit ) ? '' : 'all'). '<CR>'
+nnoremap           <expr>  <F10>        ':set virtualedit=' . ( &virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
 imap                       <F10>        <C-O><F10>
 
 " Kurzor oszlopanak kiemelesenek valtogatasa.
