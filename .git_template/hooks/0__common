@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Case insensitive comparing of strings.
+shopt -s nocasematch
+
+export MAKE='make'
+if [[ $(which mingw32-make) ]]; then
+  export MAKE='mingw32-make'
+fi
+echo "OK" > out.txt

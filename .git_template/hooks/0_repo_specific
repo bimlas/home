@@ -1,0 +1,8 @@
+#!/bin/bash
+# Doing repo-specific things.
+
+source '.git/hooks/0__common'
+
+case $(git config --get remote.origin.url) in
+  'https://github.com/shougo/vimproc.vim.git' ) $MAKE ;;
+esac

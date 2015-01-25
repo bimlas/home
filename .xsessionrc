@@ -4,5 +4,5 @@
 # debian: ~/.xsessionrc
 # arch: ~/.xprofile
 
-# Turn off speaker.
+# Turn off speaker - since zsh i don't need it.
 xset b off

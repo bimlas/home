@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.23 17:52 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.25 16:58 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -42,7 +42,7 @@ if isdirectory( vundle_dir )
 
   " Nehany plugin hasznalja. Windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
-  Plugin 'Shougo/vimproc.vim'
+  Plugin 'shougo/vimproc.vim'
 
   " __ GITHUB _____________________________
 

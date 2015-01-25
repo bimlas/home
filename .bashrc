@@ -3,12 +3,14 @@
 # TIPP: If you opened in vim and don't know folding, press zR to open all
 # folds.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.06 17:42 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.24 13:27 ==
 
 # Exit if the shell is not interactive.
 if [[ -z "$PS1" ]]; then
   return
 fi
+
+source $HOME/.sh_commons
 
 #                                  SHOPT                                  {{{1
 # ============================================================================
@@ -79,8 +81,6 @@ clr_txtrst='\[\e[0m\]'    # Text Reset
 #                    ENVIRONMENT VARIABLES, COMPLETION                    {{{1
 # ============================================================================
 
-export EDITOR=vim
-
 # Special characters.
 chr_topleft='\342\224\214'
 chr_bottomleft='\342\224\224'
@@ -89,11 +89,6 @@ chr_vertical='\342\224\200'
 # Command line completion.
 if [[ -e '/etc/bash_completion' ]]; then
   source '/etc/bash_completion'
-fi
-
-# Add ~/bin to $PATH.
-if [[ ! $PATH =~ $HOME/bin ]]; then
-  PATH=$HOME/bin:$HOME/.gem/ruby/2.1.0/bin:$PATH
 fi
 
 # Custom prompt.
@@ -121,52 +116,3 @@ PS1+="$clr_bldwht\w\n"
 PS1+="$clr_bldcyn$chr_bottomleft$chr_vertical "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo $clr_bldred; else echo $clr_bldwht; fi)\\$ $clr_txtrst"
 export PS1
-
-# View manuals in vim.
-export MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |         \
-                 vim -RM                                       \
-                 -c 'set nocp'                                 \
-                 -c 'filetype plugin on'                       \
-                 -c 'syntax enable'                            \
-                 -c 'runtime ftplugin/man.vim'                 \
-                 -c 'set ft=man ls=0 nosmd nonu nornu nolist'  \
-                 -c 'map <CR> <C-]>'                           \
-                 -c 'map q :q<CR>' - \""
-
-#                                   ALIAS                                 {{{1
-# ============================================================================
-
-alias pm-hibernate='echo "NEVER USE IT!"'
-alias ls='ls -Av --color --group-directories-first'
-alias grep='grep --color'
-alias du='du -b'
-
-# Disable .vimrc in vim.tiny.
-if [[ -e '/usr/bin/vim.tiny' ]]; then
-  alias vim.tiny='vim.tiny -u NONE'
-fi
-
-# Do not close the image after gnuplot.
-if [[ -e '/usr/bin/gnuplot' ]]; then
-  alias gnuplot='gnuplot -persist'
-fi
-
-#                                FUNCTIONS                                {{{1
-# ============================================================================
-
-# Start program then give back the prompt (to run programs with GUI).
-x()
-{
-  nohup $* &> /dev/null &
-}
-
-# English-hungarian dictionary, download:
-# https://github.com/BimbaLaszlo/vim-eight/blob/master/doc/szotar.txt
-szotar()
-{
-  if [[ -e $HOME/.vim/bundle/vim-eight/doc/szotar.txt ]]; then
-    grep "$@" $HOME/.vim/bundle/vim-eight/doc/szotar.txt
-  else
-    echo "ERROR: missing dictionary $HOME/.vim/bundle/vim-eight/doc/szotar.txt"
-  fi
-}
