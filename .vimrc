@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.25 19:21 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.25 21:29 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -81,8 +81,6 @@ if isdirectory( vundle_dir )
 
   " gyors mozgas a buffer-en belul
   Plugin 'lokaltog/vim-easymotion'
-  " vim-sneak
-  " vim-seek
 
   " tuningolt vimgrep
   Plugin 'dkprice/vim-easygrep'
@@ -1117,7 +1115,9 @@ function UniteMaps()
 endfunction
 
 " Easymotion.
-map                        s            <Plug>(easymotion-s)
+nmap                       s            <Plug>(easymotion-s2)
+xmap                       s            <Plug>(easymotion-s2)
+omap                       s            <Plug>(easymotion-s2)
 
 " Nerdcommenter.
 map                        <C-F>        <Plug>NERDCommenterComment
@@ -1202,21 +1202,21 @@ autocmd  FileType  help  noremap <buffer>  <Leader>2
 
 " Roviditesek a thinca/vim-textobj-between pluginnak koszonhetoen.
 omap                       i*           <Plug>(textobj-between-i)*
-vmap                       i*           <Plug>(textobj-between-i)*
+xmap                       i*           <Plug>(textobj-between-i)*
 omap                       a*           <Plug>(textobj-between-a)*
-vmap                       a*           <Plug>(textobj-between-a)*
+xmap                       a*           <Plug>(textobj-between-a)*
 omap                       i:           <Plug>(textobj-between-i):
-vmap                       i:           <Plug>(textobj-between-i):
+xmap                       i:           <Plug>(textobj-between-i):
 omap                       a:           <Plug>(textobj-between-a):
-vmap                       a:           <Plug>(textobj-between-a):
+xmap                       a:           <Plug>(textobj-between-a):
 omap                       i#           <Plug>(textobj-between-i)#
-vmap                       i#           <Plug>(textobj-between-i)#
+xmap                       i#           <Plug>(textobj-between-i)#
 omap                       a#           <Plug>(textobj-between-a)#
-vmap                       a#           <Plug>(textobj-between-a)#
+xmap                       a#           <Plug>(textobj-between-a)#
 omap                       i\|          <Plug>(textobj-between-i)<Bar>
-vmap                       i\|          <Plug>(textobj-between-i)<Bar>
+xmap                       i\|          <Plug>(textobj-between-i)<Bar>
 omap                       a\|          <Plug>(textobj-between-a)<Bar>
-vmap                       a\|          <Plug>(textobj-between-a)<Bar>
+xmap                       a\|          <Plug>(textobj-between-a)<Bar>
 
 autocmd  VimEnter  *  if isdirectory( $HOME . '/.vim/bundle/vim-textobj-user' ) | call TextObjMaps() | endif
 
