@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.25 16:58 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.25 19:21 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -81,6 +81,8 @@ if isdirectory( vundle_dir )
 
   " gyors mozgas a buffer-en belul
   Plugin 'lokaltog/vim-easymotion'
+  " vim-sneak
+  " vim-seek
 
   " tuningolt vimgrep
   Plugin 'dkprice/vim-easygrep'
@@ -509,6 +511,9 @@ set hidden
 " Tapasztalatbol mondhatom, hogy nem minden plugin szereti (pl. netrw,
 " fugitive).
 " set autochdir
+
+" CursorHold-hoz kell es a swap fajl mentesenek idejet is befolyasolja.
+set updatetime=1000
 
 " Terminalban ne varakozzon az <Esc>
 set ttimeout ttimeoutlen=0 notimeout
