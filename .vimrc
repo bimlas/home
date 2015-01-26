@@ -1010,11 +1010,11 @@ noremap  H  g^
 noremap  L  g$
 
 " Easymotion.
-map  s                  <Plug>(easymotion-s2)
-map  <Leader><Leader>f  <Plug>(easymotion-fl2)
-map  <Leader><Leader>F  <Plug>(easymotion-Fl2)
-map  <Leader><Leader>t  <Plug>(easymotion-tl2)
-map  <Leader><Leader>T  <Plug>(easymotion-Tl2)
+map  s          <Plug>(easymotion-s2)
+map  <Leader>f  <Plug>(easymotion-fl2)
+map  <Leader>F  <Plug>(easymotion-Fl2)
+map  <Leader>t  <Plug>(easymotion-tl2)
+map  <Leader>T  <Plug>(easymotion-Tl2)
 
 "                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
 " ____________________________________________________________________________
@@ -1046,21 +1046,21 @@ nnoremap  <C-Y>  :bprevious<CR>
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
-inoremap  <expr>  <C-W>  (col( "." ) == 1         ) ? "<BS>"  : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb' )<CR>"
+" inoremap  <expr>  <C-W>  (col( "." ) == 1         ) ? "<BS>"  : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb' )<CR>"
 inoremap  <expr>  <C-L>  (col( "." ) == col( "$" )) ? "<Del>" : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W' )<CR>"
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
-nnoremap                   Q            <Nop>
+nnoremap  Q  <Nop>
 
 " Az InsertLeave esemeny nem tortenik meg a <C-C> hatasara.
-noremap                    <C-C>        <Esc>
+noremap  <C-C>  <Esc>
 
 " Ha egy help dokumentumban nyomunk <Space>-t, akkor a kurzor alatti linket
 " nyissa meg, ha forraskodban egy azonositon (fuggveny, vagy valtozo neven)
 " nyomtuk meg, akkor a fuggveny definiciojahoz ugrik (tags, vagy cscope fajl
 " szukseges hozza).
-noremap                    <Space>      <C-]>
+noremap  <Space>  <C-]>
 
 " Azon fuggvenyek listaja, amelyek meghivjak a kurzor alatti fuggvenyt.
 " noremap                    ,            :scscope find c <C-R>=expand( '<cword>' )<CR><CR>
@@ -1069,88 +1069,88 @@ noremap                    <Space>      <C-]>
 " noremap                    ;            :scscope find s <C-R>=expand( '<cword>' )<CR><CR>
 
 " Completion.
-inoremap           <expr>  <C-Space>    (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
+inoremap  <expr>  <C-Space>  (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
 " Terminal-ban a <Nul> a <C-Space> megfeleloje.
 inoremap           <expr>  <Nul>        (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
 
 " A torles ne masolja a vagolapra a szoveget.
-" noremap                    s            "_s
-noremap                    S            "_S
-noremap                    c            "_c
-noremap                    C            "_C
-noremap                    d            "_d
-nnoremap                   dd           "_dd
-noremap                    D            "_D
-noremap                    <Del>        "_<Del>
+" noremap   s      "_s
+noremap   S      "_S
+noremap   c      "_c
+noremap   C      "_C
+noremap   d      "_d
+nnoremap  dd     "_dd
+noremap   D      "_D
+noremap   <Del>  "_<Del>
 
 " Az ablakkezelo vagolapjanak hasznalata - command-modban hatastalan, a
 " kijelolt szoveget illeszti be, nem pedig azt, amire <C-Insert>-et nyomtunk.
 " Kell hozza: set virtualedit=onemore
-noremap                    <C-Insert>   "+y
-noremap                    <S-Insert>   "+P
-imap                       <S-Insert>   <C-O><S-Insert>
+noremap  <C-Insert>  "+y
+noremap  <S-Insert>  "+P
+imap     <S-Insert>  <C-O><S-Insert>
 
 " Kurzor alatti parancs sugojanak megnyitasa.
-noremap  <silent>          K            :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
+noremap  <silent>  K     :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
 autocmd  FileType  man  call ManMap()
 function ManMap()
-  map    <buffer>          K            <C-]>
-  map    <buffer>          <CR>         <C-]>
+  map    <buffer>  K     <C-]>
+  map    <buffer>  <CR>  <C-]>
 endfunction
 
 " Lynx-szeru mozgas netrw-ben.
 autocmd  FileType  netrw  call NetrwLynxMap()
 function NetrwLynxMap()
-  map    <buffer>          <Left>       -
-  map    <buffer>          h            -
-  map    <buffer>          <Right>      <CR>
-  map    <buffer>          l            <CR>
+  map  <buffer>  <Left>   -
+  map  <buffer>  h        -
+  map  <buffer>  <Right>  <CR>
+  map  <buffer>  l        <CR>
 endfunction
 
 " Kereses a buffer konyvtaraban rekurzivan.
-nnoremap                   <Leader>ur   :UniteWithBufferDir file_rec -sync<CR>
+nnoremap  <Leader>ur   :UniteWithBufferDir file_rec -sync<CR>
 
 " ... nem rekurzivan.
-nnoremap                   <Leader>uf   :UniteWithBufferDir file -sync<CR>
+nnoremap  <Leader>uf   :UniteWithBufferDir file -sync<CR>
 
 " ... a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
 " konyvtarban (pwd) rekurzivan.
-nnoremap                   <Leader>upr  :UniteWithProjectDir file_rec -sync<CR>
+nnoremap  <Leader>upr  :UniteWithProjectDir file_rec -sync<CR>
 
 " ... nem rekurzivan.
-nnoremap                   <Leader>upf  :UniteWithProjectDir file -sync<CR>
+nnoremap  <Leader>upf  :UniteWithProjectDir file -sync<CR>
 
 " ... a bufferek kozott.
-nnoremap                   <Leader>ub   :Unite -start-insert buffer -sync<CR>
+nnoremap  <Leader>ub   :Unite -start-insert buffer -sync<CR>
 
 " ... a konyjelzok kozott.
-nnoremap                   <Leader>uB   :Unite -start-insert bookmark -sync<CR>
+nnoremap  <Leader>uB   :Unite -start-insert bookmark -sync<CR>
 
 " ... a tag-ok kozott.
-nnoremap                   <Leader>ut   :Unite -start-insert tag -sync<CR>
+nnoremap  <Leader>ut   :Unite -start-insert tag -sync<CR>
 
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
   if has( 'gui_running' )
-    map    <buffer>        <Esc>        <Plug>(unite_all_exit)
-    nmap   <buffer>        h            i<C-C>A../<C-C>
-    nmap   <buffer>        l            <CR>
-    nmap   <buffer>        x            astart<CR>
+    map   <buffer>  <Esc>  <Plug>(unite_all_exit)
+    nmap  <buffer>  h      i<C-C>A../<C-C>
+    nmap  <buffer>  l      <CR>
+    nmap  <buffer>  x      astart<CR>
   endif
 endfunction
 
 " Nerdcommenter.
-map                        <C-F>        <Plug>NERDCommenterComment
-map                        <C-G>        <Plug>NERDCommenterUncomment
+map  <C-F>  <Plug>NERDCommenterComment
+map  <C-G>  <Plug>NERDCommenterUncomment
 
 " Tabular.
-noremap                    <Leader>t\|  :Tabularize /\|/l0<CR>
-noremap                    <Leader>t,   :Tabularize /,\zs/<CR>
-noremap                    <Leader>t:   :Tabularize /:\zs/<CR>
-noremap                    <Leader>t+   :Tabularize /+$/<CR>
-noremap                    <Leader>tsp  :Tabularize / \+\zs/<CR>
-noremap                    <Leader>ttab :Tabularize /\t\+\zs/<CR>
-noremap                    <Leader>t=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
+noremap  <Leader>c\|  :Tabularize /\|/l0<CR>
+noremap  <Leader>c,   :Tabularize /,\zs/<CR>
+noremap  <Leader>c:   :Tabularize /:\zs/<CR>
+noremap  <Leader>c+   :Tabularize /+$/<CR>
+noremap  <Leader>csp  :Tabularize / \+\zs/<CR>
+noremap  <Leader>ctab :Tabularize /\t\+\zs/<CR>
+noremap  <Leader>c=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
 
 " Menusor megjelenitese/elrejtese.
 nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
