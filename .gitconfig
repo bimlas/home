@@ -14,6 +14,7 @@
   changelog    = "log --graph --decorate --all --name-status ORIG_HEAD.."
   flog         = "diff --name-status"
   tree         = "ls-tree -r --name-only"
+  ctags        = "!.git/hooks/0_ctags"
 
 [core]
 

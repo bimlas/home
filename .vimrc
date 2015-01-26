@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.26 07:31 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.26 15:12 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -300,7 +300,11 @@ autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand( "%:p:h" )
 let stat_filedir    = '%<%{exists( "b:stat_curfiledir" ) ? b:stat_curfiledir : ""}'
 let stat_filename   = '%{&buflisted ? bufnr( "%" ) . ":" : ""}%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-let stat_tagbar     = '%{winwidth( 0 ) > 120 ? tagbar#currenttag("%s","") : ""}'
+if filereadable( $HOME . '/.vim/bundle/tagbar/autoload/tagbar.vim' )
+  let stat_tagbar   = '%{(winwidth( 0 ) > 120) ? strpart( tagbar#currenttag("%s",""), 0, 50 ) : ""}'
+else
+  let stat_tagbar   = ''
+endif
 let stat_lineinfo   = '%4l:%3p%%|%3v'
 
 let &statusline  = stat_filename . ' | '
@@ -578,6 +582,10 @@ set ignorecase smartcase
 
 " Kereses talalatainak kiemelese mar begepeles kozben.
 set hlsearch incsearch
+
+" Mivel nem mindig veszem eszre, hogy a fajl vegerol mar atugrottam az
+" elejere, ezert inkabb le is tiltom ezt a lehetoseget.
+set nowrapscan
 
 "                             SZINTAXIS KIEMELES                          {{{1
 " ============================================================================
@@ -994,45 +1002,52 @@ let mapleader='á'
 " A valodi sorok helyett a megjelenitett sorokban mozogjon a kurzor, ha a
 " nyilakkal mozgatom. (a relativnumber miatt jobb, ha alapbol a valodi sorok
 " kozt mozgok)
-noremap                    <Up>         gk
-noremap                    <Down>       gj
+noremap  <Up>    gk
+noremap  <Down>  gj
 
 " Ugras a sor elejere/vegere.
-noremap                    H            g^
-noremap                    L            g$
+noremap  H  g^
+noremap  L  g$
+
+" Easymotion.
+map  s                  <Plug>(easymotion-s2)
+map  <Leader><Leader>f  <Plug>(easymotion-fl2)
+map  <Leader><Leader>F  <Plug>(easymotion-Fl2)
+map  <Leader><Leader>t  <Plug>(easymotion-tl2)
+map  <Leader><Leader>T  <Plug>(easymotion-Tl2)
 
 "                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
 " ____________________________________________________________________________
 
-nnoremap                   <C-H>        <C-W>q
-nnoremap                   <C-K>        <C-W>w
+nnoremap  <C-H>  <C-W>q
+nnoremap  <C-K>  <C-W>w
 
 "                                 VEGYES                                  {{{2
 " ____________________________________________________________________________
 
 " Sokkal jobban kezre esnek.
-map                        <C-J>        <CR>
-imap                       <C-J>        <CR>
-noremap                    é            ;
-noremap                    É            ,
-cnoremap                   <C-B>        <C-Left>
-cnoremap                   <C-E>        <C-Right>
+map       <C-J>  <CR>
+imap      <C-J>  <CR>
+noremap   é      ;
+noremap   É      ,
+cnoremap  <C-B>  <C-Left>
+cnoremap  <C-E>  <C-Right>
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
 " a felfele nyillal keresed az elozmenyeket)
-cnoremap                   <C-N>        <Up>
-cnoremap                   <C-P>        <Down>
+cnoremap  <C-N>  <Up>
+cnoremap  <C-P>  <Down>
 
 " Bufferek kozti mozgas.
-nnoremap                   <C-E>        :bnext<CR>
-nnoremap                   <C-Y>        :bprevious<CR>
+nnoremap  <C-E>  :bnext<CR>
+nnoremap  <C-Y>  :bprevious<CR>
 
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
-" inoremap           <expr>  <C-W>        (col( "." ) == 1         ) ? "<BS>"  : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb' )<CR>"
-inoremap           <expr>  <C-L>        (col( "." ) == col( "$" )) ? "<Del>" : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W' )<CR>"
+inoremap  <expr>  <C-W>  (col( "." ) == 1         ) ? "<BS>"  : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb' )<CR>"
+inoremap  <expr>  <C-L>  (col( "." ) == col( "$" )) ? "<Del>" : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W' )<CR>"
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
@@ -1059,7 +1074,7 @@ inoremap           <expr>  <C-Space>    (&completefunc != '') ? "<C-X><C-U>" : "
 inoremap           <expr>  <Nul>        (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
 
 " A torles ne masolja a vagolapra a szoveget.
-noremap                    s            "_s
+" noremap                    s            "_s
 noremap                    S            "_S
 noremap                    c            "_c
 noremap                    C            "_C
@@ -1123,11 +1138,6 @@ function UniteMaps()
     nmap   <buffer>        x            astart<CR>
   endif
 endfunction
-
-" Easymotion.
-nmap                       s            <Plug>(easymotion-s2)
-xmap                       s            <Plug>(easymotion-s2)
-omap                       s            <Plug>(easymotion-s2)
 
 " Nerdcommenter.
 map                        <C-F>        <Plug>NERDCommenterComment
@@ -1261,10 +1271,6 @@ autocmd  FileType  *    setlocal formatoptions+=con formatoptions-=l
 if v:version >= 704
   autocmd  FileType  *  setlocal formatoptions+=j
 endif
-
-" Sorvegi whitespace-ek es a fajl vegi ures sorok torlese, majd a datum
-" aktualizalasa.
-autocmd  BufWritePre  *  call eight#writepre#call()
 
 " __ COMPLETION _________________________
 
