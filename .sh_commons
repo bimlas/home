@@ -1,0 +1,61 @@
+#!/bin/sh
+# .sh_commons - common settings for shells
+
+#                                  ALIAS                                  {{{1
+# ============================================================================
+
+alias pm-hibernate='echo "NEVER USE IT!"'
+alias ls='ls -Av --color --group-directories-first'
+alias grep='grep --color'
+alias du='du -b'
+
+# Disable .vimrc in vim.tiny.
+if [[ $(which vim.tiny) ]]; then
+  alias vim.tiny='vim.tiny -u NONE'
+fi
+
+# Do not close the image after gnuplot.
+if [[ $(which gnuplot) ]]; then
+  alias gnuplot='gnuplot -persist'
+fi
+
+#                          ENVIRONMENT VARIABLES                          {{{1
+# ============================================================================
+
+# Add ~/bin to $PATH.
+if [[ ! $PATH =~ $HOME/bin ]]; then
+  export PATH=$HOME/bin:$PATH
+fi
+
+export EDITOR=vim
+
+# View manuals in vim.
+export MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |         \
+                 vim -RM                                       \
+                 -c 'set nocp'                                 \
+                 -c 'filetype plugin on'                       \
+                 -c 'syntax enable'                            \
+                 -c 'runtime ftplugin/man.vim'                 \
+                 -c 'set ft=man ls=0 nosmd nonu nornu nolist'  \
+                 -c 'map <CR> <C-]>'                           \
+                 -c 'map q :q<CR>' - \""
+
+#                                FUNCTIONS                                {{{1
+# ============================================================================
+
+# Start program then give back the prompt (to run programs with GUI).
+x()
+{
+  nohup $* &> /dev/null &
+}
+
+# English-hungarian dictionary, download:
+# https://github.com/BimbaLaszlo/vim-eight/blob/master/doc/szotar.txt
+szotar()
+{
+  if [[ -e $HOME/.vim/bundle/vim-eight/doc/szotar.txt ]]; then
+    grep "$@" $HOME/.vim/bundle/vim-eight/doc/szotar.txt
+  else
+    echo "ERROR: missing dictionary $HOME/.vim/bundle/vim-eight/doc/szotar.txt"
+  fi
+}
