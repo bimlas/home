@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.26 15:12 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.28 09:43 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -151,8 +151,6 @@ if isdirectory( vundle_dir )
   Plugin 'gregsexton/gitv'
 
   call vundle#end()
-
-  " Meg van egy utasitas lejebb, a 'filetype plugin indent on' utan.
 endif
 
 "                               INSTALLVUNDLE                             {{{2
@@ -1015,6 +1013,8 @@ map  <Leader>f  <Plug>(easymotion-fl2)
 map  <Leader>F  <Plug>(easymotion-Fl2)
 map  <Leader>t  <Plug>(easymotion-tl2)
 map  <Leader>T  <Plug>(easymotion-Tl2)
+map  <Leader>j  <Plug>(easymotion-j)
+map  <Leader>k  <Plug>(easymotion-k)
 
 "                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
 " ____________________________________________________________________________
@@ -1091,7 +1091,7 @@ noremap  <S-Insert>  "+P
 imap     <S-Insert>  <C-O><S-Insert>
 
 " Kurzor alatti parancs sugojanak megnyitasa.
-noremap  <silent>  K     :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
+noremap  <silent>  K  :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
 autocmd  FileType  man  call ManMap()
 function ManMap()
   map    <buffer>  K     <C-]>
@@ -1148,6 +1148,7 @@ noremap  <Leader>c\|  :Tabularize /\|/l0<CR>
 noremap  <Leader>c,   :Tabularize /,\zs/<CR>
 noremap  <Leader>c:   :Tabularize /:\zs/<CR>
 noremap  <Leader>c+   :Tabularize /+$/<CR>
+noremap  <Leader>c\   :Tabularize /\\$/<CR>
 noremap  <Leader>csp  :Tabularize / \+\zs/<CR>
 noremap  <Leader>ctab :Tabularize /\t\+\zs/<CR>
 noremap  <Leader>c=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
