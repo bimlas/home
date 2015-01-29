@@ -1,4 +1,5 @@
 #!/bin/bash
+# http://www.manpagez.com/man/5/githooks/
 
 # Case insensitive comparing of strings.
 shopt -s nocasematch

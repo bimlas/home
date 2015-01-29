@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.28 09:43 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.29 11:27 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -97,7 +97,7 @@ if isdirectory( vundle_dir )
 
   " sajat text-object
   Plugin 'kana/vim-textobj-user'
-" ifX, afX az X-eken beluli kivalasztahoz
+  " ifX, afX az X-eken beluli kivalasztahoz
   Plugin 'thinca/vim-textobj-between'
 
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
@@ -108,6 +108,9 @@ if isdirectory( vundle_dir )
 
   " szoveg igazitasa regex kifejezesekkel
   Plugin 'godlygeek/tabular'
+
+  " netrw gx helyett
+  Plugin 'tyru/open-browser.vim'
 
   " Css szinek megjelenitese.
   " WARNING: Nagyon belassitja a megjelenitest.
@@ -131,7 +134,6 @@ if isdirectory( vundle_dir )
 
   " buffer, vagy kijelolt kod futtatasa
   Plugin 'thinca/vim-quickrun'
-  Plugin 'tyru/open-browser.vim'
 
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
@@ -1098,6 +1100,12 @@ function ManMap()
   map    <buffer>  <CR>  <C-]>
 endfunction
 
+" Ope-browser map-ok: url megnyitasa a bongeszoben, vagy google a kurzor
+" alatti szora.
+let g:netrw_nogx = 1
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
 " Lynx-szeru mozgas netrw-ben.
 autocmd  FileType  netrw  call NetrwLynxMap()
 function NetrwLynxMap()
@@ -1239,15 +1247,38 @@ xmap                       i\|          <Plug>(textobj-between-i)<Bar>
 omap                       a\|          <Plug>(textobj-between-a)<Bar>
 xmap                       a\|          <Plug>(textobj-between-a)<Bar>
 
-autocmd  VimEnter  *  if isdirectory( $HOME . '/.vim/bundle/vim-textobj-user' ) | call TextObjMaps() | endif
-
-function! TextObjMaps()
-  " call textobj#user#plugin( 'endofsentence', {
-  " \   'bar-i': {
-  " \     'pattern': '\_.*[?!\.][ \t$]',
-  " \     'select':  ['is']
-  " \   },
-  " \ })
+" Blokkok, vagy tablazatok kijelolese - a kurzor elotti blokkhatarolot veszi
+" alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
+" blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
+" pl. |===, vagy ;=== is.
+autocmd  FileType  asciidoc  if isdirectory( $HOME . '/.vim/bundle/vim-textobj-user' ) | call TextObjMapsAdoc() | endif
+function! TextObjMapsAdoc()
+  call textobj#user#plugin( 'adocblock', {
+  \   '-': {
+  \     'select-a-function': 'AdocBlockA',
+  \     'select-a':          'ab',
+  \     'select-i-function': 'AdocBlockI',
+  \     'select-i':          'ib',
+  \   }
+  \ })
+endfunction
+function AdocBlockA()
+  if search( '^\(.\)\1\+$\|^.=\+$', 'Wb' ) == 0 | return 0 | endif
+  let searchfor = getline( '.' )
+  let block_start = getpos( '.' )
+  call search( searchfor, 'W' )
+  let block_stop = getpos( '.' )
+  return ['V', block_start, block_stop]
+endfunction
+function AdocBlockI()
+  if search( '^\(.\)\1\+$\|^.=\+$', 'Wb' ) == 0 | return 0 | endif
+  let searchfor = getline( '.' )
+  normal j
+  let block_start = getpos( '.' )
+  call search( searchfor, 'W' )
+  normal k
+  let block_stop = getpos( '.' )
+  return ['V', block_start, block_stop]
 endfunction
 
 "                                AUTOCOMMAND                              {{{1
