@@ -14,7 +14,7 @@ setopt noautomenu
 # Copied from debian's default .zshrc.
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format '==== Completing %d'
+zstyle ':completion:*' format $'\n%F{yellow}== Completing %d%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
 eval "$(dircolors -b)"
