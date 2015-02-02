@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.29 11:27 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.02.02 12:15 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1011,10 +1011,10 @@ noremap  L  g$
 
 " Easymotion.
 map  s          <Plug>(easymotion-s2)
-map  <Leader>f  <Plug>(easymotion-fl2)
-map  <Leader>F  <Plug>(easymotion-Fl2)
-map  <Leader>t  <Plug>(easymotion-tl2)
-map  <Leader>T  <Plug>(easymotion-Tl2)
+map  <Leader>f  <Plug>(easymotion-fl)
+map  <Leader>F  <Plug>(easymotion-Fl)
+map  <Leader>t  <Plug>(easymotion-tl)
+map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>j  <Plug>(easymotion-j)
 map  <Leader>k  <Plug>(easymotion-k)
 
