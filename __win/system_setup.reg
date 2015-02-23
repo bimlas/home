@@ -6,7 +6,9 @@ Windows Registry Editor Version 5.00
 ; admin.
 ; Hogy lasd a hatast, jelentkezz be ujra a profilodba.
 ;
-=========== BimbaLaszlo (.github.io|gmail.com) =========== 2015.01.10 13:43 ==
+; TODO: valami tiltja a nyomtatot.
+;
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.02.20 09:11 ==
 
 ;                   IKONOK MELLETTI NYILACSKA ELTUNTETESE                 {{{1
 ; ============================================================================
@@ -49,11 +51,6 @@ Windows Registry Editor Version 5.00
 
 ; Certificate Propagation
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\CertPropSvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Distributed Link Tracking Client
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TrkWks]
 "Start"=dword:00000004
 "DelayedAutostart"=dword:00000000
 
@@ -135,11 +132,6 @@ Windows Registry Editor Version 5.00
 ;                                 TWEAKED                                 {{{2
 ; ____________________________________________________________________________
 
-; Diagnostic Policy Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\DPS]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
 ; Function Discovery Resource Publication
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\FDResPub]
 "Start"=dword:00000004
@@ -167,11 +159,6 @@ Windows Registry Editor Version 5.00
 
 ; Credential Manager
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\VaultSvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Diagnostic Service Host
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WdiServiceHost]
 "Start"=dword:00000004
 "DelayedAutostart"=dword:00000000
 
@@ -386,8 +373,6 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]
 "DisablePagingExecutive"=dword:00000001
 "IoPageLockLimit"=dword:08000000
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]
 "EnablePrefetcher"=dword:00000002
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\LanmanWorkstation\Parameters]
