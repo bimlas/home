@@ -3,9 +3,10 @@
 
 import sys
 import os
+import glob
 import exifread
 
-for arg in sys.argv[1:]:
+for arg in glob.glob( '*.jpg' ):
   f = open( arg, 'rb' )
 
   try:
