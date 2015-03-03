@@ -1,3 +1,8 @@
+// Egy hasznos kiegeszito:
+// https://addons.mozilla.org/hu/thunderbird/addon/gmail-conversation-view/
+// Ne felejtsd el a beallitasok kozott bekapcsolni az "I love attachments"
+// opciot, kulonben neha nem mutatja meg a csatolt fajlokat.
+//
 // UTF8 hasznalata a levelekben.
 user_pref("mailnews.reply_in_default_charset", true);
 user_pref("mailnews.send_default_charset", "UTF-8");
