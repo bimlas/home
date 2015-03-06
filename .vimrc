@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.02.02 12:15 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.06 07:31 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1055,8 +1055,12 @@ inoremap  <expr>  <C-L>  (col( "." ) == col( "$" )) ? "<Del>" : "<C-O>d:call sea
 " gombot.
 nnoremap  Q  <Nop>
 
-" Az InsertLeave esemeny nem tortenik meg a <C-C> hatasara.
-noremap  <C-C>  <Esc>
+" Emacs-szeru cancel. Korabban a <C-C> to <Esc> volt (az InsertLeave esemeny
+" nem tortenik meg a <C-C> hatasara), de valamiert a 7.4.640 kornyeken mar nem
+" mukodott.
+noremap   <C-G>  <Esc>
+inoremap  <C-G>  <Esc>
+cnoremap  <C-G>  <Esc>
 
 " Ha egy help dokumentumban nyomunk <Space>-t, akkor a kurzor alatti linket
 " nyissa meg, ha forraskodban egy azonositon (fuggveny, vagy valtozo neven)
@@ -1148,8 +1152,8 @@ function UniteMaps()
 endfunction
 
 " Nerdcommenter.
-map  <C-F>  <Plug>NERDCommenterComment
-map  <C-G>  <Plug>NERDCommenterUncomment
+map  <C-F>           <Plug>NERDCommenterComment
+map  <Leader><C-F>   <Plug>NERDCommenterUncomment
 
 " Tabular.
 noremap  <Leader>c\|  :Tabularize /\|/l0<CR>
