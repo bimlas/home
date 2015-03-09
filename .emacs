@@ -8,11 +8,13 @@
 ; ============================================================================
 ; http://stackoverflow.com/a/10093312
 
-; evil:                   vim mode
-; color-theme-solarized:  light/dark color theme
-; magit:                  git
-; sunrise:                double panel commander
-(setq package-list '(evil color-theme-solarized magit))
+(setq package-list '(evil                   ; vim mode
+                     color-theme-solarized  ; light/dark color theme
+                     sunrise-commander      ; double panel commander
+                     auto-complete          ; auto completion
+                     ac-inf-ruby            ; ... ruby
+                     magit                  ; git
+                     ))
 
 (setq package-archives '(("elpa"  . "http://tromey.com/elpa/")
                          ("gnu"   . "http://elpa.gnu.org/packages/")
@@ -26,8 +28,16 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;            GENERALT BEALLITASOK, NE PISZKALD (M-X CUSTOMIZE)            {{{1
+;                               BEALLITASOK                               {{{1
 ; ============================================================================
+;
+; sr-: sunrise commander
+
+; Msys-git hozzadasa Windows-on.
+(setq exec-path (append exec-path '("~/git/bin")))
+
+;                                GENERALT                                 {{{2
+; ____________________________________________________________________________
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -37,8 +47,9 @@
  '(custom-safe-themes
    (quote
     ("31a01668c84d03862a970c471edbd377b2430868eccf5e8a9aec6831f1a0908d" default)))
- '(dired-listing-switches "-alhk")
- '(sr-attributes-display-mask (quote (nil nil nil nil t t t)))
+ '(global-auto-complete-mode t)
+ '(show-paren-mode t)
+ '(sr-cursor-follows-mouse nil)
  '(sr-listing-switches "-alhk")
  '(sr-show-hidden-files t))
 (custom-set-faces
@@ -48,13 +59,27 @@
  ;; If there is more than one, they won't work right.
  )
 
+;                                   MAP                                   {{{1
+; ============================================================================
+
+(global-set-key (kbd "C-SPC") 'completion-at-point)
+
 ;                            PLUGINOK INDITASA                            {{{1
 ; ============================================================================
 
-(require 'evil)
-; (evil-mode 1)
+;                                BUILTINS                                 {{{1
+; ============================================================================
+(ido-mode)
 
-(require 'magit)
+;                               TELEPITETT                                {{{2
+; ____________________________________________________________________________
+
+; (evil-mode)
+
+; ac-inf-ruby
+(eval-after-load 'auto-complete
+  '(add-to-list 'ac-modes 'inf-ruby-mode))
+(add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
 
 ; Ez valamiert az utolso sorban akar csak mukodni.
 (load-theme 'solarized-light)
