@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.06 07:31 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.10 15:33 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1058,9 +1058,9 @@ nnoremap  Q  <Nop>
 " Emacs-szeru cancel. Korabban a <C-C> to <Esc> volt (az InsertLeave esemeny
 " nem tortenik meg a <C-C> hatasara), de valamiert a 7.4.640 kornyeken mar nem
 " mukodott.
-noremap   <C-G>  <Esc>
-inoremap  <C-G>  <Esc>
-cnoremap  <C-G>  <Esc>
+noremap   <C-F>  <Esc>
+inoremap  <C-F>  <Esc>
+cnoremap  <C-F>  <Esc>
 
 " Ha egy help dokumentumban nyomunk <Space>-t, akkor a kurzor alatti linket
 " nyissa meg, ha forraskodban egy azonositon (fuggveny, vagy valtozo neven)
@@ -1144,16 +1144,16 @@ nnoremap  <Leader>ut   :Unite -start-insert tag -sync<CR>
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
   if has( 'gui_running' )
-    map   <buffer>  <Esc>  <Plug>(unite_all_exit)
-    nmap  <buffer>  h      i<C-C>A../<C-C>
-    nmap  <buffer>  l      <CR>
-    nmap  <buffer>  x      astart<CR>
+    map   <buffer>  q  <Plug>(unite_all_exit)
+    nmap  <buffer>  h  <Plug>(unite_delete_backward_path)
+    nmap  <buffer>  l  <CR>
+    nmap  <buffer>  x  astart<CR>
   endif
 endfunction
 
 " Nerdcommenter.
-map  <C-F>           <Plug>NERDCommenterComment
-map  <Leader><C-F>   <Plug>NERDCommenterUncomment
+map  <C-G>           <Plug>NERDCommenterComment
+map  <Leader><C-G>   <Plug>NERDCommenterUncomment
 
 " Tabular.
 noremap  <Leader>c\|  :Tabularize /\|/l0<CR>

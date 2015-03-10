@@ -1,3 +1,6 @@
+; Ne felejtsd el beallitani a HOME kornyezeti valtozot, hogy a megfelelo
+; helyen keresse ezt a fajlt!
+;
 ; A (kifejezesek) M-X parancsokat jelentenek, a ' karakter, ha jol ertem az
 ; Enter lenyomasat szimulalja.
 ;
@@ -10,9 +13,10 @@
 
 (setq package-list '(evil                   ; vim mode
                      color-theme-solarized  ; light/dark color theme
+                     rainbow-mode           ; hex/rgb szines megjelenitese
                      sunrise-commander      ; double panel commander
                      auto-complete          ; auto completion
-                     ac-inf-ruby            ; ... ruby
+                     ; company                ; auto completion
                      magit                  ; git
                      ))
 
@@ -30,14 +34,26 @@
 
 ;                               BEALLITASOK                               {{{1
 ; ============================================================================
-;
-; sr-: sunrise commander
 
-; Msys-git hozzadasa Windows-on.
-(setq exec-path (append exec-path '("~/git/bin")))
+; Elvileg a swap fajlok helye, gyakorlatilag meg passz.
+; TODO: Linux-on nezd meg, hogy van-e TMP valtozo.
+(setq temporary-file-directory (getenv "TMP"))
+
+;                           KORNYEZETI VALTOZOK                           {{{2
+; ____________________________________________________________________________
+;
+; A teljes listaert: <C-H> r <C-S> * Environment
+
+; Msys-git hozzadasa a PATH-hoz Windows-on.
+(setq exec-path (append '("~/git/bin") exec-path))
+
+; Usenet server.
+(setenv "NNTPSERVER" "news.gmane.org")
 
 ;                                GENERALT                                 {{{2
 ; ____________________________________________________________________________
+;
+; sr-: sunrise commander
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -67,19 +83,15 @@
 ;                            PLUGINOK INDITASA                            {{{1
 ; ============================================================================
 
-;                                BUILTINS                                 {{{1
-; ============================================================================
+;                                BUILTINS                                 {{{2
+; ____________________________________________________________________________
+
 (ido-mode)
 
 ;                               TELEPITETT                                {{{2
 ; ____________________________________________________________________________
 
 ; (evil-mode)
-
-; ac-inf-ruby
-(eval-after-load 'auto-complete
-  '(add-to-list 'ac-modes 'inf-ruby-mode))
-(add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
 
 ; Ez valamiert az utolso sorban akar csak mukodni.
 (load-theme 'solarized-light)

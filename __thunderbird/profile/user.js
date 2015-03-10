@@ -1,3 +1,7 @@
+// Hogy a Gmail-t is hasznalhasd:
+// https://www.google.com/settings/security/lesssecureapps
+// Ne felejtsd el engedelyezni az IMAP-ot!
+//
 // Egy hasznos kiegeszito:
 // https://addons.mozilla.org/hu/thunderbird/addon/gmail-conversation-view/
 // Ne felejtsd el a beallitasok kozott bekapcsolni az "I love attachments"
