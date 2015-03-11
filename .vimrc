@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.10 15:33 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.11 14:49 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -100,9 +100,8 @@ if isdirectory( vundle_dir )
   " ifX, afX az X-eken beluli kivalasztahoz
   Plugin 'thinca/vim-textobj-between'
 
-  " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite source
+  " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
   Plugin 'shougo/unite.vim'
-  Plugin 'tsukkee/unite-tag'
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
   Plugin 'shougo/vimfiler.vim'
 
@@ -1058,9 +1057,9 @@ nnoremap  Q  <Nop>
 " Emacs-szeru cancel. Korabban a <C-C> to <Esc> volt (az InsertLeave esemeny
 " nem tortenik meg a <C-C> hatasara), de valamiert a 7.4.640 kornyeken mar nem
 " mukodott.
-noremap   <C-F>  <Esc>
-inoremap  <C-F>  <Esc>
-cnoremap  <C-F>  <Esc>
+noremap   <C-G>  <Esc>
+inoremap  <C-G>  <Esc>
+cnoremap  <C-G>  <Esc>
 
 " Ha egy help dokumentumban nyomunk <Space>-t, akkor a kurzor alatti linket
 " nyissa meg, ha forraskodban egy azonositon (fuggveny, vagy valtozo neven)
@@ -1119,41 +1118,38 @@ function NetrwLynxMap()
   map  <buffer>  l        <CR>
 endfunction
 
-" Kereses a buffer konyvtaraban rekurzivan.
-nnoremap  <Leader>ur   :UniteWithBufferDir file_rec -sync<CR>
+" Fajl megnyitasa Emacs modra.
+nnoremap  <Leader>uf   :Unite file -start-insert -winheight=10 -direction=botright<CR>
 
-" ... nem rekurzivan.
-nnoremap  <Leader>uf   :UniteWithBufferDir file -sync<CR>
-
-" ... a project fajlok kozott, vagy ha nincs .git, akkor csak a jelenlegi
-" konyvtarban (pwd) rekurzivan.
-nnoremap  <Leader>upr  :UniteWithProjectDir file_rec -sync<CR>
-
-" ... nem rekurzivan.
-nnoremap  <Leader>upf  :UniteWithProjectDir file -sync<CR>
-
-" ... a bufferek kozott.
+" Bongeszes a bufferek kozott.
 nnoremap  <Leader>ub   :Unite -start-insert buffer -sync<CR>
 
 " ... a konyjelzok kozott.
-nnoremap  <Leader>uB   :Unite -start-insert bookmark -sync<CR>
+nnoremap  <Leader>uB   :VimFiler bookmark:<CR>
 
 " ... a tag-ok kozott.
 nnoremap  <Leader>ut   :Unite -start-insert tag -sync<CR>
 
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
-  if has( 'gui_running' )
-    map   <buffer>  q  <Plug>(unite_all_exit)
-    nmap  <buffer>  h  <Plug>(unite_delete_backward_path)
-    nmap  <buffer>  l  <CR>
-    nmap  <buffer>  x  astart<CR>
-  endif
+  " if has( 'gui_running' )
+    map   <buffer>  <Esc>  <Plug>(unite_exit)
+    map   <buffer>  q      <Plug>(unite_all_exit)
+    nmap  <buffer>  h      <Plug>(unite_delete_backward_path)
+    nmap  <buffer>  l      <CR>
+    nmap  <buffer>  x      astart<CR>
+  " endif
+endfunction
+
+autocmd  FileType  vimfiler  call VimfilerMaps()
+function VimfilerMaps()
+    " Unite-szeru gyorskereses.
+    nmap  <buffer>  i  :Unite line -start-insert<CR>
 endfunction
 
 " Nerdcommenter.
-map  <C-G>           <Plug>NERDCommenterComment
-map  <Leader><C-G>   <Plug>NERDCommenterUncomment
+map  <C-F>           <Plug>NERDCommenterComment
+map  <Leader><C-F>   <Plug>NERDCommenterUncomment
 
 " Tabular.
 noremap  <Leader>c\|  :Tabularize /\|/l0<CR>
@@ -1187,13 +1183,9 @@ imap                       <F5>         <C-O><F5>
 nnoremap                   <F6>         :Comp<CR>
 imap                       <F6>         <C-O><F6>
 
-" Bongeszes a konyvtarban.
-nnoremap  <silent>         <F7>         :VimFiler<CR>
+" Vimfiler megnyitasa.
+nnoremap                   <F7>         :VimFiler<CR>
 imap                       <F7>         <C-O><F7>
-
-" Ketpaneles commander megnyitasa.
-nnoremap  <silent>         <S-F7>       :VimFilerDouble<CR>
-imap                       <S-F7>       <C-O><S-F7>
 
 " Tagbar megnyitasa.
 nnoremap  <silent>         <F8>         :TagbarToggle<CR>
