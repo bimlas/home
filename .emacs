@@ -1,3 +1,7 @@
+; http://ergoemacs.org/emacs/emacs_make_modern.html
+; http://ergoemacs.org/emacs/effective_emacs.html
+; http://www.emacswiki.org/emacs/Icicles
+;
 ; Ne felejtsd el beallitani a HOME kornyezeti valtozot, hogy a megfelelo
 ; helyen keresse ezt a fajlt!
 ;
@@ -39,6 +43,17 @@
 ; TODO: Linux-on nezd meg, hogy van-e TMP valtozo.
 (setq temporary-file-directory (getenv "TMP"))
 
+; Paros jelek mutatasakkor az egesz kifejezest szinezze.
+(setq show-paren-style 'expression)
+
+; Ne keszitsen backup es autosave fajlokat.
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+; Ha elerheto, akkor ez legyen az alap betutipus.
+(when (member "DejaVu Sans Mono" (font-family-list))
+  (set-face-attribute 'default nil :font "DejaVu Sans Mono"))
+
 ;                           KORNYEZETI VALTOZOK                           {{{2
 ; ____________________________________________________________________________
 ;
@@ -65,6 +80,8 @@
     ("31a01668c84d03862a970c471edbd377b2430868eccf5e8a9aec6831f1a0908d" default)))
  '(global-auto-complete-mode t)
  '(show-paren-mode t)
+ '(global-visual-line-mode 1)
+ '(global-linum-mode t)
  '(sr-cursor-follows-mouse nil)
  '(sr-listing-switches "-alhk")
  '(sr-show-hidden-files t))
