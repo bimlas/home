@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.11 14:49 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.13 12:33 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -130,6 +130,12 @@ if isdirectory( vundle_dir )
   " automatikus kodkiegeszites
   " lua kell hozza (:version +lua)
   Plugin 'shougo/neocomplete.vim'
+
+  " template-ek
+  Plugin 'shougo/neosnippet.vim'
+  Plugin 'shougo/neosnippet-snippets'
+  Plugin 'honza/vim-snippets'
+  let g:neosnippet#snippets_directory = $HOME . '/.vim/bundle/vim-snippets/snippets'
 
   " buffer, vagy kijelolt kod futtatasa
   Plugin 'thinca/vim-quickrun'
@@ -1073,10 +1079,11 @@ noremap  <Space>  <C-]>
 " A sztring osszes elofordulasanak helye. (valtozoknal lehet hasznos)
 " noremap                    ;            :scscope find s <C-R>=expand( '<cword>' )<CR><CR>
 
-" Completion.
-inoremap  <expr>  <C-Space>  (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
+" Completion, vagy snippet beszurasa.
 " Terminal-ban a <Nul> a <C-Space> megfeleloje.
-inoremap           <expr>  <Nul>        (&completefunc != '') ? "<C-X><C-U>" : "<C-X><C-O>"
+imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
+imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
+imap  <expr>  <Nul>      <C-Space>
 
 " A torles ne masolja a vagolapra a szoveget.
 " noremap   s      "_s
@@ -1185,7 +1192,7 @@ imap                       <F6>         <C-O><F6>
 
 " Vimfiler megnyitasa.
 nnoremap                   <F7>         :VimFiler<CR>
-imap                       <F7>         <C-O><F7>
+imap                       <F7>       <C-O><S-F7>
 
 " Tagbar megnyitasa.
 nnoremap  <silent>         <F8>         :TagbarToggle<CR>
