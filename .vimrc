@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.13 12:33 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.14 10:03 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -915,7 +915,7 @@ let g:neocomplete#enable_insert_char_pre = 1
 if !exists( 'g:neocomplete#sources' )
   let g:neocomplete#sources = {}
 endif
-let g:neocomplete#sources._ = ['omni', 'member', 'syntax', 'vim']
+let g:neocomplete#sources._ = ['omni', 'member', 'syntax', 'vim', 'neosnippet']
 
 " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
 " tudjuk.
