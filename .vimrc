@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.14 10:03 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.17 09:26 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -114,6 +114,11 @@ if isdirectory( vundle_dir )
   " Css szinek megjelenitese.
   " WARNING: Nagyon belassitja a megjelenitest.
   " Plugin 'ap/vim-css-color'
+
+  " egesz hasznalhato szamologep (az eredmeny ismet felhasznalhato az 'ans'
+  " beirasaval)
+  " $ install python
+  Plugin 'gregsexton/vimcalc'
 
   " .. PROGRAMOZAS ........................
 
