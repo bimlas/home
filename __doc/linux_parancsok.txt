@@ -2197,6 +2197,19 @@ git
         *.swp
         bin/
 
+    Ez a .gitignore fájl tartalmazó és azon belüli könyvtárakra is érvényes
+    lesz. Ha csak a .gitignore könyvtárában akarjuk letiltani az elemeket,
+    akkor:
+
+        /*.swp
+        /bin/
+
+    Tagadásra is lehetőségünk van, ha a kifejezés elé teszünk egy ! jelet.
+    Például tiltsuk le az összes html-t, kivéve a docinfo-t:
+
+        *.html
+        !docinfo.html
+
     Elláthatjuk tag-gal is a verziót miután commit-eltük, hogy könnyebben
     lehessen rá hivatkozni:
 
