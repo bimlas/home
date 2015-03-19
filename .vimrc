@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.19 13:19 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.19 13:41 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -305,10 +305,10 @@ if isdirectory( vundle_dir )
 
     " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
     " tudjuk.
-    if !exists('g:neocomplete#force_omni_input_patterns')
-      let g:neocomplete#force_omni_input_patterns = {}
-    endif
-    let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+    " if !exists('g:neocomplete#force_omni_input_patterns')
+      " let g:neocomplete#force_omni_input_patterns = {}
+    " endif
+    " let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
   Plugin 'shougo/neosnippet.vim'                                        " {{{2
   " template-ek
@@ -1087,7 +1087,7 @@ function NetrwLynxMap()
 endfunction
 
 " Fajl megnyitasa Emacs modra.
-nnoremap  <Leader>uf   :Unite file -start-insert -winheight=10 -direction=botright<CR>
+nnoremap  <C-P>        :Unite file -start-insert -winheight=10 -direction=botright<CR>
 
 " Bongeszes a bufferek kozott.
 nnoremap  <Leader>ub   :Unite -start-insert buffer -sync<CR>
