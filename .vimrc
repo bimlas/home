@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.17 09:26 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.19 13:19 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -26,7 +26,7 @@ function BigTerm()
   return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
 endfunction
 
-"                      VUNDLE PLUGIN-KEZELO INDITASA                      {{{1
+"                            PLUGINOK INDITASA                            {{{1
 " ============================================================================
 
 let vundle_dir = $HOME . '/.vim/bundle/vundle.vim'
@@ -37,136 +37,351 @@ if isdirectory( vundle_dir )
   call vundle#begin( $HOME . '/.vim/bundle' )
   filetype off
 
+  Plugin 'gmarik/vundle.vim'                                            " {{{2
   " plugin-ok automatizalt telepitese git-en keresztul (is)
-  Plugin 'gmarik/vundle.vim'
 
+  Plugin 'shougo/vimproc.vim'                                           " {{{2
   " Nehany plugin hasznalja. Windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
-  Plugin 'shougo/vimproc.vim'
 
-  " __ GITHUB _____________________________
-
+                                                                        " }}}2
   " .. SAJAT ..............................
 
+  Plugin 'bimbalaszlo/vim-eight'                                        " {{{2
   " sajat fuggvenyek, parancsok, filetype, tippek, stb.
-  Plugin 'bimbalaszlo/vim-eight'
 
+  Plugin 'bimbalaszlo/vim-eightheader'                                  " {{{2
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
-  Plugin 'bimbalaszlo/vim-eightheader'
 
+    let g:EightHeader_comment   = 'call NERDComment( "n", "comment" )'
+    let g:EightHeader_uncomment = 'call NERDComment( "n", "uncomment" )'
+
+  Plugin 'bimbalaszlo/vim-numutils'                                     " {{{2
   " szamok manipulalasa regex segitsegevel
-  Plugin 'bimbalaszlo/vim-numutils'
 
+  Plugin 'bimbalaszlo/vim-cheatsheets'                                  " {{{2
   " rovid leirasok programokhoz es programozasi nyelvekhez help formaban
-  Plugin 'bimbalaszlo/vim-cheatsheets'
 
+                                                                        " }}}2
   " .. MEGJELENES .........................
   "
   " http://cocopon.me/app/vim-color-gallery/
   " http://vimcolors.com/
 
+  Plugin 'altercation/vim-colors-solarized'                             " {{{2
   " nagyon szep colorscheme (light es dark is)
-  Plugin 'altercation/vim-colors-solarized'
 
+  Plugin 'morhetz/gruvbox'                                              " {{{2
   " terminalban jol mutat
-  Plugin 'morhetz/gruvbox'
 
+  Plugin 'itchyny/lightline.vim'                                        " {{{2
   " divatos, de minimalista statusline
-  Plugin 'itchyny/lightline.vim'
 
+                                                                        " }}}2
   " .. ALAPVETO ...........................
 
+  " Plugin 'tpope/vim-sexp-mappings-for-regular-people'                 " {{{2
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
-  " Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
+  Plugin 'lokaltog/vim-easymotion'                                      " {{{2
   " gyors mozgas a buffer-en belul
-  Plugin 'lokaltog/vim-easymotion'
 
+    " A helymeghatarozashoz hasznalt betuk.
+    let g:EasyMotion_keys = 'asdfghjkluiopqwer'
+
+  Plugin 'dkprice/vim-easygrep'                                         " {{{2
   " tuningolt vimgrep
-  Plugin 'dkprice/vim-easygrep'
 
+    " Alapjaba veve a megnyitott fajl tipusaval megegyezo fajlokban keressen.
+    let EasyGrepMode = 2
+
+    " A fajl konyvtaraban keressen, ne a cwd-ben.
+    let EasyGrepSearchCurrentBufferDir = 1
+
+    " Rekurzivan keressen a konyvtarakban.
+    let EasyGrepRecursive = 1
+
+    " De hagyja ki a kovetkezoket...
+    let g:EasyGrepFilesToExclude = ".svn,.git"
+
+    " Rejtett fajlokban is keressen.
+    let EasyGrepHidden = 1
+
+    " Soronkent tobb egyezest is talalhat. (mint pl.: :s///g)
+    let EasyGrepEveryMatch = 1
+
+    " Ne nyisson uj tab-okat a talalatokhoz.
+    let EasyGrepReplaceWindowMode = 2
+
+  Plugin 'henrik/vim-qargs'                                             " {{{2
   " quickfix-en beluli fajlokon parancsok vegrehajtasa (Qdo) es masolasa az
   " args-ba (Qargs)
-  Plugin 'henrik/vim-qargs'
 
+  Plugin 'vis'                                                          " {{{2
   " parancsok futtatasa visual block-on
-  Plugin 'vis'
 
+  Plugin 'thinca/vim-visualstar'                                        " {{{2
   " kijelolt szoveg keresese * gombbal
-  Plugin 'thinca/vim-visualstar'
 
+  Plugin 'tpope/vim-surround'                                           " {{{2
+  " paros jelek gyors cserelese/torlese
+
+    let g:surround_no_insert_mappings = 1
+
+  Plugin 'kana/vim-textobj-user'                                        " {{{2
   " sajat text-object
-  Plugin 'kana/vim-textobj-user'
+
+  Plugin 'thinca/vim-textobj-between'                                   " {{{2
   " ifX, afX az X-eken beluli kivalasztahoz
-  Plugin 'thinca/vim-textobj-between'
 
+  Plugin 'shougo/unite.vim'                                             " {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
-  Plugin 'shougo/unite.vim'
+
+    " let g:unite_source_tag_show_location = 0
+    let g:unite_source_tag_max_fname_length = 70
+
+  Plugin 'shougo/vimfiler.vim'                                          " {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
-  Plugin 'shougo/vimfiler.vim'
 
+    " Ez legyen az alapertelmezett bongeszo.
+    let g:vimfiler_as_default_explorer = 1
+
+    " Egyeni ikonok.
+    let g:vimfiler_tree_leaf_icon   = ' '
+    let g:vimfiler_tree_opened_icon = '▾'
+    let g:vimfiler_tree_closed_icon = '▸'
+    let g:vimfiler_file_icon        = '-'
+    let g:vimfiler_marked_file_icon = '*'
+
+    " Az alternate buffer maradjon a vimfiler, igy a ketpaneles modba konnyebb
+    " visszavaltani.
+    let g:vimfiler_restore_alternate_file = 0
+
+    " A rejtett fajlokat is mutassa.
+    let g:vimfiler_ignore_pattern = ''
+
+    " Ne ugorjon a konyvtar kinyitasa utan.
+    let g:vimfiler_expand_jump_to_first_child = 0
+
+    " Egyeni beallitasok.
+    " 'sort_type': 'extension'
+    if exists( '*vimfiler#custom#profile' )
+      call vimfiler#custom#profile( 'default', 'context', { 'safe': 0 } )
+    endif
+
+  Plugin 'godlygeek/tabular'                                            " {{{2
   " szoveg igazitasa regex kifejezesekkel
-  Plugin 'godlygeek/tabular'
 
+  Plugin 'tyru/open-browser.vim'                                        " {{{2
   " netrw gx helyett
-  Plugin 'tyru/open-browser.vim'
 
+  " Plugin 'ap/vim-css-color'                                           " {{{2
   " Css szinek megjelenitese.
   " WARNING: Nagyon belassitja a megjelenitest.
-  " Plugin 'ap/vim-css-color'
 
+  Plugin 'gregsexton/vimcalc'                                           " {{{2
   " egesz hasznalhato szamologep (az eredmeny ismet felhasznalhato az 'ans'
   " beirasaval)
   " $ install python
-  Plugin 'gregsexton/vimcalc'
 
+                                                                        " }}}2
   " .. PROGRAMOZAS ........................
 
+  Plugin 'scrooloose/nerdcommenter'                                     " {{{2
   " szovegreszek kommentelese (akar oszlopok is)
-  Plugin 'scrooloose/nerdcommenter'
 
+    " Rakjon szokozoket a kommenterek kore.
+    let NERDSpaceDelims = 1
+
+    " :help NERDBlockComIgnoreEmpty
+    let NERDBlockComIgnoreEmpty = 0
+
+    " Az alapertelmezett map-ok kikapcsolasa. (mivel keves kommentelo parancsot
+    " hasznalok es azokat sajat map-okra allitottam, igy teljesen feleslegesek)
+    let NERDCreateDefaultMappings = 0
+
+  Plugin 'majutsushi/tagbar'                                            " {{{2
   " a fajlban talalhato tag-ek listaja
   " $ install ctags
-  Plugin 'majutsushi/tagbar'
 
+    " A tagbar megnyitasakkor a kurzor ugorjon ra.
+    let g:tagbar_autofocus = 1
+
+    " Ha entert nyomunk egy tagon, akkor a tagra ugras utan zarodjon be a tagbar.
+    " let g:tagbar_autoclose = 1
+
+    " Ne rendezze nev szerint a tagokat.
+    let g:tagbar_sort = 0
+
+    " A jobbra nyil is nyissa ki a fold-okat, a bal csukja ossze oket.
+    let g:tagbar_map_openfold  = ['<Right>', 'l']
+    let g:tagbar_map_closefold = ['<Left>',  'h']
+
+    " Hogy asciidoc fajlokkal is hasznalhato legyen, mentsuk el ezeket a sorokat a
+    " ~/.ctags fajlba:
+    " --langdef=asciidoc
+    " --langmap=asciidoc:.ad.adoc.asciidoc
+    " --regex-asciidoc=/^=[ \t]+(.*)/\1/h/
+    " --regex-asciidoc=/^==[ \t]+(.*)/. \1/h/
+    " --regex-asciidoc=/^===[ \t]+(.*)/. . \1/h/
+    " --regex-asciidoc=/^====[ \t]+(.*)/. . . \1/h/
+    " --regex-asciidoc=/^=====[ \t]+(.*)/. . . . \1/h/
+    " --regex-asciidoc=/^======[ \t]+(.*)/. . . . \1/h/
+    " --regex-asciidoc=/^=======[ \t]+(.*)/. . . . \1/h/
+    " --regex-asciidoc=/\[\[([^]]+)\]\]/\1/a/
+    " --regex-asciidoc=/<<([^,]+),([^>]+)>>/\1: \2/A/
+    " --regex-asciidoc=/^\.([^\|]+)$/\1/t/
+    " --regex-asciidoc=/image::([^\[]+)/\1/i/
+    " --regex-asciidoc=/image:([^:][^\[]+)/\1/I/
+    " --regex-asciidoc=/include::([^\[]+)/\1/n/
+    let g:tagbar_type_asciidoc =
+    \ { 'ctagstype' : 'asciidoc',
+    \   'kinds'     : [ 'h:table of contents',
+    \                   'a:anchors:1',
+    \                   'A:using of anchors:1',
+    \                   't:titles:1',
+    \                   'n:includes:1',
+    \                   'i:images:1',
+    \                   'I:inline images:1'
+    \                 ]
+    \ }
+
+    " ~/.ctags:
+    " --langdef=text
+    " --langmap=text:.txt
+    " --regex-text=/^[ \t]*(.*)\{\{\{1/\1/h/
+    " --regex-text=/^[ \t]*(.*)\{\{\{2/. \1/h/
+    " --regex-text=/^[ \t]*(.*)\{\{\{3/. . \1/h/
+    let g:tagbar_type_text =
+    \ { 'ctagstype' : 'text',
+    \   'kinds'     : [ 'h:table of contents' ]
+    \ }
+
+  Plugin 'scrooloose/syntastic'                                         " {{{2
   " syntax checker
-  Plugin 'scrooloose/syntastic'
 
-  " automatikus kodkiegeszites
-  " lua kell hozza (:version +lua)
-  Plugin 'shougo/neocomplete.vim'
+    " Statusline indikator formaja.
+    let g:syntastic_stl_format = '%W{!W%fw}%E{!E%fe}'
 
+    " Irja ki, hogy melyik checker-tol szarmazik a figyelmeztetes.
+    let g:syntastic_aggregate_errors = 1
+
+    " __ C ______________________________________
+
+    let g:syntastic_c_checkers = [ 'gcc', 'splint' ]
+
+    " __ PYTHON _________________________________
+
+    let g:syntastic_python_checkers = [ 'pylint', 'flake8' ]
+
+    " Stilushibak figyelmen kivul hagyasa.
+    let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-indentation -d bad-whitespace'
+    let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
+
+    " automatikus kodkiegeszites
+    " lua kell hozza (:version +lua)
+    Plugin 'shougo/neocomplete.vim'
+
+    " Engedelyezes.
+    let g:neocomplete#enable_at_startup = 1
+
+    " Smartcase.
+    let g:neocomplete#enable_smart_case = 1
+
+    " Nem szeretnek fuzzy completion-t.
+    let g:neocomplete#enable_fuzzy_completion = 0
+
+    " Csak iras kozben jelenjen meg, mozgas kozben ne.
+    let g:neocomplete#enable_insert_char_pre = 1
+
+    " Automatikusan valassza ki az elso lehetoseget.
+    " let g:neocomplete#enable_auto_select = 1
+
+    " A kiegeszitesek mire legyenek ervenyesek, honnan vegye?
+    if !exists( 'g:neocomplete#sources' )
+      let g:neocomplete#sources = {}
+    endif
+    let g:neocomplete#sources._ = ['omni', 'member', 'syntax', 'vim', 'neosnippet']
+
+    " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
+    " tudjuk.
+    if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+  Plugin 'shougo/neosnippet.vim'                                        " {{{2
   " template-ek
-  Plugin 'shougo/neosnippet.vim'
-  Plugin 'shougo/neosnippet-snippets'
-  Plugin 'honza/vim-snippets'
-  let g:neosnippet#snippets_directory = $HOME . '/.vim/bundle/vim-snippets/snippets'
 
+    let g:neosnippet#snippets_directory = $HOME . '/.vim/bundle/vim-snippets/snippets'
+
+  Plugin 'shougo/neosnippet-snippets'                                   " {{{2
+  " template-ek
+
+  Plugin 'honza/vim-snippets'                                           " {{{2
+  " template-ek
+
+  Plugin 'thinca/vim-quickrun'                                          " {{{2
   " buffer, vagy kijelolt kod futtatasa
-  Plugin 'thinca/vim-quickrun'
 
+    let g:quickrun_config = {
+    \ '_':
+    \   {
+    \     'outputter': 'multi',
+    \     'outputter/multi/targets': ['buffer', 'quickfix'],
+    \     'hook/output_encode/encoding': 'default',
+    \     'hook/cd/directory': '%S:p:h',
+    \     'runner/vimproc/updatetime': 1000,
+    \     'outputter/buffer/running_mark': '... RUNNING ...'
+    \   },
+    \ 'asciidoc':
+    \   {
+    \     'type': 'asciidoctor',
+    \     'cmdopt': '-o -',
+    \     'outputter': 'browser'
+    \   }
+    \ }
+
+  Plugin 'davidhalter/jedi-vim'                                         " {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
-  Plugin 'davidhalter/jedi-vim'
 
+    " Ha ez nincs megadva, akkor ütközik a neocomplete-tal es automatikusan ki
+    " akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
+    " let g:jedi#auto_vim_configuration = 0
+    let g:jedi#completions_enabled = 0
+
+    " Bufferek hasznalata tab-ok helyett.
+    let g:jedi#use_tabs_not_buffers = 0
+
+    " Ne valassza ki az elso lehetoseget.
+    let g:jedi#popup_select_first = 0
+
+  Plugin 'vim-ruby/vim-ruby'                                            " {{{2
   " ruby motyok (pl. omni completion pontosabban mukodik)
-  Plugin 'vim-ruby/vim-ruby'
 
+                                                                        " }}}2
   " .. GIT ................................
 
+  Plugin 'tpope/vim-fugitive'                                           " {{{2
   " git integracio
   " $ install git
-  Plugin 'tpope/vim-fugitive'
 
+  Plugin 'gregsexton/gitv'                                              " {{{2
   " gitk a vim-en belul
   " $ install git
-  Plugin 'gregsexton/gitv'
+
+    " A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
+    let g:Gitv_TruncateCommitSubjects = 1
+
+    " Control key-eket ne map-oljon.
+    let g:Gitv_DoNotMapCtrlKey = 1
 
   call vundle#end()
 endif
 
-"                               INSTALLVUNDLE                             {{{2
-" ____________________________________________________________________________
+"                              INSTALLVUNDLE                              {{{1
+" ============================================================================
 "
 " Cloning vundle to ~/.vim/bundle/vundle
 
@@ -458,6 +673,27 @@ function StatWarn()
 
 endfunction
 
+"                                  NETRW                                  {{{1
+" ============================================================================
+
+" Netrw ablakanak abszolut merete.
+let g:netrw_winsize = -28
+
+" Ne legyen fejlec.
+let g:netrw_banner = 0
+
+" Eger map-ok tiltasa:
+let g:netrw_mousemaps = 0
+
+" Alapbol tree nezetben nyissa meg.
+" let g:netrw_liststyle = 3
+
+" Csak az a lenyeg, hogy a konyvtarak legyenek elol.
+let g:netrw_sort_sequence = '[\/]$,*'
+
+" Mindig az elozo ablakban nyissa meg a fajlt. (:Vexplore-nal kell)
+let g:netrw_browse_split = 4
+
 "                                 ALTALANOS                               {{{1
 " ============================================================================
 
@@ -713,286 +949,6 @@ let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 let g:rubycomplete_load_gemfile = 1
-
-"                                  PLUGINOK                               {{{1
-" ============================================================================
-
-"                               EIGHTHEADER                               {{{2
-" ____________________________________________________________________________
-
-let g:EightHeader_comment   = 'call NERDComment( "n", "comment" )'
-let g:EightHeader_uncomment = 'call NERDComment( "n", "uncomment" )'
-
-"                                  UNITE                                  {{{2
-" ____________________________________________________________________________
-
-" let g:unite_source_tag_show_location = 0
-let g:unite_source_tag_max_fname_length = 70
-
-"                                VIMFILER                                 {{{2
-" ____________________________________________________________________________
-
-" Ez legyen az alapertelmezett bongeszo.
-let g:vimfiler_as_default_explorer = 1
-
-" Egyeni ikonok.
-let g:vimfiler_tree_leaf_icon   = ' '
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▸'
-let g:vimfiler_file_icon        = '-'
-let g:vimfiler_marked_file_icon = '*'
-
-" Az alternate buffer maradjon a vimfiler, igy a ketpaneles modba konnyebb
-" visszavaltani.
-let g:vimfiler_restore_alternate_file = 0
-
-" A rejtett fajlokat is mutassa.
-let g:vimfiler_ignore_pattern = ''
-
-" Ne ugorjon a konyvtar kinyitasa utan.
-let g:vimfiler_expand_jump_to_first_child = 0
-
-" Egyeni beallitasok.
-" 'sort_type': 'extension'
-if exists( '*vimfiler#custom#profile' )
-  call vimfiler#custom#profile( 'default', 'context', { 'safe': 0 } )
-endif
-
-"                               EASYMOTION                                {{{2
-" ____________________________________________________________________________
-
-" A helymeghatarozashoz hasznalt betuk.
-let g:EasyMotion_keys = 'asdfghjkluiopqwer'
-
-"                                EASYGREP                                 {{{2
-" ____________________________________________________________________________
-
-" Alapjaba veve a megnyitott fajl tipusaval megegyezo fajlokban keressen.
-let EasyGrepMode = 2
-
-" A fajl konyvtaraban keressen, ne a cwd-ben.
-let EasyGrepSearchCurrentBufferDir = 1
-
-" Rekurzivan keressen a konyvtarakban.
-let EasyGrepRecursive = 1
-
-" De hagyja ki a kovetkezoket...
-let g:EasyGrepFilesToExclude = ".svn,.git"
-
-" Rejtett fajlokban is keressen.
-let EasyGrepHidden = 1
-
-" Soronkent tobb egyezest is talalhat. (mint pl.: :s///g)
-let EasyGrepEveryMatch = 1
-
-" Ne nyisson uj tab-okat a talalatokhoz.
-let EasyGrepReplaceWindowMode = 2
-
-"                                   NETRW                                 {{{2
-" ____________________________________________________________________________
-
-" Netrw ablakanak abszolut merete.
-let g:netrw_winsize = -28
-
-" Ne legyen fejlec.
-let g:netrw_banner = 0
-
-" Eger map-ok tiltasa:
-let g:netrw_mousemaps = 0
-
-" Alapbol tree nezetben nyissa meg.
-" let g:netrw_liststyle = 3
-
-" Csak az a lenyeg, hogy a konyvtarak legyenek elol.
-let g:netrw_sort_sequence = '[\/]$,*'
-
-" Mindig az elozo ablakban nyissa meg a fajlt. (:Vexplore-nal kell)
-let g:netrw_browse_split = 4
-
-"                                   TAGBAR                                {{{2
-" ____________________________________________________________________________
-
-" A tagbar megnyitasakkor a kurzor ugorjon ra.
-let g:tagbar_autofocus = 1
-
-" Ha entert nyomunk egy tagon, akkor a tagra ugras utan zarodjon be a tagbar.
-" let g:tagbar_autoclose = 1
-
-" Ne rendezze nev szerint a tagokat.
-let g:tagbar_sort = 0
-
-" A jobbra nyil is nyissa ki a fold-okat, a bal csukja ossze oket.
-let g:tagbar_map_openfold  = ['<Right>', 'l']
-let g:tagbar_map_closefold = ['<Left>',  'h']
-
-" Hogy asciidoc fajlokkal is hasznalhato legyen, mentsuk el ezeket a sorokat a
-" ~/.ctags fajlba:
-" --langdef=asciidoc
-" --langmap=asciidoc:.ad.adoc.asciidoc
-" --regex-asciidoc=/^=[ \t]+(.*)/\1/h/
-" --regex-asciidoc=/^==[ \t]+(.*)/. \1/h/
-" --regex-asciidoc=/^===[ \t]+(.*)/. . \1/h/
-" --regex-asciidoc=/^====[ \t]+(.*)/. . . \1/h/
-" --regex-asciidoc=/^=====[ \t]+(.*)/. . . . \1/h/
-" --regex-asciidoc=/^======[ \t]+(.*)/. . . . \1/h/
-" --regex-asciidoc=/^=======[ \t]+(.*)/. . . . \1/h/
-" --regex-asciidoc=/\[\[([^]]+)\]\]/\1/a/
-" --regex-asciidoc=/<<([^,]+),([^>]+)>>/\1: \2/A/
-" --regex-asciidoc=/^\.([^\|]+)$/\1/t/
-" --regex-asciidoc=/image::([^\[]+)/\1/i/
-" --regex-asciidoc=/image:([^:][^\[]+)/\1/I/
-" --regex-asciidoc=/include::([^\[]+)/\1/n/
-let g:tagbar_type_asciidoc =
-\ { 'ctagstype' : 'asciidoc',
-\   'kinds'     : [ 'h:table of contents',
-\                   'a:anchors:1',
-\                   'A:using of anchors:1',
-\                   't:titles:1',
-\                   'n:includes:1',
-\                   'i:images:1',
-\                   'I:inline images:1'
-\                 ]
-\ }
-
-" ~/.ctags:
-" --langdef=text
-" --langmap=text:.txt
-" --regex-text=/^[ \t]*(.*)\{\{\{1/\1/h/
-" --regex-text=/^[ \t]*(.*)\{\{\{2/. \1/h/
-" --regex-text=/^[ \t]*(.*)\{\{\{3/. . \1/h/
-let g:tagbar_type_text =
-\ { 'ctagstype' : 'text',
-\   'kinds'     : [ 'h:table of contents' ]
-\ }
-
-"                                 SYNTASTIC                               {{{2
-" ____________________________________________________________________________
-
-let g:syntastic_stl_format = '%W{!W%fw}%E{!E%fe}'
-
-" Irja ki, hogy melyik checker-tol szarmazik a figyelmeztetes.
-let g:syntastic_aggregate_errors = 1
-
-" __ C ______________________________________
-
-let g:syntastic_c_checkers = [ 'gcc', 'splint' ]
-
-" __ PYTHON _________________________________
-
-let g:syntastic_python_checkers = [ 'pylint', 'flake8' ]
-
-" Stilushibak figyelmen kivul hagyasa.
-let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-indentation -d bad-whitespace'
-let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
-
-"                               NERDCOMMENTER                             {{{2
-" ____________________________________________________________________________
-
-" Rakjon szokozoket a kommenterek kore.
-let NERDSpaceDelims = 1
-
-" :help NERDBlockComIgnoreEmpty
-let NERDBlockComIgnoreEmpty = 0
-
-" Az alapertelmezett map-ok kikapcsolasa. (mivel keves kommentelo parancsot
-" hasznalok es azokat sajat map-okra allitottam, igy teljesen feleslegesek)
-let NERDCreateDefaultMappings = 0
-
-"                               NEOCOMPLETE                               {{{2
-" ____________________________________________________________________________
-
-" Engedelyezes.
-let g:neocomplete#enable_at_startup = 1
-
-" Smartcase.
-let g:neocomplete#enable_smart_case = 1
-
-" Nem szeretnek fuzzy completion-t.
-let g:neocomplete#enable_fuzzy_completion = 0
-
-" Csak iras kozben jelenjen meg, mozgas kozben ne.
-let g:neocomplete#enable_insert_char_pre = 1
-
-" Automatikusan valassza ki az elso lehetoseget.
-" let g:neocomplete#enable_auto_select = 1
-
-" A kiegeszitesek mire legyenek ervenyesek, honnan vegye?
-if !exists( 'g:neocomplete#sources' )
-  let g:neocomplete#sources = {}
-endif
-let g:neocomplete#sources._ = ['omni', 'member', 'syntax', 'vim', 'neosnippet']
-
-" Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
-" tudjuk.
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
-"                                  BEXEC                                  {{{2
-" ____________________________________________________________________________
-
-" Fajltipus beallitasok.
-let g:bexec_filter_types = {'asciidoc': 'asciidoctor'}
-
-"                                QUICKRUN                                 {{{2
-" ____________________________________________________________________________
-
-" Alapertelmezesben nyissa meg a quickfix-et is, ha hiba tortent.
-let g:quickrun_config = {
-\ '_':
-\   {
-\     'outputter': 'multi',
-\     'outputter/multi/targets': ['buffer', 'quickfix'],
-\     'runner/vimproc/updatetime': 1000,
-\     'outputter/buffer/running_mark': '... RUNNING ...'
-\   },
-\ 'asciidoc':
-\   {
-\     'type': 'asciidoctor',
-\     'cmdopt': '-o -',
-\     'outputter': 'browser'
-\   }
-\ }
-
-"                                JEDI-VIM                                 {{{2
-" ____________________________________________________________________________
-
-" Ha ez nincs megadva, akkor ütközik a neocomplete-tal es automatikusan ki
-" akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
-" let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_enabled = 0
-
-" Bufferek hasznalata tab-ok helyett.
-let g:jedi#use_tabs_not_buffers = 0
-
-" Ne valassza ki az elso lehetoseget.
-let g:jedi#popup_select_first = 0
-
-"                                   CSCOPE                                {{{2
-" ____________________________________________________________________________
-
-if has( 'cscope' )
-  " Az altalanos tag-parancsokhoz is hasznalja a cscope-ot. (pl. definiciora
-  " ugras)
-  " set cscopetag
-
-  " Egy tag definiciojanak keresese eloszor a cscope adatbazisban tortenjen,
-  " csak utanna nezze meg a tags fajlt. (1, ha forditva akarjuk)
-  set cscopetagorder=0
-
-  " :help cscopequickfix
-  set cscopequickfix=s-,c-,d-,i-,t-,e-
-endif
-
-"                                    GITV                                 {{{2
-" ____________________________________________________________________________
-
-" A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
-let g:Gitv_TruncateCommitSubjects = 1
-
-" Control key-eket ne map-oljon.
-let g:Gitv_DoNotMapCtrlKey = 1
 
 "                                    MAP                                  {{{1
 " ============================================================================
