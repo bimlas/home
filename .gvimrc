@@ -5,9 +5,9 @@ if has( 'win32' )
   " Mivel a consolas nem jeleniti meg nehany utf8 karaktert, igy maradok a
   " dejavu-nal.
   " set guifont=Consolas:h11
-  set guifont=DejaVu_Sans_Mono:h11
+  set guifont=DejaVu_Sans_Mono:h10
 else
-  let &guifont = 'Monospace 11'
+  let &guifont = 'Monospace 10'
 endif
 
 " Ablak mereteinek megadasa.

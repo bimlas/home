@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.19 13:41 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.20 09:18 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -26,7 +26,7 @@ function BigTerm()
   return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
 endfunction
 
-"                            PLUGINOK INDITASA                            {{{1
+"                                PLUGINOK                                 {{{1
 " ============================================================================
 
 let vundle_dir = $HOME . '/.vim/bundle/vundle.vim'
@@ -278,9 +278,9 @@ if isdirectory( vundle_dir )
     let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-indentation -d bad-whitespace'
     let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
 
-    " automatikus kodkiegeszites
-    " lua kell hozza (:version +lua)
-    Plugin 'shougo/neocomplete.vim'
+  Plugin 'shougo/neocomplete.vim'                                       " {{{2
+  " automatikus kodkiegeszites
+  " lua kell hozza (:version +lua)
 
     " Engedelyezes.
     let g:neocomplete#enable_at_startup = 1
@@ -305,10 +305,10 @@ if isdirectory( vundle_dir )
 
     " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
     " tudjuk.
-    " if !exists('g:neocomplete#force_omni_input_patterns')
-      " let g:neocomplete#force_omni_input_patterns = {}
-    " endif
-    " let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+    if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
   Plugin 'shougo/neosnippet.vim'                                        " {{{2
   " template-ek
@@ -324,12 +324,12 @@ if isdirectory( vundle_dir )
   Plugin 'thinca/vim-quickrun'                                          " {{{2
   " buffer, vagy kijelolt kod futtatasa
 
+    " \     'hook/output_encode/encoding': 'default',
     let g:quickrun_config = {
     \ '_':
     \   {
     \     'outputter': 'multi',
     \     'outputter/multi/targets': ['buffer', 'quickfix'],
-    \     'hook/output_encode/encoding': 'default',
     \     'hook/cd/directory': '%S:p:h',
     \     'runner/vimproc/updatetime': 1000,
     \     'outputter/buffer/running_mark': '... RUNNING ...'
@@ -359,6 +359,12 @@ if isdirectory( vundle_dir )
 
   Plugin 'vim-ruby/vim-ruby'                                            " {{{2
   " ruby motyok (pl. omni completion pontosabban mukodik)
+
+    " :help ft-ruby-omni
+    let g:rubycomplete_buffer_loading = 1
+    let g:rubycomplete_classes_in_global = 1
+    let g:rubycomplete_rails = 1
+    let g:rubycomplete_load_gemfile = 1
 
                                                                         " }}}2
   " .. GIT ................................
@@ -940,15 +946,6 @@ set completeopt=menuone,longest
 
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
-
-"                                  RUBY                                   {{{2
-" ____________________________________________________________________________
-
-" :help ft-ruby-omni
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-let g:rubycomplete_load_gemfile = 1
 
 "                                    MAP                                  {{{1
 " ============================================================================
