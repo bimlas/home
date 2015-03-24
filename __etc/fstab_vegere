@@ -1,6 +1,0 @@
-# Ne felejtsd el a root-hoz hozzairni a noatime beallitast.
-UUID=791F00985BE1BC78                      /media/nyolcas/cuccok    ntfs         defaults                    0       0
-UUID=450455212BBD3E34                      /media/nyolcas/download  ntfs         defaults                    0       0
-UUID=A038E25B38E22FC8                      /media/nyolcas/app       ntfs         defaults                    0       0
-tmpfs                                      /tmp                     tmpfs        defaults,noatime,mode=1777  0       0
-tmpfs                                      /var/tmp                 tmpfs        defaults,noatime,mode=1777  0       0

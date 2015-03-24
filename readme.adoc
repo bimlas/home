@@ -1,16 +1,24 @@
-Saját beállítások és jegyzetek Linux-hoz és Windows-hoz
-=======================================================
+= Saját beállítófájlok (dotfile, rc file, ini, stb.) Linux-hoz és Windows-hoz
 
-image::http://i.imgur.com/UvAEJH3l.png["commit:dd4e8f4",link="http://i.imgur.com/UvAEJH3.png"]
-
-A commit üzenetek sokszor hanyagok, ha épp nem tudom egy mondatban
-összefoglalni a változásokat - előre is elnézést kérek ezek miatt.
+A fő könyvtárban található shell-szkriptek "egygombos" telepítést végeznek
+el, akár Linux-on, akár Windows-on (msys-git shell-jén keresztül).
 
 Érdemes belelesni a konfig fájlokba, mert van, hogy oda jegyzetelek, hogy
 mindig kéznél legyen a program leírása.
 
 A https://github.com/BimbaLaszlo/home/releases[releases] ponton belül egyéb
-hasznos fájlokat is találhatsz.
+hasznos fájlokat is találhatsz:
+
+* https://github.com/BimbaLaszlo/home/releases/tag/vimruntime.zip[vimruntime.zip] +
+Vim runtime binárisok (ctags, diff, wget, stb.)
+
+* https://github.com/BimbaLaszlo/home/releases/tag/gvim.exe[gvim.exe] +
+Saját build Python, Ruby és Lua támogatással.
+
+* https://github.com/BimbaLaszlo/home/releases/tag/blank.ico[blank.ico] +
+Egy üres ikon - a felhasználását lásd https://github.com/BimbaLaszlo/home/search?q=blank.ico[itt].
 
 Ha bármilyen kérdésed / észrevételed / ötleted van, szívesen reagálok rá
-(issue tracker-ben is jelezheted).
+(https://github.com/BimbaLaszlo/home/issues[issue tracker]-ben is jelezheted).
+
+BimbaLaszlo (.github.io|gmail.com)
