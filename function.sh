@@ -1,4 +1,5 @@
 #!/bin/bash
+# Coloring the error messages.
 
 CP="`which cp`"
 LN="`which ln`"

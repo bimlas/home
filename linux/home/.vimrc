@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.20 09:18 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.25 09:00 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -11,6 +11,9 @@ set nocompatible
 if v:version >= 704
   set regexpengine=1
 endif
+
+" Nem szeretem a magyar uzeneteket.
+language messages 'en_US'
 
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
@@ -330,9 +333,9 @@ if isdirectory( vundle_dir )
     \   {
     \     'outputter': 'multi',
     \     'outputter/multi/targets': ['buffer', 'quickfix'],
-    \     'hook/cd/directory': '%S:p:h',
+    \     'outputter/buffer/running_mark': '... RUNNING ...',
     \     'runner/vimproc/updatetime': 1000,
-    \     'outputter/buffer/running_mark': '... RUNNING ...'
+    \     'hook/cd/directory': '%S:p:h'
     \   },
     \ 'asciidoc':
     \   {
@@ -1143,7 +1146,7 @@ map                <expr>  <F4>         &filetype =~ 'gitv\?' ? 'q' : ':Gitv<CR>
 imap                       <F4>         <C-O><F4>
 
 " Compile es make egy gombnyomasra.
-noremap                    <F5>         :QuickRun -runner vimproc<CR>
+noremap                    <F5>         :QuickRun<CR>
 imap                       <F5>         <C-O><F5>
 nnoremap                   <F6>         :Comp<CR>
 imap                       <F6>         <C-O><F6>
