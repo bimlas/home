@@ -19,7 +19,7 @@ copy()
 
 link()
 {
-  $LN --verbose --symbolic --force "$@" 2>&1                  \
+  $LN --verbose --symbolic --force --no-dereference "$@" 2>&1 \
     | sed -e "s:^$LN.*:`printf "\e[0;31m"`&`printf "\e[0m"`:" \
     | sed "s:.*:    &:"
 }

@@ -41,3 +41,6 @@ link "$CWD/linux/home/.vimrc"         "$HOME/.vimrc"
 link "$CWD/linux/home/.Xresources"    "$HOME/.Xresources"
 link "$CWD/linux/home/.xsessionrc"    "$HOME/.xsessionrc"
 link "$CWD/linux/home/.zshrc"         "$HOME/.zshrc"
+
+cd "$CWD/../../"
+link "`pwd`" "$HOME/cuccok"

@@ -13,7 +13,7 @@ if v:version >= 704
 endif
 
 " Nem szeretem a magyar uzeneteket.
-language messages 'en_US'
+language en_US.utf8
 
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
