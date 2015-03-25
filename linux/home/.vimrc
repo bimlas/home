@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.25 09:00 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.25 22:16 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -76,9 +76,6 @@ if isdirectory( vundle_dir )
 
   Plugin 'morhetz/gruvbox'                                              " {{{2
   " terminalban jol mutat
-
-  Plugin 'itchyny/lightline.vim'                                        " {{{2
-  " divatos, de minimalista statusline
 
                                                                         " }}}2
   " .. ALAPVETO ...........................
@@ -525,14 +522,9 @@ highlight TagListTagName term=inverse ctermfg=White
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-" __ STATUSLINE _________________________
-"
-" Azert hasznalok valtozokat, hogy konnyebb legyen szinkronba hozni a
-" statusline-t es a lightline-t.
-
 autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand( "%:p:h" )
 let stat_filedir    = '%<%{exists( "b:stat_curfiledir" ) ? b:stat_curfiledir : ""}'
-let stat_filename   = '%{&buflisted ? bufnr( "%" ) . ":" : ""}%w%t%r%m'
+let stat_filename   = '%{&buflisted ? bufnr( "%" ) . " " : ""}%w%#directory# %t%r%m %*'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
 if filereadable( $HOME . '/.vim/bundle/tagbar/autoload/tagbar.vim' )
   let stat_tagbar   = '%{(winwidth( 0 ) > 120) ? strpart( tagbar#currenttag("%s",""), 0, 50 ) : ""}'
@@ -550,77 +542,6 @@ let &statusline .= '%= '
 let &statusline .= stat_tagbar . ' | '
 let &statusline .= '%{len( StatSyntastic() ) ? StatSyntastic() . " | " : ""}'
 let &statusline .= stat_lineinfo
-
-" __ LIGHTLINE __________________________
-
-" Szinek.
-let s:statcolor_lgrey  = ['#eee8d5', '#93a1a1', 188, 109, 'bold']
-let s:statcolor_dgrey  = ['#eee8d5', '#657b83', 188, 66,  'bold']
-let s:statcolor_sand   = ['#586e75', '#eee8d5', 241, 188, 'bold']
-let s:statcolor_red    = ['#eee8d5', '#dc322f', 188, 167, 'bold']
-let s:statcolor_green  = ['#005f00', '#afdf00', 22,  148, 'bold']
-let s:statcolor_blue   = ['#ffffff', '#268bd2', 17,  32,  'bold']
-let s:statcolor_yellow = ['#ffffff', '#b58900', 17,  32,  'bold']
-
-if !exists( 'g:lightline' )
-  let g:lightline = {}
-endif
-
-let g:lightline.active = {
-\     'left'          : [ ['filename'], ['fileformat'], ['statwarn'], ['fugitive'], ['filedir'] ],
-\     'right'         : [ ['lineinfo'], ['syntastic'], ['tagbar'] ]
-\   }
-
-let g:lightline.inactive = {
-\     'left'          : [ ['fullfilename'], ['fugitive'] ],
-\     'right'         : [ [] ]
-\   }
-
-let g:lightline.component = {
-\     'filename'      : stat_filename,
-\     'fullfilename'  : '%w%F%r%m',
-\     'filedir'       : stat_filedir,
-\     'fileformat'    : stat_fileformat,
-\     'tagbar'        : stat_tagbar,
-\     'lineinfo'      : stat_lineinfo
-\   }
-
-let g:lightline.component_function = {
-\     'statwarn'      : 'StatWarn',
-\     'fugitive'      : 'StatFugitive',
-\     'syntastic'     : 'StatSyntastic'
-\   }
-
-let g:lightline#colorscheme#solarized#palette = {
-\   'normal': {
-\     'left'          : [ s:statcolor_green,  s:statcolor_dgrey, s:statcolor_red, s:statcolor_lgrey ],
-\     'middle'        : [ s:statcolor_sand ],
-\     'right'         : [ s:statcolor_dgrey,  s:statcolor_red ]
-\   },
-\   'inactive': {
-\     'left'          : [ s:statcolor_dgrey ],
-\     'middle'        : [ s:statcolor_lgrey ],
-\     'right'         : [ s:statcolor_lgrey ]
-\   },
-\   'insert': {
-\     'left'          : [ s:statcolor_green,  s:statcolor_green, s:statcolor_red, s:statcolor_lgrey ],
-\     'right'         : [ s:statcolor_green,  s:statcolor_red ]
-\   },
-\   'visual': {
-\     'left'          : [ s:statcolor_blue,   s:statcolor_dgrey, s:statcolor_red, s:statcolor_lgrey ],
-\     'right'         : [ s:statcolor_dgrey,  s:statcolor_red ]
-\   },
-\   'replace': {
-\     'left'          : [ s:statcolor_yellow, s:statcolor_dgrey, s:statcolor_red, s:statcolor_lgrey ],
-\     'right'         : [ s:statcolor_dgrey,  s:statcolor_red ]
-\   },
-\   'tabline': {
-\     'left'          : [ ['#073642', '#93a1a1', 24,  109, 'bold'] ],
-\     'middle'        : [ ['#93a1a1', '#073642', 109, 24,  'bold'] ],
-\     'right'         : [ s:statcolor_dgrey, ['#586e75', '#93a1a1', 241, 109, 'bold'] ],
-\     'tabsel'        : [ ['#073642', '#fdf6e3', 24,  230, 'bold'] ]
-\   }
-\ }
 
 " __ STATSYNTASTIC __________________________
 "
