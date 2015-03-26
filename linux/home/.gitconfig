@@ -9,8 +9,10 @@
   ada          = "add --all :/"
   c            = "commit"
   cm           = "commit -m"
+  adac         = "!git ada && git c"
+  adacm        = "!git ada && git cm"
   pl           = "!git fetch; git status; read -p '\nCONTINUE PULLING? Y/[N]' ans; \
-                  if echo $ans | grep '[Yy]'; then git pull; fi"
+                  if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi"
   glog         = "log --graph --decorate --all --name-status"
   slog         = "log --graph --decorate --all --format=oneline"
   changelog    = "log --graph --decorate --all --name-status ORIG_HEAD.."

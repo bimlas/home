@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.26 09:14 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.26 12:40 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -498,10 +498,6 @@ elseif len( globpath( &runtimepath, 'colors/desert.vim' ) )
 
 endif
 
-" Statusline szinei.
-highlight! link StatusLine   Directory
-highlight! link StatusLineNC LineNr
-
 " A par nelkuli zarojelek kijelzese alig lathato.
 highlight! link Error ErrorMsg
 
@@ -541,14 +537,14 @@ endif
 let stat_lineinfo   = '%4l:%3p%%|%3v'
 
 let &statusline  = stat_bufnr . ' '
-let &statusline .= '%#VisualNOS# ' . stat_filename . ' %*'
-let &statusline .= '%#DiffAdd# ' . stat_fileformat . ' %*'
-let &statusline .= '%#ErrorMsg#%{(winwidth(0) > 70) ? StatWarn() : ""}%*'
-let &statusline .= '%#DiffChange#%{len( StatFugitive() ) ? "  " . StatFugitive() . " " : ""}%*'
-let &statusline .= ' ' . stat_filedir . ' '
+let &statusline .= '%#DiffText# ' . stat_filename . ' '
+let &statusline .= '%#DiffAdd# ' . stat_fileformat . ' '
+let &statusline .= '%#WarningMsg#%{(winwidth(0) > 70) ? StatWarn() : ""}'
+let &statusline .= '%#DiffChange#%{len( StatFugitive() ) ? "  " . StatFugitive() . " " : ""}'
+let &statusline .= '%* ' . stat_filedir . ' '
 let &statusline .= '%= '
 let &statusline .= stat_tagbar . ' '
-let &statusline .= '%#ErrorMsg#%{len( StatSyntastic() ) ? " " . StatSyntastic() . " " : ""}%*'
+let &statusline .= '%#WarningMsg#%{len( StatSyntastic() ) ? " " . StatSyntastic() . " " : ""}'
 let &statusline .= '%#DiffChange# ' . stat_lineinfo . ' '
 
 " __ STATSYNTASTIC __________________________
@@ -1054,6 +1050,7 @@ noremap  <Leader>c,   :Tabularize /,\zs/<CR>
 noremap  <Leader>c:   :Tabularize /:\zs/<CR>
 noremap  <Leader>c+   :Tabularize /+$/<CR>
 noremap  <Leader>c\   :Tabularize /\\$/<CR>
+noremap  <Leader>c<   :Tabularize /<<$/<CR>
 noremap  <Leader>csp  :Tabularize / \+\zs/<CR>
 noremap  <Leader>ctab :Tabularize /\t\+\zs/<CR>
 noremap  <Leader>c=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
