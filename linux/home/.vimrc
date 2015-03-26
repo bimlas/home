@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.25 22:16 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.26 09:14 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -13,7 +13,9 @@ if v:version >= 704
 endif
 
 " Nem szeretem a magyar uzeneteket.
-language en_US.utf8
+if ! has( 'win32' )
+  language en_US.utf8
+endif
 
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
@@ -496,6 +498,10 @@ elseif len( globpath( &runtimepath, 'colors/desert.vim' ) )
 
 endif
 
+" Statusline szinei.
+highlight! link StatusLine   Directory
+highlight! link StatusLineNC LineNr
+
 " A par nelkuli zarojelek kijelzese alig lathato.
 highlight! link Error ErrorMsg
 
@@ -516,7 +522,7 @@ highlight TagbarHighlight term=inverse ctermfg=White
 " A highlight-ok felulirasa nekem jobban tetszo szinekre.
 highlight TagListTagName term=inverse ctermfg=White
 
-"                           STATUSLINE (LIGHTLINE)                        {{{1
+"                               STATUSLINE                                {{{1
 " ============================================================================
 
 " Mindig mutassa a statusline-t.
@@ -524,7 +530,8 @@ set laststatus=2
 
 autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand( "%:p:h" )
 let stat_filedir    = '%<%{exists( "b:stat_curfiledir" ) ? b:stat_curfiledir : ""}'
-let stat_filename   = '%{&buflisted ? bufnr( "%" ) . " " : ""}%w%#directory# %t%r%m %*'
+let stat_bufnr      = '%{&buflisted ? bufnr( "%" ) : ""}'
+let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
 if filereadable( $HOME . '/.vim/bundle/tagbar/autoload/tagbar.vim' )
   let stat_tagbar   = '%{(winwidth( 0 ) > 120) ? strpart( tagbar#currenttag("%s",""), 0, 50 ) : ""}'
@@ -533,15 +540,16 @@ else
 endif
 let stat_lineinfo   = '%4l:%3p%%|%3v'
 
-let &statusline  = stat_filename . ' | '
-let &statusline .= stat_fileformat . ' | '
-let &statusline .= '%{(winwidth(0) > 70) ? StatWarn() . " | " : ""}'
-let &statusline .= '%{len( StatFugitive() ) ? StatFugitive() . " | " : ""}'
-let &statusline .= stat_filedir . ' | '
+let &statusline  = stat_bufnr . ' '
+let &statusline .= '%#VisualNOS# ' . stat_filename . ' %*'
+let &statusline .= '%#DiffAdd# ' . stat_fileformat . ' %*'
+let &statusline .= '%#ErrorMsg#%{(winwidth(0) > 70) ? StatWarn() : ""}%*'
+let &statusline .= '%#DiffChange#%{len( StatFugitive() ) ? "  " . StatFugitive() . " " : ""}%*'
+let &statusline .= ' ' . stat_filedir . ' '
 let &statusline .= '%= '
-let &statusline .= stat_tagbar . ' | '
-let &statusline .= '%{len( StatSyntastic() ) ? StatSyntastic() . " | " : ""}'
-let &statusline .= stat_lineinfo
+let &statusline .= stat_tagbar . ' '
+let &statusline .= '%#ErrorMsg#%{len( StatSyntastic() ) ? " " . StatSyntastic() . " " : ""}%*'
+let &statusline .= '%#DiffChange# ' . stat_lineinfo . ' '
 
 " __ STATSYNTASTIC __________________________
 "
@@ -595,7 +603,7 @@ function StatWarn()
 
     let found = search( searchfor['pattern'], 'wnc' )
     if found != 0
-      let b:statwarn .= printf( searchfor['format'], found )
+      let b:statwarn .= printf( ' ' . searchfor['format'] . ' ', found )
     endif
   endfor
 
