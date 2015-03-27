@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.27 07:55 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.27 12:33 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -890,7 +890,7 @@ set showfulltag
 " Jobban kézre esik, mint a \.
 let mapleader='á'
 
-"                          MOZGAS AZ ABLAKON BELUL                        {{{2
+"                              ABLAKKEZELES                               {{{2
 " ____________________________________________________________________________
 
 " A valodi sorok helyett a megjelenitett sorokban mozogjon a kurzor, ha a
@@ -912,14 +912,22 @@ map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>j  <Plug>(easymotion-j)
 map  <Leader>k  <Plug>(easymotion-k)
 
-"                          MOZGAS AZ ABLAKOK KOZOTT                       {{{2
-" ____________________________________________________________________________
-
 nnoremap  <C-H>  <C-W>q
 nnoremap  <C-K>  <C-W>w
 
-"                                 VEGYES                                  {{{2
+"                                KENYELEM                                 {{{2
 " ____________________________________________________________________________
+
+" Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
+" gombot.
+nnoremap  Q  <Nop>
+
+" Emacs-szeru cancel. Korabban a <C-C> to <Esc> volt (az InsertLeave esemeny
+" nem tortenik meg a <C-C> hatasara), de valamiert a 7.4.640 kornyeken mar nem
+" mukodott.
+noremap   <C-G>  <Esc>
+inoremap  <C-G>  <Esc>
+cnoremap  <C-G>  <Esc>
 
 " Sokkal jobban kezre esnek.
 map       <C-J>  <CR>
@@ -945,34 +953,14 @@ nnoremap  <C-Y>  :bprevious<CR>
 " inoremap  <expr>  <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
 inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
 
-" Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
-" gombot.
-nnoremap  Q  <Nop>
-
-" Emacs-szeru cancel. Korabban a <C-C> to <Esc> volt (az InsertLeave esemeny
-" nem tortenik meg a <C-C> hatasara), de valamiert a 7.4.640 kornyeken mar nem
-" mukodott.
-noremap   <C-G>  <Esc>
-inoremap  <C-G>  <Esc>
-cnoremap  <C-G>  <Esc>
-
 " Ha egy help dokumentumban nyomunk <Space>-t, akkor a kurzor alatti linket
 " nyissa meg, ha forraskodban egy azonositon (fuggveny, vagy valtozo neven)
 " nyomtuk meg, akkor a fuggveny definiciojahoz ugrik (tags, vagy cscope fajl
 " szukseges hozza).
 noremap  <Space>  <C-]>
 
-" Azon fuggvenyek listaja, amelyek meghivjak a kurzor alatti fuggvenyt.
-" noremap                    ,            :scscope find c <C-R>=expand('<cword>')<CR><CR>
-
-" A sztring osszes elofordulasanak helye. (valtozoknal lehet hasznos)
-" noremap                    ;            :scscope find s <C-R>=expand('<cword>')<CR><CR>
-
-" Completion, vagy snippet beszurasa.
-" Terminal-ban a <Nul> a <C-Space> megfeleloje.
-imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
-imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-imap  <expr>  <Nul>      <C-Space>
+"                                 VAGOLAP                                 {{{2
+" ____________________________________________________________________________
 
 " A torles ne masolja a vagolapra a szoveget.
 " noremap   s      "_s
@@ -991,6 +979,54 @@ noremap  <C-Insert>  "+y
 noremap  <S-Insert>  "+P
 imap     <S-Insert>  <C-O><S-Insert>
 
+"                                 F1-F12                                  {{{2
+" ____________________________________________________________________________
+
+" Menusor megjelenitese/elrejtese.
+nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
+imap                       <F1>         <C-O><F2>
+
+" Terminal megnyitasa.
+nnoremap  <silent> <expr>  <F2>         has('win32') ? ':silent !start conemu<CR>' : ':silent !xterm &<CR>'
+imap                       <F2>         <C-O><F2>
+
+" Gitv - git commit-ok amelyben a fajl valtozott.
+nnoremap                   <F3>         :Gitv!<CR>
+imap                       <F3>         <C-O><F3>
+
+" Gitv - gitk-szeru log.
+map                <expr>  <F4>         &filetype =~ 'gitv\?' ? 'q' : ':Gitv<CR>'
+imap                       <F4>         <C-O><F4>
+
+" Compile es make egy gombnyomasra.
+noremap                    <F5>         :QuickRun<CR>
+imap                       <F5>         <C-O><F5>
+nnoremap                   <F6>         :Comp<CR>
+imap                       <F6>         <C-O><F6>
+
+" Vimfiler megnyitasa.
+nnoremap                   <F7>         :VimFiler<CR>
+imap                       <F7>       <C-O><S-F7>
+
+" Tagbar megnyitasa.
+nnoremap  <silent>         <F8>         :TagbarToggle<CR>
+imap                       <F8>         <C-O><F8>
+
+" A lathato ablakok szinkronizalasa diff nelkul.
+nnoremap           <expr>  <F10>        ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
+imap                       <F10>        <C-O><F10>
+
+" Kurzor oszlopanak kiemelesenek valtogatasa.
+nnoremap  <silent>         <F11>        :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
+imap                       <F11>        <C-O><F11>
+
+" Keresesi eredmenyek kiemelesenek torlese.
+nnoremap  <silent>         <F12>        :nohlsearch<CR>
+imap                       <F12>        <C-O><F12>
+
+"                                PLUGINOK                                 {{{2
+" ____________________________________________________________________________
+
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>  K  :call eight#help#call("<C-R>=escape(expand('<cWORD>'), '"\\')<CR>")<CR>
 autocmd  FileType  man  call ManMap()
@@ -998,6 +1034,12 @@ function ManMap()
   map    <buffer>  K     <C-]>
   map    <buffer>  <CR>  <C-]>
 endfunction
+
+" Completion, vagy snippet beszurasa.
+" Terminal-ban a <Nul> a <C-Space> megfeleloje.
+imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
+imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
+imap  <expr>  <Nul>      <C-Space>
 
 " Ope-browser map-ok: url megnyitasa a bongeszoben, vagy google a kurzor
 " alatti szora.
@@ -1008,9 +1050,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 " Lynx-szeru mozgas netrw-ben.
 autocmd  FileType  netrw  call NetrwLynxMap()
 function NetrwLynxMap()
-  map  <buffer>  <Left>   -
   map  <buffer>  h        -
-  map  <buffer>  <Right>  <CR>
   map  <buffer>  l        <CR>
 endfunction
 
@@ -1058,48 +1098,6 @@ noremap  <Leader>csp  :Tabularize / \+\zs/<CR>
 noremap  <Leader>ctab :Tabularize /\t\+\zs/<CR>
 noremap  <Leader>c=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
 
-" Menusor megjelenitese/elrejtese.
-nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
-imap                       <F1>         <C-O><F2>
-
-" Terminal megnyitasa.
-nnoremap  <silent> <expr>  <F2>         has('win32') ? ':silent !start conemu<CR>' : ':silent !xterm &<CR>'
-imap                       <F2>         <C-O><F2>
-
-" Gitv - git commit-ok amelyben a fajl valtozott.
-nnoremap                   <F3>         :Gitv!<CR>
-imap                       <F3>         <C-O><F3>
-
-" Gitv - gitk-szeru log.
-map                <expr>  <F4>         &filetype =~ 'gitv\?' ? 'q' : ':Gitv<CR>'
-imap                       <F4>         <C-O><F4>
-
-" Compile es make egy gombnyomasra.
-noremap                    <F5>         :QuickRun<CR>
-imap                       <F5>         <C-O><F5>
-nnoremap                   <F6>         :Comp<CR>
-imap                       <F6>         <C-O><F6>
-
-" Vimfiler megnyitasa.
-nnoremap                   <F7>         :VimFiler<CR>
-imap                       <F7>       <C-O><S-F7>
-
-" Tagbar megnyitasa.
-nnoremap  <silent>         <F8>         :TagbarToggle<CR>
-imap                       <F8>         <C-O><F8>
-
-" A lathato ablakok szinkronizalasa diff nelkul.
-nnoremap           <expr>  <F10>        ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
-imap                       <F10>        <C-O><F10>
-
-" Kurzor oszlopanak kiemelesenek valtogatasa.
-nnoremap  <silent>         <F11>        :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
-imap                       <F11>        <C-O><F11>
-
-" Keresesi eredmenyek kiemelesenek torlese.
-nnoremap  <silent>         <F12>        :nohlsearch<CR>
-imap                       <F12>        <C-O><F12>
-
 "                                 HEADER                                  {{{2
 " ____________________________________________________________________________
 
@@ -1110,7 +1108,7 @@ nnoremap                   <Leader>2    :silent call EightHeader(&tw, 'center', 
 nnoremap                   <Leader>3    :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
 nnoremap                   <Leader>9    :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
 
-"                                     HELP                                {{{3
+"                                 VIMHELP                                 {{{3
 " ............................................................................
 
 autocmd  FileType  help  nnoremap <buffer>  <Leader>1
@@ -1145,6 +1143,7 @@ xmap                       a\|          <Plug>(textobj-between-a)<Bar>
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
 autocmd  FileType  asciidoc  if isdirectory($HOME . '/.vim/bundle/vim-textobj-user') | call TextObjMapsAdoc() | endif
+
 function! TextObjMapsAdoc()
   call textobj#user#plugin('adocblock', {
   \   '-': {
@@ -1155,6 +1154,7 @@ function! TextObjMapsAdoc()
   \   }
   \ })
 endfunction
+
 function AdocBlockA()
   if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
   let searchfor = getline('.')
@@ -1163,6 +1163,7 @@ function AdocBlockA()
   let block_stop = getpos('.')
   return ['V', block_start, block_stop]
 endfunction
+
 function AdocBlockI()
   if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
   let searchfor = getline('.')
@@ -1216,5 +1217,3 @@ autocmd  BufNew    __doc__  setlocal nonumber nolist
 
 " Make hiba eseten nyissa meg a hibaablakot.
 autocmd  QuickFixCmdPost  *  botright cwindow
-
-" }}}1
