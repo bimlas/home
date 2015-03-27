@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.27 12:33 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.27 15:46 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -20,7 +20,7 @@ endif
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
 " kapcsolva. (:DoMatchParen kapcsolja be)
-autocmd VimEnter * if exists(':NoMatchParen') | execute 'NoMatchParen' | endif
+" autocmd VimEnter * if exists(':NoMatchParen') | execute 'NoMatchParen' | endif
 " Ezek sem segitenek:
 " let g:matchparen_timeout = 5
 " let g:matchparen_insert_timeout = 5
@@ -283,7 +283,7 @@ if isdirectory(vundle_dir)
     let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-indentation -d bad-whitespace'
     let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
 
-  Plugin 'shougo/neocomplete.vim'                                       " {{{2
+  if has('lua') | Plugin 'shougo/neocomplete.vim' | end                 " {{{2
   " automatikus kodkiegeszites
   " lua kell hozza (:version +lua)
 
@@ -347,7 +347,7 @@ if isdirectory(vundle_dir)
     \   }
     \ }
 
-  Plugin 'davidhalter/jedi-vim'                                         " {{{2
+  if has('python') | Plugin 'davidhalter/jedi-vim' | end                " {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
 
@@ -570,10 +570,8 @@ endfunction
 
 " __ STATWARN ___________________________
 "
-" Mixed end-of-line es -indent, valamint a textwidth-nel hosszabb sorok
-" keresese.
+" Kifejezesre illeszkedo reszek keresese.
 
-" Set up after &textwidth.
 let g:statwarn = [ { 'pattern' : '^ .*\n\zs\t\|^\t.*\n\zs ', 'format' : '^%d' },
 \                  { 'pattern' : '^.\{79,}',                 'format' : '>%d', 'whitelist' : ['text', ''] },
 \                  { 'pattern' : '\r',                       'format' : '$%d' },
@@ -581,7 +579,7 @@ let g:statwarn = [ { 'pattern' : '^ .*\n\zs\t\|^\t.*\n\zs ', 'format' : '^%d' },
 \                ]
 
 " Cursorhold max lines.
-let g:statwarn_max_lines = 10000
+let g:statwarn_max_lines = 5000
 
 autocmd CursorHold   * if line('$') <= g:statwarn_max_lines | silent! unlet b:statwarn | endif
 autocmd BufWritePost * silent! unlet b:statwarn
@@ -659,6 +657,9 @@ set showcmd
 
 " Mod (insert, visual, stb.) mutatasa.
 set showmode
+
+" A kurzor soranak kiemelese.
+set cursorline
 
 " Kiegesziteseknel a leghosszabb egyezo reszt irja be magatol, ezutan listazza
 " ki a lehetosegeket. ('bash'-szeru)
