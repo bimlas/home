@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.26 12:40 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.27 07:55 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -13,14 +13,14 @@ if v:version >= 704
 endif
 
 " Nem szeretem a magyar uzeneteket.
-if ! has( 'win32' )
+if ! has('win32')
   language en_US.utf8
 endif
 
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
 " kapcsolva. (:DoMatchParen kapcsolja be)
-autocmd VimEnter * if exists( ':NoMatchParen' ) | execute 'NoMatchParen' | endif
+autocmd VimEnter * if exists(':NoMatchParen') | execute 'NoMatchParen' | endif
 " Ezek sem segitenek:
 " let g:matchparen_timeout = 5
 " let g:matchparen_insert_timeout = 5
@@ -36,10 +36,10 @@ endfunction
 
 let vundle_dir = $HOME . '/.vim/bundle/vundle.vim'
 
-if isdirectory( vundle_dir )
+if isdirectory(vundle_dir)
 
   exe 'set runtimepath+=' . vundle_dir
-  call vundle#begin( $HOME . '/.vim/bundle' )
+  call vundle#begin($HOME . '/.vim/bundle')
   filetype off
 
   Plugin 'gmarik/vundle.vim'                                            " {{{2
@@ -58,8 +58,8 @@ if isdirectory( vundle_dir )
   Plugin 'bimbalaszlo/vim-eightheader'                                  " {{{2
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
 
-    let g:EightHeader_comment   = 'call NERDComment( "n", "comment" )'
-    let g:EightHeader_uncomment = 'call NERDComment( "n", "uncomment" )'
+    let g:EightHeader_comment   = 'call NERDComment("n", "comment")'
+    let g:EightHeader_uncomment = 'call NERDComment("n", "uncomment")'
 
   Plugin 'bimbalaszlo/vim-numutils'                                     " {{{2
   " szamok manipulalasa regex segitsegevel
@@ -142,6 +142,9 @@ if isdirectory( vundle_dir )
     " let g:unite_source_tag_show_location = 0
     let g:unite_source_tag_max_fname_length = 70
 
+  Plugin 'shougo/unite-outline'                                         " {{{2
+  " Outliner - neha jobb, mint a tagbar.
+
   Plugin 'shougo/vimfiler.vim'                                          " {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
 
@@ -167,8 +170,8 @@ if isdirectory( vundle_dir )
 
     " Egyeni beallitasok.
     " 'sort_type': 'extension'
-    if exists( '*vimfiler#custom#profile' )
-      call vimfiler#custom#profile( 'default', 'context', { 'safe': 0 } )
+    if exists('*vimfiler#custom#profile')
+      call vimfiler#custom#profile('default', 'context', { 'safe': 0 })
     endif
 
   Plugin 'godlygeek/tabular'                                            " {{{2
@@ -300,7 +303,7 @@ if isdirectory( vundle_dir )
     " let g:neocomplete#enable_auto_select = 1
 
     " A kiegeszitesek mire legyenek ervenyesek, honnan vegye?
-    if !exists( 'g:neocomplete#sources' )
+    if !exists('g:neocomplete#sources')
       let g:neocomplete#sources = {}
     endif
     let g:neocomplete#sources._ = ['omni', 'member', 'syntax', 'vim', 'neosnippet']
@@ -396,22 +399,22 @@ endif
 command  InstallVundle  call InstallVundle()
 function InstallVundle()
   let vundle_repo = 'https://github.com/gmarik/vundle.vim'
-  let path = substitute( $HOME . '/.vim/bundle/vundle.vim', '/', has( 'win32' ) ? '\\' : '/', 'g' )
+  let path = substitute($HOME . '/.vim/bundle/vundle.vim', '/', has('win32') ? '\\' : '/', 'g')
 
-  if ! executable( 'git' )
+  if ! executable('git')
     echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
     return
   endif
 
-  if ! isdirectory( path )
-    silent! if ! mkdir( path, 'p' )
+  if ! isdirectory(path)
+    silent! if ! mkdir(path, 'p')
       echohl ErrorMsg | echomsg 'Cannot create directory (may be a regular file):' | echomsg path | echohl None
       return
     endif
   endif
 
   echo 'Cloning Vundle...'
-  let msg = system( 'git clone "' . vundle_repo . '" "' . path . '"'  )
+  let msg = system('git clone "' . vundle_repo . '" "' . path . '"')
   if msg =~ 'fatal'
     echohl ErrorMsg | echomsg 'Cannot clone ' . vundle_repo . ' to ' . path . ':' | echomsg msg | echohl None
     return
@@ -426,12 +429,12 @@ endfunction
 
 " Fajltipus felismeres bekapcsolasa, a ra jellemzo formazas (pl. kommentkari)
 " es behuzas stilusanak betoltese.
-if exists( ':filetype' )
+if exists(':filetype')
   filetype plugin indent on
 endif
 
 " Szintaxiskiemeles.
-if has( 'syntax' ) && filereadable( $VIMRUNTIME . '/syntax/syntax.vim' )
+if has('syntax') && filereadable($VIMRUNTIME . '/syntax/syntax.vim')
   syntax enable
 endif
 
@@ -447,7 +450,7 @@ runtime macros/matchit.vim
 "                          WIN / NIX BEALLITASOK                          {{{1
 " ============================================================================
 
-if has( 'win32' )
+if has('win32')
 
   " :make ezt a programot hasznalja:
   set makeprg=mingw32-make
@@ -463,21 +466,21 @@ endif
 
 " Szinsema beallitasa.
 " Ha nappal van es a solarized elerheto, hasznaljuk azt.
-if has( 'gui_running' )
-\ && len( globpath( &runtimepath, 'colors/solarized.vim' ) )
-\ && (strftime( "%H" ) >= 7 && strftime( "%H" ) <= 17)
+if has('gui_running')
+\ && len(globpath(&runtimepath, 'colors/solarized.vim'))
+\ && (strftime("%H") >= 7 && strftime("%H") <= 17)
 
   colorscheme solarized
 
   set background=light
 
   " A statusline szinet is beallitjuk.
-  if !exists( 'g:lightline' )
+  if !exists('g:lightline')
     let g:lightline = {}
   endif
   let g:lightline.colorscheme = 'solarized'
 
-elseif len( globpath( &runtimepath, 'colors/gruvbox.vim' ) )
+elseif len(globpath(&runtimepath, 'colors/gruvbox.vim'))
 
   let g:gruvbox_invert_selection = 0
   let g:gruvbox_contrast = 'soft'
@@ -485,7 +488,7 @@ elseif len( globpath( &runtimepath, 'colors/gruvbox.vim' ) )
   colorscheme gruvbox
   set background=dark
 
-elseif len( globpath( &runtimepath, 'colors/desert.vim' ) )
+elseif len(globpath(&runtimepath, 'colors/desert.vim'))
 
   colorscheme desert
   set background=dark
@@ -524,13 +527,13 @@ highlight TagListTagName term=inverse ctermfg=White
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand( "%:p:h" )
-let stat_filedir    = '%<%{exists( "b:stat_curfiledir" ) ? b:stat_curfiledir : ""}'
-let stat_bufnr      = '%{&buflisted ? bufnr( "%" ) : ""}'
+autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
+let stat_filedir    = '%<%{exists("b:stat_curfiledir") ? b:stat_curfiledir : ""}'
+let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
 let stat_filename   = '%w%t%r%m'
-let stat_fileformat = '%{&binary ? "binary" : ((strlen( &fenc ) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-if filereadable( $HOME . '/.vim/bundle/tagbar/autoload/tagbar.vim' )
-  let stat_tagbar   = '%{(winwidth( 0 ) > 120) ? strpart( tagbar#currenttag("%s",""), 0, 50 ) : ""}'
+let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
+if filereadable($HOME . '/.vim/bundle/tagbar/autoload/tagbar.vim')
+  let stat_tagbar   = '%{(winwidth(0) > 120) ? strpart(tagbar#currenttag("%s",""), 0, 50) : ""}'
 else
   let stat_tagbar   = ''
 endif
@@ -540,11 +543,11 @@ let &statusline  = stat_bufnr . ' '
 let &statusline .= '%#DiffText# ' . stat_filename . ' '
 let &statusline .= '%#DiffAdd# ' . stat_fileformat . ' '
 let &statusline .= '%#WarningMsg#%{(winwidth(0) > 70) ? StatWarn() : ""}'
-let &statusline .= '%#DiffChange#%{len( StatFugitive() ) ? "  " . StatFugitive() . " " : ""}'
+let &statusline .= '%#DiffChange#%{len(StatFugitive()) ? "  " . StatFugitive() . " " : ""}'
 let &statusline .= '%* ' . stat_filedir . ' '
 let &statusline .= '%= '
 let &statusline .= stat_tagbar . ' '
-let &statusline .= '%#WarningMsg#%{len( StatSyntastic() ) ? " " . StatSyntastic() . " " : ""}'
+let &statusline .= '%#WarningMsg#%{len(StatSyntastic()) ? " " . StatSyntastic() . " " : ""}'
 let &statusline .= '%#DiffChange# ' . stat_lineinfo . ' '
 
 " __ STATSYNTASTIC __________________________
@@ -552,7 +555,7 @@ let &statusline .= '%#DiffChange# ' . stat_lineinfo . ' '
 " Syntastic figyelmeztetesek sorszamai.
 
 function StatSyntastic()
-  return exists( ':SyntasticCheck' ) ? SyntasticStatuslineFlag() : ''
+  return exists(':SyntasticCheck') ? SyntasticStatuslineFlag() : ''
 endfunction
 
 " __ STATFUGITIVE ___________________________
@@ -562,7 +565,7 @@ endfunction
 " Halozati meghajton nagyon belassit.
 let g:statfugitive_disabled = 0
 function StatFugitive()
-  return (exists( 'b:git_dir' ) && ! g:statfugitive_disabled) ? fugitive#head(7) . ':' . fugitive#buffer().commit()[0:6] : ''
+  return (exists('b:git_dir') && ! g:statfugitive_disabled) ? fugitive#head(7) . ':' . fugitive#buffer().commit()[0:6] : ''
 endfunction
 
 " __ STATWARN ___________________________
@@ -580,26 +583,26 @@ let g:statwarn = [ { 'pattern' : '^ .*\n\zs\t\|^\t.*\n\zs ', 'format' : '^%d' },
 " Cursorhold max lines.
 let g:statwarn_max_lines = 10000
 
-autocmd CursorHold   * if line( '$' ) <= g:statwarn_max_lines | silent! unlet b:statwarn | endif
+autocmd CursorHold   * if line('$') <= g:statwarn_max_lines | silent! unlet b:statwarn | endif
 autocmd BufWritePost * silent! unlet b:statwarn
 
 function StatWarn()
 
-  if exists( 'b:statwarn' ) | return b:statwarn | endif
+  if exists('b:statwarn') | return b:statwarn | endif
 
   let b:statwarn = ''
 
   if &binary | return b:statwarn | endif
 
   for searchfor in g:statwarn
-    if (has_key( searchfor, 'whitelist' ) && (index( searchfor['whitelist'], &filetype ) <  0)) ||
-    \  (has_key( searchfor, 'blacklist' ) && (index( searchfor['blacklist'], &filetype ) >= 0))
+    if (has_key(searchfor, 'whitelist') && (index(searchfor['whitelist'], &filetype) <  0)) ||
+    \  (has_key(searchfor, 'blacklist') && (index(searchfor['blacklist'], &filetype) >= 0))
       continue
     endif
 
-    let found = search( searchfor['pattern'], 'wnc' )
+    let found = search(searchfor['pattern'], 'wnc')
     if found != 0
-      let b:statwarn .= printf( ' ' . searchfor['format'] . ' ', found )
+      let b:statwarn .= printf(' ' . searchfor['format'] . ' ', found)
     endif
   endfor
 
@@ -741,7 +744,7 @@ set nobackup nowritebackup
 set fileformats=unix,dos fileencodings=utf8,cp1250,default
 
 " Uj fajlok letrehozasanal nem jelzi ki a karakterkodolast e nelkul.
-let &fileencoding = matchstr( &fileencodings, '^[^,]\+' )
+let &fileencoding = matchstr(&fileencodings, '^[^,]\+')
 
 " A swap fajlokat csak arra hasznalja, hogy egy szerkesztes alatt levo fajl
 " ujboli megnyitasanal figyelmeztessen. A fugitive plugin helyes mukodesehez
@@ -751,7 +754,7 @@ let &fileencoding = matchstr( &fileencodings, '^[^,]\+' )
 " a swap fajl megmaradjon (pl.: kill, <Ctrl-Alt-Del>), majd nyisd meg oket
 " ismet, de most forditott sorrendben. A recovery igy nem fog mukodni.
 " TODO: tempname()-bol fejtse vissza.
-let &directory = has( 'win32' ) ? expand( '$TMP' ) : '/var/tmp,/tmp'
+let &directory = has('win32') ? expand('$TMP') : '/var/tmp,/tmp'
 
 "                                  KERESES                                {{{1
 " ============================================================================
@@ -778,14 +781,14 @@ set synmaxcol=500
 let is_posix = 1
 
 " Specialis karakterek (tabulator, sor vegi whitespace) mutatasa.
-if has( 'gui_running' )
+if has('gui_running')
   set list listchars=tab:▶‒,trail:∙,extends:▶,precedes:◀
 else
   set list listchars=tab:>-,trail:.,extends:>,precedes:<
 endif
 
 " Sortores mutatasa.
-if has( 'gui_running' )
+if has('gui_running')
   let &showbreak = '↳ '
 else
   let &showbreak = '^ '
@@ -833,7 +836,7 @@ set cinoptions=(0,t0,W2
 set foldmethod=marker
 
 " Sajat foldheader.
-let &foldtext = "EightHeaderFolds( '\\= s:fullwidth - 2', 'left', [ repeat( '  ', v:foldlevel - 1 ), repeat( ' ', v:foldlevel - 1 ) . '.', '' ], '\\= s:foldlines . \" lines\"', '' )"
+let &foldtext = "EightHeaderFolds('\\= s:fullwidth - 2', 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '\\= s:foldlines . \" lines\"', '')"
 
 "                                  DIFFEXPR                               {{{1
 " ============================================================================
@@ -939,8 +942,8 @@ nnoremap  <C-Y>  :bprevious<CR>
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
-" inoremap  <expr>  <C-W>  (col( "." ) == 1         ) ? "<BS>"  : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb' )<CR>"
-inoremap  <expr>  <C-L>  (col( "." ) == col( "$" )) ? "<Del>" : "<C-O>d:call search( '\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W' )<CR>"
+" inoremap  <expr>  <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
+inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
@@ -960,10 +963,10 @@ cnoremap  <C-G>  <Esc>
 noremap  <Space>  <C-]>
 
 " Azon fuggvenyek listaja, amelyek meghivjak a kurzor alatti fuggvenyt.
-" noremap                    ,            :scscope find c <C-R>=expand( '<cword>' )<CR><CR>
+" noremap                    ,            :scscope find c <C-R>=expand('<cword>')<CR><CR>
 
 " A sztring osszes elofordulasanak helye. (valtozoknal lehet hasznos)
-" noremap                    ;            :scscope find s <C-R>=expand( '<cword>' )<CR><CR>
+" noremap                    ;            :scscope find s <C-R>=expand('<cword>')<CR><CR>
 
 " Completion, vagy snippet beszurasa.
 " Terminal-ban a <Nul> a <C-Space> megfeleloje.
@@ -989,7 +992,7 @@ noremap  <S-Insert>  "+P
 imap     <S-Insert>  <C-O><S-Insert>
 
 " Kurzor alatti parancs sugojanak megnyitasa.
-noremap  <silent>  K  :call eight#help#call( "<C-R>=escape( expand( '<cWORD>' ), '"\\' )<CR>" )<CR>
+noremap  <silent>  K  :call eight#help#call("<C-R>=escape(expand('<cWORD>'), '"\\')<CR>")<CR>
 autocmd  FileType  man  call ManMap()
 function ManMap()
   map    <buffer>  K     <C-]>
@@ -1025,7 +1028,7 @@ nnoremap  <Leader>ut   :Unite -start-insert tag -sync<CR>
 
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
-  " if has( 'gui_running' )
+  " if has('gui_running')
     map   <buffer>  <Esc>  <Plug>(unite_exit)
     map   <buffer>  q      <Plug>(unite_all_exit)
     nmap  <buffer>  h      <Plug>(unite_delete_backward_path)
@@ -1037,7 +1040,7 @@ endfunction
 autocmd  FileType  vimfiler  call VimfilerMaps()
 function VimfilerMaps()
     " Unite-szeru gyorskereses.
-    nmap  <buffer>  i  :Unite line -start-insert<CR>
+    nmap  <buffer>  i  :Unite line -start-insert -winheight=10<CR>
 endfunction
 
 " Nerdcommenter.
@@ -1060,7 +1063,7 @@ nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' 
 imap                       <F1>         <C-O><F2>
 
 " Terminal megnyitasa.
-nnoremap  <silent> <expr>  <F2>         has( 'win32' ) ? ':silent !start conemu<CR>' : ':silent !xterm &<CR>'
+nnoremap  <silent> <expr>  <F2>         has('win32') ? ':silent !start conemu<CR>' : ':silent !xterm &<CR>'
 imap                       <F2>         <C-O><F2>
 
 " Gitv - git commit-ok amelyben a fajl valtozott.
@@ -1086,11 +1089,11 @@ nnoremap  <silent>         <F8>         :TagbarToggle<CR>
 imap                       <F8>         <C-O><F8>
 
 " A lathato ablakok szinkronizalasa diff nelkul.
-nnoremap           <expr>  <F10>        ':set virtualedit=' . ( &virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
+nnoremap           <expr>  <F10>        ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
 imap                       <F10>        <C-O><F10>
 
 " Kurzor oszlopanak kiemelesenek valtogatasa.
-nnoremap  <silent>         <F11>        :let &colorcolumn = ((&cc == '') ? virtcol( '.' ) : '')<CR>
+nnoremap  <silent>         <F11>        :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
 imap                       <F11>        <C-O><F11>
 
 " Keresesi eredmenyek kiemelesenek torlese.
@@ -1102,19 +1105,19 @@ imap                       <F12>        <C-O><F12>
 
 " Eightheader - a sor foldheader-re alakitasa.
 nnoremap                   <Leader>0    :silent call eight#contact#call()<CR><CR>
-nnoremap                   <Leader>1    :silent call EightHeader( &tw, 'center', 0, '=', ' {' . '{{1', '' )<CR><CR>
-nnoremap                   <Leader>2    :silent call EightHeader( &tw, 'center', 0, '_', ' {' . '{{2', '' )<CR><CR>
-nnoremap                   <Leader>3    :silent call EightHeader( &tw, 'center', 0, '.', ' {' . '{{3', '' )<CR><CR>
-nnoremap                   <Leader>9    :silent call EightHeader( 0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "' )<CR><CR>
+nnoremap                   <Leader>1    :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
+nnoremap                   <Leader>2    :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
+nnoremap                   <Leader>3    :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
+nnoremap                   <Leader>9    :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
 
 "                                     HELP                                {{{3
 " ............................................................................
 
 autocmd  FileType  help  nnoremap <buffer>  <Leader>1
-\ :call EightHeader( 78, 'left', 1, ' ', '\= "*".matchstr( s:str, ";\\@<=.*" )."*"', '\= matchstr( s:str, ".*;\\@=" )' )<CR><CR>
+\ :call EightHeader(78, 'left', 1, ' ', '\= "*".matchstr(s:str, ";\\@<=.*")."*"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
 
 autocmd  FileType  help  noremap <buffer>  <Leader>2
-\ :call EightHeader( 78, 'left', 1, '.', '\= "\|".matchstr( s:str, ";\\@<=.*" )."\|"', '\= matchstr( s:str, ".*;\\@=" )' )<CR><CR>
+\ :call EightHeader(78, 'left', 1, '.', '\= "\|".matchstr(s:str, ";\\@<=.*")."\|"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
 
 "                              TEXTOBJ-USER                               {{{2
 " ____________________________________________________________________________
@@ -1141,9 +1144,9 @@ xmap                       a\|          <Plug>(textobj-between-a)<Bar>
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
-autocmd  FileType  asciidoc  if isdirectory( $HOME . '/.vim/bundle/vim-textobj-user' ) | call TextObjMapsAdoc() | endif
+autocmd  FileType  asciidoc  if isdirectory($HOME . '/.vim/bundle/vim-textobj-user') | call TextObjMapsAdoc() | endif
 function! TextObjMapsAdoc()
-  call textobj#user#plugin( 'adocblock', {
+  call textobj#user#plugin('adocblock', {
   \   '-': {
   \     'select-a-function': 'AdocBlockA',
   \     'select-a':          'ab',
@@ -1153,21 +1156,21 @@ function! TextObjMapsAdoc()
   \ })
 endfunction
 function AdocBlockA()
-  if search( '^\(.\)\1\+$\|^.=\+$', 'Wb' ) == 0 | return 0 | endif
-  let searchfor = getline( '.' )
-  let block_start = getpos( '.' )
-  call search( searchfor, 'W' )
-  let block_stop = getpos( '.' )
+  if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
+  let searchfor = getline('.')
+  let block_start = getpos('.')
+  call search(searchfor, 'W')
+  let block_stop = getpos('.')
   return ['V', block_start, block_stop]
 endfunction
 function AdocBlockI()
-  if search( '^\(.\)\1\+$\|^.=\+$', 'Wb' ) == 0 | return 0 | endif
-  let searchfor = getline( '.' )
+  if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
+  let searchfor = getline('.')
   normal j
-  let block_start = getpos( '.' )
-  call search( searchfor, 'W' )
+  let block_start = getpos('.')
+  call search(searchfor, 'W')
   normal k
-  let block_stop = getpos( '.' )
+  let block_stop = getpos('.')
   return ['V', block_start, block_stop]
 endfunction
 
@@ -1184,7 +1187,7 @@ endfunction
 " hozunk letre egy uj fajt, akkor a BufNewFile nem ervenyes ra, mivel a fajl
 " mar letezik, mikor a Vim megnyitja azt.
 autocmd  BufNewFile  *.txt  set fileformat=dos
-autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileformat=dos | endif
+autocmd  BufRead     *.txt  if ! getfsize(expand('%')) | set fileformat=dos | endif
 
 " :help fo-table. Azert autocmd, mert minden fajltipus felulirja a
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
@@ -1196,12 +1199,8 @@ endif
 
 " __ COMPLETION _________________________
 
-" Tags fajl ujrageneralasa, ha a fajl egy git repository-ban van.
-" autocmd  BufWritePost  *  call Tags( 1 )
-" autocmd  BufReadPost   *  call Tags( 0 )
-
 " Fajltipus alapjan allitsa be az omni-completion-t.
-if filereadable( $VIMRUNTIME . '/autoload/syntaxcomplete.vim' )
+if filereadable($VIMRUNTIME . '/autoload/syntaxcomplete.vim')
   autocmd  FileType  *  if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
 endif
 
