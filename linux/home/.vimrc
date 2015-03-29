@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.27 15:46 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.27 21:27 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -306,7 +306,7 @@ if isdirectory(vundle_dir)
     if !exists('g:neocomplete#sources')
       let g:neocomplete#sources = {}
     endif
-    let g:neocomplete#sources._ = ['omni', 'member', 'syntax', 'vim', 'neosnippet']
+    let g:neocomplete#sources._ = ['omni', 'tag', 'member', 'syntax', 'vim', 'neosnippet', 'calc']
 
     " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
     " tudjuk.
@@ -325,6 +325,9 @@ if isdirectory(vundle_dir)
 
   Plugin 'honza/vim-snippets'                                           " {{{2
   " template-ek
+
+  Plugin 'hrsh7th/vim-neco-calc'                                        " {{{2
+  " aranyos szamologep a neovomplete-hez (calc source)
 
   Plugin 'thinca/vim-quickrun'                                          " {{{2
   " buffer, vagy kijelolt kod futtatasa
