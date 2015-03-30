@@ -1,5 +1,4 @@
 #!/bin/bash
-
 source function.sh
 
 header "DEPLOYING ./windows"
@@ -35,3 +34,5 @@ copy         \
 copy             \
   _thunderbird/* \
   $HOME/AppData/Roaming/Thunderbird/Profiles/*/
+
+header "DON'T FORGET TO ADD ~/bin TO PATH"
