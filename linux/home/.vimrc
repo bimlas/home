@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.27 21:27 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.03.31 08:26 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -135,6 +135,10 @@ if isdirectory(vundle_dir)
 
   Plugin 'thinca/vim-textobj-between'                                   " {{{2
   " ifX, afX az X-eken beluli kivalasztahoz
+
+  Plugin 'tpope/vim-abolish'                                            " {{{2
+  " intelligens substitute
+  "   :%Subvert/facilit{y,ies}/building{,s}/g
 
   Plugin 'shougo/unite.vim'                                             " {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
