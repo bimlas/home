@@ -15,6 +15,10 @@ Vim runtime binárisok (ctags, diff, wget, stb.)
 * https://github.com/BimbaLaszlo/home/releases/tag/gvim.exe[gvim.exe] +
 Saját build Python, Ruby és Lua támogatással.
 
+* https://github.com/BimbaLaszlo/home/releases/tag/pentadactyl[pentadactyl] +
+Pentadactyl (Vimperator-hoz hasonló Firefox plugin) a (többnyire) aktuális
+Firefox-hoz.
+
 * https://github.com/BimbaLaszlo/home/releases/tag/blank.ico[blank.ico] +
 Egy üres ikon - a felhasználását lásd https://github.com/BimbaLaszlo/home/search?q=blank.ico[itt].
 
