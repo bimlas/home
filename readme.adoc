@@ -9,6 +9,8 @@ mindig kéznél legyen a program leírása.
 A https://github.com/BimbaLaszlo/home/releases[releases] ponton belül egyéb
 hasznos fájlokat is találhatsz:
 
+// tag::releases[]
+
 * https://github.com/BimbaLaszlo/home/releases/tag/vimruntime.zip[vimruntime.zip] +
 Vim runtime binárisok (ctags, diff, wget, stb.)
 
@@ -21,6 +23,8 @@ Firefox-hoz.
 
 * https://github.com/BimbaLaszlo/home/releases/tag/blank.ico[blank.ico] +
 Egy üres ikon - a felhasználását lásd https://github.com/BimbaLaszlo/home/search?q=blank.ico[itt].
+
+// end::releases[]
 
 Ha bármilyen kérdésed / észrevételed / ötleted van, szívesen reagálok rá
 (https://github.com/BimbaLaszlo/home/issues[issue tracker]-ben is jelezheted).
