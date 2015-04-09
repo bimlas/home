@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.08 08:21 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.09 15:26 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1069,7 +1069,7 @@ nnoremap  <C-P>        :Unite file -start-insert -winheight=10 -direction=botrig
 nnoremap  <Leader>ub   :Unite -start-insert buffer -sync<CR>
 
 " ... a modositasok kozott.
-nnoremap  <Leader>uc   :Unite change -sync<CR>
+nnoremap  <Leader>uc   :Unite -start-insert change -sync<CR>
 
 " ... a konyjelzok kozott.
 nnoremap  <Leader>uB   :VimFiler bookmark:<CR>
