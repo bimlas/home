@@ -53,8 +53,10 @@ cmap -builtin  <C-P>  <S-Tab>
 
 map  -builtin  j      2j
 map  -builtin  k      2k
-map  -builtin  H      0
-map  -builtin  L      $
+map  -builtin  <C-E>  H
+map  -builtin  <C-Y>  L
+imap -builtin  H      0
+imap -builtin  L      $
 map  -builtin  s      f
 map  -builtin  gs     F
 vmap -builtin  y      y<Esc>
