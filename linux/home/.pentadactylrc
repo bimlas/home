@@ -16,12 +16,7 @@ set hlfind
 " set autocomplete=
 
 " Kiegeszitesek url begepelesenel.
-set complete+=location
-set complete+=bookmark
-set complete-=history
-set complete-=file
-set complete-=search
-set complete-=suggestions
+set complete=Sl
 
 " j/k scroll eleg lassu e nelkul.
 set scrollsteps=1
@@ -67,8 +62,7 @@ nmap -builtin  <F12>  :nohlfind<CR>
 map  -builtin  <C-C>  <C-Insert>
 map  -builtin  <C-F>  /
 
-" Command.
-command  -nargs=+ -complete url  e     open <args>
-command  -nargs=+ -complete url  tabe  tabopen <args>
+cabbrev e    open
+cabbrev tabe tabopen
 
 " vim: filetype=vim
