@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.09 15:26 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.15 15:41 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -85,6 +85,9 @@ if isdirectory(vundle_dir)
   " Plugin 'tpope/vim-sexp-mappings-for-regular-people'                 " {{{2
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
 
+  Plugin 'bkad/camelcasemotion'                                         " {{{2
+  " CamelCase/snake_case motion (az ekezetes betuket nem ismeri).
+
   Plugin 'lokaltog/vim-easymotion'                                      " {{{2
   " gyors mozgas a buffer-en belul
 
@@ -135,6 +138,13 @@ if isdirectory(vundle_dir)
 
   Plugin 'thinca/vim-textobj-between'                                   " {{{2
   " ifX, afX az X-eken beluli kivalasztahoz
+
+  Plugin 'julian/vim-textobj-variable-segment'                          " {{{2
+  " _privat*e_thing -> civone -> _one_thing
+  " eggsAn*dCheese  -> dav    -> eggsCheese
+  " foo_ba*r_baz    -> dav    -> foo_baz
+  " _privat*e_thing -> dav    -> _thing
+  " _g*etJiggyYo    -> dav    -> _jiggyYo
 
   Plugin 'tpope/vim-abolish'                                            " {{{2
   " intelligens substitute
@@ -1113,11 +1123,11 @@ noremap  <Leader>c=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
 " ____________________________________________________________________________
 
 " Eightheader - a sor foldheader-re alakitasa.
-nnoremap                   <Leader>0    :silent call eight#contact#call()<CR><CR>
-nnoremap                   <Leader>1    :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
-nnoremap                   <Leader>2    :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
-nnoremap                   <Leader>3    :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
-nnoremap                   <Leader>9    :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
+nnoremap  <Leader>0  :silent call eight#contact#call()<CR><CR>
+nnoremap  <Leader>1  :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
+nnoremap  <Leader>2  :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
+nnoremap  <Leader>3  :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
+nnoremap  <Leader>9  :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
 
 "                                 VIMHELP                                 {{{3
 " ............................................................................
@@ -1128,26 +1138,33 @@ autocmd  FileType  help  nnoremap <buffer>  <Leader>1
 autocmd  FileType  help  noremap <buffer>  <Leader>2
 \ :call EightHeader(78, 'left', 1, '.', '\= "\|".matchstr(s:str, ";\\@<=.*")."\|"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
 
+"                             CAMELCASEMOTION                             {{{2
+" ____________________________________________________________________________
+
+map   w   <Plug>CamelCaseMotion_w
+map   b   <Plug>CamelCaseMotion_b
+map   e   <Plug>CamelCaseMotion_e
+
 "                              TEXTOBJ-USER                               {{{2
 " ____________________________________________________________________________
 
 " Roviditesek a thinca/vim-textobj-between pluginnak koszonhetoen.
-omap                       i*           <Plug>(textobj-between-i)*
-xmap                       i*           <Plug>(textobj-between-i)*
-omap                       a*           <Plug>(textobj-between-a)*
-xmap                       a*           <Plug>(textobj-between-a)*
-omap                       i:           <Plug>(textobj-between-i):
-xmap                       i:           <Plug>(textobj-between-i):
-omap                       a:           <Plug>(textobj-between-a):
-xmap                       a:           <Plug>(textobj-between-a):
-omap                       i#           <Plug>(textobj-between-i)#
-xmap                       i#           <Plug>(textobj-between-i)#
-omap                       a#           <Plug>(textobj-between-a)#
-xmap                       a#           <Plug>(textobj-between-a)#
-omap                       i\|          <Plug>(textobj-between-i)<Bar>
-xmap                       i\|          <Plug>(textobj-between-i)<Bar>
-omap                       a\|          <Plug>(textobj-between-a)<Bar>
-xmap                       a\|          <Plug>(textobj-between-a)<Bar>
+omap  i*   <Plug>(textobj-between-i)*
+xmap  i*   <Plug>(textobj-between-i)*
+omap  a*   <Plug>(textobj-between-a)*
+xmap  a*   <Plug>(textobj-between-a)*
+omap  i:   <Plug>(textobj-between-i):
+xmap  i:   <Plug>(textobj-between-i):
+omap  a:   <Plug>(textobj-between-a):
+xmap  a:   <Plug>(textobj-between-a):
+omap  i#   <Plug>(textobj-between-i)#
+xmap  i#   <Plug>(textobj-between-i)#
+omap  a#   <Plug>(textobj-between-a)#
+xmap  a#   <Plug>(textobj-between-a)#
+omap  i\|  <Plug>(textobj-between-i)<Bar>
+xmap  i\|  <Plug>(textobj-between-i)<Bar>
+omap  a\|  <Plug>(textobj-between-a)<Bar>
+xmap  a\|  <Plug>(textobj-between-a)<Bar>
 
 " Blokkok, vagy tablazatok kijelolese - a kurzor elotti blokkhatarolot veszi
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
