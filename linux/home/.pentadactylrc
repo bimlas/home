@@ -1,4 +1,6 @@
-" Lasd: :listoptions
+" Lasd:
+" :listoptions
+" http://5digits.org/help/pentadactyl/options.xhtml
 
 " Mutassa a konyvjelzosavot es a toolbar-t.
 set guioptions+=BT
@@ -9,6 +11,9 @@ set guioptions+=c
 " Mutassa a tabok sorszamat.
 set guioptions+=n
 
+" Gorgetes lassusaga.
+" set scrollsteps=1
+
 " Emelejen ki minden talalatot.
 set hlfind
 
@@ -16,10 +21,7 @@ set hlfind
 " set autocomplete=
 
 " Kiegeszitesek url begepelesenel.
-set complete=Sl
-
-" j/k scroll eleg lassu e nelkul.
-set scrollsteps=1
+set complete=lS
 
 " Kenyelmesebben elerheto billentyuk a navigalashoz.
 set hintkeys=asdfghjklqwertzuiop
@@ -46,12 +48,8 @@ nmap -builtin  <D>    <Nop>
 cmap -builtin  <C-N>  <Tab>
 cmap -builtin  <C-P>  <S-Tab>
 
-map  -builtin  j      2j
-map  -builtin  k      2k
-map  -builtin  <C-E>  H
-map  -builtin  <C-Y>  L
-imap -builtin  H      0
-imap -builtin  L      $
+" map  -builtin  j      2j
+" map  -builtin  k      2k
 map  -builtin  s      f
 map  -builtin  gs     F
 vmap -builtin  y      y<Esc>

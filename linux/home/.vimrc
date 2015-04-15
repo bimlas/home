@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.15 15:41 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.15 21:43 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1002,10 +1002,10 @@ imap     <S-Insert>  <C-O><S-Insert>
 
 " Menusor megjelenitese/elrejtese.
 nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
-imap                       <F1>         <C-O><F2>
+imap                       <F1>         <C-O><F1>
 
 " Terminal megnyitasa.
-nnoremap  <silent> <expr>  <F2>         has('win32') ? ':silent !start conemu<CR>' : ':silent !xterm &<CR>'
+nnoremap  <silent> <expr>  <F2>         has('win32') ? ':silent !start conemu64.exe<CR>' : ':silent !xterm &<CR>'
 imap                       <F2>         <C-O><F2>
 
 " Gitv - git commit-ok amelyben a fajl valtozott.

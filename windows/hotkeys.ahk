@@ -1,7 +1,7 @@
 !F5::   Run firefox.exe
 !F6::   Run thunderbird.exe
 !F9::   Run totalcmd.exe
-!F12::  Run cmd.exe
+!F12::  Run conemu64.exe
 !F10::  Run calc.exe
 
 ; Capslock -> Ctrl remap.
