@@ -9,7 +9,7 @@ Windows Registry Editor Version 5.00
 ; tartozo ertekeket.
 ; Hogy lasd a hatast, jelentkezz be ujra a profilodba.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.10 13:45 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.16 22:13 ==
 
 ;                           PARANCSSOR MEGJELENESE                        {{{1
 ; ============================================================================
@@ -484,6 +484,12 @@ Windows Registry Editor Version 5.00
 "ColorizationOpaqueBlend"=dword:00000001
 "CompositionPolicy"=dword:00000000
 "EnableAeroPeek"=dword:00000001
+
+;                           LOCK SCREEN TILTASA                           {{{1
+; ============================================================================
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\System]
+"DisableLockWorkstation"=dword:00000001
 
 ;                                  TWEAK                                  {{{1
 ; ============================================================================
