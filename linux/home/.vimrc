@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.15 21:43 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.16 10:42 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -48,8 +48,8 @@ if isdirectory(vundle_dir)
   Plugin 'shougo/vimproc.vim'                                           " {{{2
   " Nehany plugin hasznalja. Windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
-
                                                                         " }}}2
+
   " .. SAJAT ..............................
 
   Plugin 'bimbalaszlo/vim-eight'                                        " {{{2
@@ -66,10 +66,9 @@ if isdirectory(vundle_dir)
 
   Plugin 'bimbalaszlo/vim-cheatsheets'                                  " {{{2
   " rovid leirasok programokhoz es programozasi nyelvekhez help formaban
-
                                                                         " }}}2
+
   " .. MEGJELENES .........................
-  "
   " http://cocopon.me/app/vim-color-gallery/
   " http://vimcolors.com/
 
@@ -78,9 +77,9 @@ if isdirectory(vundle_dir)
 
   Plugin 'morhetz/gruvbox'                                              " {{{2
   " terminalban jol mutat
-
                                                                         " }}}2
-  " .. ALAPVETO ...........................
+
+  " .. MOZGAS AZ ABLAKON BELUL ............
 
   " Plugin 'tpope/vim-sexp-mappings-for-regular-people'                 " {{{2
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
@@ -93,6 +92,28 @@ if isdirectory(vundle_dir)
 
     " A helymeghatarozashoz hasznalt betuk.
     let g:EasyMotion_keys = 'asdfghjkluiopqwer'
+                                                                        " }}}2
+
+  " .. TEXTOBJ-USER .......................
+
+  Plugin 'kana/vim-textobj-user'                                        " {{{2
+  " sajat text-object
+
+  Plugin 'thinca/vim-textobj-between'                                   " {{{2
+  " ifX, afX az X-eken beluli kivalasztahoz
+
+  Plugin 'julian/vim-textobj-variable-segment'                          " {{{2
+  " _privat*e_thing -> civone -> _one_thing
+  " eggsAn*dCheese  -> dav    -> eggsCheese
+  " foo_ba*r_baz    -> dav    -> foo_baz
+  " _privat*e_thing -> dav    -> _thing
+  " _g*etJiggyYo    -> dav    -> _jiggyYo
+                                                                        " }}}2
+
+  " .. SZOVEG KERESESE/MODOSITASA .........
+
+  Plugin 'thinca/vim-visualstar'                                        " {{{2
+  " kijelolt szoveg keresese * gombbal
 
   Plugin 'dkprice/vim-easygrep'                                         " {{{2
   " tuningolt vimgrep
@@ -118,37 +139,27 @@ if isdirectory(vundle_dir)
     " Ne nyisson uj tab-okat a talalatokhoz.
     let EasyGrepReplaceWindowMode = 2
 
-  Plugin 'henrik/vim-qargs'                                             " {{{2
-  " quickfix-en beluli fajlokon parancsok vegrehajtasa (Qdo) es masolasa az
-  " args-ba (Qargs)
-
   Plugin 'vis'                                                          " {{{2
   " parancsok futtatasa visual block-on
-
-  Plugin 'thinca/vim-visualstar'                                        " {{{2
-  " kijelolt szoveg keresese * gombbal
 
   Plugin 'tpope/vim-surround'                                           " {{{2
   " paros jelek gyors cserelese/torlese
 
     let g:surround_no_insert_mappings = 1
 
-  Plugin 'kana/vim-textobj-user'                                        " {{{2
-  " sajat text-object
-
-  Plugin 'thinca/vim-textobj-between'                                   " {{{2
-  " ifX, afX az X-eken beluli kivalasztahoz
-
-  Plugin 'julian/vim-textobj-variable-segment'                          " {{{2
-  " _privat*e_thing -> civone -> _one_thing
-  " eggsAn*dCheese  -> dav    -> eggsCheese
-  " foo_ba*r_baz    -> dav    -> foo_baz
-  " _privat*e_thing -> dav    -> _thing
-  " _g*etJiggyYo    -> dav    -> _jiggyYo
-
   Plugin 'tpope/vim-abolish'                                            " {{{2
   " intelligens substitute
   "   :%Subvert/facilit{y,ies}/building{,s}/g
+
+  Plugin 'godlygeek/tabular'                                            " {{{2
+  " szoveg igazitasa regex kifejezesekkel
+
+  Plugin 'henrik/vim-qargs'                                             " {{{2
+  " quickfix-en beluli fajlokon parancsok vegrehajtasa (Qdo) es masolasa az
+  " args-ba (Qargs)
+                                                                        " }}}2
+
+  " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
 
   Plugin 'shougo/unite.vim'                                             " {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
@@ -187,9 +198,9 @@ if isdirectory(vundle_dir)
     if exists('*vimfiler#custom#profile')
       call vimfiler#custom#profile('default', 'context', { 'safe': 0 })
     endif
+                                                                        " }}}2
 
-  Plugin 'godlygeek/tabular'                                            " {{{2
-  " szoveg igazitasa regex kifejezesekkel
+  " .. EGYEB HASZNOSSAGOK .................
 
   Plugin 'tyru/open-browser.vim'                                        " {{{2
   " netrw gx helyett
@@ -197,13 +208,8 @@ if isdirectory(vundle_dir)
   " Plugin 'ap/vim-css-color'                                           " {{{2
   " Css szinek megjelenitese.
   " WARNING: Nagyon belassitja a megjelenitest.
-
-  Plugin 'gregsexton/vimcalc'                                           " {{{2
-  " egesz hasznalhato szamologep (az eredmeny ismet felhasznalhato az 'ans'
-  " beirasaval)
-  " $ install python
-
                                                                         " }}}2
+
   " .. PROGRAMOZAS ........................
 
   Plugin 'scrooloose/nerdcommenter'                                     " {{{2
@@ -387,8 +393,8 @@ if isdirectory(vundle_dir)
     let g:rubycomplete_classes_in_global = 1
     let g:rubycomplete_rails = 1
     let g:rubycomplete_load_gemfile = 1
-
                                                                         " }}}2
+
   " .. GIT ................................
 
   Plugin 'tpope/vim-fugitive'                                           " {{{2
@@ -1101,7 +1107,8 @@ endfunction
 autocmd  FileType  vimfiler  call VimfilerMaps()
 function VimfilerMaps()
     " Unite-szeru gyorskereses.
-    nmap  <buffer>  i  :Unite line -start-insert -winheight=10<CR>
+    nmap  <buffer>  i      :Unite line -start-insert -winheight=10<CR>
+    nmap  <buffer>  <C-J>  <CR>
 endfunction
 
 " Nerdcommenter.
