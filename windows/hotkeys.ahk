@@ -2,7 +2,7 @@
 ;
 ; https://www.autohotkey.com/docs/Hotkeys.htm
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.16 22:18 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.17 14:45 ==
 
 ; Capslock -> Ctrl remap.
 SetCapsLockState AlwaysOff
@@ -25,10 +25,14 @@ Lwin & Tab::Send, #w
 ; LeftWin+hjkl to move the cursor.
 ; Don't forget to disable screen lock through Win+L.
 ; RegWrite, REG_DWORD, HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Policies\System, DisableLockWorkstation, 1
-*<#h::Send, {Left}
-*<#j::Send, {Down}
-*<#k::Send, {Up}
-*<#l::Send, {Right}
+*<#h::  SendInput, {Left}
+*<#j::  SendInput, {Down}
+*<#k::  SendInput, {Up}
+*<#l::  SendInput, {Right}
+*^<#j:: SendInput, {Enter}
+
+*<#u::  SendInput, {PgUp}
+*<#d::  SendInput, {PgDn}
 
 ;                   VIM KEYBINDINGS IN TOTAL COMMANDER                    {{{1
 ; ============================================================================
@@ -36,52 +40,60 @@ Lwin & Tab::Send, #w
 ; The codes can be found in TOTALCMD.INC.
 
 #ifWinActive ahk_class TTOTAL_CMD
-  ^g::     Send, {Esc}
+  if text != "TInEdit"
+    ^g::     SendInput, {Esc}
 
-  h::      PostMessage, 1075, 2002, , , ahk_class TTOTAL_CMD ; cm_GoToParent=2002;Go to parent directory
-  j::      Send, {Down}
-  k::      Send, {Up}
-  l::      PostMessage, 1075, 2003, , , ahk_class TTOTAL_CMD ; cm_GoToDir=2003;Open dir or zip under cursor
+    h::      PostMessage, 1075, 2002, , , ahk_class TTOTAL_CMD ; cm_GoToParent=2002;Go to parent directory
+    j::      SendInput, {Down}
+    k::      SendInput, {Up}
+    l::      PostMessage, 1075, 2003, , , ahk_class TTOTAL_CMD ; cm_GoToDir=2003;Open dir or zip under cursor
 
-  ^j::     Send, {Enter}
+    ^j::     SendInput, {Enter}
+    ^k::     SendInput, {Tab}
 
-  :::      PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
+    :::      PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
 
-  ^u::     Send, {PgUp}
-  ^d::     Send, {PgDn}
+    ^u::     SendInput, {PgUp}
+    ^d::     SendInput, {PgDn}
 
-  ^o::     PostMessage, 1075, 570,  , , ahk_class TTOTAL_CMD ; cm_GotoPreviousDir=570;Go back
-  ^i::     PostMessage, 1075, 571,  , , ahk_class TTOTAL_CMD ; cm_GotoNextDir=571;Go forward
+    ^o::     PostMessage, 1075, 570,  , , ahk_class TTOTAL_CMD ; cm_GotoPreviousDir=570;Go back
+    ^i::     PostMessage, 1075, 571,  , , ahk_class TTOTAL_CMD ; cm_GotoNextDir=571;Go forward
 
-  i::      PostMessage, 1075, 2915, , , ahk_class TTOTAL_CMD ; cm_ShowQuickSearch=2915;Show name search window
+    ^e::     PostMessage, 1075, 3005, , , ahk_class TTOTAL_CMD ; cm_SwitchToNextTab=3005;Switch to next Tab (as Ctrl+Tab)
+    ^y::     PostMessage, 1075, 3006, , , ahk_class TTOTAL_CMD ; cm_SwitchToPreviousTab=3006;Switch to previous Tab (Ctrl+Shift+Tab)
+    ^h::     PostMessage, 1075, 3007, , , ahk_class TTOTAL_CMD ; cm_CloseCurrentTab=3007;Close tab
 
-  ^e::     PostMessage, 1075, 3005, , , ahk_class TTOTAL_CMD ; cm_SwitchToNextTab=3005;Switch to next Tab (as Ctrl+Tab)
-  ^y::     PostMessage, 1075, 3006, , , ahk_class TTOTAL_CMD ; cm_SwitchToPreviousTab=3006;Switch to previous Tab (Ctrl+Shift+Tab)
-  ^h::     PostMessage, 1075, 3007, , , ahk_class TTOTAL_CMD ; cm_CloseCurrentTab=3007;Close tab
+    ^f::     PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
 
-  ^f::     PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
+    ; AltGr+Q, because \ not works.
+    <^>!q::  PostMessage, 1075, 2001, , , ahk_class TTOTAL_CMD ; cm_GoToRoot=2001
 
-  ; AltGr+Q, because \ not works.
-  <^>!q::  PostMessage, 1075, 2001, , , ahk_class TTOTAL_CMD ; cm_GoToRoot=2001
+    ; Quick search.
+    i::
+      PostMessage, 1075, 2915, , , ahk_class TTOTAL_CMD ; cm_ShowQuickSearch=2915;Show name search window
+      SendInput, *
+      return
 
-  ; Go to home. (AltGr+1, because ~ not works)
-  <^>!1::
-    PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
-    SendInput, cd %USERPROFILE%{Enter}
-    return
+    ; Go to home. (AltGr+1, because ~ not works)
+    <^>!1::
+      PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
+      SendInput, cd %USERPROFILE%{Enter}
+      return
 
-  ; Open terminal.
-  F2::
-    PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
-    SendInput, conemu64.exe{Enter}
-    return
+    ; Open terminal.
+    F2::
+      PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
+      SendInput, conemu64.exe{Enter}
+      return
+  return
+
 #ifWinActive
 
 #ifWinActive ahk_class TQUICKSEARCH
-  ^j::  Send, {Enter}
-  ^n::  Send, {Down}
-  ^p::  Send, {Up}
-  ^g::  Send, {Esc}
+  ^j::  SendInput, {Enter}
+  ^n::  SendInput, {Down}
+  ^p::  SendInput, {Up}
+  ^g::  SendInput, {Esc}
 #ifWinActive
 
 ;                  LINUX-OS ABLAK ATMERETEZES/ATHELYEZES                  {{{1

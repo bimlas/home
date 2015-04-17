@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.16 10:42 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.17 11:15 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1051,6 +1051,11 @@ imap                       <F12>        <C-O><F12>
 "                                PLUGINOK                                 {{{2
 " ____________________________________________________________________________
 
+" Camelcasemotion.
+map   <Leader>w   <Plug>CamelCaseMotion_w
+map   <Leader>b   <Plug>CamelCaseMotion_b
+map   <Leader>e   <Plug>CamelCaseMotion_e
+
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>  K  :call eight#help#call("<C-R>=escape(expand('<cWORD>'), '"\\')<CR>")<CR>
 autocmd  FileType  man  call ManMap()
@@ -1144,13 +1149,6 @@ autocmd  FileType  help  nnoremap <buffer>  <Leader>1
 
 autocmd  FileType  help  noremap <buffer>  <Leader>2
 \ :call EightHeader(78, 'left', 1, '.', '\= "\|".matchstr(s:str, ";\\@<=.*")."\|"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
-
-"                             CAMELCASEMOTION                             {{{2
-" ____________________________________________________________________________
-
-map   w   <Plug>CamelCaseMotion_w
-map   b   <Plug>CamelCaseMotion_b
-map   e   <Plug>CamelCaseMotion_e
 
 "                              TEXTOBJ-USER                               {{{2
 " ____________________________________________________________________________
