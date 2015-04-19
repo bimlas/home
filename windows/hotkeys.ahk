@@ -2,7 +2,7 @@
 ;
 ; https://www.autohotkey.com/docs/Hotkeys.htm
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.19 20:54 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.19 22:19 ==
 
 ; CapsLock -> Ctrl remap.
 SetCapsLockState AlwaysOff
@@ -39,7 +39,13 @@ Lwin & Tab::Send, #w
 ;
 ; The codes can be found in TOTALCMD.INC.
 
-#ifWinActive ahk_class TTOTAL_CMD
+#if WinActive("ahk_class TTOTAL_CMD")
+  ControlGetFocus, ClassNN, ahk_class TTOTAL_CMD
+  If ClassNN = Edit1
+  {
+    Goto tcmdEnd
+    Return
+  }
 
   ; Disable CapsLock::Ctrl, check fo GetKeyState("CapsLock", "P") instead.
   CapsLock::Return
@@ -82,7 +88,7 @@ Lwin & Tab::Send, #w
       Else
       {
         PostMessage, 1075, 2915, , , ahk_class TTOTAL_CMD ; cm_ShowQuickSearch=2915;Show name search window
-        SendInput, *
+        SendInput, +{Home}*
       }
     Return
   }
@@ -117,9 +123,9 @@ Lwin & Tab::Send, #w
     SendInput, conemu64.exe{Enter}
     Return
   }
-#ifWinActive
+#if
 
-#ifWinActive ahk_class TQUICKSEARCH
+#if WinActive("ahk_class TQUICKSEARCH")
   ; Disable CapsLock::Ctrl, check fo GetKeyState("CapsLock", "P") instead.
   CapsLock::Return
 
@@ -130,7 +136,9 @@ Lwin & Tab::Send, #w
     p:: Send, {Up}
     g:: Send, {Esc}
   }
-#ifWinActive
+#if
+
+TcmdEnd:
 
 ;                  LINUX-OS ABLAK ATMERETEZES/ATHELYEZES                  {{{1
 ; ============================================================================
