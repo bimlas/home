@@ -2,7 +2,7 @@
 ;
 ; https://www.autohotkey.com/docs/Hotkeys.htm
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.20 08:20 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.20 14:50 ==
 
 ; CapsLock -> Ctrl remap.
 SetCapsLockState AlwaysOff
@@ -40,11 +40,11 @@ Lwin & Tab::Send, #w
 ; The codes can be found in TOTALCMD.INC.
 
 #if WinActive("ahk_class TTOTAL_CMD")
-  ; ControlGetFocus, ClassNN, ahk_class TTOTAL_CMD
-  ; If ClassNN = Edit1
-
   ; Disable CapsLock::Ctrl, check for GetKeyState("CapsLock", "P") instead.
   CapsLock::Return
+
+  ; ControlGetFocus, ClassNN, ahk_class TTOTAL_CMD
+  ; If ClassNN = Edit1
 
   h::
   {
@@ -58,7 +58,7 @@ Lwin & Tab::Send, #w
   j::
   {
     If GetKeyState("CapsLock", "P")
-      Send, {CapsLock Up}{Enter}
+      Send, {Enter}
     Else
       Send, {Down}
     Return
@@ -145,6 +145,13 @@ Lwin & Tab::Send, #w
     Return
   }
 
+  t::
+  {
+    If GetKeyState("CapsLock", "P")
+      PostMessage, 1075, 3001, , , ahk_class TTOTAL_CMD ; cm_OpenNewTab=3001;Open new tab
+    Return
+  }
+
   ; AltGr+Q, because \ not works.
   <^>!q:: PostMessage, 1075, 2001, , , ahk_class TTOTAL_CMD ; cm_GoToRoot=2001
 
@@ -166,6 +173,7 @@ Lwin & Tab::Send, #w
 #if
 
 #if WinActive("ahk_class TQUICKSEARCH")
+  ; Disable CapsLock::Ctrl, check for GetKeyState("CapsLock", "P") instead.
   CapsLock::Return
 
   j::
@@ -196,6 +204,3 @@ Lwin & Tab::Send, #w
     Return
   }
 #if
-
-;                  LINUX-OS ABLAK ATMERETEZES/ATHELYEZES                  {{{1
-; ============================================================================

@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.17 11:15 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.20 11:54 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1084,19 +1084,13 @@ function NetrwLynxMap()
 endfunction
 
 " Fajl megnyitasa Emacs modra.
-nnoremap  <C-P>        :Unite file -start-insert -winheight=10 -direction=botright<CR>
+nnoremap  <C-P>        :Unite file   -start-insert -sync -winheight=10 -direction=botright<CR>
 
-" Bongeszes a bufferek kozott.
-nnoremap  <Leader>ub   :Unite -start-insert buffer -sync<CR>
-
-" ... a modositasok kozott.
-nnoremap  <Leader>uc   :Unite -start-insert change -sync<CR>
-
-" ... a konyjelzok kozott.
+" Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
+nnoremap  <Leader>ub   :Unite buffer -start-insert -sync<CR>
+nnoremap  <Leader>uc   :Unite change -start-insert -sync<CR>
+nnoremap  <Leader>ut   :Unite tag    -start-insert -sync<CR>
 nnoremap  <Leader>uB   :VimFiler bookmark:<CR>
-
-" ... a tag-ok kozott.
-nnoremap  <Leader>ut   :Unite -start-insert tag -sync<CR>
 
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
@@ -1106,6 +1100,7 @@ function UniteMaps()
     nmap  <buffer>  h      <Plug>(unite_delete_backward_path)
     nmap  <buffer>  l      <CR>
     nmap  <buffer>  x      astart<CR>
+    imap  <buffer>  /  /*
   " endif
 endfunction
 
