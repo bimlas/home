@@ -2,7 +2,7 @@
 ;
 ; https://www.autohotkey.com/docs/Hotkeys.htm
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.19 22:19 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.20 08:20 ==
 
 ; CapsLock -> Ctrl remap.
 SetCapsLockState AlwaysOff
@@ -40,14 +40,10 @@ Lwin & Tab::Send, #w
 ; The codes can be found in TOTALCMD.INC.
 
 #if WinActive("ahk_class TTOTAL_CMD")
-  ControlGetFocus, ClassNN, ahk_class TTOTAL_CMD
-  If ClassNN = Edit1
-  {
-    Goto tcmdEnd
-    Return
-  }
+  ; ControlGetFocus, ClassNN, ahk_class TTOTAL_CMD
+  ; If ClassNN = Edit1
 
-  ; Disable CapsLock::Ctrl, check fo GetKeyState("CapsLock", "P") instead.
+  ; Disable CapsLock::Ctrl, check for GetKeyState("CapsLock", "P") instead.
   CapsLock::Return
 
   h::
@@ -93,16 +89,60 @@ Lwin & Tab::Send, #w
     Return
   }
 
-  If GetKeyState("CapsLock", "P")
+  g::
   {
-    g:: Send, {Esc}
-    u:: Send, {PgUp}
-    d:: Send, {PgDn}
-    o:: PostMessage, 1075, 570,  , , ahk_class TTOTAL_CMD ; cm_GotoPreviousDir=570;Go back
-    e:: PostMessage, 1075, 3005, , , ahk_class TTOTAL_CMD ; cm_SwitchToNextTab=3005;Switch to next Tab (as Ctrl+Tab)
-    y:: PostMessage, 1075, 3006, , , ahk_class TTOTAL_CMD ; cm_SwitchToPreviousTab=3006;Switch to previous Tab (Ctrl+Shift+Tab)
-    f:: PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
-    m:: PostMessage, 1075, 2400, , , ahk_class TTOTAL_CMD ; cm_MultiRenameFiles=2400;Rename multiple files
+    If GetKeyState("CapsLock", "P")
+      Send, {Esc}
+    Return
+  }
+
+  u::
+  {
+    If GetKeyState("CapsLock", "P")
+      Send, {PgUp}
+    Return
+  }
+
+  d::
+  {
+    If GetKeyState("CapsLock", "P")
+      Send, {PgDn}
+    Return
+  }
+
+  o::
+  {
+    If GetKeyState("CapsLock", "P")
+      PostMessage, 1075, 570,  , , ahk_class TTOTAL_CMD ; cm_GotoPreviousDir=570;Go back
+    Return
+  }
+
+  e::
+  {
+    If GetKeyState("CapsLock", "P")
+      PostMessage, 1075, 3005, , , ahk_class TTOTAL_CMD ; cm_SwitchToNextTab=3005;Switch to next Tab (as Ctrl+Tab)
+    Return
+  }
+
+  y::
+  {
+    If GetKeyState("CapsLock", "P")
+      PostMessage, 1075, 3006, , , ahk_class TTOTAL_CMD ; cm_SwitchToPreviousTab=3006;Switch to previous Tab (Ctrl+Shift+Tab)
+    Return
+  }
+
+  f::
+  {
+    If GetKeyState("CapsLock", "P")
+      PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
+    Return
+  }
+
+  m::
+  {
+    If GetKeyState("CapsLock", "P")
+      PostMessage, 1075, 2400, , , ahk_class TTOTAL_CMD ; cm_MultiRenameFiles=2400;Rename multiple files
+    Return
   }
 
   ; AltGr+Q, because \ not works.
@@ -126,19 +166,36 @@ Lwin & Tab::Send, #w
 #if
 
 #if WinActive("ahk_class TQUICKSEARCH")
-  ; Disable CapsLock::Ctrl, check fo GetKeyState("CapsLock", "P") instead.
   CapsLock::Return
 
-  If GetKeyState("CapsLock", "P")
+  j::
   {
-    j:: Send, {Enter}
-    n:: Send, {Down}
-    p:: Send, {Up}
-    g:: Send, {Esc}
+    If GetKeyState("CapsLock", "P")
+      Send, {Enter}
+    Return
+  }
+
+  n::
+  {
+    If GetKeyState("CapsLock", "P")
+      Send, {Down}
+    Return
+  }
+
+  p::
+  {
+    If GetKeyState("CapsLock", "P")
+      Send, {Up}
+    Return
+  }
+
+  g::
+  {
+    If GetKeyState("CapsLock", "P")
+      Send, {Esc}
+    Return
   }
 #if
-
-TcmdEnd:
 
 ;                  LINUX-OS ABLAK ATMERETEZES/ATHELYEZES                  {{{1
 ; ============================================================================
