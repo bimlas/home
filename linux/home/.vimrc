@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.20 11:54 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.21 11:50 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -367,6 +367,10 @@ if isdirectory(vundle_dir)
     \     'type': 'asciidoctor',
     \     'cmdopt': '-o -',
     \     'outputter': 'browser'
+    \   },
+    \ 'rubyCustom':
+    \   {
+    \     'type': 'irb'
     \   }
     \ }
 
@@ -1025,6 +1029,8 @@ imap                       <F4>         <C-O><F4>
 " Compile es make egy gombnyomasra.
 noremap                    <F5>         :QuickRun<CR>
 imap                       <F5>         <C-O><F5>
+noremap            <expr>  <S-F5>       ':QuickRun ' . &filetype . 'Custom<CR>'
+imap                       <S-F5>       <C-O><S-F5>
 nnoremap                   <F6>         :Comp<CR>
 imap                       <F6>         <C-O><F6>
 

@@ -2,7 +2,7 @@
 ;
 ; https://www.autohotkey.com/docs/Hotkeys.htm
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.20 14:50 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.21 15:43 ==
 
 ; CapsLock -> Ctrl remap.
 SetCapsLockState AlwaysOff
@@ -73,7 +73,14 @@ Lwin & Tab::Send, #w
     Return
   }
 
-  l:: PostMessage, 1075, 2003, , , ahk_class TTOTAL_CMD ; cm_GoToDir=2003;Open dir or zip under cursor
+  l::
+  {
+    If GetKeyState("CapsLock", "P")
+      PostMessage, 1075, 540,  , , ahk_class TTOTAL_CMD ; cm_RereadSource=540;Reread source
+    Else
+      PostMessage, 1075, 2003, , , ahk_class TTOTAL_CMD ; cm_GoToDir=2003;Open dir or zip under cursor
+    Return
+  }
 
   ::: PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
 
