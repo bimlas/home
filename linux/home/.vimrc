@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.22 15:52 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.22 21:54 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -73,7 +73,13 @@ if isdirectory(vundle_dir)
   " http://vimcolors.com/
 
   Plugin 'altercation/vim-colors-solarized'                             " {{{2
-  " nagyon szep colorscheme (light es dark is)
+  " szep, finom colorscheme (light es dark is)
+
+  Plugin 'summerfruit256'                                               " {{{2
+  " nagyon szines, de kellemes
+
+  Plugin 'proton.vim'                                                   " {{{2
+  " meg nem tudom eldonteni
 
   Plugin 'morhetz/gruvbox'                                              " {{{2
   " terminalban jol mutat
@@ -514,7 +520,7 @@ if has('gui_running')
 
 elseif len(globpath(&runtimepath, 'colors/gruvbox.vim'))
 
-  highlight! link StatFilename   Conceal
+  highlight! link StatFilename   Identifier
   highlight! link StatFileformat Title
   highlight! link StatInfo       Question
   highlight! link StatWarning    WarningMsg
