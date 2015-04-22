@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.21 11:50 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.22 15:52 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -368,6 +368,12 @@ if isdirectory(vundle_dir)
     \     'cmdopt': '-o -',
     \     'outputter': 'browser'
     \   },
+    \ 'text':
+    \   {
+    \     'type': 'asciidoctor',
+    \     'cmdopt': '-o -',
+    \     'outputter': 'browser'
+    \   },
     \ 'rubyCustom':
     \   {
     \     'type': 'irb'
@@ -491,6 +497,12 @@ endif
 "                                   SZINEK                                {{{1
 " ============================================================================
 
+" Statusline szinei.
+highlight! link StatFilename   DiffText
+highlight! link StatFileformat DiffAdd
+highlight! link StatInfo       DiffChange
+highlight! link StatWarning    WarningMsg
+
 " Szinsema beallitasa.
 " Ha nappal van es a solarized elerheto, hasznaljuk azt.
 if has('gui_running')
@@ -498,16 +510,14 @@ if has('gui_running')
 \ && (strftime("%H") >= 7 && strftime("%H") <= 17)
 
   colorscheme solarized
-
   set background=light
 
-  " A statusline szinet is beallitjuk.
-  if !exists('g:lightline')
-    let g:lightline = {}
-  endif
-  let g:lightline.colorscheme = 'solarized'
-
 elseif len(globpath(&runtimepath, 'colors/gruvbox.vim'))
+
+  highlight! link StatFilename   Conceal
+  highlight! link StatFileformat Title
+  highlight! link StatInfo       Question
+  highlight! link StatWarning    WarningMsg
 
   let g:gruvbox_invert_selection = 0
   let g:gruvbox_contrast = 'soft'
@@ -567,15 +577,15 @@ endif
 let stat_lineinfo   = '%4l:%3p%%|%3v'
 
 let &statusline  = stat_bufnr . ' '
-let &statusline .= '%#DiffText# ' . stat_filename . ' '
-let &statusline .= '%#DiffAdd# ' . stat_fileformat . ' '
-let &statusline .= '%#WarningMsg#%{(winwidth(0) > 70) ? StatWarn() : ""}'
-let &statusline .= '%#DiffChange#%{len(StatFugitive()) ? "  " . StatFugitive() . " " : ""}'
+let &statusline .= '%#StatFilename# ' . stat_filename . ' '
+let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
+let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) ? StatWarn() : ""}'
+let &statusline .= '%#StatInfo#%{len(StatFugitive()) ? "  " . StatFugitive() . " " : ""}'
 let &statusline .= '%* ' . stat_filedir . ' '
 let &statusline .= '%= '
 let &statusline .= stat_tagbar . ' '
-let &statusline .= '%#WarningMsg#%{len(StatSyntastic()) ? " " . StatSyntastic() . " " : ""}'
-let &statusline .= '%#DiffChange# ' . stat_lineinfo . ' '
+let &statusline .= '%#StatWarning#%{len(StatSyntastic()) ? " " . StatSyntastic() . " " : ""}'
+let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
 
 " __ STATSYNTASTIC __________________________
 "
