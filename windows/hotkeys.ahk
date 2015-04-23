@@ -2,7 +2,7 @@
 ;
 ; https://www.autohotkey.com/docs/Hotkeys.htm
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.22 10:33 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.23 10:30 ==
 
 ; CapsLock -> Ctrl remap.
 SetCapsLockState AlwaysOff
@@ -18,21 +18,6 @@ CapsLock::Ctrl
 ; Virtuawin-ben a Win+w lett beallitva, hogy a kovetkezo asztalra valtson, az
 ; autohotkey pedig a Win+Tab-ot alakitja Win+w-re.
 Lwin & Tab::Send, #w
-
-;                             HJKL EVERYWHERE                             {{{1
-; ============================================================================
-;
-; LeftWin+hjkl to move the cursor.
-; Don't forget to disable screen lock through Win+L.
-; RegWrite, REG_DWORD, HKEY_CURRENT_USER, Software\Microsoft\Windows\CurrentVersion\Policies\System, DisableLockWorkstation, 1
-*<#h::  Send, {Left}
-*<#j::  Send, {Down}
-*<#k::  Send, {Up}
-*<#l::  Send, {Right}
-*^<#j:: Send, {Enter}
-
-*<#u::  Send, {PgUp}
-*<#d::  Send, {PgDn}
 
 ;                   VIM KEYBINDINGS IN TOTAL COMMANDER                    {{{1
 ; ============================================================================

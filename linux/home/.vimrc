@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.22 21:54 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.23 09:49 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -69,17 +69,12 @@ if isdirectory(vundle_dir)
                                                                         " }}}2
 
   " .. MEGJELENES .........................
+  " http://bytefluent.com/vivify/
   " http://cocopon.me/app/vim-color-gallery/
   " http://vimcolors.com/
 
   Plugin 'altercation/vim-colors-solarized'                             " {{{2
   " szep, finom colorscheme (light es dark is)
-
-  Plugin 'summerfruit256'                                               " {{{2
-  " nagyon szines, de kellemes
-
-  Plugin 'proton.vim'                                                   " {{{2
-  " meg nem tudom eldonteni
 
   Plugin 'morhetz/gruvbox'                                              " {{{2
   " terminalban jol mutat
@@ -515,26 +510,31 @@ if has('gui_running')
 \ && len(globpath(&runtimepath, 'colors/solarized.vim'))
 \ && (strftime("%H") >= 7 && strftime("%H") <= 17)
 
-  colorscheme solarized
   set background=light
+  colorscheme solarized
 
 elseif len(globpath(&runtimepath, 'colors/gruvbox.vim'))
+
+  let g:gruvbox_invert_selection = 0
+  let g:gruvbox_contrast = 'soft'
+
+  set background=dark
+  colorscheme gruvbox
 
   highlight! link StatFilename   Identifier
   highlight! link StatFileformat Title
   highlight! link StatInfo       Question
   highlight! link StatWarning    WarningMsg
 
-  let g:gruvbox_invert_selection = 0
-  let g:gruvbox_contrast = 'soft'
-
-  colorscheme gruvbox
-  set background=dark
-
 elseif len(globpath(&runtimepath, 'colors/desert.vim'))
 
-  colorscheme desert
   set background=dark
+  colorscheme desert
+
+  highlight! link StatFilename   Directory
+  highlight! link StatFileformat Identifier
+  highlight! link StatInfo       ModeMsg
+  highlight! link StatWarning    WarningMsg
 
   " Popupmenu szinei nem tetszenek a desert-ben.
   highlight Pmenu      ctermbg=Black ctermfg=Gray  guibg=#FFFFCC guifg=DarkGray
@@ -560,9 +560,6 @@ highlight Folded term=bold cterm=bold gui=bold
 " Mivel a terminalos szinsema nincs definialva (?), igy nekunk kell erteket
 " adni neki.
 highlight TagbarHighlight term=inverse ctermfg=White
-
-" A highlight-ok felulirasa nekem jobban tetszo szinekre.
-highlight TagListTagName term=inverse ctermfg=White
 
 "                               STATUSLINE                                {{{1
 " ============================================================================
@@ -1073,10 +1070,8 @@ imap                       <F12>        <C-O><F12>
 "                                PLUGINOK                                 {{{2
 " ____________________________________________________________________________
 
-" Camelcasemotion.
-map   <Leader>w   <Plug>CamelCaseMotion_w
-map   <Leader>b   <Plug>CamelCaseMotion_b
-map   <Leader>e   <Plug>CamelCaseMotion_e
+"                                  SUGO                                   {{{3
+" ............................................................................
 
 " Kurzor alatti parancs sugojanak megnyitasa.
 noremap  <silent>  K  :call eight#help#call("<C-R>=escape(expand('<cWORD>'), '"\\')<CR>")<CR>
@@ -1086,17 +1081,8 @@ function ManMap()
   map    <buffer>  <CR>  <C-]>
 endfunction
 
-" Completion, vagy snippet beszurasa.
-" Terminal-ban a <Nul> a <C-Space> megfeleloje.
-imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
-imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-imap  <expr>  <Nul>      <C-Space>
-
-" Ope-browser map-ok: url megnyitasa a bongeszoben, vagy google a kurzor
-" alatti szora.
-let g:netrw_nogx = 1
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
+"                                  NETRW                                  {{{3
+" ............................................................................
 
 " Lynx-szeru mozgas netrw-ben.
 autocmd  FileType  netrw  call NetrwLynxMap()
@@ -1104,6 +1090,24 @@ function NetrwLynxMap()
   map  <buffer>  h        -
   map  <buffer>  l        <CR>
 endfunction
+
+"                             CAMELCASEMOTION                             {{{3
+" ............................................................................
+
+map   <Leader>w   <Plug>CamelCaseMotion_w
+map   <Leader>b   <Plug>CamelCaseMotion_b
+map   <Leader>e   <Plug>CamelCaseMotion_e
+
+"                               OPENBROWSER                               {{{3
+" ............................................................................
+
+" Url megnyitasa a bongeszoben, vagy google a kurzor alatti szora.
+let g:netrw_nogx = 1
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
+"                             UNITE/VIMFILER                              {{{3
+" ............................................................................
 
 " Fajl megnyitasa Emacs modra.
 nnoremap  <C-P>        :Unite file   -start-insert -sync -winheight=10 -direction=botright<CR>
@@ -1117,8 +1121,8 @@ nnoremap  <Leader>uB   :VimFiler bookmark:<CR>
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
   " if has('gui_running')
-    map   <buffer>  <Esc>  <Plug>(unite_exit)
-    map   <buffer>  q      <Plug>(unite_all_exit)
+    imap  <buffer>  <C-G>  <Plug>(unite_insert_leave)
+    map   <buffer>  <C-G>  <Plug>(unite_all_exit)
     nmap  <buffer>  h      <Plug>(unite_delete_backward_path)
     nmap  <buffer>  l      <CR>
     nmap  <buffer>  x      astart<CR>
@@ -1133,11 +1137,24 @@ function VimfilerMaps()
     nmap  <buffer>  <C-J>  <CR>
 endfunction
 
-" Nerdcommenter.
+"                              NERDCOMMENTER                              {{{3
+" ............................................................................
+
 map  <C-F>           <Plug>NERDCommenterComment
 map  <Leader><C-F>   <Plug>NERDCommenterUncomment
 
-" Tabular.
+"                               NEOSNIPPET                                {{{3
+" ............................................................................
+
+" Completion, vagy snippet beszurasa.
+" Terminal-ban a <Nul> a <C-Space> megfeleloje.
+imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
+imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
+imap  <expr>  <Nul>      <C-Space>
+
+"                                 TABULAR                                 {{{3
+" ............................................................................
+
 noremap  <Leader>c\|  :Tabularize /\|/l0<CR>
 noremap  <Leader>c,   :Tabularize /,\zs/<CR>
 noremap  <Leader>c:   :Tabularize /:\zs/<CR>
@@ -1148,8 +1165,8 @@ noremap  <Leader>csp  :Tabularize / \+\zs/<CR>
 noremap  <Leader>ctab :Tabularize /\t\+\zs/<CR>
 noremap  <Leader>c=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
 
-"                                 HEADER                                  {{{2
-" ____________________________________________________________________________
+"                               EIGHTHEADER                               {{{3
+" ............................................................................
 
 " Eightheader - a sor foldheader-re alakitasa.
 nnoremap  <Leader>0  :silent call eight#contact#call()<CR><CR>
@@ -1158,8 +1175,7 @@ nnoremap  <Leader>2  :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2
 nnoremap  <Leader>3  :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
 nnoremap  <Leader>9  :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
 
-"                                 VIMHELP                                 {{{3
-" ............................................................................
+" __ VIMHELP ____________________________
 
 autocmd  FileType  help  nnoremap <buffer>  <Leader>1
 \ :call EightHeader(78, 'left', 1, ' ', '\= "*".matchstr(s:str, ";\\@<=.*")."*"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
@@ -1167,8 +1183,8 @@ autocmd  FileType  help  nnoremap <buffer>  <Leader>1
 autocmd  FileType  help  noremap <buffer>  <Leader>2
 \ :call EightHeader(78, 'left', 1, '.', '\= "\|".matchstr(s:str, ";\\@<=.*")."\|"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
 
-"                              TEXTOBJ-USER                               {{{2
-" ____________________________________________________________________________
+"                              TEXTOBJ-USER                               {{{3
+" ............................................................................
 
 " Roviditesek a thinca/vim-textobj-between pluginnak koszonhetoen.
 omap  i*   <Plug>(textobj-between-i)*
