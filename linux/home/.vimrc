@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.23 09:49 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.24 09:54 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -202,6 +202,9 @@ if isdirectory(vundle_dir)
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
+
+  Plugin 'tpope/vim-repeat'                                             " {{{2
+  " repeat (.) plugin-okon is
 
   Plugin 'tyru/open-browser.vim'                                        " {{{2
   " netrw gx helyett
@@ -1272,6 +1275,10 @@ if filereadable($VIMRUNTIME . '/autoload/syntaxcomplete.vim')
 endif
 
 " __ MEGJELENES _________________________
+
+" Az aktiv ablak jobban eszreveheto legyen.
+autocmd  WinEnter  *  set cursorline
+autocmd  WinLeave  *  set nocursorline
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
 autocmd  VimResized  *  wincmd =
