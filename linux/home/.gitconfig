@@ -11,10 +11,11 @@
   cm           = "commit -m"
   adac         = "!git ada && git c"
   adacm        = "!git ada && git cm"
+  ps           = "push --all --follow-tags"
   pl           = "!git fetch; git status; read -p '\nCONTINUE PULLING? Y/[N]' ans; \
                   if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi"
   glog         = "log --graph --decorate --all --name-status"
-  slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %Creset%s' --date=short"
+  slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %Creset%s %C(auto)%d' --date=short"
   changelog    = "log --graph --decorate --all --name-status ORIG_HEAD.."
   flog         = "diff --name-status"
   tree         = "ls-tree -r --name-only"

@@ -2,7 +2,7 @@
 ;
 ; https://www.autohotkey.com/docs/Hotkeys.htm
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.23 10:30 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.27 11:22 ==
 
 ; CapsLock -> Ctrl remap.
 SetCapsLockState AlwaysOff
@@ -73,11 +73,11 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       PostMessage, 1075, 571,  , , ahk_class TTOTAL_CMD ; cm_GotoNextDir=571;Go forward
-      Else
-      {
-        PostMessage, 1075, 2915, , , ahk_class TTOTAL_CMD ; cm_ShowQuickSearch=2915;Show name search window
-        SendInput, +{Home}*
-      }
+    Else
+    {
+      PostMessage, 1075, 2915, , , ahk_class TTOTAL_CMD ; cm_ShowQuickSearch=2915;Show name search window
+      SendInput, +{Home}*
+    }
     Return
   }
 
@@ -85,6 +85,8 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       Send, {Esc}
+    Else
+      SendInput, g
     Return
   }
 
@@ -92,6 +94,8 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       Send, {PgUp}
+    Else
+      SendInput, u
     Return
   }
 
@@ -101,6 +105,8 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       Send, {PgDn}
+    Else
+      SendInput, d
     Return
   }
 
@@ -108,6 +114,8 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       PostMessage, 1075, 570,  , , ahk_class TTOTAL_CMD ; cm_GotoPreviousDir=570;Go back
+    Else
+      SendInput, o
     Return
   }
 
@@ -115,6 +123,8 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       PostMessage, 1075, 3005, , , ahk_class TTOTAL_CMD ; cm_SwitchToNextTab=3005;Switch to next Tab (as Ctrl+Tab)
+    Else
+      SendInput, e
     Return
   }
 
@@ -122,6 +132,8 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       PostMessage, 1075, 3006, , , ahk_class TTOTAL_CMD ; cm_SwitchToPreviousTab=3006;Switch to previous Tab (Ctrl+Shift+Tab)
+    Else
+      SendInput, y
     Return
   }
 
@@ -129,6 +141,8 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
+    Else
+      SendInput, f
     Return
   }
 
@@ -136,6 +150,8 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       PostMessage, 1075, 2400, , , ahk_class TTOTAL_CMD ; cm_MultiRenameFiles=2400;Rename multiple files
+    Else
+      SendInput, m
     Return
   }
 
@@ -143,6 +159,8 @@ Lwin & Tab::Send, #w
   {
     If GetKeyState("CapsLock", "P")
       PostMessage, 1075, 3001, , , ahk_class TTOTAL_CMD ; cm_OpenNewTab=3001;Open new tab
+    Else
+      SendInput, t
     Return
   }
 
