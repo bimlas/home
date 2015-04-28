@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.24 09:54 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.28 14:02 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -80,7 +80,7 @@ if isdirectory(vundle_dir)
   " terminalban jol mutat
                                                                         " }}}2
 
-  " .. MOZGAS AZ ABLAKON BELUL ............
+  " .. KURZOR MOZGATASA ...................
 
   " Plugin 'tpope/vim-sexp-mappings-for-regular-people'                 " {{{2
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
@@ -93,6 +93,15 @@ if isdirectory(vundle_dir)
 
     " A helymeghatarozashoz hasznalt betuk.
     let g:EasyMotion_keys = 'asdfghjkluiopqwer'
+
+  Plugin 't9md/vim-choosewin'                                           " {{{2
+  " easymotion az ablakokon is
+
+  " let g:choosewin_overlay_enable     = 1
+  " let g:choosewin_statusline_replace = 0
+  " let g:choosewin_tabline_replace    = 0
+  let g:choosewin_label_align        = 'left'
+  let g:choosewin_label              = 'ASDFHJKL'
                                                                         " }}}2
 
   " .. TEXTOBJ-USER .......................
@@ -153,6 +162,9 @@ if isdirectory(vundle_dir)
   "   :%Subvert/facilit{y,ies}/building{,s}/g
 
   Plugin 'godlygeek/tabular'                                            " {{{2
+  " szoveg igazitasa regex kifejezesekkel
+
+  Plugin 'junegunn/vim-easy-align'                                      " {{{2
   " szoveg igazitasa regex kifejezesekkel
 
   Plugin 'henrik/vim-qargs'                                             " {{{2
@@ -956,8 +968,9 @@ map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>j  <Plug>(easymotion-j)
 map  <Leader>k  <Plug>(easymotion-k)
 
-nnoremap  <C-H>  <C-W>q
-nnoremap  <C-K>  <C-W>w
+nnoremap  <C-H>       <C-W>q
+nnoremap  <C-K>       <C-W>w
+nmap      <C-W><C-W>  <Plug>(choosewin)
 
 "                                KENYELEM                                 {{{2
 " ____________________________________________________________________________
@@ -1113,12 +1126,12 @@ vmap gx <Plug>(openbrowser-smart-search)
 " ............................................................................
 
 " Fajl megnyitasa Emacs modra.
-nnoremap  <C-P>        :Unite file   -start-insert -sync -winheight=10 -direction=botright<CR>
+nnoremap  <C-P>        :Unite -start-insert -sync -direction=botright file file/new directory/new <CR>
 
 " Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
-nnoremap  <Leader>ub   :Unite buffer -start-insert -sync<CR>
-nnoremap  <Leader>uc   :Unite change -start-insert -sync<CR>
-nnoremap  <Leader>ut   :Unite tag    -start-insert -sync<CR>
+nnoremap  <Leader>ub   :Unite -start-insert -sync -direction=botright buffer<CR>
+nnoremap  <Leader>uc   :Unite -start-insert -sync -direction=botright -auto-preview change<CR>
+nnoremap  <Leader>ut   :Unite -start-insert -sync -direction=botright tag<CR>
 nnoremap  <Leader>uB   :VimFiler bookmark:<CR>
 
 autocmd  FileType  unite  call UniteMaps()
@@ -1167,6 +1180,11 @@ noremap  <Leader>c<   :Tabularize /<<$/<CR>
 noremap  <Leader>csp  :Tabularize / \+\zs/<CR>
 noremap  <Leader>ctab :Tabularize /\t\+\zs/<CR>
 noremap  <Leader>c=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
+
+"                                EASYALIGN                                {{{3
+" ............................................................................
+
+vmap     <CR>         <Plug>(EasyAlign)
 
 "                               EIGHTHEADER                               {{{3
 " ............................................................................

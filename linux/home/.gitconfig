@@ -15,7 +15,7 @@
   pl           = "!git fetch; git status; read -p '\nCONTINUE PULLING? Y/[N]' ans; \
                   if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi"
   glog         = "log --graph --decorate --all --name-status"
-  slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %Creset%s %C(auto)%d' --date=short"
+  slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %C(auto)%d %Creset%s' --date=short"
   changelog    = "log --graph --decorate --all --name-status ORIG_HEAD.."
   flog         = "diff --name-status"
   tree         = "ls-tree -r --name-only"

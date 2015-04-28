@@ -2,7 +2,7 @@
 ;
 ; https://www.autohotkey.com/docs/Hotkeys.htm
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.27 11:22 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.28 15:25 ==
 
 ; CapsLock -> Ctrl remap.
 SetCapsLockState AlwaysOff
@@ -223,4 +223,23 @@ Lwin & Tab::Send, #w
       SendInput, g
     Return
   }
+
+  k::
+  {
+    If GetKeyState("CapsLock", "P")
+      Send, {Tab}
+    Else
+      SendInput, k
+    Return
+  }
+
+  s::
+  {
+    If GetKeyState("CapsLock", "P")
+      Send, ^s
+    Else
+      SendInput, s
+    Return
+  }
+
 #if
