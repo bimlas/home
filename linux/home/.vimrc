@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.28 14:02 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.28 22:30 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -97,11 +97,12 @@ if isdirectory(vundle_dir)
   Plugin 't9md/vim-choosewin'                                           " {{{2
   " easymotion az ablakokon is
 
-  " let g:choosewin_overlay_enable     = 1
-  " let g:choosewin_statusline_replace = 0
-  " let g:choosewin_tabline_replace    = 0
-  let g:choosewin_label_align        = 'left'
-  let g:choosewin_label              = 'ASDFHJKL'
+    let g:choosewin_label              = 'ASDFHJKL'
+    let g:choosewin_label_align        = 'left'
+    let g:choosewin_label_padding      = 1
+    " let g:choosewin_overlay_enable     = 1
+    " let g:choosewin_statusline_replace = 0
+    " let g:choosewin_tabline_replace    = 0
                                                                         " }}}2
 
   " .. TEXTOBJ-USER .......................
@@ -161,11 +162,8 @@ if isdirectory(vundle_dir)
   " intelligens substitute
   "   :%Subvert/facilit{y,ies}/building{,s}/g
 
-  Plugin 'godlygeek/tabular'                                            " {{{2
-  " szoveg igazitasa regex kifejezesekkel
-
   Plugin 'junegunn/vim-easy-align'                                      " {{{2
-  " szoveg igazitasa regex kifejezesekkel
+  " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
 
   Plugin 'henrik/vim-qargs'                                             " {{{2
   " quickfix-en beluli fajlokon parancsok vegrehajtasa (Qdo) es masolasa az
@@ -1168,23 +1166,18 @@ imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnipp
 imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 imap  <expr>  <Nul>      <C-Space>
 
-"                                 TABULAR                                 {{{3
-" ............................................................................
-
-noremap  <Leader>c\|  :Tabularize /\|/l0<CR>
-noremap  <Leader>c,   :Tabularize /,\zs/<CR>
-noremap  <Leader>c:   :Tabularize /:\zs/<CR>
-noremap  <Leader>c+   :Tabularize /+$/<CR>
-noremap  <Leader>c\   :Tabularize /\\$/<CR>
-noremap  <Leader>c<   :Tabularize /<<$/<CR>
-noremap  <Leader>csp  :Tabularize / \+\zs/<CR>
-noremap  <Leader>ctab :Tabularize /\t\+\zs/<CR>
-noremap  <Leader>c=   :Tabularize /[+-\*\/\.]\?=/l1c1<CR>
-
 "                                EASYALIGN                                {{{3
 " ............................................................................
 
-vmap     <CR>         <Plug>(EasyAlign)
+nmap  <Leader>c  <Plug>(EasyAlign)ip
+vmap  <Leader>c  <Plug>(EasyAlign)
+
+let g:easy_align_delimiters = {
+\ 't': {'pattern': '\t'},
+\ '\': {'pattern': '\\$', 'stick_to_left': 0},
+\ '<': {'pattern': '<<$', 'stick_to_left': 0},
+\ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
+\ }
 
 "                               EIGHTHEADER                               {{{3
 " ............................................................................
