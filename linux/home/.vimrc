@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 15:58 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 21:53 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -158,6 +158,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " paros jelek gyors cserelese/torlese
 
     let g:surround_no_insert_mappings = 1
+    let g:surround_no_mappings        = 1
 
   Plugin 'tpope/vim-abolish'                                            " {{{2
   " intelligens substitute
@@ -699,7 +700,7 @@ set numberwidth=6
 " Sorok szamozasa, kiveve ha TTY, vagy Win-es parancssor alatt hasznaljuk es
 " a szovegterulet nem elegendoen szeles.
 if BigTerm()
-  " set relativenumber
+  set relativenumber
 endif
 
 " Minden valtoztatasrol tajekoztasson.
@@ -964,12 +965,9 @@ map  <Leader>f  <Plug>(easymotion-fl)
 map  <Leader>F  <Plug>(easymotion-Fl)
 map  <Leader>t  <Plug>(easymotion-tl)
 map  <Leader>T  <Plug>(easymotion-Tl)
-map  <Leader>j  <Plug>(easymotion-j)
-map  <Leader>k  <Plug>(easymotion-k)
 
-nnoremap  <C-H>       <C-W>q
-nnoremap  <C-K>       <C-W>w
-nmap      <C-W><C-W>  <Plug>(choosewin)
+nnoremap          <C-H>  <C-W>q
+nmap      <expr>  <C-K>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
 
 "                                KENYELEM                                 {{{2
 " ____________________________________________________________________________
@@ -1166,6 +1164,14 @@ map  <Leader><C-F>   <Plug>NERDCommenterUncomment
 imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
 imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 imap  <expr>  <Nul>      <C-Space>
+
+"                                SURROUND                                 {{{3
+" ............................................................................
+
+nmap Qd  <Plug>Dsurround
+nmap Qc  <Plug>Csurround
+nmap Qa  <Plug>Ysurround
+vmap Q   <Plug>VSurround
 
 "                                EASYALIGN                                {{{3
 " ............................................................................

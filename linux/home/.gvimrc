@@ -15,26 +15,8 @@ endif
 " let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
 set lines=999 columns=999
 
-" Linux-on belassul tole... (-_-')
-" set cursorcolumn cursorline
-
-" Toolbar kikapcsolasa.
-set guioptions-=T
-
-" Menusor kikapcsolasa.
-set guioptions-=m
-
-" Dialogus ablakok helyett a terminalban megszokott modon tegye fel a
-" kerdeseit.
-set guioptions+=c
-
-" A scroll-ok csak akkor latszodjanak, ha szukseg van rajuk?
-set guioptions-=L
-set guioptions-=R
-" Mindig latszodjanak?
-set guioptions-=l
-set guioptions-=r
-set guioptions-=b
+" :help guioptions
+set guioptions=cg
 
 " A tabok neve ele irja ki a tab szamat.
 let &guitablabel = " %N \| %t %m "
