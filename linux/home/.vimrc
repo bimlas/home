@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 15:53 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 15:58 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -158,9 +158,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " paros jelek gyors cserelese/torlese
 
     let g:surround_no_insert_mappings = 1
-
-  Plugin 'rhysd/vim-operator-surround'                                  " {{{2
-  " paros jelek gyors cserelese/torlese
 
   Plugin 'tpope/vim-abolish'                                            " {{{2
   " intelligens substitute
@@ -1169,13 +1166,6 @@ map  <Leader><C-F>   <Plug>NERDCommenterUncomment
 imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
 imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 imap  <expr>  <Nul>      <C-Space>
-
-"                          VIM-OPERATOR-SURROUND                          {{{3
-" ............................................................................
-
-map <silent>Sa <Plug>(operator-surround-append)
-map <silent>Sd <Plug>(operator-surround-delete)
-map <silent>Sc <Plug>(operator-surround-replace)
 
 "                                EASYALIGN                                {{{3
 " ............................................................................
