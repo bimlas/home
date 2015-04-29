@@ -19,6 +19,7 @@ header "  COPY"
 copy --recursive   \
   "bin/"           \
   ".git_template/" \
+  ".vim/"          \
   ".ctags"         \
   ".gitconfig"     \
   ".gvimrc"        \

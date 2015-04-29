@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 08:20 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 15:53 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -38,12 +38,12 @@ endfunction
 "                                PLUGINOK                                 {{{1
 " ============================================================================
 
-let vundle_dir = $HOME . '/.vim/bundle/vundle.vim'
+let bundle_dir = $HOME . '/.vim_bundle'
 
-if isdirectory(vundle_dir)
+if isdirectory(bundle_dir . '/vundle.vim')
 
-  exe 'set runtimepath+=' . vundle_dir
-  call vundle#begin($HOME . '/.vim/bundle')
+  exe 'set runtimepath+=' . bundle_dir . '/vundle.vim'
+  call vundle#begin(bundle_dir)
   filetype off
 
   Plugin 'gmarik/vundle.vim'                                            " {{{2
@@ -158,6 +158,9 @@ if isdirectory(vundle_dir)
   " paros jelek gyors cserelese/torlese
 
     let g:surround_no_insert_mappings = 1
+
+  Plugin 'rhysd/vim-operator-surround'                                  " {{{2
+  " paros jelek gyors cserelese/torlese
 
   Plugin 'tpope/vim-abolish'                                            " {{{2
   " intelligens substitute
@@ -447,7 +450,7 @@ endif
 command  InstallVundle  call InstallVundle()
 function InstallVundle()
   let vundle_repo = 'https://github.com/gmarik/vundle.vim'
-  let path = substitute($HOME . '/.vim/bundle/vundle.vim', '/', has('win32') ? '\\' : '/', 'g')
+  let path = substitute(g:bundle_dir . '/vundle.vim', '/', has('win32') ? '\\' : '/', 'g')
 
   if ! executable('git')
     echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
@@ -1167,6 +1170,13 @@ imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnipp
 imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 imap  <expr>  <Nul>      <C-Space>
 
+"                          VIM-OPERATOR-SURROUND                          {{{3
+" ............................................................................
+
+map <silent>Sa <Plug>(operator-surround-append)
+map <silent>Sd <Plug>(operator-surround-delete)
+map <silent>Sc <Plug>(operator-surround-replace)
+
 "                                EASYALIGN                                {{{3
 " ............................................................................
 
@@ -1176,7 +1186,7 @@ vmap  <Leader>c  <Plug>(EasyAlign)
 let g:easy_align_delimiters = {
 \ 't': {'pattern': '\t'},
 \ '\': {'pattern': '\\$', 'stick_to_left': 0},
-\ '<': {'pattern': '<<$', 'stick_to_left': 0},
+\ '<': {'pattern': '<<$', 'stick_to_left': 0, 'ignore_unmatched': 0},
 \ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
 \ }
 

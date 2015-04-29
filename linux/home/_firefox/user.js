@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.06 15:24 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 11:13 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -24,6 +24,9 @@
  *
  * tamper data - kuldott adatok (pl. POST) modositasa
  *  https://addons.mozilla.org/hu/firefox/addon/tamper-data/
+ *
+ * downthemall - kepek/weboldalak tomeges letoltese
+ *  https://addons.mozilla.org/hu/firefox/addon/downthemall/
  *
  * vlc youtube shortcut - video kozvetlenul a vlc-ben (jobbgombos menu)
  * FIGYELEM: mintha kicsit lassitana a firefox-on
