@@ -3,10 +3,14 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.28 22:30 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 08:20 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
+
+" Windows-on nincs a runtimepathban.
+set runtimepath+=$HOME/.vim
+
 " Gyorsitja a vim mukodeset.
 if v:version >= 704
   set regexpengine=1
@@ -51,9 +55,6 @@ if isdirectory(vundle_dir)
                                                                         " }}}2
 
   " .. SAJAT ..............................
-
-  Plugin 'bimbalaszlo/vim-eight'                                        " {{{2
-  " sajat fuggvenyek, parancsok, filetype, tippek, stb.
 
   Plugin 'bimbalaszlo/vim-eightheader'                                  " {{{2
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
@@ -1286,10 +1287,6 @@ if filereadable($VIMRUNTIME . '/autoload/syntaxcomplete.vim')
 endif
 
 " __ MEGJELENES _________________________
-
-" Az aktiv ablak jobban eszreveheto legyen.
-autocmd  WinEnter  *  set cursorline
-autocmd  WinLeave  *  set nocursorline
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
 autocmd  VimResized  *  wincmd =
