@@ -38,8 +38,7 @@ copy             \
 
 header "  CREATING DIRECTORIES"
 
-mkdir -p "$HOME/.vim/.swap/"
-mkdir -p "$HOME/.vim/.undo/"
-mkdir -p "$HOME/.vim/bundle/"
+mkdir -p "$HOME/.vim_local/swap/"
+mkdir -p "$HOME/.vim_local/undo/"
 
 header "DON'T FORGET TO ADD ~/bin TO PATH"

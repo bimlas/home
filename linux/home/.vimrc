@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.30 21:13 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.30 22:20 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -32,13 +32,13 @@ endif
 " "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
 " vissza.
 function BigTerm()
-  return (&term !~ 'ansi\|linux\|win32') || (&columns >= (&textwidth + &numberwidth))
+  return  &columns >= (&textwidth + &numberwidth)
 endfunction
 
 "                                PLUGINOK                                 {{{1
 " ============================================================================
 
-let bundle_dir = $HOME . '/.vim/bundle'
+let bundle_dir = $HOME . '/.vim_local/bundle'
 
 if isdirectory(bundle_dir . '/vundle.vim')
 
@@ -296,6 +296,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \ { 'ctagstype' : 'text',
     \   'kinds'     : [ 'h:table of contents' ]
     \ }
+
+  Plugin 'kabbamine/zeavim.vim'                                         " {{{2
+  " talan a legnormalisabb referencia-bongeszo
+  " $ install zeal @ http://zealdocs.org/
 
   Plugin 'scrooloose/syntastic'                                         " {{{2
   " syntax checker
@@ -808,10 +812,10 @@ set nobackup nowritebackup
 " konyvtarban levo fajlt es figyeld a swap konyvtarat. Zard be oket ugy, hogy
 " a swap fajl megmaradjon (pl.: kill, <Ctrl-Alt-Del>), majd nyisd meg oket
 " ismet, de most forditott sorrendben. A recovery igy nem fog mukodni.
-set directory=$HOME/.vim/.swap
+set directory=$HOME/.vim_local/swap
 
 " Persistent undo.
-set undodir=$HOME/.vim/.undo
+set undodir=$HOME/.vim_local/undo
 set undofile
 
 "                                  KERESES                                {{{1
