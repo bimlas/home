@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.30 09:08 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.30 14:26 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -98,12 +98,14 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 't9md/vim-choosewin'                                           " {{{2
   " easymotion az ablakokon is
 
-    let g:choosewin_label              = 'ASDFHJKL'
     let g:choosewin_label_align        = 'left'
     let g:choosewin_label_padding      = 1
     " let g:choosewin_overlay_enable     = 1
     " let g:choosewin_statusline_replace = 0
     " let g:choosewin_tabline_replace    = 0
+
+    let g:choosewin_label              = 'ASDFHJKL'
+    let g:choosewin_keymap             = {"\<C-K>": 'previous'}
                                                                         " }}}2
 
   " .. TEXTOBJ-USER .......................
@@ -959,13 +961,6 @@ noremap  <Down>  gj
 noremap  H  g^
 noremap  L  g$
 
-" Easymotion.
-map  s          <Plug>(easymotion-s2)
-map  <Leader>f  <Plug>(easymotion-fl)
-map  <Leader>F  <Plug>(easymotion-Fl)
-map  <Leader>t  <Plug>(easymotion-tl)
-map  <Leader>T  <Plug>(easymotion-Tl)
-
 nnoremap          <C-H>  <C-W>q
 nmap      <expr>  <C-K>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
 
@@ -1104,6 +1099,12 @@ function NetrwLynxMap()
   map  <buffer>  l        <CR>
 endfunction
 
+"                               EASYMOTION.                               {{{3
+" ............................................................................
+
+map  s          <Plug>(easymotion-s2)
+map  <Leader>s  <Plug>(easymotion-bd-fl)
+
 "                             CAMELCASEMOTION                             {{{3
 " ............................................................................
 
@@ -1123,7 +1124,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 " ............................................................................
 
 " Fajl megnyitasa Emacs modra.
-nnoremap  <C-P>        :Unite -start-insert -sync -direction=botright file file/new directory/new <CR>
+nnoremap  <C-P>        :Unite -start-insert -sync -direction=botright file file/new directory/new<CR>
 
 " Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
 nnoremap  <Leader>ub   :Unite -start-insert -sync -direction=botright buffer<CR>
@@ -1168,9 +1169,9 @@ imap  <expr>  <Nul>      <C-Space>
 "                                SURROUND                                 {{{3
 " ............................................................................
 
-nmap Qd  <Plug>Dsurround
-nmap Qc  <Plug>Csurround
 nmap Qa  <Plug>Ysurround
+nmap Qs  <Plug>Csurround
+nmap Qd  <Plug>Dsurround
 vmap Q   <Plug>VSurround
 
 "                                EASYALIGN                                {{{3
@@ -1183,7 +1184,7 @@ vmap  <Leader>c  <Plug>(EasyAlign)
 " 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,
 " fuggetlenul attol, hogy abban szerepelt-e.
 let g:easy_align_delimiters = {
-\ '|': {'pattern': '\(\(^\|\s\)\@<=\(\d\+\*\)\?\(\(\d\+\|\.\d\+\|\d\+\.\d\+\)+\)\?\([\^<>]\|\.[\^<>]\|[\^<>]\.[\^<>]\)\?[a-z]\?\)\?|', 'filter': 'v/|=\+$/'},
+\ '|': {'pattern': '\(\(^\|\s\)\@<=\(\d\+\*\)\?\(\(\d\+\|\.\d\+\|\d\+\.\d\+\)+\)\?\([\^<>]\|\.[\^<>]\|[\^<>]\.[\^<>]\)\?[a-z]\?\)\?|', 'filter': 'v/^|=\+$/'},
 \ 't': {'pattern': '\t'},
 \ '\': {'pattern': '\\$', 'stick_to_left': 0},
 \ '<': {'pattern': '<<$', 'stick_to_left': 0, 'ignore_unmatched': 0},
@@ -1300,10 +1301,6 @@ endif
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
 autocmd  VimResized  *  wincmd =
-
-" Aktiv ablak lathatobba tetele
-autocmd  WinEnter  *  set relativenumber
-autocmd  WinLeave  *  set norelativenumber
 
 " Sorok szamozasanak es a specialis karakterek mutatasanak kikapcsolasa a man,
 " quickfix es pydoc buffereknel.
