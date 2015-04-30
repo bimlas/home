@@ -36,4 +36,10 @@ copy             \
   _thunderbird/* \
   $HOME/AppData/Roaming/Thunderbird/Profiles/*/
 
+header "  CREATING DIRECTORIES"
+
+mkdir -p "$HOME/.vim/.swap/"
+mkdir -p "$HOME/.vim/.undo/"
+mkdir -p "$HOME/.vim/bundle/"
+
 header "DON'T FORGET TO ADD ~/bin TO PATH"

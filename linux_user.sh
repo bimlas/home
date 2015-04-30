@@ -45,3 +45,9 @@ link "$CWD/linux/home/.zshrc"         "$HOME/.zshrc"
 
 cd "$CWD/../../"
 link "`pwd`" "$HOME/cuccok"
+
+header "  CREATING DIRECTORIES"
+
+mkdir -p "$HOME/.vim/.swap/"
+mkdir -p "$HOME/.vim/.undo/"
+mkdir -p "$HOME/.vim/bundle/"

@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 21:53 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.30 09:08 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -38,7 +38,7 @@ endfunction
 "                                PLUGINOK                                 {{{1
 " ============================================================================
 
-let bundle_dir = $HOME . '/.vim_bundle'
+let bundle_dir = $HOME . '/.vim/bundle'
 
 if isdirectory(bundle_dir . '/vundle.vim')
 
@@ -179,9 +179,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
     " let g:unite_source_tag_show_location = 0
     let g:unite_source_tag_max_fname_length = 70
-
-  Plugin 'shougo/unite-outline'                                         " {{{2
-  " Outliner - neha jobb, mint a tagbar.
 
   Plugin 'shougo/vimfiler.vim'                                          " {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
@@ -354,7 +351,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'shougo/neosnippet.vim'                                        " {{{2
   " template-ek
 
-    let g:neosnippet#snippets_directory = $HOME . '/.vim/bundle/vim-snippets/snippets'
+    let g:neosnippet#snippets_directory = bundle_dir . '/vim-snippets/snippets'
 
   Plugin 'shougo/neosnippet-snippets'                                   " {{{2
   " template-ek
@@ -587,7 +584,7 @@ let stat_filedir    = '%<%{exists("b:stat_curfiledir") ? b:stat_curfiledir : ""}
 let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-if filereadable($HOME . '/.vim/bundle/tagbar/autoload/tagbar.vim')
+if filereadable(bundle_dir . '/tagbar/autoload/tagbar.vim')
   let stat_tagbar   = '%{(winwidth(0) > 120) ? strpart(tagbar#currenttag("%s",""), 0, 50) : ""}'
 else
   let stat_tagbar   = ''
@@ -792,15 +789,15 @@ let g:ftplugin_sql_omni_key = '<C-X>'
 " talalhato vim-specifikus beallitasok)
 set modeline
 
-" Ne csinaljon biztonsagi masolatokat a fajl mentese elott.
-set nobackup nowritebackup
-
 " Lehetseges sorvegzodesek/karakterkodolasok. Uj fajl letrehozasanal az elso
 " parametert hasznalja.
 set fileformats=unix,dos fileencodings=utf8,cp1250,default
 
 " Uj fajlok letrehozasanal nem jelzi ki a karakterkodolast e nelkul.
 let &fileencoding = matchstr(&fileencodings, '^[^,]\+')
+
+" Ne csinaljon biztonsagi masolatokat a fajl mentese elott.
+set nobackup nowritebackup
 
 " A swap fajlokat csak arra hasznalja, hogy egy szerkesztes alatt levo fajl
 " ujboli megnyitasanal figyelmeztessen. A fugitive plugin helyes mukodesehez
@@ -809,8 +806,11 @@ let &fileencoding = matchstr(&fileencodings, '^[^,]\+')
 " konyvtarban levo fajlt es figyeld a swap konyvtarat. Zard be oket ugy, hogy
 " a swap fajl megmaradjon (pl.: kill, <Ctrl-Alt-Del>), majd nyisd meg oket
 " ismet, de most forditott sorrendben. A recovery igy nem fog mukodni.
-" TODO: tempname()-bol fejtse vissza.
-let &directory = has('win32') ? expand('$TMP') : '/var/tmp,/tmp'
+set directory=$HOME/.vim/.swap
+
+" Persistent undo.
+set undodir=$HOME/.vim/.undo
+set undofile
 
 "                                  KERESES                                {{{1
 " ============================================================================
@@ -892,7 +892,7 @@ set cinoptions=(0,t0,W2
 set foldmethod=marker
 
 " Sajat foldheader.
-let &foldtext = "EightHeaderFolds('\\= s:fullwidth - 2', 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '\\= s:foldlines . \" lines\"', '')"
+let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '', '')"
 
 "                                  DIFFEXPR                               {{{1
 " ============================================================================
@@ -1179,7 +1179,11 @@ vmap Q   <Plug>VSurround
 nmap  <Leader>c  <Plug>(EasyAlign)ip
 vmap  <Leader>c  <Plug>(EasyAlign)
 
+" A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
+" 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,
+" fuggetlenul attol, hogy abban szerepelt-e.
 let g:easy_align_delimiters = {
+\ '|': {'pattern': '\(\(^\|\s\)\@<=\(\d\+\*\)\?\(\(\d\+\|\.\d\+\|\d\+\.\d\+\)+\)\?\([\^<>]\|\.[\^<>]\|[\^<>]\.[\^<>]\)\?[a-z]\?\)\?|', 'filter': 'v/|=\+$/'},
 \ 't': {'pattern': '\t'},
 \ '\': {'pattern': '\\$', 'stick_to_left': 0},
 \ '<': {'pattern': '<<$', 'stick_to_left': 0, 'ignore_unmatched': 0},
@@ -1229,7 +1233,7 @@ xmap  a\|  <Plug>(textobj-between-a)<Bar>
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
-autocmd  FileType  asciidoc  if isdirectory($HOME . '/.vim/bundle/vim-textobj-user') | call TextObjMapsAdoc() | endif
+autocmd  FileType  asciidoc  if isdirectory(bundle_dir . '/vim-textobj-user') | call TextObjMapsAdoc() | endif
 
 function! TextObjMapsAdoc()
   call textobj#user#plugin('adocblock', {
@@ -1296,6 +1300,10 @@ endif
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
 autocmd  VimResized  *  wincmd =
+
+" Aktiv ablak lathatobba tetele
+autocmd  WinEnter  *  set relativenumber
+autocmd  WinLeave  *  set norelativenumber
 
 " Sorok szamozasanak es a specialis karakterek mutatasanak kikapcsolasa a man,
 " quickfix es pydoc buffereknel.
