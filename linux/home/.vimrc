@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.30 14:26 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.30 21:13 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -318,7 +318,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-indentation -d bad-whitespace'
     let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
 
-  if has('lua') | Plugin 'shougo/neocomplete.vim' | end                 " {{{2
+  if has('lua') | exe "Plugin 'shougo/neocomplete.vim'" | endif         " {{{2
   " automatikus kodkiegeszites
   " lua kell hozza (:version +lua)
 
@@ -395,7 +395,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \   }
     \ }
 
-  if has('python') | Plugin 'davidhalter/jedi-vim' | end                " {{{2
+  if has('python') | exe "Plugin 'davidhalter/jedi-vim'" | endif        " {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
 
