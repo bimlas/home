@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.30 22:20 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.03 21:12 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -220,9 +220,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'tyru/open-browser.vim'                                        " {{{2
   " netrw gx helyett
 
-  " Plugin 'ap/vim-css-color'                                           " {{{2
-  " Css szinek megjelenitese.
-  " WARNING: Nagyon belassitja a megjelenitest.
+  Plugin 'lilydjwg/colorizer'                                           " {{{2
+  " Rgb szinek megjelenitese.
                                                                         " }}}2
 
   " .. PROGRAMOZAS ........................
@@ -300,6 +299,12 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'kabbamine/zeavim.vim'                                         " {{{2
   " talan a legnormalisabb referencia-bongeszo
   " $ install zeal @ http://zealdocs.org/
+
+    if isdirectory('c:/app/zeal/')
+      let g:zv_zeal_directory = 'c:/app/zeal/zeal.exe'
+    endif
+
+    autocmd  FileType  ruby  Docset ruby2
 
   Plugin 'scrooloose/syntastic'                                         " {{{2
   " syntax checker
