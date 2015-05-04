@@ -11,6 +11,7 @@
   cm           = "commit -m"
   adac         = "!git ada && git c"
   adacm        = "!git ada && git cm"
+  adacmu       = "!git ada && git cm update"
   ps           = "push --all --follow-tags"
   pl           = "!git fetch; git status; read -p '\nCONTINUE PULLING? Y/[N]' ans; \
                   if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi"

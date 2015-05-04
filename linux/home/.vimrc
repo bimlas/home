@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.03 21:12 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.04 15:43 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -304,7 +304,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
       let g:zv_zeal_directory = 'c:/app/zeal/zeal.exe'
     endif
 
-    autocmd  FileType  ruby  Docset ruby2
+    autocmd  FileType  ruby  Docset ruby 2
 
   Plugin 'scrooloose/syntastic'                                         " {{{2
   " syntax checker
@@ -1091,7 +1091,6 @@ imap                       <F12>        <C-O><F12>
 " ............................................................................
 
 " Kurzor alatti parancs sugojanak megnyitasa.
-noremap  <silent>  K  :call eight#help#call("<C-R>=escape(expand('<cWORD>'), '"\\')<CR>")<CR>
 autocmd  FileType  man  call ManMap()
 function ManMap()
   map    <buffer>  K     <C-]>
