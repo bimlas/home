@@ -15,7 +15,7 @@ endif
 " let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
 set lines=999 columns=999
 
-set relativenumber
+" set relativenumber
 
 " :help guioptions
 set guioptions=cg

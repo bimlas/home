@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.04 15:43 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.05 14:48 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -222,6 +222,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'lilydjwg/colorizer'                                           " {{{2
   " Rgb szinek megjelenitese.
+
+    let g:colorizer_nomap = 1
                                                                         " }}}2
 
   " .. PROGRAMOZAS ........................
@@ -708,7 +710,7 @@ set numberwidth=6
 " Sorok szamozasa, kiveve ha TTY, vagy Win-es parancssor alatt hasznaljuk es
 " a szovegterulet nem elegendoen szeles.
 if BigTerm()
-  set relativenumber
+  " set relativenumber
 endif
 
 " Minden valtoztatasrol tajekoztasson.
@@ -1132,10 +1134,9 @@ vmap gx <Plug>(openbrowser-smart-search)
 " ............................................................................
 
 " Fajl megnyitasa Emacs modra.
-nnoremap  <C-P>        :Unite -start-insert -sync -direction=botright file file/new directory/new<CR>
+nnoremap  <C-P>        :Unite -start-insert -sync -direction=botright file directory/new file/new buffer<CR>
 
 " Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
-nnoremap  <Leader>ub   :Unite -start-insert -sync -direction=botright buffer<CR>
 nnoremap  <Leader>uc   :Unite -start-insert -sync -direction=botright -auto-preview change<CR>
 nnoremap  <Leader>ut   :Unite -start-insert -sync -direction=botright tag<CR>
 nnoremap  <Leader>uB   :VimFiler bookmark:<CR>
@@ -1233,6 +1234,10 @@ omap  i#   <Plug>(textobj-between-i)#
 xmap  i#   <Plug>(textobj-between-i)#
 omap  a#   <Plug>(textobj-between-a)#
 xmap  a#   <Plug>(textobj-between-a)#
+omap  i/   <Plug>(textobj-between-i)/
+xmap  i/   <Plug>(textobj-between-i)/
+omap  a/   <Plug>(textobj-between-a)/
+xmap  a/   <Plug>(textobj-between-a)/
 omap  i\|  <Plug>(textobj-between-i)<Bar>
 xmap  i\|  <Plug>(textobj-between-i)<Bar>
 omap  a\|  <Plug>(textobj-between-a)<Bar>
