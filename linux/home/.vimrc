@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.05 14:48 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.05 21:59 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -79,6 +79,11 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'morhetz/gruvbox'                                              " {{{2
   " terminalban jol mutat
+
+  Plugin 'nathanaelkane/vim-indent-guides'                              " {{{2
+  " sor behuzasanak szinezese, hogy a blokkok jobban kovethetoek legyenek
+
+    let g:indent_guides_enable_on_vim_startup = 1
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
@@ -429,6 +434,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:rubycomplete_classes_in_global = 1
     let g:rubycomplete_rails = 1
     let g:rubycomplete_load_gemfile = 1
+
+  Plugin 'janx/vim-rubytest'                                            " {{{2
+  " ruby tesztek futtatasahoz
                                                                         " }}}2
 
   " .. GIT ................................
