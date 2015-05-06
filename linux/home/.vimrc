@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.05 21:59 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.06 15:44 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -50,8 +50,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " plugin-ok automatizalt telepitese git-en keresztul (is)
 
   Plugin 'shougo/vimproc.vim'                                           " {{{2
-  " Nehany plugin hasznalja. Windows dll:
+  " nehany plugin hasznalja - windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
+
                                                                         " }}}2
 
   " .. SAJAT ..............................
@@ -84,6 +85,12 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " sor behuzasanak szinezese, hogy a blokkok jobban kovethetoek legyenek
 
     let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_color_change_percent  = 4
+    let g:indent_guides_default_mapping       = 0
+
+  " Plugin 'yggdroot/indentline'                                          " {{{2
+  " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
+
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
@@ -138,25 +145,25 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " tuningolt vimgrep
 
     " Alapjaba veve a megnyitott fajl tipusaval megegyezo fajlokban keressen.
-    let EasyGrepMode = 2
+    let g:EasyGrepMode = 2
 
     " A fajl konyvtaraban keressen, ne a cwd-ben.
-    let EasyGrepSearchCurrentBufferDir = 1
+    let g:EasyGrepSearchCurrentBufferDir = 1
 
     " Rekurzivan keressen a konyvtarakban.
-    let EasyGrepRecursive = 1
+    let g:EasyGrepRecursive = 1
 
     " De hagyja ki a kovetkezoket...
     let g:EasyGrepFilesToExclude = ".svn,.git"
 
     " Rejtett fajlokban is keressen.
-    let EasyGrepHidden = 1
+    let g:EasyGrepHidden = 1
 
     " Soronkent tobb egyezest is talalhat. (mint pl.: :s///g)
-    let EasyGrepEveryMatch = 1
+    let g:EasyGrepEveryMatch = 1
 
     " Ne nyisson uj tab-okat a talalatokhoz.
-    let EasyGrepReplaceWindowMode = 2
+    let g:EasyGrepReplaceWindowMode = 2
 
   Plugin 'vis'                                                          " {{{2
   " parancsok futtatasa visual block-on
@@ -177,6 +184,11 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'henrik/vim-qargs'                                             " {{{2
   " quickfix-en beluli fajlokon parancsok vegrehajtasa (Qdo) es masolasa az
   " args-ba (Qargs)
+
+  Plugin 'stefandtw/quickfix-reflector.vim'                             " {{{2
+  " quickfix-en keresztul a fajlok sorainak szerkesztese (:copen, ha nem lehet
+  " szerkeszteni a quickfix-et)
+
                                                                         " }}}2
 
   " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
@@ -390,7 +402,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \     'outputter': 'multi',
     \     'outputter/multi/targets': ['buffer', 'quickfix'],
     \     'outputter/buffer/running_mark': '... RUNNING ...',
-    \     'runner/vimproc/updatetime': 1000,
+    \     'runner': 'vimproc',
     \     'hook/cd/directory': '%S:p:h'
     \   },
     \ 'asciidoc':
@@ -435,8 +447,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:rubycomplete_rails = 1
     let g:rubycomplete_load_gemfile = 1
 
-  Plugin 'janx/vim-rubytest'                                            " {{{2
-  " ruby tesztek futtatasahoz
                                                                         " }}}2
 
   " .. GIT ................................
@@ -1142,7 +1152,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 " ............................................................................
 
 " Fajl megnyitasa Emacs modra.
-nnoremap  <C-P>        :Unite -start-insert -sync -direction=botright file directory/new file/new buffer<CR>
+nnoremap  <C-P>        :Unite -start-insert -sync -direction=botright buffer file directory/new file/new<CR>
 
 " Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
 nnoremap  <Leader>uc   :Unite -start-insert -sync -direction=botright -auto-preview change<CR>
