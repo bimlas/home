@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.06 15:44 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.06 22:19 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -398,30 +398,35 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " \     'hook/output_encode/encoding': 'default',
     let g:quickrun_config = {
     \ '_':
-    \   {
-    \     'outputter': 'multi',
-    \     'outputter/multi/targets': ['buffer', 'quickfix'],
-    \     'outputter/buffer/running_mark': '... RUNNING ...',
-    \     'runner': 'vimproc',
-    \     'hook/cd/directory': '%S:p:h'
-    \   },
+    \ {
+    \   'outputter':                     'multi',
+    \   'outputter/multi/targets':       ['buffer', 'quickfix'],
+    \   'outputter/buffer/running_mark': '... RUNNING ...',
+    \   'runner':                        'vimproc',
+    \   'hook/cd/directory':             '%S:p:h',
+    \   'hook/unittest/enable':          1
+    \ },
     \ 'asciidoc':
-    \   {
-    \     'type': 'asciidoctor',
-    \     'cmdopt': '-o -',
-    \     'outputter': 'browser'
-    \   },
+    \ {
+    \   'command':   'asciidoctor',
+    \   'cmdopt':    '-o -',
+    \   'outputter': 'browser'
+    \ },
     \ 'text':
-    \   {
-    \     'type': 'asciidoctor',
-    \     'cmdopt': '-o -',
-    \     'outputter': 'browser'
-    \   },
+    \ {
+    \   'command':   'asciidoctor',
+    \   'cmdopt':    '-o -',
+    \   'outputter': 'browser'
+    \ },
     \ 'rubyCustom':
-    \   {
-    \     'type': 'irb'
-    \   }
+    \ {
+    \   'command': 'irb'
     \ }
+    \}
+
+  Plugin 'heavenshell/vim-quickrun-hook-unittest'                       " {{{2
+  " tesztek futtatasa kulon-kulon
+  " kar, hogy a minitest meg nem mukodik... :(
 
   if has('python') | exe "Plugin 'davidhalter/jedi-vim'" | endif        " {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
