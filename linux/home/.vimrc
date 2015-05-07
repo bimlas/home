@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.06 22:19 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.07 13:39 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -91,15 +91,17 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " Plugin 'yggdroot/indentline'                                          " {{{2
   " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
 
+  Plugin 'lilydjwg/colorizer'                                           " {{{2
+  " Rgb szinek megjelenitese.
+
+    let g:colorizer_nomap = 1
+
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
 
   " Plugin 'tpope/vim-sexp-mappings-for-regular-people'                 " {{{2
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
-
-  Plugin 'bkad/camelcasemotion'                                         " {{{2
-  " CamelCase/snake_case motion (az ekezetes betuket nem ismeri).
 
   Plugin 'lokaltog/vim-easymotion'                                      " {{{2
   " gyors mozgas a buffer-en belul
@@ -237,10 +239,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'tyru/open-browser.vim'                                        " {{{2
   " netrw gx helyett
 
-  Plugin 'lilydjwg/colorizer'                                           " {{{2
-  " Rgb szinek megjelenitese.
-
-    let g:colorizer_nomap = 1
                                                                         " }}}2
 
   " .. PROGRAMOZAS ........................
@@ -404,7 +402,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \   'outputter/buffer/running_mark': '... RUNNING ...',
     \   'runner':                        'vimproc',
     \   'hook/cd/directory':             '%S:p:h',
-    \   'hook/unittest/enable':          1
     \ },
     \ 'asciidoc':
     \ {
@@ -421,11 +418,40 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \ 'rubyCustom':
     \ {
     \   'command': 'irb'
+    \ },
+    \ 'ruby.rspec':
+    \ {
+    \   'command':              'rspec',
+    \   'cmdopt':               '-f d',
+    \   'hook/unittest/enable': 1
+    \ },
+    \ 'php.unit':
+    \ {
+    \   'command': 'testrunner',
+    \   'cmdopt':  'phpunit',
+    \   'hook/unittest/enable': 1
+    \ },
+    \ 'python.unit':
+    \ {
+    \   'command': 'nosetests',
+    \   'cmdopt':  '-v -s',
+    \   'hook/unittest/enable': 1
+    \ },
+    \ 'python.pytest':
+    \ {
+    \   'command': 'py.test',
+    \   'cmdopt':  '-v',
+    \   'hook/unittest/enable': 1
     \ }
     \}
 
+    autocmd BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
+    autocmd BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
+    " autocmd BufWinEnter,BufNewFile test_*.py setlocal filetype=python.pytest
+    autocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
+
   Plugin 'heavenshell/vim-quickrun-hook-unittest'                       " {{{2
-  " tesztek futtatasa kulon-kulon
+  " tesztek futtatasa kulon-kulon - a beallitasok a quickrun alatt vannak
   " kar, hogy a minitest meg nem mukodik... :(
 
   if has('python') | exe "Plugin 'davidhalter/jedi-vim'" | endif        " {{{2
@@ -447,10 +473,12 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " ruby motyok (pl. omni completion pontosabban mukodik)
 
     " :help ft-ruby-omni
-    let g:rubycomplete_buffer_loading = 1
+    let g:rubycomplete_buffer_loading    = 1
     let g:rubycomplete_classes_in_global = 1
-    let g:rubycomplete_rails = 1
-    let g:rubycomplete_load_gemfile = 1
+    let g:rubycomplete_rails             = 1
+    let g:rubycomplete_load_gemfile      = 1
+    let g:ruby_no_comment_fold           = 1
+    let g:ruby_operators                 = 1
 
                                                                         " }}}2
 
@@ -776,8 +804,11 @@ set lazyredraw
 " Ne adjon ki hangot - a .gvimrc-nek is tartalmaznia kell.
 set visualbell vb t_vb=
 
-" Tordelje el a hosszu sorokat a szavak vegenel. (softbreak)
-set wrap linebreak
+" Tordelje el a hosszu sorokat. (softbreak)
+set wrap
+
+" ... a szavak vegenel.
+" set linebreak
 
 " Sorok osszefuzesenel ket szokoz helyett csak egyet tegyen.
 set nojoinspaces
@@ -1162,13 +1193,14 @@ nnoremap  <C-P>        :Unite -start-insert -sync -direction=botright buffer fil
 " Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
 nnoremap  <Leader>uc   :Unite -start-insert -sync -direction=botright -auto-preview change<CR>
 nnoremap  <Leader>ut   :Unite -start-insert -sync -direction=botright tag<CR>
-nnoremap  <Leader>uB   :VimFiler bookmark:<CR>
+nnoremap  <Leader>ub   :VimFiler bookmark:<CR>
 
 autocmd  FileType  unite  call UniteMaps()
 function UniteMaps()
   " if has('gui_running')
     imap  <buffer>  <C-G>  <Plug>(unite_insert_leave)
     map   <buffer>  <C-G>  <Plug>(unite_all_exit)
+    map   <buffer>  <Esc>  <Plug>(unite_all_exit)
     nmap  <buffer>  h      <Plug>(unite_delete_backward_path)
     nmap  <buffer>  l      <CR>
     nmap  <buffer>  x      astart<CR>
@@ -1210,6 +1242,7 @@ vmap Q   <Plug>VSurround
 " ............................................................................
 
 nmap  <Leader>c  <Plug>(EasyAlign)ip
+nmap  <Leader>C  <Plug>(EasyAlign)
 vmap  <Leader>c  <Plug>(EasyAlign)
 
 " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
