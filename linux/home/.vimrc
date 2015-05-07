@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.07 13:39 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.07 20:59 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -425,22 +425,27 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \   'cmdopt':               '-f d',
     \   'hook/unittest/enable': 1
     \ },
+    \ 'ruby.minitest':
+    \ {
+    \   'command':              'ruby',
+    \   'hook/unittest/enable': 1
+    \ },
     \ 'php.unit':
     \ {
-    \   'command': 'testrunner',
-    \   'cmdopt':  'phpunit',
+    \   'command':              'testrunner',
+    \   'cmdopt':               'phpunit',
     \   'hook/unittest/enable': 1
     \ },
     \ 'python.unit':
     \ {
-    \   'command': 'nosetests',
-    \   'cmdopt':  '-v -s',
+    \   'command':              'nosetests',
+    \   'cmdopt':               '-v -s',
     \   'hook/unittest/enable': 1
     \ },
     \ 'python.pytest':
     \ {
-    \   'command': 'py.test',
-    \   'cmdopt':  '-v',
+    \   'command':              'py.test',
+    \   'cmdopt':               '-v',
     \   'hook/unittest/enable': 1
     \ }
     \}
@@ -449,6 +454,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     autocmd BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
     " autocmd BufWinEnter,BufNewFile test_*.py setlocal filetype=python.pytest
     autocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
+    autocmd BufWinEnter,BufNewFile *_test.rb setlocal filetype=ruby.minitest
 
   Plugin 'heavenshell/vim-quickrun-hook-unittest'                       " {{{2
   " tesztek futtatasa kulon-kulon - a beallitasok a quickrun alatt vannak
