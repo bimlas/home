@@ -1,15 +1,10 @@
 // Hogy a Gmail-t is hasznalhasd:
 // https://www.google.com/settings/security/lesssecureapps
 // Ne felejtsd el engedelyezni az IMAP-ot!
-//
-// Egy hasznos kiegeszito:
-// https://addons.mozilla.org/hu/thunderbird/addon/gmail-conversation-view/
-// Ne felejtsd el a beallitasok kozott bekapcsolni az "I love attachments"
-// opciot, kulonben neha nem mutatja meg a csatolt fajlokat.
-//
+
 // Usenet (Google csoportok):
-// news.gmane.org
-//
+//  news.gmane.org
+
 // UTF8 hasznalata a levelekben.
 user_pref("mailnews.reply_in_default_charset", true);
 user_pref("mailnews.send_default_charset", "UTF-8");
@@ -22,3 +17,28 @@ user_pref("mail.identity.id1.htmlSigText", "http://BimbaLaszlo.github.io/");
 // Minden imap konyvtar frissitese.
                                      // Ez meg nem tiszta, hogy mit is csinal.
 user_pref("mail.check_all_imap_folders_for_new", true);
+// Percenkent frissitsen.
+user_pref("mail.server.server1.check_time", 1);
+
+// __ GMAIL-SZERU MUKODESHEZ ____________
+//
+// * menu / nezet / rendezes / temacsoport szerint
+
+// * beallitasok / postafiok beallitasai / masolatok es mappak /
+//   uzenetkuldeskor automatikusan masolat elhelyezese / az uzenetre adott
+//   valaszok elhelyezese az uzenettel megegyezo mappaban
+//
+//   Ez azert jo, mert igy a beerkezo es elkuldott levelek is egy konyvtarban
+//   lesznek, viszont csak ez utan lesz igy - a korabbi levelek meg kulon
+//   maradnak.
+user_pref("mail.identity.id1.fcc_reply_follows_parent", true);
+
+// * szinkronizalas es tarhely / uzenetek szinkronizalasa / uzenetek
+//   megtartasa ne legyen bekapcsolva
+user_pref("mail.server.server1.offline_download", false);
+
+// __ HASZNOS KIEGESZITOK _______________
+//
+//  * https://addons.mozilla.org/hu/thunderbird/addon/google-contacts/
+//    A bellitasokban pipald be a "load contacts at startup" gombot.
+user_pref("gmcont.auth_at_startup", true);

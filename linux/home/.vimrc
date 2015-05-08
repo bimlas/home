@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.07 20:59 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.08 15:35 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -458,7 +458,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'heavenshell/vim-quickrun-hook-unittest'                       " {{{2
   " tesztek futtatasa kulon-kulon - a beallitasok a quickrun alatt vannak
-  " kar, hogy a minitest meg nem mukodik... :(
 
   if has('python') | exe "Plugin 'davidhalter/jedi-vim'" | endif        " {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok

@@ -6,3 +6,6 @@
 
 # Turn off speaker - since zsh i don't need it.
 xset b off
+
+# Ctrl to CapsLock
+setxkbmap -option ctrl:nocaps
