@@ -2,6 +2,12 @@
 " :listoptions
 " http://5digits.org/help/pentadactyl/options.xhtml
 
+" Hogy Win-en es Linuxon is ugyanaz legyen.
+set runtimepath=~/.pentadactyl
+
+" Szinsema a szokasosra.
+colorscheme solarized-light
+
 " Mutassa a konyvjelzosavot es a toolbar-t.
 set guioptions+=BT
 

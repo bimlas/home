@@ -26,6 +26,7 @@ header "  SYMLINK"
 
 link "$CWD/linux/home/bin/"           "$HOME/bin"
 link "$CWD/linux/home/.git_template/" "$HOME/.git_template"
+link "$CWD/linux/home/.pentadactyl/"  "$HOME/.pentadactyl"
 link "$CWD/linux/home/.vim/"          "$HOME/.vim"
 link "$CWD/linux/home/.bashrc"        "$HOME/.bashrc"
 link "$CWD/linux/home/.conkyrc"       "$HOME/.conkyrc"
