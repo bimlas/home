@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.10 20:24 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.12 12:12 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -235,6 +235,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
+
+  Plugin 'locator'                                                      " {{{2
+  " a gl megmutatja hol vagy (fold, func, stb.)
 
   Plugin 'tpope/vim-repeat'                                             " {{{2
   " repeat (.) plugin-okon is
@@ -1212,7 +1215,7 @@ function UniteMaps()
     nmap  <buffer>  h      <Plug>(unite_delete_backward_path)
     nmap  <buffer>  l      <CR>
     nmap  <buffer>  x      astart<CR>
-    imap  <buffer>  /  /*
+    imap  <buffer>  /      /*
   " endif
 endfunction
 
