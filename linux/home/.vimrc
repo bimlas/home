@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.12 12:12 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.12 21:47 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -90,6 +90,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_color_change_percent  = 4
     let g:indent_guides_default_mapping       = 0
+    let g:indent_guides_guide_size            = 1
 
   " Plugin 'yggdroot/indentline'                                          " {{{2
   " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
