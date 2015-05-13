@@ -1,9 +1,13 @@
 " eightcmd.vim: commands to invoke my functions
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 21:35 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.13 14:00 ==
+
+augroup eightcmd
+  autocmd!
+augroup END
 
 let g:writepre_disabled = 0
-autocmd  BufWritePre  *  call eight#writepre#call()
+autocmd  eightcmd  BufWritePre  *  call eight#writepre#call()
 
 if ! exists( '*Helptags' )
   command!  -nargs=?                  Helptags              call eight#helptags#call()
@@ -26,7 +30,7 @@ command!                              DiffOrig              vert new SAVED FILE 
 
 " Sorok tordelese kulon-kulon. (bemasolt szoveg formazasahoz)
 command!  -nargs=0 -range             AdocFormat            silent <line1>,<line2> g/.\+/ normal A +<C-C>gqq:nohlsearch<CR>
-" autocmd  FileType  asciidoc  vnoremap  Q  :AdocFormat<CR>$hD
+autocmd  eightcmd  FileType  asciidoc  vnoremap gQ          :AdocFormat<CR>$hD
 
 " A mintara illeszkedo szovegen kivul toroljon mindent.
 " http://stackoverflow.com/a/6249291

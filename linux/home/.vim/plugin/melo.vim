@@ -16,6 +16,9 @@ endfunction
 
 if $USERNAME == 'Laci'
   let g:statfugitive_disabled = 1
-  autocmd  BufNewFile  *.txt  set fileencoding=default
-  autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileencoding=default | endif
+  augroup melo
+    autocmd!
+    autocmd  BufNewFile  *.txt  set fileencoding=default
+    autocmd  BufRead     *.txt  if ! getfsize( expand( '%' ) ) | set fileencoding=default | endif
+  augroup END
 endif

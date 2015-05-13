@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.12 21:47 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.13 15:35 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -20,6 +20,12 @@ endif
 if ! has('win32')
   language en_US.utf8
 endif
+
+" Letrehozunk egy autocmd group-ot.
+" http://rbtnn.hateblo.jp/entry/2014/12/28/010913
+augroup vimrc
+  autocmd!
+augroup END
 
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
@@ -84,13 +90,16 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'blueyed/vim-diminactive'                                      " {{{2
   " Aktiv ablak/buffer kiemelese.
 
+    let g:diminactive_buftype_blacklist  = []
+    let g:diminactive_filetype_blacklist = []
+
   Plugin 'nathanaelkane/vim-indent-guides'                              " {{{2
   " sor behuzasanak szinezese, hogy a blokkok jobban kovethetoek legyenek
 
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_color_change_percent  = 4
     let g:indent_guides_default_mapping       = 0
-    let g:indent_guides_guide_size            = 1
+    " let g:indent_guides_guide_size            = 1
 
   " Plugin 'yggdroot/indentline'                                          " {{{2
   " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
@@ -98,7 +107,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'lilydjwg/colorizer'                                           " {{{2
   " Rgb szinek megjelenitese.
 
-    let g:colorizer_nomap = 1
+    let g:colorizer_nomap    = 1
+    let g:colorizer_maxlines = 1000
 
                                                                         " }}}2
 
@@ -328,7 +338,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
       let g:zv_zeal_directory = 'c:/app/zeal/zeal.exe'
     endif
 
-    autocmd  FileType  ruby  Docset ruby 2
+    autocmd  vimrc  FileType  ruby  Docset ruby 2
 
   Plugin 'scrooloose/syntastic'                                         " {{{2
   " syntax checker
@@ -386,10 +396,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'shougo/neosnippet.vim'                                        " {{{2
   " template-ek
 
-    let g:neosnippet#snippets_directory = bundle_dir . '/vim-snippets/snippets'
-
-  Plugin 'shougo/neosnippet-snippets'                                   " {{{2
-  " template-ek
+    let g:neosnippet#disable_runtime_snippets      = {'_': 1}
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#snippets_directory            = bundle_dir . '/vim-snippets/snippets'
 
   Plugin 'honza/vim-snippets'                                           " {{{2
   " template-ek
@@ -457,11 +466,11 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \ }
     \}
 
-    autocmd BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
-    autocmd BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
-    " autocmd BufWinEnter,BufNewFile test_*.py setlocal filetype=python.pytest
-    autocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
-    autocmd BufWinEnter,BufNewFile *_test.rb setlocal filetype=ruby.minitest
+    autocmd vimrc BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
+    autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
+    " autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.pytest
+    autocmd vimrc BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
+    autocmd vimrc BufWinEnter,BufNewFile *_test.rb setlocal filetype=ruby.minitest
 
   Plugin 'heavenshell/vim-quickrun-hook-unittest'                       " {{{2
   " tesztek futtatasa kulon-kulon - a beallitasok a quickrun alatt vannak
@@ -655,7 +664,7 @@ highlight TagbarHighlight term=inverse ctermfg=White
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-autocmd  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
+autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
 let stat_filedir    = '%<%{exists("b:stat_curfiledir") ? b:stat_curfiledir : ""}'
 let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
 let stat_filename   = '%w%t%r%m'
@@ -709,8 +718,8 @@ let g:statwarn = [ { 'pattern' : '^ .*\n\zs\t\|^\t.*\n\zs ', 'format' : '^%d' },
 " Cursorhold max lines.
 let g:statwarn_max_lines = 5000
 
-autocmd CursorHold   * if line('$') <= g:statwarn_max_lines | silent! unlet b:statwarn | endif
-autocmd BufWritePost * silent! unlet b:statwarn
+autocmd vimrc  CursorHold   * if line('$') <= g:statwarn_max_lines | silent! unlet b:statwarn | endif
+autocmd vimrc  BufWritePost * silent! unlet b:statwarn
 
 function StatWarn()
 
@@ -1159,7 +1168,7 @@ imap                       <F12>        <C-O><F12>
 " ............................................................................
 
 " Kurzor alatti parancs sugojanak megnyitasa.
-autocmd  FileType  man  call ManMap()
+autocmd  vimrc  FileType  man  call ManMap()
 function ManMap()
   map    <buffer>  K     <C-]>
   map    <buffer>  <CR>  <C-]>
@@ -1169,7 +1178,7 @@ endfunction
 " ............................................................................
 
 " Lynx-szeru mozgas netrw-ben.
-autocmd  FileType  netrw  call NetrwLynxMap()
+autocmd  vimrc  FileType  netrw  call NetrwLynxMap()
 function NetrwLynxMap()
   map  <buffer>  h        -
   map  <buffer>  l        <CR>
@@ -1200,14 +1209,15 @@ vmap gx <Plug>(openbrowser-smart-search)
 " ............................................................................
 
 " Fajl megnyitasa Emacs modra.
-nnoremap  <C-P>        :Unite -start-insert -sync -direction=botright buffer file directory/new file/new<CR>
+nnoremap  <C-P>          :Unite -start-insert -sync -direction=botright buffer file directory/new file/new<CR>
+nnoremap  <Leader><C-P>  :UniteResume<CR>
 
 " Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
-nnoremap  <Leader>uc   :Unite -start-insert -sync -direction=botright -auto-preview change<CR>
-nnoremap  <Leader>ut   :Unite -start-insert -sync -direction=botright tag<CR>
-nnoremap  <Leader>ub   :VimFiler bookmark:<CR>
+nnoremap  <C-B>          :Unite -start-insert -sync -direction=botright buffer<CR>
+nnoremap  <Leader>uc     :Unite -start-insert -sync -direction=botright change<CR>
+nnoremap  <Leader>ub     :VimFiler bookmark:<CR>
 
-autocmd  FileType  unite  call UniteMaps()
+autocmd  vimrc  FileType  unite  call UniteMaps()
 function UniteMaps()
   " if has('gui_running')
     imap  <buffer>  <C-G>  <Plug>(unite_insert_leave)
@@ -1220,7 +1230,7 @@ function UniteMaps()
   " endif
 endfunction
 
-autocmd  FileType  vimfiler  call VimfilerMaps()
+autocmd  vimrc  FileType  vimfiler  call VimfilerMaps()
 function VimfilerMaps()
     " Unite-szeru gyorskereses.
     nmap  <buffer>  i      :Unite line -start-insert -winheight=10<CR>
@@ -1280,10 +1290,10 @@ nnoremap  <Leader>9  :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '
 
 " __ VIMHELP ____________________________
 
-autocmd  FileType  help  nnoremap <buffer>  <Leader>1
+autocmd  vimrc  FileType  help  nnoremap <buffer>  <Leader>1
 \ :call EightHeader(78, 'left', 1, ' ', '\= "*".matchstr(s:str, ";\\@<=.*")."*"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
 
-autocmd  FileType  help  noremap <buffer>  <Leader>2
+autocmd  vimrc  FileType  help  noremap <buffer>  <Leader>2
 \ :call EightHeader(78, 'left', 1, '.', '\= "\|".matchstr(s:str, ";\\@<=.*")."\|"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
 
 "                              TEXTOBJ-USER                               {{{3
@@ -1315,7 +1325,7 @@ xmap  a\|  <Plug>(textobj-between-a)<Bar>
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
-autocmd  FileType  asciidoc  if isdirectory(bundle_dir . '/vim-textobj-user') | call TextObjMapsAdoc() | endif
+autocmd  vimrc  FileType  asciidoc  if isdirectory(bundle_dir . '/vim-textobj-user') | call TextObjMapsAdoc() | endif
 
 function! TextObjMapsAdoc()
   call textobj#user#plugin('adocblock', {
@@ -1360,33 +1370,33 @@ endfunction
 " kell ilyen nyakatekerten megoldani, mert ha pl. krusader-bol, vagy tcmd-bol
 " hozunk letre egy uj fajt, akkor a BufNewFile nem ervenyes ra, mivel a fajl
 " mar letezik, mikor a Vim megnyitja azt.
-autocmd  BufNewFile  *.txt  set fileformat=dos
-autocmd  BufRead     *.txt  if ! getfsize(expand('%')) | set fileformat=dos | endif
+autocmd  vimrc  BufNewFile  *.txt  set fileformat=dos
+autocmd  vimrc  BufRead     *.txt  if ! getfsize(expand('%')) | set fileformat=dos | endif
 
 " :help fo-table. Azert autocmd, mert minden fajltipus felulirja a
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
 " lenne.
-autocmd  FileType  *    setlocal formatoptions+=con formatoptions-=l
+autocmd  vimrc  FileType  *    setlocal formatoptions+=con formatoptions-=l
 if v:version >= 704
-  autocmd  FileType  *  setlocal formatoptions+=j
+  autocmd  vimrc  FileType  *  setlocal formatoptions+=j
 endif
 
 " __ COMPLETION _________________________
 
 " Fajltipus alapjan allitsa be az omni-completion-t.
 if filereadable($VIMRUNTIME . '/autoload/syntaxcomplete.vim')
-  autocmd  FileType  *  if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
+  autocmd  vimrc  FileType  *  if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
 endif
 
 " __ MEGJELENES _________________________
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
-autocmd  VimResized  *  wincmd =
+autocmd  vimrc  VimResized  *  wincmd =
 
 " Sorok szamozasanak es a specialis karakterek mutatasanak kikapcsolasa a man,
 " quickfix es pydoc buffereknel.
-autocmd  FileType  man,qf   setlocal nonumber nolist
-autocmd  BufNew    __doc__  setlocal nonumber nolist
+autocmd  vimrc  FileType  man,qf   setlocal nonumber nolist
+autocmd  vimrc  BufNew    __doc__  setlocal nonumber nolist
 
 " Make hiba eseten nyissa meg a hibaablakot.
-autocmd  QuickFixCmdPost  *  botright cwindow
+autocmd  vimrc  QuickFixCmdPost  *  botright cwindow
