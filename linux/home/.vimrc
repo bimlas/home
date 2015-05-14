@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.13 21:45 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.14 09:36 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -105,11 +105,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   " Plugin 'yggdroot/indentline'                                          " {{{2
   " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
-
-  Plugin 'oblitum/rainbow'                                              " {{{2
-  " paros jelek szinezese ((), <>, [], stb.)
-
-    let g:rainbow_active = 1
 
   Plugin 'lilydjwg/colorizer'                                           " {{{2
   " Rgb szinek megjelenitese.
