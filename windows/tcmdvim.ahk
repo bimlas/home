@@ -2,12 +2,13 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 
+; ControlGetFocus _focused, a
+; If _focused = Edit1
+  ; Return
+
 #if WinActive("ahk_class TTOTAL_CMD")
   ; Disable CapsLock::Ctrl, check for GetKeyState("CapsLock", "P") instead.
   CapsLock::Return
-
-  ; ControlGetFocus, ClassNN, ahk_class TTOTAL_CMD
-  ; If ClassNN = Edit1
 
   h::
   {

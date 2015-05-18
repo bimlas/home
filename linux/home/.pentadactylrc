@@ -9,7 +9,7 @@ set runtimepath=~/.pentadactyl
 colorscheme solarized-light
 
 " Mutassa a konyvjelzosavot es a toolbar-t.
-set guioptions+=BT
+set guioptions+=T
 
 " Mindig mutassa a parancssort.
 set guioptions+=c

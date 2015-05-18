@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.17 12:47 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.18 15:35 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -408,6 +408,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'hrsh7th/vim-neco-calc'                                        " {{{2
   " aranyos szamologep a neovomplete-hez (calc source)
 
+  Plugin 'shougo/vimshell'                                              " {{{2
+  " shell (vagy repl) a vim-en belul
+
   Plugin 'thinca/vim-quickrun'                                          " {{{2
   " buffer, vagy kijelolt kod futtatasa
 
@@ -671,11 +674,11 @@ let stat_filedir    = '%<%{exists("b:stat_curfiledir") ? b:stat_curfiledir : ""}
 let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-if filereadable(bundle_dir . '/tagbar/autoload/tagbar.vim')
-  let stat_tagbar   = '%{(winwidth(0) > 120) ? strpart(tagbar#currenttag("%s",""), 0, 50) : ""}'
-else
+" if filereadable(bundle_dir . '/tagbar/autoload/tagbar.vim')
+  " let stat_tagbar   = '%{(winwidth(0) > 120) ? strpart(tagbar#currenttag("%s",""), 0, 50) : ""}'
+" else
   let stat_tagbar   = ''
-endif
+" endif
 let stat_lineinfo   = '%4l:%3p%%|%3v'
 
 let &statusline  = stat_bufnr . ' '
@@ -1126,6 +1129,9 @@ imap                       <F1>         <C-O><F1>
 " Terminal megnyitasa.
 nnoremap  <silent> <expr>  <F2>         has('win32') ? ':silent !start conemu64.exe<CR>' : ':silent !xterm &<CR>'
 imap                       <F2>         <C-O><F2>
+" Repl megnyitasa.
+nnoremap                   <S-F2>       :VimShellInteractive<CR>
+imap                       <S-F2>       <C-O><S-F2>
 
 " Gitv - git commit-ok amelyben a fajl valtozott.
 nnoremap                   <F3>         :Gitv!<CR>
