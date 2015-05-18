@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.18 15:35 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.18 22:11 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -107,11 +107,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
 
   Plugin 'lilydjwg/colorizer'                                           " {{{2
-  " Rgb szinek megjelenitese.
+  " rgb szinek megjelenitese
 
     let g:colorizer_nomap    = 1
     let g:colorizer_maxlines = 1000
-
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
@@ -1217,7 +1216,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 " ............................................................................
 
 " Fajl megnyitasa Emacs modra.
-nnoremap  <C-P>          :Unite -start-insert -sync -direction=botright buffer file directory/new file/new<CR>
+nnoremap  <C-P>          :Unite -start-insert -sync -direction=botright buffer file_rec/async directory/new file/new<CR>
 nnoremap  <Leader><C-P>  :UniteResume<CR>
 
 " Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
