@@ -77,11 +77,11 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("31a01668c84d03862a970c471edbd377b2430868eccf5e8a9aec6831f1a0908d" default)))
+    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "31a01668c84d03862a970c471edbd377b2430868eccf5e8a9aec6831f1a0908d" default)))
  '(global-auto-complete-mode t)
- '(show-paren-mode t)
- '(global-visual-line-mode 1)
  '(global-linum-mode t)
+ '(global-visual-line-mode 1)
+ '(show-paren-mode t)
  '(sr-cursor-follows-mouse nil)
  '(sr-listing-switches "-alhk")
  '(sr-show-hidden-files t))
@@ -108,7 +108,7 @@
 ;                               TELEPITETT                                {{{2
 ; ____________________________________________________________________________
 
-; (evil-mode)
+(evil-mode)
 
 ; Ez valamiert az utolso sorban akar csak mukodni.
-(load-theme 'solarized-light)
+(load-theme 'solarized)

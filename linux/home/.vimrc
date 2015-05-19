@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.18 22:11 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.19 15:23 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -215,6 +215,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
     " let g:unite_source_tag_show_location = 0
     let g:unite_source_tag_max_fname_length = 70
+    if has('win32')
+      let g:unite_source_rec_async_command = escape($VIMRUNTIME . '\find.exe', '\\')
+    end
 
   Plugin 'shougo/vimfiler.vim'                                          " {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
@@ -406,9 +409,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'hrsh7th/vim-neco-calc'                                        " {{{2
   " aranyos szamologep a neovomplete-hez (calc source)
-
-  Plugin 'shougo/vimshell'                                              " {{{2
-  " shell (vagy repl) a vim-en belul
 
   Plugin 'thinca/vim-quickrun'                                          " {{{2
   " buffer, vagy kijelolt kod futtatasa
@@ -1128,9 +1128,6 @@ imap                       <F1>         <C-O><F1>
 " Terminal megnyitasa.
 nnoremap  <silent> <expr>  <F2>         has('win32') ? ':silent !start conemu64.exe<CR>' : ':silent !xterm &<CR>'
 imap                       <F2>         <C-O><F2>
-" Repl megnyitasa.
-nnoremap                   <S-F2>       :VimShellInteractive<CR>
-imap                       <S-F2>       <C-O><S-F2>
 
 " Gitv - git commit-ok amelyben a fajl valtozott.
 nnoremap                   <F3>         :Gitv!<CR>
@@ -1195,7 +1192,11 @@ endfunction
 " ............................................................................
 
 map  s          <Plug>(easymotion-s2)
-map  <Leader>s  <Plug>(easymotion-bd-fl)
+" map  <Leader>s  <Plug>(easymotion-bd-fl)
+map  <Leader>t  <Plug>(easymotion-tl)
+map  <Leader>T  <Plug>(easymotion-Tl)
+map  <Leader>f  <Plug>(easymotion-fl)
+map  <Leader>F  <Plug>(easymotion-Fl)
 
 "                             CAMELCASEMOTION                             {{{3
 " ............................................................................
@@ -1216,13 +1217,12 @@ vmap gx <Plug>(openbrowser-smart-search)
 " ............................................................................
 
 " Fajl megnyitasa Emacs modra.
-nnoremap  <C-P>          :Unite -start-insert -sync -direction=botright buffer file_rec/async directory/new file/new<CR>
-nnoremap  <Leader><C-P>  :UniteResume<CR>
+nnoremap  <C-P>       :Unite -start-insert -sync -direction=botright buffer file directory/new file/new<CR>
 
 " Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
-nnoremap  <C-B>          :Unite -start-insert -sync -direction=botright buffer<CR>
-nnoremap  <Leader>uc     :Unite -start-insert -sync -direction=botright change<CR>
-nnoremap  <Leader>ub     :VimFiler bookmark:<CR>
+nnoremap  <C-B>       :Unite -start-insert -sync -direction=botright buffer<CR>
+nnoremap  <Leader>uc  :Unite -start-insert -sync -direction=botright change<CR>
+nnoremap  <Leader>ub  :VimFiler bookmark:<CR>
 
 autocmd  vimrc  FileType  unite  call UniteMaps()
 function UniteMaps()
