@@ -17,11 +17,14 @@
 
 (setq package-list '(evil                   ; vim mode
                      color-theme-solarized  ; light/dark color theme
-                     rainbow-mode           ; hex/rgb szines megjelenitese
-                     sunrise-commander      ; double panel commander
-                     auto-complete          ; auto completion
+                     ; rainbow-mode           ; hex/rgb szines megjelenitese
+                     ; sunrise-commander      ; double panel commander
+                     helm                   ; minibuffer-kiegeszites (kb. unite)
+                     ace-jump-mode            ; easymotion (C-c Space)
+                     ; auto-complete          ; auto completion
                      ; company                ; auto completion
-                     magit                  ; git
+                     ; quickrun               ; quickrun
+                     ; magit                  ; git
                      ))
 
 (setq package-archives '(("elpa"  . "http://tromey.com/elpa/")
@@ -53,6 +56,20 @@
 ; Ha elerheto, akkor ez legyen az alap betutipus.
 (when (member "DejaVu Sans Mono" (font-family-list))
   (set-face-attribute 'default nil :font "DejaVu Sans Mono"))
+
+; runtimepath
+; http://emacswiki.org/emacs/LoadPath
+(let ((default-directory "~/.emacs.d/local/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
+; ~/.emacs.d/local/doc-mode
+; http://sourceforge.net/projects/xpt/files/doc-mode/
+; (require 'doc-mode)
+
+;                                FILETYPE                                 {{{1
+; ============================================================================
+
+(add-to-list 'auto-mode-alist '("\\.adoc$" . doc-mode))
 
 ;                           KORNYEZETI VALTOZOK                           {{{2
 ; ____________________________________________________________________________
@@ -95,20 +112,42 @@
 ;                                   MAP                                   {{{1
 ; ============================================================================
 
-(global-set-key (kbd "C-SPC") 'completion-at-point)
+; (global-set-key (kbd "C-SPC") 'completion-at-point)
+(global-set-key (kbd "C-SPC") 'ace-jump-char-mode)
 
 ;                            PLUGINOK INDITASA                            {{{1
 ; ============================================================================
 
-;                                BUILTINS                                 {{{2
+;                                   IDO                                   {{{2
 ; ____________________________________________________________________________
 
-(ido-mode)
+; <C-X><C-F>  fajlok megnyitasa, ala CtrlP.
+; <C-X>b      bufferek megnyitasa
+; (ido-mode 1)
 
-;                               TELEPITETT                                {{{2
+;                                  EVIL                                   {{{2
 ; ____________________________________________________________________________
 
-(evil-mode)
+; (evil-mode 1)
+
+;                                  HELM                                   {{{2
+; ____________________________________________________________________________
+
+(helm-mode 1)
+
+(helm-autoresize-mode 1)
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-i")   'helm-execute-persistent-action) ; make TAB works in terminal
+(define-key helm-map (kbd "C-z")   'helm-select-action)             ; list actions using C-z
+
+(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-ff-file-name-history-use-recentf t)
+
+;                                SOLARIZED                                {{{2
+; ____________________________________________________________________________
 
 ; Ez valamiert az utolso sorban akar csak mukodni.
 (load-theme 'solarized)
