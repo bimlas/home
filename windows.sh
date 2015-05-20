@@ -25,6 +25,7 @@ copy --recursive   \
   ".gitconfig"     \
   ".gvimrc"        \
   ".pentadactylrc" \
+  ".spacemacs"     \
   ".vimrc"         \
   "$HOME"
 
