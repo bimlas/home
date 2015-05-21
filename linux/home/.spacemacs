@@ -17,7 +17,10 @@
      ;; Example of useful layers you may want to use right away
      ;; Uncomment a layer name and press C-c C-c to install it
      ;; --------------------------------------------------------
+     ;; To get the list of layers, SPC f e h, modify .spacemacs, then
+     ;; SPC f e R
      auto-completion
+     ; ycmd
      syntax-checking
      ruby
      ;; better-defaults
@@ -174,6 +177,8 @@ layers configuration."
   ;; Custom maps.
   (define-key evil-motion-state-map           (kbd "C-k")   'evil-window-next)
   (define-key evil-normal-state-map           (kbd "C-k")   'evil-window-next)
+  (define-key evil-normal-state-map           (kbd "H")     'evil-first-non-blank-of-visual-line)
+  (define-key evil-normal-state-map           (kbd "L")     'evil-end-of-visual-line)
   (define-key evil-motion-state-map           (kbd "s")     'evil-ace-jump-char-mode)
   (define-key evil-normal-state-map           (kbd "s")     'evil-ace-jump-char-mode)
   ;; TODO: not works
@@ -188,7 +193,26 @@ layers configuration."
   ;;  http://www.reddit.com/r/emacs/comments/35eoq3/how_i_use_vim_transferring_to_emacs_spacemacs
   ;;  TODO: fold, quickrun, easyalign, scroll margin, g; after exit, smartcase
   ;;  search, rainbowdeleimiters global off, smartparens global off
-)
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
+  ;; http://www.emacswiki.org/emacs/OutlineMinorMode#toc8
+    (defun set-vim-foldmarker (fmr)
+      "Set Vim-type foldmarkers for the current buffer"
+      (interactive "sSet local Vim foldmarker: ")
+      (if (equal fmr "")
+          (message "Abort")
+        (setq fmr (regexp-quote fmr))
+        (set (make-local-variable 'outline-regexp)
+             (concat ".*" fmr "\\([0-9]+\\)"))
+        (set (make-local-variable 'outline-level)
+             `(lambda ()
+                (save-excursion
+                  (save-match-data
+                    (re-search-forward ,(concat fmr "\\([0-9]+\\)") nil t)
+                    (string-to-number (match-string 1))))))))
+
+    (outline-minor-mode t)
+    (set-vim-foldmarker "{{{")
+  )
+
+  ;; Do not write anything past this comment. This is where Emacs will
+  ;; auto-generate custom variable definitions.
