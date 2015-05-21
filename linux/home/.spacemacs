@@ -1,4 +1,5 @@
 ;; -*- mode: dotspacemacs -*-
+;; vim: filetype=lisp
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -16,13 +17,14 @@
      ;; Example of useful layers you may want to use right away
      ;; Uncomment a layer name and press C-c C-c to install it
      ;; --------------------------------------------------------
-     ;; auto-completion
+     auto-completion
+     syntax-checking
+     ruby
      ;; better-defaults
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
      ;; markdown
      ;; org
-     ;; syntax-checking
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -49,7 +51,7 @@ before layers configuration."
    ;; directory. A string value must be a path to a .PNG file.
    ;; If the value is nil then no banner is displayed.
    ;; dotspacemacs-startup-banner 'official
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'random
    ;; t if you always want to see the changelog at startup
    dotspacemacs-always-show-changelog t
    ;; List of items to show in the startup buffer. If nil it is disabled.
@@ -67,7 +69,7 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("DejaVu Sans Mono"
                                :size 13
                                :weight normal
                                :width normal
@@ -105,7 +107,7 @@ before layers configuration."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'.
@@ -140,8 +142,52 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (setq-default
+    ;; Textwidth, fill only the comments.
+    set-fill-column 78
+    comment-auto-fill-only-comments t
+    ;; Put newline to the end of the file as Vim does.
     require-final-newline t
+    ;; Highlight the whole text between pairs.
+    show-paren-style 'expression
+    indent-guide-delay 0.5
+    ;; Move to end or beginning of source when reaching top or bottom of source.
+    ; helm-move-to-line-cycle-in-source t
+    auto-completion-enable-company-help-tooltip t
   )
+  (add-hook 'prog-mode-hook #'indent-guide-mode)
+  (add-hook 'prog-mode-hook #'company-mode)
+  (add-hook 'prog-mode-hook #'flycheck-mode)
+  ;; Global remaps to quit.
+  ;; TODO: visual block.
+  (define-key evil-insert-state-map           (kbd "C-g")   'evil-force-normal-state)
+  (define-key evil-normal-state-map           (kbd "C-g")   'keyboard-escape-quit)
+  (define-key evil-visual-state-map           (kbd "C-g")   'keyboard-escape-quit)
+  (define-key minibuffer-local-map            (kbd "C-g")   'keyboard-escape-quit)
+  (define-key minibuffer-local-ns-map         (kbd "C-g")   'keyboard-escape-quit)
+  (define-key minibuffer-local-completion-map (kbd "C-g")   'keyboard-escape-quit)
+  (define-key minibuffer-local-must-match-map (kbd "C-g")   'keyboard-escape-quit)
+  (define-key minibuffer-local-isearch-map    (kbd "C-g")   'keyboard-escape-quit)
+  ;; Global remaps to <return>.
+  ;; TODO: google
+  (define-key evil-motion-state-map           (kbd "C-j")   'widget-button-press)
+  (define-key evil-normal-state-map           (kbd "C-j")   'widget-button-press)
+  ;; Custom maps.
+  (define-key evil-motion-state-map           (kbd "C-k")   'evil-window-next)
+  (define-key evil-normal-state-map           (kbd "C-k")   'evil-window-next)
+  (define-key evil-motion-state-map           (kbd "s")     'evil-ace-jump-char-mode)
+  (define-key evil-normal-state-map           (kbd "s")     'evil-ace-jump-char-mode)
+  ;; TODO: not works
+  (define-key evil-visual-state-map           (kbd "s")     'evil-ace-jump-char-mode)
+  (define-key evil-motion-state-map           (kbd "C-e")   'evil-next-buffer)
+  (define-key evil-normal-state-map           (kbd "C-e")   'evil-next-buffer)
+  (define-key evil-motion-state-map           (kbd "C-y")   'evil-prev-buffer)
+  (define-key evil-normal-state-map           (kbd "C-y")   'evil-prev-buffer)
+  (define-key evil-motion-state-map           (kbd "<f12>") 'evil-search-highlight-persist-remove-all)
+  (define-key evil-normal-state-map           (kbd "<f12>") 'evil-search-highlight-persist-remove-all)
+
+  ;;  http://www.reddit.com/r/emacs/comments/35eoq3/how_i_use_vim_transferring_to_emacs_spacemacs
+  ;;  TODO: fold, quickrun, easyalign, scroll margin, g; after exit, smartcase
+  ;;  search, rainbowdeleimiters global off, smartparens global off
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
