@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.22 15:19 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.22 15:48 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1364,7 +1364,7 @@ nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
 " ____________________________________________________________________________
 
 nnoremap  <Space>pf  :UniteWithProjectDir -start-insert -sync file_rec/async directory/new file/new<CR>
-nnoremap  <Space>ft  :VimFilerExplorer -project -toggle<CR>
+nnoremap  <Space>pt  :VimFilerExplorer -project -toggle<CR>
 
 "                            <Space>s - SEARCH                            {{{2
 " ____________________________________________________________________________
