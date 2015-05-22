@@ -1,6 +1,6 @@
 " eightcmd.vim: commands to invoke my functions
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.13 14:00 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.22 12:22 ==
 
 augroup eightcmd
   autocmd!
@@ -30,7 +30,6 @@ command!                              DiffOrig              vert new SAVED FILE 
 
 " Sorok tordelese kulon-kulon. (bemasolt szoveg formazasahoz)
 command!  -nargs=0 -range             AdocFormat            silent <line1>,<line2> g/.\+/ normal A +<C-C>gqq:nohlsearch<CR>
-autocmd  eightcmd  FileType  asciidoc  vnoremap gQ          :AdocFormat<CR>$hD
 
 " A mintara illeszkedo szovegen kivul toroljon mindent.
 " http://stackoverflow.com/a/6249291

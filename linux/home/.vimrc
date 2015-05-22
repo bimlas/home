@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.19 15:23 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.22 15:19 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -218,6 +218,11 @@ if isdirectory(bundle_dir . '/vundle.vim')
     if has('win32')
       let g:unite_source_rec_async_command = escape($VIMRUNTIME . '\find.exe', '\\')
     end
+    autocmd  VimEnter  *  call unite#custom#profile('default', 'context', {
+    \ 'prompt_direction': 'top',
+    \ 'direction':        'botright',
+    \ 'sync':             1
+    \ })
 
   Plugin 'shougo/vimfiler.vim'                                          " {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
@@ -247,6 +252,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
     if exists('*vimfiler#custom#profile')
       call vimfiler#custom#profile('default', 'context', { 'safe': 0 })
     endif
+
+  Plugin 'shougo/unite-outline'                                         " {{{2
+  " tagbar-szeru, de neha jobb
+
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
@@ -523,6 +532,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " Control key-eket ne map-oljon.
     let g:Gitv_DoNotMapCtrlKey = 1
 
+                                                                        " }}}2
   call vundle#end()
 endif
 
@@ -1038,22 +1048,6 @@ set showfulltag
 " Jobban kézre esik, mint a \.
 let mapleader='á'
 
-"                              ABLAKKEZELES                               {{{2
-" ____________________________________________________________________________
-
-" A valodi sorok helyett a megjelenitett sorokban mozogjon a kurzor, ha a
-" nyilakkal mozgatom. (a relativnumber miatt jobb, ha alapbol a valodi sorok
-" kozt mozgok)
-noremap  <Up>    gk
-noremap  <Down>  gj
-
-" Ugras a sor elejere/vegere.
-noremap  H  g^
-noremap  L  g$
-
-nnoremap          <C-H>  <C-W>q
-nmap      <expr>  <C-K>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
-
 "                                KENYELEM                                 {{{2
 " ____________________________________________________________________________
 
@@ -1068,13 +1062,15 @@ noremap   <C-G>  <Esc>
 inoremap  <C-G>  <Esc>
 cnoremap  <C-G>  <Esc>
 
-" Sokkal jobban kezre esnek.
-map       <C-J>  <CR>
-imap      <C-J>  <CR>
-noremap   é      ;
-noremap   É      ,
-cnoremap  <C-B>  <C-Left>
-cnoremap  <C-E>  <C-Right>
+" Ugras a sor elejere/vegere.
+noremap  H  g^
+noremap  L  g$
+
+" A valodi sorok helyett a megjelenitett sorokban mozogjon a kurzor, ha a
+" nyilakkal mozgatom. (a relativnumber miatt jobb, ha alapbol a valodi sorok
+" kozt mozgok)
+noremap  <Up>    gk
+noremap  <Down>  gj
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
@@ -1086,17 +1082,21 @@ cnoremap  <C-P>  <Down>
 nnoremap  <C-E>  :bnext<CR>
 nnoremap  <C-Y>  :bprevious<CR>
 
+" Sokkal jobban kezre esnek.
+map       <C-J>  <CR>
+imap      <C-J>  <CR>
+noremap   é      ;
+noremap   É      ,
+
+" Ablakkezeles.
+nnoremap          <C-H>  <C-W>q
+nmap      <expr>  <C-K>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
 " inoremap  <expr>  <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
 inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
-
-" Ha egy help dokumentumban nyomunk <Space>-t, akkor a kurzor alatti linket
-" nyissa meg, ha forraskodban egy azonositon (fuggveny, vagy valtozo neven)
-" nyomtuk meg, akkor a fuggveny definiciojahoz ugrik (tags, vagy cscope fajl
-" szukseges hozza).
-noremap  <Space>  <C-]>
 
 "                                 VAGOLAP                                 {{{2
 " ____________________________________________________________________________
@@ -1123,39 +1123,29 @@ imap     <S-Insert>  <C-O><S-Insert>
 
 " Menusor megjelenitese/elrejtese.
 nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
-imap                       <F1>         <C-O><F1>
 
 " Terminal megnyitasa.
 nnoremap  <silent> <expr>  <F2>         has('win32') ? ':silent !start conemu64.exe<CR>' : ':silent !xterm &<CR>'
-imap                       <F2>         <C-O><F2>
 
 " Gitv - git commit-ok amelyben a fajl valtozott.
 nnoremap                   <F3>         :Gitv!<CR>
-imap                       <F3>         <C-O><F3>
 
 " Gitv - gitk-szeru log.
 map                <expr>  <F4>         &filetype =~ 'gitv\?' ? 'q' : ':Gitv<CR>'
-imap                       <F4>         <C-O><F4>
 
 " Compile es make egy gombnyomasra.
 noremap                    <F5>         :QuickRun<CR>
-imap                       <F5>         <C-O><F5>
 noremap            <expr>  <S-F5>       ':QuickRun ' . &filetype . 'Custom<CR>'
-imap                       <S-F5>       <C-O><S-F5>
 nnoremap                   <F6>         :Comp<CR>
-imap                       <F6>         <C-O><F6>
 
 " Vimfiler megnyitasa.
 nnoremap                   <F7>         :VimFiler<CR>
-imap                       <F7>       <C-O><S-F7>
 
 " Tagbar megnyitasa.
 nnoremap  <silent>         <F8>         :TagbarToggle<CR>
-imap                       <F8>         <C-O><F8>
 
 " A lathato ablakok szinkronizalasa diff nelkul.
 nnoremap           <expr>  <F10>        ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
-imap                       <F10>        <C-O><F10>
 
 " Kurzor oszlopanak kiemelesenek valtogatasa.
 nnoremap  <silent>         <F11>        :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
@@ -1216,39 +1206,32 @@ vmap gx <Plug>(openbrowser-smart-search)
 "                             UNITE/VIMFILER                              {{{3
 " ............................................................................
 
-" Fajl megnyitasa Emacs modra.
-nnoremap  <C-P>       :Unite -start-insert -sync -direction=botright buffer file directory/new file/new<CR>
-
-" Bongeszes a bufferek/modositott sorok/konyvjelzok/stb. kozott.
-nnoremap  <C-B>       :Unite -start-insert -sync -direction=botright buffer<CR>
-nnoremap  <Leader>uc  :Unite -start-insert -sync -direction=botright change<CR>
-nnoremap  <Leader>ub  :VimFiler bookmark:<CR>
-
 autocmd  vimrc  FileType  unite  call UniteMaps()
 function UniteMaps()
   " if has('gui_running')
-    imap  <buffer>  <C-G>  <Plug>(unite_insert_leave)
-    map   <buffer>  <C-G>  <Plug>(unite_all_exit)
-    map   <buffer>  <Esc>  <Plug>(unite_all_exit)
-    nmap  <buffer>  h      <Plug>(unite_delete_backward_path)
-    nmap  <buffer>  l      <CR>
-    nmap  <buffer>  x      astart<CR>
-    imap  <buffer>  /      /*
+    imap  <buffer>        <C-G>  <Plug>(unite_insert_leave)
+    map   <buffer>        <C-G>  <Plug>(unite_all_exit)
+    map   <buffer>        <C-H>  <Plug>(unite_all_exit)
+    map   <buffer>        <Esc>  <Plug>(unite_all_exit)
+    nmap  <buffer>        h      <Plug>(unite_delete_backward_path)
+    nmap  <buffer>        l      <CR>
+    imap  <buffer>        /      /*
+    map   <buffer>        <C-Z>  <Plug>(unite_smart_preview)
+    imap  <buffer><expr>  <C-Z>  unite#smart_map("\<C-Z>", unite#do_action('preview'))
+    map   <buffer><expr>  x      unite#do_action('start')
+    map   <buffer><expr>  <F11>  unite#do_action('start')
+    imap  <buffer><expr>  <F11>  unite#smart_map("\<F11>", unite#do_action('start'))
   " endif
 endfunction
 
 autocmd  vimrc  FileType  vimfiler  call VimfilerMaps()
 function VimfilerMaps()
     " Unite-szeru gyorskereses.
-    nmap  <buffer>  i      :Unite line -start-insert -winheight=10<CR>
-    nmap  <buffer>  <C-J>  <CR>
+    nmap  <buffer>        i      :Unite line -start-insert -winheight=10<CR>
+    nmap  <buffer>        <C-J>  <CR>
+    map   <buffer>        <C-Z>  <Plug>(vimfiler_preview_file)
+    map   <buffer><expr>  <F11>  vimfiler#do_action('start')
 endfunction
-
-"                              NERDCOMMENTER                              {{{3
-" ............................................................................
-
-map  <C-F>           <Plug>NERDCommenterComment
-map  <Leader><C-F>   <Plug>NERDCommenterUncomment
 
 "                               NEOSNIPPET                                {{{3
 " ............................................................................
@@ -1258,14 +1241,6 @@ map  <Leader><C-F>   <Plug>NERDCommenterUncomment
 imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
 imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 imap  <expr>  <Nul>      <C-Space>
-
-"                                SURROUND                                 {{{3
-" ............................................................................
-
-nmap Qa  <Plug>Ysurround
-nmap Qs  <Plug>Csurround
-nmap Qd  <Plug>Dsurround
-vmap Q   <Plug>VSurround
 
 "                                EASYALIGN                                {{{3
 " ............................................................................
@@ -1364,6 +1339,50 @@ function AdocBlockI()
   let block_stop = getpos('.')
   return ['V', block_start, block_stop]
 endfunction
+
+"                             SPACEMACS MAPS                              {{{1
+" ============================================================================
+
+noremap  <Space><Space>  <C-]>
+map      <Space>;        <plug>NERDCommenterToggle
+
+"                           <Space>b - BUFFERS                            {{{2
+" ____________________________________________________________________________
+
+nnoremap  <Space>bb  :buffer #<CR>
+nnoremap  <Space>bc  :Unite -start-insert change<CR>
+nnoremap  <Space>bd  :Bd<CR>
+nnoremap  <Space>bs  :Unite -start-insert buffer<CR>
+
+"                            <Space>f - FILES                             {{{2
+" ____________________________________________________________________________
+
+nnoremap  <Space>ff  :UniteWithBufferDir -start-insert file directory/new file/new<CR>
+nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
+
+"                           <Space>p - PROJECT                            {{{2
+" ____________________________________________________________________________
+
+nnoremap  <Space>pf  :UniteWithProjectDir -start-insert -sync file_rec/async directory/new file/new<CR>
+nnoremap  <Space>ft  :VimFilerExplorer -project -toggle<CR>
+
+"                            <Space>s - SEARCH                            {{{2
+" ____________________________________________________________________________
+
+nnoremap  <Space>sg  :Unite -start-insert grep<CR>
+nnoremap  <Space>sl  :Unite -start-insert outline<CR>
+nnoremap  <Space>ss  :Unite -start-insert -auto-preview line<CR>
+
+"                      <Space>x - TEXT MODIFICATION                       {{{2
+" ____________________________________________________________________________
+
+nmap <Space>xqa  <Plug>Ysurround
+vmap <Space>xqa  <Plug>VSurround
+nmap <Space>xqs  <Plug>Csurround
+nmap <Space>xqd  <Plug>Dsurround
+
+                                    vnoremap  <Space>xf  gq
+autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>xf  :AdocFormat<CR>$hD
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================

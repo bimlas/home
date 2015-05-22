@@ -23,6 +23,7 @@
      ; ycmd
      syntax-checking
      ruby
+     git
      ;; better-defaults
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
