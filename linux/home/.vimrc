@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.22 15:48 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.23 12:05 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -66,8 +66,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'bimbalaszlo/vim-eightheader'                                  " {{{2
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
 
-    let g:EightHeader_comment   = 'call NERDComment("n", "comment")'
-    let g:EightHeader_uncomment = 'call NERDComment("n", "uncomment")'
+    let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
+    let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
 
   Plugin 'bimbalaszlo/vim-numutils'                                     " {{{2
   " szamok manipulalasa regex segitsegevel
@@ -185,11 +185,21 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'vis'                                                          " {{{2
   " parancsok futtatasa visual block-on
 
+  Plugin 'jiangmiao/auto-pairs'                                         " {{{2
+
+    " lasd a weboldalon
+    " let g:AutoPairsFlyMode        = 1
+    let g:AutoPairsCenterLine     = 0
+    let g:AutoPairsMultilineClose = 0
+
   Plugin 'tpope/vim-surround'                                           " {{{2
   " paros jelek gyors cserelese/torlese
 
     let g:surround_no_insert_mappings = 1
     let g:surround_no_mappings        = 1
+
+  Plugin 'tpope/vim-endwise'                                            " {{{2
+  " blokkok lezarasa (pl. endfunction)
 
   Plugin 'tpope/vim-abolish'                                            " {{{2
   " intelligens substitute
@@ -273,7 +283,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   " .. PROGRAMOZAS ........................
 
-  Plugin 'scrooloose/nerdcommenter'                                     " {{{2
+  " Plugin 'scrooloose/nerdcommenter'                                     " {{{2
   " szovegreszek kommentelese (akar oszlopok is)
 
     " Rakjon szokozoket a kommenterek kore.
@@ -285,6 +295,11 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " Az alapertelmezett map-ok kikapcsolasa. (mivel keves kommentelo parancsot
     " hasznalok es azokat sajat map-okra allitottam, igy teljesen feleslegesek)
     let NERDCreateDefaultMappings = 0
+
+  Plugin 'tomtom/tcomment_vim'                                          " {{{2
+  " szovegreszek kommentelese
+
+    let g:tcommentMaps = 0
 
   Plugin 'majutsushi/tagbar'                                            " {{{2
   " a fajlban talalhato tag-ek listaja
@@ -1344,7 +1359,8 @@ endfunction
 " ============================================================================
 
 noremap  <Space><Space>  <C-]>
-map      <Space>;        <plug>NERDCommenterToggle
+map      <Space>;        <Plug>TComment_gc
+vmap     <Space>;        <Plug>TComment_gc
 
 "                           <Space>b - BUFFERS                            {{{2
 " ____________________________________________________________________________
