@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.23 12:05 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.25 20:59 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -188,7 +188,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'jiangmiao/auto-pairs'                                         " {{{2
 
     " lasd a weboldalon
-    " let g:AutoPairsFlyMode        = 1
+    let g:AutoPairsFlyMode        = 1
     let g:AutoPairsCenterLine     = 0
     let g:AutoPairsMultilineClose = 0
 
@@ -1359,7 +1359,8 @@ endfunction
 " ============================================================================
 
 noremap  <Space><Space>  <C-]>
-map      <Space>;        <Plug>TComment_gc
+nmap     <Space>;        <Plug>TComment_gc
+nmap     <Space>;;       <Plug>TComment_gcc
 vmap     <Space>;        <Plug>TComment_gc
 
 "                           <Space>b - BUFFERS                            {{{2
