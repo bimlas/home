@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.25 20:59 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.26 15:08 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -187,7 +187,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'jiangmiao/auto-pairs'                                         " {{{2
 
-    " lasd a weboldalon
+    " lasd a weboldalon: https://github.com/jiangmiao/auto-pairs
     let g:AutoPairsFlyMode        = 1
     let g:AutoPairsCenterLine     = 0
     let g:AutoPairsMultilineClose = 0
@@ -227,6 +227,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:unite_source_tag_max_fname_length = 70
     if has('win32')
       let g:unite_source_rec_async_command = escape($VIMRUNTIME . '\find.exe', '\\')
+      let g:unite_source_grep_encoding     = 'default'
     end
     autocmd  VimEnter  *  call unite#custom#profile('default', 'context', {
     \ 'prompt_direction': 'top',
@@ -869,6 +870,8 @@ set hidden
 " Mindig az aktualis fajl konyvtara legyen a cwd.
 " Tapasztalatbol mondhatom, hogy nem minden plugin szereti (pl. netrw,
 " fugitive).
+" UPDATE: a fugitive ugy tunik mar jol kezeli, viszont a vimfiler es unite
+" nem.
 " set autochdir
 
 " CursorHold-hoz kell es a swap fajl mentesenek idejet is befolyasolja.
@@ -923,10 +926,18 @@ set nobackup nowritebackup
 " konyvtarban levo fajlt es figyeld a swap konyvtarat. Zard be oket ugy, hogy
 " a swap fajl megmaradjon (pl.: kill, <Ctrl-Alt-Del>), majd nyisd meg oket
 " ismet, de most forditott sorrendben. A recovery igy nem fog mukodni.
-set directory=$HOME/.vim_local/swap
+let s:swapdir = $HOME.'/.vim_local/swap'
+if !isdirectory(s:swapdir)
+  call mkdir(s:swapdir, 'p')
+endif
+let &directory = s:swapdir
 
 " Persistent undo.
-set undodir=$HOME/.vim_local/undo
+let s:undodir = $HOME.'/.vim_local/undo'
+if !isdirectory(s:undodir)
+  call mkdir(s:undodir, 'p')
+endif
+let &undodir = s:undodir
 set undofile
 
 "                                  KERESES                                {{{1
@@ -1133,43 +1144,6 @@ noremap  <C-Insert>  "+y
 noremap  <S-Insert>  "+P
 imap     <S-Insert>  <C-O><S-Insert>
 
-"                                 F1-F12                                  {{{2
-" ____________________________________________________________________________
-
-" Menusor megjelenitese/elrejtese.
-nnoremap  <silent> <expr>  <F1>         ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
-
-" Terminal megnyitasa.
-nnoremap  <silent> <expr>  <F2>         has('win32') ? ':silent !start conemu64.exe<CR>' : ':silent !xterm &<CR>'
-
-" Gitv - git commit-ok amelyben a fajl valtozott.
-nnoremap                   <F3>         :Gitv!<CR>
-
-" Gitv - gitk-szeru log.
-map                <expr>  <F4>         &filetype =~ 'gitv\?' ? 'q' : ':Gitv<CR>'
-
-" Compile es make egy gombnyomasra.
-noremap                    <F5>         :QuickRun<CR>
-noremap            <expr>  <S-F5>       ':QuickRun ' . &filetype . 'Custom<CR>'
-nnoremap                   <F6>         :Comp<CR>
-
-" Vimfiler megnyitasa.
-nnoremap                   <F7>         :VimFiler<CR>
-
-" Tagbar megnyitasa.
-nnoremap  <silent>         <F8>         :TagbarToggle<CR>
-
-" A lathato ablakok szinkronizalasa diff nelkul.
-nnoremap           <expr>  <F10>        ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
-
-" Kurzor oszlopanak kiemelesenek valtogatasa.
-nnoremap  <silent>         <F11>        :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
-imap                       <F11>        <C-O><F11>
-
-" Keresesi eredmenyek kiemelesenek torlese.
-nnoremap  <silent>         <F12>        :nohlsearch<CR>
-imap                       <F12>        <C-O><F12>
-
 "                                PLUGINOK                                 {{{2
 " ____________________________________________________________________________
 
@@ -1193,7 +1167,7 @@ function NetrwLynxMap()
   map  <buffer>  l        <CR>
 endfunction
 
-"                               EASYMOTION.                               {{{3
+"                               EASYMOTION                                {{{3
 " ............................................................................
 
 map  s          <Plug>(easymotion-s2)
@@ -1259,10 +1233,6 @@ imap  <expr>  <Nul>      <C-Space>
 
 "                                EASYALIGN                                {{{3
 " ............................................................................
-
-nmap  <Leader>c  <Plug>(EasyAlign)ip
-nmap  <Leader>C  <Plug>(EasyAlign)
-vmap  <Leader>c  <Plug>(EasyAlign)
 
 " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
 " 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,
@@ -1355,51 +1325,101 @@ function AdocBlockI()
   return ['V', block_start, block_stop]
 endfunction
 
-"                             SPACEMACS MAPS                              {{{1
-" ============================================================================
-
-noremap  <Space><Space>  <C-]>
-nmap     <Space>;        <Plug>TComment_gc
-nmap     <Space>;;       <Plug>TComment_gcc
-vmap     <Space>;        <Plug>TComment_gc
-
-"                           <Space>b - BUFFERS                            {{{2
+"                               SPACE MAPS                                {{{2
 " ____________________________________________________________________________
+"
+" Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
+
+noremap   <Space><Space>  <C-]>
+
+nmap      <Space>;        <Plug>TComment_gc
+nmap      <Space>;;       <Plug>TComment_gcc
+vmap      <Space>;        <Plug>TComment_gc
+
+nnoremap  <Space>h        :nohlsearch<CR>
+
+"                         <Space>a - APPLICATIONS                         {{{3
+" ............................................................................
+
+" TODO: xterm cwd
+nnoremap  <expr>  <Space>asi  has('win32')
+                              \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
+                              \ : ':silent !xterm &<CR>'
+
+"                           <Space>b - BUFFERS                            {{{3
+" ............................................................................
 
 nnoremap  <Space>bb  :buffer #<CR>
 nnoremap  <Space>bc  :Unite -start-insert change<CR>
 nnoremap  <Space>bd  :Bd<CR>
 nnoremap  <Space>bs  :Unite -start-insert buffer<CR>
 
-"                            <Space>f - FILES                             {{{2
-" ____________________________________________________________________________
+"                            <Space>f - FILES                             {{{3
+" ............................................................................
 
+" TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap  <Space>ff  :UniteWithBufferDir -start-insert file directory/new file/new<CR>
 nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
 
-"                           <Space>p - PROJECT                            {{{2
-" ____________________________________________________________________________
+"                             <Space>g - GIT                              {{{3
+" ............................................................................
+
+nnoremap  <Space>gs  :Gstatus<CR>
+nnoremap  <Space>gl  :Gitv!<CR>
+nnoremap  <Space>gL  :Gitv<CR>
+
+"                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
+" ............................................................................
+
+nnoremap          <Space>mr  :QuickRun<CR>
+nnoremap  <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
+nnoremap          <Space>mt  :TagbarToggle<CR>
+
+autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mf  :AdocFormat<CR>$hD
+
+" __ OPEN REPL __________________________
+
+autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>msi  has('win32')
+                                \ ? ':silent !start conemu64.exe /cmd irb.bat<CR>'
+                                \ : ':silent !xterm -c irb &<CR>'
+
+autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>msi  has('win32')
+                                  \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
+                                  \ : ':silent !xterm -c python &<CR>'
+
+"                           <Space>p - PROJECT                            {{{3
+" ............................................................................
 
 nnoremap  <Space>pf  :UniteWithProjectDir -start-insert -sync file_rec/async directory/new file/new<CR>
 nnoremap  <Space>pt  :VimFilerExplorer -project -toggle<CR>
 
-"                            <Space>s - SEARCH                            {{{2
-" ____________________________________________________________________________
+"                            <Space>s - SEARCH                            {{{3
+" ............................................................................
 
-nnoremap  <Space>sg  :Unite -start-insert grep<CR>
+nnoremap  <Space>sg  :Grep<Space>
+nnoremap  <Space>sG  :Unite -start-insert vimgrep<CR>
 nnoremap  <Space>sl  :Unite -start-insert outline<CR>
 nnoremap  <Space>ss  :Unite -start-insert -auto-preview line<CR>
 
-"                      <Space>x - TEXT MODIFICATION                       {{{2
-" ____________________________________________________________________________
+"                            <Space>t - TOGGLE                            {{{3
+" ............................................................................
 
-nmap <Space>xqa  <Plug>Ysurround
-vmap <Space>xqa  <Plug>VSurround
-nmap <Space>xqs  <Plug>Csurround
-nmap <Space>xqd  <Plug>Dsurround
+nnoremap          <Space>tc  :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
+nnoremap          <Space>tn  :set number!<CR>
+nnoremap          <Space>tr  :set relativenumber!<CR>
+nnoremap  <expr>  <Space>tm  ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
+nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
 
-                                    vnoremap  <Space>xf  gq
-autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>xf  :AdocFormat<CR>$hD
+"                      <Space>x - TEXT MODIFICATION                       {{{3
+" ............................................................................
+
+nmap  <Space>xcc  <Plug>(EasyAlign)ip
+nmap  <Space>xc   <Plug>(EasyAlign)
+vmap  <Space>xc   <Plug>(EasyAlign)
+nmap  <Space>xqa  <Plug>Ysurround
+vmap  <Space>xqa  <Plug>VSurround
+nmap  <Space>xqs  <Plug>Csurround
+nmap  <Space>xqd  <Plug>Dsurround
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
