@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.26 15:08 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.27 14:52 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -37,7 +37,7 @@ augroup END
 
 " "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
 " vissza.
-function BigTerm()
+function! BigTerm()
   return  &columns >= (&textwidth + &numberwidth)
 endfunction
 
@@ -161,6 +161,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'dkprice/vim-easygrep'                                         " {{{2
   " tuningolt vimgrep
 
+    " Nem kellenek a default map-ok.
+    " TODO: nem mukodik
+    let g:EasyGrepOptionPrefix = ''
+
     " Alapjaba veve a megnyitott fajl tipusaval megegyezo fajlokban keressen.
     let g:EasyGrepMode = 2
 
@@ -208,6 +212,17 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'junegunn/vim-easy-align'                                      " {{{2
   " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
 
+    " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
+    " 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,
+    " fuggetlenul attol, hogy abban szerepelt-e.
+    let g:easy_align_delimiters = {
+    \ '|': {'pattern': '\(\(^\|\s\)\@<=\(\d\+\*\)\?\(\(\d\+\|\.\d\+\|\d\+\.\d\+\)+\)\?\([\^<>]\|\.[\^<>]\|[\^<>]\.[\^<>]\)\?[a-z]\?\)\?|', 'filter': 'v/^|=\+$/'},
+    \ 't': {'pattern': '\t'},
+    \ '\': {'pattern': '\\$', 'stick_to_left': 0},
+    \ '<': {'pattern': '<<$', 'stick_to_left': 0, 'ignore_unmatched': 0},
+    \ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
+    \ }
+
   Plugin 'henrik/vim-qargs'                                             " {{{2
   " quickfix-en beluli fajlokon parancsok vegrehajtasa (Qdo) es masolasa az
   " args-ba (Qargs)
@@ -238,10 +253,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'shougo/vimfiler.vim'                                          " {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
 
-    " Ez legyen az alapertelmezett bongeszo.
     let g:vimfiler_as_default_explorer = 1
+    let g:unite_kind_file_use_trashbox = 0
 
-    " Egyeni ikonok.
     let g:vimfiler_tree_leaf_icon   = ' '
     let g:vimfiler_tree_opened_icon = '▾'
     let g:vimfiler_tree_closed_icon = '▸'
@@ -258,11 +272,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " Ne ugorjon a konyvtar kinyitasa utan.
     let g:vimfiler_expand_jump_to_first_child = 0
 
-    " Egyeni beallitasok.
-    " 'sort_type': 'extension'
-    if exists('*vimfiler#custom#profile')
-      call vimfiler#custom#profile('default', 'context', { 'safe': 0 })
-    endif
+    autocmd  vimrc  VimEnter  *  call vimfiler#custom#profile('default', 'context', {
+    \ 'safe':      0,
+    \ 'sort_type': 'extension',
+    \ })
 
   Plugin 'shougo/unite-outline'                                         " {{{2
   " tagbar-szeru, de neha jobb
@@ -363,6 +376,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " talan a legnormalisabb referencia-bongeszo
   " $ install zeal @ http://zealdocs.org/
 
+    let g:zv_disable_mapping = 1
+
     if isdirectory('c:/app/zeal/')
       let g:zv_zeal_directory = 'c:/app/zeal/zeal.exe'
     endif
@@ -438,6 +453,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'thinca/vim-quickrun'                                          " {{{2
   " buffer, vagy kijelolt kod futtatasa
 
+    let g:quickrun_no_default_key_mappings = 1
     " \     'hook/output_encode/encoding': 'default',
     let g:quickrun_config = {
     \ '_':
@@ -557,8 +573,8 @@ endif
 "
 " Cloning vundle to ~/.vim/bundle/vundle
 
-command  InstallVundle  call InstallVundle()
-function InstallVundle()
+command!  InstallVundle  call InstallVundle()
+function! InstallVundle()
   let vundle_repo = 'https://github.com/gmarik/vundle.vim'
   let path = substitute(g:bundle_dir . '/vundle.vim', '/', has('win32') ? '\\' : '/', 'g')
 
@@ -721,7 +737,7 @@ let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
 "
 " Syntastic figyelmeztetesek sorszamai.
 
-function StatSyntastic()
+function! StatSyntastic()
   return exists(':SyntasticCheck') ? SyntasticStatuslineFlag() : ''
 endfunction
 
@@ -731,7 +747,7 @@ endfunction
 
 " Halozati meghajton nagyon belassit.
 let g:statfugitive_disabled = 0
-function StatFugitive()
+function! StatFugitive()
   return (exists('b:git_dir') && ! g:statfugitive_disabled) ? fugitive#head(7) . ':' . fugitive#buffer().commit()[0:6] : ''
 endfunction
 
@@ -751,7 +767,7 @@ let g:statwarn_max_lines = 5000
 autocmd vimrc  CursorHold   * if line('$') <= g:statwarn_max_lines | silent! unlet b:statwarn | endif
 autocmd vimrc  BufWritePost * silent! unlet b:statwarn
 
-function StatWarn()
+function! StatWarn()
 
   if exists('b:statwarn') | return b:statwarn | endif
 
@@ -1034,7 +1050,7 @@ let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), 
 "      diff slower (sometimes much slower)
 
 set diffexpr=MyDiff()
-function MyDiff()
+function! MyDiff()
     let opt = ''
     if &diffopt =~ 'icase'
       let opt = opt . '-i '
@@ -1052,7 +1068,7 @@ endfunction
 " .  ebbol a fajlbol
 " i  include fajlokbol
 " t  tags fajlbol
-set complete=.,i,t
+" set complete=.,i,t
 
 " Kiegeszites menujenek mukodese:
 " menuone  Egyetlen lehetoseg eseten is popup menu.
@@ -1074,7 +1090,7 @@ set showfulltag
 " Jobban kézre esik, mint a \.
 let mapleader='á'
 
-"                                KENYELEM                                 {{{2
+"                                ALTALANOS                                {{{2
 " ____________________________________________________________________________
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
@@ -1088,15 +1104,11 @@ noremap   <C-G>  <Esc>
 inoremap  <C-G>  <Esc>
 cnoremap  <C-G>  <Esc>
 
-" Ugras a sor elejere/vegere.
-noremap  H  g^
-noremap  L  g$
-
-" A valodi sorok helyett a megjelenitett sorokban mozogjon a kurzor, ha a
-" nyilakkal mozgatom. (a relativnumber miatt jobb, ha alapbol a valodi sorok
-" kozt mozgok)
-noremap  <Up>    gk
-noremap  <Down>  gj
+" Sokkal jobban kezre esnek.
+map       <C-J>  <CR>
+imap      <C-J>  <CR>
+noremap   é      ;
+noremap   É      ,
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
@@ -1108,24 +1120,18 @@ cnoremap  <C-P>  <Down>
 nnoremap  <C-E>  :bnext<CR>
 nnoremap  <C-Y>  :bprevious<CR>
 
-" Sokkal jobban kezre esnek.
-map       <C-J>  <CR>
-imap      <C-J>  <CR>
-noremap   é      ;
-noremap   É      ,
+" Ugras a sor elejere/vegere.
+noremap  H  g^
+noremap  L  g$
 
 " Ablakkezeles.
-nnoremap          <C-H>  <C-W>q
-nmap      <expr>  <C-K>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+nnoremap  <C-H>  <C-W>q
 
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
 " inoremap  <expr>  <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
 inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
-
-"                                 VAGOLAP                                 {{{2
-" ____________________________________________________________________________
 
 " A torles ne masolja a vagolapra a szoveget.
 " noremap   s      "_s
@@ -1144,27 +1150,24 @@ noremap  <C-Insert>  "+y
 noremap  <S-Insert>  "+P
 imap     <S-Insert>  <C-O><S-Insert>
 
-"                                PLUGINOK                                 {{{2
-" ____________________________________________________________________________
-
-"                                  SUGO                                   {{{3
-" ............................................................................
-
 " Kurzor alatti parancs sugojanak megnyitasa.
 autocmd  vimrc  FileType  man  call ManMap()
-function ManMap()
+function! ManMap()
   map    <buffer>  K     <C-]>
   map    <buffer>  <CR>  <C-]>
 endfunction
+
+"                                PLUGINOK                                 {{{2
+" ____________________________________________________________________________
 
 "                                  NETRW                                  {{{3
 " ............................................................................
 
 " Lynx-szeru mozgas netrw-ben.
 autocmd  vimrc  FileType  netrw  call NetrwLynxMap()
-function NetrwLynxMap()
-  map  <buffer>  h        -
-  map  <buffer>  l        <CR>
+function! NetrwLynxMap()
+  map  <buffer>  h  -
+  map  <buffer>  l  <CR>
 endfunction
 
 "                               EASYMOTION                                {{{3
@@ -1177,49 +1180,64 @@ map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>f  <Plug>(easymotion-fl)
 map  <Leader>F  <Plug>(easymotion-Fl)
 
+"                                CHOOSEWIN                                {{{3
+" ............................................................................
+
+nmap  <expr>  <C-K>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+
 "                             CAMELCASEMOTION                             {{{3
 " ............................................................................
 
-map   <Leader>w   <Plug>CamelCaseMotion_w
-map   <Leader>b   <Plug>CamelCaseMotion_b
-map   <Leader>e   <Plug>CamelCaseMotion_e
+map  <Leader>w  <Plug>CamelCaseMotion_w
+map  <Leader>b  <Plug>CamelCaseMotion_b
+map  <Leader>e  <Plug>CamelCaseMotion_e
 
 "                               OPENBROWSER                               {{{3
 " ............................................................................
 
 " Url megnyitasa a bongeszoben, vagy google a kurzor alatti szora.
 let g:netrw_nogx = 1
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
+nmap  gx  <Plug>(openbrowser-smart-search)
+vmap  gx  <Plug>(openbrowser-smart-search)
+
+"                                 ENDWISE                                 {{{3
+" ............................................................................
+
+" Force endwise.
+imap  <C-CR>  <Plug>AlwaysEnd
 
 "                             UNITE/VIMFILER                              {{{3
 " ............................................................................
 
 autocmd  vimrc  FileType  unite  call UniteMaps()
-function UniteMaps()
-  " if has('gui_running')
-    imap  <buffer>        <C-G>  <Plug>(unite_insert_leave)
-    map   <buffer>        <C-G>  <Plug>(unite_all_exit)
-    map   <buffer>        <C-H>  <Plug>(unite_all_exit)
-    map   <buffer>        <Esc>  <Plug>(unite_all_exit)
-    nmap  <buffer>        h      <Plug>(unite_delete_backward_path)
-    nmap  <buffer>        l      <CR>
-    imap  <buffer>        /      /*
-    map   <buffer>        <C-Z>  <Plug>(unite_smart_preview)
-    imap  <buffer><expr>  <C-Z>  unite#smart_map("\<C-Z>", unite#do_action('preview'))
-    map   <buffer><expr>  x      unite#do_action('start')
-    map   <buffer><expr>  <F11>  unite#do_action('start')
-    imap  <buffer><expr>  <F11>  unite#smart_map("\<F11>", unite#do_action('start'))
-  " endif
+function! UniteMaps()
+  imap  <buffer>        <C-G>   <Plug>(unite_insert_leave)
+  map   <buffer>        <C-G>   <Plug>(unite_all_exit)
+  map   <buffer>        <C-H>   <Plug>(unite_all_exit)
+  map   <buffer>        <Esc>   <Plug>(unite_all_exit)
+  nmap  <buffer>        h       <Plug>(unite_delete_backward_path)
+  nmap  <buffer>        l       <CR>
+  imap  <buffer>        /       /*
+  map   <buffer>        <C-Z>   <Plug>(unite_smart_preview)
+  imap  <buffer><expr>  <C-Z>   unite#do_action('preview')
+  map   <buffer><expr>  x       unite#do_action('start')
+  map   <buffer><expr>  <C-CR>  unite#do_action('start')
+  imap  <buffer><expr>  <C-CR>  unite#do_action('start')
+  nmap  <buffer><expr>  <C-K>   (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
 endfunction
 
 autocmd  vimrc  FileType  vimfiler  call VimfilerMaps()
-function VimfilerMaps()
-    " Unite-szeru gyorskereses.
-    nmap  <buffer>        i      :Unite line -start-insert -winheight=10<CR>
-    nmap  <buffer>        <C-J>  <CR>
-    map   <buffer>        <C-Z>  <Plug>(vimfiler_preview_file)
-    map   <buffer><expr>  <F11>  vimfiler#do_action('start')
+function! VimfilerMaps()
+  nmap  <buffer>        i       :Unite line -start-insert -winheight=10<CR>
+  nmap  <buffer>        <C-J>   <CR>
+  map   <buffer>        <C-Z>   <Plug>(vimfiler_preview_file)
+  map   <buffer>        <F3>    <Plug>(vimfiler_preview_file)
+  map   <buffer>        <F5>    <Plug>(vimfiler_copy_file)
+  map   <buffer>        <F6>    <Plug>(vimfiler_move_file)
+  map   <buffer>        <F7>    <Plug>(vimfiler_make_directory)
+  map   <buffer><expr>  <F11>   vimfiler#do_action('start')
+  map   <buffer><expr>  <C-CR>  vimfiler#do_action('start')
+  imap  <buffer><expr>  <C-CR>  vimfiler#do_action('start')
 endfunction
 
 "                               NEOSNIPPET                                {{{3
@@ -1230,20 +1248,6 @@ endfunction
 imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
 imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 imap  <expr>  <Nul>      <C-Space>
-
-"                                EASYALIGN                                {{{3
-" ............................................................................
-
-" A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
-" 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,
-" fuggetlenul attol, hogy abban szerepelt-e.
-let g:easy_align_delimiters = {
-\ '|': {'pattern': '\(\(^\|\s\)\@<=\(\d\+\*\)\?\(\(\d\+\|\.\d\+\|\d\+\.\d\+\)+\)\?\([\^<>]\|\.[\^<>]\|[\^<>]\.[\^<>]\)\?[a-z]\?\)\?|', 'filter': 'v/^|=\+$/'},
-\ 't': {'pattern': '\t'},
-\ '\': {'pattern': '\\$', 'stick_to_left': 0},
-\ '<': {'pattern': '<<$', 'stick_to_left': 0, 'ignore_unmatched': 0},
-\ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
-\ }
 
 "                               EIGHTHEADER                               {{{3
 " ............................................................................
@@ -1305,7 +1309,7 @@ function! TextObjMapsAdoc()
   \ })
 endfunction
 
-function AdocBlockA()
+function! AdocBlockA()
   if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
   let searchfor = getline('.')
   let block_start = getpos('.')
@@ -1314,7 +1318,7 @@ function AdocBlockA()
   return ['V', block_start, block_stop]
 endfunction
 
-function AdocBlockI()
+function! AdocBlockI()
   if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
   let searchfor = getline('.')
   normal j
@@ -1353,6 +1357,7 @@ nnoremap  <Space>bb  :buffer #<CR>
 nnoremap  <Space>bc  :Unite -start-insert change<CR>
 nnoremap  <Space>bd  :Bd<CR>
 nnoremap  <Space>bs  :Unite -start-insert buffer<CR>
+nnoremap  <Space>bS  :Unite -start-insert buffer:!<CR>
 
 "                            <Space>f - FILES                             {{{3
 " ............................................................................
@@ -1371,6 +1376,8 @@ nnoremap  <Space>gL  :Gitv<CR>
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
 " ............................................................................
 
+nmap              <Space>mh  <Plug>Zeavim
+vmap              <Space>mh  <Plug>ZVVisSelection
 nnoremap          <Space>mr  :QuickRun<CR>
 nnoremap  <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
 nnoremap          <Space>mt  :TagbarToggle<CR>
@@ -1393,6 +1400,14 @@ autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>msi  has('win
 nnoremap  <Space>pf  :UniteWithProjectDir -start-insert -sync file_rec/async directory/new file/new<CR>
 nnoremap  <Space>pt  :VimFilerExplorer -project -toggle<CR>
 
+"                      <Space>q - QUOTES, SURROUNDS                       {{{3
+" ............................................................................
+
+nmap  <Space>qa  <Plug>Ysurround
+vmap  <Space>qa  <Plug>VSurround
+nmap  <Space>qs  <Plug>Csurround
+nmap  <Space>qd  <Plug>Dsurround
+
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
@@ -1409,6 +1424,7 @@ nnoremap          <Space>tn  :set number!<CR>
 nnoremap          <Space>tr  :set relativenumber!<CR>
 nnoremap  <expr>  <Space>tm  ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
 nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
+nnoremap          <Space>tw  :set wrap!<CR>
 
 "                      <Space>x - TEXT MODIFICATION                       {{{3
 " ............................................................................
@@ -1416,10 +1432,6 @@ nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'one
 nmap  <Space>xcc  <Plug>(EasyAlign)ip
 nmap  <Space>xc   <Plug>(EasyAlign)
 vmap  <Space>xc   <Plug>(EasyAlign)
-nmap  <Space>xqa  <Plug>Ysurround
-vmap  <Space>xqa  <Plug>VSurround
-nmap  <Space>xqs  <Plug>Csurround
-nmap  <Space>xqd  <Plug>Dsurround
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
