@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.29 11:13 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.28 08:50 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -47,6 +47,7 @@
  *       cache      cache tartalma
  *       telemetry  a telemetria ezeket az adatokat kuldi el
  *                                                                        }}}1
+ *
  * Webfejlesztesnel hasznos:
  * user_pref( "network.http.use-cache", false );
  */
@@ -76,6 +77,9 @@ user_pref( "general.smoothScroll", false );
 /* Ne jegyezze meg a jelszavakat. */
 user_pref( "signon.rememberSignons", false );
 
+/* Ne kovessenek. */
+user_pref( "privacy.trackingprotection.enabled", true )
+
 /* Bezaraskor torolje... */
 user_pref( "privacy.clearOnShutdown.cache",         true );
 user_pref( "privacy.clearOnShutdown.cookies",       true );
@@ -100,7 +104,10 @@ user_pref( "browser.cache.disk.enable",      false );
 user_pref( "browser.cache.memory.enable",    true );
 user_pref( "browser.cache.memory.capacity",  1000000 );
 
+// Toltes kozben a user interakciojat reszesitse elonyben az oldal
+// betoltesehez kepest.
 user_pref( "content.interrupt.parsing",                           true );
+
 // user_pref( "network.http.max-persistent-connections-per-server",  16   );
 // user_pref( "network.http.max-persistent-connections-per-proxy",   32   );
 // user_pref( "network.http.pipelining",                             true );

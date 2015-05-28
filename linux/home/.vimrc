@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.27 14:52 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.28 13:47 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -143,7 +143,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " sajat text-object
 
   Plugin 'thinca/vim-textobj-between'                                   " {{{2
-  " ifX, afX az X-eken beluli kivalasztahoz
+  " ifX/afX az X-eken beluli kivalasztahoz
 
   Plugin 'julian/vim-textobj-variable-segment'                          " {{{2
   " _privat*e_thing -> civone -> _one_thing
@@ -151,6 +151,20 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " foo_ba*r_baz    -> dav    -> foo_baz
   " _privat*e_thing -> dav    -> _thing
   " _g*etJiggyYo    -> dav    -> _jiggyYo
+
+  Plugin 'tek/vim-textobj-ruby'                                         " {{{2
+  " ir/ar: block, if/af: method, ic/ac: class
+
+    let g:textobj_ruby_no_mappings = 1
+
+    " A comment-eket ne vegye bele.
+    let g:textobj_ruby_inclusive = 0
+
+  Plugin 'bps/vim-textobj-python'                                       " {{{2
+  " if/af: function, ic/ac: class
+
+    let g:textobj_python_no_default_key_mappings = 1
+
                                                                         " }}}2
 
   " .. SZOVEG KERESESE/MODOSITASA .........
@@ -192,7 +206,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'jiangmiao/auto-pairs'                                         " {{{2
 
     " lasd a weboldalon: https://github.com/jiangmiao/auto-pairs
-    let g:AutoPairsFlyMode        = 1
+    " let g:AutoPairsFlyMode        = 1
     let g:AutoPairsCenterLine     = 0
     let g:AutoPairsMultilineClose = 0
 
@@ -240,15 +254,19 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
     " let g:unite_source_tag_show_location = 0
     let g:unite_source_tag_max_fname_length = 70
+
     if has('win32')
       let g:unite_source_rec_async_command = escape($VIMRUNTIME . '\find.exe', '\\')
       let g:unite_source_grep_encoding     = 'default'
     end
-    autocmd  VimEnter  *  call unite#custom#profile('default', 'context', {
+
+    autocmd  vimrc  VimEnter  *  call unite#custom#profile('default', 'context', {
     \ 'prompt_direction': 'top',
     \ 'direction':        'botright',
     \ 'sync':             1
     \ })
+
+    autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
 
   Plugin 'shougo/vimfiler.vim'                                          " {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
@@ -1249,24 +1267,6 @@ imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnipp
 imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 imap  <expr>  <Nul>      <C-Space>
 
-"                               EIGHTHEADER                               {{{3
-" ............................................................................
-
-" Eightheader - a sor foldheader-re alakitasa.
-nnoremap  <Leader>0  :silent call eight#contact#call()<CR><CR>
-nnoremap  <Leader>1  :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
-nnoremap  <Leader>2  :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
-nnoremap  <Leader>3  :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
-nnoremap  <Leader>9  :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
-
-" __ VIMHELP ____________________________
-
-autocmd  vimrc  FileType  help  nnoremap <buffer>  <Leader>1
-\ :call EightHeader(78, 'left', 1, ' ', '\= "*".matchstr(s:str, ";\\@<=.*")."*"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
-
-autocmd  vimrc  FileType  help  noremap <buffer>  <Leader>2
-\ :call EightHeader(78, 'left', 1, '.', '\= "\|".matchstr(s:str, ";\\@<=.*")."\|"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
-
 "                              TEXTOBJ-USER                               {{{3
 " ............................................................................
 
@@ -1291,6 +1291,36 @@ omap  i\|  <Plug>(textobj-between-i)<Bar>
 xmap  i\|  <Plug>(textobj-between-i)<Bar>
 omap  a\|  <Plug>(textobj-between-a)<Bar>
 xmap  a\|  <Plug>(textobj-between-a)<Bar>
+
+autocmd  vimrc  FileType  ruby  call TextObjMapsRuby()
+function! TextObjMapsRuby()
+  omap  <buffer>  ab  <Plug>(textobj-ruby-block-a)
+  omap  <buffer>  ib  <Plug>(textobj-ruby-block-i)
+  omap  <buffer>  ac  <Plug>(textobj-ruby-class-a)
+  omap  <buffer>  ic  <Plug>(textobj-ruby-class-i)
+  omap  <buffer>  af  <Plug>(textobj-ruby-function-a)
+  omap  <buffer>  if  <Plug>(textobj-ruby-function-i)
+
+  xmap  <buffer>  ab  <Plug>(textobj-ruby-block-a)
+  xmap  <buffer>  ib  <Plug>(textobj-ruby-block-i)
+  xmap  <buffer>  ac  <Plug>(textobj-ruby-class-a)
+  xmap  <buffer>  ic  <Plug>(textobj-ruby-class-i)
+  xmap  <buffer>  af  <Plug>(textobj-ruby-function-a)
+  xmap  <buffer>  if  <Plug>(textobj-ruby-function-i)
+endfunction
+
+autocmd  vimrc  FileType  python  call TextObjMapsPython()
+function! TextObjMapsPython()
+  omap  <buffer>  ac  <Plug>(textobj-python-class-a)
+  omap  <buffer>  ic  <Plug>(textobj-python-class-i)
+  omap  <buffer>  af  <Plug>(textobj-python-function-a)
+  omap  <buffer>  if  <Plug>(textobj-python-function-i)
+
+  xmap  <buffer>  ac  <Plug>(textobj-python-class-a)
+  xmap  <buffer>  ic  <Plug>(textobj-python-class-i)
+  xmap  <buffer>  af  <Plug>(textobj-python-function-a)
+  xmap  <buffer>  if  <Plug>(textobj-python-function-i)
+endfunction
 
 " Blokkok, vagy tablazatok kijelolese - a kurzor elotti blokkhatarolot veszi
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
@@ -1346,9 +1376,9 @@ nnoremap  <Space>h        :nohlsearch<CR>
 " ............................................................................
 
 " TODO: xterm cwd
-nnoremap  <expr>  <Space>asi  has('win32')
-                              \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
-                              \ : ':silent !xterm &<CR>'
+nnoremap  <expr>  <Space>as  has('win32')
+                             \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
+                             \ : ':silent !xterm &<CR>'
 
 "                           <Space>b - BUFFERS                            {{{3
 " ............................................................................
@@ -1364,6 +1394,7 @@ nnoremap  <Space>bS  :Unite -start-insert buffer:!<CR>
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap  <Space>ff  :UniteWithBufferDir -start-insert file directory/new file/new<CR>
+nnoremap  <Space>fF  :Unite              -start-insert file directory/new file/new<CR>
 nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
 
 "                             <Space>g - GIT                              {{{3
@@ -1378,19 +1409,32 @@ nnoremap  <Space>gL  :Gitv<CR>
 
 nmap              <Space>mh  <Plug>Zeavim
 vmap              <Space>mh  <Plug>ZVVisSelection
+nnoremap          <Space>mg  :Grep<Space>
 nnoremap          <Space>mr  :QuickRun<CR>
-nnoremap  <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
+noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
 nnoremap          <Space>mt  :TagbarToggle<CR>
+
+" __ VIMHELP ____________________________
+
+autocmd  vimrc  FileType  help  nnoremap <buffer>  <Space>m1
+\ :call EightHeader(78, 'left', 1, ' ', '\= "*".matchstr(s:str, ";\\@<=.*")."*"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
+
+autocmd  vimrc  FileType  help  noremap <buffer>  <Space>m2
+\ :call EightHeader(78, 'left', 1, '.', '\= "\|".matchstr(s:str, ";\\@<=.*")."\|"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
+
+" __ ASCIIDOC ___________________________
 
 autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mf  :AdocFormat<CR>$hD
 
-" __ OPEN REPL __________________________
+" __ RUBY _______________________________
 
-autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>msi  has('win32')
+autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>ms  has('win32')
                                 \ ? ':silent !start conemu64.exe /cmd irb.bat<CR>'
                                 \ : ':silent !xterm -c irb &<CR>'
 
-autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>msi  has('win32')
+" __ PYTHON _____________________________
+
+autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win32')
                                   \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
                                   \ : ':silent !xterm -c python &<CR>'
 
@@ -1411,8 +1455,7 @@ nmap  <Space>qd  <Plug>Dsurround
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-nnoremap  <Space>sg  :Grep<Space>
-nnoremap  <Space>sG  :Unite -start-insert vimgrep<CR>
+nnoremap  <Space>sg  :Unite -start-insert vimgrep<CR>
 nnoremap  <Space>sl  :Unite -start-insert outline<CR>
 nnoremap  <Space>ss  :Unite -start-insert -auto-preview line<CR>
 
@@ -1420,18 +1463,30 @@ nnoremap  <Space>ss  :Unite -start-insert -auto-preview line<CR>
 " ............................................................................
 
 nnoremap          <Space>tc  :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
+nnoremap  <expr>  <Space>tm  ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
 nnoremap          <Space>tn  :set number!<CR>
 nnoremap          <Space>tr  :set relativenumber!<CR>
-nnoremap  <expr>  <Space>tm  ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
+nnoremap          <Space>ts  :call eight#syncwin#call()<CR>
 nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
 nnoremap          <Space>tw  :set wrap!<CR>
 
 "                      <Space>x - TEXT MODIFICATION                       {{{3
 " ............................................................................
 
-nmap  <Space>xcc  <Plug>(EasyAlign)ip
-nmap  <Space>xc   <Plug>(EasyAlign)
-vmap  <Space>xc   <Plug>(EasyAlign)
+nnoremap  <Space>x0   :silent call eight#contact#call()<CR><CR>
+nnoremap  <Space>x1   :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
+nnoremap  <Space>x2   :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
+nnoremap  <Space>x3   :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
+nnoremap  <Space>x9   :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
+
+nmap      <Space>xcc  <Plug>(EasyAlign)ip
+nmap      <Space>xc   <Plug>(EasyAlign)
+vmap      <Space>xc   <Plug>(EasyAlign)
+
+"                      <Space>w - WINDOW MANAGEMENT                       {{{3
+" ............................................................................
+
+nnoremap  <Space>ws  :ChooseWinSwap<CR>
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
