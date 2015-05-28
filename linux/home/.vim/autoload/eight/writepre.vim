@@ -1,6 +1,6 @@
 " writepre.vim - remove trailing whitespace, update contact header, ...
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2014.12.11 08:17 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.28 20:59 ==
 
 function! eight#writepre#call()
   if &binary || g:writepre_disabled
@@ -28,9 +28,7 @@ function! eight#writepre#call()
 
   " __ CONTACT HEADER _____________________
 
-  if &filetype != 'help'
-    silent! keepjumps lockmarks 0 /=\+ BimbaLaszlo/ call eight#contact#call()
-  endif
+  silent! keepjumps lockmarks 0 /=\+ BimbaLaszlo.*= \d\+\.\d\+\.\d\+ \d\+:\d\+/ call eight#contact#call()
 
   if &filetype == 'asciidoc'
     silent! keepjumps lockmarks 0 /^BimbaLaszlo.*\n\d\+/ call setline( line( '.' ) + 1, strftime('%Y.%m.%d') )
