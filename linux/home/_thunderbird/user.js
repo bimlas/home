@@ -15,8 +15,7 @@ user_pref("mail.identity.id1.auto_quote", false);
 user_pref("mail.identity.id1.htmlSigFormat", true);
 user_pref("mail.identity.id1.htmlSigText", "http://BimbaLaszlo.github.io/");
 // Minden imap konyvtar frissitese.
-                                     // Ez meg nem tiszta, hogy mit is csinal.
-user_pref("mail.check_all_imap_folders_for_new", true);
+user_pref("mail.server.default.check_all_folders_for_new", true);
 // Percenkent frissitsen.
 user_pref("mail.server.server1.check_time", 1);
 

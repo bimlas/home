@@ -6,6 +6,7 @@
 [alias]
 
   s            = "status"
+  ad           = "add --all"
   ada          = "add --all :/"
   c            = "commit"
   cm           = "commit -m"

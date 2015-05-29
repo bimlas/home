@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.28 13:47 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.29 15:01 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -280,6 +280,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:vimfiler_file_icon        = '-'
     let g:vimfiler_marked_file_icon = '*'
 
+    let g:vimfiler_time_format = '%Y/%m/%d %H:%M'
+
     " Az alternate buffer maradjon a vimfiler, igy a ketpaneles modba konnyebb
     " visszavaltani.
     let g:vimfiler_restore_alternate_file = 0
@@ -293,6 +295,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     autocmd  vimrc  VimEnter  *  call vimfiler#custom#profile('default', 'context', {
     \ 'safe':      0,
     \ 'sort_type': 'extension',
+    \ 'columns':   'size:time'
     \ })
 
   Plugin 'shougo/unite-outline'                                         " {{{2
@@ -301,6 +304,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
+
+  Plugin 'yankring.vim'                                                 " {{{2
+  " <C-P>/<C-N>: elozo/kovetkezo masolt szoveg beillesztese, :YRSHow
 
   Plugin 'locator'                                                      " {{{2
   " a gl megmutatja hol vagy (fold, func, stb.)
@@ -411,17 +417,21 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " Irja ki, hogy melyik checker-tol szarmazik a figyelmeztetes.
     let g:syntastic_aggregate_errors = 1
 
-    " __ C ______________________________________
+    " __ C __________________________________
 
-    let g:syntastic_c_checkers = [ 'gcc', 'splint' ]
+    let g:syntastic_c_checkers = ['gcc', 'splint']
 
-    " __ PYTHON _________________________________
+    " __ PYTHON _____________________________
 
-    let g:syntastic_python_checkers = [ 'pylint', 'flake8' ]
+    let g:syntastic_python_checkers = ['pylint', 'flake8']
 
     " Stilushibak figyelmen kivul hagyasa.
-    let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-indentation -d bad-whitespace'
-    let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
+    " let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-indentation -d bad-whitespace'
+    " let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
+
+    " __ RUBY _______________________________
+
+    " let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
   if has('lua') | exe "Plugin 'shougo/neocomplete.vim'" | endif         " {{{2
   " automatikus kodkiegeszites
@@ -665,7 +675,11 @@ highlight! link StatFileformat DiffAdd
 highlight! link StatInfo       DiffChange
 highlight! link StatWarning    WarningMsg
 
-" Szinsema beallitasa.
+" Szinsema beallitasai.
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_contrast_dark    = 'soft'
+let g:gruvbox_contrast_light   = 'hard'
+
 " Ha nappal van es a solarized elerheto, hasznaljuk azt.
 if has('gui_running')
 \ && len(globpath(&runtimepath, 'colors/solarized.vim'))
@@ -675,9 +689,6 @@ if has('gui_running')
   colorscheme solarized
 
 elseif len(globpath(&runtimepath, 'colors/gruvbox.vim'))
-
-  let g:gruvbox_invert_selection = 0
-  let g:gruvbox_contrast = 'soft'
 
   set background=dark
   colorscheme gruvbox
@@ -1394,7 +1405,7 @@ nnoremap  <Space>bS  :Unite -start-insert buffer:!<CR>
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap  <Space>ff  :UniteWithBufferDir -start-insert file directory/new file/new<CR>
-nnoremap  <Space>fF  :Unite              -start-insert file directory/new file/new<CR>
+nnoremap  <Space>fF  :Unite -start-insert file directory/new file/new<CR>
 nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
 
 "                             <Space>g - GIT                              {{{3
@@ -1470,6 +1481,11 @@ nnoremap          <Space>ts  :call eight#syncwin#call()<CR>
 nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
 nnoremap          <Space>tw  :set wrap!<CR>
 
+"                      <Space>w - WINDOW MANAGEMENT                       {{{3
+" ............................................................................
+
+nnoremap  <Space>ws  :ChooseWinSwap<CR>
+
 "                      <Space>x - TEXT MODIFICATION                       {{{3
 " ............................................................................
 
@@ -1483,10 +1499,10 @@ nmap      <Space>xcc  <Plug>(EasyAlign)ip
 nmap      <Space>xc   <Plug>(EasyAlign)
 vmap      <Space>xc   <Plug>(EasyAlign)
 
-"                      <Space>w - WINDOW MANAGEMENT                       {{{3
+"                           <Space>y - YANKRING                           {{{3
 " ............................................................................
 
-nnoremap  <Space>ws  :ChooseWinSwap<CR>
+nnoremap  <Space>yr  :YRShow<CR>
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
