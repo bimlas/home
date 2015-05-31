@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.29 15:01 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.31 21:30 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -83,11 +83,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'altercation/vim-colors-solarized'                             " {{{2
   " szep, finom colorscheme (light es dark is)
-
-  Plugin 'morhetz/gruvbox'                                              " {{{2
-  " terminalban jol mutat
-
-    let g:indent_guides_auto_colors = 1
 
   Plugin 'blueyed/vim-diminactive'                                      " {{{2
   " Aktiv ablak/buffer kiemelese.
@@ -215,9 +210,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
     let g:surround_no_insert_mappings = 1
     let g:surround_no_mappings        = 1
-
-  Plugin 'tpope/vim-endwise'                                            " {{{2
-  " blokkok lezarasa (pl. endfunction)
 
   Plugin 'tpope/vim-abolish'                                            " {{{2
   " intelligens substitute
@@ -675,29 +667,22 @@ highlight! link StatFileformat DiffAdd
 highlight! link StatInfo       DiffChange
 highlight! link StatWarning    WarningMsg
 
-" Szinsema beallitasai.
-let g:gruvbox_invert_selection = 0
-let g:gruvbox_contrast_dark    = 'soft'
-let g:gruvbox_contrast_light   = 'hard'
+let g:solarized_menu = 0
 
 " Ha nappal van es a solarized elerheto, hasznaljuk azt.
 if has('gui_running')
-\ && len(globpath(&runtimepath, 'colors/solarized.vim'))
-\ && (strftime("%H") >= 7 && strftime("%H") <= 17)
+  if len(globpath(&runtimepath, 'colors/solarized.vim'))
+  \ && (strftime("%H") >= 7 && strftime("%H") <= 17)
 
-  set background=light
-  colorscheme solarized
+    set background=light
+    colorscheme solarized
 
-elseif len(globpath(&runtimepath, 'colors/gruvbox.vim'))
+  elseif len(globpath(&runtimepath, 'colors/solarized.vim'))
 
-  set background=dark
-  colorscheme gruvbox
+    set background=dark
+    colorscheme solarized
 
-  highlight! link StatFilename   Identifier
-  highlight! link StatFileformat Title
-  highlight! link StatInfo       Question
-  highlight! link StatWarning    WarningMsg
-
+  endif
 elseif len(globpath(&runtimepath, 'colors/desert.vim'))
 
   set background=dark
@@ -1126,12 +1111,12 @@ let mapleader='á'
 " gombot.
 nnoremap  Q  <Nop>
 
-" Emacs-szeru cancel. Korabban a <C-C> to <Esc> volt (az InsertLeave esemeny
+" Konnyebben elerheto Esc.Korabban a <C-C> to <Esc> volt (az InsertLeave esemeny
 " nem tortenik meg a <C-C> hatasara), de valamiert a 7.4.640 kornyeken mar nem
 " mukodott.
-noremap   <C-G>  <Esc>
-inoremap  <C-G>  <Esc>
-cnoremap  <C-G>  <Esc>
+noremap   <C-L>  <Esc>
+inoremap  <C-L>  <Esc>
+cnoremap  <C-L>  <C-C>
 
 " Sokkal jobban kezre esnek.
 map       <C-J>  <CR>
@@ -1156,11 +1141,14 @@ noremap  L  g$
 " Ablakkezeles.
 nnoremap  <C-H>  <C-W>q
 
+" Frissites.
+nnoremap  <C-G>  <C-L>
+
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
 " inoremap  <expr>  <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
-inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
+" inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
 
 " A torles ne masolja a vagolapra a szoveget.
 " noremap   s      "_s
@@ -1217,7 +1205,6 @@ nmap  <expr>  <C-K>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
 "                             CAMELCASEMOTION                             {{{3
 " ............................................................................
 
-map  <Leader>w  <Plug>CamelCaseMotion_w
 map  <Leader>b  <Plug>CamelCaseMotion_b
 map  <Leader>e  <Plug>CamelCaseMotion_e
 
@@ -1229,19 +1216,13 @@ let g:netrw_nogx = 1
 nmap  gx  <Plug>(openbrowser-smart-search)
 vmap  gx  <Plug>(openbrowser-smart-search)
 
-"                                 ENDWISE                                 {{{3
-" ............................................................................
-
-" Force endwise.
-imap  <C-CR>  <Plug>AlwaysEnd
-
 "                             UNITE/VIMFILER                              {{{3
 " ............................................................................
 
 autocmd  vimrc  FileType  unite  call UniteMaps()
 function! UniteMaps()
-  imap  <buffer>        <C-G>   <Plug>(unite_insert_leave)
-  map   <buffer>        <C-G>   <Plug>(unite_all_exit)
+  imap  <buffer>        <C-L>   <Plug>(unite_insert_leave)
+  map   <buffer>        <C-L>   <Plug>(unite_all_exit)
   map   <buffer>        <C-H>   <Plug>(unite_all_exit)
   map   <buffer>        <Esc>   <Plug>(unite_all_exit)
   nmap  <buffer>        h       <Plug>(unite_delete_backward_path)
@@ -1485,6 +1466,7 @@ nnoremap          <Space>tw  :set wrap!<CR>
 " ............................................................................
 
 nnoremap  <Space>ws  :ChooseWinSwap<CR>
+nnoremap  <Space>wl  <C-L>
 
 "                      <Space>x - TEXT MODIFICATION                       {{{3
 " ............................................................................

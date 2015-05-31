@@ -40,7 +40,7 @@
   l::
   {
     If GetKeyState("CapsLock", "P")
-      PostMessage, 1075, 540,  , , ahk_class TTOTAL_CMD ; cm_RereadSource=540;Reread source
+      Send, {Esc}
     Else
       PostMessage, 1075, 2003, , , ahk_class TTOTAL_CMD ; cm_GoToDir=2003;Open dir or zip under cursor
     Return
@@ -63,7 +63,7 @@
   g::
   {
     If GetKeyState("CapsLock", "P")
-      Send, {Esc}
+      PostMessage, 1075, 540,  , , ahk_class TTOTAL_CMD ; cm_RereadSource=540;Reread source
     Else
       SendInput, g
     Return
