@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.31 21:30 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.01 08:57 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -116,8 +116,13 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'lokaltog/vim-easymotion'                                      " {{{2
   " gyors mozgas a buffer-en belul
 
+    let g:EasyMotion_do_mapping = 0
+
+    " A celt nagybetuvel mutassa, de engedje a kisebtuvel ugrast.
+    let g:EasyMotion_use_upper = 1
+
     " A helymeghatarozashoz hasznalt betuk.
-    let g:EasyMotion_keys = 'asdfghjkluiopqwer'
+    let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
 
   Plugin 't9md/vim-choosewin'                                           " {{{2
   " easymotion az ablakokon is
@@ -244,8 +249,15 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'shougo/unite.vim'                                             " {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
 
+    let g:unite_source_history_yank_enable = 1
     " let g:unite_source_tag_show_location = 0
     let g:unite_source_tag_max_fname_length = 70
+
+    if executable('ag')
+      let g:unite_source_grep_command       = 'ag'
+      let g:unite_source_grep_default_opts  = '--nocolor --nogroup -S -C4'
+      let g:unite_source_grep_recursive_opt = ''
+    endif
 
     if has('win32')
       let g:unite_source_rec_async_command = escape($VIMRUNTIME . '\find.exe', '\\')
@@ -296,9 +308,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
-
-  Plugin 'yankring.vim'                                                 " {{{2
-  " <C-P>/<C-N>: elozo/kovetkezo masolt szoveg beillesztese, :YRSHow
 
   Plugin 'locator'                                                      " {{{2
   " a gl megmutatja hol vagy (fold, func, stb.)
@@ -1160,6 +1169,9 @@ nnoremap  dd     "_dd
 noremap   D      "_D
 noremap   <Del>  "_<Del>
 
+" Kivagas motion-nel.
+noremap  x  d
+
 " Az ablakkezelo vagolapjanak hasznalata - command-modban hatastalan, a
 " kijelolt szoveget illeszti be, nem pedig azt, amire <C-Insert>-et nyomtunk.
 " Kell hozza: set virtualedit=onemore
@@ -1196,6 +1208,8 @@ map  <Leader>t  <Plug>(easymotion-tl)
 map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>f  <Plug>(easymotion-fl)
 map  <Leader>F  <Plug>(easymotion-Fl)
+map  <Leader>j  <Plug>(easymotion-j)
+map  <Leader>k  <Plug>(easymotion-k)
 
 "                                CHOOSEWIN                                {{{3
 " ............................................................................
@@ -1218,6 +1232,8 @@ vmap  gx  <Plug>(openbrowser-smart-search)
 
 "                             UNITE/VIMFILER                              {{{3
 " ............................................................................
+
+nnoremap  <Leader>p  :Unite history/yank<CR>
 
 autocmd  vimrc  FileType  unite  call UniteMaps()
 function! UniteMaps()

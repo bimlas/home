@@ -1,9 +1,5 @@
-REM Copy to vim source root.
-REM
-REM PERL=c:/app/app/perl
-REM PERL_VER=56
-REM TCL=c:/app/app/tcl
-REM TCL_VER = 83
+@echo off
+rem Copy to vim source root.
 
 cd %~dp0\src
 
@@ -20,6 +16,10 @@ PYTHON3=c:/app/python34           ^
 PYTHON3_VER=34                    ^
 RUBY=c:/app/ruby22                ^
 RUBY_VER=22                       ^
-RUBY_VER_LONG=2.2.0
+RUBY_VER_LONG=2.2.0               ^
+rem PERL=c:/app/app/perl              ^
+rem PERL_VER=56                       ^
+rem TCL=c:/app/app/tcl                ^
+rem TCL_VER = 83                      ^
 
 cd ..
