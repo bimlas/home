@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.01 08:57 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.01 21:57 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -69,8 +69,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
     let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
 
-  Plugin 'bimbalaszlo/vim-numutils'                                     " {{{2
-  " szamok manipulalasa regex segitsegevel
+  Plugin 'bimbalaszlo/vim-eightstat'                                    " {{{2
+  " statusline helper functions
 
   Plugin 'bimbalaszlo/vim-cheatsheets'                                  " {{{2
   " rovid leirasok programokhoz es programozasi nyelvekhez help formaban
@@ -733,7 +733,6 @@ highlight TagbarHighlight term=inverse ctermfg=White
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
 let stat_filedir    = '%<%{exists("b:stat_curfiledir") ? b:stat_curfiledir : ""}'
 let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
 let stat_filename   = '%w%t%r%m'
@@ -772,46 +771,6 @@ endfunction
 let g:statfugitive_disabled = 0
 function! StatFugitive()
   return (exists('b:git_dir') && ! g:statfugitive_disabled) ? fugitive#head(7) . ':' . fugitive#buffer().commit()[0:6] : ''
-endfunction
-
-" __ STATWARN ___________________________
-"
-" Kifejezesre illeszkedo reszek keresese.
-
-let g:statwarn = [ { 'pattern' : '^ .*\n\zs\t\|^\t.*\n\zs ', 'format' : '^%d' },
-\                  { 'pattern' : '^.\{79,}',                 'format' : '>%d', 'whitelist' : ['text', ''] },
-\                  { 'pattern' : '\r',                       'format' : '$%d' },
-\                  { 'pattern' : 'TODO\|FIXME',              'format' : 'T%d' }
-\                ]
-
-" Cursorhold max lines.
-let g:statwarn_max_lines = 5000
-
-autocmd vimrc  CursorHold   * if line('$') <= g:statwarn_max_lines | silent! unlet b:statwarn | endif
-autocmd vimrc  BufWritePost * silent! unlet b:statwarn
-
-function! StatWarn()
-
-  if exists('b:statwarn') | return b:statwarn | endif
-
-  let b:statwarn = ''
-
-  if &binary | return b:statwarn | endif
-
-  for searchfor in g:statwarn
-    if (has_key(searchfor, 'whitelist') && (index(searchfor['whitelist'], &filetype) <  0)) ||
-    \  (has_key(searchfor, 'blacklist') && (index(searchfor['blacklist'], &filetype) >= 0))
-      continue
-    endif
-
-    let found = search(searchfor['pattern'], 'wnc')
-    if found != 0
-      let b:statwarn .= printf(' ' . searchfor['format'] . ' ', found)
-    endif
-  endfor
-
-  return b:statwarn
-
 endfunction
 
 "                                  NETRW                                  {{{1
@@ -1153,11 +1112,15 @@ nnoremap  <C-H>  <C-W>q
 " Frissites.
 nnoremap  <C-G>  <C-L>
 
+" Egy ures sor beillesztese normal modban.
+nnoremap <Leader>O :pu! _<CR>:']+1<CR>
+nnoremap <Leader>o :pu  _<CR>:'[-1<CR>
+
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
 " inoremap  <expr>  <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
-" inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
+inoremap  <expr>  <C-D>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
 
 " A torles ne masolja a vagolapra a szoveget.
 " noremap   s      "_s
@@ -1168,9 +1131,8 @@ noremap   d      "_d
 nnoremap  dd     "_dd
 noremap   D      "_D
 noremap   <Del>  "_<Del>
-
 " Kivagas motion-nel.
-noremap  x  d
+noremap   x      d
 
 " Az ablakkezelo vagolapjanak hasznalata - command-modban hatastalan, a
 " kijelolt szoveget illeszti be, nem pedig azt, amire <C-Insert>-et nyomtunk.
