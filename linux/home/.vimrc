@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.01 21:57 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.02 10:37 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -134,7 +134,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " let g:choosewin_tabline_replace    = 0
 
     let g:choosewin_label              = 'ASDFHJKL'
-    let g:choosewin_keymap             = {"\<C-K>": 'previous'}
+    let g:choosewin_keymap             = {"\<C-L>": 'previous'}
                                                                         " }}}2
 
   " .. TEXTOBJ-USER .......................
@@ -1082,9 +1082,9 @@ nnoremap  Q  <Nop>
 " Konnyebben elerheto Esc.Korabban a <C-C> to <Esc> volt (az InsertLeave esemeny
 " nem tortenik meg a <C-C> hatasara), de valamiert a 7.4.640 kornyeken mar nem
 " mukodott.
-noremap   <C-L>  <Esc>
-inoremap  <C-L>  <Esc>
-cnoremap  <C-L>  <C-C>
+noremap   <C-K>  <Esc>
+inoremap  <C-K>  <Esc>
+cnoremap  <C-K>  <C-C>
 
 " Sokkal jobban kezre esnek.
 map       <C-J>  <CR>
@@ -1120,7 +1120,7 @@ nnoremap <Leader>o :pu  _<CR>:'[-1<CR>
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
 " inoremap  <expr>  <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
-inoremap  <expr>  <C-D>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
+inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
 
 " A torles ne masolja a vagolapra a szoveget.
 " noremap   s      "_s
@@ -1165,7 +1165,7 @@ endfunction
 " ............................................................................
 
 map  s          <Plug>(easymotion-s2)
-" map  <Leader>s  <Plug>(easymotion-bd-fl)
+map  <Leader>s  <Plug>(easymotion-repeat)
 map  <Leader>t  <Plug>(easymotion-tl)
 map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>f  <Plug>(easymotion-fl)
@@ -1176,7 +1176,7 @@ map  <Leader>k  <Plug>(easymotion-k)
 "                                CHOOSEWIN                                {{{3
 " ............................................................................
 
-nmap  <expr>  <C-K>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+nmap  <expr>  <C-L>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
 
 "                             CAMELCASEMOTION                             {{{3
 " ............................................................................
@@ -1199,8 +1199,8 @@ nnoremap  <Leader>p  :Unite history/yank<CR>
 
 autocmd  vimrc  FileType  unite  call UniteMaps()
 function! UniteMaps()
-  imap  <buffer>        <C-L>   <Plug>(unite_insert_leave)
-  map   <buffer>        <C-L>   <Plug>(unite_all_exit)
+  imap  <buffer>        <C-K>   <Plug>(unite_insert_leave)
+  map   <buffer>        <C-K>   <Plug>(unite_all_exit)
   map   <buffer>        <C-H>   <Plug>(unite_all_exit)
   map   <buffer>        <Esc>   <Plug>(unite_all_exit)
   nmap  <buffer>        h       <Plug>(unite_delete_backward_path)
@@ -1211,7 +1211,7 @@ function! UniteMaps()
   map   <buffer><expr>  x       unite#do_action('start')
   map   <buffer><expr>  <C-CR>  unite#do_action('start')
   imap  <buffer><expr>  <C-CR>  unite#do_action('start')
-  nmap  <buffer><expr>  <C-K>   (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+  nmap  <buffer><expr>  <C-L>   (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
 endfunction
 
 autocmd  vimrc  FileType  vimfiler  call VimfilerMaps()
@@ -1226,6 +1226,7 @@ function! VimfilerMaps()
   map   <buffer><expr>  <F11>   vimfiler#do_action('start')
   map   <buffer><expr>  <C-CR>  vimfiler#do_action('start')
   imap  <buffer><expr>  <C-CR>  vimfiler#do_action('start')
+  nmap  <buffer><expr>  <C-L>   (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
 endfunction
 
 "                               NEOSNIPPET                                {{{3
@@ -1444,7 +1445,6 @@ nnoremap          <Space>tw  :set wrap!<CR>
 " ............................................................................
 
 nnoremap  <Space>ws  :ChooseWinSwap<CR>
-nnoremap  <Space>wl  <C-L>
 
 "                      <Space>x - TEXT MODIFICATION                       {{{3
 " ............................................................................
@@ -1459,10 +1459,7 @@ nmap      <Space>xcc  <Plug>(EasyAlign)ip
 nmap      <Space>xc   <Plug>(EasyAlign)
 vmap      <Space>xc   <Plug>(EasyAlign)
 
-"                           <Space>y - YANKRING                           {{{3
-" ............................................................................
-
-nnoremap  <Space>yr  :YRShow<CR>
+nnoremap  <Space>xk   i<C-K>
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================

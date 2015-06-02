@@ -31,7 +31,7 @@
   k::
   {
     If GetKeyState("CapsLock", "P")
-      Send, {Tab}
+      Send, {Esc}
     Else
       Send, {Up}
     Return
@@ -40,7 +40,7 @@
   l::
   {
     If GetKeyState("CapsLock", "P")
-      Send, {Esc}
+      Send, {Tab}
     Else
       PostMessage, 1075, 2003, , , ahk_class TTOTAL_CMD ; cm_GoToDir=2003;Open dir or zip under cursor
     Return
@@ -194,21 +194,21 @@
     Return
   }
 
-  g::
+  k::
   {
     If GetKeyState("CapsLock", "P")
       Send, {Esc}
     Else
-      SendInput, g
+      SendInput, k
     Return
   }
 
-  k::
+  l::
   {
     If GetKeyState("CapsLock", "P")
       Send, {Tab}
     Else
-      SendInput, k
+      SendInput, l
     Return
   }
 
