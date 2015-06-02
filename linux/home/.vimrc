@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.02 10:37 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.02 22:04 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -72,8 +72,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'bimbalaszlo/vim-eightstat'                                    " {{{2
   " statusline helper functions
 
-  Plugin 'bimbalaszlo/vim-cheatsheets'                                  " {{{2
-  " rovid leirasok programokhoz es programozasi nyelvekhez help formaban
                                                                         " }}}2
 
   " .. MEGJELENES .........................
