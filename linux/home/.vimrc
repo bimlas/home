@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.02 22:04 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.04 10:13 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -572,6 +572,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:rubycomplete_load_gemfile      = 1
     let g:ruby_no_comment_fold           = 1
     let g:ruby_operators                 = 1
+
+  Plugin 'ekalinin/dockerfile.vim'                                      " {{{2
+  " syntax
 
                                                                         " }}}2
 
