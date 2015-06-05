@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.04 10:13 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.05 13:53 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -247,9 +247,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'shougo/unite.vim'                                             " {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
 
-    let g:unite_source_history_yank_enable = 1
+    let g:unite_source_history_yank_enable  = 1
     " let g:unite_source_tag_show_location = 0
     let g:unite_source_tag_max_fname_length = 70
+    let g:unite_enable_auto_select          = 0
 
     if executable('ag')
       let g:unite_source_grep_command       = 'ag'
@@ -265,6 +266,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     autocmd  vimrc  VimEnter  *  call unite#custom#profile('default', 'context', {
     \ 'prompt_direction': 'top',
     \ 'direction':        'botright',
+    \ 'cursor_line_time': '0.0',
     \ 'sync':             1
     \ })
 
@@ -1166,13 +1168,14 @@ endfunction
 " ............................................................................
 
 map  s          <Plug>(easymotion-s2)
-map  <Leader>s  <Plug>(easymotion-repeat)
 map  <Leader>t  <Plug>(easymotion-tl)
 map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>f  <Plug>(easymotion-fl)
 map  <Leader>F  <Plug>(easymotion-Fl)
 map  <Leader>j  <Plug>(easymotion-j)
 map  <Leader>k  <Plug>(easymotion-k)
+
+autocmd  vimrc  VimEnter  *  if isdirectory(bundle_dir . '/vim-easymotion') | EMCommandLineNoreMap <C-J> <CR> | endif
 
 "                                CHOOSEWIN                                {{{3
 " ............................................................................

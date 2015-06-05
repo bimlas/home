@@ -8,19 +8,18 @@
 # For example:
 #   docker run -v //c/users/you/documents://root/mnt -it debiam /bin/bash
 #
-# To force the rebuild:
-#   docker build  --rm=true --force-rm=true -t debiam dir_of_dockerfile
-#
 # Remove image:
 #   docker images
 #   docker rmi name_of_image
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.04 22:14 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.05 08:44 ==
 
 FROM debian:testing
 MAINTAINER BimbaLaszlo
 
 RUN apt-get update
+
+RUN apt-get install -y curl
 
 RUN apt-get install -y gcc g++ make
 RUN apt-get install -y ctags
@@ -34,6 +33,12 @@ RUN gem install pry byebug
 
 #                        SET UP USER ENVIRONMENT
 # ============================================================================
+
+RUN apt-get install -y zsh
+# RUN git clone https://github.com/zsh-users/antigen ~/.antigen
+# RUN zsh
+# RUN source ~/antigen/antigen.zsh
+# RUN antigen bundle git
 
 # RUN git clone https://github.com/BimbaLaszlo/home ~/home
 # RUN cd ~/home; chmod 744 linux_user.sh; ./linux_user.sh
