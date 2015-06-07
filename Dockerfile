@@ -12,14 +12,12 @@
 #   docker images
 #   docker rmi name_of_image
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.05 08:44 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.06 12:52 ==
 
 FROM debian:testing
 MAINTAINER BimbaLaszlo
 
 RUN apt-get update
-
-RUN apt-get install -y curl
 
 RUN apt-get install -y gcc g++ make
 RUN apt-get install -y ctags
@@ -28,18 +26,19 @@ RUN apt-get install -y git
 RUN apt-get install -y python python-pip python3 python3-pip
 
 RUN apt-get install -y ruby ruby-dev
-RUN gem install gem-ctags ripper-tags
+RUN gem install ripper-tags gem-ripper-tags
 RUN gem install pry byebug
 
 #                        SET UP USER ENVIRONMENT
 # ============================================================================
 
-RUN apt-get install -y zsh
-# RUN git clone https://github.com/zsh-users/antigen ~/.antigen
-# RUN zsh
-# RUN source ~/antigen/antigen.zsh
-# RUN antigen bundle git
+ENV TERM=xterm
 
-# RUN git clone https://github.com/BimbaLaszlo/home ~/home
-# RUN cd ~/home; chmod 744 linux_user.sh; ./linux_user.sh
+RUN git clone --progress --verbose https://github.com/BimbaLaszlo/home ~/home
+# It's a bash script, not works with /bin/sh!
+RUN /bin/bash -c "cd /root/home; source ./linux_user.sh"
 # mount?
+
+RUN apt-get install -y zsh
+RUN git clone --progress --verbose https://github.com/zsh-users/antigen ~/.antigen/antigen
+RUN /bin/zsh -c "source /root/.antigen/antigen/antigen.zsh; antigen bundle git"
