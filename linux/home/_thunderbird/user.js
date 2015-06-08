@@ -18,6 +18,11 @@ user_pref("mail.identity.id1.htmlSigText", "http://BimbaLaszlo.github.io/");
 user_pref("mail.server.default.check_all_folders_for_new", true);
 // Percenkent frissitsen.
 user_pref("mail.server.server1.check_time", 1);
+// Datum szerint novekvo sorrendben rendezze alapbol a thread-eket.
+user_pref("mailnews.default_news_sort_order", 1)
+user_pref("mailnews.default_news_sort_type", 22)
+user_pref("mailnews.default_sort_order", 1)
+user_pref("mailnews.default_sort_type", 22)
 
 // __ GMAIL-SZERU MUKODESHEZ ____________
 //
