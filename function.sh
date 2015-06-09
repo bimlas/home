@@ -3,7 +3,6 @@
 
 CP="`which cp`"
 LN="`which ln`"
-CWD="`pwd`"
 
 header()
 {

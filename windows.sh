@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source function.sh
+CWD="`dirname $0`"
+source "$CWD/function.sh"
 
 header "DEPLOYING ./windows"
 cd "$CWD/windows"
@@ -37,10 +38,5 @@ copy         \
 copy             \
   _thunderbird/* \
   $HOME/AppData/Roaming/Thunderbird/Profiles/*/
-
-header "  CREATING DIRECTORIES"
-
-mkdir -p "$HOME/.vim_local/swap/"
-mkdir -p "$HOME/.vim_local/undo/"
 
 header "DON'T FORGET TO ADD ~/bin TO PATH"

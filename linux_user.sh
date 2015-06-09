@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source function.sh
+CWD="`dirname $0`"
+source "$CWD/function.sh"
 
 header "DEPLOYING ./linux/home"
 cd "$CWD/linux/home"
@@ -45,8 +46,3 @@ link "$CWD/linux/home/.zshrc"         "$HOME/.zshrc"
 
 cd "$CWD/../../"
 link "`pwd`" "$HOME/cuccok"
-
-header "  CREATING DIRECTORIES"
-
-mkdir -p "$HOME/.vim_local/swap/"
-mkdir -p "$HOME/.vim_local/undo/"
