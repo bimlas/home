@@ -1,6 +1,15 @@
 #!/bin/bash
 
-CWD="`dirname $0`"
+# Get the dirname of the script.
+# http://stackoverflow.com/a/246128
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+CWD="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
 source "$CWD/function.sh"
 
 header "DEPLOYING ./linux/home"
