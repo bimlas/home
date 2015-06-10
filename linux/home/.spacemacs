@@ -19,16 +19,18 @@
      ;; --------------------------------------------------------
      ;; To get the list of layers, SPC f e h, modify .spacemacs, then
      ;; SPC f e R
+     shell
      auto-completion
      ; ycmd
      syntax-checking
+     quickrun
      ruby
      git
      ;; better-defaults
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
      ;; markdown
-     ;; org
+     org
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
