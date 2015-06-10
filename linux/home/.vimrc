@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.05 13:53 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.10 11:23 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1385,6 +1385,7 @@ nnoremap  <Space>gL  :Gitv<CR>
 nmap              <Space>mh  <Plug>Zeavim
 vmap              <Space>mh  <Plug>ZVVisSelection
 nnoremap          <Space>mg  :Grep<Space>
+nnoremap          <Space>mo  :Unite -start-insert outline<CR>
 nnoremap          <Space>mr  :QuickRun<CR>
 noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
 nnoremap          <Space>mt  :TagbarToggle<CR>
@@ -1431,7 +1432,6 @@ nmap  <Space>qd  <Plug>Dsurround
 " ............................................................................
 
 nnoremap  <Space>sg  :Unite -start-insert vimgrep<CR>
-nnoremap  <Space>sl  :Unite -start-insert outline<CR>
 nnoremap  <Space>ss  :Unite -start-insert -auto-preview line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
