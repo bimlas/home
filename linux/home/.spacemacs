@@ -30,7 +30,7 @@
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
      ;; markdown
-     org
+     ;; org
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -165,14 +165,14 @@ layers configuration."
   (add-hook 'prog-mode-hook #'flycheck-mode)
   ;; Global remaps to quit.
   ;; TODO: visual block.
-  (define-key evil-insert-state-map           (kbd "C-g")   'evil-force-normal-state)
-  (define-key evil-normal-state-map           (kbd "C-g")   'keyboard-escape-quit)
-  (define-key evil-visual-state-map           (kbd "C-g")   'keyboard-escape-quit)
-  (define-key minibuffer-local-map            (kbd "C-g")   'keyboard-escape-quit)
-  (define-key minibuffer-local-ns-map         (kbd "C-g")   'keyboard-escape-quit)
-  (define-key minibuffer-local-completion-map (kbd "C-g")   'keyboard-escape-quit)
-  (define-key minibuffer-local-must-match-map (kbd "C-g")   'keyboard-escape-quit)
-  (define-key minibuffer-local-isearch-map    (kbd "C-g")   'keyboard-escape-quit)
+  (define-key evil-insert-state-map           (kbd "C-k")   'evil-force-normal-state)
+  (define-key evil-normal-state-map           (kbd "C-k")   'keyboard-escape-quit)
+  (define-key evil-visual-state-map           (kbd "C-k")   'keyboard-escape-quit)
+  (define-key minibuffer-local-map            (kbd "C-k")   'keyboard-escape-quit)
+  (define-key minibuffer-local-ns-map         (kbd "C-k")   'keyboard-escape-quit)
+  (define-key minibuffer-local-completion-map (kbd "C-k")   'keyboard-escape-quit)
+  (define-key minibuffer-local-must-match-map (kbd "C-k")   'keyboard-escape-quit)
+  (define-key minibuffer-local-isearch-map    (kbd "C-k")   'keyboard-escape-quit)
   ;; Global remaps to <return>.
   ;; TODO: google
   (define-key evil-motion-state-map           (kbd "C-j")   'widget-button-press)

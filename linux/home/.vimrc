@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.10 11:23 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.11 15:33 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -317,6 +317,16 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'tyru/open-browser.vim'                                        " {{{2
   " netrw gx helyett
+
+  " Plugin 'jceb/vim-orgmode'                                             " {{{2
+
+    let maplocalleader=','
+    let g:org_agenda_files = ['~/test.org']
+
+  " Plugin 'hsitz/vimorganizer'
+  " emacs org-mode in vim
+
+    let g:agenda_files=['~/test.org']
 
                                                                         " }}}2
 
