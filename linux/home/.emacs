@@ -19,6 +19,7 @@
                      color-theme-solarized  ; light/dark color theme
                      ; rainbow-mode           ; hex/rgb szines megjelenitese
                      ; sunrise-commander      ; double panel commander
+                     guide-key              ; gomb lenyomasa utan mutassa a lehetseges folytatasokat
                      helm                   ; minibuffer-kiegeszites (kb. unite)
                      ace-jump-mode            ; easymotion (C-c Space)
                      ; auto-complete          ; auto completion
@@ -26,6 +27,21 @@
                      ; quickrun               ; quickrun
                      ; magit                  ; git
                      ))
+; https://github.com/jwiegley/use-package
+; (use-package guide-key
+; :diminish guide-key-mode  ; Don't show 'guide-key in mode line
+; :ensure t ;auto install the package if it is not installed.
+; :config
+; (setq guide-key/guide-key-sequence t) ;show guide key for all key combos. but you can configure it for specific combos also.
+; (setq guide-key/recursive-key-sequence-flag t) ;recurse into all key combos.
+; (setq guide-key/popup-window-position 'bottom) ;I want the help-pop up to be at the bottom like most buffer popups.
+; (setq guide-key/highlight-command-regexp
+; '("my/"  ; all my functions have a 'my/...' prefix, I like to highlight them.
+; ("template" . "hot pink")  ; also highlight any function that have the word 'template' in them.
+; ("helm-" . "green")  ; you can copy & paste lines like this to further highlight regions. use helm-color to find colors
+; ))
+; (guide-key-mode 1)  ; Enable guide-key-mode
+; )
 
 (setq package-archives '(("elpa"  . "http://tromey.com/elpa/")
                          ("gnu"   . "http://elpa.gnu.org/packages/")
@@ -59,8 +75,8 @@
 
 ; runtimepath
 ; http://emacswiki.org/emacs/LoadPath
-(let ((default-directory "~/.emacs.d/local/"))
-  (normal-top-level-add-subdirs-to-load-path))
+; (let ((default-directory "~/.emacs.d/local/"))
+;   (normal-top-level-add-subdirs-to-load-path))
 
 ; ~/.emacs.d/local/doc-mode
 ; http://sourceforge.net/projects/xpt/files/doc-mode/
@@ -125,6 +141,15 @@
 ; <C-X>b      bufferek megnyitasa
 ; (ido-mode 1)
 
+;                                GUIDE-KEY                                {{{2
+; ____________________________________________________________________________
+; not works
+
+(setq guide-key/guide-key-sequence t)
+(setq guide-key/recursive-key-sequence-flag t)
+(setq guide-key/popup-window-position 'bottom)
+(guide-key-mode 1)
+
 ;                                  EVIL                                   {{{2
 ; ____________________________________________________________________________
 
@@ -134,8 +159,7 @@
 ; ____________________________________________________________________________
 
 (helm-mode 1)
-
-(helm-autoresize-mode 1)
+; (helm-autoresize-mode 1)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-i")   'helm-execute-persistent-action) ; make TAB works in terminal
