@@ -143,7 +143,6 @@
 
 ;                                GUIDE-KEY                                {{{2
 ; ____________________________________________________________________________
-; not works
 
 (setq guide-key/guide-key-sequence t)
 (setq guide-key/recursive-key-sequence-flag t)
