@@ -23,19 +23,14 @@
      ;; __ BASIC LAYERS _____________________
      shell
      ;; __ PROGRAMMING ______________________
-     auto-completion
-     ; ycmd
+     (auto-completion :variables
+                      auto-completion-enable-help-tooltip t)
      syntax-checking
      python
      ruby
      php
      ;; __ OTHER ____________________________
      git
-     ;; better-defaults
-     ;; (git :variables
-     ;;      git-gutter-use-fringe t)
-     ;; markdown
-     ;; org
      )
    ;; Packages without layers.
    dotspacemacs-additional-packages
@@ -45,7 +40,11 @@
      rinari
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages
+   '(
+     php-extras
+     rainbow-delimiters
+     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -129,11 +128,11 @@ before layers configuration."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'.
-   dotspacemacs-active-transparency 90
+   dotspacemacs-active-transparency 100
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'.
-   dotspacemacs-inactive-transparency 90
+   dotspacemacs-inactive-transparency 100
    ;; If non nil unicode symbols are displayed in the mode line.
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -143,7 +142,7 @@ before layers configuration."
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    dotspacemacs-smartparens-strict-mode nil
    ;; If non nil advises quit functions to keep server open when quitting.
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
@@ -159,22 +158,40 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  (setq-default
-    ;; Textwidth, fill only the comments.
-    set-fill-column 78
-    comment-auto-fill-only-comments t
-    ;; Put newline to the end of the file as Vim does.
-    require-final-newline t
-    ;; Highlight the whole text between pairs.
-    show-paren-style 'expression
-    indent-guide-delay 0.5
-    ;; Move to end or beginning of source when reaching top or bottom of source.
-    ; helm-move-to-line-cycle-in-source t
-    auto-completion-enable-company-help-tooltip t
-  )
+
+  ;; BASIC SETTINGS
+
+  ;; Textwidth, fill only the comments.
+  (setq-default set-fill-column 78)
+  (setq-default comment-auto-fill-only-comments t)
+
+  ;; Put newline to the end of the file as Vim does.
+  (setq-default require-final-newline t)
+
+  ;; PLUGIN SETTINGS
+
+  ;; Automatically remove whitespace.
+  (global-whitespace-mode)
+  (setq-default whitespace-action '(auto-cleanup))
+  (setq-default whitespace-style '(trailing space-before-tab empty space-after-tab))
+
+  ;; Highlight the whole text between pairs.
+  (setq-default show-smartparens-global-mode t)
+  ;; (setq-default sp-show-pair-from-inside nil)
+
+  (setq-default indent-guide-delay 0.5)
+
+  ;; Move to end or beginning of source when reaching top or bottom of source.
+  ;; (setq-default helm-move-to-line-cycle-in-source t)
+
+  ;; ENABLING PLUGINS
+
   (add-hook 'prog-mode-hook #'indent-guide-mode)
   (add-hook 'prog-mode-hook #'company-mode)
   (add-hook 'prog-mode-hook #'flycheck-mode)
+
+  ;; BINDS
+
   ;; Global remaps to quit.
   ;; TODO: visual block.
   (global-set-key                             (kbd "C-k")   'keyboard-escape-quit)
@@ -192,14 +209,14 @@ layers configuration."
   (define-key evil-motion-state-map           (kbd "C-j")   'widget-button-press)
   (define-key evil-normal-state-map           (kbd "C-j")   'widget-button-press)
   ;; Custom maps.
-  (define-key evil-motion-state-map           (kbd "C-k")   'evil-window-next)
-  (define-key evil-normal-state-map           (kbd "C-k")   'evil-window-next)
+  (define-key evil-motion-state-map           (kbd "C-l")   'evil-window-next)
+  (define-key evil-normal-state-map           (kbd "C-l")   'evil-window-next)
   (define-key evil-normal-state-map           (kbd "H")     'evil-first-non-blank-of-visual-line)
   (define-key evil-normal-state-map           (kbd "L")     'evil-end-of-visual-line)
-  (define-key evil-motion-state-map           (kbd "s")     'evil-ace-jump-char-mode)
-  (define-key evil-normal-state-map           (kbd "s")     'evil-ace-jump-char-mode)
+  (define-key evil-motion-state-map           (kbd "s")     'avy-goto-char-2)
+  (define-key evil-normal-state-map           (kbd "s")     'avy-goto-char-2)
   ;; TODO: not works
-  (define-key evil-visual-state-map           (kbd "s")     'evil-ace-jump-char-mode)
+  (define-key evil-visual-state-map           (kbd "s")     'avy-goto-char-2)
   (define-key evil-motion-state-map           (kbd "C-e")   'evil-next-buffer)
   (define-key evil-normal-state-map           (kbd "C-e")   'evil-next-buffer)
   (define-key evil-motion-state-map           (kbd "C-y")   'evil-prev-buffer)
@@ -233,23 +250,3 @@ layers configuration."
 
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ahs-case-fold-search nil)
- '(ahs-default-range (quote ahs-range-whole-buffer))
- '(ahs-idle-interval 0.25)
- '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil)
- '(org-agenda-files (quote ("~/test.org")))
- '(paradox-github-token t)
- '(ring-bell-function (quote ignore) t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))

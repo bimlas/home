@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.11 15:33 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.21 13:56 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -608,6 +608,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
                                                                         " }}}2
   call vundle#end()
+else
+  echomsg "Run :InstallVundle"
 endif
 
 "                              INSTALLVUNDLE                              {{{1

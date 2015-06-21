@@ -1,0 +1,4 @@
+source 'https://rubygems.org'
+
+# imgdatetofilename.rb
+gem 'exifr'

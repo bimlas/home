@@ -1,5 +1,0 @@
-# requirements.txt - python2 pip requirements file
-# Usage: pip2 install -r requirements.txt
-
-# imgdatetofilename requirements:
-exifread
