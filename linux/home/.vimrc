@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.21 13:56 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.22 13:48 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -251,6 +251,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " let g:unite_source_tag_show_location = 0
     let g:unite_source_tag_max_fname_length = 70
     let g:unite_enable_auto_select          = 0
+    let g:unite_source_buffer_time_format   = ''
 
     if executable('ag')
       let g:unite_source_grep_command       = 'ag'
@@ -476,6 +477,11 @@ if isdirectory(bundle_dir . '/vundle.vim')
     endif
     let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
+  Plugin 'shougo/echodoc.vim'                                           " {{{2
+  " fuggveny argumentumok kiirasa a statusline ala
+
+    let g:echodoc_enable_at_startup = 1
+
   Plugin 'shougo/neosnippet.vim'                                        " {{{2
   " template-ek
 
@@ -609,7 +615,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
                                                                         " }}}2
   call vundle#end()
 else
-  echomsg "Run :InstallVundle"
+  autocmd  vimrc  *  echomsg "Run :InstallVundle"
 endif
 
 "                              INSTALLVUNDLE                              {{{1
@@ -837,6 +843,9 @@ set showcmd
 
 " Mod (insert, visual, stb.) mutatasa.
 set showmode
+
+" Kellokepp magas legyen a statusline alatti terulet.
+set cmdheight=2
 
 " A kurzor soranak kiemelese.
 set cursorline
@@ -1221,6 +1230,7 @@ function! UniteMaps()
   map   <buffer>        <Esc>   <Plug>(unite_all_exit)
   nmap  <buffer>        h       <Plug>(unite_delete_backward_path)
   nmap  <buffer>        l       <CR>
+  nmap  <buffer>        S       <Plug>(unite_append_end)<C-U>
   imap  <buffer>        /       /*
   map   <buffer>        <C-Z>   <Plug>(unite_smart_preview)
   imap  <buffer><expr>  <C-Z>   unite#do_action('preview')
@@ -1352,6 +1362,7 @@ endfunction
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
 
 noremap   <Space><Space>  <C-]>
+nnoremap  <Space><Tab>    :buffer #<CR>
 
 nmap      <Space>;        <Plug>TComment_gc
 nmap      <Space>;;       <Plug>TComment_gcc
@@ -1363,25 +1374,28 @@ nnoremap  <Space>h        :nohlsearch<CR>
 " ............................................................................
 
 " TODO: xterm cwd
-nnoremap  <expr>  <Space>as  has('win32')
-                             \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
-                             \ : ':silent !xterm &<CR>'
+nnoremap  <expr>  <Space>asi  has('win32')
+                              \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
+                              \ : ':silent !xterm &<CR>'
 
 "                           <Space>b - BUFFERS                            {{{3
 " ............................................................................
 
-nnoremap  <Space>bb  :buffer #<CR>
-nnoremap  <Space>bc  :Unite -start-insert change<CR>
+nnoremap  <Space>bb  :Unite buffer<CR>
+nnoremap  <Space>bB  :Unite buffer:!<CR>
+nnoremap  <Space>bc  :Unite change<CR>
 nnoremap  <Space>bd  :Bd<CR>
-nnoremap  <Space>bs  :Unite -start-insert buffer<CR>
-nnoremap  <Space>bS  :Unite -start-insert buffer:!<CR>
 
 "                            <Space>f - FILES                             {{{3
 " ............................................................................
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
-nnoremap  <Space>ff  :UniteWithBufferDir -start-insert file directory/new file/new<CR>
-nnoremap  <Space>fF  :Unite -start-insert file directory/new file/new<CR>
+nnoremap  <Space>fed :edit $MYVIMRC<CR>
+nnoremap  <Space>feR :source $MYVIMRC<CR>
+nnoremap  <Space>ff  :UniteWithBufferDir file directory/new file/new<CR>
+nnoremap  <Space>fF  :Unite file directory/new file/new<CR>
+nnoremap  <Space>fs  :write<CR>
+nnoremap  <Space>fS  :wall<CR>
 nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
 
 "                             <Space>g - GIT                              {{{3
@@ -1397,7 +1411,7 @@ nnoremap  <Space>gL  :Gitv<CR>
 nmap              <Space>mh  <Plug>Zeavim
 vmap              <Space>mh  <Plug>ZVVisSelection
 nnoremap          <Space>mg  :Grep<Space>
-nnoremap          <Space>mo  :Unite -start-insert outline<CR>
+nnoremap          <Space>mo  :Unite outline<CR>
 nnoremap          <Space>mr  :QuickRun<CR>
 noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
 nnoremap          <Space>mt  :TagbarToggle<CR>
@@ -1416,20 +1430,20 @@ autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mf  :AdocFormat<CR>$hD
 
 " __ RUBY _______________________________
 
-autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>ms  has('win32')
+autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>msi  has('win32')
                                 \ ? ':silent !start conemu64.exe /cmd irb.bat<CR>'
                                 \ : ':silent !xterm -c irb &<CR>'
 
 " __ PYTHON _____________________________
 
-autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win32')
+autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>msi  has('win32')
                                   \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
                                   \ : ':silent !xterm -c python &<CR>'
 
 "                           <Space>p - PROJECT                            {{{3
 " ............................................................................
 
-nnoremap  <Space>pf  :UniteWithProjectDir -start-insert -sync file_rec/async directory/new file/new<CR>
+nnoremap  <Space>pf  :UniteWithProjectDir -sync file_rec/async directory/new file/new<CR>
 nnoremap  <Space>pt  :VimFilerExplorer -project -toggle<CR>
 
 "                      <Space>q - QUOTES, SURROUNDS                       {{{3

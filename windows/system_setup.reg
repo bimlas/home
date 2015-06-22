@@ -8,7 +8,7 @@ Windows Registry Editor Version 5.00
 ;
 ; TODO: valami tiltja a nyomtatot.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.02.20 09:11 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.22 14:34 ==
 
 ;                   IKONOK MELLETTI NYILACSKA ELTUNTETESE                 {{{1
 ; ============================================================================
@@ -389,6 +389,7 @@ Windows Registry Editor Version 5.00
 "SackOpts"=dword:00000001
 "Tcp1323Opts"=dword:00000001
 "TcpMaxDupAcks"=dword:00000002
+"DisabledComponents"=dword:00000255
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PCHealth\ErrorReporting]
 "DoReport"=dword:00000000

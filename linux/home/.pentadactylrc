@@ -40,9 +40,9 @@ highlight Hint       text-transform: uppercase; font-family : "Helvetica Neue", 
 " highlight Hint::after content: attr(number) !important;
 
 " Map.
-map  -builtin  <C-G>      <Esc>
-imap -builtin  <C-G>      <Esc>
-cmap -builtin  <C-G>      <Esc>
+map  -builtin  <C-K>      <Esc>
+imap -builtin  <C-K>      <Esc>
+cmap -builtin  <C-K>      <Esc>
 
 imap -builtin  <C-J>      <CR>
 imap -builtin  <C-L>      <Del>
