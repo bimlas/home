@@ -13,14 +13,17 @@ Dir.glob("#{inputDir}/*.jpg",File::FNM_CASEFOLD).each() {|file|
   timeTaken = EXIFR::JPEG.new(file).date_time_original
 
   if (!timeTaken.nil?)
-    filename = "#{inputDir}/#{timeTaken.strftime('%Y.%m.%d_%H.%M.%S')}_#{File.basename(file, '.jpg')}.jpg"
+    filename = "#{inputDir}/#{timeTaken.strftime('%Y.%m.%d_%H.%M.%S')}"
+    ext      = File.extname(file).downcase
+    base     = File.basename(file, ext)
 
-    puts "RENAME: #{file} -> #{filename}"
-    if(!File.exist?(filename))
-      File.rename(file,filename)
-    else
-      puts "ERROR: FILE #{filename} ALREADY_EXISTS!!!!"
+    if !Dir.glob("#{filename}*#{ext}").empty?
+      i = 1; i += 1 while !Dir.glob("#{filename}_#{i}*#{ext}").empty?
+      filename = "#{filename}_#{i}"
     end
+    filename = "#{filename}_#{base}#{ext}"
+    puts "RENAME: #{file} -> #{filename}"
+    File.rename(file,filename)
   else
     puts "ERROR: Can't get time for #{file}"
   end
