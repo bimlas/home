@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.22 13:48 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.23 09:14 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -268,7 +268,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \ 'prompt_direction': 'top',
     \ 'direction':        'botright',
     \ 'cursor_line_time': '0.0',
-    \ 'sync':             1
+    \ 'sync':             1,
+    \ 'start_insert':     1
     \ })
 
     autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
@@ -305,6 +306,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'shougo/unite-outline'                                         " {{{2
   " tagbar-szeru, de neha jobb
+
+  Plugin 'shougo/neomru.vim'                                            " {{{2
+  " gyakran hasznalt fajlok listaja a unite-hoz
 
                                                                         " }}}2
 
@@ -1137,8 +1141,8 @@ nnoremap  <C-H>  <C-W>q
 nnoremap  <C-G>  <C-L>
 
 " Egy ures sor beillesztese normal modban.
-nnoremap <Leader>O :pu! _<CR>:']+1<CR>
-nnoremap <Leader>o :pu  _<CR>:'[-1<CR>
+nnoremap <Leader>O :pu! _<CR>
+nnoremap <Leader>o :pu  _<CR>
 
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
@@ -1374,9 +1378,9 @@ nnoremap  <Space>h        :nohlsearch<CR>
 " ............................................................................
 
 " TODO: xterm cwd
-nnoremap  <expr>  <Space>asi  has('win32')
-                              \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
-                              \ : ':silent !xterm &<CR>'
+nnoremap  <expr>  <Space>as  has('win32')
+                             \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
+                             \ : ':silent !xterm &<CR>'
 
 "                           <Space>b - BUFFERS                            {{{3
 " ............................................................................
@@ -1394,6 +1398,7 @@ nnoremap  <Space>fed :edit $MYVIMRC<CR>
 nnoremap  <Space>feR :source $MYVIMRC<CR>
 nnoremap  <Space>ff  :UniteWithBufferDir file directory/new file/new<CR>
 nnoremap  <Space>fF  :Unite file directory/new file/new<CR>
+nnoremap  <Space>fr  :Unite file_mru<CR>
 nnoremap  <Space>fs  :write<CR>
 nnoremap  <Space>fS  :wall<CR>
 nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
@@ -1430,20 +1435,20 @@ autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mf  :AdocFormat<CR>$hD
 
 " __ RUBY _______________________________
 
-autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>msi  has('win32')
+autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>ms  has('win32')
                                 \ ? ':silent !start conemu64.exe /cmd irb.bat<CR>'
                                 \ : ':silent !xterm -c irb &<CR>'
 
 " __ PYTHON _____________________________
 
-autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>msi  has('win32')
+autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win32')
                                   \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
                                   \ : ':silent !xterm -c python &<CR>'
 
 "                           <Space>p - PROJECT                            {{{3
 " ............................................................................
 
-nnoremap  <Space>pf  :UniteWithProjectDir -sync file_rec/async directory/new file/new<CR>
+nnoremap  <Space>pf  :UniteWithProjectDir file_rec/async directory/new file/new<CR>
 nnoremap  <Space>pt  :VimFilerExplorer -project -toggle<CR>
 
 "                      <Space>q - QUOTES, SURROUNDS                       {{{3
