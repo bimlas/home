@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.23 09:14 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.24 15:36 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -30,7 +30,7 @@ augroup END
 " FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
 " egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
 " kapcsolva. (:DoMatchParen kapcsolja be)
-" autocmd VimEnter * if exists(':NoMatchParen') | execute 'NoMatchParen' | endif
+" autocmd  vimrc  VimEnter  *  if exists(':NoMatchParen') | execute 'NoMatchParen' | endif
 " Ezek sem segitenek:
 " let g:matchparen_timeout = 5
 " let g:matchparen_insert_timeout = 5
@@ -111,7 +111,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " Plugin 'tpope/vim-sexp-mappings-for-regular-people'                 " {{{2
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
 
-  Plugin 'lokaltog/vim-easymotion'                                      " {{{2
+  Plugin 'easymotion/vim-easymotion'                                    " {{{2
   " gyors mozgas a buffer-en belul
 
     let g:EasyMotion_do_mapping = 0
@@ -1200,7 +1200,7 @@ map  <Leader>F  <Plug>(easymotion-Fl)
 map  <Leader>j  <Plug>(easymotion-j)
 map  <Leader>k  <Plug>(easymotion-k)
 
-autocmd  vimrc  VimEnter  *  if isdirectory(bundle_dir . '/vim-easymotion') | EMCommandLineNoreMap <C-J> <CR> | endif
+autocmd  vimrc  VimEnter  *  if exists(':EMCommandLineNoreMap') | EMCommandLineNoreMap <C-J> <CR> | endif
 
 "                                CHOOSEWIN                                {{{3
 " ............................................................................
@@ -1327,7 +1327,7 @@ endfunction
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
-autocmd  vimrc  FileType  asciidoc  if isdirectory(bundle_dir . '/vim-textobj-user') | call TextObjMapsAdoc() | endif
+autocmd  vimrc  FileType  asciidoc  if exists('*textobj#user#plugin') | call TextObjMapsAdoc() | endif
 
 function! TextObjMapsAdoc()
   call textobj#user#plugin('adocblock', {
