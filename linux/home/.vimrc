@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.24 15:36 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.25 15:14 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -114,6 +114,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'easymotion/vim-easymotion'                                    " {{{2
   " gyors mozgas a buffer-en belul
 
+    " Az alapertelmezett map-ok tiltasa.
     let g:EasyMotion_do_mapping = 0
 
     " A celt nagybetuvel mutassa, de engedje a kisebtuvel ugrast.
@@ -560,6 +561,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \ }
     \}
 
+    autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | end
+
     autocmd vimrc BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
     autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
     " autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.pytest
@@ -695,13 +698,57 @@ endif
 "                                   SZINEK                                {{{1
 " ============================================================================
 
+"                               ALAPERTEKEK                               {{{2
+" ____________________________________________________________________________
+
 " Statusline szinei.
-highlight! link StatFilename   DiffText
-highlight! link StatFileformat DiffAdd
-highlight! link StatInfo       DiffChange
-highlight! link StatWarning    WarningMsg
+autocmd  vimrc  ColorScheme  *
+\ highlight! link StatFilename   DiffText   |
+\ highlight! link StatFileformat DiffAdd    |
+\ highlight! link StatInfo       DiffChange |
+\ highlight! link StatWarning    WarningMsg
+
+"                                SOLARIZED                                {{{2
+" ____________________________________________________________________________
 
 let g:solarized_menu = 0
+
+" A par nelkuli zarojelek kijelzese alig lathato.
+autocmd  vimrc  ColorScheme  solarized  highlight! link Error ErrorMsg
+
+" A soremeles karakterek is egybeolvadnak a szoveggel. Ez a highlight a high
+" visibility beallitasokol van atmasolva.
+autocmd  vimrc  ColorScheme  solarized  highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
+
+" A tab, whitespace, stb. szinei is ilyenek legyenek.
+autocmd  vimrc  ColorScheme  solarized  highlight! link SpecialKey NonText
+
+" Ne legyenek alahuzva az osszecsukott foldok.
+autocmd  vimrc  ColorScheme  solarized  highlight Folded term=bold cterm=bold gui=bold
+
+" Mivel a terminalos szinsema nincs definialva (?), igy nekunk kell erteket
+" adni neki.
+autocmd  vimrc  ColorScheme  solarized  highlight TagbarHighlight term=inverse ctermfg=White
+
+"                                 DESERT                                  {{{2
+" ____________________________________________________________________________
+
+autocmd  vimrc  ColorScheme  desert  set background=dark
+
+" Statusline szinei.
+autocmd  vimrc  ColorScheme  desert
+\ highlight! link StatFilename   Directory  |
+\ highlight! link StatFileformat Identifier |
+\ highlight! link StatInfo       ModeMsg    |
+\ highlight! link StatWarning    WarningMsg
+
+" Nem tetszenek a popupmenu szinei.
+autocmd  vimrc  ColorScheme  desert
+\ highlight Pmenu      ctermbg=Black ctermfg=Gray  guibg=#FFFFCC guifg=DarkGray          |
+\ highlight PmenuSel   ctermbg=Black ctermfg=White guibg=#FFFFCC guifg=Black    gui=bold |
+\ highlight PmenuSbar  ctermbg=Black ctermfg=Black guibg=#FFFFCC guifg=#FFFFCC           |
+\ highlight PmenuThumb ctermbg=White ctermfg=White guibg=Black   guifg=Black
+                                                                        " }}}2
 
 " Ha nappal van es a solarized elerheto, hasznaljuk azt.
 if has('gui_running')
@@ -719,38 +766,9 @@ if has('gui_running')
   endif
 elseif len(globpath(&runtimepath, 'colors/desert.vim'))
 
-  set background=dark
   colorscheme desert
 
-  highlight! link StatFilename   Directory
-  highlight! link StatFileformat Identifier
-  highlight! link StatInfo       ModeMsg
-  highlight! link StatWarning    WarningMsg
-
-  " Popupmenu szinei nem tetszenek a desert-ben.
-  highlight Pmenu      ctermbg=Black ctermfg=Gray  guibg=#FFFFCC guifg=DarkGray
-  highlight PmenuSel   ctermbg=Black ctermfg=White guibg=#FFFFCC guifg=Black    gui=bold
-  highlight PmenuSbar  ctermbg=Black ctermfg=Black guibg=#FFFFCC guifg=#FFFFCC
-  highlight PmenuThumb ctermbg=White ctermfg=White guibg=Black   guifg=Black
-
 endif
-
-" A par nelkuli zarojelek kijelzese alig lathato.
-highlight! link Error ErrorMsg
-
-" A soremeles karakterek is egybeolvadnak a szoveggel. Ez a highlight a high
-" visibility beallitasokol van atmasolva.
-highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
-
-" A tab, whitespace, stb. szinei is ilyenek legyenek.
-highlight! link SpecialKey NonText
-
-" Ne legyenek alahuzva az osszecsukott foldok.
-highlight Folded term=bold cterm=bold gui=bold
-
-" Mivel a terminalos szinsema nincs definialva (?), igy nekunk kell erteket
-" adni neki.
-highlight TagbarHighlight term=inverse ctermfg=White
 
 "                               STATUSLINE                                {{{1
 " ============================================================================
@@ -1137,8 +1155,9 @@ noremap  L  g$
 " Ablakkezeles.
 nnoremap  <C-H>  <C-W>q
 
-" Frissites.
-nnoremap  <C-G>  <C-L>
+" Kepernyo ujrarajzoltatasa/frissitese, valamint a fajlok ellenorzese, hogy
+" nem valtoztak-e meg egy kulso program altal.
+nnoremap  <C-G>  <C-L>:checktime<CR>
 
 " Egy ures sor beillesztese normal modban.
 nnoremap <Leader>O :pu! _<CR>
@@ -1161,6 +1180,9 @@ noremap   D      "_D
 noremap   <Del>  "_<Del>
 " Kivagas motion-nel.
 noremap   x      d
+" ... viszont a karakterek felcsereleset meghagyjuk.
+nnoremap  xp     xp
+nnoremap  xP     xP
 
 " Az ablakkezelo vagolapjanak hasznalata - command-modban hatastalan, a
 " kijelolt szoveget illeszti be, nem pedig azt, amire <C-Insert>-et nyomtunk.
@@ -1193,19 +1215,22 @@ endfunction
 " ............................................................................
 
 map  s          <Plug>(easymotion-s2)
+map  <Leader>j  <Plug>(easymotion-j)
+map  <Leader>k  <Plug>(easymotion-k)
+map  <Leader>t  <Plug>(easymotion-tl)
+map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>t  <Plug>(easymotion-tl)
 map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>f  <Plug>(easymotion-fl)
 map  <Leader>F  <Plug>(easymotion-Fl)
-map  <Leader>j  <Plug>(easymotion-j)
-map  <Leader>k  <Plug>(easymotion-k)
 
 autocmd  vimrc  VimEnter  *  if exists(':EMCommandLineNoreMap') | EMCommandLineNoreMap <C-J> <CR> | endif
 
 "                                CHOOSEWIN                                {{{3
 " ............................................................................
 
-nmap  <expr>  <C-L>  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+nmap  <expr>  <Plug>(mychoosewin)  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+nmap  <C-L>   <Plug>(mychoosewin)
 
 "                             CAMELCASEMOTION                             {{{3
 " ............................................................................
@@ -1224,24 +1249,23 @@ vmap  gx  <Plug>(openbrowser-smart-search)
 "                             UNITE/VIMFILER                              {{{3
 " ............................................................................
 
-nnoremap  <Leader>p  :Unite history/yank<CR>
-
 autocmd  vimrc  FileType  unite  call UniteMaps()
 function! UniteMaps()
   imap  <buffer>        <C-K>   <Plug>(unite_insert_leave)
   map   <buffer>        <C-K>   <Plug>(unite_all_exit)
   map   <buffer>        <C-H>   <Plug>(unite_all_exit)
   map   <buffer>        <Esc>   <Plug>(unite_all_exit)
+  nmap  <buffer>        <C-N>   <Plug>(unite_loop_cursor_down)
+  nmap  <buffer>        <C-P>   <Plug>(unite_loop_cursor_up)
   nmap  <buffer>        h       <Plug>(unite_delete_backward_path)
   nmap  <buffer>        l       <CR>
   nmap  <buffer>        S       <Plug>(unite_append_end)<C-U>
   imap  <buffer>        /       /*
   map   <buffer>        <C-Z>   <Plug>(unite_smart_preview)
   imap  <buffer><expr>  <C-Z>   unite#do_action('preview')
-  map   <buffer><expr>  x       unite#do_action('start')
   map   <buffer><expr>  <C-CR>  unite#do_action('start')
   imap  <buffer><expr>  <C-CR>  unite#do_action('start')
-  nmap  <buffer><expr>  <C-L>   (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+  nmap  <buffer>        <C-L>   <Plug>(mychoosewin)
 endfunction
 
 autocmd  vimrc  FileType  vimfiler  call VimfilerMaps()
@@ -1256,7 +1280,7 @@ function! VimfilerMaps()
   map   <buffer><expr>  <F11>   vimfiler#do_action('start')
   map   <buffer><expr>  <C-CR>  vimfiler#do_action('start')
   imap  <buffer><expr>  <C-CR>  vimfiler#do_action('start')
-  nmap  <buffer><expr>  <C-L>   (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+  nmap  <buffer>        <C-L>   <Plug>(mychoosewin)
 endfunction
 
 "                               NEOSNIPPET                                {{{3
@@ -1365,6 +1389,8 @@ endfunction
 "
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
 
+noremap   <Space>?        :Unite mapping<CR>
+
 noremap   <Space><Space>  <C-]>
 nnoremap  <Space><Tab>    :buffer #<CR>
 
@@ -1402,10 +1428,12 @@ nnoremap  <Space>fr  :Unite file_mru<CR>
 nnoremap  <Space>fs  :write<CR>
 nnoremap  <Space>fS  :wall<CR>
 nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
+nnoremap  <Space>fT  :VimFilerBufferDir -tab<CR>
 
 "                             <Space>g - GIT                              {{{3
 " ............................................................................
 
+nnoremap  <Space>gd  :Gdiff<CR>
 nnoremap  <Space>gs  :Gstatus<CR>
 nnoremap  <Space>gl  :Gitv!<CR>
 nnoremap  <Space>gL  :Gitv<CR>
@@ -1463,7 +1491,7 @@ nmap  <Space>qd  <Plug>Dsurround
 " ............................................................................
 
 nnoremap  <Space>sg  :Unite -start-insert vimgrep<CR>
-nnoremap  <Space>ss  :Unite -start-insert -auto-preview line<CR>
+nnoremap  <Space>sl  :Unite -start-insert line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
 " ............................................................................
@@ -1475,6 +1503,8 @@ nnoremap          <Space>tr  :set relativenumber!<CR>
 nnoremap          <Space>ts  :call eight#syncwin#call()<CR>
 nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
 nnoremap          <Space>tw  :set wrap!<CR>
+
+nnoremap          <Space>tq  :tabclose<CR>
 
 "                      <Space>w - WINDOW MANAGEMENT                       {{{3
 " ............................................................................
@@ -1496,6 +1526,8 @@ vmap      <Space>xc   <Plug>(EasyAlign)
 
 nnoremap  <Space>xk   i<C-K>
 
+nnoremap  <Space>xp   :Unite history/yank<CR>
+
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
 "
@@ -1510,6 +1542,9 @@ nnoremap  <Space>xk   i<C-K>
 " mar letezik, mikor a Vim megnyitja azt.
 autocmd  vimrc  BufNewFile  *.txt  set fileformat=dos
 autocmd  vimrc  BufRead     *.txt  if ! getfsize(expand('%')) | set fileformat=dos | endif
+
+" A fajlok ellenorzese, hogy nem valtoztak-e meg egy kulso program altal.
+" autocmd  vimrc  BufEnter  *  checktime
 
 " :help fo-table. Azert autocmd, mert minden fajltipus felulirja a
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
