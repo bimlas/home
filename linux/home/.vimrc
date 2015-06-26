@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.25 15:14 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.26 14:59 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -82,7 +82,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'altercation/vim-colors-solarized'                             " {{{2
   " szep, finom colorscheme (light es dark is)
 
-  Plugin 'blueyed/vim-diminactive'                                      " {{{2
+  " Plugin 'blueyed/vim-diminactive'                                      " {{{2
   " Aktiv ablak/buffer kiemelese.
 
     let g:diminactive_buftype_blacklist  = []
@@ -100,8 +100,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
 
   Plugin 'lilydjwg/colorizer'                                           " {{{2
-  " rgb szinek megjelenitese
+  " rgb szinek megjelenitese, :ColorHighlight
 
+    let g:colorizer_startup  = 0
     let g:colorizer_nomap    = 1
     let g:colorizer_maxlines = 1000
                                                                         " }}}2
@@ -202,7 +203,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'vis'                                                          " {{{2
   " parancsok futtatasa visual block-on
 
-  Plugin 'jiangmiao/auto-pairs'                                         " {{{2
+  " Plugin 'jiangmiao/auto-pairs'                                         " {{{2
 
     " lasd a weboldalon: https://github.com/jiangmiao/auto-pairs
     " let g:AutoPairsFlyMode        = 1
@@ -333,8 +334,13 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " emacs org-mode in vim
 
     let g:agenda_files=['~/test.org']
-
                                                                         " }}}2
+
+  " .. BENCHMARK ..........................
+
+  Plugin 'mattn/benchvimrc-vim'                                         " {{{2
+  " :BenchVimrc
+                                                                        " {{{2
 
   " .. PROGRAMOZAS ........................
 
@@ -676,7 +682,9 @@ endif
 behave xterm
 
 " Manual bongeszesenek lehetosege.
-runtime ftplugin/man.vim
+if !has('win32')
+  runtime ftplugin/man.vim
+endif
 
 " Bovitett % (pl. <body> es </body> kozott ugralhatsz a % parancscsal)
 runtime macros/matchit.vim
@@ -943,9 +951,6 @@ set encoding=utf8
 let changelog_username   = 'BimbaLaszlo  <bimbalaszlo@gmail.com>'
 let changelog_dateformat = '%Y.%m.%d'
 
-" SQL beallitasok.
-let g:ftplugin_sql_omni_key = '<C-X>'
-
 "                             FAJLOK BEALLITASAI                          {{{1
 " ============================================================================
 
@@ -1159,10 +1164,6 @@ nnoremap  <C-H>  <C-W>q
 " nem valtoztak-e meg egy kulso program altal.
 nnoremap  <C-G>  <C-L>:checktime<CR>
 
-" Egy ures sor beillesztese normal modban.
-nnoremap <Leader>O :pu! _<CR>
-nnoremap <Leader>o :pu  _<CR>
-
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
@@ -1215,8 +1216,8 @@ endfunction
 " ............................................................................
 
 map  s          <Plug>(easymotion-s2)
-map  <Leader>j  <Plug>(easymotion-j)
-map  <Leader>k  <Plug>(easymotion-k)
+map  <Leader>j  <Plug>(easymotion-sol-j)
+map  <Leader>k  <Plug>(easymotion-sol-k)
 map  <Leader>t  <Plug>(easymotion-tl)
 map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>t  <Plug>(easymotion-tl)
@@ -1391,14 +1392,15 @@ endfunction
 
 noremap   <Space>?        :Unite mapping<CR>
 
-noremap   <Space><Space>  <C-]>
+nnoremap  <Space>h        :nohlsearch<CR>
+nnoremap  <Space>O        :pu! _<CR>
+nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
+noremap   <Space><Space>  <C-]>
 
 nmap      <Space>;        <Plug>TComment_gc
 nmap      <Space>;;       <Plug>TComment_gcc
 vmap      <Space>;        <Plug>TComment_gc
-
-nnoremap  <Space>h        :nohlsearch<CR>
 
 "                         <Space>a - APPLICATIONS                         {{{3
 " ............................................................................
@@ -1497,6 +1499,7 @@ nnoremap  <Space>sl  :Unite -start-insert line<CR>
 " ............................................................................
 
 nnoremap          <Space>tc  :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
+nnoremap          <Space>th  :ColorToggle<CR>
 nnoremap  <expr>  <Space>tm  ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
 nnoremap          <Space>tn  :set number!<CR>
 nnoremap          <Space>tr  :set relativenumber!<CR>
@@ -1509,7 +1512,7 @@ nnoremap          <Space>tq  :tabclose<CR>
 "                      <Space>w - WINDOW MANAGEMENT                       {{{3
 " ............................................................................
 
-nnoremap  <Space>ws  :ChooseWinSwap<CR>
+nnoremap  <Space>ws  :ChooseWinSwapStay<CR>
 
 "                      <Space>x - TEXT MODIFICATION                       {{{3
 " ............................................................................
