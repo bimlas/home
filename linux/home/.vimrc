@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.26 14:59 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.28 21:19 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -26,14 +26,6 @@ endif
 augroup vimrc
   autocmd!
 augroup END
-
-" FIGYELEM: Paros jelek kiemelesenek tiltasa - nagyon belassulhat tole az
-" egesz vim. A lehetoseget meghagyom a bekapcsolasra, de alapbol ki van
-" kapcsolva. (:DoMatchParen kapcsolja be)
-" autocmd  vimrc  VimEnter  *  if exists(':NoMatchParen') | execute 'NoMatchParen' | endif
-" Ezek sem segitenek:
-" let g:matchparen_timeout = 5
-" let g:matchparen_insert_timeout = 5
 
 " "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
 " vissza.
@@ -111,6 +103,13 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   " Plugin 'tpope/vim-sexp-mappings-for-regular-people'                 " {{{2
   " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
+
+  Plugin 'vim-scripts/matchit.zip'                                      " {{{2
+  " paros jelek kozti ugralas
+
+    " FIGYELEM: nagyon belassulhat tole az egesz vim. Ezek sem segitenek:
+    " let g:matchparen_timeout = 5
+    " let g:matchparen_insert_timeout = 5
 
   Plugin 'easymotion/vim-easymotion'                                    " {{{2
   " gyors mozgas a buffer-en belul
@@ -255,17 +254,26 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:unite_enable_auto_select          = 0
     let g:unite_source_buffer_time_format   = ''
 
-    if executable('ag')
-      let g:unite_source_grep_command       = 'ag'
-      let g:unite_source_grep_default_opts  = '--nocolor --nogroup -S -C4'
+    " Silver Searcher
+    " if executable('ag')
+    "   let g:unite_source_rec_async_command  = 'ag --follow --nocolor --nogroup --hidden -g ""'
+    "   let g:unite_source_grep_command       = 'ag'
+    "   let g:unite_source_grep_default_opts  =
+    "   \ '-i --line-numbers --nocolor --nogroup --column --hidden --ignore ' .
+    "   \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+    "   let g:unite_source_grep_recursive_opt = ''
+    " endif
+
+    " Platinum Searcher
+    if executable('pt')
+      let g:unite_source_rec_async_command  = 'pt --nocolor --nogroup'
+      let g:unite_source_grep_command       = 'pt'
+      let g:unite_source_grep_default_opts  = '--nocolor --nogroup --column'
       let g:unite_source_grep_recursive_opt = ''
+      let g:unite_source_grep_encoding      = 'utf-8'
     endif
 
-    if has('win32')
-      let g:unite_source_rec_async_command = escape($VIMRUNTIME . '\find.exe', '\\')
-      let g:unite_source_grep_encoding     = 'default'
-    end
-
+    " Alapertelmezett beallitasok.
     autocmd  vimrc  VimEnter  *  call unite#custom#profile('default', 'context', {
     \ 'prompt_direction': 'top',
     \ 'direction':        'botright',
@@ -315,6 +323,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
+
+  Plugin 'qpkorr/vim-bufkill'                                           " {{{2
+  " :BD a buffer torlesehez az ablakok buzeralasa nelkul
 
   Plugin 'locator'                                                      " {{{2
   " a gl megmutatja hol vagy (fold, func, stb.)
@@ -686,9 +697,6 @@ if !has('win32')
   runtime ftplugin/man.vim
 endif
 
-" Bovitett % (pl. <body> es </body> kozott ugralhatsz a % parancscsal)
-runtime macros/matchit.vim
-
 "                          WIN / NIX BEALLITASOK                          {{{1
 " ============================================================================
 
@@ -1002,6 +1010,16 @@ set hlsearch incsearch
 " Mivel nem mindig veszem eszre, hogy a fajl vegerol mar atugrottam az
 " elejere, ezert inkabb le is tiltom ezt a lehetoseget.
 set nowrapscan
+
+" Silver Searcher
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+endif
+
+" Platinum Searcher
+if executable('pt')
+  set grepprg=pt\ --nogroup\ --nocolor\ --column
+endif
 
 "                             SZINTAXIS KIEMELES                          {{{1
 " ============================================================================
@@ -1406,9 +1424,14 @@ vmap      <Space>;        <Plug>TComment_gc
 " ............................................................................
 
 " TODO: xterm cwd
-nnoremap  <expr>  <Space>as  has('win32')
-                             \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
-                             \ : ':silent !xterm &<CR>'
+nnoremap  <expr>  <Space>as   has('win32')
+                              \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
+                              \ : ':silent !xterm &<CR>'
+
+" Profiling.
+nnoremap  <Space>app  :profile start ./profile.log <Bar> profile func * <Bar> profile file *<CR>
+nnoremap  <Space>apq  :profdel func * <Bar> profdel file *<CR>
+nnoremap  <Space>apb  :BenchVimrc<CR>
 
 "                           <Space>b - BUFFERS                            {{{3
 " ............................................................................
@@ -1416,7 +1439,8 @@ nnoremap  <expr>  <Space>as  has('win32')
 nnoremap  <Space>bb  :Unite buffer<CR>
 nnoremap  <Space>bB  :Unite buffer:!<CR>
 nnoremap  <Space>bc  :Unite change<CR>
-nnoremap  <Space>bd  :Bd<CR>
+nnoremap  <Space>bd  :BD<CR>
+nnoremap  <Space>bD  :BD!<CR>
 
 "                            <Space>f - FILES                             {{{3
 " ............................................................................
@@ -1450,6 +1474,11 @@ nnoremap          <Space>mo  :Unite outline<CR>
 nnoremap          <Space>mr  :QuickRun<CR>
 noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
 nnoremap          <Space>mt  :TagbarToggle<CR>
+
+" __ VIM ________________________________
+
+autocmd  vimrc  FileType  vim  noremap <buffer>  <Space>m9
+\ :call EightHeader(78, 'left', 1, ' ', '" {'.'{{ 2' , '')<CR><CR>
 
 " __ VIMHELP ____________________________
 
@@ -1492,8 +1521,8 @@ nmap  <Space>qd  <Plug>Dsurround
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-nnoremap  <Space>sg  :Unite -start-insert vimgrep<CR>
-nnoremap  <Space>sl  :Unite -start-insert line<CR>
+nnoremap  <expr>  <Space>sg  ':Unite -start-insert ' . (g:unite_source_grep_command == 'grep' ? 'vimgrep' : 'grep') . '<CR>'
+nnoremap          <Space>sl  :Unite -start-insert line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
 " ............................................................................
@@ -1507,12 +1536,12 @@ nnoremap          <Space>ts  :call eight#syncwin#call()<CR>
 nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
 nnoremap          <Space>tw  :set wrap!<CR>
 
-nnoremap          <Space>tq  :tabclose<CR>
-
-"                      <Space>w - WINDOW MANAGEMENT                       {{{3
+"                    <Space>w - WINDOW/TAB MANAGEMENT                     {{{3
 " ............................................................................
 
-nnoremap  <Space>ws  :ChooseWinSwapStay<CR>
+nnoremap  <Space>ws   :ChooseWinSwapStay<CR>
+nnoremap  <Space>wtt  :tabnew<CR>
+nnoremap  <Space>wtq  :tabclose<CR>
 
 "                      <Space>x - TEXT MODIFICATION                       {{{3
 " ............................................................................

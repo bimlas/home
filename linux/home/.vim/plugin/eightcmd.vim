@@ -1,6 +1,6 @@
 " eightcmd.vim: commands to invoke my functions
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.28 07:56 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.26 21:37 ==
 
 augroup eightcmd
   autocmd!
@@ -13,7 +13,6 @@ if ! exists( '*Helptags' )
   command!  -nargs=?                  Helptags              call eight#helptags#call()
 endif
 
-command!  -nargs=0 -bang              Bd                    b # | bwipeout<bang> #
 command!  -nargs=0 -range=%           Uniq                  <line1>,<line2> sort u
 command!  -nargs=0 -range=%           Tac                   <line1>,<line2> g/^/ m <line1>-1 | nohlsearch
 command!  -nargs=*                    Szotar                call eight#szotar#call( <q-args> )
