@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.28 21:19 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.29 14:24 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -254,7 +254,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:unite_enable_auto_select          = 0
     let g:unite_source_buffer_time_format   = ''
 
-    " Silver Searcher
+    " " Silver Searcher
     " if executable('ag')
     "   let g:unite_source_rec_async_command  = 'ag --follow --nocolor --nogroup --hidden -g ""'
     "   let g:unite_source_grep_command       = 'ag'
@@ -266,9 +266,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
     " Platinum Searcher
     if executable('pt')
-      let g:unite_source_rec_async_command  = 'pt --nocolor --nogroup'
+      let g:unite_source_rec_async_command  = 'pt --hidden --follow --nocolor --nogroup --files-with-matches ""'
       let g:unite_source_grep_command       = 'pt'
-      let g:unite_source_grep_default_opts  = '--nocolor --nogroup --column'
+      let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --column --smart-case'
       let g:unite_source_grep_recursive_opt = ''
       let g:unite_source_grep_encoding      = 'utf-8'
     endif
@@ -324,8 +324,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   " .. EGYEB HASZNOSSAGOK .................
 
-  Plugin 'qpkorr/vim-bufkill'                                           " {{{2
-  " :BD a buffer torlesehez az ablakok buzeralasa nelkul
+  Plugin 'moll/vim-bbye'                                                " {{{2
+  " :Bdelete buffer torlesehez az ablakok buzeralasa nelkul
 
   Plugin 'locator'                                                      " {{{2
   " a gl megmutatja hol vagy (fold, func, stb.)
@@ -869,7 +869,7 @@ set numberwidth=6
 " Sorok szamozasa, kiveve ha TTY, vagy Win-es parancssor alatt hasznaljuk es
 " a szovegterulet nem elegendoen szeles.
 if BigTerm()
-  " set relativenumber
+  set relativenumber
 endif
 
 " Minden valtoztatasrol tajekoztasson.
@@ -1429,8 +1429,8 @@ nnoremap  <expr>  <Space>as   has('win32')
                               \ : ':silent !xterm &<CR>'
 
 " Profiling.
-nnoremap  <Space>app  :profile start ./profile.log <Bar> profile func * <Bar> profile file *<CR>
-nnoremap  <Space>apq  :profdel func * <Bar> profdel file *<CR>
+nnoremap  <Space>app  :profile start ./profile.log <Bar> profile func * <Bar> profile file * <Bar> echomsg "Profiling started, <lt>Space>apq to stop it (and quit from Vim!)."<CR>
+nnoremap  <Space>apq  :profile pause <Bar> noautocmd qall!<CR>
 nnoremap  <Space>apb  :BenchVimrc<CR>
 
 "                           <Space>b - BUFFERS                            {{{3
@@ -1439,15 +1439,13 @@ nnoremap  <Space>apb  :BenchVimrc<CR>
 nnoremap  <Space>bb  :Unite buffer<CR>
 nnoremap  <Space>bB  :Unite buffer:!<CR>
 nnoremap  <Space>bc  :Unite change<CR>
-nnoremap  <Space>bd  :BD<CR>
-nnoremap  <Space>bD  :BD!<CR>
+nnoremap  <Space>bd  :Bdelete<CR>
+nnoremap  <Space>bD  :Bdelete!<CR>
 
 "                            <Space>f - FILES                             {{{3
 " ............................................................................
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
-nnoremap  <Space>fed :edit $MYVIMRC<CR>
-nnoremap  <Space>feR :source $MYVIMRC<CR>
 nnoremap  <Space>ff  :UniteWithBufferDir file directory/new file/new<CR>
 nnoremap  <Space>fF  :Unite file directory/new file/new<CR>
 nnoremap  <Space>fr  :Unite file_mru<CR>
@@ -1455,6 +1453,8 @@ nnoremap  <Space>fs  :write<CR>
 nnoremap  <Space>fS  :wall<CR>
 nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
 nnoremap  <Space>fT  :VimFilerBufferDir -tab<CR>
+nnoremap  <Space>fvg :edit $MYGVIMRC<CR>
+nnoremap  <Space>fvv :edit $MYVIMRC<CR>
 
 "                             <Space>g - GIT                              {{{3
 " ............................................................................
@@ -1467,8 +1467,8 @@ nnoremap  <Space>gL  :Gitv<CR>
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
 " ............................................................................
 
-nmap              <Space>mh  <Plug>Zeavim
-vmap              <Space>mh  <Plug>ZVVisSelection
+nmap              <Space>mK  <Plug>Zeavim
+vmap              <Space>mK  <Plug>ZVVisSelection
 nnoremap          <Space>mg  :Grep<Space>
 nnoremap          <Space>mo  :Unite outline<CR>
 nnoremap          <Space>mr  :QuickRun<CR>
@@ -1478,7 +1478,7 @@ nnoremap          <Space>mt  :TagbarToggle<CR>
 " __ VIM ________________________________
 
 autocmd  vimrc  FileType  vim  noremap <buffer>  <Space>m9
-\ :call EightHeader(78, 'left', 1, ' ', '" {'.'{{ 2' , '')<CR><CR>
+\ :call EightHeader(78, 'left', 1, ' ', '" {'.'{{2' , '')<CR><CR>
 
 " __ VIMHELP ____________________________
 
@@ -1507,7 +1507,7 @@ autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win3
 "                           <Space>p - PROJECT                            {{{3
 " ............................................................................
 
-nnoremap  <Space>pf  :UniteWithProjectDir file_rec/async directory/new file/new<CR>
+nnoremap  <Space>pf  :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async directory/new file/new<CR>
 nnoremap  <Space>pt  :VimFilerExplorer -project -toggle<CR>
 
 "                      <Space>q - QUOTES, SURROUNDS                       {{{3
@@ -1521,7 +1521,7 @@ nmap  <Space>qd  <Plug>Dsurround
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-nnoremap  <expr>  <Space>sg  ':Unite -start-insert ' . (g:unite_source_grep_command == 'grep' ? 'vimgrep' : 'grep') . '<CR>'
+nnoremap  <expr>  <Space>sg  ':Unite -start-insert ' . (&grepprg == 'grep' ? 'vimgrep' : 'grep') . '<CR>'
 nnoremap          <Space>sl  :Unite -start-insert line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
