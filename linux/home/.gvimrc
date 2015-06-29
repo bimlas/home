@@ -18,7 +18,7 @@ set lines=999 columns=999
 " Az ablak bal-felso sarka a desktop-on (pixelben megadva).
 winpos 0 0
 
-" set relativenumber
+set relativenumber
 
 " :help guioptions
 set guioptions=cg

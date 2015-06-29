@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.29 14:24 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.29 21:55 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -63,6 +63,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'bimbalaszlo/vim-eightstat'                                    " {{{2
   " statusline helper functions
+
+  Plugin 'bimbalaszlo/vim-numutils'                                     " {{{2
+  " szamertekek modositasa regex alapjan
 
                                                                         " }}}2
 
@@ -324,11 +327,11 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   " .. EGYEB HASZNOSSAGOK .................
 
-  Plugin 'moll/vim-bbye'                                                " {{{2
-  " :Bdelete buffer torlesehez az ablakok buzeralasa nelkul
-
   Plugin 'locator'                                                      " {{{2
   " a gl megmutatja hol vagy (fold, func, stb.)
+
+  Plugin 'moll/vim-bbye'                                                " {{{2
+  " :Bdelete buffer torlesehez az ablakok buzeralasa nelkul
 
   Plugin 'tpope/vim-repeat'                                             " {{{2
   " repeat (.) plugin-okon is
@@ -351,7 +354,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'mattn/benchvimrc-vim'                                         " {{{2
   " :BenchVimrc
-                                                                        " {{{2
+                                                                        " }}}2
 
   " .. PROGRAMOZAS ........................
 
