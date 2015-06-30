@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.29 21:55 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.30 15:30 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -319,10 +319,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'shougo/unite-outline'                                         " {{{2
   " tagbar-szeru, de neha jobb
-
-  Plugin 'shougo/neomru.vim'                                            " {{{2
-  " gyakran hasznalt fajlok listaja a unite-hoz
-
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
@@ -501,6 +497,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
       let g:neocomplete#force_omni_input_patterns = {}
     endif
     let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+  Plugin 'shougo/neco-vim'                                              " {{{2
+  " vim kiegeszites a neocomplete-hez
 
   Plugin 'shougo/echodoc.vim'                                           " {{{2
   " fuggveny argumentumok kiirasa a statusline ala
@@ -781,6 +780,10 @@ if has('gui_running')
 
     set background=dark
     colorscheme solarized
+
+  elseif len(globpath(&runtimepath, 'colors/desert.vim'))
+
+    colorscheme desert
 
   endif
 elseif len(globpath(&runtimepath, 'colors/desert.vim'))
@@ -1206,6 +1209,9 @@ noremap   x      d
 nnoremap  xp     xp
 nnoremap  xP     xP
 
+" Korabban masolt szoveg beillesztese.
+nnoremap  <Leader>p  :Unite history/yank<CR>
+
 " Az ablakkezelo vagolapjanak hasznalata - command-modban hatastalan, a
 " kijelolt szoveget illeszti be, nem pedig azt, amire <C-Insert>-et nyomtunk.
 " Kell hozza: set virtualedit=onemore
@@ -1245,6 +1251,8 @@ map  <Leader>t  <Plug>(easymotion-tl)
 map  <Leader>T  <Plug>(easymotion-Tl)
 map  <Leader>f  <Plug>(easymotion-fl)
 map  <Leader>F  <Plug>(easymotion-Fl)
+map  <Leader>n  <Plug>(easymotion-n)
+map  <Leader>N  <Plug>(easymotion-N)
 
 autocmd  vimrc  VimEnter  *  if exists(':EMCommandLineNoreMap') | EMCommandLineNoreMap <C-J> <CR> | endif
 
@@ -1305,14 +1313,17 @@ function! VimfilerMaps()
   nmap  <buffer>        <C-L>   <Plug>(mychoosewin)
 endfunction
 
-"                               NEOSNIPPET                                {{{3
+"                         NEOCOMPLETE/NEOSNIPPET                          {{{3
 " ............................................................................
 
-" Completion, vagy snippet beszurasa.
+" Neocomplete megnyitasa manualisan.
 " Terminal-ban a <Nul> a <C-Space> megfeleloje.
-imap  <expr>  <C-Space>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "<C-X><C-O>"
-imap  <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-imap  <expr>  <Nul>      <C-Space>
+inoremap  <expr>  <C-Space>  neocomplete#start_manual_complete()
+imap      <expr>  <Nul>      <C-Space>
+
+" Completion, vagy snippet beszurasa.
+imap      <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
+imap      <expr>  <Nul>      <C-Space>
 
 "                              TEXTOBJ-USER                               {{{3
 " ............................................................................
@@ -1433,7 +1444,7 @@ nnoremap  <expr>  <Space>as   has('win32')
 
 " Profiling.
 nnoremap  <Space>app  :profile start ./profile.log <Bar> profile func * <Bar> profile file * <Bar> echomsg "Profiling started, <lt>Space>apq to stop it (and quit from Vim!)."<CR>
-nnoremap  <Space>apq  :profile pause <Bar> noautocmd qall!<CR>
+nnoremap  <Space>apq  :profile pause <Bar> noautocmd qall<CR>
 nnoremap  <Space>apb  :BenchVimrc<CR>
 
 "                           <Space>b - BUFFERS                            {{{3
@@ -1450,12 +1461,10 @@ nnoremap  <Space>bD  :Bdelete!<CR>
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap  <Space>ff  :UniteWithBufferDir file directory/new file/new<CR>
+nnoremap  <Space>ft  :UniteWithBufferDir file directory/new file/new -tab<CR>
 nnoremap  <Space>fF  :Unite file directory/new file/new<CR>
-nnoremap  <Space>fr  :Unite file_mru<CR>
 nnoremap  <Space>fs  :write<CR>
 nnoremap  <Space>fS  :wall<CR>
-nnoremap  <Space>ft  :VimFilerExplorer -toggle<CR>
-nnoremap  <Space>fT  :VimFilerBufferDir -tab<CR>
 nnoremap  <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap  <Space>fvv :edit $MYVIMRC<CR>
 
@@ -1560,8 +1569,6 @@ nmap      <Space>xc   <Plug>(EasyAlign)
 vmap      <Space>xc   <Plug>(EasyAlign)
 
 nnoremap  <Space>xk   i<C-K>
-
-nnoremap  <Space>xp   :Unite history/yank<CR>
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
