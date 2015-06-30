@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.30 15:30 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.30 23:02 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -344,6 +344,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " emacs org-mode in vim
 
     let g:agenda_files=['~/test.org']
+
+  Plugin 'vimoutliner/vimoutliner'                                      " {{{2
+  " talan a legteljesebb org-mode plugin
                                                                         " }}}2
 
   " .. BENCHMARK ..........................
@@ -742,11 +745,11 @@ autocmd  vimrc  ColorScheme  solarized  highlight! NonText term=bold ctermfg=9 g
 autocmd  vimrc  ColorScheme  solarized  highlight! link SpecialKey NonText
 
 " Ne legyenek alahuzva az osszecsukott foldok.
-autocmd  vimrc  ColorScheme  solarized  highlight Folded term=bold cterm=bold gui=bold
+autocmd  vimrc  ColorScheme  solarized  highlight! default Folded term=bold cterm=bold gui=bold
 
 " Mivel a terminalos szinsema nincs definialva (?), igy nekunk kell erteket
 " adni neki.
-autocmd  vimrc  ColorScheme  solarized  highlight TagbarHighlight term=inverse ctermfg=White
+autocmd  vimrc  ColorScheme  solarized  highlight! TagbarHighlight term=inverse ctermfg=White
 
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
@@ -762,10 +765,10 @@ autocmd  vimrc  ColorScheme  desert
 
 " Nem tetszenek a popupmenu szinei.
 autocmd  vimrc  ColorScheme  desert
-\ highlight Pmenu      ctermbg=Black ctermfg=Gray  guibg=#FFFFCC guifg=DarkGray          |
-\ highlight PmenuSel   ctermbg=Black ctermfg=White guibg=#FFFFCC guifg=Black    gui=bold |
-\ highlight PmenuSbar  ctermbg=Black ctermfg=Black guibg=#FFFFCC guifg=#FFFFCC           |
-\ highlight PmenuThumb ctermbg=White ctermfg=White guibg=Black   guifg=Black
+\ highlight! Pmenu      ctermbg=Black ctermfg=Gray  guibg=#FFFFCC guifg=DarkGray          |
+\ highlight! PmenuSel   ctermbg=Black ctermfg=White guibg=#FFFFCC guifg=Black    gui=bold |
+\ highlight! PmenuSbar  ctermbg=Black ctermfg=Black guibg=#FFFFCC guifg=#FFFFCC           |
+\ highlight! PmenuThumb ctermbg=White ctermfg=White guibg=Black   guifg=Black
                                                                         " }}}2
 
 " Ha nappal van es a solarized elerheto, hasznaljuk azt.
@@ -1440,7 +1443,7 @@ vmap      <Space>;        <Plug>TComment_gc
 " TODO: xterm cwd
 nnoremap  <expr>  <Space>as   has('win32')
                               \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
-                              \ : ':silent !xterm &<CR>'
+                              \ : ':silent !cd '.expand('%:p:h').'; xterm; cd -<CR>'
 
 " Profiling.
 nnoremap  <Space>app  :profile start ./profile.log <Bar> profile func * <Bar> profile file * <Bar> echomsg "Profiling started, <lt>Space>apq to stop it (and quit from Vim!)."<CR>
