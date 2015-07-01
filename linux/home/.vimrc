@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.30 23:02 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.01 10:00 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -61,8 +61,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
     let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
 
-  Plugin 'bimbalaszlo/vim-eightstat'                                    " {{{2
+  " Plugin 'bimbalaszlo/vim-eightstat'                                    " {{{2
   " statusline helper functions
+autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
 
   Plugin 'bimbalaszlo/vim-numutils'                                     " {{{2
   " szamertekek modositasa regex alapjan
@@ -745,7 +746,7 @@ autocmd  vimrc  ColorScheme  solarized  highlight! NonText term=bold ctermfg=9 g
 autocmd  vimrc  ColorScheme  solarized  highlight! link SpecialKey NonText
 
 " Ne legyenek alahuzva az osszecsukott foldok.
-autocmd  vimrc  ColorScheme  solarized  highlight! default Folded term=bold cterm=bold gui=bold
+autocmd  vimrc  ColorScheme  solarized  highlight! Folded term=bold,italic cterm=bold,italic gui=bold,italic
 
 " Mivel a terminalos szinsema nincs definialva (?), igy nekunk kell erteket
 " adni neki.
@@ -815,7 +816,7 @@ let stat_lineinfo   = '%4l:%3p%%|%3v'
 let &statusline  = stat_bufnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
-let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) ? StatWarn() : ""}'
+let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
 let &statusline .= '%#StatInfo#%{len(StatFugitive()) ? "  " . StatFugitive() . " " : ""}'
 let &statusline .= '%* ' . stat_filedir . ' '
 let &statusline .= '%= '
