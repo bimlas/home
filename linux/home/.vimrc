@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.01 10:00 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.04 22:15 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -61,9 +61,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
     let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
 
-  " Plugin 'bimbalaszlo/vim-eightstat'                                    " {{{2
+  Plugin 'bimbalaszlo/vim-eightstat'                                    " {{{2
   " statusline helper functions
-autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
+
+    " autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
 
   Plugin 'bimbalaszlo/vim-numutils'                                     " {{{2
   " szamertekek modositasa regex alapjan
@@ -1608,6 +1609,11 @@ if filereadable($VIMRUNTIME . '/autoload/syntaxcomplete.vim')
 endif
 
 " __ MEGJELENES _________________________
+
+" Csak az aktualis ablakban jelenjen meg a relativnumber, a tobbiben abszolut
+" legyen.
+autocmd WinEnter,FocusGained * setlocal number relativenumber
+autocmd WinLeave,FocusLost   * setlocal number norelativenumber
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
 autocmd  vimrc  VimResized  *  wincmd =
