@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.04 22:15 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.06 15:51 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1166,11 +1166,14 @@ noremap   <C-K>  <Esc>
 inoremap  <C-K>  <Esc>
 cnoremap  <C-K>  <C-C>
 
+" Hogy tovabbra is be lehessen illeszteni a digraph-okat.
+nnoremap  <Leader><C-K>  i<C-K>
+
 " Sokkal jobban kezre esnek.
 map       <C-J>  <CR>
 imap      <C-J>  <CR>
-noremap   é      ;
-noremap   É      ,
+" noremap   é      ;
+" noremap   É      ,
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
@@ -1248,16 +1251,18 @@ endfunction
 " ............................................................................
 
 map  s          <Plug>(easymotion-s2)
+map  t          <Plug>(easymotion-tl)
+map  T          <Plug>(easymotion-Tl)
+map  t          <Plug>(easymotion-tl)
+map  T          <Plug>(easymotion-Tl)
+map  f          <Plug>(easymotion-fl)
+map  F          <Plug>(easymotion-Fl)
 map  <Leader>j  <Plug>(easymotion-sol-j)
 map  <Leader>k  <Plug>(easymotion-sol-k)
-map  <Leader>t  <Plug>(easymotion-tl)
-map  <Leader>T  <Plug>(easymotion-Tl)
-map  <Leader>t  <Plug>(easymotion-tl)
-map  <Leader>T  <Plug>(easymotion-Tl)
-map  <Leader>f  <Plug>(easymotion-fl)
-map  <Leader>F  <Plug>(easymotion-Fl)
 map  <Leader>n  <Plug>(easymotion-n)
 map  <Leader>N  <Plug>(easymotion-N)
+map  é          <Plug>(easymotion-next)
+map  É          <Plug>(easymotion-prev)
 
 autocmd  vimrc  VimEnter  *  if exists(':EMCommandLineNoreMap') | EMCommandLineNoreMap <C-J> <CR> | endif
 
@@ -1507,7 +1512,7 @@ autocmd  vimrc  FileType  help  noremap <buffer>  <Space>m2
 
 " __ ASCIIDOC ___________________________
 
-autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mf  :AdocFormat<CR>$hD
+autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mgq  :AdocFormat<CR>$hD
 
 " __ RUBY _______________________________
 
@@ -1572,8 +1577,6 @@ nnoremap  <Space>x9   :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', 
 nmap      <Space>xcc  <Plug>(EasyAlign)ip
 nmap      <Space>xc   <Plug>(EasyAlign)
 vmap      <Space>xc   <Plug>(EasyAlign)
-
-nnoremap  <Space>xk   i<C-K>
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
