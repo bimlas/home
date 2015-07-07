@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.06 15:51 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.07 12:54 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -128,6 +128,12 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " A helymeghatarozashoz hasznalt betuk.
     let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
 
+    " Az osszecsukottfold-okra is ugorhassunk.
+    let g:EasyMotion_skipfoldedline = 0
+
+    " Lasd a sugot.
+    let g:EasyMotion_move_highlight = 0
+
   Plugin 't9md/vim-choosewin'                                           " {{{2
   " easymotion az ablakokon is
 
@@ -183,8 +189,12 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " TODO: nem mukodik
     let g:EasyGrepOptionPrefix = ''
 
+    " Ha csak lehet, hasznaljon gyorsabb grep-et mint a vimgrep.
+
     " Alapjaba veve a megnyitott fajl tipusaval megegyezo fajlokban keressen.
-    let g:EasyGrepMode = 2
+    " if executable('ag') || executable('pt')
+    "   let g:EasyGrepCommand = 1
+    " endif
 
     " A fajl konyvtaraban keressen, ne a cwd-ben.
     let g:EasyGrepSearchCurrentBufferDir = 1
@@ -879,9 +889,9 @@ set numberwidth=6
 
 " Sorok szamozasa, kiveve ha TTY, vagy Win-es parancssor alatt hasznaljuk es
 " a szovegterulet nem elegendoen szeles.
-if BigTerm()
-  set relativenumber
-endif
+" if BigTerm()
+"   set relativenumber
+" endif
 
 " Minden valtoztatasrol tajekoztasson.
 set report=0
@@ -1257,8 +1267,6 @@ map  t          <Plug>(easymotion-tl)
 map  T          <Plug>(easymotion-Tl)
 map  f          <Plug>(easymotion-fl)
 map  F          <Plug>(easymotion-Fl)
-map  <Leader>j  <Plug>(easymotion-sol-j)
-map  <Leader>k  <Plug>(easymotion-sol-k)
 map  <Leader>n  <Plug>(easymotion-n)
 map  <Leader>N  <Plug>(easymotion-N)
 map  é          <Plug>(easymotion-next)
@@ -1434,6 +1442,8 @@ endfunction
 
 noremap   <Space>?        :Unite mapping<CR>
 
+map       <Space>j        <Plug>(easymotion-sol-j)
+map       <Space>k        <Plug>(easymotion-sol-k)
 nnoremap  <Space>h        :nohlsearch<CR>
 nnoremap  <Space>O        :pu! _<CR>
 nnoremap  <Space>o        :pu  _<CR>
@@ -1615,8 +1625,8 @@ endif
 
 " Csak az aktualis ablakban jelenjen meg a relativnumber, a tobbiben abszolut
 " legyen.
-autocmd WinEnter,FocusGained * setlocal number relativenumber
-autocmd WinLeave,FocusLost   * setlocal number norelativenumber
+" autocmd WinEnter,FocusGained * setlocal number relativenumber
+" autocmd WinLeave,FocusLost   * setlocal number norelativenumber
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
 autocmd  vimrc  VimResized  *  wincmd =
