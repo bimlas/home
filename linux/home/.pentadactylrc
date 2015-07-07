@@ -46,7 +46,6 @@ cmap -builtin  <C-K>      <Esc>
 
 imap -builtin  <C-J>      <CR>
 imap -builtin  <C-L>      <Del>
-nmap -builtin  <C-G>      R
 map  -builtin  <C-H>      d
 nmap -builtin  <D>        <Nop>
 
@@ -62,8 +61,8 @@ map  -builtin  <C-E>      gt
 map  -builtin  <C-Y>      gT
 map  -builtin  <Space>ff  o
 map  -builtin  <Space>fF  t
-nmap -builtin  <C-L>      :reload!<CR>
-nmap -builtin  <F12>      :nohlfind<CR>
+nmap -builtin  <C-G>      :reload!<CR>
+nmap -builtin  <Space>h   :nohlfind<CR>
 
 map  -builtin  <C-C>      <C-Insert>
 map  -builtin  <C-F>      /
