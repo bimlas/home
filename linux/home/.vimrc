@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.07 12:54 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.08 12:14 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -296,7 +296,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \ 'sync':             1,
     \ 'start_insert':     1
     \ })
-
+    autocmd  vimrc  VimEnter  *  call unite#filters#matcher_default#use(['matcher_regexp'])
     autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
 
   Plugin 'shougo/vimfiler.vim'                                          " {{{2
@@ -610,7 +610,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
 
-    " Ha ez nincs megadva, akkor ütközik a neocomplete-tal es automatikusan ki
+    " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
     " akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
     " let g:jedi#auto_vim_configuration = 0
     let g:jedi#completions_enabled = 0
@@ -718,6 +718,10 @@ endif
 " ============================================================================
 
 if has('win32')
+
+  " Backslash (\) helyett forwardslash (/) hasznalat az utvonalakban
+  " (pl. <C-X><C-F> kiegeszitesenel).
+  set shellslash
 
   " :make ezt a programot hasznalja:
   set makeprg=mingw32-make
@@ -1159,7 +1163,7 @@ set showfulltag
 "   :verbose imap <Esc>
 " Ezen map-ok valamelyike okozza a hibat.
 
-" Jobban kézre esik, mint a \.
+" Jobban kezre esik, mint a \.
 let mapleader='á'
 
 "                                ALTALANOS                                {{{2

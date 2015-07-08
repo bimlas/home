@@ -1,6 +1,6 @@
 " eightcmd.vim: commands to invoke my functions
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.26 21:37 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.08 11:54 ==
 
 augroup eightcmd
   autocmd!
@@ -16,10 +16,10 @@ endif
 command!  -nargs=0 -range=%           Uniq                  <line1>,<line2> sort u
 command!  -nargs=0 -range=%           Tac                   <line1>,<line2> g/^/ m <line1>-1 | nohlsearch
 command!  -nargs=*                    Szotar                call eight#szotar#call( <q-args> )
-command!  -nargs=0 -range=%           Ekezet                call eight#ekezet#call( <line1>, <line2> )
+command!  -nargs=0 -range             Ekezet                call eight#ekezet#call( <line1>, <line2> )
 command!  -nargs=* -range=%           Chindent              call eight#chindent#call( <line1>, <line2>, <f-args> )
-command!  -nargs=0 -range=%           HtmlEscape            call eight#htmlescape#call( <line1>, <line2>, 1 )
-command!  -nargs=0 -range=%           HtmlNoEscape          call eight#htmlescape#call( <line1>, <line2>, 0 )
+command!  -nargs=0 -range             HtmlEscape            call eight#htmlescape#call( <line1>, <line2>, 1 )
+command!  -nargs=0 -range             HtmlNoEscape          call eight#htmlescape#call( <line1>, <line2>, 0 )
 command!  -nargs=*                    Run                   call eight#run#call( '<args>' )
 command!  -nargs=* -complete=command  Gdo                   call eight#gdo#call( '<args>' )
 
