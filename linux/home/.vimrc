@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.08 12:14 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.13 13:54 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1526,7 +1526,7 @@ autocmd  vimrc  FileType  help  noremap <buffer>  <Space>m2
 
 " __ ASCIIDOC ___________________________
 
-autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mgq  :AdocFormat<CR>$hD
+autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mq  :AdocFormat<CR>$hD
 
 " __ RUBY _______________________________
 
