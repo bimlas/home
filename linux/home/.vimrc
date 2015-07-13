@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.13 13:54 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.13 21:51 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1586,7 +1586,9 @@ nnoremap  <Space>x0   :silent call eight#contact#call()<CR><CR>
 nnoremap  <Space>x1   :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
 nnoremap  <Space>x2   :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
 nnoremap  <Space>x3   :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
-nnoremap  <Space>x9   :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
+nnoremap  <Space>x4   :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
+nnoremap  <Space>x8   :silent call EightHeader(78, 'left', 1, ' ', '{'.'{{' , '')<CR><CR>
+nnoremap  <Space>x9   :silent call EightHeader(78, 'left', 1, ' ', '}'.'}}' , '')<CR><CR>
 
 nmap      <Space>xcc  <Plug>(EasyAlign)ip
 nmap      <Space>xc   <Plug>(EasyAlign)
