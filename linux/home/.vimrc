@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.13 21:51 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.14 10:40 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -101,7 +101,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
     let g:colorizer_startup  = 0
     let g:colorizer_nomap    = 1
-    let g:colorizer_maxlines = 1000
+    let g:colorizer_maxlines = 3000
+
+    " autocmd  vimrc  BufEnter  *                               ColorClear
+    " autocmd  vimrc  BufEnter  *.css,*.sass,*.less,.Xresources ColorHighlight
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
@@ -1312,7 +1315,6 @@ function! UniteMaps()
   nmap  <buffer>        h       <Plug>(unite_delete_backward_path)
   nmap  <buffer>        l       <CR>
   nmap  <buffer>        S       <Plug>(unite_append_end)<C-U>
-  imap  <buffer>        /       /*
   map   <buffer>        <C-Z>   <Plug>(unite_smart_preview)
   imap  <buffer><expr>  <C-Z>   unite#do_action('preview')
   map   <buffer><expr>  <C-CR>  unite#do_action('start')
