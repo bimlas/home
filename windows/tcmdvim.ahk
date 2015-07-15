@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.15 10:18 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.15 10:32 ==
 
 #if WinActive("ahk_class TTOTAL_CMD")
 
@@ -24,6 +24,14 @@
   ; }
   ; ; Text entry is active.
   ; Else If(RegExMatch(aControl, "Edit1"))
+  ; {
+  ;   If GetKeyState("CapsLock", "P")
+  ;     ; ...
+  ;   Else
+  ;     ; ...
+  ; }
+  ; ; Command line is active.
+  ; Else If(RegExMatch(aControl, "Edit2"))
   ; {
   ;   If GetKeyState("CapsLock", "P")
   ;     ; ...
@@ -87,8 +95,8 @@
       Else
         Send, {Up}
     }
-    ; Text entry is active.
-    Else If(RegExMatch(aControl, "Edit1"))
+    ; Text entry or command line is active.
+    Else If(RegExMatch(aControl, "Edit[12]"))
     {
       If GetKeyState("CapsLock", "P")
         Send, {Esc}
@@ -252,6 +260,20 @@
     Else If(RegExMatch(aControl, "Edit1"))
     {
       Send, R
+    }
+    Return
+  }
+
+  w::
+  {
+    ControlGetFocus, aControl, A
+    ; Text entry or command line is active.
+    If(RegExMatch(aControl, "Edit[12]"))
+    {
+      If GetKeyState("CapsLock", "P")
+        Send, ^+{Left}{Delete}
+      Else
+        Send, w
     }
     Return
   }
@@ -465,6 +487,15 @@
       Send, {Delete}
     Else
       SendInput, l
+    Return
+  }
+
+  w::
+  {
+    If GetKeyState("CapsLock", "P")
+      Send, ^+{Left}{Delete}
+    Else
+      SendInput, w
     Return
   }
 
