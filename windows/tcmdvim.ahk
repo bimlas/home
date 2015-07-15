@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.15 10:58 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.15 14:01 ==
 
 #if WinActive("ahk_class TTOTAL_CMD")
 
@@ -253,6 +253,7 @@
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       PostMessage, 1075, 1002, , , ahk_class TTOTAL_CMD ; cm_RenameOnly=1002;Rename (Shift+F6)
+      Send, {Right}
       Return
     }
     Send, R
@@ -282,6 +283,7 @@
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
+      Send, {Space}{Backspace}
       Return
     }
     Send, :
@@ -476,7 +478,7 @@
   {
     If GetKeyState("CapsLock", "P")
     {
-      Send, {Delete}
+      Send, {Tab}
       Return
     }
     SendInput, l
