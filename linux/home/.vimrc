@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.14 10:40 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.15 22:47 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -185,7 +185,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'thinca/vim-visualstar'                                        " {{{2
   " kijelolt szoveg keresese * gombbal
 
-  Plugin 'dkprice/vim-easygrep'                                         " {{{2
+  " Plugin 'dkprice/vim-easygrep'                                         " {{{2
   " tuningolt vimgrep
 
     " Nem kellenek a default map-ok.
@@ -258,6 +258,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'stefandtw/quickfix-reflector.vim'                             " {{{2
   " quickfix-en keresztul a fajlok sorainak szerkesztese (:copen, ha nem lehet
   " szerkeszteni a quickfix-et)
+
+    " Ne mentse automatikusan a megvaltoztatott fajlokat.
+    let g:qf_write_changes = 0
 
                                                                         " }}}2
 
@@ -1507,7 +1510,7 @@ nnoremap  <Space>gL  :Gitv<CR>
 
 nmap              <Space>mK  <Plug>Zeavim
 vmap              <Space>mK  <Plug>ZVVisSelection
-nnoremap          <Space>mg  :Grep<Space>
+nnoremap  <expr>  <Space>mg  ':vimgrep // **/*.' . expand('%:e') . '<C-Left><Left><Left>'
 nnoremap          <Space>mo  :Unite outline<CR>
 nnoremap          <Space>mr  :QuickRun<CR>
 noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
