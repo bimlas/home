@@ -1,5 +1,6 @@
-; http://lifehacker.com/i-call-this-script-transparentwindow-if-you-press-c-507682980
 ; C-S-T to make window transparent
+;
+; http://lifehacker.com/i-call-this-script-transparentwindow-if-you-press-c-507682980
 
 ;Init
 {
