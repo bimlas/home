@@ -3,8 +3,9 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.15 14:01 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.16 14:35 ==
 
+; Main window.
 #if WinActive("ahk_class TTOTAL_CMD")
 
   ; Disable CapsLock to Ctrl remap, check for GetKeyState("CapsLock", "P")
@@ -135,6 +136,28 @@
       Return
     }
     Send, l
+    Return
+  }
+
+  n::
+  {
+    If GetKeyState("CapsLock", "P")
+    {
+      Send, {Down}
+      Return
+    }
+    SendInput, n
+    Return
+  }
+
+  p::
+  {
+    If GetKeyState("CapsLock", "P")
+    {
+      Send, {Up}
+      Return
+    }
+    SendInput, p
     Return
   }
 
@@ -397,6 +420,19 @@
     Return
   }
 
+  ; Open right-click (context) menu.
+  a::
+  {
+    ; Left/right panel is active.
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      Send, {AppsKey}
+      Return
+    }
+    Send, a
+    Return
+  }
+
   ; Open terminal.
   F2::
   {
@@ -413,6 +449,7 @@
   }
 #if
 
+; Quicksearch.
 #if WinActive("ahk_class TQUICKSEARCH")
 
   ; Disable CapsLock to Ctrl remap, check for GetKeyState("CapsLock", "P")
@@ -508,6 +545,7 @@
   }
 #if
 
+; Preview window.
 #if WinActive("ahk_class TLister")
 
   ; Disable CapsLock to Ctrl remap, check for GetKeyState("CapsLock", "P")

@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.15 22:47 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.16 09:32 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -185,7 +185,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'thinca/vim-visualstar'                                        " {{{2
   " kijelolt szoveg keresese * gombbal
 
-  " Plugin 'dkprice/vim-easygrep'                                         " {{{2
+  Plugin 'dkprice/vim-easygrep'                                         " {{{2
   " tuningolt vimgrep
 
     " Nem kellenek a default map-ok.
@@ -193,11 +193,12 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:EasyGrepOptionPrefix = ''
 
     " Ha csak lehet, hasznaljon gyorsabb grep-et mint a vimgrep.
-
-    " Alapjaba veve a megnyitott fajl tipusaval megegyezo fajlokban keressen.
     " if executable('ag') || executable('pt')
     "   let g:EasyGrepCommand = 1
     " endif
+
+    " Alapjaba veve a megnyitott fajl tipusaval megegyezo fajlokban keressen.
+    let g:EasyGrepMode = 2
 
     " A fajl konyvtaraban keressen, ne a cwd-ben.
     let g:EasyGrepSearchCurrentBufferDir = 1
@@ -289,8 +290,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
     if executable('pt')
       let g:unite_source_rec_async_command  = 'pt --hidden --follow --nocolor --nogroup --files-with-matches ""'
       let g:unite_source_grep_command       = 'pt'
-      let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --column --smart-case'
-      let g:unite_source_grep_recursive_opt = ''
+      let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --smart-case -e --depth 0'
+      let g:unite_source_grep_recursive_opt = '--depth 25'
       let g:unite_source_grep_encoding      = 'utf-8'
     endif
 
@@ -1044,12 +1045,12 @@ set nowrapscan
 
 " Silver Searcher
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  let &grepprg = 'ag --nogroup --nocolor --column'
 endif
 
 " Platinum Searcher
 if executable('pt')
-  set grepprg=pt\ --nogroup\ --nocolor\ --column
+  let &grepprg = 'pt --nogroup --nocolor --column -e'
 endif
 
 "                             SZINTAXIS KIEMELES                          {{{1
@@ -1510,7 +1511,7 @@ nnoremap  <Space>gL  :Gitv<CR>
 
 nmap              <Space>mK  <Plug>Zeavim
 vmap              <Space>mK  <Plug>ZVVisSelection
-nnoremap  <expr>  <Space>mg  ':vimgrep // **/*.' . expand('%:e') . '<C-Left><Left><Left>'
+nnoremap          <Space>mg  :Grep<Space>
 nnoremap          <Space>mo  :Unite outline<CR>
 nnoremap          <Space>mr  :QuickRun<CR>
 noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
@@ -1562,7 +1563,9 @@ nmap  <Space>qd  <Plug>Dsurround
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-nnoremap  <expr>  <Space>sg  ':Unite -start-insert ' . (&grepprg == 'grep' ? 'vimgrep' : 'grep') . '<CR>'
+" nnoremap  <expr>  <Space>sg  ':Unite -start-insert ' . (&grepprg == 'grep' ? 'vimgrep' : 'grep') . '<CR>'
+nnoremap          <Space>sg  :Unite -start-insert vimgrep<CR>
+nnoremap          <Space>sG  :noautocmd vimgrep // ** <Bar> copen<C-Left><C-Left><C-Left><C-Left><Right>
 nnoremap          <Space>sl  :Unite -start-insert line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
