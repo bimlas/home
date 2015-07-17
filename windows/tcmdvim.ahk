@@ -3,7 +3,13 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.16 14:35 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.17 12:44 ==
+
+; Need for right key sequence behaviour (for example: gg).
+
+; CapsLock -> Ctrl remap.
+SetCapsLockState AlwaysOff
+CapsLock::Ctrl
 
 ; Main window.
 #if WinActive("ahk_class TTOTAL_CMD")
@@ -320,10 +326,18 @@
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       If GetKeyState("CapsLock", "P")
+      {
         PostMessage, 1075, 540,  , , ahk_class TTOTAL_CMD ; cm_RereadSource=540;Reread source
-      Return
+        Return
+      }
+      If(A_PriorKey = "g")
+      {
+        Send, {Home}
+        Return
+      }
     }
-    Send, g
+    ; Disabled, because it opens quicksearch.
+    ; Send, g
     Return
   }
 
@@ -552,24 +566,56 @@
   ; instead, because it behaves weird.
   CapsLock::Return
 
+  j::
+  {
+    Send, ^{Down}
+    Return
+  }
+
   k::
   {
     If GetKeyState("CapsLock", "P")
+    {
       Send, {Esc}
+      Return
+    }
+    Send, ^{Up}
     Return
   }
 
   u::
   {
     If GetKeyState("CapsLock", "P")
+    {
       Send, {PgUp}
+      Return
+    }
     Return
   }
 
   d::
   {
     If GetKeyState("CapsLock", "P")
+    {
       Send, {PgDn}
+      Return
+    }
+    Return
+  }
+
+  g::
+  {
+    If(A_PriorKey = "g")
+    {
+      Send, ^{Home}
+      Return
+    }
+    Return
+  }
+
+  +g::
+  {
+    Send, ^{End}
     Return
   }
 
@@ -582,7 +628,10 @@
   f::
   {
     If GetKeyState("CapsLock", "P")
+    {
       Send, {F7} ; Search for text.
+      Return
+    }
     Return
   }
 #if
