@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.16 09:32 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.17 22:31 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1650,5 +1650,6 @@ autocmd  vimrc  VimResized  *  wincmd =
 autocmd  vimrc  FileType  man,qf   setlocal nonumber nolist
 autocmd  vimrc  BufNew    __doc__  setlocal nonumber nolist
 
-" Make hiba eseten nyissa meg a hibaablakot.
-autocmd  vimrc  QuickFixCmdPost  *  botright cwindow
+" Make hiba eseten nyissa meg a hibaablakot. A quickfix-reflector miatt kell a
+" nested.
+autocmd  vimrc  QuickFixCmdPost  *  nested botright cwindow
