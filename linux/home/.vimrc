@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.17 22:31 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.21 13:41 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -1195,6 +1195,13 @@ map       <C-J>  <CR>
 imap      <C-J>  <CR>
 " noremap   é      ;
 " noremap   É      ,
+
+" Hogy az insert modban valo maszkalashoz se kelljen elhagyni az 'alapallast'.
+" NOTE: ha nagybetusek, nem mukodnek?
+inoremap  <M-h>  <Left>
+inoremap  <M-j>  <Down>
+inoremap  <M-k>  <Up>
+inoremap  <M-l>  <Right>
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy

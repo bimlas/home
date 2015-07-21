@@ -7,12 +7,13 @@
 
   s            = "status"
   ad           = "add --all"
-  ada          = "add --all :/"
+  ada          = "!git ad :/"
   c            = "commit"
-  cm           = "commit -m"
+  cm           = "!git c -m"
   adac         = "!git ada && git c"
   adacm        = "!git ada && git cm"
   adacmu       = "!git ada && git cm update"
+  co           = "checkout"
   ps           = "push --all --follow-tags"
   pl           = "!git fetch; git status; read -p '\nCONTINUE PULLING? Y/[N]' ans; \
                   if echo $ans | grep '[Yy]' > /dev/null; then \
