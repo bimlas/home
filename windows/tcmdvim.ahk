@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.17 12:44 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.22 10:24 ==
 
 ; Need for right key sequence behaviour (for example: gg).
 
@@ -69,6 +69,11 @@ CapsLock::Ctrl
     Send, h
     Return
   }
+  !h::
+  {
+    Send, {Left}
+    Return
+  }
 
   j::
   {
@@ -92,6 +97,11 @@ CapsLock::Ctrl
       Return
     }
     Send, j
+    Return
+  }
+  !j::
+  {
+    Send, {Down}
     Return
   }
 
@@ -119,6 +129,11 @@ CapsLock::Ctrl
     Send, k
     Return
   }
+  !k::
+  {
+    Send, {Up}
+    Return
+  }
 
   l::
   {
@@ -142,6 +157,11 @@ CapsLock::Ctrl
       Return
     }
     Send, l
+    Return
+  }
+  !l::
+  {
+    Send, {Right}
     Return
   }
 
