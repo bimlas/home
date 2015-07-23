@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.21 13:41 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.23 13:46 ==
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
@@ -44,7 +44,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   call vundle#begin(bundle_dir)
   filetype off
 
-  Plugin 'gmarik/vundle.vim'                                            " {{{2
+  Plugin 'vundlevim/vundle.vim'                                            " {{{2
   " plugin-ok automatizalt telepitese git-en keresztul (is)
 
   Plugin 'shougo/vimproc.vim'                                           " {{{2
@@ -247,7 +247,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:easy_align_delimiters = {
     \ '|': {'pattern': '\(\(^\|\s\)\@<=\(\d\+\*\)\?\(\(\d\+\|\.\d\+\|\d\+\.\d\+\)+\)\?\([\^<>]\|\.[\^<>]\|[\^<>]\.[\^<>]\)\?[a-z]\?\)\?|', 'filter': 'v/^|=\+$/'},
     \ 't': {'pattern': '\t'},
-    \ '\': {'pattern': '\\$', 'stick_to_left': 0},
+    \ '\': {'pattern': '\\$', 'stick_to_left': 0, 'ignore_unmatched': 0},
     \ '<': {'pattern': '<<$', 'stick_to_left': 0, 'ignore_unmatched': 0},
     \ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
     \ }
@@ -341,6 +341,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
+
+  Plugin 'lambdalisue/vim-improve-diff'                                 " {{{2
+  " auto diffupdate & diffoff + DiffOrig
 
   Plugin 'locator'                                                      " {{{2
   " a gl megmutatja hol vagy (fold, func, stb.)
@@ -650,6 +653,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " git integracio
   " $ install git
 
+  Plugin 'lambdalisue/vim-gita'                                         " {{{2
+  " git integracio
+  " $ install git
+
   Plugin 'gregsexton/gitv'                                              " {{{2
   " gitk a vim-en belul
   " $ install git
@@ -673,7 +680,7 @@ endif
 
 command!  InstallVundle  call InstallVundle()
 function! InstallVundle()
-  let vundle_repo = 'https://github.com/gmarik/vundle.vim'
+  let vundle_repo = 'https://github.com/vundlevim/vundle.vim'
   let path = substitute(g:bundle_dir . '/vundle.vim', '/', has('win32') ? '\\' : '/', 'g')
 
   if ! executable('git')
@@ -1492,6 +1499,13 @@ nnoremap  <Space>bB  :Unite buffer:!<CR>
 nnoremap  <Space>bc  :Unite change<CR>
 nnoremap  <Space>bd  :Bdelete<CR>
 nnoremap  <Space>bD  :Bdelete!<CR>
+
+"                             <Space>d - DIFF                             {{{3
+" ............................................................................
+
+nnoremap  <Space>dt  :diffthis<CR>
+nnoremap  <Space>do  :diffoff<CR>
+nnoremap  <Space>du  :diffupdate<CR>
 
 "                            <Space>f - FILES                             {{{3
 " ............................................................................

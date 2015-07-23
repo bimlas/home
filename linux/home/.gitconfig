@@ -16,9 +16,7 @@
   co           = "checkout"
   coa          = "!git co :/"
   ps           = "push --all --follow-tags"
-  pl           = "!git fetch; git status; read -p '\nCONTINUE PULLING? Y/[N]' ans; \
-                  if echo $ans | grep '[Yy]' > /dev/null; then \
-                  git pull && echo -e '\n__ CHANGELOG ________\n' && git changelog; fi"
+  pl           = "!(git pull --ff-only && echo -e '\n__ CHANGELOG ________\n' && git changelog) || git status"
   glog         = "log --graph --decorate --all --name-status"
   slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %C(auto)%d %Creset%s' --date=short"
   changelog    = "log --graph --decorate --all --name-status ORIG_HEAD.."

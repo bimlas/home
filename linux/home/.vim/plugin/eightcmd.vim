@@ -1,6 +1,6 @@
 " eightcmd.vim: commands to invoke my functions
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.08 11:54 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.23 09:11 ==
 
 augroup eightcmd
   autocmd!
@@ -22,9 +22,6 @@ command!  -nargs=0 -range             HtmlEscape            call eight#htmlescap
 command!  -nargs=0 -range             HtmlNoEscape          call eight#htmlescape#call( <line1>, <line2>, 0 )
 command!  -nargs=*                    Run                   call eight#run#call( '<args>' )
 command!  -nargs=* -complete=command  Gdo                   call eight#gdo#call( '<args>' )
-
-" Recover utan osszehasonlitas az eredeti fajllal.
-command!                              DiffOrig              vert new SAVED FILE | set buftype=nofile | read ++edit # | silent 0d_ | diffthis | wincmd p | diffthis
 
 " Sorok tordelese kulon-kulon. (bemasolt szoveg formazasahoz)
 command!  -nargs=0 -range             AdocFormat            silent <line1>,<line2> g/.\+/ normal A +<C-C>gqq:nohlsearch<CR>

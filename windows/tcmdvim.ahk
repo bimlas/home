@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.22 10:24 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.23 09:40 ==
 
 ; Need for right key sequence behaviour (for example: gg).
 
@@ -553,6 +553,13 @@ CapsLock::Ctrl
       Return
     }
     SendInput, l
+    Return
+  }
+
+  ; Press space to search for other part of filename.
+  Space::
+  {
+    SendInput, *
     Return
   }
 
