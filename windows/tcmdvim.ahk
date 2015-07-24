@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.23 09:40 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.24 09:26 ==
 
 ; Need for right key sequence behaviour (for example: gg).
 
@@ -58,7 +58,7 @@ CapsLock::Ctrl
       Return
     }
     ; Text entry is active.
-    Else If(RegExMatch(aControl, "Edit1"))
+    Else If(RegExMatch(aControl, "Edit[12]"))
     {
       If GetKeyState("CapsLock", "P")
         Send, {Backspace}
@@ -88,7 +88,7 @@ CapsLock::Ctrl
       Return
     }
     ; Text entry is active.
-    Else If(RegExMatch(aControl, "Edit1"))
+    Else If(RegExMatch(aControl, "Edit[12]"))
     {
       If GetKeyState("CapsLock", "P")
         Send, {Enter}
@@ -148,7 +148,7 @@ CapsLock::Ctrl
       Return
     }
     ; Text entry is active.
-    Else If(RegExMatch(aControl, "Edit1"))
+    Else If(RegExMatch(aControl, "Edit[12]"))
     {
       If GetKeyState("CapsLock", "P")
         Send, {Delete}
@@ -356,8 +356,12 @@ CapsLock::Ctrl
         Return
       }
     }
-    ; Disabled, because it opens quicksearch.
-    ; Send, g
+    ; Disabled in normal mode, because it opens quicksearch.
+    If(RegExMatch(aControl, "(TMy|LCL)ComboBox\d|Edit[12]"))
+    {
+      Send, g
+      Return
+    }
     Return
   }
 
@@ -382,15 +386,6 @@ CapsLock::Ctrl
     {
       If GetKeyState("CapsLock", "P")
         PostMessage, 1075, 903, , , ahk_class TTOTAL_CMD ; cm_List=903;View with Lister
-      Return
-    }
-    ; Text entry is active.
-    Else If(RegExMatch(aControl, "Edit1"))
-    {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 903, , , ahk_class TTOTAL_CMD ; cm_List=903;View with Lister
-      Else
-        Send, z
       Return
     }
     Send, z
@@ -463,7 +458,12 @@ CapsLock::Ctrl
       Send, {AppsKey}
       Return
     }
-    Send, a
+    ; Disabled in normal mode, because it opens quicksearch.
+    If(RegExMatch(aControl, "(TMy|LCL)ComboBox\d|Edit[12]"))
+    {
+      Send, a
+      Return
+    }
     Return
   }
 

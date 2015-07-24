@@ -3,7 +3,17 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.23 13:46 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.24 15:37 ==
+
+" Minimalis vimrc plugin-ok hibakeresesehez.
+let s:debug_plugin = 0
+if s:debug_plugin
+  set nocompatible
+  filetype plugin indent on
+  syntax enable
+  set runtimepath+=$HOME/.vim_test
+  finish
+endif
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
