@@ -22,7 +22,6 @@ copy --recursive \
   ".config/"     \
   ".dosbox/"     \
   ".kde/"        \
-  ".vimrc_test"  \
   "$HOME"
 
 copy         \

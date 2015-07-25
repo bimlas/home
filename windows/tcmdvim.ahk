@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.24 09:26 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.24 21:59 ==
 
 ; Need for right key sequence behaviour (for example: gg).
 
@@ -459,7 +459,7 @@ CapsLock::Ctrl
       Return
     }
     ; Disabled in normal mode, because it opens quicksearch.
-    If(RegExMatch(aControl, "(TMy|LCL)ComboBox\d|Edit[12]"))
+    Else If(RegExMatch(aControl, "(TMy|LCL)ComboBox\d|Edit[12]"))
     {
       Send, a
       Return

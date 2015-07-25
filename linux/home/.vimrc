@@ -3,15 +3,19 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.24 15:37 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.25 22:16 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
-let s:debug_plugin = 0
-if s:debug_plugin
+let s:vanilla = 0
+if s:vanilla
   set nocompatible
   filetype plugin indent on
   syntax enable
-  set runtimepath+=$HOME/.vim_test
+  " Vim unit test.
+  " Ne felejtsd el a $PATH valtozohoz hozzaadni a vim-themis/bin utvonalat.
+  set runtimepath+=$HOME/.vim_local/bundle/vim-themis
+  " :Capture VIM_PARANCS egy bufferbe masolja a kimenetet.
+  set runtimepath+=$HOME/.vim_local/bundle/capture.vim
   finish
 endif
 
@@ -355,9 +359,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'lambdalisue/vim-improve-diff'                                 " {{{2
   " auto diffupdate & diffoff + DiffOrig
 
-  Plugin 'locator'                                                      " {{{2
-  " a gl megmutatja hol vagy (fold, func, stb.)
-
   Plugin 'moll/vim-bbye'                                                " {{{2
   " :Bdelete buffer torlesehez az ablakok buzeralasa nelkul
 
@@ -533,6 +534,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
     endif
     let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
+  Plugin 'shougo/neoinclude.vim'                                        " {{{2
+  " az include-olt fajlokhoz gyartson tag-eket
+
   Plugin 'shougo/neco-vim'                                              " {{{2
   " vim kiegeszites a neocomplete-hez
 
@@ -652,8 +656,11 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:ruby_no_comment_fold           = 1
     let g:ruby_operators                 = 1
 
-  Plugin 'ekalinin/dockerfile.vim'                                      " {{{2
-  " syntax
+  Plugin 'thinca/vim-themis'                                            " {{{2
+  " unit test a Vim-hez
+
+  Plugin 'tyru/capture.vim'                                             " {{{2
+  " :Capture VIM_PARANCS a kimenetet egy bufferbe masolja
 
                                                                         " }}}2
 
@@ -1533,7 +1540,7 @@ nnoremap  <Space>fvv :edit $MYVIMRC<CR>
 " ............................................................................
 
 nnoremap  <Space>gd  :Gdiff<CR>
-nnoremap  <Space>gs  :Gstatus<CR>
+nnoremap  <Space>gs  :Gita status<CR>
 nnoremap  <Space>gl  :Gitv!<CR>
 nnoremap  <Space>gL  :Gitv<CR>
 
