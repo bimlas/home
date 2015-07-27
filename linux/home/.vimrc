@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.25 22:16 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.26 13:04 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -525,7 +525,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     if !exists('g:neocomplete#sources')
       let g:neocomplete#sources = {}
     endif
-    let g:neocomplete#sources._ = ['omni', 'tag', 'member', 'syntax', 'vim', 'neosnippet', 'calc']
+    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'neosnippet', 'calc']
 
     " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
     " tudjuk.
@@ -536,6 +536,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'shougo/neoinclude.vim'                                        " {{{2
   " az include-olt fajlokhoz gyartson tag-eket
+
+  Plugin 'Shougo/neco-syntax'                                           " {{{2
+  " szintaxis alapjan kiegeszites TODO
 
   Plugin 'shougo/neco-vim'                                              " {{{2
   " vim kiegeszites a neocomplete-hez
