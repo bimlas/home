@@ -46,3 +46,6 @@ user_pref("mail.server.server1.offline_download", false);
 //  * https://addons.mozilla.org/hu/thunderbird/addon/google-contacts/
 //    A bellitasokban pipald be a "load contacts at startup" gombot.
 user_pref("gmcont.auth_at_startup", true);
+
+//  * https://addons.mozilla.org/en-us/firefox/addon/s3google-translator/?src=ss
+//  Jobb klikk -> translate

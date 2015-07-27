@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.05.28 08:50 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.27 08:14 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -15,6 +15,9 @@
 
 /*                                 KIEGESZITOK                            {{{1
  * ===========================================================================
+ *
+ * s3.google translator - translate.google.com a kepernyo aljan
+ *  https://addons.mozilla.org/en-us/firefox/addon/s3google-translator/?src=ss
  *
  * chatzilla - irc kliens
  *  https://addons.mozilla.org/hu/firefox/addon/chatzilla/
