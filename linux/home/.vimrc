@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.26 13:04 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.27 19:05 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -16,6 +16,7 @@ if s:vanilla
   set runtimepath+=$HOME/.vim_local/bundle/vim-themis
   " :Capture VIM_PARANCS egy bufferbe masolja a kimenetet.
   set runtimepath+=$HOME/.vim_local/bundle/capture.vim
+  silent! source $HOME/.vimrc_test
   finish
 endif
 
