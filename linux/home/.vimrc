@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.27 19:05 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.28 14:04 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -369,15 +369,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'tyru/open-browser.vim'                                        " {{{2
   " netrw gx helyett
 
-  " Plugin 'jceb/vim-orgmode'                                             " {{{2
-
-    let maplocalleader=','
-    let g:org_agenda_files = ['~/test.org']
-
-  " Plugin 'hsitz/vimorganizer'
-  " emacs org-mode in vim
-
-    let g:agenda_files=['~/test.org']
+  Plugin 'rykka/colorv.vim'                                             " {{{2
+  " szinek szerkesztese:
+  " :ColorVEdit     szin modositasa
+  " :ColorVEditAll  ... a bufferen belul mindenhol
 
   Plugin 'vimoutliner/vimoutliner'                                      " {{{2
   " talan a legteljesebb org-mode plugin
@@ -408,63 +403,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " szovegreszek kommentelese
 
     let g:tcommentMaps = 0
-
-  Plugin 'majutsushi/tagbar'                                            " {{{2
-  " a fajlban talalhato tag-ek listaja
-  " $ install ctags
-
-    " A tagbar megnyitasakkor a kurzor ugorjon ra.
-    let g:tagbar_autofocus = 1
-
-    " Ha entert nyomunk egy tagon, akkor a tagra ugras utan zarodjon be a tagbar.
-    " let g:tagbar_autoclose = 1
-
-    " Ne rendezze nev szerint a tagokat.
-    let g:tagbar_sort = 0
-
-    " A jobbra nyil is nyissa ki a fold-okat, a bal csukja ossze oket.
-    let g:tagbar_map_openfold  = ['<Right>', 'l']
-    let g:tagbar_map_closefold = ['<Left>',  'h']
-
-    " Hogy asciidoc fajlokkal is hasznalhato legyen, mentsuk el ezeket a sorokat a
-    " ~/.ctags fajlba:
-    " --langdef=asciidoc
-    " --langmap=asciidoc:.ad.adoc.asciidoc
-    " --regex-asciidoc=/^=[ \t]+(.*)/\1/h/
-    " --regex-asciidoc=/^==[ \t]+(.*)/. \1/h/
-    " --regex-asciidoc=/^===[ \t]+(.*)/. . \1/h/
-    " --regex-asciidoc=/^====[ \t]+(.*)/. . . \1/h/
-    " --regex-asciidoc=/^=====[ \t]+(.*)/. . . . \1/h/
-    " --regex-asciidoc=/^======[ \t]+(.*)/. . . . \1/h/
-    " --regex-asciidoc=/^=======[ \t]+(.*)/. . . . \1/h/
-    " --regex-asciidoc=/\[\[([^]]+)\]\]/\1/a/
-    " --regex-asciidoc=/<<([^,]+),([^>]+)>>/\1: \2/A/
-    " --regex-asciidoc=/^\.([^\|]+)$/\1/t/
-    " --regex-asciidoc=/image::([^\[]+)/\1/i/
-    " --regex-asciidoc=/image:([^:][^\[]+)/\1/I/
-    " --regex-asciidoc=/include::([^\[]+)/\1/n/
-    let g:tagbar_type_asciidoc =
-    \ { 'ctagstype' : 'asciidoc',
-    \   'kinds'     : [ 'h:table of contents',
-    \                   'a:anchors:1',
-    \                   'A:using of anchors:1',
-    \                   't:titles:1',
-    \                   'n:includes:1',
-    \                   'i:images:1',
-    \                   'I:inline images:1'
-    \                 ]
-    \ }
-
-    " ~/.ctags:
-    " --langdef=text
-    " --langmap=text:.txt
-    " --regex-text=/^[ \t]*(.*)\{\{\{1/\1/h/
-    " --regex-text=/^[ \t]*(.*)\{\{\{2/. \1/h/
-    " --regex-text=/^[ \t]*(.*)\{\{\{3/. . \1/h/
-    let g:tagbar_type_text =
-    \ { 'ctagstype' : 'text',
-    \   'kinds'     : [ 'h:table of contents' ]
-    \ }
 
   Plugin 'kabbamine/zeavim.vim'                                         " {{{2
   " talan a legnormalisabb referencia-bongeszo
@@ -798,10 +736,6 @@ autocmd  vimrc  ColorScheme  solarized  highlight! link SpecialKey NonText
 " Ne legyenek alahuzva az osszecsukott foldok.
 autocmd  vimrc  ColorScheme  solarized  highlight! Folded term=bold,italic cterm=bold,italic gui=bold,italic
 
-" Mivel a terminalos szinsema nincs definialva (?), igy nekunk kell erteket
-" adni neki.
-autocmd  vimrc  ColorScheme  solarized  highlight! TagbarHighlight term=inverse ctermfg=White
-
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
 
@@ -852,25 +786,24 @@ endif
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-let stat_filedir    = '%<%{exists("b:stat_curfiledir") ? b:stat_curfiledir : ""}'
+" Halozati meghajton nagyon belassit.
+let g:stat_git_enabled = 1
+
+autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
+
 let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-" if filereadable(bundle_dir . '/tagbar/autoload/tagbar.vim')
-  " let stat_tagbar   = '%{(winwidth(0) > 120) ? strpart(tagbar#currenttag("%s",""), 0, 50) : ""}'
-" else
-  let stat_tagbar   = ''
-" endif
+let stat_filedir    = '%<%{exists("b:stat_curfiledir") ? b:stat_curfiledir : ""}'
 let stat_lineinfo   = '%4l:%3p%%|%3v'
 
 let &statusline  = stat_bufnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
-let &statusline .= '%#StatInfo#%{len(StatFugitive()) ? "  " . StatFugitive() . " " : ""}'
+let &statusline .= '%#StatInfo#%{g:stat_git_enabled ? gita#statusline#format(" %lb ") : ""}'
 let &statusline .= '%* ' . stat_filedir . ' '
 let &statusline .= '%= '
-let &statusline .= stat_tagbar . ' '
 let &statusline .= '%#StatWarning#%{len(StatSyntastic()) ? " " . StatSyntastic() . " " : ""}'
 let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
 
@@ -880,16 +813,6 @@ let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
 
 function! StatSyntastic()
   return exists(':SyntasticCheck') ? SyntasticStatuslineFlag() : ''
-endfunction
-
-" __ STATFUGITIVE ___________________________
-"
-" Branch : commit
-
-" Halozati meghajton nagyon belassit.
-let g:statfugitive_disabled = 0
-function! StatFugitive()
-  return (exists('b:git_dir') && ! g:statfugitive_disabled) ? fugitive#head(7) . ':' . fugitive#buffer().commit()[0:6] : ''
 endfunction
 
 "                                  NETRW                                  {{{1
@@ -1557,7 +1480,6 @@ nnoremap          <Space>mg  :Grep<Space>
 nnoremap          <Space>mo  :Unite outline<CR>
 nnoremap          <Space>mr  :QuickRun<CR>
 noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
-nnoremap          <Space>mt  :TagbarToggle<CR>
 
 " __ VIM ________________________________
 

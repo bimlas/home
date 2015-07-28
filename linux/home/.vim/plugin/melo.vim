@@ -15,7 +15,7 @@ function! GCodeGetAllLimits()
 endfunction
 
 if $USERNAME == 'Laci'
-  let g:statfugitive_disabled = 1
+  let g:stat_git_enabled = 0
   augroup melo
     autocmd!
     autocmd  BufNewFile  *.txt  set fileencoding=default

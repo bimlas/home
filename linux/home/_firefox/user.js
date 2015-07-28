@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.27 08:14 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.28 07:46 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -17,7 +17,23 @@
  * ===========================================================================
  *
  * s3.google translator - translate.google.com a kepernyo aljan
- *  https://addons.mozilla.org/en-us/firefox/addon/s3google-translator/?src=ss
+ *  https://addons.mozilla.org/en-us/firefox/addon/s3google-translator/
+ */
+
+user_pref("extensions.s3gt.autotranslate",                 "stop");
+user_pref("extensions.s3gt.context_menu_show_icon",        false);
+user_pref("extensions.s3gt.context_menu_translate_auto",   false);
+user_pref("extensions.s3gt.context_menu_translate_forget", false);
+user_pref("extensions.s3gt.context_menu_translate_page",   false);
+user_pref("extensions.s3gt.current_version",               "4.03");
+user_pref("extensions.s3gt.is_first_run",                  false);
+user_pref("extensions.s3gt.last_lang_from",                "auto");
+user_pref("extensions.s3gt.last_lang_to",                  "hu");
+user_pref("extensions.s3gt.translate_subtitles_youtube",   false);
+user_pref("extensions.s3gt.view_source_translate_box",     true);
+
+/* sztakidict - sztaki szotar a kijelolt szovegen jobbgomb utan
+ *  https://addons.mozilla.org/hu/firefox/addon/sztakidict/
  *
  * chatzilla - irc kliens
  *  https://addons.mozilla.org/hu/firefox/addon/chatzilla/
@@ -52,50 +68,50 @@
  *                                                                        }}}1
  *
  * Webfejlesztesnel hasznos:
- * user_pref( "network.http.use-cache", false );
+ * user_pref("network.http.use-cache", false);
  */
 
 /* Kezdooldal. */
-user_pref( "browser.startup.homepage", "https://www.google.hu/" );
+user_pref("browser.startup.homepage", "https://www.google.hu/");
 
 /* Mindig kerdezzen ra, hogy hova toltse le a cuccokat. */
-user_pref( "browser.download.useDownloadDir", false );
+user_pref("browser.download.useDownloadDir", false);
 
 /* Menuelemek animalasanak kikapcsolasa. */
-user_pref( "browser.tabs.animate", false );
-user_pref( "ui.submenuDelay",      0     );
+user_pref("browser.tabs.animate", false);
+user_pref("ui.submenuDelay",      0    );
 
 /* Cimsavban szimpla klatty kijelol mindent. */
-user_pref( "browser.urlbar.clickSelectsAll", true );
+user_pref("browser.urlbar.clickSelectsAll", true);
 
 /* "Kozepso gombbal klatty es gorget" kikapcsolasa. */
-user_pref( "general.autoScroll", false );
+user_pref("general.autoScroll", false);
 
 /* Finom gorgetes kikapcsolasa. */
-user_pref( "general.smoothScroll", false );
+user_pref("general.smoothScroll", false);
 
 /* Nyilakkal valo navigalas. */
-// user_pref( "accessibility.browsewithcaret", true );
+// user_pref("accessibility.browsewithcaret", true);
 
 /* Ne jegyezze meg a jelszavakat. */
-user_pref( "signon.rememberSignons", false );
+user_pref("signon.rememberSignons", false);
 
 /* Ne kovessenek. */
-user_pref( "privacy.trackingprotection.enabled", true )
+user_pref("privacy.trackingprotection.enabled", true)
 
 /* Bezaraskor torolje... */
-user_pref( "privacy.clearOnShutdown.cache",         true );
-user_pref( "privacy.clearOnShutdown.cookies",       true );
-user_pref( "privacy.clearOnShutdown.passwords",     true );
-user_pref( "privacy.clearOnShutdown.sessions",      true );
-user_pref( "privacy.sanitize.sanitizeOnShutdown",   true );
+user_pref("privacy.clearOnShutdown.cache",        true);
+user_pref("privacy.clearOnShutdown.cookies",      true);
+user_pref("privacy.clearOnShutdown.passwords",    true);
+user_pref("privacy.clearOnShutdown.sessions",     true);
+user_pref("privacy.sanitize.sanitizeOnShutdown",  true);
 
 /* ... ezeket viszon ne. */
-user_pref( "privacy.clearOnShutdown.downloads",     false );
-user_pref( "privacy.clearOnShutdown.formdata",      false );
-user_pref( "privacy.clearOnShutdown.history",       false );
-user_pref( "privacy.clearOnShutdown.offlineApps",   false );
-user_pref( "privacy.clearOnShutdown.siteSettings",  false );
+user_pref("privacy.clearOnShutdown.downloads",    false);
+user_pref("privacy.clearOnShutdown.formdata",     false);
+user_pref("privacy.clearOnShutdown.history",      false);
+user_pref("privacy.clearOnShutdown.offlineApps",  false);
+user_pref("privacy.clearOnShutdown.siteSettings", false);
 
 /*                                TWEAK                                 {{{1
  * =========================================================================
@@ -103,15 +119,15 @@ user_pref( "privacy.clearOnShutdown.siteSettings",  false );
 
 // A lemez helyett a memoriaban legyen a cache, a merete legyen X kbyte, vagy
 // -1 eseten magatol hatarozza meg.
-user_pref( "browser.cache.disk.enable",      false );
-user_pref( "browser.cache.memory.enable",    true );
-user_pref( "browser.cache.memory.capacity",  1000000 );
+user_pref("browser.cache.disk.enable",      false);
+user_pref("browser.cache.memory.enable",    true);
+user_pref("browser.cache.memory.capacity",  1000000);
 
 // Toltes kozben a user interakciojat reszesitse elonyben az oldal
 // betoltesehez kepest.
-user_pref( "content.interrupt.parsing",                           true );
+user_pref("content.interrupt.parsing",                           true);
 
-// user_pref( "network.http.max-persistent-connections-per-server",  16   );
-// user_pref( "network.http.max-persistent-connections-per-proxy",   32   );
-// user_pref( "network.http.pipelining",                             true );
-// user_pref( "network.http.pipelining.ssl",                         true );
+// user_pref("network.http.max-persistent-connections-per-server",  16  );
+// user_pref("network.http.max-persistent-connections-per-proxy",   32  );
+// user_pref("network.http.pipelining",                             true);
+// user_pref("network.http.pipelining.ssl",                         true);

@@ -5,7 +5,24 @@
 
 [alias]
 
+  cl           = "clone"
+  ghcl         = "!sh -c 'git clone https://www.github.com/$*' -"
+  ps           = "push --all --follow-tags"
+  pl           = "!git pull --ff-only                                         \
+                  || (git status; read -p '\nCONTINUE PULLING? Y/[N]' ans;    \
+                  if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi)"
+  subpl        = "!git submodule foreach git pull --tags origin master"
+
   s            = "status"
+  glog         = "log --graph --decorate --all --name-status"
+  slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %C(auto)%d %Creset%s' --date=short"
+  clog         = "log --graph --decorate --all --name-status ORIG_HEAD.."
+  flog         = "diff --name-status"
+  tree         = "ls-tree -r --name-only"
+
+  df           = "difftool"
+  gdf          = "difftool --gui"
+
   ad           = "add --all"
   ada          = "!git ad :/"
   c            = "commit"
@@ -14,18 +31,10 @@
   adac         = "!git ada && git c"
   adacm        = "!git ada && git cm"
   adacmu       = "!git ada && git cmu"
+
   co           = "checkout"
   coa          = "!git co :/"
-  cl           = "clean"
-  ps           = "push --all --follow-tags"
-  pl           = "!git pull --ff-only                                         \
-                  || (git status; read -p '\nCONTINUE PULLING? Y/[N]' ans;    \
-                  if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi)"
-  glog         = "log --graph --decorate --all --name-status"
-  slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %C(auto)%d %Creset%s' --date=short"
-  clog         = "log --graph --decorate --all --name-status ORIG_HEAD.."
-  flog         = "diff --name-status"
-  tree         = "ls-tree -r --name-only"
+
   ctags        = "!.git/hooks/0_ctags"
 
 [core]
@@ -60,6 +69,7 @@
 [diff]
 
   tool         = "vimdiff"
+  guitool      = "gvimdiff"
 
 [merge]
 
