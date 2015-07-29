@@ -50,12 +50,12 @@ x()
 }
 
 # English-hungarian dictionary, download:
-# https://github.com/BimbaLaszlo/home/blob/master/linux/home/.vim/doc/szotar.txt
+# https://github.com/BimbaLaszlo/dotvim/blob/master/doc/szotar.txt
 szotar()
 {
-  if [[ -e $HOME/.vim/doc/szotar.txt ]]; then
-    grep "$@" $HOME/.vim/doc/szotar.txt
+  if [[ -e $HOME/.vim_local/bundle/dotvim/doc/szotar.txt ]]; then
+    grep "$@" $HOME/.vim_local/bundle/dotvim/doc/szotar.txt
   else
-    echo "ERROR: missing dictionary $HOME/.vim/doc/szotar.txt"
+    echo "ERROR: missing dictionary $HOME/.vim_local/bundle/dotvim/doc/szotar.txt"
   fi
 }
