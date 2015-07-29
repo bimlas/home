@@ -6,7 +6,6 @@
 [alias]
 
   cl           = "clone"
-  ghcl         = "!sh -c 'git clone https://www.github.com/$*' -"
   ps           = "push --all --follow-tags"
   pl           = "!git pull --ff-only                                         \
                   || (git status; read -p '\nCONTINUE PULLING? Y/[N]' ans;    \
@@ -34,6 +33,9 @@
 
   co           = "checkout"
   coa          = "!git co :/"
+
+  ghcl         = "!sh -c 'git cl https://www.github.com/$*' -"
+  ghps         = "!sh -c 'git ps --set-upstream https://www.github.com/$*' -"
 
   ctags        = "!.git/hooks/0_ctags"
 

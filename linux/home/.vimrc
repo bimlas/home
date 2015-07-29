@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.28 14:04 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.29 09:37 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -11,9 +11,6 @@ if s:vanilla
   set nocompatible
   filetype plugin indent on
   syntax enable
-  " Vim unit test.
-  " Ne felejtsd el a $PATH valtozohoz hozzaadni a vim-themis/bin utvonalat.
-  set runtimepath+=$HOME/.vim_local/bundle/vim-themis
   " :Capture VIM_PARANCS egy bufferbe masolja a kimenetet.
   set runtimepath+=$HOME/.vim_local/bundle/capture.vim
   silent! source $HOME/.vimrc_test
@@ -69,6 +66,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
                                                                         " }}}2
 
   " .. SAJAT ..............................
+
+  Plugin 'bimbalaszlo/dotvim'                                           " {{{2
+  " sajat ~/.vim
 
   Plugin 'bimbalaszlo/vim-eightheader'                                  " {{{2
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
@@ -150,7 +150,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:EasyMotion_skipfoldedline = 0
 
     " Lasd a sugot.
-    let g:EasyMotion_move_highlight = 0
+    " let g:EasyMotion_move_highlight = 0
 
   Plugin 't9md/vim-choosewin'                                           " {{{2
   " easymotion az ablakokon is
@@ -597,9 +597,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:rubycomplete_load_gemfile      = 1
     let g:ruby_no_comment_fold           = 1
     let g:ruby_operators                 = 1
-
-  Plugin 'thinca/vim-themis'                                            " {{{2
-  " unit test a Vim-hez
 
   Plugin 'tyru/capture.vim'                                             " {{{2
   " :Capture VIM_PARANCS a kimenetet egy bufferbe masolja
@@ -1139,7 +1136,7 @@ inoremap  <C-K>  <Esc>
 cnoremap  <C-K>  <C-C>
 
 " Hogy tovabbra is be lehessen illeszteni a digraph-okat.
-nnoremap  <Leader><C-K>  i<C-K>
+nnoremap  <Leader><C-K>  a<C-K>
 
 " Sokkal jobban kezre esnek.
 map       <C-J>  <CR>

@@ -7,15 +7,15 @@ UNDER_CYGWIN=no                   ^
 FEATURES=HUGE                     ^
 ARCH=i586                         ^
 GUI=yes                           ^
-LUA=c:/app/lua                    ^
-LUA_VER=52                        ^
 PYTHON=c:/app/python27            ^
 PYTHON_VER=27                     ^
 PYTHON3=c:/app/python34           ^
 PYTHON3_VER=34                    ^
 RUBY=c:/app/ruby22                ^
 RUBY_VER=22                       ^
-RUBY_VER_LONG=2.2.0
+RUBY_VER_LONG=2.2.0               ^
+LUA=c:/app/lua                    ^
+LUA_VER=52
 rem %*
 
 rem PERL=c:/app/app/perl              ^
