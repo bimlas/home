@@ -5,6 +5,7 @@ mingw32-make -f Make_cyg_ming.mak ^
 UNDER_CYGWIN=no                   ^
 FEATURES=HUGE                     ^
 ARCH=i586                         ^
+OLE=yes                           ^
 GUI=yes                           ^
 PYTHON=c:/app/python27            ^
 PYTHON_VER=27                     ^
