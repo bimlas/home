@@ -1,6 +1,5 @@
 @echo off
-rem Copy to vim-src/src and use it like regular make, for example:
-rem makemyvim.bat clean
+rem Copy to vim-src/src
 
 mingw32-make -f Make_cyg_ming.mak ^
 UNDER_CYGWIN=no                   ^
@@ -15,10 +14,8 @@ RUBY=c:/app/ruby22                ^
 RUBY_VER=22                       ^
 RUBY_VER_LONG=2.2.0               ^
 LUA=c:/app/lua                    ^
-LUA_VER=52
-rem %*
-
-rem PERL=c:/app/app/perl              ^
-rem PERL_VER=56                       ^
-rem TCL=c:/app/app/tcl                ^
-rem TCL_VER = 83
+LUA_VER=53                        ^
+PERL=c:/app/perl                  ^
+PERL_VER=522                      ^
+TCL=c:/app/tcl                    ^
+TCL_VER=86
