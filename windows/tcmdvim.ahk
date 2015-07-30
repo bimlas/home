@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.24 21:59 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.30 13:21 ==
 
 ; Need for right key sequence behaviour (for example: gg).
 
@@ -402,7 +402,7 @@ CapsLock::Ctrl
         PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
       Return
     }
-    Send, j
+    Send, f
     Return
   }
 
@@ -582,6 +582,17 @@ CapsLock::Ctrl
       Return
     }
     SendInput, s
+    Return
+  }
+
+  f::
+  {
+    If GetKeyState("CapsLock", "P")
+    {
+      PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
+      Return
+    }
+    Send, f
     Return
   }
 #if

@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.29 09:37 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.30 12:44 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -357,6 +357,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   " .. EGYEB HASZNOSSAGOK .................
 
+  Plugin 'tyru/capture.vim'                                             " {{{2
+  " :Capture VIM_PARANCS a kimenetet egy bufferbe masolja
+
   Plugin 'lambdalisue/vim-improve-diff'                                 " {{{2
   " auto diffupdate & diffoff + DiffOrig
 
@@ -441,64 +444,21 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
     " let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
-  if has('lua') | exe "Plugin 'shougo/neocomplete.vim'" | endif         " {{{2
-  " automatikus kodkiegeszites
-  " lua kell hozza (:version +lua)
+  Plugin 'hewes/unite-gtags'                                            " {{{2
+  " gnu global
+  " $ pip install pygments
+  " $ cd PROJECT_ROOT
+  " $ gtags --gtagslabel=pygments
+  " Innentol mukodik a dolog.
+  "
+  " Hogy ne kelljen mindig megadni a gtagslabel erteket, a GTAGSLABEL
+  " kornyezeti valtozoban is beallithatod.
+  "
+  " Windows verzio: http://adoxa.altervista.org/global/
+  " Masold be a share/gtags/gtags.conf fajlt a ~/ konyvtarba.
 
-    " Engedelyezes.
-    let g:neocomplete#enable_at_startup = 1
-
-    " Smartcase.
-    let g:neocomplete#enable_smart_case = 1
-
-    " Nem szeretnek fuzzy completion-t.
-    let g:neocomplete#enable_fuzzy_completion = 0
-
-    " Csak iras kozben jelenjen meg, mozgas kozben ne.
-    let g:neocomplete#enable_insert_char_pre = 1
-
-    " Automatikusan valassza ki az elso lehetoseget.
-    " let g:neocomplete#enable_auto_select = 1
-
-    " A kiegeszitesek mire legyenek ervenyesek, honnan vegye?
-    if !exists('g:neocomplete#sources')
-      let g:neocomplete#sources = {}
-    endif
-    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'neosnippet', 'calc']
-
-    " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
-    " tudjuk.
-    if !exists('g:neocomplete#force_omni_input_patterns')
-      let g:neocomplete#force_omni_input_patterns = {}
-    endif
-    let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
-  Plugin 'shougo/neoinclude.vim'                                        " {{{2
-  " az include-olt fajlokhoz gyartson tag-eket
-
-  Plugin 'Shougo/neco-syntax'                                           " {{{2
-  " szintaxis alapjan kiegeszites TODO
-
-  Plugin 'shougo/neco-vim'                                              " {{{2
-  " vim kiegeszites a neocomplete-hez
-
-  Plugin 'shougo/echodoc.vim'                                           " {{{2
-  " fuggveny argumentumok kiirasa a statusline ala
-
-    let g:echodoc_enable_at_startup = 1
-
-  Plugin 'shougo/neosnippet.vim'                                        " {{{2
-  " template-ek
-
-    let g:neosnippet#disable_runtime_snippets      = {'_': 1}
-    let g:neosnippet#enable_snipmate_compatibility = 1
-    let g:neosnippet#snippets_directory            = bundle_dir . '/vim-snippets/snippets'
-
-  Plugin 'honza/vim-snippets'                                           " {{{2
-  " template-ek
-
-  Plugin 'hrsh7th/vim-neco-calc'                                        " {{{2
-  " aranyos szamologep a neovomplete-hez (calc source)
+  " Fa strukturaban jelenitse meg a talalatokat.
+  let g:unite_source_gtags_project_config = {'_': {'treelize': 1}}
 
   Plugin 'thinca/vim-quickrun'                                          " {{{2
   " buffer, vagy kijelolt kod futtatasa
@@ -597,10 +557,63 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:rubycomplete_load_gemfile      = 1
     let g:ruby_no_comment_fold           = 1
     let g:ruby_operators                 = 1
+                                                                        " }}}2
 
-  Plugin 'tyru/capture.vim'                                             " {{{2
-  " :Capture VIM_PARANCS a kimenetet egy bufferbe masolja
+  " .. NEOCOMPLETE ........................
 
+  if has('lua') | exe "Plugin 'shougo/neocomplete.vim'" | endif         " {{{2
+  " automatikus kodkiegeszites
+  " lua kell hozza (:version +lua)
+
+    " Engedelyezes.
+    let g:neocomplete#enable_at_startup = 1
+
+    " Smartcase.
+    let g:neocomplete#enable_smart_case = 1
+
+    " Nem szeretnek fuzzy completion-t.
+    let g:neocomplete#enable_fuzzy_completion = 0
+
+    " Csak iras kozben jelenjen meg, mozgas kozben ne.
+    let g:neocomplete#enable_insert_char_pre = 1
+
+    " Automatikusan valassza ki az elso lehetoseget.
+    " let g:neocomplete#enable_auto_select = 1
+
+    " A kiegeszitesek mire legyenek ervenyesek, honnan vegye?
+    if !exists('g:neocomplete#sources')
+      let g:neocomplete#sources = {}
+    endif
+    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'neosnippet', 'calc']
+
+    " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
+    " tudjuk.
+    if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+  Plugin 'shougo/neoinclude.vim'                                        " {{{2
+  " az include-olt fajlokhoz gyartson tag-eket
+
+  " Plugin 'Shougo/neco-syntax'                                           " {{{2
+  " szintaxis alapjan kiegeszites
+
+  Plugin 'shougo/neco-vim'                                              " {{{2
+  " vim kiegeszites a neocomplete-hez
+
+  Plugin 'shougo/neosnippet.vim'                                        " {{{2
+  " template-ek
+
+    let g:neosnippet#disable_runtime_snippets      = {'_': 1}
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#snippets_directory            = bundle_dir . '/vim-snippets/snippets'
+
+  Plugin 'honza/vim-snippets'                                           " {{{2
+  " template-ek
+
+  Plugin 'hrsh7th/vim-neco-calc'                                        " {{{2
+  " aranyos szamologep a neovomplete-hez (calc source)
                                                                         " }}}2
 
   " .. GIT ................................
@@ -1511,6 +1524,7 @@ autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win3
 " ............................................................................
 
 nnoremap  <Space>pf  :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async directory/new file/new<CR>
+nnoremap  <Space>po  :Unite gtags/<C-D>
 nnoremap  <Space>pt  :VimFilerExplorer -project -toggle<CR>
 
 "                      <Space>q - QUOTES, SURROUNDS                       {{{3
