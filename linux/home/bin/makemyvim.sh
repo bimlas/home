@@ -1,7 +1,8 @@
 #!/bin/sh
 # build vim - execute in source root
-#
 # https://gist.github.com/jjangsangy/add95bda53c9228905ef
+#
+# Vim Git repository: https://www.github.com/vim/vim
 #
 # VIM DEPENDENCIES
 #   apt-get build-dep vim
@@ -23,8 +24,10 @@
 #                   libxpm-dev       \
 #                   libxt-dev
 #
-# If something went wrong (for example need to upgrade packages) run
-# `make clean; make distclean` before executing this script.
+# If something went wrong (for example need to upgrade packages) delete
+# everything except the .git dir, than `git reset --hard`.
+#
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.30 21:41 ==
 
 ./configure --with-compiledby="BimbaLaszlo" \
             --with-features=huge            \

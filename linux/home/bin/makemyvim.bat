@@ -1,7 +1,19 @@
 @echo off
-rem Copy to vim-src/src
+rem Vim Git repository: https://www.github.com/vim/vim
+rem
+rem Copy to vim/src.
+rem
+rem If something went wrong (for example need to upgrade packages) delete
+rem everything except the .git dir, than `git reset --hard`.
+rem
+rem NOTE
+rem   DIRECTX=yes needs mingw64 + ARCH=i686 (or x64)
+rem
+rem ========= BimbaLaszlo (.github.io|gmail.com) ========= 2015.07.30 21:40 ==
 
 mingw32-make -f Make_cyg_ming.mak ^
+USERNAME=BimbaLaszlo              ^
+USERDOMAIN=                       ^
 UNDER_CYGWIN=no                   ^
 FEATURES=HUGE                     ^
 ARCH=i586                         ^

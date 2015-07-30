@@ -12,7 +12,7 @@ hasznos fájlokat is találhatsz:
 // tag::releases[]
 
 * https://github.com/BimbaLaszlo/home/releases/tag/gvim.exe[gvim.exe] +
-Saját build Python, Ruby és Lua támogatással.
+Saját build Python, Ruby, Lua, Perl és Tcl támogatással.
 
 * https://github.com/BimbaLaszlo/home/releases/tag/vimruntime.zip[vimruntime.zip] +
 Vim runtime binárisok (ctags, diff, wget, stb.)
