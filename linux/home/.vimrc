@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.30 12:44 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.31 09:19 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -376,6 +376,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " szinek szerkesztese:
   " :ColorVEdit     szin modositasa
   " :ColorVEditAll  ... a bufferen belul mindenhol
+
+    let g:colorv_no_global_map = 1
 
   Plugin 'vimoutliner/vimoutliner'                                      " {{{2
   " talan a legteljesebb org-mode plugin
@@ -1192,16 +1194,24 @@ nnoremap  <C-G>  <C-L>:checktime<CR>
 inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
 
 " A torles ne masolja a vagolapra a szoveget.
+" Azert nem `noremap`, mert az `onoremap` is beletartozna, igy pl. a `cc`
+" beutese `"_c"_c` lenne `"_cc` helyett.
 " noremap   s      "_s
-noremap   S      "_S
-noremap   c      "_c
-noremap   C      "_C
-noremap   d      "_d
-nnoremap  dd     "_dd
-noremap   D      "_D
-noremap   <Del>  "_<Del>
+nnoremap   S      "_S
+vnoremap   S      "_S
+nnoremap   c      "_c
+vnoremap   c      "_c
+nnoremap   C      "_C
+vnoremap   C      "_C
+nnoremap   d      "_d
+vnoremap   d      "_d
+nnoremap   D      "_D
+vnoremap   D      "_D
+nnoremap   <Del>  "_<Del>
+vnoremap   <Del>  "_<Del>
 " Kivagas motion-nel.
-noremap   x      d
+nnoremap   x      d
+vnoremap   x      d
 " ... viszont a karakterek felcsereleset meghagyjuk.
 nnoremap  xp     xp
 nnoremap  xP     xP
@@ -1326,25 +1336,25 @@ imap      <expr>  <Nul>      <C-Space>
 
 " Roviditesek a thinca/vim-textobj-between pluginnak koszonhetoen.
 omap  i*   <Plug>(textobj-between-i)*
-xmap  i*   <Plug>(textobj-between-i)*
+vmap  i*   <Plug>(textobj-between-i)*
 omap  a*   <Plug>(textobj-between-a)*
-xmap  a*   <Plug>(textobj-between-a)*
+vmap  a*   <Plug>(textobj-between-a)*
 omap  i:   <Plug>(textobj-between-i):
-xmap  i:   <Plug>(textobj-between-i):
+vmap  i:   <Plug>(textobj-between-i):
 omap  a:   <Plug>(textobj-between-a):
-xmap  a:   <Plug>(textobj-between-a):
+vmap  a:   <Plug>(textobj-between-a):
 omap  i#   <Plug>(textobj-between-i)#
-xmap  i#   <Plug>(textobj-between-i)#
+vmap  i#   <Plug>(textobj-between-i)#
 omap  a#   <Plug>(textobj-between-a)#
-xmap  a#   <Plug>(textobj-between-a)#
+vmap  a#   <Plug>(textobj-between-a)#
 omap  i/   <Plug>(textobj-between-i)/
-xmap  i/   <Plug>(textobj-between-i)/
+vmap  i/   <Plug>(textobj-between-i)/
 omap  a/   <Plug>(textobj-between-a)/
-xmap  a/   <Plug>(textobj-between-a)/
+vmap  a/   <Plug>(textobj-between-a)/
 omap  i\|  <Plug>(textobj-between-i)<Bar>
-xmap  i\|  <Plug>(textobj-between-i)<Bar>
+vmap  i\|  <Plug>(textobj-between-i)<Bar>
 omap  a\|  <Plug>(textobj-between-a)<Bar>
-xmap  a\|  <Plug>(textobj-between-a)<Bar>
+vmap  a\|  <Plug>(textobj-between-a)<Bar>
 
 autocmd  vimrc  FileType  ruby  call TextObjMapsRuby()
 function! TextObjMapsRuby()
@@ -1355,12 +1365,12 @@ function! TextObjMapsRuby()
   omap  <buffer>  af  <Plug>(textobj-ruby-function-a)
   omap  <buffer>  if  <Plug>(textobj-ruby-function-i)
 
-  xmap  <buffer>  ab  <Plug>(textobj-ruby-block-a)
-  xmap  <buffer>  ib  <Plug>(textobj-ruby-block-i)
-  xmap  <buffer>  ac  <Plug>(textobj-ruby-class-a)
-  xmap  <buffer>  ic  <Plug>(textobj-ruby-class-i)
-  xmap  <buffer>  af  <Plug>(textobj-ruby-function-a)
-  xmap  <buffer>  if  <Plug>(textobj-ruby-function-i)
+  vmap  <buffer>  ab  <Plug>(textobj-ruby-block-a)
+  vmap  <buffer>  ib  <Plug>(textobj-ruby-block-i)
+  vmap  <buffer>  ac  <Plug>(textobj-ruby-class-a)
+  vmap  <buffer>  ic  <Plug>(textobj-ruby-class-i)
+  vmap  <buffer>  af  <Plug>(textobj-ruby-function-a)
+  vmap  <buffer>  if  <Plug>(textobj-ruby-function-i)
 endfunction
 
 autocmd  vimrc  FileType  python  call TextObjMapsPython()
@@ -1370,10 +1380,10 @@ function! TextObjMapsPython()
   omap  <buffer>  af  <Plug>(textobj-python-function-a)
   omap  <buffer>  if  <Plug>(textobj-python-function-i)
 
-  xmap  <buffer>  ac  <Plug>(textobj-python-class-a)
-  xmap  <buffer>  ic  <Plug>(textobj-python-class-i)
-  xmap  <buffer>  af  <Plug>(textobj-python-function-a)
-  xmap  <buffer>  if  <Plug>(textobj-python-function-i)
+  vmap  <buffer>  ac  <Plug>(textobj-python-class-a)
+  vmap  <buffer>  ic  <Plug>(textobj-python-class-i)
+  vmap  <buffer>  af  <Plug>(textobj-python-function-a)
+  vmap  <buffer>  if  <Plug>(textobj-python-function-i)
 endfunction
 
 " Blokkok, vagy tablazatok kijelolese - a kurzor elotti blokkhatarolot veszi
