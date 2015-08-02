@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.31 09:19 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.01 22:29 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -12,8 +12,11 @@ if s:vanilla
   filetype plugin indent on
   syntax enable
   " :Capture VIM_PARANCS egy bufferbe masolja a kimenetet.
-  set runtimepath+=$HOME/.vim_local/bundle/capture.vim
-  silent! source $HOME/.vimrc_test
+  set runtimepath+=$HOME/.vim/bundle/capture.vim
+  " Ide tedd a tesztelnivalot.
+  set runtimepath+=$HOME/.vim_test
+  " Ebbe pedig a tesztelni kivant beallitasokat.
+  source $HOM/.vimrc_test
   finish
 endif
 
@@ -48,7 +51,7 @@ endfunction
 "                                PLUGINOK                                 {{{1
 " ============================================================================
 
-let bundle_dir = $HOME . '/.vim_local/bundle'
+let bundle_dir = $HOME . '/.vim/bundle'
 
 if isdirectory(bundle_dir . '/vundle.vim')
 
@@ -200,7 +203,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'thinca/vim-visualstar'                                        " {{{2
   " kijelolt szoveg keresese * gombbal
 
-  Plugin 'dkprice/vim-easygrep'                                         " {{{2
+  " Plugin 'dkprice/vim-easygrep'                                         " {{{2
   " tuningolt vimgrep
 
     " Nem kellenek a default map-ok.
@@ -978,14 +981,14 @@ set nobackup nowritebackup
 " konyvtarban levo fajlt es figyeld a swap konyvtarat. Zard be oket ugy, hogy
 " a swap fajl megmaradjon (pl.: kill, <Ctrl-Alt-Del>), majd nyisd meg oket
 " ismet, de most forditott sorrendben. A recovery igy nem fog mukodni.
-let s:swapdir = $HOME.'/.vim_local/swap'
+let s:swapdir = $HOME.'/.vim/swap'
 if !isdirectory(s:swapdir)
   call mkdir(s:swapdir, 'p')
 endif
 let &directory = s:swapdir
 
 " Persistent undo.
-let s:undodir = $HOME.'/.vim_local/undo'
+let s:undodir = $HOME.'/.vim/undo'
 if !isdirectory(s:undodir)
   call mkdir(s:undodir, 'p')
 endif
@@ -994,6 +997,9 @@ set undofile
 
 "                                  KERESES                                {{{1
 " ============================================================================
+
+" NOTE: a vimgrep kihagyja azokat a fajlokat, amik a wildignore-ban
+" szerepelnek, valamint a rejtett konyvtarakat is (pl. .git).
 
 " Case insensitive keresesnel, de nagybetus szoveg eseten case sensitive-re
 " valt.
@@ -1451,7 +1457,8 @@ nnoremap  <expr>  <Space>as   has('win32')
                               \ : ':silent !cd '.expand('%:p:h').'; xterm; cd -<CR>'
 
 " Profiling.
-nnoremap  <Space>app  :profile start ./profile.log <Bar> profile func * <Bar> profile file * <Bar> echomsg "Profiling started, <lt>Space>apq to stop it (and quit from Vim!)."<CR>
+nnoremap  <Space>app  :profile start ./profile.log <Bar> profile func * <Bar> profile file * <Bar>
+                      \ echomsg "Profiling started, <lt>Space>apq to stop it (and quit from Vim!)."<CR>
 nnoremap  <Space>apq  :profile pause <Bar> noautocmd qall<CR>
 nnoremap  <Space>apb  :BenchVimrc<CR>
 
@@ -1478,8 +1485,6 @@ nnoremap  <Space>du  :diffupdate<CR>
 nnoremap  <Space>ff  :UniteWithBufferDir file directory/new file/new<CR>
 nnoremap  <Space>ft  :UniteWithBufferDir file directory/new file/new -tab<CR>
 nnoremap  <Space>fF  :Unite file directory/new file/new<CR>
-nnoremap  <Space>fs  :write<CR>
-nnoremap  <Space>fS  :wall<CR>
 nnoremap  <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap  <Space>fvv :edit $MYVIMRC<CR>
 
@@ -1496,7 +1501,7 @@ nnoremap  <Space>gL  :Gitv<CR>
 
 nmap              <Space>mK  <Plug>Zeavim
 vmap              <Space>mK  <Plug>ZVVisSelection
-nnoremap          <Space>mg  :Grep<Space>
+nnoremap  <expr>  <Space>mg  ':noautocmd vimgrep //j **/*.' . expand('%:e') . ' <Bar> copen<Home><C-Right><C-Right><Right><Right>'
 nnoremap          <Space>mo  :Unite outline<CR>
 nnoremap          <Space>mr  :QuickRun<CR>
 noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
@@ -1548,10 +1553,8 @@ nmap  <Space>qd  <Plug>Dsurround
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-" nnoremap  <expr>  <Space>sg  ':Unite -start-insert ' . (&grepprg == 'grep' ? 'vimgrep' : 'grep') . '<CR>'
-nnoremap          <Space>sg  :Unite -start-insert vimgrep<CR>
-nnoremap          <Space>sG  :noautocmd vimgrep // ** <Bar> copen<C-Left><C-Left><C-Left><C-Left><Right>
-nnoremap          <Space>sl  :Unite -start-insert line<CR>
+nnoremap  <Space>sg  :noautocmd vimgrep //j ** <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap  <Space>sl  :Unite -start-insert line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
 " ............................................................................
