@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.03 14:22 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.03 21:39 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -321,8 +321,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
     \ 'sync':             1,
     \ 'start_insert':     1
     \ })
-    autocmd  vimrc  VimEnter  *  call unite#filters#matcher_default#use(['matcher_regexp'])
-    autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
+    " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
+    " autocmd  vimrc  VimEnter  *  call unite#filters#matcher_default#use(['matcher_regexp'])
+    " autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
 
   Plugin 'shougo/vimfiler.vim'                                          " {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
