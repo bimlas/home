@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.01 22:29 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.03 14:22 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -365,6 +365,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'lambdalisue/vim-improve-diff'                                 " {{{2
   " auto diffupdate & diffoff + DiffOrig
+
+  Plugin 'andrewradev/linediff.vim'                                     " {{{2
+  " fajl reszeinek osszehasonlitasa
+  " :Linediff kijeloles utan
 
   Plugin 'moll/vim-bbye'                                                " {{{2
   " :Bdelete buffer torlesehez az ablakok buzeralasa nelkul
@@ -816,7 +820,7 @@ let &statusline  = stat_bufnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
-let &statusline .= '%#StatInfo#%{g:stat_git_enabled ? gita#statusline#format(" %lb ") : ""}'
+let &statusline .= '%#StatInfo#%{exists("*gita#statusline#format") && g:stat_git_enabled ? gita#statusline#format(" %lb ") : ""}'
 let &statusline .= '%* ' . stat_filedir . ' '
 let &statusline .= '%= '
 let &statusline .= '%#StatWarning#%{len(StatSyntastic()) ? " " . StatSyntastic() . " " : ""}'
@@ -1475,6 +1479,7 @@ nnoremap  <Space>bD  :Bdelete!<CR>
 " ............................................................................
 
 nnoremap  <Space>dt  :diffthis<CR>
+vnoremap  <Space>dt  :Linediff<CR>
 nnoremap  <Space>do  :diffoff<CR>
 nnoremap  <Space>du  :diffupdate<CR>
 
@@ -1492,6 +1497,7 @@ nnoremap  <Space>fvv :edit $MYVIMRC<CR>
 " ............................................................................
 
 nnoremap  <Space>gd  :Gdiff<CR>
+nnoremap  <Space>gg  :GitGrep --ignore-case "" -- ":/" <Bar> copen<Home><C-Right><C-Right><Right><Right>
 nnoremap  <Space>gs  :Gita status<CR>
 nnoremap  <Space>gl  :Gitv!<CR>
 nnoremap  <Space>gL  :Gitv<CR>

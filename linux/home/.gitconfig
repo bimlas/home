@@ -11,6 +11,7 @@
                   || (git status; read -p '\nCONTINUE PULLING? Y/[N]' ans;    \
                   if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi)"
   subpl        = "!git submodule foreach git pull --tags origin master"
+  seto         = "remote set-url origin"
 
   s            = "status"
   glog         = "log --graph --decorate --all --name-status"
@@ -32,12 +33,11 @@
   adacmu       = "!git ada && git cmu"
 
   co           = "checkout"
-  coa          = "!git co :/"
 
   ghcl         = "!sh -c 'git cl https://www.github.com/$*' -"
-  ghps         = "!sh -c 'git remote set-url origin https://www.github.com/$*; git ps' -"
+  ghps         = "!sh -c 'git seto https://www.github.com/$*; git ps' -"
   glcl         = "!sh -c 'git cl https://gitlab.com/$*' -"
-  glps         = "!sh -c 'git remote set-url origin https://gitlab.com/$*; git ps' -"
+  glps         = "!sh -c 'git seto https://gitlab.com/$*; git ps' -"
 
   ctags        = "!.git/hooks/0_ctags"
 
