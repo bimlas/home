@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.03 21:39 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.04 14:10 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -16,7 +16,7 @@ if s:vanilla
   " Ide tedd a tesztelnivalot.
   set runtimepath+=$HOME/.vim_test
   " Ebbe pedig a tesztelni kivant beallitasokat.
-  source $HOM/.vimrc_test
+  source $HOME/.vimrc_test
   finish
 endif
 
@@ -123,6 +123,11 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
     " autocmd  vimrc  BufEnter  *                               ColorClear
     " autocmd  vimrc  BufEnter  *.css,*.sass,*.less,.Xresources ColorHighlight
+
+  Plugin 'vasconcelloslf/vim-interestingwords'                          " {{{2
+  " kurzor alatti szoveg minden elofordulasanak szinezese
+
+    let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
@@ -454,7 +459,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
     " let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
-  Plugin 'hewes/unite-gtags'                                            " {{{2
+  Plugin 'gtags.vim'                                                    " {{{2
   " gnu global
   " $ pip install pygments
   " $ cd PROJECT_ROOT
@@ -466,9 +471,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
   "
   " Windows verzio: http://adoxa.altervista.org/global/
   " Masold be a share/gtags/gtags.conf fajlt a ~/ konyvtarba.
-
-  " Fa strukturaban jelenitse meg a talalatokat.
-  let g:unite_source_gtags_project_config = {'_': {'treelize': 1}}
 
   Plugin 'thinca/vim-quickrun'                                          " {{{2
   " buffer, vagy kijelolt kod futtatasa
@@ -1145,7 +1147,7 @@ set showfulltag
 " Ezen map-ok valamelyike okozza a hibat.
 
 " Jobban kezre esik, mint a \.
-let mapleader='á'
+let mapleader = 'á'
 
 "                                ALTALANOS                                {{{2
 " ____________________________________________________________________________
@@ -1222,6 +1224,7 @@ nnoremap   <Del>  "_<Del>
 vnoremap   <Del>  "_<Del>
 " Kivagas motion-nel.
 nnoremap   x      d
+nnoremap   xx     dd
 vnoremap   x      d
 " ... viszont a karakterek felcsereleset meghagyjuk.
 nnoremap  xp     xp
@@ -1443,11 +1446,12 @@ noremap   <Space>?        :Unite mapping<CR>
 
 map       <Space>j        <Plug>(easymotion-sol-j)
 map       <Space>k        <Plug>(easymotion-sol-k)
-nnoremap  <Space>h        :nohlsearch<CR>
+nnoremap  <Space>h        :nohlsearch <Bar> call UncolorAllWords()<CR>
 nnoremap  <Space>O        :pu! _<CR>
 nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
 noremap   <Space><Space>  <C-]>
+nnoremap  <Space>*        :call InterestingWords('n')<CR>
 
 nmap      <Space>;        <Plug>TComment_gc
 nmap      <Space>;;       <Plug>TComment_gcc
@@ -1472,7 +1476,7 @@ nnoremap  <Space>apb  :BenchVimrc<CR>
 
 nnoremap  <Space>bb  :Unite buffer<CR>
 nnoremap  <Space>bB  :Unite buffer:!<CR>
-nnoremap  <Space>bc  :Unite change<CR>
+nnoremap  <Space>bc  :Unite -no-quit -keep-focus change<CR>
 nnoremap  <Space>bd  :Bdelete<CR>
 nnoremap  <Space>bD  :Bdelete!<CR>
 
@@ -1498,7 +1502,7 @@ nnoremap  <Space>fvv :edit $MYVIMRC<CR>
 " ............................................................................
 
 nnoremap  <Space>gd  :Gdiff<CR>
-nnoremap  <Space>gg  :GitGrep --ignore-case "" -- ":/" <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap  <Space>gg  :GitGrep --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
 nnoremap  <Space>gs  :Gita status<CR>
 nnoremap  <Space>gl  :Gitv!<CR>
 nnoremap  <Space>gL  :Gitv<CR>
@@ -1545,9 +1549,12 @@ autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win3
 "                           <Space>p - PROJECT                            {{{3
 " ............................................................................
 
-nnoremap  <Space>pf  :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async directory/new file/new<CR>
-nnoremap  <Space>po  :Unite gtags/<C-D>
-nnoremap  <Space>pt  :VimFilerExplorer -project -toggle<CR>
+nnoremap  <Space>pf   :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async directory/new file/new<CR>
+" nnoremap  <Space>po   :Unite -no-quit -keep-focus gtags/<C-D>
+nnoremap  <Space>pod  :Gtags -i<Space>
+nnoremap  <Space>por  :Gtags -ir<Space>
+nnoremap  <Space>pos  :Gtags -si<Space>
+nnoremap  <Space>pt   :VimFilerExplorer -project -toggle<CR>
 
 "                      <Space>q - QUOTES, SURROUNDS                       {{{3
 " ............................................................................
@@ -1561,7 +1568,7 @@ nmap  <Space>qd  <Plug>Dsurround
 " ............................................................................
 
 nnoremap  <Space>sg  :noautocmd vimgrep //j ** <Bar> copen<Home><C-Right><C-Right><Right><Right>
-nnoremap  <Space>sl  :Unite -start-insert line<CR>
+nnoremap  <Space>sl  :Unite -no-quit -keep-focus line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
 " ............................................................................
