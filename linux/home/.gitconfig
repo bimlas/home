@@ -17,6 +17,7 @@
   glog         = "log --graph --decorate --all --name-status"
   slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %an%C(auto)%d%C(reset)%n        %s%C(reset)' --date=short"
   clog         = "log --graph --decorate --all --name-status ORIG_HEAD.."
+      newlog   = "log --graph --decorate --all --format='%C(auto)%h (%gn)%n  Author: %an <%ae>%n  Date:   %ad%n%n%s%n%+b'"
   day          = "!git glog --since midnight"
   yday         = "!git glog --since=day.before.yesterday.midnight --until=midnight"
   flog         = "diff --name-status"
