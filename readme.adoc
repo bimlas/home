@@ -1,3 +1,32 @@
+= Dotfiles for Linux and Windows
+
+The shell-scripts in the root directory are "`one-click`" installers whether
+on Linux or Windows (via the Git shell).
+
+Sometimes I write notes in to the relevant config files to easily find it when
+I need.
+
+There are other useful Windows binaries under the
+https://github.com/BimbaLaszlo/home/releases[releases]:
+
+// tag::releases_en[]
+
+* https://github.com/BimbaLaszlo/home/releases/tag/gvim.exe[gvim.exe] +
+Own build with Python, Ruby, Lua, Perl and Tcl support.
+
+* https://github.com/BimbaLaszlo/home/releases/tag/vimruntime.zip[vimruntime.zip] +
+Vim runtime binaries (ctags, diff, wget, etc.).
+
+* https://github.com/BimbaLaszlo/home/releases/tag/pentadactyl[pentadactyl] +
+Usually updated Pentadactyl (Vimperator-like Firefox plugin).
+
+// end::releases_en[]
+
+Please drop me a mail if You have any question or idea, or open an
+https://github.com/BimbaLaszlo/home/issues[issue] for it.
+
+BimbaLaszlo (.github.io|gmail.com)
+
 = Saját beállítófájlok (dotfile, rc file, ini, stb.) Linux-hoz és Windows-hoz
 
 A fő könyvtárban található shell-szkriptek "egygombos" telepítést végeznek
@@ -20,9 +49,6 @@ Vim runtime binárisok (ctags, diff, wget, stb.)
 * https://github.com/BimbaLaszlo/home/releases/tag/pentadactyl[pentadactyl] +
 Pentadactyl (Vimperator-hoz hasonló Firefox plugin) a (többnyire) aktuális
 Firefox-hoz.
-
-* https://github.com/BimbaLaszlo/home/releases/tag/blank.ico[blank.ico] +
-Egy üres ikon - a felhasználását lásd https://github.com/BimbaLaszlo/home/search?q=blank.ico[itt].
 
 // end::releases[]
 
