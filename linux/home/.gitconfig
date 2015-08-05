@@ -17,6 +17,8 @@
   glog         = "log --graph --decorate --all --name-status"
   slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %C(auto)%d %Creset%s' --date=short"
   clog         = "log --graph --decorate --all --name-status ORIG_HEAD.."
+  day          = "!git glog --since midnight"
+  yday         = "!git glog --since=day.before.yesterday.midnight --until=midnight"
   flog         = "diff --name-status"
   tree         = "ls-tree -r --name-only"
 

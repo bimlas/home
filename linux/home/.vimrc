@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.04 14:10 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.05 14:39 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -47,6 +47,10 @@ augroup END
 function! BigTerm()
   return  &columns >= (&textwidth + &numberwidth)
 endfunction
+
+" Sajat valtozo a branch megjelenitesenek engedelyezesehez a statusline-ban
+" Halozati meghajton nagyon belassit.
+let g:stat_git_enabled = 0
 
 "                                PLUGINOK                                 {{{1
 " ============================================================================
@@ -638,6 +642,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " git integracio
   " $ install git
 
+    " Sajat valtozo a branch megjelenitesenek engedelyezesehez a statusline-ban
+    " Halozati meghajton nagyon belassit.
+    let g:stat_git_enabled = 1
+
   Plugin 'gregsexton/gitv'                                              " {{{2
   " gitk a vim-en belul
   " $ install git
@@ -808,9 +816,6 @@ endif
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-" Halozati meghajton nagyon belassit.
-let g:stat_git_enabled = 1
-
 autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
 
 let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
@@ -823,7 +828,7 @@ let &statusline  = stat_bufnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
-let &statusline .= '%#StatInfo#%{exists("*gita#statusline#format") && g:stat_git_enabled ? gita#statusline#format(" %lb ") : ""}'
+let &statusline .= '%#StatInfo#%{g:stat_git_enabled ? " " . gita#statusline#format("%lb") . " " : ""}'
 let &statusline .= '%* ' . stat_filedir . ' '
 let &statusline .= '%= '
 let &statusline .= '%#StatWarning#%{len(StatSyntastic()) ? " " . StatSyntastic() . " " : ""}'
