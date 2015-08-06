@@ -1,3 +1,5 @@
+# To use with Conemu, start `boot2docker ssh` amd run the commands in it.
+#
 # docker build -t  debiam dir_of_dockerfile
 # docker run   -it debiam /bin/bash
 #
@@ -12,16 +14,20 @@
 #   docker images
 #   docker rmi name_of_image
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.06 12:52 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.06 22:31 ==
 
 FROM debian:testing
 MAINTAINER BimbaLaszlo
 
 RUN apt-get update
+RUN apt-get install -y git
+
+RUN apt-get install -y vim
+RUN vim -c 'InstallVundle'
+RUN vim -c 'PluginInstall'
 
 RUN apt-get install -y gcc g++ make
 RUN apt-get install -y ctags
-RUN apt-get install -y git
 
 RUN apt-get install -y python python-pip python3 python3-pip
 
@@ -32,7 +38,7 @@ RUN gem install pry byebug
 #                        SET UP USER ENVIRONMENT
 # ============================================================================
 
-ENV TERM=xterm
+# ENV TERM=xterm
 
 RUN git clone --progress --verbose https://github.com/BimbaLaszlo/home ~/home
 # It's a bash script, not works with /bin/sh!
