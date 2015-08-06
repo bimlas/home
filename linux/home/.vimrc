@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.05 14:39 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.06 23:02 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -32,8 +32,11 @@ if v:version >= 704
 endif
 
 " Nem szeretem a magyar uzeneteket.
-if ! has('win32')
-  language en_US.utf8
+" Terminalban a C az angol megfeleloje.
+if has('unix')
+    language messages C
+else
+    language messages en
 endif
 
 " Letrehozunk egy autocmd group-ot.

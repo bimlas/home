@@ -14,17 +14,13 @@
 #   docker images
 #   docker rmi name_of_image
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.06 22:31 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.06 22:49 ==
 
 FROM debian:testing
 MAINTAINER BimbaLaszlo
 
 RUN apt-get update
 RUN apt-get install -y git
-
-RUN apt-get install -y vim
-RUN vim -c 'InstallVundle'
-RUN vim -c 'PluginInstall'
 
 RUN apt-get install -y gcc g++ make
 RUN apt-get install -y ctags
@@ -35,6 +31,8 @@ RUN apt-get install -y ruby ruby-dev
 RUN gem install ripper-tags gem-ripper-tags
 RUN gem install pry byebug
 
+RUN apt-get install -y vim
+
 #                        SET UP USER ENVIRONMENT
 # ============================================================================
 
@@ -43,6 +41,8 @@ RUN gem install pry byebug
 RUN git clone --progress --verbose https://github.com/BimbaLaszlo/home ~/home
 # It's a bash script, not works with /bin/sh!
 RUN /bin/bash -c "cd /root/home; source ./linux_user.sh"
+RUN vim -c 'InstallVundle' -c 'qa!'
+RUN vim -c 'PluginInstall' -c 'qa!'
 # mount?
 
 RUN apt-get install -y zsh
