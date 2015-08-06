@@ -1,3 +1,23 @@
+# .gitconfig: git configuration
+#
+# USEFUL COMMANDS:
+#
+#   git log --grep'regex'
+#     Look for expression in commit messages.
+#
+#   git log -S'string' -- file
+#     Look for the addition/deletion of text - ie. when was the string firstly
+#     introduced or where was it removed.
+#
+#   git log -G'regex' -- file
+#     Look for differences whose patch text contains modified lines that match
+#     <regex>.
+#
+#   git log -L '/int main/',/^}/:main.c
+#     Shows how the function main() in the file main.c evolved over time.
+#
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.06 15:32 ==
+
 [user]
 
   name         = "BimbaLaszlo"
@@ -14,14 +34,15 @@
   seto         = "remote set-url origin"
 
   s            = "status"
-  glog         = "log --graph --decorate --all --name-status"
-  slog         = "log --graph --decorate --all --format='%C(auto)%h %Cblue%ad %an%C(auto)%d%C(reset)%n        %s%C(reset)' --date=short"
-  clog         = "log --graph --decorate --all --name-status ORIG_HEAD.."
-      newlog   = "log --graph --decorate --all --format='%C(auto)%h (%gn)%n  Author: %an <%ae>%n  Date:   %ad%n%n%s%n%+b'"
+  mylog        = "log --graph --decorate --all --find-renames --date-order"
+  glog         = "!git mylog --name-status"
+  clog         = "!git mylog --name-status ORIG_HEAD.."
+  slog         = "!git mylog --format='%C(auto)%h %C(bold blue)%ad %an%C(auto)%d%n        %s%C(reset)' --date=short"
+  sslog        = "!git slog --simplify-by-decoration"
   day          = "!git glog --since midnight"
   yday         = "!git glog --since=day.before.yesterday.midnight --until=midnight"
   flog         = "diff --name-status"
-  tree         = "ls-tree -r --name-only"
+  ls           = "ls-tree -r --name-only"
 
   df           = "difftool"
   gdf          = "difftool --gui"
@@ -29,13 +50,19 @@
   ad           = "add --all"
   ada          = "!git ad :/"
   c            = "commit"
+  cf           = "!git c --fixup"
   cm           = "!git c -m"
   cmu          = "!git cm update"
   adac         = "!git ada && git c"
+  adacf        = "!git ada && git cf"
   adacm        = "!git ada && git cm"
   adacmu       = "!git ada && git cmu"
 
   co           = "checkout"
+
+  st           = "stash"
+  stp          = "!git st pop"
+  reb          = "!git rebase --autosquash -i"
 
   ghcl         = "!sh -c 'git cl https://www.github.com/$*' -"
   ghps         = "!sh -c 'git seto https://www.github.com/$*; git ps' -"
