@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.06 15:32 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 10:25 ==
 
 [user]
 
@@ -65,9 +65,9 @@
   reb          = "!git rebase --autosquash -i"
 
   ghcl         = "!sh -c 'git cl https://www.github.com/$*' -"
-  ghps         = "!sh -c 'git seto https://www.github.com/$*; git ps' -"
+  ghps         = "!sh -c 'git seto https://www.github.com/$*; git ps --set-upstream https://www.github.com/$*' -"
   glcl         = "!sh -c 'git cl https://gitlab.com/$*' -"
-  glps         = "!sh -c 'git seto https://gitlab.com/$*; git ps' -"
+  glps         = "!sh -c 'git seto https://gitlab.com/$*; git ps --set-upstream https://gitlab.com/$*' -"
 
   ctags        = "!.git/hooks/0_ctags"
 
