@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 08:55 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 09:30 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1647,10 +1647,12 @@ endif
 
 " __ MEGJELENES _________________________
 
-" Csak az aktualis ablakban jelenjen meg a relativnumber, a tobbiben abszolut
-" legyen.
-" autocmd WinEnter,FocusGained * setlocal number relativenumber
-" autocmd WinLeave,FocusLost   * setlocal number norelativenumber
+" Jobban lathato az insert mod, ha a cursorline valtakozik.
+autocmd  vimrc  InsertEnter,InsertLeave  *  set cursorline!
+
+" Csak az aktualis ablakban jelezze a kurzor sorat.
+autocmd  vimrc  WinEnter  *  set cursorline
+autocmd  vimrc  WinLeave  *  set nocursorline
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
 autocmd  vimrc  VimResized  *  wincmd =
