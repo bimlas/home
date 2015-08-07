@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 10:25 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 22:13 ==
 
 [user]
 
@@ -73,7 +73,7 @@
 
 [core]
 
-  editor       = "gvim"
+  editor       = "vim --nofork"
 
   ; Windows halozati meghajtokon nagyon lassu, ez gyorsitja a dolgokat, de
   ; legalabb 1.9.4 verzio kell.
@@ -103,7 +103,6 @@
 [diff]
 
   tool         = "vimdiff"
-  guitool      = "gvimdiff"
 
 [merge]
 
