@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.06 23:02 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 08:55 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1470,7 +1470,7 @@ vmap      <Space>;        <Plug>TComment_gc
 
 " TODO: xterm cwd
 nnoremap  <expr>  <Space>as   has('win32')
-                              \ ? ':silent !start conemu64.exe /Dir "'.expand('%:p:h').'"<CR>'
+                              \ ? ':silent !start conemu64.exe /dir "'.expand('%:p:h').'" /cmd powershell<cr>'
                               \ : ':silent !cd '.expand('%:p:h').'; xterm; cd -<CR>'
 
 " Profiling.

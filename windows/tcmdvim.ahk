@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.30 13:21 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 08:54 ==
 
 ; Need for right key sequence behaviour (for example: gg).
 
@@ -475,7 +475,7 @@ CapsLock::Ctrl
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
-      SendInput, conemu64.exe{Enter}
+      SendInput, conemu64.exe /cmd powershell{Enter}
       Return
     }
     Send, {F2}
