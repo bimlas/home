@@ -1,4 +1,7 @@
-# To use with Conemu, start `boot2docker ssh` amd run the commands in it.
+# To use with Conemu, start `boot2docker ssh` and run the commands in it.
+# Related issues:
+#   https://github.com/Maximus5/ConEmu/issues/183
+#   https://github.com/docker/docker/issues/13817
 #
 # docker build -t  debiam dir_of_dockerfile
 # docker run   -it debiam /bin/bash
@@ -14,7 +17,7 @@
 #   docker images
 #   docker rmi name_of_image
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.06 22:49 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 07:42 ==
 
 FROM debian:testing
 MAINTAINER BimbaLaszlo
