@@ -8,7 +8,7 @@ Windows Registry Editor Version 5.00
 ;
 ; TODO: valami tiltja a nyomtatot.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.06.23 07:46 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 07:47 ==
 
 ;                   IKONOK MELLETTI NYILACSKA ELTUNTETESE                 {{{1
 ; ============================================================================
@@ -30,6 +30,31 @@ Windows Registry Editor Version 5.00
 ; ============================================================================
 ;
 ; http://www.blackviper.com/service-configurations/black-vipers-windows-7-service-configurations/
+;
+; START TYPE     LOADER     MEANING
+;
+; 0x0            Kernel     Represents a part of the
+; (Boot)                    driver stack for the boot
+;                           (startup) volume and must
+;                           therefore be loaded by the
+;                           Boot Loader.
+;
+; 0x1            I/O        Represents a driver to be loaded
+; (System)       subsystem  at Kernel initialization.
+;
+; 0x2            Service    To be loaded or started
+; (Auto load)    Control    automatically for all startups,
+;                Manager    regardless of service type.
+;
+; 0x3            Service    Available, regardless of type,
+; (Load on       Control    but will not be started until
+; demand)        Manager    the user starts it (for example,
+;                           by using the Devices icon in
+;                           Control Panel).
+;
+; 0x4            Service    NOT TO BE STARTED UNDER ANY
+; (disabled)     Control    CONDITIONS.
+;                Manager
 
 ;                                  SAFE                                   {{{2
 ; ____________________________________________________________________________
@@ -342,7 +367,7 @@ Windows Registry Editor Version 5.00
 
 ; Windows Update
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\wuauserv]
-"Start"=dword:00000004
+"Start"=dword:00000003
 "DelayedAutostart"=dword:00000000
 
 ;                              ENGEDELYEZVE                               {{{2
