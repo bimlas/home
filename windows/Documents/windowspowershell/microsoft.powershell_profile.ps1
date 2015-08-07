@@ -23,10 +23,13 @@
 #
 #   Set-ExecutionPolicy -ExecutionPolicy Bypass
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 08:29 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 08:50 ==
 
-#                    "PACKAGE-MANAGER" FOR POWERSHELL                     {{{1
+#                                 PLUGINS                                 {{{1
 # ============================================================================
+
+#                    "PACKAGE-MANAGER" FOR POWERSHELL                     {{{2
+# ____________________________________________________________________________
 
 Function Get-MyModule
 {
@@ -54,8 +57,10 @@ if( -not (Get-Mymodule -name "PsGet") )
   (new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
 }
 
-#                               PSREADLINE                                {{{1
-# ============================================================================
+#                               PSREADLINE                                {{{2
+# ____________________________________________________________________________
+#
+# Bash-like behaviour.
 
 if( -not (Get-Mymodule -name "PSReadLine") )
 {
@@ -65,8 +70,8 @@ if( -not (Get-Mymodule -name "PSReadLine") )
 # Bash-like editing.
 Set-PSReadlineOption -EditMode Emacs
 
-#                                POSH-GIT                                 {{{1
-# ============================================================================
+#                                POSH-GIT                                 {{{2
+# ____________________________________________________________________________
 #
 # Git commandline-completion and prompt string.
 
@@ -75,12 +80,21 @@ if( -not (Get-Mymodule -name "Posh-Git") )
   Install-Module Posh-Git
 }
 
-function global:prompt {
-    $realLASTEXITCODE = $LASTEXITCODE
-    Write-Host($pwd.ProviderPath) -nonewline
-    Write-VcsStatus
-    $global:LASTEXITCODE = $realLASTEXITCODE
-    return "`n> "
-}
+#                                 PROMPT                                  {{{1
+# ============================================================================
 
-Pop-Location
+function Prompt {
+  $realLASTEXITCODE = $LASTEXITCODE
+
+  Write-Host ("`n[") -nonewline -foregroundcolor Cyan
+  Write-Host (Get-Date -format HH:mm) -nonewline -foregroundcolor Gray
+  Write-Host ("][") -nonewline -foregroundcolor Cyan
+  Write-Host ($PWD) -nonewline -foregroundcolor Gray
+  Write-Host ("]") -nonewline -foregroundcolor Cyan
+  # Posh-Git status
+  Write-VcsStatus
+  Write-Host ("`n$") -nonewline -foregroundcolor White
+
+  $global:LASTEXITCODE = $realLASTEXITCODE
+  return " ";
+}
