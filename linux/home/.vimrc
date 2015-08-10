@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 09:30 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.10 14:27 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -403,10 +403,67 @@ if isdirectory(bundle_dir . '/vundle.vim')
   " talan a legteljesebb org-mode plugin
                                                                         " }}}2
 
-  " .. BENCHMARK ..........................
+  " .. DEBUG / BENCHMARK ..................
+
+  " Debug a command
+  "   debug CommandName
+  "
+  " Debug a fucntion
+  "   debug call FunctionName(arg)
+  "
+  " Add breakpoint to function
+  "   breakadd func [lineNumber] functionName
+  "
+  " Add breakpoint to file
+  "   breakadd file [lineNumber] fileName
+  "
+  " Add breakpoint to current line of current file
+  "   breakadd here
+  "
+  " Delete breakpoint number from breaklist output
+  "   breakdel number
+  "
+  " Delete all breakpoints
+  "   breakdel *
+  "
+  " Delete breakpoint on function
+  "   breakdel func [lineNumber] functionName
+  "
+  " Delete breakpoint on file
+  "   breakdel file [lineNumber] fileName
+  "
+  " Delete breakpoint at current line of current file
+  "   breakdel here
+  "
+  " Commands in debug mode:
+  "   cont:      continue execution until the next breakpoint (if one exists)
+  "   quit:      stop current execution, but still stops at the next
+  "              breakpoint
+  "   step:      execute the current command and come back to debug mode when
+  "              it is finished
+  "   next:      like step except it also steps over function calls and
+  "              sourced files
+  "   interrupt: like quit, but returns to debug mode for the next command
+  "   finish:    finishes the current script or function and returns to debug
+  "              mode for the next command
+  "
+  " Levels of :verbose (for example :9verbose COMMAND)
+  "   >= 1  When the viminfo file is read or written.
+  "   >= 2  When a file is ":source"'ed.
+  "   >= 5  Every searched tags file and include file.
+  "   >= 8  Files for which a group of autocommands is executed.
+  "   >= 9  Every executed autocommand.
+  "   >= 12 Every executed function.
+  "   >= 13 When an exception is thrown, caught, finished, or discarded.
+  "   >= 14 Anything pending in a ":finally" clause.
+  "   >= 15 Every executed Ex command (truncated at 200 characters).
+  "
+  " To output :verbose to a file:
+  "   set verbosefile=filename.txt
 
   Plugin 'mattn/benchvimrc-vim'                                         " {{{2
   " :BenchVimrc
+
                                                                         " }}}2
 
   " .. PROGRAMOZAS ........................
