@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.10 14:27 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.18 12:50 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1638,6 +1638,7 @@ nnoremap  <Space>sl  :Unite -no-quit -keep-focus line<CR>
 "                            <Space>t - TOGGLE                            {{{3
 " ............................................................................
 
+nnoremap  <expr>  <Space>tb  ':set background=' . (&background == 'light' ? 'dark' : 'light') . '<CR>'
 nnoremap          <Space>tc  :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
 nnoremap          <Space>th  :ColorToggle<CR>
 nnoremap  <expr>  <Space>tm  ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
