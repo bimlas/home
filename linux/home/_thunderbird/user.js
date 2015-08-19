@@ -1,3 +1,6 @@
+// Sync Thunderbird via Dropbox:
+// http://lifehacker.com/5805828/how-to-sync-your-desktop-email-client-outlook-or-thunderbird-across-multiple-computers
+//
 // Hogy a Gmail-t is hasznalhasd:
 // https://www.google.com/settings/security/lesssecureapps
 // Ne felejtsd el engedelyezni az IMAP-ot!
