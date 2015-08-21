@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.18 12:50 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.21 10:28 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -672,7 +672,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'shougo/neoinclude.vim'                                        " {{{2
   " az include-olt fajlokhoz gyartson tag-eket
 
-  " Plugin 'Shougo/neco-syntax'                                           " {{{2
+  Plugin 'Shougo/neco-syntax'                                           " {{{2
   " szintaxis alapjan kiegeszites
 
   Plugin 'shougo/neco-vim'                                              " {{{2
