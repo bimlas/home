@@ -23,7 +23,7 @@
 #
 #   Set-ExecutionPolicy -ExecutionPolicy Bypass
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 09:07 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.21 10:30 ==
 
 #                                 PLUGINS                                 {{{1
 # ============================================================================
