@@ -1,4 +1,8 @@
 # Run as admin.
+#
+# TODO:
+# lua
+# tcmd
 
 #                            INSTALL FUNCTION                             {{{1
 # ============================================================================
@@ -20,7 +24,7 @@ param(
   $answer = $msgBoxTimeout
   try {
     $timeout = 10
-    $question = "Do you need to install $($packageName)? Defaults to `'$defaultAnswerDisplay`' after $timeout seconds"
+    $question = "Install $($packageName)? Defaults to `'$defaultAnswerDisplay`' after $timeout seconds"
     $msgBox = New-Object -ComObject WScript.Shell
     $answer = $msgBox.Popup($question, $timeout, "Install $packageName", $buttonType)
   }
@@ -41,6 +45,9 @@ if (Install-NeededFor 'Chocolatey') {
   iex ((new-object net.webclient).DownloadString('http://chocolatey.org/install.ps1'))
 }
 
+#                            BASE APPLICATIONS                            {{{1
+# ============================================================================
+
 if (Install-NeededFor 'Autohotkey') {
   choco install autohotkey.install -installArguments '"/D=C:\choco\autohotkey"'
 }
@@ -54,17 +61,32 @@ if (Install-NeededFor 'Git') {
   choco install git.install -installArguments '"/DIR=C:\choco\git"' -params '"/GitOnlyOnPath /NoAutoCrlf"'
 }
 
+#                               MULTIMEDIA                                {{{1
+# ============================================================================
+
+if (Install-NeededFor 'Sumatra Pdf') {
+  choco install sumatrapdf.install -installArguments '"/d C:\choco\sumatrapdf /register"'
+}
+
+if (Install-NeededFor 'Vlc') {
+  choco install vlc -installArguments '"/d C:\choco\sumatrapdf /register"'
+}
+
+#                              DEVELOPEMENT                               {{{1
+# ============================================================================
+
 if (Install-NeededFor 'Ruby') {
-  choco install ruby         -installArguments '"/tasks=assocfiles,modpath,addtk /dir=C:\choco\ruby"'
+  choco install ruby -installArguments '"/tasks=assocfiles,modpath,addtk /dir=C:\choco\ruby"'
   # TODO
   # choco install ruby2.devkit
-  if (Install-NeededFor 'Ruby Gems') {
-    gem install bundler
-    gem install asciidoctor
-  }
+}
+
+if (Install-NeededFor 'Ruby Gems') {
+  gem install bundler
+  gem install asciidoctor
 }
 
 if (Install-NeededFor 'Python') {
-  choco install python2 -overrideArguments -installArguments '" /qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python2"'
-  choco install python3 -overrideArguments -installArguments '" /qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python3"'
+  choco install python2 -overrideArguments -installArguments '"/qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python2"'
+  choco install python3 -overrideArguments -installArguments '"/qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python3"'
 }
