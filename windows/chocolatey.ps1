@@ -41,17 +41,30 @@ if (Install-NeededFor 'Chocolatey') {
   iex ((new-object net.webclient).DownloadString('http://chocolatey.org/install.ps1'))
 }
 
+if (Install-NeededFor 'Autohotkey') {
+  choco install autohotkey.install -installArguments '"/D=C:\choco\autohotkey"'
+}
+
+# TODO: Cannot set up install dir. (/e only extracts it)
+if (Install-NeededFor 'Conemu') {
+  choco install conemu -overrideArguments -installArguments '" /p:x64 /passive TARGETDIR=C:\choco\conemu"'
+}
+
 if (Install-NeededFor 'Git') {
-  choco install git -installArguments '"/DIR=C:\\choco\\git"' -params '"/GitOnlyOnPath /NoAutoCrlf"'
+  choco install git.install -installArguments '"/DIR=C:\choco\git"' -params '"/GitOnlyOnPath /NoAutoCrlf"'
 }
 
 if (Install-NeededFor 'Ruby') {
-  choco install ruby -installArguments '"/tasks=assocfiles,modpath,addtk /dir=C:\\choco\\ruby"'
-  gem install bundler
-  gem install asciidoctor
+  choco install ruby         -installArguments '"/tasks=assocfiles,modpath,addtk /dir=C:\choco\ruby"'
+  # TODO
+  # choco install ruby2.devkit
+  if (Install-NeededFor 'Ruby Gems') {
+    gem install bundler
+    gem install asciidoctor
+  }
 }
 
 if (Install-NeededFor 'Python') {
-  choco install python2 -overrideArguments -installArguments '" /qn /norestart ALLUSERS=1 TARGETDIR=C:\\choco\\python2"'
-  choco install python3 -overrideArguments -installArguments '" /qn /norestart ALLUSERS=1 TARGETDIR=C:\\choco\\python3"'
+  choco install python2 -overrideArguments -installArguments '" /qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python2"'
+  choco install python3 -overrideArguments -installArguments '" /qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python3"'
 }
