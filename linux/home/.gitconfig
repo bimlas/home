@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 22:13 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.22 22:44 ==
 
 [user]
 
@@ -74,6 +74,9 @@
 [core]
 
   editor       = "vim --nofork"
+
+  ; Ne konvertalja a sorvegzodeseket.
+  autocrlf     = "false"
 
   ; Windows halozati meghajtokon nagyon lassu, ez gyorsitja a dolgokat, de
   ; legalabb 1.9.4 verzio kell.
