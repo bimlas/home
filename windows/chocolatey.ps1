@@ -39,7 +39,6 @@ param(
   write-host "Not installing $packageName"
   return $false
 }
-                                                                        # }}}1
 
 if (Install-NeededFor 'Chocolatey') {
   iex ((new-object net.webclient).DownloadString('http://chocolatey.org/install.ps1'))
@@ -68,8 +67,9 @@ if (Install-NeededFor 'Sumatra Pdf') {
   choco install sumatrapdf.install -installArguments '"/d C:\choco\sumatrapdf /register"'
 }
 
+# TODO: Set up install dir.
 if (Install-NeededFor 'Vlc') {
-  choco install vlc -installArguments '"/d C:\choco\sumatrapdf /register"'
+  choco install vlc -installArguments '""'
 }
 
 #                              DEVELOPEMENT                               {{{1
@@ -77,8 +77,7 @@ if (Install-NeededFor 'Vlc') {
 
 if (Install-NeededFor 'Ruby') {
   choco install ruby -installArguments '"/tasks=assocfiles,modpath,addtk /dir=C:\choco\ruby"'
-  # TODO
-  # choco install ruby2.devkit
+  # TODO: choco install ruby2.devkit
 }
 
 if (Install-NeededFor 'Ruby Gems') {
