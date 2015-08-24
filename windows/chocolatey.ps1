@@ -47,45 +47,51 @@ if (Install-NeededFor 'Chocolatey') {
 #                            BASE APPLICATIONS                            {{{1
 # ============================================================================
 
-if (Install-NeededFor 'Autohotkey') {
-  choco install autohotkey.install -installArguments '"/D=C:\choco\autohotkey"'
-}
+if (Install-NeededFor 'BASE APPLICATIONS') {
+  if (Install-NeededFor 'BASE APPLICATIONS / Autohotkey') {
+    choco install autohotkey.install -installArguments '"/D=C:\choco\autohotkey"'
+  }
 
 # TODO: Cannot set up install dir. (/e only extracts it)
-if (Install-NeededFor 'Conemu') {
-  choco install conemu -overrideArguments -installArguments '" /p:x64 /passive TARGETDIR=C:\choco\conemu"'
-}
+  if (Install-NeededFor 'BASE APPLICATIONS / Conemu') {
+    choco install conemu -overrideArguments -installArguments '" /p:x64 /passive TARGETDIR=C:\choco\conemu"'
+  }
 
-if (Install-NeededFor 'Git') {
-  choco install git.install -installArguments '"/DIR=C:\choco\git"' -params '"/GitOnlyOnPath /NoAutoCrlf"'
+  if (Install-NeededFor 'BASE APPLICATIONS / Git') {
+    choco install git.install -installArguments '"/DIR=C:\choco\git"' -params '"/GitOnlyOnPath /NoAutoCrlf"'
+  }
 }
 
 #                               MULTIMEDIA                                {{{1
 # ============================================================================
 
-if (Install-NeededFor 'Sumatra Pdf') {
-  choco install sumatrapdf.install -installArguments '"/d C:\choco\sumatrapdf /register"'
-}
+if (Install-NeededFor 'MULTIMEDIA') {
+  if (Install-NeededFor 'MULTIMEDIA / Sumatra Pdf') {
+    choco install sumatrapdf.install -installArguments '"/d C:\choco\sumatrapdf /register"'
+  }
 
 # TODO: Set up install dir.
-if (Install-NeededFor 'Vlc') {
-  choco install vlc -installArguments '""'
+  if (Install-NeededFor 'MULTIMEDIA / Vlc') {
+    choco install vlc -installArguments '""'
+  }
 }
 
 #                              DEVELOPEMENT                               {{{1
 # ============================================================================
 
-if (Install-NeededFor 'Ruby') {
-  choco install ruby -installArguments '"/tasks=assocfiles,modpath,addtk /dir=C:\choco\ruby"'
-  # TODO: choco install ruby2.devkit
-}
+if (Install-NeededFor 'DEVELOPEMENT') {
+  if (Install-NeededFor 'DEVELOPEMENT / Ruby') {
+    choco install ruby -installArguments '"/tasks=assocfiles,modpath,addtk /dir=C:\choco\ruby"'
+    # TODO: choco install ruby2.devkit
+  }
 
-if (Install-NeededFor 'Ruby Gems') {
-  gem install bundler
-  gem install asciidoctor
-}
+  if (Install-NeededFor 'DEVELOPEMENT / Ruby Gems') {
+    gem install bundler
+    gem install asciidoctor
+  }
 
-if (Install-NeededFor 'Python') {
-  choco install python2 -overrideArguments -installArguments '"/qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python2"'
-  choco install python3 -overrideArguments -installArguments '"/qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python3"'
+  if (Install-NeededFor 'DEVELOPEMENT / Python') {
+    choco install python2 -overrideArguments -installArguments '"/qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python2"'
+    choco install python3 -overrideArguments -installArguments '"/qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python3"'
+  }
 }
