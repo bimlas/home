@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.21 10:28 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.24 12:30 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -888,7 +888,7 @@ let &statusline  = stat_bufnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
-let &statusline .= '%#StatInfo#%{g:stat_git_enabled ? " " . gita#statusline#format("%lb") . " " : ""}'
+" let &statusline .= '%#StatInfo#%{g:stat_git_enabled ? " " . gita#statusline#format("%lb") . " " : ""}'
 let &statusline .= '%* ' . stat_filedir . ' '
 let &statusline .= '%= '
 let &statusline .= '%#StatWarning#%{len(StatSyntastic()) ? " " . StatSyntastic() . " " : ""}'
