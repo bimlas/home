@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.24 12:30 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.25 12:35 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1512,6 +1512,8 @@ noremap   <Space>?        :Unite mapping<CR>
 map       <Space>j        <Plug>(easymotion-sol-j)
 map       <Space>k        <Plug>(easymotion-sol-k)
 nnoremap  <Space>h        :nohlsearch <Bar> call UncolorAllWords()<CR>
+nnoremap  <Space>l        g;
+nnoremap  <Space>L        g,
 nnoremap  <Space>O        :pu! _<CR>
 nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
