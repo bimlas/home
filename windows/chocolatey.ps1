@@ -13,6 +13,8 @@
 # https://chocolatey.org/packages/InkScape
 # https://chocolatey.org/packages/libreoffice
 
+$InstallDir = "c:\choco"
+
 #                            INSTALL FUNCTION                             {{{1
 # ============================================================================
 
@@ -58,16 +60,16 @@ if (Install-NeededFor 'Chocolatey') {
 
 if (Install-NeededFor 'BASE APPLICATIONS') {
   if (Install-NeededFor 'BASE APPLICATIONS / Autohotkey') {
-    choco install autohotkey.install -installArguments '"/D=C:\choco\autohotkey"'
+    choco install autohotkey.install -installArguments "/D=$InstallDir\autohotkey"
   }
 
 # TODO: Cannot set up install dir. (/e only extracts it)
   if (Install-NeededFor 'BASE APPLICATIONS / Conemu') {
-    choco install conemu -overrideArguments -installArguments '" /p:x64 /passive TARGETDIR=C:\choco\conemu"'
+    choco install conemu -overrideArguments -installArguments " /p:x64 /passive TARGETDIR=$InstallDir\conemu"
   }
 
   if (Install-NeededFor 'BASE APPLICATIONS / Git') {
-    choco install git.install -installArguments '"/DIR=C:\choco\git"' -params '"/GitOnlyOnPath /NoAutoCrlf"'
+    choco install git.install -installArguments "/DIR=$InstallDir\git" -params "/GitOnlyOnPath /NoAutoCrlf"
   }
 }
 
@@ -76,12 +78,14 @@ if (Install-NeededFor 'BASE APPLICATIONS') {
 
 if (Install-NeededFor 'MULTIMEDIA') {
   if (Install-NeededFor 'MULTIMEDIA / Sumatra Pdf') {
-    choco install sumatrapdf.install -installArguments '"/d C:\choco\sumatrapdf /register"'
+    choco install sumatrapdf.install -installArguments "/d $InstallDir\sumatrapdf /register"
   }
 
 # TODO: Set up install dir.
   if (Install-NeededFor 'MULTIMEDIA / Vlc') {
-    choco install vlc -installArguments '""'
+    New-Item -Path HKLM:\SOFTWARE\VideoLAN\VLC -Force
+    New-ItemProperty -Path HKLM:\SOFTWARE\VideoLAN\VLC -Name "InstallDir" -Value "$InstallDir\vlc" -Force
+    choco install vlc
   }
 }
 
@@ -90,7 +94,7 @@ if (Install-NeededFor 'MULTIMEDIA') {
 
 if (Install-NeededFor 'DEVELOPEMENT') {
   if (Install-NeededFor 'DEVELOPEMENT / Ruby') {
-    choco install ruby -installArguments '"/tasks=assocfiles,modpath,addtk /dir=C:\choco\ruby"'
+    choco install ruby -installArguments "/tasks=assocfiles,modpath,addtk /dir=$InstallDir\ruby"
     # TODO: choco install ruby2.devkit
   }
 
@@ -100,7 +104,7 @@ if (Install-NeededFor 'DEVELOPEMENT') {
   }
 
   if (Install-NeededFor 'DEVELOPEMENT / Python') {
-    choco install python2 -overrideArguments -installArguments '"/qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python2"'
-    choco install python3 -overrideArguments -installArguments '"/qn /norestart ALLUSERS=1 TARGETDIR=C:\choco\python3"'
+    choco install python2 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python2"
+    choco install python3 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python3"
   }
 }
