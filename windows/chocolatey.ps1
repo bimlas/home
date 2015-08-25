@@ -1,8 +1,17 @@
 # Run as admin.
 #
 # TODO:
-# lua
-# tcmd
+# https://chocolatey.org/packages/ctags
+# https://chocolatey.org/packages/Lua
+# https://chocolatey.org/packages/ActivePerl
+# https://chocolatey.org/packages/ActiveTcl
+# https://chocolatey.org/packages/Devbox-RapidEE
+# https://chocolatey.org/packages/TotalCommander
+# https://chocolatey.org/packages/Firefox
+# https://chocolatey.org/packages/thunderbird
+# https://chocolatey.org/packages/gimp
+# https://chocolatey.org/packages/InkScape
+# https://chocolatey.org/packages/libreoffice
 
 #                            INSTALL FUNCTION                             {{{1
 # ============================================================================
