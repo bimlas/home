@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.25 12:26 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.26 11:33 ==
 
 [user]
 
@@ -94,6 +94,12 @@
   ; templatedir/hooks -> .git/hooks
   ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
   templatedir  = "~/.git_template"
+
+[commit]
+
+  ; Az alapertelmezett uzenet, amit commit-olas kozben a szokasos elemek ele
+  ; kiir.
+  template     = "~/.git_template/commit_message"
 
 [log]
 

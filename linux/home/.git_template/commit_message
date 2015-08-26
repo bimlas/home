@@ -1,0 +1,16 @@
+
+# Commit uzenet felepitese:
+#
+#   logikai_csoport: Jelen ideju felszolito mondat
+#
+#   A commit osszefoglalasa. Irj bele mindent, hogy ha csak a log-ot
+#   nezik, akkor is ertheto legyen.
+#
+# Specialis jelentesu szovegek a fejlecben (a logikai_csoport utan ird):
+#
+#   Fix #123     Az issue lezarasa.
+#   Update #123  Nem zarja le, de azzal kapcsolatos.
+#
+# Mielott commit-olnal, ellenorizd ezeket:
+#
+#   * Aktualizaltad a kommenteket es a dokumentaciot is?
