@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.26 11:33 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.26 13:54 ==
 
 [user]
 
@@ -31,6 +31,8 @@
                   || (git status; read -p '\nCONTINUE PULLING? Y/[N]' ans;    \
                   if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi)"
   subpl        = "!git submodule foreach git pull --tags origin master"
+  ; TODO: origin/HEAD does not changing after this - `git remote update`
+  ; updates it only one time.
   seto         = "remote set-url origin"
 
   s            = "status"
