@@ -12,6 +12,7 @@
 # https://chocolatey.org/packages/gimp
 # https://chocolatey.org/packages/InkScape
 # https://chocolatey.org/packages/libreoffice
+# https://chocolatey.org/packages/f.lux
 
 $InstallDir = "c:\choco"
 
