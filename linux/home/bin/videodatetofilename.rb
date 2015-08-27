@@ -1,6 +1,6 @@
 #!/bin/ruby
-# rename file.avi to 2015.07.05_22.10_file.avi
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.05 22:11 ==
+# rename video files to 2015.07.05_22.10_file.avi
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.27 21:53 ==
 
 inputDir = ARGV[0]
 
@@ -8,8 +8,9 @@ if ARGV.length == 0
   inputDir = '.'
 end
 
-Dir.glob("#{inputDir}/*.avi",File::FNM_CASEFOLD).each() {|file|
+files = Dir.glob("#{inputDir}/*",File::FNM_CASEFOLD).select {|x| x =~ /\.(avi|mpe?g|mp4|m4v)$/}
 
+files.each {|file|
   metadata = `avconv -v quiet -i "#{file}" -f ffmetadata -`.match(/(?<=creation_time=)(.*)/)
 
   if (!metadata.nil?)
@@ -28,5 +29,4 @@ Dir.glob("#{inputDir}/*.avi",File::FNM_CASEFOLD).each() {|file|
   else
     puts "ERROR: Can't get time for #{file}"
   end
-
 }
