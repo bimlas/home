@@ -8,6 +8,7 @@
 # https://chocolatey.org/packages/ActivePerl
 # https://chocolatey.org/packages/ActiveTcl
 # https://chocolatey.org/packages/mingw
+# https://chocolatey.org/packages/f.lux
 # https://chocolatey.org/packages/Devbox-RapidEE
 # https://chocolatey.org/packages/TotalCommander
 # https://chocolatey.org/packages/Firefox
@@ -15,7 +16,7 @@
 # https://chocolatey.org/packages/gimp
 # https://chocolatey.org/packages/InkScape
 # https://chocolatey.org/packages/libreoffice
-# https://chocolatey.org/packages/f.lux
+# https://chocolatey.org/packages/handbrake.install
 
 $InstallDir = "c:\choco"
 
