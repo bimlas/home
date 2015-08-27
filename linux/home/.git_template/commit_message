@@ -1,4 +1,10 @@
 
+# Sokszor commit-olj, ritkan push-olj (hogy legyen lehetoseged modositani)!
+#
+# Mielott commit-olnal, ellenorizd ezeket:
+#
+#   * Aktualizaltad a kommenteket es a dokumentaciot is?
+#
 # Commit uzenet felepitese:
 #
 #   logikai_csoport: Jelen ideju felszolito mondat
@@ -8,9 +14,6 @@
 #
 # Specialis jelentesu szovegek a fejlecben (a logikai_csoport utan ird):
 #
-#   Fix #123     Az issue lezarasa.
-#   Update #123  Nem zarja le, de azzal kapcsolatos.
+#   Fix #123  Az issue lezarasa.
+#   #123      Nem zarja le, de azzal kapcsolatos.
 #
-# Mielott commit-olnal, ellenorizd ezeket:
-#
-#   * Aktualizaltad a kommenteket es a dokumentaciot is?
