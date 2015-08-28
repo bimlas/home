@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.28 11:42 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.28 13:01 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -876,7 +876,7 @@ endif
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand("%:p:h")
+autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand('%:p:~:h')
 
 let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
 let stat_filename   = '%w%t%r%m'
