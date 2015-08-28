@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.26 13:54 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.28 15:30 ==
 
 [user]
 
@@ -33,7 +33,9 @@
   subpl        = "!git submodule foreach git pull --tags origin master"
   ; TODO: origin/HEAD does not changing after this - `git remote update`
   ; updates it only one time.
-  seto         = "remote set-url origin"
+  # seto         = "remote set-url origin"
+  ; Found another solution.
+  seto         = "!sh -c 'git remote rm origin; git remote add origin $*; git remote update' -"
 
   s            = "status"
   mylog        = "log --graph --decorate --all --find-renames --date-order"
