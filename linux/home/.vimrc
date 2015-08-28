@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.26 10:04 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.28 11:42 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -962,9 +962,8 @@ set cursorline
 " ki a lehetosegeket. ('bash'-szeru)
 set wildmode=longest,list
 
-" Mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret), minimum 2 tab
-" eseten.
-set showtabline=1 tabline=%!eight#shorttabline#call()
+" Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
+set showtabline=2 tabline=%!eight#shorttabline#call()
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
