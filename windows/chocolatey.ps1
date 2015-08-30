@@ -3,6 +3,8 @@
 # TODO:
 # rbtray?
 # free countdown timer?
+# zeal?
+# 4k video downloader?
 # https://chocolatey.org/packages/ctags
 # https://chocolatey.org/packages/Lua
 # https://chocolatey.org/packages/ActivePerl
@@ -109,6 +111,7 @@ if (Install-NeededFor 'DEVELOPEMENT') {
   }
 
   if (Install-NeededFor 'DEVELOPEMENT / Python') {
+    # TODO: add to path (the DLLs too)
     choco install python2 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python2"
     choco install python3 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python3"
   }
