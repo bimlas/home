@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.28 07:46 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.29 15:15 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -25,7 +25,6 @@ user_pref("extensions.s3gt.context_menu_show_icon",        false);
 user_pref("extensions.s3gt.context_menu_translate_auto",   false);
 user_pref("extensions.s3gt.context_menu_translate_forget", false);
 user_pref("extensions.s3gt.context_menu_translate_page",   false);
-user_pref("extensions.s3gt.current_version",               "4.03");
 user_pref("extensions.s3gt.is_first_run",                  false);
 user_pref("extensions.s3gt.last_lang_from",                "auto");
 user_pref("extensions.s3gt.last_lang_to",                  "hu");
