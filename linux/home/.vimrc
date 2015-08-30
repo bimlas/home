@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.28 13:01 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.29 12:56 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1652,8 +1652,8 @@ nnoremap          <Space>tw  :set wrap!<CR>
 "                    <Space>w - WINDOW/TAB MANAGEMENT                     {{{3
 " ............................................................................
 
+nnoremap  <Space>wo   :tab split<CR>
 nnoremap  <Space>ws   :ChooseWinSwapStay<CR>
-nnoremap  <Space>wT   :tab split<CR>
 nnoremap  <Space>wtt  :tabnew<CR>
 nnoremap  <Space>wtq  :tabclose<CR>
 
