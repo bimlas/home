@@ -111,8 +111,8 @@ if (Install-NeededFor 'DEVELOPEMENT') {
   }
 
   if (Install-NeededFor 'DEVELOPEMENT / Python') {
-    # TODO: add to path (the DLLs too)
-    choco install python2 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python2"
-    choco install python3 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python3"
+    # TODO: TEST: add to path (the DLLs too)
+    choco install python2 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python2 ADDLOCAL=ALL"
+    choco install python3 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python3 ADDLOCAL=ALL"
   }
 }
