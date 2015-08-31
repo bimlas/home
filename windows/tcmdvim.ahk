@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 08:54 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.31 08:11 ==
 
 ; Need for right key sequence behaviour (for example: gg).
 
@@ -16,6 +16,7 @@ CapsLock::Ctrl
 
   ; Disable CapsLock to Ctrl remap, check for GetKeyState("CapsLock", "P")
   ; instead, because it behaves weird.
+  ; http://stackoverflow.com/questions/29692054/autohotkey-caps-lock-to-ctrl-not-releasing
   CapsLock::Return
 
   ; Template for maps:
