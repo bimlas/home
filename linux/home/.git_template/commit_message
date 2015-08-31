@@ -17,3 +17,10 @@
 #   Fix #123  Az issue lezarasa.
 #   #123      Nem zarja le, de azzal kapcsolatos.
 #
+# Az --amend hasznalata egy korabbi commit-on:
+#
+#   $ git add FILE
+#   $ git commit --fixup=SHA   # Csak hozzaadja a javitast
+#   # VAGY
+#   $ git commit --squash=SHA  # Modosithatod a commit uzenetet is.
+#   $ git rebase --interactive --autosquash SHA~
