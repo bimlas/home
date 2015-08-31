@@ -23,7 +23,7 @@
 #
 #   Set-ExecutionPolicy -ExecutionPolicy Bypass
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.21 10:30 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.31 13:48 ==
 
 #                                 PLUGINS                                 {{{1
 # ============================================================================
@@ -69,6 +69,12 @@ if( -not (Get-Mymodule -name "PSReadLine") )
 
 # Bash-like editing.
 Set-PSReadlineOption -EditMode Emacs
+
+# Zsh-like history search.
+Set-PSReadlineKeyHandler -Key UpArrow   -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key Ctrl+P    -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadlineKeyHandler -Key Ctrl+N    -Function HistorySearchForward
 
 #                                POSH-GIT                                 {{{2
 # ____________________________________________________________________________
