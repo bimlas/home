@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.29 12:56 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.31 11:06 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -876,12 +876,9 @@ endif
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-autocmd  vimrc  BufEnter,BufWritePost  *  let b:stat_curfiledir = expand('%:p:~:h')
-
 let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-let stat_filedir    = '%<%{exists("b:stat_curfiledir") ? b:stat_curfiledir : ""}'
 let stat_lineinfo   = '%4l:%3p%%|%3v'
 
 let &statusline  = stat_bufnr . ' '
@@ -889,8 +886,7 @@ let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
 " let &statusline .= '%#StatInfo#%{g:stat_git_enabled ? " " . gita#statusline#format("%lb") . " " : ""}'
-let &statusline .= '%* ' . stat_filedir . ' '
-let &statusline .= '%= '
+let &statusline .= '%* %= '
 let &statusline .= '%#StatWarning#%{len(StatSyntastic()) ? " " . StatSyntastic() . " " : ""}'
 let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
 
