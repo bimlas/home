@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.31 11:53 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.02 08:32 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1574,7 +1574,7 @@ nnoremap  <Space>gL  :Gitv<CR>
 
 nmap              <Space>mK  <Plug>Zeavim
 vmap              <Space>mK  <Plug>ZVVisSelection
-nnoremap  <expr>  <Space>mg  ':noautocmd vimgrep //j **/*.' . expand('%:e') . ' <Bar> copen<Home><C-Right><C-Right><Right><Right>'
+nnoremap          <Space>mg  :noautocmd vimgrep //j %:p:h/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
 nnoremap          <Space>mo  :Unite outline<CR>
 nnoremap          <Space>mr  :QuickRun<CR>
 noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
@@ -1629,7 +1629,7 @@ nmap  <Space>qd  <Plug>Dsurround
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-nnoremap  <Space>sg  :noautocmd vimgrep //j ** <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap  <Space>sg  :noautocmd vimgrep //j %:p:h/** <Bar> copen<Home><C-Right><C-Right><Right><Right>
 nnoremap  <Space>sl  :Unite -no-quit -keep-focus line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
