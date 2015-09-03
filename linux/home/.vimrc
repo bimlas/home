@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.02 08:32 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.03 13:31 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1502,7 +1502,7 @@ endfunction
 "
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
 
-noremap   <Space>?        :Unite mapping<CR>
+noremap   <Space>?          :Unite mapping<CR>
 
 map       <Space>j        <Plug>(easymotion-sol-j)
 map       <Space>k        <Plug>(easymotion-sol-k)
@@ -1514,6 +1514,9 @@ nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
 noremap   <Space><Space>  <C-]>
 nnoremap  <Space>*        :call InterestingWords('n')<CR>
+
+nnoremap  <Space>cn       :cnext!<CR>
+nnoremap  <Space>cp       :cprevious!<CR>
 
 nmap      <Space>;        <Plug>TComment_gc
 nmap      <Space>;;       <Plug>TComment_gcc
