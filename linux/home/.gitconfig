@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.31 13:34 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.03 10:58 ==
 
 [user]
 
@@ -27,26 +27,21 @@
 
   cl           = "clone"
   ps           = "push --all --follow-tags"
-  pl           = "!git pull --ff-only                                         \
-                  || (git status; read -p '\nCONTINUE PULLING? Y/[N]' ans;    \
-                  if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi)"
+  pl           = "!git pull --ff-only || (git status; read -p '\nCONTINUE PULLING? Y/[N]' ans; if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi)"
   subpl        = "!git submodule foreach git pull --tags origin master"
-  ; TODO: origin/HEAD does not changing after this - `git remote update`
-  ; updates it only one time.
   seto         = "remote set-url origin"
-  ; Found another solution.
-  ; ... but does not works - using on a repository without remote causes full
-  ; fuckoff.
-  # seto         = "!sh -c 'git remote rm origin; git remote add origin $*; git remote update' -"
+  ghcl         = "!sh -c 'git clone https://www.github.com/$*' -"
+  ghps         = "!sh -c 'git remote set-url origin https://www.github.com/$*; git push --all --follow-tags --set-upstream https://www.github.com/$*' -"
+  glcl         = "!sh -c 'git clone https://gitlab.com/$*' -"
+  glps         = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
   s            = "status"
-  mylog        = "log --graph --decorate --all --find-renames --date-order"
-  glog         = "!git mylog --name-status"
-  clog         = "!git mylog --name-status ORIG_HEAD.."
-  slog         = "!git mylog --format='%C(auto)%h %C(bold blue)%ad %an%C(auto)%d%n        %s%C(reset)' --date=short"
-  sslog        = "!git slog --simplify-by-decoration"
-  day          = "!git glog --since midnight"
-  yday         = "!git glog --since=day.before.yesterday.midnight --until=midnight"
+  glog         = "log --graph --decorate --all --find-renames --date-order --name-status"
+  clog         = "log --graph --decorate --all --find-renames --date-order --name-status ORIG_HEAD.."
+  day          = "log --graph --decorate --all --find-renames --date-order --name-status --since midnight"
+  yday         = "log --graph --decorate --all --find-renames --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
+  slog         = "log --graph --decorate --all --find-renames --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
+  sslog        = "log --graph --decorate --all --find-renames --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)' --simplify-by-decoration"
   flog         = "diff --name-status"
   ls           = "ls-tree -r --name-only"
 
@@ -54,28 +49,17 @@
   gdf          = "difftool --gui"
 
   ad           = "add --all"
-  ada          = "!git ad :/"
+  ada          = "add --all :/"
   c            = "commit"
-  cfu          = "!sh -c 'git c --fixup=$1 && git reb $1~' -"
-  csq          = "!sh -c 'git c --squash=$1 && git reb $1~' -"
-  cm           = "!git c -m"
-  cmu          = "!git cm Update"
-  adac         = "!git ada && git c"
-  adacfu       = "!git ada && git cfu"
-  adacsq       = "!git ada && git csq"
-  adacm        = "!git ada && git cm"
-  adacmu       = "!git ada && git cmu"
+  cm           = "commit -m"
+  cfu          = "!sh -c 'git commit --fixup=$1 && git rebase --autosquash --interactive $1~' -"
+  csq          = "!sh -c 'git commit --squash=$1 && git rebase --autosquash --interactive $1~' -"
 
   co           = "checkout"
 
   st           = "stash"
-  stp          = "!git st pop"
-  reb          = "!git rebase --autosquash -i"
-
-  ghcl         = "!sh -c 'git cl https://www.github.com/$*' -"
-  ghps         = "!sh -c 'git seto https://www.github.com/$*; git ps --set-upstream https://www.github.com/$*' -"
-  glcl         = "!sh -c 'git cl https://gitlab.com/$*' -"
-  glps         = "!sh -c 'git seto https://gitlab.com/$*; git ps --set-upstream https://gitlab.com/$*' -"
+  stp          = "stash pop"
+  reb          = "rebase --autosquash --interactive"
 
   ctags        = "!.git/hooks/0_ctags"
 

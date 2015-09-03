@@ -60,7 +60,7 @@ vmap -builtin  y          y<Esc>
 map  -builtin  <C-E>      gt
 map  -builtin  <C-Y>      gT
 map  -builtin  <Space>ff  o
-map  -builtin  <Space>fF  t
+map  -builtin  <Space>ft  t
 nmap -builtin  <C-G>      :reload!<CR>
 nmap -builtin  <Space>h   :nohlfind<CR>
 
