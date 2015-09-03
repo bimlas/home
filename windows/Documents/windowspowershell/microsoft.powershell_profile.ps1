@@ -23,7 +23,7 @@
 #
 #   Set-ExecutionPolicy -ExecutionPolicy Bypass
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.03 08:47 ==
+#  BimbaLaszlo (.github.io|gmail.com)  2015.09.03 14:38 ==
 
 #                                 PLUGINS                                 {{{1
 # ============================================================================
@@ -69,8 +69,22 @@ if( -not (Get-Mymodule -name "PSReadLine") )
 
 # Bash-like editing.
 Set-PSReadlineOption -EditMode Emacs
+Set-PSReadlineKeyHandler -Key Ctrl+J         -Function AcceptLine
+Set-PSReadlineKeyHandler -Key 'Shift+PageUp','Shift+PageDown' `
+                         -BriefDescription ScrollDisplayUpDownHalfPage `
+                         -LongDescription "Scroll the display up or down by half page" `
+                         -ScriptBlock {
+  param($key, $arg)
 
-Set-PSReadlineKeyHandler -Key Ctrl+J    -Function AcceptLine
+  [int]$intArg = if ($arg -eq $null) { 1 } else { $arg -as [int] }
+  if ($key.Key -eq [System.ConsoleKey]::PageUp) { $intArg *= -1 }
+  $intArg *= [Math]::Floor([Console]::WindowHeight / 2)
+
+  $newTop = [Console]::WindowTop + $intArg
+  $newTop = [Math]::Max(0, $newTop)
+  $newTop = [Math]::Min([Console]::BufferHeight - [Console]::WindowHeight, $newTop)
+  [Console]::SetWindowPosition(0, $newTop)
+}
 
 # Zsh-like history search.
 Set-PSReadlineKeyHandler -Key UpArrow   -Function HistorySearchBackward
