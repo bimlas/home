@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.03 13:31 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.03 14:55 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1242,8 +1242,8 @@ inoremap  <M-l>  <Right>
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
 " a felfele nyillal keresed az elozmenyeket)
-cnoremap  <C-N>  <Up>
-cnoremap  <C-P>  <Down>
+cnoremap  <C-P>  <Up>
+cnoremap  <C-N>  <Down>
 
 " Bufferek kozti mozgas.
 nnoremap  <C-E>  :bnext<CR>
