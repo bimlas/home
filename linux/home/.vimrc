@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.03 14:55 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.04 13:58 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -155,7 +155,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " Az alapertelmezett map-ok tiltasa.
     let g:EasyMotion_do_mapping = 0
 
-    " A celt nagybetuvel mutassa, de engedje a kisebtuvel ugrast.
+    " A celt nagybetuvel mutassa, de engedje a kisbetuvel ugrast.
     let g:EasyMotion_use_upper = 1
 
     " A helymeghatarozashoz hasznalt betuk.
@@ -164,8 +164,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " Az osszecsukottfold-okra is ugorhassunk.
     let g:EasyMotion_skipfoldedline = 0
 
-    " Lasd a sugot.
-    " let g:EasyMotion_move_highlight = 0
+    " A j/k a sor elejere ugras helyett maradjon ugyanabban az oszlopban.
+    let g:EasyMotion_startofline = 0
 
   Plugin 't9md/vim-choosewin'                                           " {{{2
   " easymotion az ablakokon is
@@ -1504,8 +1504,8 @@ endfunction
 
 noremap   <Space>?          :Unite mapping<CR>
 
-map       <Space>j        <Plug>(easymotion-sol-j)
-map       <Space>k        <Plug>(easymotion-sol-k)
+map       <Space>j        <Plug>(easymotion-j)
+map       <Space>k        <Plug>(easymotion-k)
 nnoremap  <Space>h        :nohlsearch <Bar> call UncolorAllWords()<CR>
 nnoremap  <Space>l        g;
 nnoremap  <Space>L        g,
