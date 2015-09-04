@@ -11,6 +11,7 @@
 # https://chocolatey.org/packages/ActiveTcl
 # https://chocolatey.org/packages/mingw
 # https://chocolatey.org/packages/f.lux
+# https://chocolatey.org/packages/virtuawin
 # https://chocolatey.org/packages/Devbox-RapidEE
 # https://chocolatey.org/packages/TotalCommander
 # https://chocolatey.org/packages/Firefox
