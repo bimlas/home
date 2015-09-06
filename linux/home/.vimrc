@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.04 13:58 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.06 21:32 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -615,7 +615,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
     " akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
     " let g:jedi#auto_vim_configuration = 0
-    let g:jedi#completions_enabled = 0
+    let g:jedi#completions_enabled = 1
 
     " Bufferek hasznalata tab-ok helyett.
     let g:jedi#use_tabs_not_buffers = 0
@@ -668,6 +668,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
       let g:neocomplete#force_omni_input_patterns = {}
     endif
     let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+    let g:neocomplete#force_omni_input_patterns.python = '\S\{2}'
+    let g:neocomplete#force_omni_input_patterns.python3 = g:neocomplete#force_omni_input_patterns.python
 
   Plugin 'shougo/neoinclude.vim'                                        " {{{2
   " az include-olt fajlokhoz gyartson tag-eket
