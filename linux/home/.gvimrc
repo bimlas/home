@@ -10,13 +10,16 @@ else
   let &guifont = 'DejaVu Sans Mono 10'
 endif
 
-" Ablak mereteinek megadasa.
-" set lines=50
-" let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
-set lines=999 columns=999
+" Ablak mereteinek megadasa, ha nem a Total Commander lister programjakent
+" mukodik.
+if !exists('g:tcmd_lister')
+  " set lines=50
+  " let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
+  set lines=999 columns=999
 
-" Az ablak bal-felso sarka a desktop-on (pixelben megadva).
-winpos 0 0
+  " Az ablak bal-felso sarka a desktop-on (pixelben megadva).
+  winpos 0 0
+endif
 
 " set relativenumber
 
