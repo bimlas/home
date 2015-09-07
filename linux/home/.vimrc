@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.06 21:32 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.07 11:07 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -969,6 +969,9 @@ let &fillchars = 'vert: ,stl: ,stlnc: '
 " Kurzor koruli 'ter' gorgetesnel.
 set scrolloff=3
 
+" Gorgetes helyett fel olalt ugorjon elore (tehat <C-D>, ha a lap aljara er).
+" set scrolljump=-50
+
 " A sor utolso karaktere utan egyel is allhat a kurzor.
 " NAGYON HASZNOS TUD LENNI!
 set virtualedit=onemore
@@ -1241,6 +1244,9 @@ inoremap  <M-j>  <Down>
 inoremap  <M-k>  <Up>
 inoremap  <M-l>  <Right>
 
+" Egygombos omnicomplete.
+inoremap  <C-F>  <C-X><C-O>
+
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
 " a felfele nyillal keresed az elozmenyeket)
@@ -1506,8 +1512,11 @@ endfunction
 
 noremap   <Space>?          :Unite mapping<CR>
 
-map       <Space>j        <Plug>(easymotion-j)
-map       <Space>k        <Plug>(easymotion-k)
+map       <Space>j        <Plug>(easymotion-sol-j)
+map       <Space>k        <Plug>(easymotion-sol-k)
+" Maradjon ugyanabban az oszlopban.
+map       <Space>J        <Plug>(easymotion-j)
+map       <Space>K        <Plug>(easymotion-k)
 nnoremap  <Space>h        :nohlsearch <Bar> call UncolorAllWords()<CR>
 nnoremap  <Space>l        g;
 nnoremap  <Space>L        g,
