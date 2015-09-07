@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.03 10:58 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.07 12:07 ==
 
 [user]
 
@@ -35,15 +35,18 @@
   glcl         = "!sh -c 'git clone https://gitlab.com/$*' -"
   glps         = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
-  s            = "status"
-  glog         = "log --graph --decorate --all --find-renames --date-order --name-status"
-  clog         = "log --graph --decorate --all --find-renames --date-order --name-status ORIG_HEAD.."
-  day          = "log --graph --decorate --all --find-renames --date-order --name-status --since midnight"
-  yday         = "log --graph --decorate --all --find-renames --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
-  slog         = "log --graph --decorate --all --find-renames --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
-  sslog        = "log --graph --decorate --all --find-renames --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)' --simplify-by-decoration"
+  # Log flags:
+  #   --follow  track full history of a single file.
+  #   --all     show all branch (SHA..SHA not works with it?)
+  glog         = "log --graph --decorate --find-renames --date-order --name-status"
+  clog         = "log --graph --decorate --find-renames --date-order --name-status ORIG_HEAD.."
+  day          = "log --graph --decorate --find-renames --date-order --name-status --since midnight"
+  yday         = "log --graph --decorate --find-renames --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
+  slog         = "log --graph --decorate --find-renames --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
+  sslog        = "log --graph --decorate --find-renames --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)' --simplify-by-decoration"
   flog         = "diff --name-status"
   ls           = "ls-tree -r --name-only"
+  s            = "status"
 
   df           = "difftool"
   gdf          = "difftool --gui"
@@ -60,6 +63,11 @@
   st           = "stash"
   stp          = "stash pop"
   reb          = "rebase --autosquash --interactive"
+
+  bss          = "bisect start"
+  bsr          = "bisect reset" # stop
+  bsg          = "bisect good"
+  bsb          = "bisect bad"
 
   ctags        = "!.git/hooks/0_ctags"
 
