@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.07 11:07 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.08 12:41 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -120,6 +120,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   " Plugin 'yggdroot/indentline'                                          " {{{2
   " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
+
+  Plugin 'hecal3/vim-leader-guide'                                      " {{{2
+  " Guide-key
 
   Plugin 'lilydjwg/colorizer'                                           " {{{2
   " rgb szinek megjelenitese, :ColorHighlight
