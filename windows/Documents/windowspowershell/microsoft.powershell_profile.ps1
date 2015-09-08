@@ -23,7 +23,14 @@
 #
 #   Set-ExecutionPolicy -ExecutionPolicy Bypass
 #
-#  BimbaLaszlo (.github.io|gmail.com)  2015.09.03 14:38 ==
+# To update a module:
+#
+#   Run cmd.exe
+#   powershell -noprofile
+#   Update-Module MODULE
+#
+#
+#  ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.08 07:57 ==
 
 #                                 PLUGINS                                 {{{1
 # ============================================================================
