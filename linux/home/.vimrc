@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.08 12:41 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.09 22:00 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1635,13 +1635,20 @@ nnoremap  <Space>por  :Gtags -ir<Space>
 nnoremap  <Space>pos  :Gtags -si<Space>
 nnoremap  <Space>pt   :VimFilerExplorer -project -toggle<CR>
 
-"                      <Space>q - QUOTES, SURROUNDS                       {{{3
+"                <Space>q - QUOTES, SURROUNDS, CHANGE CASE                {{{3
 " ............................................................................
 
-nmap  <Space>qa  <Plug>Ysurround
-vmap  <Space>qa  <Plug>VSurround
-nmap  <Space>qs  <Plug>Csurround
-nmap  <Space>qd  <Plug>Dsurround
+nmap  <Space>qa   <Plug>Ysurround
+vmap  <Space>qa   <Plug>VSurround
+nmap  <Space>qs   <Plug>Csurround
+nmap  <Space>qd   <Plug>Dsurround
+
+nmap  <Space>qcc  <Plug>Coercec
+nmap  <Space>qcm  <Plug>Coercem
+nmap  <Space>qc_  <Plug>Coerce_
+nmap  <Space>qcs  <Plug>Coerces
+nmap  <Space>qcu  <Plug>Coerceu
+nmap  <Space>qcU  <Plug>CoerceU
 
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
