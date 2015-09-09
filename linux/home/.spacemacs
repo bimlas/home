@@ -1,5 +1,9 @@
 ;; -*- mode: dotspacemacs -*-
 ;; vim: filetype=lisp
+;;
+;; Install:
+;;  $ git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
+;;
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
