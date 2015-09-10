@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.07 12:07 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.10 11:31 ==
 
 [user]
 
@@ -39,6 +39,8 @@
   #   --follow  track full history of a single file.
   #   --all     show all branch (SHA..SHA not works with it?)
   glog         = "log --graph --decorate --find-renames --date-order --name-status"
+  plog         = "log --graph --decorate --find-renames --date-order --patch --stat --ignore-blank-lines"
+  pwlog        = "log --graph --decorate --find-renames --date-order --patch --stat --ignore-blank-lines --ignore-all-space"
   clog         = "log --graph --decorate --find-renames --date-order --name-status ORIG_HEAD.."
   day          = "log --graph --decorate --find-renames --date-order --name-status --since midnight"
   yday         = "log --graph --decorate --find-renames --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
@@ -48,8 +50,9 @@
   ls           = "ls-tree -r --name-only"
   s            = "status"
 
-  df           = "difftool"
-  gdf          = "difftool --gui"
+  df           = "diff --patch --stat --ignore-blank-lines"
+  dfw          = "diff --patch --stat --ignore-blank-lines --ignore-all-space"
+  gdf          = "difftool"
 
   ad           = "add --all"
   ada          = "add --all :/"
