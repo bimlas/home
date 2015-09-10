@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.29 15:15 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.10 10:05 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -20,16 +20,23 @@
  *  https://addons.mozilla.org/en-us/firefox/addon/s3google-translator/
  */
 
-user_pref("extensions.s3gt.autotranslate",                 "stop");
-user_pref("extensions.s3gt.context_menu_show_icon",        false);
-user_pref("extensions.s3gt.context_menu_translate_auto",   false);
+user_pref("extensions.s3gt.autotranslate", "stop");
+user_pref("extensions.s3gt.basic_functions_in_panel", false);
+user_pref("extensions.s3gt.context_menu_show_icon", false);
+user_pref("extensions.s3gt.context_menu_translate_auto", false);
 user_pref("extensions.s3gt.context_menu_translate_forget", false);
-user_pref("extensions.s3gt.context_menu_translate_page",   false);
-user_pref("extensions.s3gt.is_first_run",                  false);
-user_pref("extensions.s3gt.last_lang_from",                "auto");
-user_pref("extensions.s3gt.last_lang_to",                  "hu");
-user_pref("extensions.s3gt.translate_subtitles_youtube",   false);
-user_pref("extensions.s3gt.view_source_translate_box",     true);
+user_pref("extensions.s3gt.context_menu_translate_page", false);
+user_pref("extensions.s3gt.current_version", "5.02");
+user_pref("extensions.s3gt.is_first_run", false);
+user_pref("extensions.s3gt.last_lang_from", "auto");
+user_pref("extensions.s3gt.last_lang_to", "hu");
+user_pref("extensions.s3gt.list_disabled_lang_to", "af,sq,ar,hy,az,eu,be,bn,bs,bg,ca,ceb,ny,zh-CN,zh-TW,ht,hr,cs,da,nl,eo,et,tl,fi,fr,gl,ka,de,el,gu,ha,iw,hi,hmn,is,ig,id,ga,it,ja,jw,kn,kk,km,ko,lo,la,lv,lt,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,fa,pl,pt,pa,ro,ru,sr,st,si,sk,sl,so,es,su,sw,sv,tg,ta,te,th,tr,uk,ur,uz,vi,cy,yi,yo,zu");
+user_pref("extensions.s3gt.reverse_lang_value", "en");
+user_pref("extensions.s3gt.tooltip_position_x", 5);
+user_pref("extensions.s3gt.tooltip_position_y", 547);
+user_pref("extensions.s3gt.translate_subtitles_youtube", false);
+user_pref("extensions.s3gt.view_reverse_translate_tooltip", true);
+user_pref("extensions.s3gt.view_source_translate_box", true);
 
 /* sztakidict - sztaki szotar a kijelolt szovegen jobbgomb utan
  *  https://addons.mozilla.org/hu/firefox/addon/sztakidict/
