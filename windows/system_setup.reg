@@ -8,19 +8,19 @@ Windows Registry Editor Version 5.00
 ;
 ; TODO: valami tiltja a nyomtatot.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 07:47 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.11 11:40 ==
 
 ;                   IKONOK MELLETTI NYILACSKA ELTUNTETESE                 {{{1
 ; ============================================================================
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]
-;
+
 ; Elotte masold az ikont a konyvtarba
 "29"="C:\\blank.ico,0"
 
 ;                             3D FLIP TILTASA                             {{{1
 ; ============================================================================
-;
+
 ; A win+tab ablakvalto menu letiltasa.
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DWM]

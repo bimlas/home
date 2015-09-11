@@ -9,46 +9,46 @@ Windows Registry Editor Version 5.00
 ; tartozo ertekeket.
 ; Hogy lasd a hatast, jelentkezz be ujra a profilodba.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.04.16 22:13 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.11 11:41 ==
 
 ;                           PARANCSSOR MEGJELENESE                        {{{1
 ; ============================================================================
 
 ; __ ALAPERTELMEZETT ERTEKEK ________________
-;
+
 [HKEY_CURRENT_USER\Console]
-;
+
 ; Betutipus
 "FaceName"="Consolas"
 "FontFamily"=dword:00000036
-;
+
 ; Betumeret
 "FontSize"=dword:00100000
 "FontWeight"=dword:00000190
-;
+
 ; Buffer merete
 "ScreenBufferSize"=dword:07d00050
-;
+
 ; Ablak merete
 "WindowSize"=dword:00360050
 
 ; __ PROMPT _________________________________
-;
+
 [HKEY_CURRENT_USER\Environment]
-;
+
 "PROMPT"="$_$P$_$G$S"
 
 ;                                  CALC                                   {{{1
 ; ============================================================================
-;
+
 [HKEY_CURRENT_USER\Software\Microsoft\Calc]
-;
+
 ; Tudomanyos nezet
 "layout"=dword:00000000
-;
+
 ; Csoportositsa a szamjegyeket
 "UseSep"=dword:00000001
-;
+
 ; Mertekegyseg-atvalto mutatasa
 "UnitConv"=dword:00000001
 
@@ -56,10 +56,10 @@ Windows Registry Editor Version 5.00
 ; ============================================================================
 
 [HKEY_CURRENT_USER\Software\Microsoft\Notepad]
-;
+
 ; Ne tordelje a hosszu sorokat
 "fWrap"=dword:00000000
-;
+
 ; Statusbar bekapcsolasa
 "StatusBar"=dword:00000001
 
@@ -67,41 +67,41 @@ Windows Registry Editor Version 5.00
 ; ============================================================================
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
-;
+
 ; Menu kinyitasa, ha a kurzort fole visszuk.
 "Start_AutoCascade"=dword:00000001
-;
+
 ; Nagy ikonok hasznalata
 "Start_LargeMFUIcons"=dword:00000001
-;
+
 ; Ha begepelunk az also entry-be, akkor hol keressen
 "Start_SearchFiles"=dword:00000000
 "Start_SearchPrograms"=dword:00000001
-;
+
 ; Ikonok behuzasanak engedelyezese.
 "Start_EnableDragDrop"=dword:00000001
-;
+
 ; Ujonnan telepitett programok kiemelese.
 "Start_NotifyNewApps"=dword:00000000
-;
+
 ; Nev szerint rendezze a 'minden program' elemeit.
 "Start_SortByName"=dword:00000001
-;
+
 ; Utoljara hasznalt fajlok, programok ne jelenjenek meg a fooldalon.
 "Start_TrackDocs"=dword:00000000
 "Start_TrackProgs"=dword:00000000
-;
+
 ; __ LISTA ELEMEK ___________________________
 ;
 ; 0: ne jelenjen meg
 ; 1: jelenjen meg
 ; 2: kinyithato menu formajaban
-;
+
 "StartMenuAdminTools"=dword:00000000
 "StartMenuFavorites"=dword:00000000
-;
+
 ; __ JOBB OLDALI ELEMEK _____________________
-;
+
 "Start_ShowControlPanel"=dword:00000001
 "Start_ShowDownloads"=dword:00000000
 "Start_ShowHelp"=dword:00000000
@@ -125,7 +125,7 @@ Windows Registry Editor Version 5.00
 ; ============================================================================
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]
-;
+
 ; Ikonok automatikus elrejtese
 "EnableAutoTray"=dword:00000000
 
@@ -133,10 +133,10 @@ Windows Registry Editor Version 5.00
 ; ============================================================================
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel]
-;
+
 ; Minden ikon latszodjon.
 "StartupPage"=dword:00000001
-;
+
 ; ... kis ikonokkal.
 "AllItemsIconView"=dword:00000001
 
@@ -502,7 +502,7 @@ Windows Registry Editor Version 5.00
 ; ============================================================================
 
 [HKEY_CURRENT_USER\Software\Piriform\CCleaner]
-;
+
 ; Ezeket ne tisztitsa
 "(App)Cookies"="False"
 "(App)Recently Typed URLs"="False"
@@ -512,7 +512,7 @@ Windows Registry Editor Version 5.00
 "(App)Google Chrome - Cookies"="False"
 "(App)Google Chrome - Internet Cache"="False"
 "(App)Google Chrome - Internet History"="False"
-;
+
 ; Sqlite adatbazisok tomoritese - sokat gyorsit.
 "(App)Mozilla - Compact Databases"="True"
 "(App)Google Chrome - Compact Databases"="True"
