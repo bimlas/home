@@ -1,3 +1,4 @@
+# chocolatey.ps1: Install all applications with one click
 # Run as admin.
 #
 # TODO:
