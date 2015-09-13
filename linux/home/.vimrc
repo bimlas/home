@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.10 21:52 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.11 22:21 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -408,6 +408,8 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   " .. DEBUG / BENCHMARK ..................
 
+  "                               CHEATSHEET                               {{{
+  "
   " Debug a command
   "   debug CommandName
   "
@@ -463,6 +465,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   "
   " To output :verbose to a file:
   "   set verbosefile=filename.txt
+  "                                                                        }}}
 
   Plugin 'mattn/benchvimrc-vim'                                         " {{{2
   " :BenchVimrc
@@ -643,6 +646,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:rubycomplete_load_gemfile      = 1
     let g:ruby_no_comment_fold           = 1
     let g:ruby_operators                 = 1
+
+  Plugin 'pprovost/vim-ps1'                                             " {{{2
+  " PowerShell syntax
                                                                         " }}}2
 
   " .. NEOCOMPLETE ........................
