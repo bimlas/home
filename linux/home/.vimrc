@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.11 22:21 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.14 21:28 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -528,9 +528,10 @@ if isdirectory(bundle_dir . '/vundle.vim')
     let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-whitespace'
     " let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
     " E221  multiple spaces before operator
+    " E241  multiple spaces after ':'
     " E302  expected 2 blank lines, found 1
     " E501  line too long
-    let g:syntastic_python_flake8_args           = '--ignore=E221,E302,E501'
+    let g:syntastic_python_flake8_args           = '--ignore=E221,E241,E302,E501'
 
     " __ RUBY _______________________________
 
