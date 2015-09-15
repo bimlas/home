@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.14 21:28 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.15 14:43 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -1055,7 +1055,11 @@ set modeline
 
 " Lehetseges sorvegzodesek/karakterkodolasok. Uj fajl letrehozasanal az elso
 " parametert hasznalja.
-set fileformats=unix,dos fileencodings=utf8,cp1250,default
+" utf8:     amit mindenkinek hasznalnia kene
+" utf-16le: Windows registry fajlok (.reg) kodolasa
+" cp1250:   magyar Windows default
+" default:  a rendszer alapertelmezese
+set fileformats=unix,dos fileencodings=utf8,utf-16le,cp1250,default
 
 " Uj fajlok letrehozasanal nem jelzi ki a karakterkodolast e nelkul.
 let &fileencoding = matchstr(&fileencodings, '^[^,]\+')
