@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.09 08:51 ==
+; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.31 08:11 ==
 
 ; Need for right key sequence behaviour (for example: gg).
 
@@ -482,8 +482,6 @@ CapsLock::Ctrl
     Send, {F2}
     Return
   }
-
-  Return
 #if
 
 ; Quicksearch.
@@ -598,8 +596,6 @@ CapsLock::Ctrl
     Send, f
     Return
   }
-
-  Return
 #if
 
 ; Preview window.
@@ -677,6 +673,4 @@ CapsLock::Ctrl
     }
     Return
   }
-
-  Return
 #if
