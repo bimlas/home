@@ -1325,12 +1325,13 @@ nnoremap  xP     xP
 " Korabban masolt szoveg beillesztese.
 nnoremap  <Leader>p  :Unite history/yank<CR>
 
-" Az ablakkezelo vagolapjanak hasznalata - command-modban hatastalan, a
-" kijelolt szoveget illeszti be, nem pedig azt, amire <C-Insert>-et nyomtunk.
-" Kell hozza: set virtualedit=onemore
-noremap  <C-Insert>  "+y
-noremap  <S-Insert>  "+P
-imap     <S-Insert>  <C-O><S-Insert>
+" Az ablakkezelo vagolapjanak hasznalata.
+" Hogy a <S-Insert> a sor vegen is normalisan mukodjon:
+" set virtualedit=onemore
+noremap   <C-Insert>  "+y
+cnoremap  <C-Insert>  <C-Y>
+noremap   <S-Insert>  "+P
+imap      <S-Insert>  <C-O><S-Insert>
 
 " Kurzor alatti parancs sugojanak megnyitasa.
 autocmd  vimrc  FileType  man  call ManMap()
