@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.15 14:43 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.16 11:20 ==
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -472,6 +472,37 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'mattn/benchvimrc-vim'                                         " {{{2
   " :BenchVimrc
+
+  Plugin 'tpope/vim-scriptease'                                         " {{{2
+  " :PP
+  "   Pretty print.  With no argument, acts as a REPL.
+  " :Runtime
+  "   Reload runtime files.  Like `:runtime!`, but it unlets any include
+  "   guards first.
+  " :Disarm
+  "   Remove a runtime file's maps, commands, and autocommands, effectively
+  "   disabling it.
+  " :Scriptnames
+  "   Load `:scriptnames` into the quickfix list.
+  " :Verbose
+  "   Capture the output of a `:verbose` invocation into the preview window.
+  " :Time
+  "   Measure how long a command takes.
+  " Breakadd
+  "   Like its lowercase cousin, but makes it much easier to set breakpoints
+  "   inside functions.  Also :Breakdel.
+  " :Vedit
+  "   Edit a file relative the runtime path. For example, `:Vedit
+  "   plugin/scriptease.vim`. Also, `:Vsplit`, `:Vtabedit`, etc.
+  "   Extracted from [pathogen.vim](https://github.com/tpope/vim-pathogen).
+  " K
+  "   Look up the `:help` for the VimL construct under the cursor.
+  " zS
+  "   Show the active syntax highlighting groups under the cursor.
+  " g!
+  "   Eval a motion or selection as VimL and replace it with the result.
+  "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
+  "   that it probably deserves its own plugin.
 
                                                                         " }}}2
 
@@ -1561,9 +1592,8 @@ vmap      <Space>;        <Plug>TComment_gc
 " TODO: xterm cwd
 
 " Simple calculator/evaulator.
-nnoremap  <Space>ac  :echo "\n".string(eval(input('Eval: ')))<CR>
-" Replace WORD under cursor with result.
-nnoremap  <Space>aC  :let expr_to_eval=<C-R><C-A><CR>ciW<C-R>=eval(expr_to_eval)<CR><Esc>
+nnoremap  <Space>ac  :PP<CR>
+map       <Space>aC  g!
 
 " Open terminal (shell).
 nnoremap  <expr>  <Space>as   has('win32')
@@ -1627,8 +1657,7 @@ noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
 autocmd  vimrc  FileType  vim  noremap <buffer>  <Space>m8
 \ :call EightHeader(78, 'left', 1, ' ', '" {'.'{{2' , '')<CR><CR>
 
-autocmd  vimrc  FileType  vim  nnoremap <buffer>  <Space>ms
-\ :let expr_to_eval=input('Eval: ') <Bar> while expr_to_eval != '' <Bar> echo "\n".string(eval(expr_to_eval)) <Bar> let expr_to_eval=input('Eval: ') <Bar> endwhile<CR>
+autocmd  vimrc  FileType  vim  nnoremap <buffer>  <Space>ms  :PP<CR>
 
 " __ VIMHELP ____________________________
 
