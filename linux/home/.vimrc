@@ -3,7 +3,10 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.16 11:38 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.16 11:49 ==
+
+"                              MINIMAL VIMRC                              {{{1
+" ============================================================================
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
 let s:vanilla = 0
@@ -19,6 +22,9 @@ if s:vanilla
   source $HOME/.vimrc_test
   finish
 endif
+
+"                               BOILERPLATE                               {{{1
+" ============================================================================
 
 " Sok plugin es beallitas igenyli.
 set nocompatible
