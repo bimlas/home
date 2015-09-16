@@ -191,6 +191,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'thinca/vim-textobj-between'                                   " {{{2
   " ifX/afX az X-eken beluli kivalasztahoz
 
+  Plugin 'sgur/vim-textobj-parameter'                                   " {{{2
+  " a,/i, for function paramteres
+
   Plugin 'julian/vim-textobj-variable-segment'                          " {{{2
   " _privat*e_thing -> civone -> _one_thing
   " eggsAn*dCheese  -> dav    -> eggsCheese
