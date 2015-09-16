@@ -680,7 +680,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
     if !exists('g:neocomplete#sources')
       let g:neocomplete#sources = {}
     endif
-    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'neosnippet', 'calc']
+    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'neosnippet']
 
     " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
     " tudjuk.
@@ -709,9 +709,6 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   Plugin 'honza/vim-snippets'                                           " {{{2
   " template-ek
-
-  Plugin 'hrsh7th/vim-neco-calc'                                        " {{{2
-  " aranyos szamologep a neovomplete-hez (calc source)
                                                                         " }}}2
 
   " .. GIT ................................
@@ -1562,6 +1559,13 @@ vmap      <Space>;        <Plug>TComment_gc
 " ............................................................................
 
 " TODO: xterm cwd
+
+" Simple calculator/evaulator.
+nnoremap  <Space>ac  :echo "\n".string(eval(input('Eval: ')))<CR>
+" Replace WORD under cursor with result.
+nnoremap  <Space>aC  :let expr_to_eval=<C-R><C-A><CR>ciW<C-R>=eval(expr_to_eval)<CR><Esc>
+
+" Open terminal (shell).
 nnoremap  <expr>  <Space>as   has('win32')
                               \ ? ':silent !start conemu64.exe /dir "'.expand('%:p:h').'" /cmd powershell<cr>'
                               \ : ':silent !cd '.expand('%:p:h').'; xterm; cd -<CR>'
@@ -1622,6 +1626,9 @@ noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
 
 autocmd  vimrc  FileType  vim  noremap <buffer>  <Space>m9
 \ :call EightHeader(78, 'left', 1, ' ', '" {'.'{{2' , '')<CR><CR>
+
+autocmd  vimrc  FileType  vim  nnoremap <buffer>  <Space>ms
+\ :let expr_to_eval=input('Eval: ') <Bar> while expr_to_eval != '' <Bar> echo "\n".string(eval(expr_to_eval)) <Bar> let expr_to_eval=input('Eval: ') <Bar> endwhile<CR>
 
 " __ VIMHELP ____________________________
 
