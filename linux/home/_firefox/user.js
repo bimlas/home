@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.15 07:31 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.17 08:47 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -104,9 +104,6 @@ user_pref("general.smoothScroll", false);
 
 /* Ne jegyezze meg a jelszavakat. */
 user_pref("signon.rememberSignons", false);
-
-/* Ne kovessenek. */
-user_pref("privacy.trackingprotection.enabled", true)
 
 /* Bezaraskor torolje... */
 user_pref("privacy.clearOnShutdown.cache",        true);
