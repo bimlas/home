@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.16 11:49 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.17 13:12 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -697,6 +697,9 @@ if isdirectory(bundle_dir . '/vundle.vim')
     " Engedelyezes.
     let g:neocomplete#enable_at_startup = 1
 
+    " Ne mukodjon automatikusan, csak ha en akarom:
+    " neocomplete#start_manual_complete()
+    let g:neocomplete#disable_auto_complete = 1
     " Smartcase.
     let g:neocomplete#enable_smart_case = 1
 
@@ -1299,7 +1302,7 @@ inoremap  <M-k>  <Up>
 inoremap  <M-l>  <Right>
 
 " Egygombos omnicomplete.
-inoremap  <C-F>  <C-X><C-O>
+inoremap  <expr>  <C-F>  neocomplete#start_manual_complete(g:neocomplete#sources._)
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
@@ -1459,11 +1462,6 @@ endfunction
 "                         NEOCOMPLETE/NEOSNIPPET                          {{{3
 " ............................................................................
 
-" Neocomplete megnyitasa manualisan.
-" Terminal-ban a <Nul> a <C-Space> megfeleloje.
-inoremap  <expr>  <C-Space>  neocomplete#start_manual_complete()
-imap      <expr>  <Nul>      <C-Space>
-
 " Completion, vagy snippet beszurasa.
 imap      <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
 imap      <expr>  <Nul>      <C-Space>
@@ -1577,6 +1575,7 @@ nnoremap  <Space>l        g;
 nnoremap  <Space>L        g,
 nnoremap  <Space>O        :pu! _<CR>
 nnoremap  <Space>o        :pu  _<CR>
+nnoremap  <Space>u        :earlier 1f<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
 noremap   <Space><Space>  <C-]>
 nnoremap  <Space>*        :call InterestingWords('n')<CR>
