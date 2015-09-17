@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.10 11:31 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.17 12:08 ==
 
 [user]
 
@@ -76,7 +76,7 @@
 
 [core]
 
-  editor       = "vim --nofork"
+  editor       = "gvim --nofork"
 
   ; Ne konvertalja a sorvegzodeseket.
   autocrlf     = "false"
@@ -114,11 +114,11 @@
 
 [diff]
 
-  tool         = "vimdiff"
+  tool         = "gvimdiff"
 
 [merge]
 
-  tool         = "vimdiff"
+  tool         = "gvimdiff"
 
 [push]
 
