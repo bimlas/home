@@ -17,6 +17,11 @@
 #   Fix #123  Az issue lezarasa.
 #   #123      Nem zarja le, de azzal kapcsolatos.
 #
+#   Tobb issue lezarasa:
+#   * Close #1 Fix typo
+#   * Close #2 Add documentation
+#   * ...
+#
 # Az --amend hasznalata egy korabbi commit-on:
 #
 #   $ git add FILE
