@@ -48,4 +48,6 @@ copy             \
   _thunderbird/* \
   $HOME/AppData/Roaming/Thunderbird/Profiles/*/
 
-header "DON'T FORGET TO ADD ~/bin TO PATH"
+header "DON'T FORGET TO:"
+header "* add ~/bin to path"
+header "* run ~/firefox/install_addons.ps1"

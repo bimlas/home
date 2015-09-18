@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.17 14:00 ==
+// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.18 11:12 ==
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js
@@ -42,6 +42,10 @@ user_pref("extensions.s3gt.view_reverse_translate_tooltip",         false);
 
 /* sztakidict - sztaki szotar a kijelolt szovegen jobbgomb utan
  *  https://addons.mozilla.org/hu/firefox/addon/sztakidict/
+ *
+ * tile view - az ablak felosztasa tobb reszre (szinkronizalni is lehet a
+ * gorgetesuket)
+ *  https://addons.mozilla.org/en-US/firefox/addon/tile-view/
  *
  * chatzilla - irc kliens
  *  https://addons.mozilla.org/hu/firefox/addon/chatzilla/
