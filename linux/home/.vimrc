@@ -227,40 +227,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
   Plugin 'thinca/vim-visualstar'                                        " {{{2
   " kijelolt szoveg keresese * gombbal
 
-  " Plugin 'dkprice/vim-easygrep'                                         " {{{2
-  " tuningolt vimgrep
-
-    " Nem kellenek a default map-ok.
-    " TODO: nem mukodik
-    let g:EasyGrepOptionPrefix = ''
-
-    " Ha csak lehet, hasznaljon gyorsabb grep-et mint a vimgrep.
-    " if executable('ag') || executable('pt')
-    "   let g:EasyGrepCommand = 1
-    " endif
-
-    " Alapjaba veve a megnyitott fajl tipusaval megegyezo fajlokban keressen.
-    let g:EasyGrepMode = 2
-
-    " A fajl konyvtaraban keressen, ne a cwd-ben.
-    let g:EasyGrepSearchCurrentBufferDir = 1
-
-    " Rekurzivan keressen a konyvtarakban.
-    let g:EasyGrepRecursive = 1
-
-    " De hagyja ki a kovetkezoket...
-    let g:EasyGrepFilesToExclude = ".svn,.git"
-
-    " Rejtett fajlokban is keressen.
-    let g:EasyGrepHidden = 1
-
-    " Soronkent tobb egyezest is talalhat. (mint pl.: :s///g)
-    let g:EasyGrepEveryMatch = 1
-
-    " Ne nyisson uj tab-okat a talalatokhoz.
-    let g:EasyGrepReplaceWindowMode = 2
-
-  Plugin 'vis'                                                          " {{{2
+  NeoBundle 'vis'                                                       " {{{2
   " parancsok futtatasa visual block-on
 
   " Plugin 'jiangmiao/auto-pairs'                                         " {{{2
@@ -510,20 +477,7 @@ if isdirectory(bundle_dir . '/vundle.vim')
 
   " .. PROGRAMOZAS ........................
 
-  " Plugin 'scrooloose/nerdcommenter'                                     " {{{2
-  " szovegreszek kommentelese (akar oszlopok is)
-
-    " Rakjon szokozoket a kommenterek kore.
-    let NERDSpaceDelims = 1
-
-    " :help NERDBlockComIgnoreEmpty
-    let NERDBlockComIgnoreEmpty = 0
-
-    " Az alapertelmezett map-ok kikapcsolasa. (mivel keves kommentelo parancsot
-    " hasznalok es azokat sajat map-okra allitottam, igy teljesen feleslegesek)
-    let NERDCreateDefaultMappings = 0
-
-  Plugin 'tomtom/tcomment_vim'                                          " {{{2
+  NeoBundle 'tomtom/tcomment_vim'                                       " {{{2
   " szovegreszek kommentelese
 
     let g:tcommentMaps = 0
