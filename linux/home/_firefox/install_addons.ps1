@@ -2,7 +2,7 @@
 # Copy to the Firefox profile, then execute in it - it works on Windows
 # (PowerShell) and Linux too.
 
-pip install mozprofile
+pip2 install mozprofile
 
 # Pentadactyl: Vim in Firefox
 #   https://addons.mozilla.org/en-us/firefox/addon/pentadactyl/
