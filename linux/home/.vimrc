@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.18 22:13 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.19 21:46 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -133,6 +133,8 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
   " NeoBundle 'yggdroot/indentline'
 
+    let g:indentLine_char = '┊'
+
   " HECAL3/VIM-LEADER-GUIDE                                               {{{2
   " Guide-key
   NeoBundle 'hecal3/vim-leader-guide'
@@ -210,15 +212,11 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
   " ifX/afX az X-eken beluli kivalasztahoz
-  NeoBundle 'thinca/vim-textobj-between', {
-  \ 'depends' : 'kana/vim-textobj-user',
-  \ }
+  NeoBundle 'thinca/vim-textobj-between'
 
   " SGUR/VIM-TEXTOBJ-PARAMETER                                            {{{2
   " a,/i, for function paramteres
-  NeoBundle 'sgur/vim-textobj-parameter', {
-  \ 'depends' : 'kana/vim-textobj-user',
-  \ }
+  NeoBundle 'sgur/vim-textobj-parameter'
 
   " JULIAN/VIM-TEXTOBJ-VARIABLE-SEGMENT                                   {{{2
   " _privat*e_thing -> civone -> _one_thing
@@ -226,14 +224,12 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " foo_ba*r_baz    -> dav    -> foo_baz
   " _privat*e_thing -> dav    -> _thing
   " _g*etJiggyYo    -> dav    -> _jiggyYo
-  NeoBundle 'julian/vim-textobj-variable-segment', {
-  \ 'depends' : 'kana/vim-textobj-user',
-  \ }
+  NeoBundle 'julian/vim-textobj-variable-segment'
 
   " TEK/VIM-TEXTOBJ-RUBY                                                  {{{2
   " ir/ar: block, if/af: method, ic/ac: class
   NeoBundle 'tek/vim-textobj-ruby', {
-  \ 'depends' : 'kana/vim-textobj-user',
+  \ 'disabled' : !has('ruby'),
   \ }
 
     let g:textobj_ruby_no_mappings = 1
@@ -244,7 +240,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " BPS/VIM-TEXTOBJ-PYTHON                                                {{{2
   " if/af: function, ic/ac: class
   NeoBundle 'bps/vim-textobj-python', {
-  \ 'depends' : 'kana/vim-textobj-user',
+  \ 'disabled' : !has('ruby'),
   \ }
 
     let g:textobj_python_no_default_key_mappings = 1
@@ -353,6 +349,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " autocmd  vimrc  VimEnter  *  call unite#filters#matcher_default#use(['matcher_regexp'])
     " autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
 
+  " SHOUGO/UNITE-OUTLINE                                                " {{{2
+  " tagbar-szeru, de neha jobb
+  NeoBundle 'shougo/unite-outline'
+
   " SHOUGO/VIMFILER.VIM                                                   {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
   NeoBundle 'shougo/vimfiler.vim'
@@ -383,12 +383,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     \ 'sort_type': 'extension',
     \ 'columns':   'size:time'
     \ })
-
-  " UNITE-OUTLINE                                                         {{{2
-  " tagbar-szeru, de neha jobb
-  NeoBundle 'shougo/unite-outline', {
-  \ 'depends' : 'shougo/unite.vim',
-  \ }
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
@@ -750,28 +744,24 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " az include-olt fajlokhoz gyartson tag-eket
   NeoBundle 'shougo/neoinclude.vim', {
-  \ 'depends' : 'shougo/neocomplete.vim',
   \ 'disabled' : !has('lua'),
   \ }
 
   " SHOUGO/NECO-SYNTAX                                                    {{{2
   " szintaxis alapjan kiegeszites
   NeoBundle 'shougo/neco-syntax', {
-  \ 'depends' : 'shougo/neocomplete.vim',
   \ 'disabled' : !has('lua'),
   \ }
 
   " SHOUGO/NECO-VIM                                                       {{{2
   " Vim kiegeszites a neocomplete-hez
   NeoBundle 'shougo/neco-vim', {
-  \ 'depends' : 'shougo/neocomplete.vim',
   \ 'disabled' : !has('lua'),
   \ }
 
   " SHOUGO/NEOSNIPPET.VIM                                                 {{{2
   " template-ek
   NeoBundle 'shougo/neosnippet.vim', {
-  \ 'depends' : 'shougo/neocomplete.vim',
   \ 'disabled' : !has('lua'),
   \ }
 
@@ -782,7 +772,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " HONZA/VIM-SNIPPETS                                                    {{{2
   " template-ek
   NeoBundle 'honza/vim-snippets', {
-  \ 'depends' : 'shougo/neocomplete.vim',
   \ 'disabled' : !has('lua'),
   \ }
                                                                         " }}}2
@@ -792,27 +781,33 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integracio
   " $ install git
-  NeoBundle 'tpope/vim-fugitive'
-
-  " LAMBDALISUE/VIM-GITA                                                  {{{2
-  " git integracio
-  " $ install git
-  NeoBundle 'lambdalisue/vim-gita'
-
-    " Sajat valtozo a branch megjelenitesenek engedelyezesehez a statusline-ban
-    " Halozati meghajton nagyon belassit.
-    let g:stat_git_enabled = 1
+  NeoBundle 'tpope/vim-fugitive', {
+  \ 'disabled' : !executable('git'),
+  \ }
 
   " GREGSEXTON/GITV                                                       {{{2
   " gitk a vim-en belul
   " $ install git
-  NeoBundle 'gregsexton/gitv'
+  NeoBundle 'gregsexton/gitv', {
+  \ 'disabled' : !executable('git'),
+  \ }
 
     " A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
     let g:Gitv_TruncateCommitSubjects = 1
 
     " Control key-eket ne map-oljon.
     let g:Gitv_DoNotMapCtrlKey = 1
+
+  " LAMBDALISUE/VIM-GITA                                                  {{{2
+  " git integracio
+  " $ install git
+  NeoBundle 'lambdalisue/vim-gita', {
+  \ 'disabled' : !executable('git'),
+  \ }
+
+    " Sajat valtozo a branch megjelenitesenek engedelyezesehez a statusline-ban
+    " Halozati meghajton nagyon belassit.
+    let g:stat_git_enabled = 1
                                                                         " }}}2
   call neobundle#end()
 else
