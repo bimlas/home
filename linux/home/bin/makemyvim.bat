@@ -9,7 +9,10 @@ rem
 rem NOTE
 rem   DIRECTX=yes needs mingw64 + ARCH=i686 (or x64)
 rem
-rem ========= BimbaLaszlo (.github.io|gmail.com) ========= 2015.07.30 21:40 ==
+rem DOWNLOADABLE BUILD
+rem   https://github.com/BimbaLaszlo/home/releases/tag/gvim.exe
+rem
+rem ========= BimbaLaszlo (.github.io|gmail.com) ========= 2015.09.20 11:09 ==
 
 mingw32-make -f Make_cyg_ming.mak ^
 USERNAME=BimbaLaszlo              ^
@@ -19,11 +22,11 @@ FEATURES=HUGE                     ^
 ARCH=i586                         ^
 OLE=yes                           ^
 GUI=yes                           ^
-PYTHON=c:/app/python27            ^
+PYTHON=c:/app/python2             ^
 PYTHON_VER=27                     ^
-PYTHON3=c:/app/python34           ^
-PYTHON3_VER=34                    ^
-RUBY=c:/app/ruby22                ^
+PYTHON3=c:/app/python3            ^
+PYTHON3_VER=35                    ^
+RUBY=c:/app/ruby                  ^
 RUBY_VER=22                       ^
 RUBY_VER_LONG=2.2.0               ^
 LUA=c:/app/lua                    ^
