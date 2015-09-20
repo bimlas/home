@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.19 21:46 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.20 13:42 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -71,6 +71,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   exe 'set runtimepath+=' . bundle_dir . '/neobundle.vim'
   call neobundle#begin(bundle_dir)
   filetype off
+
+  " A :NeoBundleDirectInstall telepiteseket felejtse el miutan kilepunk.
+  autocmd  vimrc  VimLeavePre  *  silent! call delete(bundle_dir . '/extra_bundles.vim')
 
   " SHOUGO/NEOBUNDLE.VIM                                                  {{{2
   " plugin-ok automatizalt telepitese Git-en keresztul (is)
@@ -1710,6 +1713,14 @@ autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>ms  has('win32'
 autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win32')
                                   \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
                                   \ : ':silent !xterm -c python &<CR>'
+
+"                          <Space>n - NEOBUNDLE                           {{{3
+" ............................................................................
+
+nnoremap  <Space>nc  :NeoBundleClean<CR>
+nnoremap  <Space>nl  :Unite neobundle/log<CR>
+nnoremap  <Space>ns  :Unite neobundle/search<CR>
+nnoremap  <Space>nu  :Unite neobundle/update<CR>
 
 "                           <Space>p - PROJECT                            {{{3
 " ............................................................................
