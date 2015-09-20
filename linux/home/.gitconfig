@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.17 12:08 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.20 13:46 ==
 
 [user]
 
@@ -57,7 +57,11 @@
   ad           = "add --all"
   ada          = "add --all :/"
   c            = "commit"
+  ca           = "commit --amend"
   cm           = "commit -m"
+
+  # fixup:  merge without changing the commit message
+  # squash: the commit message is editable
   cfu          = "!sh -c 'git commit --fixup=$1 && git rebase --autosquash --interactive $1~' -"
   csq          = "!sh -c 'git commit --squash=$1 && git rebase --autosquash --interactive $1~' -"
 
