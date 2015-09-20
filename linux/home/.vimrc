@@ -129,12 +129,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     let g:indent_guides_default_mapping       = 0
     " let g:indent_guides_guide_size            = 1
 
-  " YGGDROOT/INDENTLINE                                                   {{{2
-  " sor behuzasanak jelolese, hogy a blokkok jobban kovethetoek legyenek
-  " NeoBundle 'yggdroot/indentline'
-
-    let g:indentLine_char = '┊'
-
   " HECAL3/VIM-LEADER-GUIDE                                               {{{2
   " Guide-key
   NeoBundle 'hecal3/vim-leader-guide'
@@ -158,10 +152,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
-
-  " TPOPE/VIM-SEXP-MAPPINGS-FOR-REGULAR-PEOPLE                            {{{2
-  " normalisabb mozgas a text-objektumok kozott (w, b, ge, ...)
-  " NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
   " VIM-SCRIPTS/MATCHIT.ZIP                                               {{{2
   " paros jelek kozti ugralas
