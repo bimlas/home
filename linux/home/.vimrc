@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.20 13:42 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.21 12:39 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -379,6 +379,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
+
+  " SUNAKU/VIM-SHORTCUT                                                   {{{2
+  " guide-key szeruseg
+  NeoBundle 'sunaku/vim-shortcut'
 
   " LAMBDALISUE/VIM-IMPROVE-DIFF                                          {{{2
   " auto diffupdate & diffoff + DiffOrig
@@ -1593,7 +1597,15 @@ endfunction
 "
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
 
-noremap   <Space>?          :Unite mapping<CR>
+" autocmd  vimrc  VimEnter *  call SpaceMaps()
+" function! SpaceMaps()
+"   call shortcut#prefix('<Space>')
+"   call shortcut#map('dd', 'delete paragraph', 'normal dap')
+"   " Not works in operator pending mode
+"   call shortcut#map('dj', 'jump down', 'call feedkeys("\<Plug>(easymotion-sol-j)")')
+" endfunction
+
+noremap   <Space>?        :Unite mapping<CR>
 
 map       <Space>j        <Plug>(easymotion-sol-j)
 map       <Space>k        <Plug>(easymotion-sol-k)
@@ -1721,7 +1733,7 @@ nnoremap  <Space>nc  :NeoBundleClean<CR>
 nnoremap  <Space>nd  :NeoBundleDirectInstall ''<Left>
 nnoremap  <Space>nl  :Unite neobundle/log<CR>
 nnoremap  <Space>ns  :Unite neobundle/search<CR>
-nnoremap  <Space>nu  :Unite neobundle/update<CR>
+nnoremap  <Space>nu  :Unite neobundle/update:!<CR>
 
 "                           <Space>p - PROJECT                            {{{3
 " ............................................................................
