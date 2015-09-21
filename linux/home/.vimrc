@@ -1718,6 +1718,7 @@ autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win3
 " ............................................................................
 
 nnoremap  <Space>nc  :NeoBundleClean<CR>
+nnoremap  <Space>nd  :NeoBundleDirectInstall ''<Left>
 nnoremap  <Space>nl  :Unite neobundle/log<CR>
 nnoremap  <Space>ns  :Unite neobundle/search<CR>
 nnoremap  <Space>nu  :Unite neobundle/update<CR>
