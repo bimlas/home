@@ -196,6 +196,11 @@ layers configuration."
 
   ;; BINDS
 
+  ;; Use Vim bindings everywhere.
+  (evil-set-initial-state 'info-mode 'normal)
+  (setq evil-normal-state-modes (append evil-motion-state-modes evil-normal-state-modes))
+  (setq evil-motion-state-modes nil)
+
   ;; Global remaps to quit.
   ;; TODO: visual block.
   (global-set-key                             (kbd "C-k")   'keyboard-escape-quit)
@@ -203,11 +208,11 @@ layers configuration."
   (define-key evil-insert-state-map           (kbd "C-k")   'evil-force-normal-state)
   (define-key evil-normal-state-map           (kbd "C-k")   'keyboard-escape-quit)
   (define-key evil-visual-state-map           (kbd "C-k")   'keyboard-escape-quit)
-  (define-key minibuffer-local-map            (kbd "C-k")   'keyboard-escape-quit)
-  (define-key minibuffer-local-ns-map         (kbd "C-k")   'keyboard-escape-quit)
-  (define-key minibuffer-local-completion-map (kbd "C-k")   'keyboard-escape-quit)
-  (define-key minibuffer-local-must-match-map (kbd "C-k")   'keyboard-escape-quit)
-  (define-key minibuffer-local-isearch-map    (kbd "C-k")   'keyboard-escape-quit)
+  (define-key minibuffer-local-map            (kbd "C-k")   'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-ns-map         (kbd "C-k")   'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-completion-map (kbd "C-k")   'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-must-match-map (kbd "C-k")   'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-isearch-map    (kbd "C-k")   'minibuffer-keyboard-quit)
   ;; Global remaps to <return>.
   ;; TODO: google
   (define-key evil-motion-state-map           (kbd "C-j")   'widget-button-press)
