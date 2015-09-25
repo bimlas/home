@@ -29,17 +29,17 @@ $InstallDir = "c:\choco"
 
 function Install-NeededFor {
 param(
-   [string] $packageName = ''
+   [string] $packageName = ""
   ,[bool] $defaultAnswer = $true
 )
-  if ($packageName -eq '') {return $false}
+  if ($packageName -eq "") {return $false}
 
-  $yes = '6'
-  $no = '7'
-  $msgBoxTimeout='-1'
-  $defaultAnswerDisplay = 'Yes'
+  $yes = "6"
+  $no = "7"
+  $msgBoxTimeout="-1"
+  $defaultAnswerDisplay = "Yes"
   $buttonType = 0x4;
-  if (!$defaultAnswer) { $defaultAnswerDisplay = 'No'; $buttonType= 0x104;}
+  if (!$defaultAnswer) { $defaultAnswerDisplay = "No"; $buttonType= 0x104;}
 
   $answer = $msgBoxTimeout
   try {
@@ -60,24 +60,24 @@ param(
   return $false
 }
 
-if (Install-NeededFor 'Chocolatey') {
-  iex ((new-object net.webclient).DownloadString('http://chocolatey.org/install.ps1'))
+if (Install-NeededFor "Chocolatey") {
+  iex ((new-object net.webclient).DownloadString("http://chocolatey.org/install.ps1"))
 }
 
 #                            BASE APPLICATIONS                            {{{1
 # ============================================================================
 
-if (Install-NeededFor 'BASE APPLICATIONS') {
-  if (Install-NeededFor 'BASE APPLICATIONS / Autohotkey') {
+if (Install-NeededFor "BASE APPLICATIONS") {
+  if (Install-NeededFor "BASE APPLICATIONS / Autohotkey") {
     choco install autohotkey.install -installArguments "/D=$InstallDir\autohotkey"
   }
 
 # TODO: Cannot set up install dir. (/e only extracts it)
-  if (Install-NeededFor 'BASE APPLICATIONS / Conemu') {
+  if (Install-NeededFor "BASE APPLICATIONS / Conemu") {
     choco install conemu -overrideArguments -installArguments " /p:x64 /passive TARGETDIR=$InstallDir\conemu"
   }
 
-  if (Install-NeededFor 'BASE APPLICATIONS / Git') {
+  if (Install-NeededFor "BASE APPLICATIONS / Git") {
     choco install git.install -installArguments "/DIR=$InstallDir\git" -params "/GitOnlyOnPath /NoAutoCrlf"
   }
 }
@@ -85,13 +85,13 @@ if (Install-NeededFor 'BASE APPLICATIONS') {
 #                               MULTIMEDIA                                {{{1
 # ============================================================================
 
-if (Install-NeededFor 'MULTIMEDIA') {
-  if (Install-NeededFor 'MULTIMEDIA / Sumatra Pdf') {
+if (Install-NeededFor "MULTIMEDIA") {
+  if (Install-NeededFor "MULTIMEDIA / Sumatra Pdf") {
     choco install sumatrapdf.install -installArguments "/d $InstallDir\sumatrapdf /register"
   }
 
 # TODO: Set up install dir.
-  if (Install-NeededFor 'MULTIMEDIA / Vlc') {
+  if (Install-NeededFor "MULTIMEDIA / Vlc") {
     New-Item -Path HKLM:\SOFTWARE\VideoLAN\VLC -Force
     New-ItemProperty -Path HKLM:\SOFTWARE\VideoLAN\VLC -Name "InstallDir" -Value "$InstallDir\vlc" -Force
     choco install vlc
@@ -101,20 +101,22 @@ if (Install-NeededFor 'MULTIMEDIA') {
 #                              DEVELOPEMENT                               {{{1
 # ============================================================================
 
-if (Install-NeededFor 'DEVELOPEMENT') {
-  if (Install-NeededFor 'DEVELOPEMENT / Ruby') {
+if (Install-NeededFor "DEVELOPEMENT") {
+  if (Install-NeededFor "DEVELOPEMENT / Ruby") {
     choco install ruby -installArguments "/tasks=assocfiles,modpath,addtk /dir=$InstallDir\ruby"
     # TODO: choco install ruby2.devkit
   }
 
-  if (Install-NeededFor 'DEVELOPEMENT / Ruby Gems') {
+  if (Install-NeededFor "DEVELOPEMENT / Ruby Gems") {
     gem install bundler
     gem install asciidoctor
   }
 
-  if (Install-NeededFor 'DEVELOPEMENT / Python') {
+  if (Install-NeededFor "DEVELOPEMENT / Python") {
     # TODO: TEST: add to path (the DLLs too)
     choco install python2 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python2 ADDLOCAL=ALL"
     choco install python3 -overrideArguments -installArguments "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python3 ADDLOCAL=ALL"
+    # Install-ChocolateyPackage "python2" "msi" "/qn /norestart ALLUSERS=1 TARGETDIR=$InstallDir\python2 ADDLOCAL=ALL" "https://www.python.org/ftp/python/2.7.10/python-2.7.10.msi"
+    # Install-ChocolateyPackage "python3" "exe" "" "https://www.python.org/ftp/python/3.5.0/python-3.5.0-webinstall.exe"
   }
 }
