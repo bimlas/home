@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.21 12:39 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.27 11:32 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -19,7 +19,7 @@ if s:vanilla
   " Ide tedd a tesztelnivalot.
   set runtimepath+=$HOME/.vim_test
   " Ebbe pedig a tesztelni kivant beallitasokat.
-  source $HOME/.vimrc_test
+  silent! source $HOME/.vimrc_test
   finish
 endif
 
