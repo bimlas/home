@@ -668,14 +668,16 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
     " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
     " akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
-    " let g:jedi#auto_vim_configuration = 0
-    let g:jedi#completions_enabled = 1
+    let g:jedi#auto_vim_configuration = 0
 
     " Bufferek hasznalata tab-ok helyett.
     let g:jedi#use_tabs_not_buffers = 0
 
     " Ne valassza ki az elso lehetoseget.
     let g:jedi#popup_select_first = 0
+
+    " A pont beirasa utan ne jelenjen meg automatikusan.
+    let g:jedi#popup_on_dot = 0
 
   " VIM-RUBY/VIM-RUBY                                                     {{{2
   " ruby motyok (pl. omni completion pontosabban mukodik)
@@ -873,7 +875,9 @@ if has('win32')
 
   " Backslash (\) helyett forwardslash (/) hasznalat az utvonalakban
   " (pl. <C-X><C-F> kiegeszitesenel).
-  set shellslash
+  " Tapasztalatbol mondhatom, hogy nem minden plugin szereti (pl. Jedi-vim) -
+  " ha valamelyik nem mukodik, probald meg kommentelve is.
+  " set shellslash
 
   " :make ezt a programot hasznalja:
   set makeprg=mingw32-make
