@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.27 11:32 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.30 08:25 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -115,6 +115,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " ALTERCATION/VIM-COLORS-SOLARIZED                                      {{{2
   " szep, finom colorscheme (light es dark is)
   NeoBundle 'altercation/vim-colors-solarized'
+
+  " NLKNGUYEN/PAPERCOLOR-THEME                                            {{{2
+  " a Solarized egyetlen ellenfele (szamomra)
+  NeoBundle 'nlknguyen/papercolor-theme'
 
   " BLUEYED/VIM-DIMINACTIVE                                               {{{2
   " Aktiv ablak/buffer kiemelese.
@@ -338,9 +342,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     \ 'sync':             1,
     \ 'start_insert':     1
     \ })
+    " autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
+
     " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
     " autocmd  vimrc  VimEnter  *  call unite#filters#matcher_default#use(['matcher_regexp'])
-    " autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
 
   " SHOUGO/UNITE-OUTLINE                                                " {{{2
   " tagbar-szeru, de neha jobb
@@ -919,6 +924,26 @@ autocmd  vimrc  ColorScheme  solarized  highlight! link SpecialKey NonText
 " Ne legyenek alahuzva az osszecsukott foldok.
 autocmd  vimrc  ColorScheme  solarized  highlight! Folded term=bold,italic cterm=bold,italic gui=bold,italic
 
+"                               PAPERCOLOR                                {{{2
+" ____________________________________________________________________________
+
+" A par nelkuli zarojelek kijelzese alig lathato.
+autocmd  vimrc  ColorScheme  solarized   highlight! link Error ErrorMsg
+
+" Olvashatatlan a tabline.
+autocmd  vimrc  ColorScheme  papercolor  highlight! TabLineFill guifg=#EEEEEE
+
+" Jobban elkulonul a komment, ha dolt betus.
+autocmd  vimrc  ColorScheme  papercolor  highlight! Comment term=italic cterm=italic gui=italic
+autocmd  vimrc  ColorScheme  papercolor  highlight! Folded  term=bold,italic cterm=bold,italic gui=bold,italic
+
+" Statusline szinei.
+autocmd  vimrc  ColorScheme  *
+\ highlight! link StatFilename   Structure   |
+\ highlight! link StatFileformat ModeMsg     |
+\ highlight! link StatInfo       MakeSpecial |
+\ highlight! link StatWarning    ErrorMsg
+
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
 
@@ -939,18 +964,18 @@ autocmd  vimrc  ColorScheme  desert
 \ highlight! PmenuThumb ctermbg=White ctermfg=White guibg=Black   guifg=Black
                                                                         " }}}2
 
-" Ha nappal van es a solarized elerheto, hasznaljuk azt.
+" Nappal vilagos hatter, este sotet.
 if has('gui_running')
-  if len(globpath(&runtimepath, 'colors/solarized.vim'))
+  if len(globpath(&runtimepath, 'colors/papercolor.vim'))
   \ && (strftime("%H") >= 7 && strftime("%H") <= 17)
 
     set background=light
-    colorscheme solarized
+    colorscheme papercolor
 
-  elseif len(globpath(&runtimepath, 'colors/solarized.vim'))
+  elseif len(globpath(&runtimepath, 'colors/papercolor.vim'))
 
     set background=dark
-    colorscheme solarized
+    colorscheme papercolor
 
   elseif len(globpath(&runtimepath, 'colors/desert.vim'))
 
