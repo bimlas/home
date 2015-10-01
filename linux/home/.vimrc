@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.30 08:25 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.01 08:50 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -453,6 +453,11 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " VIMOUTLINER/VIMOUTLINER                                               {{{2
   " talan a legteljesebb org-mode plugin
   NeoBundle 'vimoutliner/vimoutliner'
+
+  " WAKATIME/VIM-WAKATIME                                                 {{{2
+  " track coding time
+  " $ install python
+  NeoBundle 'wakatime/vim-wakatime'
                                                                         " }}}2
 
   " .. DEBUG / BENCHMARK ..................
@@ -1760,6 +1765,7 @@ autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win3
 
 nnoremap  <Space>nc  :NeoBundleClean<CR>
 nnoremap  <Space>nd  :NeoBundleDirectInstall ''<Left>
+nnoremap  <Space>ni  :Unite neobundle/install<CR>
 nnoremap  <Space>nl  :Unite neobundle/log<CR>
 nnoremap  <Space>ns  :Unite neobundle/search<CR>
 nnoremap  <Space>nu  :Unite neobundle/update:!<CR>
