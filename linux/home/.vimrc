@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.01 08:50 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.02 15:27 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -118,7 +118,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " NLKNGUYEN/PAPERCOLOR-THEME                                            {{{2
   " a Solarized egyetlen ellenfele (szamomra)
-  NeoBundle 'nlknguyen/papercolor-theme'
+  " Egy hibaja van, ami miatt megis mellozom: sokszor szerkesztek Asciidoc
+  " fajlokat, ezek szinezeseben viszont a Solarized jobb.
+  " NeoBundle 'nlknguyen/papercolor-theme'
 
   " BLUEYED/VIM-DIMINACTIVE                                               {{{2
   " Aktiv ablak/buffer kiemelese.
@@ -933,7 +935,7 @@ autocmd  vimrc  ColorScheme  solarized  highlight! Folded term=bold,italic cterm
 " ____________________________________________________________________________
 
 " A par nelkuli zarojelek kijelzese alig lathato.
-autocmd  vimrc  ColorScheme  solarized   highlight! link Error ErrorMsg
+autocmd  vimrc  ColorScheme  papercolor   highlight! link Error ErrorMsg
 
 " Olvashatatlan a tabline.
 autocmd  vimrc  ColorScheme  papercolor  highlight! TabLineFill guifg=#EEEEEE
@@ -943,7 +945,7 @@ autocmd  vimrc  ColorScheme  papercolor  highlight! Comment term=italic cterm=it
 autocmd  vimrc  ColorScheme  papercolor  highlight! Folded  term=bold,italic cterm=bold,italic gui=bold,italic
 
 " Statusline szinei.
-autocmd  vimrc  ColorScheme  *
+autocmd  vimrc  ColorScheme  papercolor
 \ highlight! link StatFilename   Structure   |
 \ highlight! link StatFileformat ModeMsg     |
 \ highlight! link StatInfo       MakeSpecial |
@@ -971,16 +973,16 @@ autocmd  vimrc  ColorScheme  desert
 
 " Nappal vilagos hatter, este sotet.
 if has('gui_running')
-  if len(globpath(&runtimepath, 'colors/papercolor.vim'))
+  if len(globpath(&runtimepath, 'colors/solarized.vim'))
   \ && (strftime("%H") >= 7 && strftime("%H") <= 17)
 
     set background=light
-    colorscheme papercolor
+    colorscheme solarized
 
-  elseif len(globpath(&runtimepath, 'colors/papercolor.vim'))
+  elseif len(globpath(&runtimepath, 'colors/solarized.vim'))
 
     set background=dark
-    colorscheme papercolor
+    colorscheme solarized
 
   elseif len(globpath(&runtimepath, 'colors/desert.vim'))
 
@@ -1163,7 +1165,7 @@ set modeline
 " utf-16le: Windows registry fajlok (.reg) kodolasa
 " cp1250:   magyar Windows default
 " default:  a rendszer alapertelmezese
-set fileformats=unix,dos fileencodings=utf8,utf-16le,cp1250,default
+set fileformats=unix,dos fileencodings=utf8,cp1250,default,utf-16le
 
 " Uj fajlok letrehozasanal nem jelzi ki a karakterkodolast e nelkul.
 let &fileencoding = matchstr(&fileencodings, '^[^,]\+')
@@ -1646,7 +1648,7 @@ map       <Space>k        <Plug>(easymotion-sol-k)
 " Maradjon ugyanabban az oszlopban.
 map       <Space>J        <Plug>(easymotion-j)
 map       <Space>K        <Plug>(easymotion-k)
-nnoremap  <Space>h        :nohlsearch <Bar> call UncolorAllWords()<CR>
+nnoremap  <Space>h        :nohlsearch<CR>
 nnoremap  <Space>l        g;
 nnoremap  <Space>L        g,
 nnoremap  <Space>O        :pu! _<CR>
@@ -1654,7 +1656,6 @@ nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space>u        :earlier 1f<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
 noremap   <Space><Space>  <C-]>
-nnoremap  <Space>*        :call InterestingWords('n')<CR>
 
 nnoremap  <Space>cn       :cnext!<CR>
 nnoremap  <Space>cp       :cprevious!<CR>
