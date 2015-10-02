@@ -1,0 +1,63 @@
+set hlsearch
+set ignorecase
+set smartcase
+set number
+set relativenumber
+set scrolloff=3
+
+nnoremap  <C-K>  <Esc>
+inoremap  <C-K>  <Esc>
+vnoremap  <C-K>  <Esc>
+inoremap  <C-J>  <CR>
+
+nnoremap  é      ;
+nnoremap  É      ,
+noremap   H      g^
+noremap   L      g$
+
+nnoremap  S      "_S
+vnoremap  S      "_S
+nnoremap  c      "_c
+vnoremap  c      "_c
+nnoremap  C      "_C
+vnoremap  C      "_C
+nnoremap  d      "_d
+vnoremap  d      "_d
+nnoremap  D      "_D
+vnoremap  D      "_D
+nnoremap  <Del>  "_<Del>
+vnoremap  <Del>  "_<Del>
+nnoremap  x      d
+nnoremap  xx     dd
+vnoremap  x      d
+nnoremap  xp     xp
+nnoremap  xP     xP
+
+nnoremap  <C-L>  <C-W>w
+nnoremap  <C-H>  <C-W>c
+
+nnoremap  <Space><Space>  <C-]>
+nnoremap  <Space><Tab>    :action VimFilePrevious<CR>
+nnoremap  <Space>aa       :action GotoAction<CR>
+nnoremap  <Space>as       :action ActivateTerminalToolWindow<CR>
+nnoremap  <Space>h        :nohlsearch<CR>
+nnoremap  <Space>O        :pu! _<CR>
+nnoremap  <Space>o        :pu  _<CR>
+
+" See :actionlist PATTERN
+
+" Won't work in visual mode (with vmap) for some reason.
+" Use the default <C-/> for it.
+nnoremap  <Space>;;  :action CommentByLineComment<CR>
+
+nnoremap  <Space>?   :action ShowErrorDescription<CR>
+
+nnoremap  <Space>ff  :action GotoFile<CR>
+
+nnoremap  <Space>gd  :action Git.CompareWithBranch<CR>
+
+nnoremap  <Space>mo  :action FileStructurePopup<CR>
+nnoremap  <Space>mO  :action TypeHierarchy<CR>
+nnoremap  <Space>mr  :action Run<CR>
+
+nnoremap  <Space>tw  :action EditorToggleUseSoftWraps<CR>

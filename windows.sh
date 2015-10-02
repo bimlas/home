@@ -35,6 +35,7 @@ copy --recursive   \
   ".gitconfig"     \
   ".globalrc"      \
   ".gvimrc"        \
+  ".ideavimrc"     \
   ".pentadactylrc" \
   ".spacemacs"     \
   ".vimrc"         \
