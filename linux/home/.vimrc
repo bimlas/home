@@ -1733,7 +1733,7 @@ noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
 " __ VIM ________________________________
 
 autocmd  vimrc  FileType  vim  noremap <buffer>  <Space>m8
-\ :call EightHeader(78, 'left', 1, ' ', '" {'.'{{2' , '')<CR><CR>
+\ :call EightHeader(78, 'left', 1, ' ', '{'.'{{2' , '')<CR><CR>
 
 autocmd  vimrc  FileType  vim  nnoremap <buffer>  <Space>ms  :PP<CR>
 
