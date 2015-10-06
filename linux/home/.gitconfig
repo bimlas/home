@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.20 13:54 ==
+# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.06 07:32 ==
 
 [user]
 
@@ -62,6 +62,7 @@
   c            = "commit"
   ca           = "commit --amend"
   cm           = "commit -m"
+  cmu          = "commit -m Update"
 
   # fixup:  merge without changing the commit message
   # squash: the commit message is editable
