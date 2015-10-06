@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.02 15:27 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.06 15:50 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -1895,3 +1895,12 @@ autocmd  vimrc  BufNew    __doc__  setlocal nonumber nolist
 " Make hiba eseten nyissa meg a hibaablakot. A quickfix-reflector miatt kell a
 " nested.
 autocmd  vimrc  QuickFixCmdPost  *  nested botright cwindow
+
+"                               LOCAL VIMRC                               {{{1
+" ============================================================================
+
+" Projekt beallitasok betoltese.
+let s:local_vimrc = findfile('.lvimrc', '.;')
+if s:local_vimrc != ''
+  exe 'source ' . s:local_vimrc
+endif
