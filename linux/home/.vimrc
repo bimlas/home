@@ -708,6 +708,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " PPROVOST/VIM-PS1                                                      {{{2
   " PowerShell syntax
   NeoBundle 'pprovost/vim-ps1'
+
+  " DBEXT.VIM                                                             {{{2
+  " adadtbaziskezeles
+  NeoBundle 'dbext.vim'
                                                                         " }}}2
 
   " .. NEOCOMPLETE ........................
