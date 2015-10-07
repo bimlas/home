@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.06 15:50 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.07 10:15 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -1659,7 +1659,7 @@ nnoremap  <Space>O        :pu! _<CR>
 nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space>u        :earlier 1f<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
-noremap   <Space><Space>  <C-]>
+noremap   <Space><Space>  g<C-]>
 
 nnoremap  <Space>cn       :cnext!<CR>
 nnoremap  <Space>cp       :cprevious!<CR>
