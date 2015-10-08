@@ -51,4 +51,7 @@ user_pref("mail.server.server1.offline_download", false);
 user_pref("gmcont.auth_at_startup", true);
 
 //  * https://addons.mozilla.org/en-us/firefox/addon/s3google-translator/?src=ss
-//  Jobb klikk -> translate
+//    Jobb klikk -> translate
+//
+//  * https://addons.mozilla.org/hu/thunderbird/addon/mail-merge/
+//    Korlevelek kuldesehez.
