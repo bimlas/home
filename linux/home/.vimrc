@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.07 10:15 ==
+" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.09 10:55 ==
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================
@@ -455,11 +455,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " VIMOUTLINER/VIMOUTLINER                                               {{{2
   " talan a legteljesebb org-mode plugin
   NeoBundle 'vimoutliner/vimoutliner'
-
-  " WAKATIME/VIM-WAKATIME                                                 {{{2
-  " track coding time
-  " $ install python
-  NeoBundle 'wakatime/vim-wakatime'
                                                                         " }}}2
 
   " .. DEBUG / BENCHMARK ..................
