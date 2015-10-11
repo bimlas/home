@@ -539,7 +539,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     let g:zv_disable_mapping = 1
 
     if isdirectory('c:/app/zeal/')
-      let g:zv_zeal_directory = 'c:/app/zeal/zeal.exe'
+      let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
     endif
 
     autocmd  vimrc  FileType  ruby  Docset ruby 2
