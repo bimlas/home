@@ -1,7 +1,7 @@
 #!/bin/bash
 # lscolors - list the colors in terminal
 # https://bbs.archlinux.org/viewtopic.php?id=51818&p=1
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.22 07:12 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 T='gYw'   # The test text
 

@@ -3,7 +3,7 @@
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.31 08:11 ==
+; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 ; Need for right key sequence behaviour (for example: gg).
 

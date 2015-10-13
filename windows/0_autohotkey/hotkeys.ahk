@@ -2,7 +2,7 @@
 ;
 ; https://www.autohotkey.com/docs/Hotkeys.htm
 ;
-; ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 08:46 ==
+; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 ; CapsLock -> Ctrl remap.
 SetCapsLockState AlwaysOff

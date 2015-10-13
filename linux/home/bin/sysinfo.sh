@@ -1,7 +1,7 @@
 #!/bin/bash
 # sysinfo - print hardware information summary
 # http://www.pixelbeat.org/scripts/sysinfo
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.22 07:14 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 find_sbin_cmd() {
   for base in / /usr/ /usr/local; do

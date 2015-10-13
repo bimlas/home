@@ -1,7 +1,7 @@
 # Mozilla User Preferences
 
 // user.js: sajat firefox beallitasok
-// ========= BimbaLaszlo (.github.io|gmail.com) ========== 2015.09.18 11:12 ==
+// =================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 /* Win7-en a kovetkezo konyvtarba kell bemasolni:
  *  C:\Users\USER\AppData\Roaming\Mozilla\Firefox\Profiles\PROFIL\user.js

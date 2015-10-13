@@ -3,7 +3,7 @@
 " TIPP: Ha nem ismered a folding hasznalatat, a zR kinyitja az osszes
 " konyvjelzot.
 "
-" ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.10 22:28 ==
+" ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 "                              MINIMAL VIMRC                              {{{1
 " ============================================================================

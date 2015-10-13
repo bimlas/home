@@ -1,6 +1,6 @@
 #!/bin/bash
 # msv - docbook validation with libmsv-java
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.22 07:12 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 if [[ -e '/usr/share/java/msv-core.jar' ]]; then
   msv='java -classpath /usr/share/java/xsdlib.jar'

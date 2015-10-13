@@ -3,7 +3,7 @@
 # TIPP: If you opened in vim and don't know folding, press zR to open all
 # folds.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.24 13:27 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 # Exit if the shell is not interactive.
 if [[ -z "$PS1" ]]; then

@@ -12,7 +12,7 @@ rem
 rem DOWNLOADABLE BUILD
 rem   https://github.com/BimbaLaszlo/home/releases/tag/gvim.exe
 rem
-rem ========= BimbaLaszlo (.github.io|gmail.com) ========= 2015.09.20 11:09 ==
+rem =================== BimbaLaszlo (.github.io|gmail.com) ===================
 
 mingw32-make -f Make_cyg_ming.mak ^
 USERNAME=BimbaLaszlo              ^

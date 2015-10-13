@@ -1,6 +1,6 @@
 #!/bin/bash
 # kawoken_sand_colors - automated kawoken coloring
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.18 11:45 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 echo Remove all customized colors with kawoken-icon-theme-customization before executing!
 echo Continue? [y]es [n]o [s]tart kawoken-icon-theme-customization

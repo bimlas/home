@@ -1,6 +1,6 @@
 #!/bin/bash
 # lsdep - list the dependencies of a binary file (either made by us)
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.21 17:10 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 if [[ ! -e /usr/bin/dpkg-shlibdeps ]]; then
   echo "A dpkg-shlibdeps nincs telepitve."

@@ -17,7 +17,7 @@
 #   docker images
 #   docker rmi name_of_image
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.08.07 07:42 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 FROM debian:testing
 MAINTAINER BimbaLaszlo

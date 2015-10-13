@@ -6,7 +6,7 @@
 # The pngout have to be on $PATH.
 #
 # http://blog.stationfour.com/automating-png-jpg-image-optimization-in-windows/
-# =========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.10.28 09:54 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 for f in $(find -name '*.jpg'); do
   echo jpegtran: $f

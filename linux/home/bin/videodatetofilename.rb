@@ -1,6 +1,6 @@
 #!/bin/ruby
 # rename video files to 2015.07.05_22.10_file.avi
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.10 15:46 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 inputDir = ARGV[0]
 

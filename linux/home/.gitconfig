@@ -16,7 +16,7 @@
 #   git log -L '/int main/',/^}/:main.c
 #     Shows how the function main() in the file main.c evolved over time.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.10.06 07:32 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 [user]
 

@@ -27,7 +27,7 @@
 # If something went wrong (for example need to upgrade packages) delete
 # everything except the .git dir, than `git reset --hard`.
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.07.30 21:41 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 ./configure --with-compiledby="BimbaLaszlo" \
             --with-features=huge            \

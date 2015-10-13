@@ -5,7 +5,7 @@
 #   #!/bin/sh
 #   .git/hooks/archive_on_commit >/dev/null 2>&1 &
 #
-# ========== BimbaLaszlo (.github.io|gmail.com) ========== 2015.01.25 17:11 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 date=$(git log -n1 --format='%at' | awk '{print strftime("%Y-%m-%d_%H-%M_",$1)}')
 sum=$(git log -n1 --pretty=format:"%h_%f")

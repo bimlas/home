@@ -1,6 +1,6 @@
 #!/bin/bash
 # packlist-uri - list the missing dependencies of a package
-# ========== BimbaLaszlo(.github.io|gmail.com) =========== 2014.08.21 17:14 ==
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 apt-get --simulate install $* | sed -n "
   /Inst/ {
