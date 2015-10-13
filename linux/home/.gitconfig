@@ -27,7 +27,7 @@
 
   cl           = "clone"
   ps           = "push --all --follow-tags"
-  pl           = "!git pull --ff-only || (git status; read -p '\nCONTINUE PULLING? Y/[N]' ans; if echo $ans | grep '[Yy]' > /dev/null; then git pull; fi)"
+  pl           = "pull"
   subpl        = "!git submodule foreach git pull --tags origin master"
   seto         = "remote set-url origin"
   ghcl         = "!sh -c 'git clone https://www.github.com/$*' -"
