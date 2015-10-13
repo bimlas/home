@@ -342,7 +342,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     \ 'direction':        'botright',
     \ 'cursor_line_time': '0.0',
     \ 'sync':             1,
-    \ 'start_insert':     1
     \ })
     " autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
 
@@ -1516,7 +1515,7 @@ endfunction
 
 autocmd  vimrc  FileType  vimfiler  call VimfilerMaps()
 function! VimfilerMaps()
-  nmap  <buffer>        i       :Unite line -start-insert -winheight=10<CR>
+  nmap  <buffer>        i       :Unite line -winheight=10<CR>
   nmap  <buffer>        <C-J>   <CR>
   map   <buffer>        <C-Z>   <Plug>(vimfiler_preview_file)
   map   <buffer>        <F3>    <Plug>(vimfiler_preview_file)
