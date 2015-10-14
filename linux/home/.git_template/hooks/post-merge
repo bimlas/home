@@ -1,4 +1,5 @@
 #!/bin/bash
 # Invoked on: merge, pull
 .git/hooks/0_repo_specific >/dev/null 2>&1 &
+.git/hooks/0_rdoc          >/dev/null 2>&1 &
 .git/hooks/0_ctags         >/dev/null 2>&1 &

@@ -1,0 +1,4 @@
+#!/bin/bash
+# Update Ruby documentation database
+
+rdoc --all --ri "**/*.rb"
