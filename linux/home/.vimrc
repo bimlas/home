@@ -530,6 +530,14 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
     let g:tcommentMaps = 0
 
+  " POWERMAN/VIM-PLUGIN-VIEWDOC
+  " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
+  " help-jet)
+  NeoBundle 'powerman/vim-plugin-viewdoc'
+
+    " A `:help` parancsot ne cserelje le.
+    let g:no_viewdoc_abbrev = 1
+
   " KABBAMINE/ZEAVIM.VIM                                                  {{{2
   " talan a legnormalisabb referencia-bongeszo
   " $ install zeal @ http://zealdocs.org/
