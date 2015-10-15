@@ -1,0 +1,28 @@
+"let blacklists = ["https://mail.google.com/*"]
+let locale = "hu"
+let hintcharacters = "ASDFGHJKLUIOPQWER"
+" Animate link hints open and close.
+set linkanimations
+
+let barposition = "bottom"
+let completionengines = ["google"]
+let mapleader = "á"
+" Use <C-N> and <C-P> to cycle through completion results.
+set cncpcompletion
+
+" Search
+set regexp
+set ignorecase
+set smartcase
+
+map  <C-K>      <Esc>
+map  <Space>ff  :open<Space>
+map  <Space>h   :nohlsearch<CR>
+map  <C-U>      scrollPageUp
+map  <C-D>      scrollPageDown
+map  <C-H>      closeTab
+map  <C-E>      nextTab
+map  <C-Y>      previousTab
+
+" Text Area
+" iunmapAll
