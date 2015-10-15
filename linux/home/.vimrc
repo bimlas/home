@@ -1661,6 +1661,7 @@ nnoremap  <Space>L        g,
 nnoremap  <Space>O        :pu! _<CR>
 nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space>u        :earlier 1f<CR>
+nnoremap  <Space>U        :later 1f<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
 noremap   <Space><Space>  g<C-]>
 
