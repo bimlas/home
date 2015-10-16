@@ -1,6 +1,6 @@
 {
    "bookmark_bar": {
-      "show_on_all_tabs": true
+      "show_on_all_tabs": false
    },
    "download": {
       "prompt_for_download": true
