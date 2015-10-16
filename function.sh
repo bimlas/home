@@ -22,3 +22,11 @@ link()
     | sed -e "s:^$LN.*:`printf "\e[0;31m"`&`printf "\e[0m"`:" \
     | sed "s:.*:    &:"
 }
+
+remember()
+{
+  header "DON'T FORGET TO:"
+  header "* add ~/bin to path"
+  header "* run ~/firefox/install_addons.ps1"
+  header "* autostart ~/bin/cvim_server"
+}

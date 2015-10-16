@@ -56,3 +56,5 @@ link "$CWD/linux/home/.zshrc"         "$HOME/.zshrc"
 
 cd "$CWD/../../"
 link "`pwd`" "$HOME/cuccok"
+
+remember
