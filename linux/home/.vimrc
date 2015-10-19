@@ -348,9 +348,19 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
     " autocmd  vimrc  VimEnter  *  call unite#filters#matcher_default#use(['matcher_regexp'])
 
-  " SHOUGO/UNITE-OUTLINE                                                " {{{2
+  " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
   NeoBundle 'shougo/unite-outline'
+
+  " HEWES/UNITE-GTAGS                                                     {{{2
+  " gnu global adatbazis hasznalatahoz (ctags, cscope alternativa)
+  NeoBundle 'hewes/unite-gtags'
+
+    autocmd  vimrc  BufEnter  *  if exists('b:git_dir') | let $GTAGSROOT = b:git_dir . '/..' | endif
+
+    let g:unite_source_gtags_project_config = {
+    \ '_': { 'treelize': 1 }
+    \ }
 
   " SHOUGO/VIMFILER.VIM                                                   {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
@@ -714,7 +724,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " DBEXT.VIM                                                             {{{2
   " adadtbaziskezeles
-  NeoBundle 'dbext.vim'
+  " NeoBundle 'dbext.vim'
                                                                         " }}}2
 
   " .. NEOCOMPLETE ........................
@@ -1731,12 +1741,13 @@ nnoremap  <Space>gL  :Gitv<CR>
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
 " ............................................................................
 
-nmap              <Space>mK  <Plug>Zeavim
-vmap              <Space>mK  <Plug>ZVVisSelection
-nnoremap          <Space>mg  :noautocmd vimgrep //j %:p:h/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
-nnoremap          <Space>mo  :Unite outline<CR>
-noremap           <Space>mr  :QuickRun<CR>
-noremap   <expr>  <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
+nmap              <Space>mK   <Plug>Zeavim
+vmap              <Space>mK   <Plug>ZVVisSelection
+nnoremap          <Space>mg   :noautocmd vimgrep //j %:p:h/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap          <Space>mo   :Unite -start-insert outline<CR>
+nnoremap          <Space>mO   :Unite gtags/<C-D>
+noremap           <Space>mr   :QuickRun<CR>
+noremap   <expr>  <Space>mR   ':QuickRun ' . &filetype . 'Custom<CR>'
 
 " __ VIM ________________________________
 
@@ -1783,10 +1794,6 @@ nnoremap  <Space>nu  :Unite neobundle/update:!<CR>
 " ............................................................................
 
 nnoremap  <Space>pf   :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async directory/new file/new<CR>
-" nnoremap  <Space>po   :Unite -no-quit -keep-focus gtags/<C-D>
-nnoremap  <Space>pod  :Gtags -i<Space>
-nnoremap  <Space>por  :Gtags -ir<Space>
-nnoremap  <Space>pos  :Gtags -si<Space>
 nnoremap  <Space>pt   :VimFilerExplorer -project -toggle<CR>
 
 "                <Space>q - QUOTES, SURROUNDS, CHANGE CASE                {{{3
