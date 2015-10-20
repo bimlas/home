@@ -352,16 +352,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " tagbar-szeru, de neha jobb
   NeoBundle 'shougo/unite-outline'
 
-  " HEWES/UNITE-GTAGS                                                     {{{2
-  " gnu global adatbazis hasznalatahoz (ctags, cscope alternativa)
-  NeoBundle 'hewes/unite-gtags'
-
-    autocmd  vimrc  BufEnter  *  if exists('b:git_dir') | let $GTAGSROOT = b:git_dir . '/..' | endif
-
-    let g:unite_source_gtags_project_config = {
-    \ '_': { 'treelize': 1 }
-    \ }
-
   " SHOUGO/VIMFILER.VIM                                                   {{{2
   " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
   NeoBundle 'shougo/vimfiler.vim'
@@ -1745,9 +1735,15 @@ nmap              <Space>mK   <Plug>Zeavim
 vmap              <Space>mK   <Plug>ZVVisSelection
 nnoremap          <Space>mg   :noautocmd vimgrep //j %:p:h/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
 nnoremap          <Space>mo   :Unite -start-insert outline<CR>
-nnoremap          <Space>mO   :Unite gtags/<C-D>
 noremap           <Space>mr   :QuickRun<CR>
 noremap   <expr>  <Space>mR   ':QuickRun ' . &filetype . 'Custom<CR>'
+
+" Definition
+nnoremap          <Space>mOd  :Gtags -i <C-R>=expand('<cword>')<CR><CR>
+" Reference
+nnoremap          <Space>mOr  :Gtags -ir <C-R>=expand('<cword>')<CR><CR>
+" Symbol (usefull for variables)
+nnoremap          <Space>mOs  :Gtags -si <C-R>=expand('<cword>')<CR><CR>
 
 " __ VIM ________________________________
 
