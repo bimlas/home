@@ -61,6 +61,26 @@ endfunction
 " Halozati meghajton nagyon belassit.
 let g:stat_git_enabled = 0
 
+"                          WIN / NIX BEALLITASOK                          {{{1
+" ============================================================================
+
+if has('win32')
+
+  " Backslash (\) helyett forwardslash (/) hasznalat az utvonalakban
+  " (pl. <C-X><C-F> kiegeszitesenel).
+  " Tapasztalatbol mondhatom, hogy nem minden plugin szereti (pl. Jedi-vim) -
+  " ha valamelyik nem mukodik, probald meg kommentelve is.
+  " set shellslash
+
+  " :make ezt a programot hasznalja:
+  set makeprg=mingw32-make
+
+  " Ha egy tomoritett fajlt nyitunk meg, hianyolja ezt a valtozot ezert
+  " hibauzenetet ir ki.
+  let netrw_cygwin = 0
+
+endif
+
 "                                PLUGINOK                                 {{{1
 " ============================================================================
 
@@ -82,7 +102,12 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " SHOUGO/VIMPROC.VIM                                                    {{{2
   " nehany plugin hasznalja - windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
-  NeoBundle 'shougo/vimproc.vim'
+  NeoBundle 'shougo/vimproc.vim', {
+  \ 'build' : {
+  \     'windows' : &makeprg . ' -f make_mingw32.mak',
+  \     'linux' : 'make',
+  \    },
+  \ }
                                                                         " }}}2
 
   " .. SAJAT ..............................
@@ -606,60 +631,60 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     let g:quickrun_no_default_key_mappings = 1
     " \     'hook/output_encode/encoding': 'default',
     let g:quickrun_config = {
-    \ '_':
-    \ {
-    \   'outputter':                     'multi',
-    \   'outputter/multi/targets':       ['buffer', 'quickfix'],
-    \   'outputter/buffer/running_mark': '... RUNNING ...',
-    \   'runner':                        'vimproc',
-    \   'hook/cd/directory':             '%S:p:h',
-    \   'hook/shebang/enable':           has('win32') ? 0 : 1,
-    \ },
-    \ 'asciidoc':
-    \ {
-    \   'command':   'asciidoctor',
-    \   'cmdopt':    '-o -',
-    \   'outputter': 'browser'
-    \ },
-    \ 'text':
-    \ {
-    \   'command':   'asciidoctor',
-    \   'cmdopt':    '-o -',
-    \   'outputter': 'browser'
-    \ },
-    \ 'rubyCustom':
-    \ {
-    \   'command': 'irb'
-    \ },
-    \ 'ruby.rspec':
-    \ {
-    \   'command':              'rspec',
-    \   'cmdopt':               '-f d',
-    \   'hook/unittest/enable': 1
-    \ },
-    \ 'ruby.minitest':
-    \ {
-    \   'command':              'ruby',
-    \   'hook/unittest/enable': 1
-    \ },
-    \ 'php.unit':
-    \ {
-    \   'command':              'testrunner',
-    \   'cmdopt':               'phpunit',
-    \   'hook/unittest/enable': 1
-    \ },
-    \ 'python.unit':
-    \ {
-    \   'command':              'nosetests',
-    \   'cmdopt':               '-v -s',
-    \   'hook/unittest/enable': 1
-    \ },
-    \ 'python.pytest':
-    \ {
-    \   'command':              'py.test',
-    \   'cmdopt':               '-v',
-    \   'hook/unittest/enable': 1
-    \ }
+    \  '_':
+    \  {
+    \    'outputter':                     'multi',
+    \    'outputter/multi/targets':       ['buffer', 'quickfix'],
+    \    'outputter/buffer/running_mark': '... RUNNING ...',
+    \    'runner':                        'vimproc',
+    \    'hook/cd/directory':             '%S:p:h',
+    \    'hook/shebang/enable':           has('win32') ? 0 : 1,
+    \  },
+    \  'asciidoc':
+    \  {
+    \    'command':   'asciidoctor',
+    \    'cmdopt':    '-o -',
+    \    'outputter': 'browser'
+    \  },
+    \  'text':
+    \  {
+    \    'command':   'asciidoctor',
+    \    'cmdopt':    '-o -',
+    \    'outputter': 'browser'
+    \  },
+    \  'rubyCustom':
+    \  {
+    \    'command': 'irb'
+    \  },
+    \  'ruby.rspec':
+    \  {
+    \    'command':              'rspec',
+    \    'cmdopt':               '-f d',
+    \    'hook/unittest/enable': 1
+    \  },
+    \  'ruby.minitest':
+    \  {
+    \    'command':              'ruby',
+    \    'hook/unittest/enable': 1
+    \  },
+    \  'php.unit':
+    \  {
+    \    'command':              'testrunner',
+    \    'cmdopt':               'phpunit',
+    \    'hook/unittest/enable': 1
+    \  },
+    \  'python.unit':
+    \  {
+    \    'command':              'nosetests',
+    \    'cmdopt':               '-v -s',
+    \    'hook/unittest/enable': 1
+    \  },
+    \  'python.pytest':
+    \  {
+    \    'command':              'py.test',
+    \    'cmdopt':               '-v',
+    \    'hook/unittest/enable': 1
+    \  }
     \}
 
     autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | end
@@ -885,26 +910,6 @@ behave xterm
 " Manual bongeszesenek lehetosege.
 if !has('win32')
   runtime ftplugin/man.vim
-endif
-
-"                          WIN / NIX BEALLITASOK                          {{{1
-" ============================================================================
-
-if has('win32')
-
-  " Backslash (\) helyett forwardslash (/) hasznalat az utvonalakban
-  " (pl. <C-X><C-F> kiegeszitesenel).
-  " Tapasztalatbol mondhatom, hogy nem minden plugin szereti (pl. Jedi-vim) -
-  " ha valamelyik nem mukodik, probald meg kommentelve is.
-  " set shellslash
-
-  " :make ezt a programot hasznalja:
-  set makeprg=mingw32-make
-
-  " Ha egy tomoritett fajlt nyitunk meg, hianyolja ezt a valtozot ezert
-  " hibauzenetet ir ki.
-  let netrw_cygwin = 0
-
 endif
 
 "                                   SZINEK                                {{{1
