@@ -1,4 +1,6 @@
 #!/bin/bash
 # Update Ruby documentation database
 
-rdoc --all --ri "**/*.rb"
+# Do nothing if there is no Ruby files, because Rdoc wants to generate
+# documentation for every file in this case.
+(find -name '*.rb' | grep '.*' &> /dev/null) && rdoc --all --ri '**/*.rb'
