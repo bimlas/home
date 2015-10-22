@@ -755,9 +755,11 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " Engedelyezes.
     let g:neocomplete#enable_at_startup = 1
 
-    " Ne mukodjon automatikusan, csak ha en akarom:
-    " neocomplete#start_manual_complete()
+    " Ne mukodjon automatikusan, csak ha en akarom (halozati meghajtokon
+    " lassu).
+    " map neocomplete#start_manual_complete()
     let g:neocomplete#disable_auto_complete = 1
+
     " Smartcase.
     let g:neocomplete#enable_smart_case = 1
 
@@ -775,15 +777,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
       let g:neocomplete#sources = {}
     endif
     let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'neosnippet']
-
-    " Ruby-nal le van tilva az omnifunc, mert lassu, viszont igy engedelyezni
-    " tudjuk.
-    if !exists('g:neocomplete#force_omni_input_patterns')
-      let g:neocomplete#force_omni_input_patterns = {}
-    endif
-    let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-    let g:neocomplete#force_omni_input_patterns.python = '\S\{2}'
-    let g:neocomplete#force_omni_input_patterns.python3 = g:neocomplete#force_omni_input_patterns.python
 
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " az include-olt fajlokhoz gyartson tag-eket
