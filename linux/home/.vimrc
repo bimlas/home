@@ -362,13 +362,13 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     endif
 
     " Alapertelmezett beallitasok.
-    autocmd  vimrc  VimEnter  *  call unite#custom#profile('default', 'context', {
+    autocmd  vimrc  VimEnter  *  if exists('g:loaded_unite') | call unite#custom#profile('default', 'context', {
     \ 'prompt_direction': 'top',
     \ 'direction':        'botright',
     \ 'cursor_line_time': '0.0',
     \ 'sync':             1,
     \ })
-    " autocmd  vimrc  VimEnter  *  call unite#custom#alias('file', 'delete', 'vimfiler__delete')
+    \ | endif
 
     " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
     " autocmd  vimrc  VimEnter  *  call unite#filters#matcher_default#use(['matcher_regexp'])
@@ -402,11 +402,12 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " Ne ugorjon a konyvtar kinyitasa utan.
     let g:vimfiler_expand_jump_to_first_child = 0
 
-    autocmd  vimrc  VimEnter  *  call vimfiler#custom#profile('default', 'context', {
+    autocmd  vimrc  VimEnter  *  if exists('g:loaded_vimfiler') | call vimfiler#custom#profile('default', 'context', {
     \ 'safe':      0,
     \ 'sort_type': 'extension',
     \ 'columns':   'size:time'
     \ })
+    \ | endif
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
@@ -1032,7 +1033,7 @@ let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
 " Syntastic figyelmeztetesek sorszamai.
 
 function! StatSyntastic()
-  return exists(':SyntasticCheck') ? SyntasticStatuslineFlag() : ''
+  return exists('g:loaded_syntastic_plugin') ? SyntasticStatuslineFlag() : ''
 endfunction
 
 "                                  NETRW                                  {{{1
@@ -1096,7 +1097,7 @@ set cursorline
 set wildmode=longest,list
 
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-set showtabline=2 tabline=%!eight#shorttabline#call()
+autocmd  VimEnter  *  if exists('g:loaded_dotvim') | set showtabline=2 tabline=%!eight#shorttabline#call() | endif
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -1299,7 +1300,9 @@ set cinoptions=(0,t0,W2
 set foldmethod=marker
 
 " Sajat foldheader.
-let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '', '')"
+autocmd  vimrc VimEnter  *  if exists('*EightHeaderFolds') 
+\ | let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '', '')"
+\ | endif
 
 "                                  DIFFEXPR                               {{{1
 " ============================================================================
@@ -1373,8 +1376,8 @@ nnoremap  <Leader><C-K>  a<C-K>
 " Sokkal jobban kezre esnek.
 map       <C-J>  <CR>
 imap      <C-J>  <CR>
-" noremap   é      ;
-" noremap   É      ,
+noremap   é      ;
+noremap   É      ,
 
 " Hogy az insert modban valo maszkalashoz se kelljen elhagyni az 'alapallast'.
 " NOTE: ha nagybetusek, nem mukodnek?
@@ -1384,7 +1387,7 @@ inoremap  <M-k>  <Up>
 inoremap  <M-l>  <Right>
 
 " Egygombos omnicomplete.
-inoremap  <expr>  <C-F>  neocomplete#start_manual_complete(g:neocomplete#sources._)
+inoremap  <expr>  <C-F>  exists('g:loaded_neocomplete') ? neocomplete#start_manual_complete(g:neocomplete#sources._) : '<C-X><C-O>'
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
@@ -1471,19 +1474,21 @@ endfunction
 "                               EASYMOTION                                {{{3
 " ............................................................................
 
-map  s          <Plug>(easymotion-s2)
-map  t          <Plug>(easymotion-tl)
-map  T          <Plug>(easymotion-Tl)
-map  t          <Plug>(easymotion-tl)
-map  T          <Plug>(easymotion-Tl)
-map  f          <Plug>(easymotion-fl)
-map  F          <Plug>(easymotion-Fl)
-map  <Leader>n  <Plug>(easymotion-n)
-map  <Leader>N  <Plug>(easymotion-N)
-map  é          <Plug>(easymotion-next)
-map  É          <Plug>(easymotion-prev)
-
-autocmd  vimrc  VimEnter  *  if exists(':EMCommandLineNoreMap') | EMCommandLineNoreMap <C-J> <CR> | endif
+autocmd  vimrc  VimEnter  *  if exists('g:EasyMotion_loaded') | call EasyMotionMaps() | endif
+function! EasyMotionMaps()
+  map  s          <Plug>(easymotion-s2)
+  map  t          <Plug>(easymotion-tl)
+  map  T          <Plug>(easymotion-Tl)
+  map  t          <Plug>(easymotion-tl)
+  map  T          <Plug>(easymotion-Tl)
+  map  f          <Plug>(easymotion-fl)
+  map  F          <Plug>(easymotion-Fl)
+  map  <Leader>n  <Plug>(easymotion-n)
+  map  <Leader>N  <Plug>(easymotion-N)
+  map  é          <Plug>(easymotion-next)
+  map  É          <Plug>(easymotion-prev)
+  EMCommandLineNoreMap <C-J> <CR>
+endfunction
 
 "                                CHOOSEWIN                                {{{3
 " ............................................................................
