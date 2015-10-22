@@ -1711,9 +1711,9 @@ nnoremap  <Space>du  :diffupdate<CR>
 " ............................................................................
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
-nnoremap  <Space>ff  :UniteWithBufferDir file directory/new file/new<CR>
-nnoremap  <Space>ft  :UniteWithBufferDir file directory/new file/new -tab<CR>
-nnoremap  <Space>fF  :Unite file directory/new file/new<CR>
+nnoremap  <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
+nnoremap  <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
+nnoremap  <Space>fF  :Unite file file/new directory/new<CR>
 nnoremap  <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap  <Space>fvv :edit $MYVIMRC<CR>
 
