@@ -37,13 +37,8 @@ if v:version >= 704
   set regexpengine=1
 endif
 
-" Nem szeretem a magyar uzeneteket.
-" Terminalban a C az angol megfeleloje.
-if has('unix')
-    language messages C
-else
-    language messages en
-endif
+" Nem szeretem a magyar uzeneteket (a C az angol megfeleloje).
+language messages C
 
 " Letrehozunk egy autocmd group-ot.
 " http://rbtnn.hateblo.jp/entry/2014/12/28/010913
@@ -1293,7 +1288,7 @@ set cinoptions=(0,t0,W2
 set foldmethod=marker
 
 " Sajat foldheader.
-autocmd  vimrc VimEnter  *  if exists('*EightHeaderFolds') 
+autocmd  vimrc VimEnter  *  if exists('*EightHeaderFolds')
 \ | let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '', '')"
 \ | endif
 
