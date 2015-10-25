@@ -14,7 +14,3 @@ CapsLock::Ctrl
 !F9::  Run totalcmd64.exe
 !F12:: Run conemu64.exe /cmd powershell
 !F10:: Run calc.exe
-
-; Virtuawin-ben a Win+w lett beallitva, hogy a kovetkezo asztalra valtson, az
-; autohotkey pedig a Win+Tab-ot alakitja Win+w-re.
-Lwin & Tab::Send, #w

@@ -28,5 +28,5 @@ remember()
   header "DON'T FORGET TO:"
   header "* add ~/bin to path"
   header "* run ~/firefox/install_addons.ps1"
-  header "* autostart ~/bin/cvim_server"
+  header "* autostart autohotkey scripts"
 }
