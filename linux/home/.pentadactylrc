@@ -44,7 +44,7 @@ map  -builtin  <C-K>          <Esc>
 imap -builtin  <C-K>          <Esc>
 cmap -builtin  <C-K>          <Esc>
 
-imap -builtin  <C-J>          <CR>
+map  -builtin  <C-J>          <CR>
 imap -builtin  <C-L>          <Del>
 map  -builtin  <C-H>          d
 nmap -builtin  <D>            <Nop>
