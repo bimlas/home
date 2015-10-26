@@ -106,7 +106,7 @@ Windows Registry Editor Version 5.00
 "Start_ShowDownloads"=dword:00000000
 "Start_ShowHelp"=dword:00000000
 "Start_ShowHomegroup"=dword:00000000
-"Start_ShowMyComputer"=dword:00000000
+"Start_ShowMyComputer"=dword:00000001
 "Start_ShowMyDocs"=dword:00000000
 "Start_ShowMyGames"=dword:00000000
 "Start_ShowMyMusic"=dword:00000000
