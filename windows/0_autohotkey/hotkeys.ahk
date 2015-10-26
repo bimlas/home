@@ -4,10 +4,6 @@
 ;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-; CapsLock -> Ctrl remap.
-SetCapsLockState AlwaysOff
-CapsLock::Ctrl
-
 ; !F5 = Alt+F5
 !F5::  Run firefox.exe
 !F6::  Run thunderbird.exe
