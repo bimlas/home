@@ -728,11 +728,11 @@ xWM_SwitchDesk("!1", hwnd)
 ; WIN+D = minimize/restore windows
 #D:: xWM_WinToggle()
 ; virtual desktop switching
-#Left:: xWM_SwitchDesk(-1)
-#Right:: xWM_SwitchDesk(1)
+; #Left:: xWM_SwitchDesk(-1)
+; #Right:: xWM_SwitchDesk(1)
 #Tab::   xWM_SwitchDesk(1)
-^#Left:: xWM_SwitchDesk(-1, WinExist("A"))
-^#Right:: xWM_SwitchDesk(1, WinExist("A"))
+; ^#Left:: xWM_SwitchDesk(-1, WinExist("A"))
+; ^#Right:: xWM_SwitchDesk(1, WinExist("A"))
 ^#Tab::   xWM_SwitchDesk(1, WinExist("A"))
 
 ; Hide other desks windows toggle
