@@ -1,47 +1,16 @@
 ; tcmdvim.ahk: vim key bindings in total commander
-; (using CapsLock instead of Ctrl)
+;
+; Does not works with Capslock::Ctrl remap.
 ;
 ; The codes can be found in TOTALCMD.INC.
 ;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-; Need for right key sequence behaviour (for example: gg).
-
-; CapsLock -> Ctrl remap.
-SetCapsLockState AlwaysOff
-CapsLock::Ctrl
-
 ; Main window.
 #if WinActive("ahk_class TTOTAL_CMD")
 
-  ; Disable CapsLock to Ctrl remap, check for GetKeyState("CapsLock", "P")
-  ; instead, because it behaves weird.
-  ; http://stackoverflow.com/questions/29692054/autohotkey-caps-lock-to-ctrl-not-releasing
-  CapsLock::Return
-
-  ; Template for maps:
-  ;
-  ; ControlGetFocus, aControl, A
-  ; ; Left/right panel is active.
-  ; If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
-  ; {
-  ;   If GetKeyState("CapsLock", "P")
-  ;     ; ...
-  ;   Else
-  ;     ; ...
-  ; }
-  ; ; Text entry is active.
-  ; Else If(RegExMatch(aControl, "Edit1"))
-  ; {
-  ;   If GetKeyState("CapsLock", "P")
-  ;     ; ...
-  ;   Else
-  ;     ; ...
-  ; }
-  ; Return
-  ;
   ; Values of aControl:
-  ;   (TMy|LCL)ListBox[12] left/right panel
+  ;   (TMy|LCL)ListBox[12]  left/right panel
   ;   (TMy|LCL)ComboBox\d+  list of drives
   ;   Edit1                 text entry
   ;   Edit2                 command line
@@ -49,319 +18,324 @@ CapsLock::Ctrl
   h::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 3007, , , ahk_class TTOTAL_CMD ; cm_CloseCurrentTab=3007;Close tab
-      Else
-        PostMessage, 1075, 2002, , , ahk_class TTOTAL_CMD ; cm_GoToParent=2002;Go to parent directory
-      Return
+      PostMessage, 1075, 2002, , , ahk_class TTOTAL_CMD ; cm_GoToParent=2002;Go to parent directory
     }
-    ; Text entry is active.
-    Else If(RegExMatch(aControl, "Edit[12]"))
+    Else
     {
-      If GetKeyState("CapsLock", "P")
-        Send, {Backspace}
-      Else
-        Send, h
-      Return
+      Send, h
     }
-    Send, h
     Return
   }
-  !h::
+
+  ^h::
   {
-    Send, {Left}
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075, 3007, , , ahk_class TTOTAL_CMD ; cm_CloseCurrentTab=3007;Close tab
+    }
+    Else If(RegExMatch(aControl, "Edit[12]"))
+    {
+      Send, {Backspace}
+    }
+    Else
+    {
+      Send, ^h
+    }
     Return
   }
 
   j::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        Send, {Enter}
-      Else
-        Send, {Down}
-      Return
+      Send, {Down}
     }
-    ; Text entry is active.
-    Else If(RegExMatch(aControl, "Edit[12]"))
+    Else
     {
-      If GetKeyState("CapsLock", "P")
-        Send, {Enter}
-      Else
-        Send, j
-      Return
+      Send, j
     }
-    Send, j
     Return
   }
-  !j::
+
+  ^j::
   {
-    Send, {Down}
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]|Edit[12]"))
+    {
+      Send, {Enter}
+    }
+    Else
+    {
+      Send, ^j
+    }
     Return
   }
 
   k::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        Send, {Esc}
-      Else
-        Send, {Up}
-      Return
+      Send, {Up}
     }
-    ; Text entry or command line is active.
-    Else If(RegExMatch(aControl, "Edit[12]"))
+    Else
     {
-      If GetKeyState("CapsLock", "P")
-        Send, {Esc}
-      Else
-        Send, k
-      Return
+      Send, k
     }
-    Send, k
     Return
   }
-  !k::
+
+  ^k::
   {
-    Send, {Up}
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]|Edit[12]"))
+    {
+      Send, {Esc}
+    }
+    Else
+    {
+      Send, ^k
+    }
     Return
   }
 
   l::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        Send, {Tab}
-      Else
-        PostMessage, 1075, 2003, , , ahk_class TTOTAL_CMD ; cm_GoToDir=2003;Open dir or zip under cursor
-      Return
+      PostMessage, 1075, 2003, , , ahk_class TTOTAL_CMD ; cm_GoToDir=2003;Open dir or zip under cursor
     }
-    ; Text entry is active.
-    Else If(RegExMatch(aControl, "Edit[12]"))
+    Else
     {
-      If GetKeyState("CapsLock", "P")
-        Send, {Delete}
-      Else
-        Send, l
-      Return
+      Send, l
     }
-    Send, l
-    Return
-  }
-  !l::
-  {
-    Send, {Right}
     Return
   }
 
-  n::
-  {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {Down}
-      Return
-    }
-    SendInput, n
-    Return
-  }
-
-  p::
-  {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {Up}
-      Return
-    }
-    SendInput, p
-    Return
-  }
-
-  u::
+  ^l::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        Send, {PgUp}
-      Return
+      Send, {Tab}
     }
-    ; Text entry or command line is active.
     Else If(RegExMatch(aControl, "Edit[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        Send, ^+{Home}{Delete}
-      Else
-        Send, u
-      Return
+      Send, {Delete}
     }
-    Send, u
+    Else
+    {
+      Send, ^l
+    }
     Return
   }
 
-  d::
+  ^n::
+  {
+    Send, {Down}
+    Return
+  }
+
+  ^p::
+  {
+    Send, {Up}
+    Return
+  }
+
+  ^u::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      Send, {PgUp}
+    }
+    Else If(RegExMatch(aControl, "Edit[12]"))
+    {
+      Send, ^+{Home}{Delete}
+    }
+    Else
+    {
+      Send, ^u
+    }
+    Return
+  }
+
+  ^d::
+  {
+    ControlGetFocus, aControl, A
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       Send, {PgDn}
-      Return
     }
-    Send, d
+    Else
+    {
+      Send, ^d
+    }
     Return
   }
 
-  o::
+  ^o::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 570,  , , ahk_class TTOTAL_CMD ; cm_GotoPreviousDir=570;Go back
-      Return
+      PostMessage, 1075, 570,  , , ahk_class TTOTAL_CMD ; cm_GotoPreviousDir=570;Go back
     }
-    Send, o
+    Else
+    {
+      Send, ^o
+    }
     Return
   }
 
   i::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 571,  , , ahk_class TTOTAL_CMD ; cm_GotoNextDir=571;Go forward
-      Else
-        PostMessage, 1075, 2915, , , ahk_class TTOTAL_CMD ; cm_ShowQuickSearch=2915;Show name search window
-      Return
+      PostMessage, 1075, 2915, , , ahk_class TTOTAL_CMD ; cm_ShowQuickSearch=2915;Show name search window
     }
-    Send, i
+    Else
+    {
+      Send, i
+    }
     Return
   }
 
-  e::
+  ^i::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 3005, , , ahk_class TTOTAL_CMD ; cm_SwitchToNextTab=3005;Switch to next Tab (as Ctrl+Tab)
-      Return
+      PostMessage, 1075, 571,  , , ahk_class TTOTAL_CMD ; cm_GotoNextDir=571;Go forward
     }
-    Send, e
+    Else
+    {
+      Send, ^i
+    }
     Return
   }
 
-  y::
+  ^e::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 3006, , , ahk_class TTOTAL_CMD ; cm_SwitchToPreviousTab=3006;Switch to previous Tab (Ctrl+Shift+Tab)
-      Return
+      PostMessage, 1075, 3005, , , ahk_class TTOTAL_CMD ; cm_SwitchToNextTab=3005;Switch to next Tab (as Ctrl+Tab)
     }
-    Send, y
+    Else
+    {
+      Send, ^e
+    }
     Return
   }
 
-  t::
+  ^y::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 3001, , , ahk_class TTOTAL_CMD ; cm_OpenNewTab=3001;Open new tab
-      Return
+      PostMessage, 1075, 3006, , , ahk_class TTOTAL_CMD ; cm_SwitchToPreviousTab=3006;Switch to previous Tab (Ctrl+Shift+Tab)
     }
-    Send, t
+    Else
+    {
+      Send, ^y
+    }
+    Return
+  }
+
+  ^t::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075, 3001, , , ahk_class TTOTAL_CMD ; cm_OpenNewTab=3001;Open new tab
+    }
+    Else
+    {
+      Send, ^t
+    }
     Return
   }
 
   +r::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       PostMessage, 1075, 1002, , , ahk_class TTOTAL_CMD ; cm_RenameOnly=1002;Rename (Shift+F6)
       Send, {Right}
-      Return
     }
-    Send, R
+    Else
+    {
+      Send, +r
+    }
     Return
   }
 
-  w::
+  ^w::
   {
     ControlGetFocus, aControl, A
-    ; Text entry or command line is active.
     If(RegExMatch(aControl, "Edit[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        Send, ^+{Left}{Delete}
-      Else
-        Send, w
-      Return
+      Send, ^+{Left}{Delete}
     }
-    Send, w
+    Else
+    {
+      Send, ^w
+    }
     Return
   }
 
   :::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
-      Send, {Space}{Backspace}
-      Return
+      Send, {Space}{Backspace}                          ; Make it visible.
     }
-    Send, :
+    Else
+    {
+      Send, :
+    }
     Return
   }
 
   g::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-      {
-        PostMessage, 1075, 540,  , , ahk_class TTOTAL_CMD ; cm_RereadSource=540;Reread source
-        Return
-      }
       If(A_PriorKey = "g")
       {
         Send, {Home}
-        Return
       }
+      ; Disabled in normal mode, because it opens quicksearch, thus the Else
+      ; branch is missing.
     }
-    ; Disabled in normal mode, because it opens quicksearch.
-    If(RegExMatch(aControl, "(TMy|LCL)ComboBox\d|Edit[12]"))
+    Else
     {
       Send, g
-      Return
+    }
+    Return
+  }
+
+  ^g::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075, 540,  , , ahk_class TTOTAL_CMD ; cm_RereadSource=540;Reread source
+    }
+    Else
+    {
+      Send, ^g
     }
     Return
   }
@@ -369,55 +343,56 @@ CapsLock::Ctrl
   +g::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       Send, {End}
-      Return
     }
-    Send, G
+    Else
+    {
+      Send, +g
+    }
     Return
   }
 
-  z::
+  ^z::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 903, , , ahk_class TTOTAL_CMD ; cm_List=903;View with Lister
-      Return
+      PostMessage, 1075, 903, , , ahk_class TTOTAL_CMD ; cm_List=903;View with Lister
     }
-    Send, z
+    Else
+    {
+      Send, ^z
+    }
     Return
   }
 
-  f::
+  ^f::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
-      Return
+      PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
     }
-    Send, f
+    Else
+    {
+      Send, ^f
+    }
     Return
   }
 
-  m::
+  ^m::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
-      If GetKeyState("CapsLock", "P")
-        PostMessage, 1075, 2400, , , ahk_class TTOTAL_CMD ; cm_MultiRenameFiles=2400;Rename multiple files
-      Return
+      PostMessage, 1075, 2400, , , ahk_class TTOTAL_CMD ; cm_MultiRenameFiles=2400;Rename multiple files
     }
-    Send, m
+    Else
+    {
+      Send, ^m
+    }
     Return
   }
 
@@ -425,13 +400,14 @@ CapsLock::Ctrl
   <^>!q::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       PostMessage, 1075, 2001, , , ahk_class TTOTAL_CMD ; cm_GoToRoot=2001
-      Return
     }
-    Send, \
+    Else
+    {
+      Send, \
+    }
     Return
   }
 
@@ -439,31 +415,29 @@ CapsLock::Ctrl
   <^>!1::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
       SendInput, cd %USERPROFILE%{Enter}
-      Return
     }
-    Send, ~
+    Else
+    {
+      Send, ~
+    }
     Return
   }
 
   ; Open right-click (context) menu.
   a::
   {
-    ; Left/right panel is active.
+    ControlGetFocus, aControl, A
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       Send, {AppsKey}
-      Return
     }
-    ; Disabled in normal mode, because it opens quicksearch.
-    Else If(RegExMatch(aControl, "(TMy|LCL)ComboBox\d|Edit[12]"))
+    Else
     {
       Send, a
-      Return
     }
     Return
   }
@@ -472,138 +446,82 @@ CapsLock::Ctrl
   F2::
   {
     ControlGetFocus, aControl, A
-    ; Left/right panel is active.
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
       SendInput, conemu64.exe /cmd powershell{Enter}
-      Return
     }
-    Send, {F2}
+    Else
+    {
+      Send, {F2}
+    }
     Return
   }
+
 #if
 
 ; Quicksearch.
 #if WinActive("ahk_class TQUICKSEARCH")
 
-  ; Disable CapsLock to Ctrl remap, check for GetKeyState("CapsLock", "P")
-  ; instead, because it behaves weird.
-  CapsLock::Return
-
-  k::
+  ^k::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {Esc}
-      Return
-    }
-    SendInput, k
+    Send, {Esc}
     Return
   }
 
-  j::
+  ^j::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {Enter}
-      Return
-    }
-    SendInput, j
+    Send, {Enter}
     Return
   }
 
-  n::
+  ^n::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {Down}
-      Return
-    }
-    SendInput, n
+    Send, {Down}
     Return
   }
 
-  p::
+  ^p::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {Up}
-      Return
-    }
-    SendInput, p
+    Send, {Up}
     Return
   }
 
-  h::
+  ^h::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {Backspace}
-      Return
-    }
-    SendInput, h
+    Send, {Backspace}
     Return
   }
 
-  l::
+  ^w::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {Tab}
-      Return
-    }
-    SendInput, l
+    Send, ^+{Left}{Delete}
+    Return
+  }
+
+  ^l::
+  {
+    Send, {Tab}
     Return
   }
 
   ; Press space to search for other part of filename.
   Space::
   {
-    SendInput, *
+    Send, *
     Return
   }
 
-  w::
+  ^f::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, ^+{Left}{Delete}
-      Return
-    }
-    SendInput, w
+    PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
     Return
   }
 
-  s::
-  {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, ^s
-      Return
-    }
-    SendInput, s
-    Return
-  }
-
-  f::
-  {
-    If GetKeyState("CapsLock", "P")
-    {
-      PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
-      Return
-    }
-    Send, f
-    Return
-  }
 #if
 
 ; Preview window.
 #if WinActive("ahk_class TLister")
-
-  ; Disable CapsLock to Ctrl remap, check for GetKeyState("CapsLock", "P")
-  ; instead, because it behaves weird.
-  CapsLock::Return
 
   j::
   {
@@ -611,34 +529,21 @@ CapsLock::Ctrl
     Return
   }
 
-  k::
+  ^k::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {Esc}
-      Return
-    }
-    Send, ^{Up}
+    Send, {Esc}
     Return
   }
 
-  u::
+  ^u::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {PgUp}
-      Return
-    }
+    Send, {PgUp}
     Return
   }
 
-  d::
+  ^d::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {PgDn}
-      Return
-    }
+    Send, {PgDn}
     Return
   }
 
@@ -647,7 +552,6 @@ CapsLock::Ctrl
     If(A_PriorKey = "g")
     {
       Send, ^{Home}
-      Return
     }
     Return
   }
@@ -664,13 +568,10 @@ CapsLock::Ctrl
     Return
   }
 
-  f::
+  ^f::
   {
-    If GetKeyState("CapsLock", "P")
-    {
-      Send, {F7} ; Search for text.
-      Return
-    }
+    Send, {F7} ; Search for text.
     Return
   }
+
 #if
