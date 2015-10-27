@@ -6,7 +6,9 @@
 ;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-; Main window.
+;                               MAIN WINDOW                               {{{1
+; ============================================================================
+
 #if WinActive("ahk_class TTOTAL_CMD")
 
   ; Values of aControl:
@@ -47,6 +49,20 @@
     Return
   }
 
+  +h::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075,  131, , , ahk_class TTOTAL_CMD ; cm_LeftOpenDrives=131;Left: Open drive list
+    }
+    Else
+    {
+      Send, +h
+    }
+    Return
+  }
+
   j::
   {
     ControlGetFocus, aControl, A
@@ -63,15 +79,7 @@
 
   ^j::
   {
-    ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]|Edit[12]"))
-    {
-      Send, {Enter}
-    }
-    Else
-    {
-      Send, ^j
-    }
+    Send, {Enter}
     Return
   }
 
@@ -91,15 +99,7 @@
 
   ^k::
   {
-    ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]|Edit[12]"))
-    {
-      Send, {Esc}
-    }
-    Else
-    {
-      Send, ^k
-    }
+    Send, {Esc}
     Return
   }
 
@@ -131,6 +131,20 @@
     Else
     {
       Send, ^l
+    }
+    Return
+  }
+
+  +l::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075,  231, , , ahk_class TTOTAL_CMD ; cm_RightOpenDrives=231;Right: Open drive list
+    }
+    Else
+    {
+      Send, +l
     }
     Return
   }
@@ -221,6 +235,20 @@
     Return
   }
 
+  e::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075,  904, , , ahk_class TTOTAL_CMD ; cm_Edit=904;Edit (Notepad)
+    }
+    Else
+    {
+      Send, e
+    }
+    Return
+  }
+
   ^e::
   {
     ControlGetFocus, aControl, A
@@ -263,7 +291,7 @@
     Return
   }
 
-  +r::
+  r::
   {
     ControlGetFocus, aControl, A
     If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
@@ -273,7 +301,70 @@
     }
     Else
     {
-      Send, +r
+      Send, r
+    }
+    Return
+  }
+
+  y::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075, 3101, , , ahk_class TTOTAL_CMD ; cm_CopyOtherpanel=3101;Copy to other
+      Send, {Right}
+    }
+    Else
+    {
+      Send, y
+    }
+    Return
+  }
+
+  x::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075,  906, , , ahk_class TTOTAL_CMD ; cm_RenMov=906;Rename/Move files
+      Send, {Right}
+    }
+    Else
+    {
+      Send, x
+    }
+    Return
+  }
+
+  d::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      If(A_PriorKey = "d")
+      {
+        PostMessage, 1075,  908, , , ahk_class TTOTAL_CMD ; cm_Delete=908;Delete files
+      }
+      ; Disabled in normal mode, because it opens quicksearch, thus the Else
+      ; branch is missing.
+    }
+    Else
+    {
+      Send, d
+    }
+    Return
+  }
+
+  w::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075,  903, , , ahk_class TTOTAL_CMD ; cm_List=903;View with Lister
+    }
+    Else
+    {
+      Send, w
     }
     Return
   }
@@ -460,7 +551,9 @@
 
 #if
 
-; Quicksearch.
+;                              QUICKSEARCH                                {{{1
+; ============================================================================
+
 #if WinActive("ahk_class TQUICKSEARCH")
 
   ^k::
@@ -520,7 +613,9 @@
 
 #if
 
-; Preview window.
+;                             PREVIEW WINDOW                              {{{1
+; ============================================================================
+
 #if WinActive("ahk_class TLister")
 
   j::
@@ -571,6 +666,55 @@
   ^f::
   {
     Send, {F7} ; Search for text.
+    Return
+  }
+
+#if
+
+;                            COPY/MOVE DIALOG                             {{{1
+; ============================================================================
+
+#if WinActive("ahk_class TInpComboDlg")
+
+  ^k::
+  {
+    Send, {Esc}
+    Return
+  }
+
+  ^j::
+  {
+    Send, {Enter}
+    Return
+  }
+
+  ^n::
+  {
+    Send, {Down}
+    Return
+  }
+
+  ^p::
+  {
+    Send, {Up}
+    Return
+  }
+
+  ^h::
+  {
+    Send, {Backspace}
+    Return
+  }
+
+  ^w::
+  {
+    Send, ^+{Left}{Delete}
+    Return
+  }
+
+  ^l::
+  {
+    Send, {Delete}
     Return
   }
 

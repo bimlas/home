@@ -1512,6 +1512,7 @@ function! UniteMaps()
   nmap  <buffer>        h       <Plug>(unite_delete_backward_path)
   nmap  <buffer>        l       <CR>
   nmap  <buffer>        S       <Plug>(unite_append_end)<C-U>
+  map   <buffer>        w       <Plug>(unite_smart_preview)
   map   <buffer>        <C-Z>   <Plug>(unite_smart_preview)
   imap  <buffer><expr>  <C-Z>   unite#do_action('preview')
   map   <buffer><expr>  <C-CR>  unite#do_action('start')
@@ -1524,6 +1525,7 @@ function! VimfilerMaps()
   nmap  <buffer>        i       :Unite line -winheight=10<CR>
   nmap  <buffer>        <C-J>   <CR>
   map   <buffer>        <C-Z>   <Plug>(vimfiler_preview_file)
+  map   <buffer>        w       <Plug>(vimfiler_preview_file)
   map   <buffer>        <F3>    <Plug>(vimfiler_preview_file)
   map   <buffer>        <F5>    <Plug>(vimfiler_copy_file)
   map   <buffer>        <F6>    <Plug>(vimfiler_move_file)
