@@ -1,4 +1,4 @@
-; http://autohotkey.com/board/topic/19990-windowpad-window-moving-tool/
+; http://autohotkey.com/board/topic/50154-virtual-desktops-extras-for-win7/
 
 #NoEnv
 #KeyHistory 0
