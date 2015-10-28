@@ -12,7 +12,7 @@
 #if WinActive("ahk_class TTOTAL_CMD")
 
   ; Values of aControl:
-  ;   (TMy|LCL)ListBox[12]  left/right panel
+  ;   (TMy|LCL)ListBox\d+   left/right panel
   ;   (TMy|LCL)ComboBox\d+  list of drives
   ;   Edit1                 text entry
   ;   Edit2                 command line
@@ -20,7 +20,7 @@
   h::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 2002, , , ahk_class TTOTAL_CMD ; cm_GoToParent=2002;Go to parent directory
     }
@@ -34,11 +34,11 @@
   ^h::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 3007, , , ahk_class TTOTAL_CMD ; cm_CloseCurrentTab=3007;Close tab
     }
-    Else If(RegExMatch(aControl, "Edit[12]"))
+    Else If(RegExMatch(aControl, "Edit\d+"))
     {
       Send, {Backspace}
     }
@@ -52,7 +52,7 @@
   +h::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075,  131, , , ahk_class TTOTAL_CMD ; cm_LeftOpenDrives=131;Left: Open drive list
     }
@@ -66,7 +66,7 @@
   j::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       Send, {Down}
     }
@@ -86,7 +86,7 @@
   k::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       Send, {Up}
     }
@@ -106,7 +106,7 @@
   l::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 2003, , , ahk_class TTOTAL_CMD ; cm_GoToDir=2003;Open dir or zip under cursor
     }
@@ -120,11 +120,11 @@
   ^l::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       Send, {Tab}
     }
-    Else If(RegExMatch(aControl, "Edit[12]"))
+    Else If(RegExMatch(aControl, "Edit\d+"))
     {
       Send, {Delete}
     }
@@ -138,7 +138,7 @@
   +l::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075,  231, , , ahk_class TTOTAL_CMD ; cm_RightOpenDrives=231;Right: Open drive list
     }
@@ -164,11 +164,11 @@
   ^u::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       Send, {PgUp}
     }
-    Else If(RegExMatch(aControl, "Edit[12]"))
+    Else If(RegExMatch(aControl, "Edit\d+"))
     {
       Send, ^+{Home}{Delete}
     }
@@ -182,7 +182,7 @@
   ^d::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       Send, {PgDn}
     }
@@ -196,7 +196,7 @@
   ^o::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 570,  , , ahk_class TTOTAL_CMD ; cm_GotoPreviousDir=570;Go back
     }
@@ -210,7 +210,7 @@
   i::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 2915, , , ahk_class TTOTAL_CMD ; cm_ShowQuickSearch=2915;Show name search window
     }
@@ -224,7 +224,7 @@
   ^i::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 571,  , , ahk_class TTOTAL_CMD ; cm_GotoNextDir=571;Go forward
     }
@@ -238,7 +238,7 @@
   e::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075,  904, , , ahk_class TTOTAL_CMD ; cm_Edit=904;Edit (Notepad)
     }
@@ -252,7 +252,7 @@
   ^e::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 3005, , , ahk_class TTOTAL_CMD ; cm_SwitchToNextTab=3005;Switch to next Tab (as Ctrl+Tab)
     }
@@ -263,10 +263,25 @@
     Return
   }
 
+  +e::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
+    {
+      ; TODO: What's the code of new file?
+      Send, +{F4}{Right}
+    }
+    Else
+    {
+      Send, +e
+    }
+    Return
+  }
+
   ^y::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 3006, , , ahk_class TTOTAL_CMD ; cm_SwitchToPreviousTab=3006;Switch to previous Tab (Ctrl+Shift+Tab)
     }
@@ -280,7 +295,7 @@
   ^t::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 3001, , , ahk_class TTOTAL_CMD ; cm_OpenNewTab=3001;Open new tab
     }
@@ -294,7 +309,7 @@
   r::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 1002, , , ahk_class TTOTAL_CMD ; cm_RenameOnly=1002;Rename (Shift+F6)
       Send, {Right}
@@ -306,10 +321,24 @@
     Return
   }
 
+  +r::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
+    {
+      PostMessage, 1075, 2400, , , ahk_class TTOTAL_CMD ; cm_MultiRenameFiles=2400;Rename multiple files
+    }
+    Else
+    {
+      Send, +r
+    }
+    Return
+  }
+
   y::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 3101, , , ahk_class TTOTAL_CMD ; cm_CopyOtherpanel=3101;Copy to other
       Send, {Right}
@@ -324,7 +353,7 @@
   x::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075,  906, , , ahk_class TTOTAL_CMD ; cm_RenMov=906;Rename/Move files
       Send, {Right}
@@ -339,7 +368,7 @@
   d::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       If(A_PriorKey = "d")
       {
@@ -358,7 +387,7 @@
   w::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075,  903, , , ahk_class TTOTAL_CMD ; cm_List=903;View with Lister
     }
@@ -372,7 +401,7 @@
   ^w::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "Edit[12]"))
+    If(RegExMatch(aControl, "Edit\d+"))
     {
       Send, ^+{Left}{Delete}
     }
@@ -383,10 +412,25 @@
     Return
   }
 
+  +w::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
+    {
+      PostMessage, 1075,  907, , , ahk_class TTOTAL_CMD ; cm_MkDir=907;Make directory
+      Send, {Right}
+    }
+    Else
+    {
+      Send, +w
+    }
+    Return
+  }
+
   :::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
       Send, {Space}{Backspace}                          ; Make it visible.
@@ -401,7 +445,7 @@
   g::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       If(A_PriorKey = "g")
       {
@@ -420,7 +464,7 @@
   ^g::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 540,  , , ahk_class TTOTAL_CMD ; cm_RereadSource=540;Reread source
     }
@@ -434,7 +478,7 @@
   +g::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       Send, {End}
     }
@@ -448,7 +492,7 @@
   ^z::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 903, , , ahk_class TTOTAL_CMD ; cm_List=903;View with Lister
     }
@@ -462,7 +506,7 @@
   ^f::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison
     }
@@ -476,7 +520,7 @@
   ^m::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 2400, , , ahk_class TTOTAL_CMD ; cm_MultiRenameFiles=2400;Rename multiple files
     }
@@ -488,10 +532,11 @@
   }
 
   ; AltGr+Q, because \ not works.
+  ; TODO: language specific
   <^>!q::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 2001, , , ahk_class TTOTAL_CMD ; cm_GoToRoot=2001
     }
@@ -503,10 +548,11 @@
   }
 
   ; Go to home. (AltGr+1, because ~ not works)
+  ; TODO: language specific
   <^>!1::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
       SendInput, cd %USERPROFILE%{Enter}
@@ -522,7 +568,7 @@
   a::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       Send, {AppsKey}
     }
@@ -534,17 +580,17 @@
   }
 
   ; Open terminal.
-  F2::
+  s::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
       SendInput, conemu64.exe /cmd powershell{Enter}
     }
     Else
     {
-      Send, {F2}
+      Send, s
     }
     Return
   }
@@ -556,18 +602,6 @@
 
 #if WinActive("ahk_class TQUICKSEARCH")
 
-  ^k::
-  {
-    Send, {Esc}
-    Return
-  }
-
-  ^j::
-  {
-    Send, {Enter}
-    Return
-  }
-
   ^n::
   {
     Send, {Down}
@@ -577,18 +611,6 @@
   ^p::
   {
     Send, {Up}
-    Return
-  }
-
-  ^h::
-  {
-    Send, {Backspace}
-    Return
-  }
-
-  ^w::
-  {
-    Send, ^+{Left}{Delete}
     Return
   }
 
@@ -613,14 +635,45 @@
 
 #if
 
-;                             PREVIEW WINDOW                              {{{1
+;                             FILE COMPARISON                             {{{1
 ; ============================================================================
 
-#if WinActive("ahk_class TLister")
+#if WinActive("ahk_class TFileCompForm")
+
+  ^n::
+  {
+    ; TODO: language specific
+    Send, !k
+    Return
+  }
+
+  ^p::
+  {
+    ; TODO: language specific
+    Send, !e
+    Return
+  }
+
+#if
+
+;                             VIEWER WINDOWS                              {{{1
+; ============================================================================
+;
+; Have to be after the specialized mappings (if there are multiply maps, then
+; the first one will be accepted).
+
+#if WinActive("ahk_class TLister")       ; preview window
+or  WinActive("ahk_class TFileCompForm") ; file comparison
 
   j::
   {
     Send, ^{Down}
+    Return
+  }
+
+  k::
+  {
+    Send, ^{Up}
     Return
   }
 
@@ -671,10 +724,19 @@
 
 #if
 
-;                            COPY/MOVE DIALOG                             {{{1
+;                           DIALOGS WITH INPUT                            {{{1
 ; ============================================================================
+;
+; Have to be after the specialized mappings (if there are multiply maps, then
+; the first one will be accepted).
 
-#if WinActive("ahk_class TInpComboDlg")
+#if WinActive("ahk_class TInpComboDlg")  ; copy/move
+or  WinActive("ahk_class TCheckEditBox") ; new file
+or  WinActive("ahk_class TCOMBOINPUT")   ; new dir
+or  WinActive("ahk_class TQUICKSEARCH")  ; quicksearch
+or  WinActive("ahk_class TMultiRename")  ; rename multiply files
+or  WinActive("ahk_class TFileCompForm") ; file comparison
+or  WinActive("ahk_class #32770")        ; delete file prompt
 
   ^k::
   {
