@@ -368,6 +368,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
     " autocmd  vimrc  VimEnter  *  call unite#filters#matcher_default#use(['matcher_regexp'])
 
+  " SHOUGO/NEOMRU.VIM                                                     {{{2
+  " gyakran/mostanaban megnyitott fajlok
+  NeoBundle 'shougo/neomru.vim'
+
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
   NeoBundle 'shougo/unite-outline'
@@ -1715,6 +1719,7 @@ nnoremap  <Space>du  :diffupdate<CR>
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap  <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
+nnoremap  <Space>fr  :Unite neomru/file<CR>
 nnoremap  <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
 nnoremap  <Space>fF  :Unite file file/new directory/new<CR>
 nnoremap  <Space>fvg :edit $MYGVIMRC<CR>
