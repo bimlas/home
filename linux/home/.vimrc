@@ -142,13 +142,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " fajlokat, ezek szinezeseben viszont a Solarized jobb.
   " NeoBundle 'nlknguyen/papercolor-theme'
 
-  " BLUEYED/VIM-DIMINACTIVE                                               {{{2
-  " Aktiv ablak/buffer kiemelese.
-  NeoBundle 'blueyed/vim-diminactive'
-
-    let g:diminactive_buftype_blacklist  = []
-    let g:diminactive_filetype_blacklist = []
-
   " NATHANAELKANE/VIM-INDENT-GUIDES                                       {{{2
   " sor behuzasanak szinezese, hogy a blokkok jobban kovethetoek legyenek
   NeoBundle 'nathanaelkane/vim-indent-guides'
