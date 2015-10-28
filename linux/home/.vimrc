@@ -1364,12 +1364,8 @@ imap      <C-J>  <CR>
 noremap   é      ;
 noremap   É      ,
 
-" Hogy az insert modban valo maszkalashoz se kelljen elhagyni az 'alapallast'.
-" NOTE: ha nagybetusek, nem mukodnek?
-inoremap  <M-h>  <Left>
-inoremap  <M-j>  <Down>
-inoremap  <M-k>  <Up>
-inoremap  <M-l>  <Right>
+" Maradjon a kurzor a helyen.
+nnoremap  *  *N
 
 " Egygombos omnicomplete.
 inoremap  <expr>  <C-F>  exists('g:loaded_neocomplete') ? neocomplete#start_manual_complete(g:neocomplete#sources._) : '<C-X><C-O>'
@@ -1648,12 +1644,13 @@ endfunction
 
 noremap   <Space>?        :Unite mapping<CR>
 
+noremap   <Space>h        g<C-]>
+nnoremap  <Space>i        :nohlsearch<CR>
 map       <Space>j        <Plug>(easymotion-sol-j)
 map       <Space>k        <Plug>(easymotion-sol-k)
-" Maradjon ugyanabban az oszlopban.
+" Stay in the same column.
 map       <Space>J        <Plug>(easymotion-j)
 map       <Space>K        <Plug>(easymotion-k)
-nnoremap  <Space>h        :nohlsearch<CR>
 nnoremap  <Space>l        g;
 nnoremap  <Space>L        g,
 nnoremap  <Space>O        :pu! _<CR>
@@ -1661,7 +1658,7 @@ nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space>u        :earlier 1f<CR>
 nnoremap  <Space>U        :later 1f<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
-noremap   <Space><Space>  g<C-]>
+map       <Space><Space>  .
 
 nnoremap  <Space>cn       :cnext!<CR>
 nnoremap  <Space>cp       :cprevious!<CR>
