@@ -65,7 +65,7 @@ map  -builtin  <Space>ft      t
 map  -builtin  <Space>bb      b
 nmap -builtin  <Space><Tab>   :buffer #<CR>
 nmap -builtin  <C-G>          :reload!<CR>
-nmap -builtin  <Space>h       :nohlfind<CR>
+nmap -builtin  <Space>i       :nohlfind<CR>
 
 map  -builtin  <C-C>          <C-Insert>
 map  -builtin  <C-F>          /

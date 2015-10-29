@@ -1338,9 +1338,6 @@ set showfulltag
 "   :verbose imap <Esc>
 " Ezen map-ok valamelyike okozza a hibat.
 
-" Jobban kezre esik, mint a \.
-let mapleader = 'á'
-
 "                                ALTALANOS                                {{{2
 " ____________________________________________________________________________
 
@@ -1361,7 +1358,8 @@ nnoremap  <Leader><C-K>  a<C-K>
 " Sokkal jobban kezre esnek.
 map       <C-J>  <CR>
 imap      <C-J>  <CR>
-noremap   é      ;
+map       H      .
+noremap   L      ;
 noremap   É      ,
 
 " Maradjon a kurzor a helyen.
@@ -1379,10 +1377,6 @@ cnoremap  <C-N>  <Down>
 " Bufferek kozti mozgas.
 nnoremap  <C-E>  :bnext<CR>
 nnoremap  <C-Y>  :bprevious<CR>
-
-" Ugras a sor elejere/vegere.
-noremap  H  g^
-noremap  L  g$
 
 " Ablakkezeles.
 nnoremap  <C-H>  <C-W>q
@@ -1466,7 +1460,7 @@ function! EasyMotionMaps()
   map  F          <Plug>(easymotion-Fl)
   map  <Leader>n  <Plug>(easymotion-n)
   map  <Leader>N  <Plug>(easymotion-N)
-  map  é          <Plug>(easymotion-next)
+  map  L          <Plug>(easymotion-next)
   map  É          <Plug>(easymotion-prev)
   EMCommandLineNoreMap <C-J> <CR>
 endfunction
@@ -1659,7 +1653,6 @@ nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space>u        :earlier 1f<CR>
 nnoremap  <Space>U        :later 1f<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
-map       <Space><Space>  .
 
 nnoremap  <Space>cn       :cnext!<CR>
 nnoremap  <Space>cp       :cprevious!<CR>
