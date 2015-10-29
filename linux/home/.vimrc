@@ -1365,7 +1365,7 @@ noremap   é      ;
 noremap   É      ,
 
 " Maradjon a kurzor a helyen.
-nnoremap  *  *N
+nnoremap  *  *Nzz
 
 " Egygombos omnicomplete.
 inoremap  <expr>  <C-F>  exists('g:loaded_neocomplete') ? neocomplete#start_manual_complete(g:neocomplete#sources._) : '<C-X><C-O>'
@@ -1496,6 +1496,7 @@ vmap  gx  <Plug>(openbrowser-smart-search)
 
 autocmd  vimrc  FileType  unite  call UniteMaps()
 function! UniteMaps()
+  nmap  <buffer>        <Esc>   <Plug>(unite_exit)
   imap  <buffer>        <C-K>   <Plug>(unite_insert_leave)
   map   <buffer>        <C-K>   <Plug>(unite_all_exit)
   map   <buffer>        <C-H>   <Plug>(unite_all_exit)

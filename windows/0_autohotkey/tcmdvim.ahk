@@ -579,6 +579,20 @@
     Return
   }
 
+  +a::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
+    {
+      PostMessage, 1075,  523, , , ahk_class TTOTAL_CMD ; cm_SelectAll=523;Select all (files or both, as configured)
+    }
+    Else
+    {
+      Send, +a
+    }
+    Return
+  }
+
   ; Open terminal.
   s::
   {
@@ -777,6 +791,12 @@ or  WinActive("ahk_class #32770")        ; delete file prompt
   ^l::
   {
     Send, {Delete}
+    Return
+  }
+
+  ^u::
+  {
+    Send, +{Home}{Delete}
     Return
   }
 
