@@ -2,20 +2,14 @@
 # rename video files to 2015.07.05_22.10_file.avi
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-inputDir = ARGV[0]
-
-if ARGV.length == 0
-  inputDir = '.'
-end
-
-files = Dir.glob("#{inputDir}/*",File::FNM_CASEFOLD).select {|x| x =~ /\.(avi|mpe?g|mp4|m4v)$/i}
+files = ARGV.empty? ? Dir.glob("*.avi *.mpg *.mpeg *.mp4 *.m4v") : ARGV
 
 files.each {|file|
   metadata = `avconv -v quiet -i "#{file}" -f ffmetadata -`.match(/(?<=creation_time=)(.*)/)
 
   if (!metadata.nil?)
     timeTaken = metadata[1].gsub(/[-:]/, '.').gsub(' ', '_')
-    filename = "#{inputDir}/#{timeTaken}"
+    filename = "#{File.dirname(file)}/#{timeTaken}"
     ext      = File.extname(file).downcase
     base     = File.basename(file, ext)
 

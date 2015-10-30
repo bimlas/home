@@ -3,21 +3,14 @@
 # http://rtarlowski.blogspot.hu/2011/04/ruby-191-change-jpg-image-name-using.html
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-require 'rubygems'
-require 'exifr'
+require "rubygems"
+require "exifr"
 
-inputDir = ARGV[0]
-
-if ARGV.length == 0
-  inputDir = '.'
-end
-
-Dir.glob("#{inputDir}/*.jpg",File::FNM_CASEFOLD).each() {|file|
-
+(ARGV.empty? ? Dir.glob("*.jpg") : ARGV).each do |file|
   timeTaken = EXIFR::JPEG.new(file).date_time_original
 
   if (!timeTaken.nil?)
-    filename = "#{inputDir}/#{timeTaken.strftime('%Y.%m.%d_%H.%M.%S')}"
+    filename = "#{File.dirname(file)}/#{timeTaken.strftime('%Y.%m.%d_%H.%M.%S')}"
     ext      = File.extname(file).downcase
     base     = File.basename(file, ext)
 
@@ -31,5 +24,4 @@ Dir.glob("#{inputDir}/*.jpg",File::FNM_CASEFOLD).each() {|file|
   else
     puts "ERROR: Can't get time for #{file}"
   end
-
-}
+end
