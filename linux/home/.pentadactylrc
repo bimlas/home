@@ -24,7 +24,7 @@ set hlfind
 " set autocomplete=
 
 " Kiegeszitesek url begepelesenel.
-set complete=lS
+set complete=l
 
 " Kenyelmesebben elerheto billentyuk a navigalashoz.
 set hintkeys=asdfghjklqwertzuiop
