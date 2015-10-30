@@ -2,7 +2,7 @@
 # rename video files to 2015.07.05_22.10_file.avi
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-files = ARGV.empty? ? Dir.glob("*.avi *.mpg *.mpeg *.mp4 *.m4v") : ARGV
+files = ARGV.empty? ? Dir.glob("*.{avi,mpg,mpeg,mp4,m4v}") : ARGV
 
 files.each {|file|
   metadata = `avconv -v quiet -i "#{file}" -f ffmetadata -`.match(/(?<=creation_time=)(.*)/)
