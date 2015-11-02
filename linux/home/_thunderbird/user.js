@@ -55,3 +55,7 @@ user_pref("gmcont.auth_at_startup", true);
 //
 //  * https://addons.mozilla.org/hu/thunderbird/addon/mail-merge/
 //    Korlevelek kuldesehez.
+//
+//    FIGYELEM! A spam-szures domain-hez kotott es nem e-mail-hez (tehat ha
+//    spam-nek tekint a Gmail, akkor nem csak a hirvelel@example.com-ot veszi
+//    annak, hanem az example.com minden cimet).
