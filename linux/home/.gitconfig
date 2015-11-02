@@ -36,7 +36,6 @@
   glps         = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
   # Log flags:
-  #   --follow  track full history of a single file.
   #   --all     show all branch (SHA..SHA not works with it?)
   glog         = "log --graph --decorate --find-renames --date-order --name-status"
   plog         = "log --graph --decorate --find-renames --date-order --patch --stat --ignore-blank-lines"
@@ -119,6 +118,9 @@
 
   ; 2014-03-25 12:34:56 +0100
   date         = "iso"
+
+  ; Track the full history of a file (follows file renames).
+  follow       = "true"
 
 [diff]
 
