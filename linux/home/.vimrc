@@ -735,76 +735,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " NeoBundle 'dbext.vim'
                                                                         " }}}2
 
-  " .. NEOCOMPLETE ........................
-
-  " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
-  " automatikus kodkiegeszites
-  " lua kell hozza (:version +lua)
-  NeoBundle 'shougo/neocomplete.vim', {
-  \ 'disabled' : !has('lua'),
-  \ }
-
-    " Engedelyezes.
-    let g:neocomplete#enable_at_startup = 1
-
-    " Ne mukodjon automatikusan, csak ha en akarom (halozati meghajtokon
-    " lassu).
-    " map neocomplete#start_manual_complete()
-    let g:neocomplete#disable_auto_complete = 1
-
-    " Smartcase.
-    let g:neocomplete#enable_smart_case = 1
-
-    " Nem szeretnek fuzzy completion-t.
-    let g:neocomplete#enable_fuzzy_completion = 0
-
-    " Csak iras kozben jelenjen meg, mozgas kozben ne.
-    let g:neocomplete#enable_insert_char_pre = 1
-
-    " Automatikusan valassza ki az elso lehetoseget.
-    " let g:neocomplete#enable_auto_select = 1
-
-    " A kiegeszitesek mire legyenek ervenyesek, honnan vegye?
-    if !exists('g:neocomplete#sources')
-      let g:neocomplete#sources = {}
-    endif
-    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'neosnippet']
-
-  " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
-  " az include-olt fajlokhoz gyartson tag-eket
-  NeoBundle 'shougo/neoinclude.vim', {
-  \ 'disabled' : !has('lua'),
-  \ }
-
-  " SHOUGO/NECO-SYNTAX                                                    {{{2
-  " szintaxis alapjan kiegeszites
-  NeoBundle 'shougo/neco-syntax', {
-  \ 'disabled' : !has('lua'),
-  \ }
-
-  " SHOUGO/NECO-VIM                                                       {{{2
-  " Vim kiegeszites a neocomplete-hez
-  NeoBundle 'shougo/neco-vim', {
-  \ 'disabled' : !has('lua'),
-  \ }
-
-  " SHOUGO/NEOSNIPPET.VIM                                                 {{{2
-  " template-ek
-  NeoBundle 'shougo/neosnippet.vim', {
-  \ 'disabled' : !has('lua'),
-  \ }
-
-    let g:neosnippet#disable_runtime_snippets      = {'_': 1}
-    let g:neosnippet#enable_snipmate_compatibility = 1
-    let g:neosnippet#snippets_directory            = bundle_dir . '/vim-snippets/snippets'
-
-  " HONZA/VIM-SNIPPETS                                                    {{{2
-  " template-ek
-  NeoBundle 'honza/vim-snippets', {
-  \ 'disabled' : !has('lua'),
-  \ }
-                                                                        " }}}2
-
   " .. GIT ................................
 
   " TPOPE/VIM-FUGITIVE                                                    {{{2
@@ -1368,7 +1298,7 @@ map       á      .
 nnoremap  *  *Nzz
 
 " Egygombos omnicomplete.
-inoremap  <expr>  <C-F>  exists('g:loaded_neocomplete') ? neocomplete#start_manual_complete(g:neocomplete#sources._) : '<C-X><C-O>'
+inoremap  <C-F>  <C-X><C-O>
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
@@ -1526,13 +1456,6 @@ function! VimfilerMaps()
   imap  <buffer><expr>  <C-CR>  vimfiler#do_action('start')
   nmap  <buffer>        <C-L>   <Plug>(mychoosewin)
 endfunction
-
-"                         NEOCOMPLETE/NEOSNIPPET                          {{{3
-" ............................................................................
-
-" Completion, vagy snippet beszurasa.
-imap      <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-imap      <expr>  <Nul>      <C-Space>
 
 "                              TEXTOBJ-USER                               {{{3
 " ............................................................................
