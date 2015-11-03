@@ -1361,6 +1361,8 @@ imap      <C-J>  <CR>
 map       H      .
 noremap   L      ;
 noremap   É      ,
+noremap   á      g^
+noremap   Á      g$
 
 " Maradjon a kurzor a helyen.
 nnoremap  *  *Nzz
