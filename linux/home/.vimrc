@@ -1358,11 +1358,11 @@ nnoremap  <Leader><C-K>  a<C-K>
 " Sokkal jobban kezre esnek.
 map       <C-J>  <CR>
 imap      <C-J>  <CR>
-map       H      .
-noremap   L      ;
+noremap   H      g^
+noremap   L      g$
+noremap   é      ;
 noremap   É      ,
-noremap   á      g^
-noremap   Á      g$
+map       á      .
 
 " Maradjon a kurzor a helyen.
 nnoremap  *  *Nzz
@@ -1462,7 +1462,7 @@ function! EasyMotionMaps()
   map  F          <Plug>(easymotion-Fl)
   map  <Leader>n  <Plug>(easymotion-n)
   map  <Leader>N  <Plug>(easymotion-N)
-  map  L          <Plug>(easymotion-next)
+  map  é          <Plug>(easymotion-next)
   map  É          <Plug>(easymotion-prev)
   EMCommandLineNoreMap <C-J> <CR>
 endfunction
