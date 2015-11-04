@@ -222,6 +222,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " sajat text-object
   NeoBundle 'kana/vim-textobj-user'
 
+  " KANA/VIM-TEXTOBJ-ENTIRE                                               {{{2
+  " ae: az egesz buffer, ie: az elejen es vegen levo ures sorok nelkul
+  NeoBundle 'kana/vim-textobj-entire'
+
   " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
   " ifX/afX az X-eken beluli kivalasztahoz
   NeoBundle 'thinca/vim-textobj-between'
