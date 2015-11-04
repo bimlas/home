@@ -1583,12 +1583,9 @@ nnoremap  <Space>u        :earlier 1f<CR>
 nnoremap  <Space>U        :later 1f<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
 
-nnoremap  <Space>cn       :cnext!<CR>
-nnoremap  <Space>cp       :cprevious!<CR>
-
-nmap      <Space>;        <Plug>TComment_gc
-nmap      <Space>;;       <Plug>TComment_gcc
-vmap      <Space>;        <Plug>TComment_gc
+nmap      <Space>c        <Plug>TComment_gc
+nmap      <Space>cc       <Plug>TComment_gcc
+vmap      <Space>c        <Plug>TComment_gc
 
 "                         <Space>a - APPLICATIONS                         {{{3
 " ............................................................................
@@ -1685,6 +1682,7 @@ autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mq  :AdocFormat<CR>$hD
 
 " __ RUBY _______________________________
 
+autocmd  vimrc  FileType  ruby  nnoremap  <buffer>        <Space>mb  Orequire 'pry'; binding.pry<Esc>
 autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>ms  has('win32')
                                 \ ? ':silent !start conemu64.exe /cmd irb.bat<CR>'
                                 \ : ':silent !xterm -c irb &<CR>'
