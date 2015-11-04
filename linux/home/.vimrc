@@ -1177,8 +1177,8 @@ else
   let &showbreak = '^ '
 endif
 
-" Helyesiras ellenorzes magyarra allitasa.
-set spelllang=hu
+" Helyesiras ellenorzes magyarra es angolra allitasa.
+set spelllang=hu,en
 
 "                                  BEHUZAS                                {{{1
 " ============================================================================
