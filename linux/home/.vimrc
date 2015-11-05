@@ -202,6 +202,12 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " A j/k a sor elejere ugras helyett maradjon ugyanabban az oszlopban.
     let g:EasyMotion_startofline = 0
 
+  " HAYA14BUSA/VIM-EASYOPERATOR-LINE                                      {{{2
+  " mozgas nelkul manipulalhatjuk a sorokat (operator-pending)
+  NeoBundle 'haya14busa/vim-easyoperator-line'
+
+    let g:EasyOperator_line_do_mapping = 0
+
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
   NeoBundle 't9md/vim-choosewin'
@@ -1576,6 +1582,8 @@ map       <Space>k        <Plug>(easymotion-sol-k)
 map       <Space>J        <Plug>(easymotion-j)
 map       <Space>K        <Plug>(easymotion-k)
 nnoremap  <Space>l        g;
+onoremap  <Space>l        :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
+vnoremap  <Space>l        :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
 nnoremap  <Space>L        g,
 nnoremap  <Space>O        :pu! _<CR>
 nnoremap  <Space>o        :pu  _<CR>
