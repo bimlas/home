@@ -1049,8 +1049,12 @@ set visualbell vb t_vb=
 " Tordelje el a hosszu sorokat. (softbreak)
 set wrap
 
-" ... a szavak vegenel.
-" set linebreak
+" ... csak a megadott karakterek utan (a szavakat ne torje el).
+set linebreak
+let &breakat = " \t;:,])}"
+
+" A wrap-al tort sorokat huzza be ugy, hogy az elozo sor behuzasat kovesse.
+set breakindent
 
 " Sorok osszefuzesenel ket szokoz helyett csak egyet tegyen.
 set nojoinspaces
@@ -1178,9 +1182,9 @@ endif
 
 " Sortores mutatasa.
 if has('gui_running')
-  let &showbreak = '↳ '
+  let &showbreak = '↳'
 else
-  let &showbreak = '^ '
+  let &showbreak = '^'
 endif
 
 " Helyesiras ellenorzes magyarra es angolra allitasa.
@@ -1574,8 +1578,7 @@ endfunction
 
 noremap   <Space>?        :Unite mapping<CR>
 
-noremap   <Space>h        g<C-]>
-nnoremap  <Space>i        :nohlsearch<CR>
+nnoremap  <Space>h        :nohlsearch<CR>
 map       <Space>j        <Plug>(easymotion-sol-j)
 map       <Space>k        <Plug>(easymotion-sol-k)
 " Stay in the same column.
@@ -1590,6 +1593,7 @@ nnoremap  <Space>o        :pu  _<CR>
 nnoremap  <Space>u        :earlier 1f<CR>
 nnoremap  <Space>U        :later 1f<CR>
 nnoremap  <Space><Tab>    :buffer #<CR>
+noremap   <Space><Space>  g<C-]>
 
 nmap      <Space>c        <Plug>TComment_gc
 nmap      <Space>cc       <Plug>TComment_gcc
