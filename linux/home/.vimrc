@@ -942,7 +942,7 @@ set laststatus=2
 let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-let stat_lineinfo   = '%4l:%3p%%|%3v'
+let stat_lineinfo   = '%4l/%4L|%3v'
 
 let &statusline  = stat_bufnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
@@ -1051,7 +1051,7 @@ set wrap
 
 " ... csak a megadott karakterek utan (a szavakat ne torje el).
 set linebreak
-let &breakat = " \t;:,])}"
+let &breakat = " \t;:,/])}"
 
 " A wrap-al tort sorokat huzza be ugy, hogy az elozo sor behuzasat kovesse.
 set breakindent
