@@ -2,19 +2,27 @@
 #
 # USEFUL COMMANDS:
 #
-#   git log --grep'regex'
-#     Look for expression in commit messages.
+#   LOG
 #
-#   git log -S'string' -- file
-#     Look for the addition/deletion of text - ie. when was the string firstly
-#     introduced or where was it removed.
+#     git log --grep'regex'
+#       Look for expression in commit messages.
 #
-#   git log -G'regex' -- file
-#     Look for differences whose patch text contains modified lines that match
-#     <regex>.
+#     git log -S'string' -- file
+#       Look for the addition/deletion of text - ie. when was the string
+#       firstly introduced or where was it removed.
 #
-#   git log -L '/int main/',/^}/:main.c
-#     Shows how the function main() in the file main.c evolved over time.
+#     git log -G'regex' -- file
+#       Look for differences whose patch text contains modified lines that
+#       match <regex>.
+#
+#     git log -L '/int main/',/^}/:main.c
+#       Shows how the function main() in the file main.c evolved over time.
+#
+#   OTHER
+#
+#     git clean -fd
+#       Delete untracked files and directories. Add `-n` to just show the
+#       affected files/directories.
 #
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
