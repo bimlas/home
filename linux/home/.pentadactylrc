@@ -17,6 +17,10 @@ set guioptions+=c
 " Mutassa a tabok sorszamat.
 set guioptions+=n
 
+" A parancssor helyen mutassa a kurzor alatti linket a statusline helyett
+" (mert az az oldal betoltese alatt folyamatosan szoveget ir ki).
+set showstatuslinks=command
+
 " Emelejen ki minden talalatot.
 set hlfind
 
