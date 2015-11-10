@@ -1752,7 +1752,8 @@ nnoremap  <expr>  <Space>tm  ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+'
 nnoremap          <Space>tn  :set number!<CR>
 nnoremap          <Space>tr  :set relativenumber!<CR>
 nnoremap          <Space>ts  :call eight#syncwin#call()<CR>
-nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all'). '<CR>'
+nnoremap  <expr>  <Space>tt  ':set textwidth=' . (&textwidth > 0 ? '0' : '78') . '<CR>'
+nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all') . '<CR>'
 nnoremap          <Space>tw  :set wrap!<CR>
 
 "                    <Space>w - WINDOW/TAB MANAGEMENT                     {{{3
