@@ -1654,6 +1654,7 @@ nnoremap  <Space>fvv :edit $MYVIMRC<CR>
 "                             <Space>g - GIT                              {{{3
 " ............................................................................
 
+nnoremap  <Space>gb  :Gblame<CR>
 nnoremap  <Space>gd  :Gdiff<CR>
 nnoremap  <Space>gg  :GitGrep --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
 nnoremap  <Space>gs  :Gstatus<CR>
