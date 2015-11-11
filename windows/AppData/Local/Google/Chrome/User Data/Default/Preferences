@@ -7,7 +7,7 @@
    },
    "profile": {
       "password_manager_enabled": false,
-      "default_content_settings": {
+      "default_content_setting_values": {
          "cookies": 4
       }
    },
