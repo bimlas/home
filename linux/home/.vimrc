@@ -1302,11 +1302,15 @@ nnoremap  <Leader><C-K>  a<C-K>
 " Sokkal jobban kezre esnek.
 map       <C-J>  <CR>
 imap      <C-J>  <CR>
+noremap   <Tab>  :
 noremap   H      g^
 noremap   L      g$
 noremap   é      ;
 noremap   É      ,
 map       á      .
+noremap   Z      @
+noremap   ZZ     @@
+noremap   Z<Tab> @:
 
 " Maradjon a kurzor a helyen.
 nnoremap  *  *Nzz
