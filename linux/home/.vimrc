@@ -484,6 +484,17 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   NeoBundle 'vimoutliner/vimoutliner'
                                                                         " }}}2
 
+  " .. PREZENTACIOHOZ .....................
+
+  " SOTTE/PRESENTING.VIM                                                  {{{2
+  " prezentacio futtatasa
+  NeoBundle 'sotte/presenting.vim'
+
+  " JUNEGUNN/GOYO.VIM                                                     {{{2
+  " distraction-free writing in Vim
+  NeoBundle 'junegunn/goyo.vim'
+                                                                        " }}}2
+
   " .. DEBUG / BENCHMARK ..................
 
   "                               CHEATSHEET                               {{{
