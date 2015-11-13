@@ -1311,17 +1311,18 @@ cnoremap  <C-K>  <C-C>
 nnoremap  <Leader><C-K>  a<C-K>
 
 " Sokkal jobban kezre esnek.
-map       <C-J>  <CR>
-imap      <C-J>  <CR>
-noremap   <Tab>  :
-noremap   H      g^
-noremap   L      g$
-noremap   é      ;
-noremap   É      ,
-map       á      .
-noremap   Z      @
-noremap   ZZ     @@
-noremap   Z<Tab> @:
+map       <C-J>      <CR>
+imap      <C-J>      <CR>
+noremap   <C-L>      :
+noremap   H          g^
+noremap   L          g$
+noremap   é          ;
+noremap   É          ,
+map       á          .
+noremap   Z          @
+noremap   ZZ         @@
+noremap   Z<C-L>     @:
+inoremap  <C-R><C-L> @:
 
 " Maradjon a kurzor a helyen.
 nnoremap  *  *Nzz
@@ -1430,7 +1431,7 @@ endfunction
 " ............................................................................
 
 nmap  <expr>  <Plug>(mychoosewin)  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
-nmap  <C-L>   <Plug>(mychoosewin)
+nmap  <Tab>   <Plug>(mychoosewin)
 
 "                             CAMELCASEMOTION                             {{{3
 " ............................................................................
@@ -1467,7 +1468,7 @@ function! UniteMaps()
   imap  <buffer><expr>  <C-CR>  unite#do_action('start')
   nmap  <buffer>        ~       <Plug>(unite_input_directory)<C-U>~/<CR><Plug>(unite_insert_leave)
   nmap  <buffer>        \       <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
-  nmap  <buffer>        <C-L>   <Plug>(mychoosewin)
+  nmap  <buffer>        <Tab>   <Plug>(mychoosewin)
 endfunction
 
 autocmd  vimrc  FileType  vimfiler  call VimfilerMaps()
@@ -1483,7 +1484,7 @@ function! VimfilerMaps()
   map   <buffer><expr>  <F11>   vimfiler#do_action('start')
   map   <buffer><expr>  <C-CR>  vimfiler#do_action('start')
   imap  <buffer><expr>  <C-CR>  vimfiler#do_action('start')
-  nmap  <buffer>        <C-L>   <Plug>(mychoosewin)
+  nmap  <buffer>        <Tab>   <Plug>(mychoosewin)
 endfunction
 
 "                              TEXTOBJ-USER                               {{{3
