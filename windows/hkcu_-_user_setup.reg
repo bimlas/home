@@ -115,7 +115,9 @@ Windows Registry Editor Version 5.00
 "Start_ShowNetPlaces"=dword:00000000
 "Start_ShowPrinters"=dword:00000000
 "Start_ShowRecentDocs"=dword:00000000
-"Start_ShowRecordedTV"=dword:00000000
+; Jobb gom -> tulajdonsagok -> mappa belefoglalasa -> inditoikonokat
+; tartalmazo mappa kijelolese es mar kesz is a custom Start menu.
+"Start_ShowRecordedTV"=dword:00000002
 "Start_ShowRun"=dword:00000000
 "Start_ShowUser"=dword:00000001
 "Start_ShowVideos"=dword:00000000
