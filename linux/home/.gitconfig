@@ -44,7 +44,7 @@
   glps         = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
   # Log flags:
-  #   --all     show all branch (SHA..SHA not works with it?)
+  #   --branches  show all branch (SHA..SHA not works with it?)
   glog         = "log --graph --decorate --find-renames --date-order --name-status"
   plog         = "log --graph --decorate --find-renames --date-order --patch --stat --ignore-blank-lines"
   pwlog        = "log --graph --decorate --find-renames --date-order --patch --stat --ignore-blank-lines --ignore-all-space"
