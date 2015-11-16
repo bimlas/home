@@ -32,6 +32,8 @@
   email        = "bimbalaszlo@gmail.com"
 
 [alias]
+  flags        = "!FLAG_LOG='--graph --decorate --find-renames --date-order'; \
+                   FLAG_DIFF='--patch --stat --ignore-blank-lines';"
 
   cl           = "clone"
   ps           = "push --all --follow-tags"
@@ -45,22 +47,23 @@
 
   # Log flags:
   #   --branches  show all branch (SHA..SHA not works with it?)
-  glog         = "log --graph --decorate --find-renames --date-order --name-status"
-  plog         = "log --graph --decorate --find-renames --date-order --patch --stat --ignore-blank-lines"
-  pwlog        = "log --graph --decorate --find-renames --date-order --patch --stat --ignore-blank-lines --ignore-all-space"
-  clog         = "log --graph --decorate --find-renames --date-order --name-status ORIG_HEAD.."
-  day          = "log --graph --decorate --find-renames --date-order --name-status --since midnight"
-  yday         = "log --graph --decorate --find-renames --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
-  slog         = "log --graph --decorate --find-renames --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
-  sslog        = "log --graph --decorate --find-renames --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)' --simplify-by-decoration"
+  glog         = "!git flags; git log $FLAG_LOG --name-status"
+  gslog        = "!git flags; git log $FLAG_LOG --stat"
+  plog         = "!git flags; git log $FLAG_LOG --patch --stat --ignore-blank-lines"
+  pwlog        = "!git flags; git log $FLAG_LOG --patch --stat --ignore-blank-lines --ignore-all-space"
+  clog         = "!git flags; git log $FLAG_LOG --name-status ORIG_HEAD.."
+  day          = "!git flags; git log $FLAG_LOG --name-status --since midnight"
+  yday         = "!git flags; git log $FLAG_LOG --name-status --since=day.before.yesterday.midnight --until=midnight"
+  slog         = "!git flags; git log $FLAG_LOG --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
+  sslog        = "!git flags; git log $FLAG_LOG --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)' --simplify-by-decoration"
   flog         = "diff --name-status"
   ls           = "ls-tree -r --name-only"
   s            = "status"
 
-  df           = "diff --patch --stat --ignore-blank-lines"
-  dfc          = "diff --patch --stat --ignore-blank-lines --cached"
-  dfw          = "diff --patch --stat --ignore-blank-lines --ignore-all-space"
-  dfwc         = "diff --patch --stat --ignore-blank-lines --ignore-all-space --cached"
+  df           = "!git flags; git diff $FLAG_DIFF"
+  dfc          = "!git flags; git diff $FLAG_DIFF --cached"
+  dfw          = "!git flags; git diff $FLAG_DIFF --ignore-all-space"
+  dfwc         = "!git flags; git diff $FLAG_DIFF --ignore-all-space --cached"
   gdf          = "difftool"
   gdfc         = "difftool --cached"
 
@@ -73,7 +76,7 @@
 
   # fixup:  merge without changing the commit message
   # squash: the commit message is editable
-  cfu          = "!sh -c 'git commit --fixup=$1 && git rebase --autosquash --interactive $1~' -"
+  cfu          = "!sh -c 'git commit --fixup=$1  && git rebase --autosquash --interactive $1~' -"
   csq          = "!sh -c 'git commit --squash=$1 && git rebase --autosquash --interactive $1~' -"
 
   co           = "checkout"
