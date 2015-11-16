@@ -58,7 +58,7 @@
   sslog        = "!git flags; git log $FLAG_LOG --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)' --simplify-by-decoration"
   flog         = "diff --name-status"
   ls           = "ls-tree -r --name-only"
-  s            = "status"
+  s            = "status --short --branch"
 
   df           = "!git flags; git diff $FLAG_DIFF"
   dfc          = "!git flags; git diff $FLAG_DIFF --cached"
