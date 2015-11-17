@@ -28,76 +28,76 @@
 
 [user]
 
-  name         = "BimbaLaszlo"
-  email        = "bimbalaszlo@gmail.com"
+  name  = "BimbaLaszlo"
+  email = "bimbalaszlo@gmail.com"
 
 [alias]
-  flags        = "!FLAG_LOG='--graph --decorate --find-renames --date-order'; \
-                   FLAG_DIFF='--patch --stat --ignore-blank-lines';"
-
-  cl           = "clone"
-  ps           = "push --all --follow-tags"
-  pl           = "pull"
-  subpl        = "!git submodule foreach git pull --tags origin master"
-  seto         = "remote set-url origin"
-  ghcl         = "!sh -c 'git clone https://www.github.com/$*' -"
-  ghps         = "!sh -c 'git remote set-url origin https://www.github.com/$*; git push --all --follow-tags --set-upstream https://www.github.com/$*' -"
-  glcl         = "!sh -c 'git clone https://gitlab.com/$*' -"
-  glps         = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
+  cl     = "clone"
+  ps     = "push --all --follow-tags"
+  pl     = "pull"
+  subpl  = "!git submodule foreach git pull --tags origin master"
+  seto   = "remote set-url origin"
+  ghcl   = "!sh -c 'git clone https://www.github.com/$*' -"
+  ghps   = "!sh -c 'git remote set-url origin https://www.github.com/$*; git push --all --follow-tags --set-upstream https://www.github.com/$*' -"
+  glcl   = "!sh -c 'git clone https://gitlab.com/$*' -"
+  glps   = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
   # Log flags:
   #   --branches  show all branch (SHA..SHA not works with it?)
-  glog         = "!git flags; git log $FLAG_LOG --name-status"
-  gslog        = "!git flags; git log $FLAG_LOG --stat"
-  plog         = "!git flags; git log $FLAG_LOG --patch --stat --ignore-blank-lines"
-  pwlog        = "!git flags; git log $FLAG_LOG --patch --stat --ignore-blank-lines --ignore-all-space"
-  clog         = "!git flags; git log $FLAG_LOG --name-status ORIG_HEAD.."
-  day          = "!git flags; git log $FLAG_LOG --name-status --since midnight"
-  yday         = "!git flags; git log $FLAG_LOG --name-status --since=day.before.yesterday.midnight --until=midnight"
-  slog         = "!git flags; git log $FLAG_LOG --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
-  sslog        = "!git flags; git log $FLAG_LOG --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)' --simplify-by-decoration"
-  flog         = "diff --name-status"
-  ls           = "ls-tree -r --name-only"
-  s            = "status --short --branch"
+  s      = "status --short --branch"
+  mylog  = "log --graph --decorate --find-renames --date-order"
+  slog   = "!git mylog --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
+  sslog  = "!git mylog --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)' --simplify-by-decoration"
+  glog   = "!git mylog --name-status"
+  gslog  = "!git mylog --stat"
+  plog   = "!git mylog --patch --stat --ignore-blank-lines"
+  pwlog  = "!git mylog --patch --stat --ignore-blank-lines --ignore-all-space"
+  flog   = "diff --name-status"
+  clog   = "!git mylog --name-status ORIG_HEAD.."
+  day    = "!git mylog --name-status --since midnight"
+  yday   = "!git mylog --name-status --since=day.before.yesterday.midnight --until=midnight"
+  ls     = "ls-tree -r --name-only"
 
-  df           = "!git flags; git diff $FLAG_DIFF"
-  dfc          = "!git flags; git diff $FLAG_DIFF --cached"
-  dfw          = "!git flags; git diff $FLAG_DIFF --ignore-all-space"
-  dfwc         = "!git flags; git diff $FLAG_DIFF --ignore-all-space --cached"
-  gdf          = "difftool"
-  gdfc         = "difftool --cached"
+  mydiff = "diff --patch --stat --ignore-blank-lines"
+  df     = "!git mydiff"
+  dfc    = "!git mydiff --cached"
+  dfw    = "!git mydiff --ignore-all-space"
+  dfwc   = "!git mydiff --ignore-all-space --cached"
+  gdf    = "difftool"
+  gdfc   = "difftool --cached"
 
-  ad           = "add --all"
-  ada          = "add --all :/"
-  c            = "commit"
-  ca           = "commit --amend"
-  cm           = "commit -m"
-  cmu          = "commit -m Update"
+  co     = "checkout"
+
+  ad     = "add --all"
+  ada    = "add --all :/"
+
+  c      = "commit"
+  ca     = "commit --amend"
+  cm     = "commit -m"
+  cmu    = "commit -m Update"
+
+  st     = "stash"
+  stp    = "stash pop"
+  reb    = "rebase --autosquash --interactive"
 
   # fixup:  merge without changing the commit message
   # squash: the commit message is editable
-  cfu          = "!sh -c 'git commit --fixup=$1  && git rebase --autosquash --interactive $1~' -"
-  csq          = "!sh -c 'git commit --squash=$1 && git rebase --autosquash --interactive $1~' -"
+  cfu    = "!sh -c 'git commit --fixup=$1  && git reb $1~' -"
+  csq    = "!sh -c 'git commit --squash=$1 && git reb $1~' -"
 
-  co           = "checkout"
+  bss    = "bisect start"
+  bsr    = "bisect reset" # stop
+  bsg    = "bisect good"
+  bsb    = "bisect bad"
 
-  st           = "stash"
-  stp          = "stash pop"
-  reb          = "rebase --autosquash --interactive"
-
-  bss          = "bisect start"
-  bsr          = "bisect reset" # stop
-  bsg          = "bisect good"
-  bsb          = "bisect bad"
-
-  ctags        = "!.git/hooks/0_ctags"
+  ctags  = "!.git/hooks/0_ctags"
 
 [core]
 
-  editor       = "gvim --nofork"
+  editor = "gvim --nofork"
 
   ; Ne konvertalja a sorvegzodeseket.
-  autocrlf     = "false"
+  autocrlf = "false"
 
   ; Windows halozati meghajtokon nagyon lassu, ez gyorsitja a dolgokat, de
   ; legalabb 1.9.4 verzio kell.
@@ -107,20 +107,20 @@
 
 [color]
 
-  ui           = "true"
+  ui = "true"
 
 [init]
 
   ; A konyvtar, amit init es clone eseten bemasol a .git konvytarba. Pl.:
   ; templatedir/hooks -> .git/hooks
   ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-  templatedir  = "~/.git_template"
+  templatedir = "~/.git_template"
 
 [commit]
 
   ; Az alapertelmezett uzenet, amit commit-olas kozben a szokasos elemek ele
   ; kiir.
-  template     = "~/.git_template/commit_message"
+  template = "~/.git_template/commit_message"
 
 [log]
 
@@ -128,24 +128,24 @@
   abbrevCommit = "true"
 
   ; 2014-03-25 12:34:56 +0100
-  date         = "iso"
+  date = "iso"
 
   ; Track the full history of a file (follows file renames).
-  follow       = "true"
+  follow = "true"
 
 [diff]
 
-  tool         = "gvimdiff"
+  tool = "gvimdiff"
 
 [merge]
 
-  tool         = "gvimdiff"
+  tool = "gvimdiff"
 
 [push]
 
-  default      = "simple"
+  default = "simple"
 
 [gc]
 
   ; Fajlok szamanak minimalizalasa a .git konyvtarban. (valamennit gyorsit)
-  auto         = 256
+  auto = 256
