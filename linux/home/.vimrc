@@ -1296,33 +1296,33 @@ set showfulltag
 "                                ALTALANOS                                {{{2
 " ____________________________________________________________________________
 
-" Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
-" gombot.
-nnoremap  Q  <Nop>
-
-" Konnyebben elerheto Esc.Korabban a <C-C> to <Esc> volt (az InsertLeave esemeny
-" nem tortenik meg a <C-C> hatasara), de valamiert a 7.4.640 kornyeken mar nem
-" mukodott.
-noremap   <C-K>  <Esc>
-inoremap  <C-K>  <Esc>
-cnoremap  <C-K>  <C-C>
+" Almighty homerow.
+noremap   <C-G>       @
+noremap   <C-G><C-G>  @@
+noremap   <C-G><C-L>  @:
+map       <C-H>       .
+map       <C-J>       <CR>
+imap      <C-J>       <CR>
+noremap   <C-K>       <Esc>
+inoremap  <C-K>       <Esc>
+cnoremap  <C-K>       <C-C>
+noremap   <C-L>       :
+inoremap  <C-R><C-L>  <C-R>:
+noremap   H           g^
+noremap   L           g$
+noremap   é           ;
+noremap   É           ,
 
 " Hogy tovabbra is be lehessen illeszteni a digraph-okat.
 nnoremap  <Leader><C-K>  a<C-K>
 
-" Sokkal jobban kezre esnek.
-map       <C-J>      <CR>
-imap      <C-J>      <CR>
-noremap   <C-L>      :
-noremap   H          g^
-noremap   L          g$
-noremap   é          ;
-noremap   É          ,
-map       á          .
-noremap   Z          @
-noremap   ZZ         @@
-noremap   Z<C-L>     @:
-inoremap  <C-R><C-L> @:
+" Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
+" gombot.
+nnoremap  Q  <Nop>
+
+" Kepernyo ujrarajzoltatasa/frissitese, valamint a fajlok ellenorzese, hogy
+" nem valtoztak-e meg egy kulso program altal.
+nnoremap  <Leader><C-L>  <C-L>:checktime<CR>
 
 " Maradjon a kurzor a helyen.
 nnoremap  *  *Nzz
@@ -1339,13 +1339,6 @@ cnoremap  <C-N>  <Down>
 " Bufferek kozti mozgas.
 nnoremap  <C-E>  :bnext<CR>
 nnoremap  <C-Y>  :bprevious<CR>
-
-" Ablakkezeles.
-nnoremap  <C-H>  <C-W>q
-
-" Kepernyo ujrarajzoltatasa/frissitese, valamint a fajlok ellenorzese, hogy
-" nem valtoztak-e meg egy kulso program altal.
-nnoremap  <C-G>  <C-L>:checktime<CR>
 
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
@@ -1455,7 +1448,6 @@ function! UniteMaps()
   nmap  <buffer>        <Esc>   <Plug>(unite_exit)
   imap  <buffer>        <C-K>   <Plug>(unite_insert_leave)
   map   <buffer>        <C-K>   <Plug>(unite_all_exit)
-  map   <buffer>        <C-H>   <Plug>(unite_all_exit)
   nmap  <buffer>        <C-N>   <Plug>(unite_loop_cursor_down)
   nmap  <buffer>        <C-P>   <Plug>(unite_loop_cursor_up)
   nmap  <buffer>        h       <Plug>(unite_delete_backward_path)
