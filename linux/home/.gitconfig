@@ -4,25 +4,54 @@
 #
 #   LOG
 #
-#     git log --grep'regex'
-#       Look for expression in commit messages.
+#     Flags:
 #
-#     git log -S'string' -- file
-#       Look for the addition/deletion of text - ie. when was the string
-#       firstly introduced or where was it removed.
+#       --branches  show all branch (SHA..SHA not works with it?)
 #
-#     git log -G'regex' -- file
-#       Look for differences whose patch text contains modified lines that
-#       match <regex>.
+#     Look for expression in commit messages.
 #
-#     git log -L '/int main/',/^}/:main.c
-#       Shows how the function main() in the file main.c evolved over time.
+#       git log --grep'regex'
+#
+#     Look for the addition/deletion of text - ie. when was the string
+#     firstly introduced or where was it removed.
+#
+#       git log -S'string' -- file
+#
+#     Look for differences whose patch text contains modified lines that
+#     match <regex>.
+#
+#       git log -G'regex' -- file
+#
+#     Shows how the function main() in the file main.c evolved over time.
+#
+#       git log -L '/int main/',/^}/:main.c
 #
 #   OTHER
 #
-#     git clean -fd
-#       Delete untracked files and directories. Add `-n` to just show the
-#       affected files/directories.
+#     Use this to resolve a binary merge:
+#
+#       git checkout --ours   -- <path/to/conflicted_file>
+#       git checkout --theirs -- <path/to/conflicted_file>
+#
+#     where "ours" is the file in the current branch and "theirs" is the file
+#     from the branch we want to merge.
+#
+#     Delete untracked files and directories. Add `-n` to just show the
+#     affected files/directories.
+#
+#       git clean -fd
+#
+#     Split a commit to smaller commits.
+#
+#       git rebase COMMIT_TO_SPLIT~
+#       # Modify `pick` to `edit`.
+#       git reset HEAD~
+#       git add FILES_FOR_A_COMMIT
+#       git commit -m "A commit"
+#       git add FILES_FOR_B_COMMIT
+#       git commit -m "B commit"
+#       git rebase --continue
+#
 #
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
@@ -42,8 +71,6 @@
   glcl   = "!sh -c 'git clone https://gitlab.com/$*' -"
   glps   = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
-  # Log flags:
-  #   --branches  show all branch (SHA..SHA not works with it?)
   s      = "status --short --branch"
   mylog  = "log --graph --decorate --find-renames --date-order"
   slog   = "!git mylog --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
@@ -66,11 +93,6 @@
   gdf    = "difftool"
   gdfc   = "difftool --cached"
 
-  # Use this to resolve a binary merge:
-  #   git checkout --ours   -- <path/to/conflicted_file>
-  #   git checkout --theirs -- <path/to/conflicted_file>
-  # where "ours" is the file in the current branch and "theirs" is the file
-  # from the branch we want to merge.
   co     = "checkout"
   coo    = "checkout --ours"
   cot    = "checkout --theirs"
@@ -106,11 +128,11 @@
 
   editor = "gvim --nofork"
 
-  ; Ne konvertalja a sorvegzodeseket.
+  ; Do not modify EOL.
   autocrlf = "false"
 
-  ; Windows halozati meghajtokon nagyon lassu, ez gyorsitja a dolgokat, de
-  ; legalabb 1.9.4 verzio kell.
+  ; Handles very slow the Windows network drives without these settings, but
+  ; it require at least 1.9.4.
   ; http://stackoverflow.com/a/24045966
   preloadindex = "true"
   fscache      = "true"
@@ -134,13 +156,14 @@
 
 [log]
 
-  ; Roviditett SHA.
+  ; Abbreviate SHA to 7 chars.
   abbrevCommit = "true"
 
   ; 2014-03-25 12:34:56 +0100
   date = "iso"
 
-  ; Track the full history of a file (follows file renames).
+  ; Track the full history of a file (follows file renames when viewing a
+  ; single file's log).
   follow = "true"
 
 [diff]
