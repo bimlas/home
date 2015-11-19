@@ -97,6 +97,11 @@
   coo    = "checkout --ours"
   cot    = "checkout --theirs"
 
+  bss    = "bisect start"
+  bsr    = "bisect reset" # stop
+  bsg    = "bisect good"
+  bsb    = "bisect bad"
+
   ad     = "add --all"
   ada    = "add --all :/"
 
@@ -105,22 +110,19 @@
   cm     = "commit -m"
   cmu    = "commit -m Update"
 
-  # See comments on `checkout` to resolve binary merge conflict.
+  # fixup:  merge without changing the commit message
+  # squash: the commit message is editable
+  cfu    = "!git commit --fixup=$1"
+  csq    = "!git commit --squash=$1"
+
   st     = "stash"
   sts    = "stash show"
   stp    = "stash pop"
   std    = "stash drop"
-  reb    = "rebase --autosquash --interactive"
 
-  # fixup:  merge without changing the commit message
-  # squash: the commit message is editable
-  cfu    = "!sh -c 'git commit --fixup=$1  && git reb $1~' -"
-  csq    = "!sh -c 'git commit --squash=$1 && git reb $1~' -"
-
-  bss    = "bisect start"
-  bsr    = "bisect reset" # stop
-  bsg    = "bisect good"
-  bsb    = "bisect bad"
+  rb     = "rebase --autosquash --interactive"
+  rbc    = "rebase --continue"
+  rba    = "rebase --abort"
 
   ctags  = "!.git/hooks/0_ctags"
 
