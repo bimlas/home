@@ -1310,6 +1310,10 @@ noremap   <C-L>       :
 inoremap  <C-R><C-L>  <C-R>:
 noremap   H           g^
 noremap   L           g$
+noremap   j           gj
+noremap   gj          j
+noremap   k           gk
+noremap   gk          k
 noremap   é           ;
 noremap   É           ,
 
