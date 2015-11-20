@@ -1006,12 +1006,6 @@ set textwidth=78
 " Sorok szamozasara szant oszlop szelessege.
 set numberwidth=6
 
-" Sorok szamozasa, kiveve ha TTY, vagy Win-es parancssor alatt hasznaljuk es
-" a szovegterulet nem elegendoen szeles.
-" if BigTerm()
-"   set relativenumber
-" endif
-
 " Minden valtoztatasrol tajekoztasson.
 set report=0
 
@@ -1040,9 +1034,6 @@ let &fillchars = 'vert: ,stl: ,stlnc: '
 
 " Kurzor koruli 'ter' gorgetesnel.
 set scrolloff=3
-
-" Gorgetes helyett fel olalt ugorjon elore (tehat <C-D>, ha a lap aljara er).
-" set scrolljump=-50
 
 " A sor utolso karaktere utan egyel is allhat a kurzor.
 " NAGYON HASZNOS TUD LENNI!
@@ -1806,9 +1797,6 @@ vmap      <Space>xc   <Plug>(EasyAlign)
 " mar letezik, mikor a Vim megnyitja azt.
 autocmd  vimrc  BufNewFile  *.txt  set fileformat=dos
 autocmd  vimrc  BufRead     *.txt  if ! getfsize(expand('%')) | set fileformat=dos | endif
-
-" A fajlok ellenorzese, hogy nem valtoztak-e meg egy kulso program altal.
-" autocmd  vimrc  BufEnter  *  checktime
 
 " :help fo-table. Azert autocmd, mert minden fajltipus felulirja a
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
