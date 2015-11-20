@@ -1643,10 +1643,11 @@ nnoremap  <Space>du  :diffupdate<CR>
 " ............................................................................
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
+nnoremap  <Space>F   :find<Space>
 nnoremap  <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
+nnoremap  <Space>fF  :Unite file file/new directory/new<CR>
 nnoremap  <Space>fr  :Unite neomru/file<CR>
 nnoremap  <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
-nnoremap  <Space>fF  :Unite file file/new directory/new<CR>
 nnoremap  <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap  <Space>fvv :edit $MYVIMRC<CR>
 
@@ -1790,6 +1791,10 @@ vmap      <Space>xc   <Plug>(EasyAlign)
 " sorrend szerint hajtodnak vegre - ez neha nem vart eredmenyt okozhat!
 
 " __ FAJLOK BEALLITASAI _________________
+
+" Add the project root to `path`, so `:find` will search in the entire
+" project.
+autocmd  vimrc  BufEnter  *  if exists('b:git_dir') | exe 'setlocal path+=' . escape(b:git_dir, ' \') . '/../**' | endif
 
 " Az ujonnan letrehozott .txt fajloknal legyen <CR><NL> a sorvegzodes. Azert
 " kell ilyen nyakatekerten megoldani, mert ha pl. krusader-bol, vagy tcmd-bol
