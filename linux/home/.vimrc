@@ -1022,9 +1022,18 @@ set cmdheight=2
 " A kurzor soranak kiemelese.
 set cursorline
 
-" Kiegesziteseknel a leghosszabb egyezo reszt irja be magatol, ezutan listazza
-" ki a lehetosegeket. ('bash'-szeru)
-set wildmode=longest,list
+" Completion in the command line:
+" - <Tab> expands string to the longest common part
+" - Second <Tab> shows all match
+" - Starting from the third will iterate on the list
+set wildmode=longest,list,full
+
+" Use only buffer's dir.
+set path=.
+
+" Add the project root to `path`, so `:find` will search in the entire
+" project.
+autocmd  vimrc  BufEnter  *  if exists('b:git_dir') | exe 'setlocal path+=' . fnamemodify(escape(b:git_dir, ' \'), ':h') . '/**' | endif
 
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
 autocmd  vimrc  VimEnter  *  if exists('g:loaded_dotvim') | set showtabline=2 tabline=%!eight#shorttabline#call() | endif
@@ -1791,10 +1800,6 @@ vmap      <Space>xc   <Plug>(EasyAlign)
 " sorrend szerint hajtodnak vegre - ez neha nem vart eredmenyt okozhat!
 
 " __ FAJLOK BEALLITASAI _________________
-
-" Add the project root to `path`, so `:find` will search in the entire
-" project.
-autocmd  vimrc  BufEnter  *  if exists('b:git_dir') | exe 'setlocal path+=' . escape(b:git_dir, ' \') . '/../**' | endif
 
 " Az ujonnan letrehozott .txt fajloknal legyen <CR><NL> a sorvegzodes. Azert
 " kell ilyen nyakatekerten megoldani, mert ha pl. krusader-bol, vagy tcmd-bol
