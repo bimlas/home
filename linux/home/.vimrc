@@ -352,7 +352,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
     " Platinum Searcher
     if executable('pt')
-      let g:unite_source_rec_async_command  = 'pt --hidden --follow --nocolor --nogroup --files-with-matches ""'
+      let g:unite_source_rec_async_command  = ['pt', '--hidden', '--follow', '--nocolor', '--nogroup', '--files-with-matches', '']
       let g:unite_source_grep_command       = 'pt'
       let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --smart-case -e --depth 0'
       let g:unite_source_grep_recursive_opt = '--depth 25'
