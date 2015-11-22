@@ -1027,7 +1027,7 @@ set cursorline
 set wildmode=longest,list
 
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-autocmd  VimEnter  *  if exists('g:loaded_dotvim') | set showtabline=2 tabline=%!eight#shorttabline#call() | endif
+autocmd  vimrc  VimEnter  *  if exists('g:loaded_dotvim') | set showtabline=2 tabline=%!eight#shorttabline#call() | endif
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
