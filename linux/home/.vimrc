@@ -1418,8 +1418,8 @@ endfunction
 "                                CHOOSEWIN                                {{{3
 " ............................................................................
 
-nmap  <expr>  <Plug>(mychoosewin)  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
-nmap  <Tab>   <Plug>(mychoosewin)
+nmap  <expr>      <Plug>(mychoosewin)  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+nmap  <C-W><C-W>  <Plug>(mychoosewin)
 
 "                             CAMELCASEMOTION                             {{{3
 " ............................................................................
@@ -1440,38 +1440,38 @@ vmap  gx  <Plug>(openbrowser-smart-search)
 
 autocmd  vimrc  FileType  unite  call UniteMaps()
 function! UniteMaps()
-  nmap  <buffer>        <Esc>   <Plug>(unite_exit)
-  imap  <buffer>        <C-K>   <Plug>(unite_insert_leave)
-  map   <buffer>        <C-K>   <Plug>(unite_all_exit)
-  nmap  <buffer>        <C-N>   <Plug>(unite_loop_cursor_down)
-  nmap  <buffer>        <C-P>   <Plug>(unite_loop_cursor_up)
-  nmap  <buffer>        h       <Plug>(unite_delete_backward_path)
-  nmap  <buffer>        l       <CR>
-  nmap  <buffer>        S       <Plug>(unite_append_end)<C-U>
-  map   <buffer>        w       <Plug>(unite_smart_preview)
-  map   <buffer>        <C-Z>   <Plug>(unite_smart_preview)
-  imap  <buffer><expr>  <C-Z>   unite#do_action('preview')
-  map   <buffer><expr>  <C-CR>  unite#do_action('start')
-  imap  <buffer><expr>  <C-CR>  unite#do_action('start')
-  nmap  <buffer>        ~       <Plug>(unite_input_directory)<C-U>~/<CR><Plug>(unite_insert_leave)
-  nmap  <buffer>        \       <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
-  nmap  <buffer>        <Tab>   <Plug>(mychoosewin)
+  nmap  <buffer>        <Esc>       <Plug>(unite_exit)
+  imap  <buffer>        <C-K>       <Plug>(unite_insert_leave)
+  map   <buffer>        <C-K>       <Plug>(unite_all_exit)
+  nmap  <buffer>        <C-N>       <Plug>(unite_loop_cursor_down)
+  nmap  <buffer>        <C-P>       <Plug>(unite_loop_cursor_up)
+  nmap  <buffer>        h           <Plug>(unite_delete_backward_path)
+  nmap  <buffer>        l           <CR>
+  nmap  <buffer>        S           <Plug>(unite_append_end)<C-U>
+  map   <buffer>        w           <Plug>(unite_smart_preview)
+  map   <buffer>        <C-Z>       <Plug>(unite_smart_preview)
+  imap  <buffer><expr>  <C-Z>       unite#do_action('preview')
+  map   <buffer><expr>  <C-CR>      unite#do_action('start')
+  imap  <buffer><expr>  <C-CR>      unite#do_action('start')
+  nmap  <buffer>        ~           <Plug>(unite_input_directory)<C-U>~/<CR><Plug>(unite_insert_leave)
+  nmap  <buffer>        \           <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
+  nmap  <buffer>        <C-W><C-W>  <Plug>(mychoosewin)
 endfunction
 
 autocmd  vimrc  FileType  vimfiler  call VimfilerMaps()
 function! VimfilerMaps()
-  nmap  <buffer>        i       :Unite line -winheight=10<CR>
-  nmap  <buffer>        <C-J>   <CR>
-  map   <buffer>        <C-Z>   <Plug>(vimfiler_preview_file)
-  map   <buffer>        w       <Plug>(vimfiler_preview_file)
-  map   <buffer>        <F3>    <Plug>(vimfiler_preview_file)
-  map   <buffer>        <F5>    <Plug>(vimfiler_copy_file)
-  map   <buffer>        <F6>    <Plug>(vimfiler_move_file)
-  map   <buffer>        <F7>    <Plug>(vimfiler_make_directory)
-  map   <buffer><expr>  <F11>   vimfiler#do_action('start')
-  map   <buffer><expr>  <C-CR>  vimfiler#do_action('start')
-  imap  <buffer><expr>  <C-CR>  vimfiler#do_action('start')
-  nmap  <buffer>        <Tab>   <Plug>(mychoosewin)
+  nmap  <buffer>        i           :Unite line -winheight=10<CR>
+  nmap  <buffer>        <C-J>       <CR>
+  map   <buffer>        <C-Z>       <Plug>(vimfiler_preview_file)
+  map   <buffer>        w           <Plug>(vimfiler_preview_file)
+  map   <buffer>        <F3>        <Plug>(vimfiler_preview_file)
+  map   <buffer>        <F5>        <Plug>(vimfiler_copy_file)
+  map   <buffer>        <F6>        <Plug>(vimfiler_move_file)
+  map   <buffer>        <F7>        <Plug>(vimfiler_make_directory)
+  map   <buffer><expr>  <F11>       vimfiler#do_action('start')
+  map   <buffer><expr>  <C-CR>      vimfiler#do_action('start')
+  imap  <buffer><expr>  <C-CR>      vimfiler#do_action('start')
+  nmap  <buffer>        <C-W><C-W>  <Plug>(mychoosewin)
 endfunction
 
 "                              TEXTOBJ-USER                               {{{3
