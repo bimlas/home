@@ -9,7 +9,8 @@
 #       --all                           Show all branch/tag/remote
 #       --branches, --tags, --remotes   Guess
 #       --ignore-all-space              Ignore space diffs
-
+#       --word-diff=color               Show the exact diffs
+#
 #     Look for expression in commit messages.
 #
 #       git log --grep'regex'
