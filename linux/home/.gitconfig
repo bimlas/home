@@ -178,7 +178,7 @@
 
 [push]
 
-  default = "simple"
+  default = "current"
 
 [gc]
 
