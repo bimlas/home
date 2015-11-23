@@ -1331,6 +1331,10 @@ nnoremap  <Leader><C-L>  <C-L>:checktime<CR>
 " Maradjon a kurzor a helyen.
 nnoremap  *  *Nzz
 
+" Repeat last :substitute with all of its flags.
+nnoremap  &  :&&<CR>
+vnoremap  &  :&&<CR>
+
 " Egygombos omnicomplete.
 inoremap  <C-F>  <C-X><C-O>
 
