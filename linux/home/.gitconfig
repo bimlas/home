@@ -6,7 +6,8 @@
 #
 #     Flags:
 #
-#       --branches  show all branch (SHA..SHA not works with it?)
+#       --all                           Show all branch/tag/remote.
+#       --branches, --tags, --remotes   Guess.
 #
 #     Look for expression in commit messages.
 #
