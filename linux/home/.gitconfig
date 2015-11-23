@@ -6,9 +6,10 @@
 #
 #     Flags:
 #
-#       --all                           Show all branch/tag/remote.
-#       --branches, --tags, --remotes   Guess.
-#
+#       --all                           Show all branch/tag/remote
+#       --branches, --tags, --remotes   Guess
+#       --ignore-all-space              Ignore space diffs
+
 #     Look for expression in commit messages.
 #
 #       git log --grep'regex'
@@ -65,7 +66,6 @@
   cl     = "clone"
   ps     = "push --all --follow-tags"
   pl     = "pull"
-  subpl  = "!git submodule foreach git pull --tags origin master"
   seto   = "remote set-url origin"
   ghcl   = "!sh -c 'git clone https://www.github.com/$*' -"
   ghps   = "!sh -c 'git remote set-url origin https://www.github.com/$*; git push --all --follow-tags --set-upstream https://www.github.com/$*' -"
@@ -74,11 +74,9 @@
 
   s      = "status --short --branch"
   slog   = "log --graph --decorate --find-renames --find-copies --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
-  sslog  = "log --graph --decorate --find-renames --find-copies --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)' --simplify-by-decoration"
   glog   = "log --graph --decorate --find-renames --find-copies --date-order --name-status"
   gslog  = "log --graph --decorate --find-renames --find-copies --date-order --stat"
   plog   = "log --graph --decorate --find-renames --find-copies --date-order --patch --stat --ignore-blank-lines"
-  pwlog  = "log --graph --decorate --find-renames --find-copies --date-order --patch --stat --ignore-blank-lines --ignore-all-space"
   flog   = "diff --name-status"
   clog   = "log --graph --decorate --find-renames --find-copies --date-order --name-status ORIG_HEAD.."
   day    = "log --graph --decorate --find-renames --find-copies --date-order --name-status --since midnight"
@@ -87,8 +85,6 @@
 
   df     = "diff --patch --stat --ignore-blank-lines"
   dfc    = "diff --patch --stat --ignore-blank-lines --cached"
-  dfw    = "diff --patch --stat --ignore-blank-lines --ignore-all-space"
-  dfwc   = "diff --patch --stat --ignore-blank-lines --ignore-all-space --cached"
   gdf    = "difftool"
   gdfc   = "difftool --cached"
 
@@ -144,15 +140,14 @@
 
 [init]
 
-  ; A konyvtar, amit init es clone eseten bemasol a .git konvytarba. Pl.:
+  ; Template directory which is copied to .git. For example:
   ; templatedir/hooks -> .git/hooks
   ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
   templatedir = "~/.git_template"
 
 [commit]
 
-  ; Az alapertelmezett uzenet, amit commit-olas kozben a szokasos elemek ele
-  ; kiir.
+  ; Additional text which appears on the top of commit message as a comment.
   template = "~/.git_template/commit_message"
 
 [log]
@@ -181,5 +176,6 @@
 
 [gc]
 
-  ; Fajlok szamanak minimalizalasa a .git konyvtarban. (valamennit gyorsit)
+  ; Minimalize the number of objects in the .git dir (speeds up the things a
+  ; bit).
   auto = 256
