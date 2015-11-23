@@ -1317,12 +1317,12 @@ noremap   gk          k
 noremap   é           ;
 noremap   É           ,
 
-" Hogy tovabbra is be lehessen illeszteni a digraph-okat.
-nnoremap  <Leader><C-K>  a<C-K>
-
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
 nnoremap  Q  <Nop>
+
+" Hogy tovabbra is be lehessen illeszteni a digraph-okat.
+nnoremap  <Leader><C-K>  a<C-K>
 
 " Kepernyo ujrarajzoltatasa/frissitese, valamint a fajlok ellenorzese, hogy
 " nem valtoztak-e meg egy kulso program altal.
