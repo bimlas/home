@@ -14,8 +14,8 @@ if s:vanilla
   set nocompatible
   filetype plugin indent on
   syntax enable
-  " :Capture VIM_PARANCS egy bufferbe masolja a kimenetet.
-  set runtimepath+=$HOME/.vim/bundle/capture.vim
+  " :Verbose EX_COMMAND copies the output to a buffer.
+  set runtimepath+=$HOME/.vim/bundle/vim-scriptease
   " Ide tedd a tesztelnivalot.
   set runtimepath+=$HOME/.vim_test
   " Ebbe pedig a tesztelni kivant beallitasokat.
@@ -46,16 +46,6 @@ augroup vimrc
   autocmd!
 augroup END
 
-" "Nagyfelbontasu" terminal (pl. xterm), vagy gui eseten igaz az ertekkel ter
-" vissza.
-function! BigTerm()
-  return  &columns >= (&textwidth + &numberwidth)
-endfunction
-
-" Sajat valtozo a branch megjelenitesenek engedelyezesehez a statusline-ban
-" Halozati meghajton nagyon belassit.
-let g:stat_git_enabled = 0
-
 "                          WIN / NIX BEALLITASOK                          {{{1
 " ============================================================================
 
@@ -70,10 +60,6 @@ if has('win32')
   " :make ezt a programot hasznalja:
   set makeprg=mingw32-make
 
-  " Ha egy tomoritett fajlt nyitunk meg, hianyolja ezt a valtozot ezert
-  " hibauzenetet ir ki.
-  let netrw_cygwin = 0
-
 endif
 
 "                                PLUGINOK                                 {{{1
@@ -85,7 +71,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   exe 'set runtimepath+=' . bundle_dir . '/neobundle.vim'
   call neobundle#begin(bundle_dir)
-  filetype off
 
   " A :NeoBundleDirectInstall telepiteseket felejtse el miutan kilepunk.
   autocmd  vimrc  VimLeavePre  *  silent! call delete(bundle_dir . '/extra_bundles.vim')
@@ -100,7 +85,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   NeoBundle 'shougo/vimproc.vim', {
   \ 'build' : {
   \     'windows' : &makeprg . ' -f make_mingw32.mak',
-  \     'linux' : 'make',
+  \     'linux'   : 'make',
   \    },
   \ }
                                                                         " }}}2
@@ -136,12 +121,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " szep, finom colorscheme (light es dark is)
   NeoBundle 'altercation/vim-colors-solarized'
 
-  " NLKNGUYEN/PAPERCOLOR-THEME                                            {{{2
-  " a Solarized egyetlen ellenfele (szamomra)
-  " Egy hibaja van, ami miatt megis mellozom: sokszor szerkesztek Asciidoc
-  " fajlokat, ezek szinezeseben viszont a Solarized jobb.
-  " NeoBundle 'nlknguyen/papercolor-theme'
-
   " NATHANAELKANE/VIM-INDENT-GUIDES                                       {{{2
   " sor behuzasanak szinezese, hogy a blokkok jobban kovethetoek legyenek
   NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -151,10 +130,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     let g:indent_guides_default_mapping       = 0
     " let g:indent_guides_guide_size            = 1
 
-  " HECAL3/VIM-LEADER-GUIDE                                               {{{2
-  " Guide-key
-  NeoBundle 'hecal3/vim-leader-guide'
-
   " LILYDJWG/COLORIZER                                                    {{{2
   " rgb szinek megjelenitese, :ColorHighlight
   NeoBundle 'lilydjwg/colorizer'
@@ -162,15 +137,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     let g:colorizer_startup  = 0
     let g:colorizer_nomap    = 1
     let g:colorizer_maxlines = 3000
-
-    " autocmd  vimrc  BufEnter  *                               ColorClear
-    " autocmd  vimrc  BufEnter  *.css,*.sass,*.less,.Xresources ColorHighlight
-
-  " VASCONCELLOSLF/VIM-INTERESTINGWORDS                                   {{{2
-  " kurzor alatti szoveg minden elofordulasanak szinezese
-  " NeoBundle 'vasconcelloslf/vim-interestingwords'
-
-    let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
@@ -277,15 +243,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " VIS                                                                   {{{2
   " parancsok futtatasa visual block-on
   NeoBundle 'vis'
-
-  " JIANGMIAO/AUTO-PAIRS                                                  {{{2
-  " paros jelek automatikus bezarasa iras kozben
-  " NeoBundle 'jiangmiao/auto-pairs'
-
-    " lasd a weboldalon: https://github.com/jiangmiao/auto-pairs
-    " let g:AutoPairsFlyMode        = 1
-    let g:AutoPairsCenterLine     = 0
-    let g:AutoPairsMultilineClose = 0
 
   " TPOPE/VIM-SURROUND                                                    {{{2
   " paros jelek gyors cserelese/torlese
@@ -750,10 +707,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " PPROVOST/VIM-PS1                                                      {{{2
   " PowerShell syntax
   NeoBundle 'pprovost/vim-ps1'
-
-  " DBEXT.VIM                                                             {{{2
-  " adadtbaziskezeles
-  " NeoBundle 'dbext.vim'
                                                                         " }}}2
 
   " .. GIT ................................
@@ -784,10 +737,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   NeoBundle 'lambdalisue/vim-gita', {
   \ 'disabled' : !executable('git'),
   \ }
-
-    " Sajat valtozo a branch megjelenitesenek engedelyezesehez a statusline-ban
-    " Halozati meghajton nagyon belassit.
-    let g:stat_git_enabled = 1
                                                                         " }}}2
   call neobundle#end()
 else
@@ -880,26 +829,6 @@ autocmd  vimrc  ColorScheme  solarized  highlight! link SpecialKey NonText
 " Ne legyenek alahuzva az osszecsukott foldok.
 autocmd  vimrc  ColorScheme  solarized  highlight! Folded term=bold,italic cterm=bold,italic gui=bold,italic
 
-"                               PAPERCOLOR                                {{{2
-" ____________________________________________________________________________
-
-" A par nelkuli zarojelek kijelzese alig lathato.
-autocmd  vimrc  ColorScheme  papercolor   highlight! link Error ErrorMsg
-
-" Olvashatatlan a tabline.
-autocmd  vimrc  ColorScheme  papercolor  highlight! TabLineFill guifg=#EEEEEE
-
-" Jobban elkulonul a komment, ha dolt betus.
-autocmd  vimrc  ColorScheme  papercolor  highlight! Comment term=italic cterm=italic gui=italic
-autocmd  vimrc  ColorScheme  papercolor  highlight! Folded  term=bold,italic cterm=bold,italic gui=bold,italic
-
-" Statusline szinei.
-autocmd  vimrc  ColorScheme  papercolor
-\ highlight! link StatFilename   Structure   |
-\ highlight! link StatFileformat ModeMsg     |
-\ highlight! link StatInfo       MakeSpecial |
-\ highlight! link StatWarning    ErrorMsg
-
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
 
@@ -959,18 +888,9 @@ let &statusline  = stat_bufnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
-" let &statusline .= '%#StatInfo#%{g:stat_git_enabled ? " " . gita#statusline#format("%lb") . " " : ""}'
 let &statusline .= '%* %= '
-let &statusline .= '%#StatWarning#%{len(StatSyntastic()) ? " " . StatSyntastic() . " " : ""}'
+let &statusline .= '%{exists("g:loaded_syntastic_plugin") ? " %#StatWarning#" . SyntasticStatuslineFlag() . " " : ""}'
 let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
-
-" __ STATSYNTASTIC __________________________
-"
-" Syntastic figyelmeztetesek sorszamai.
-
-function! StatSyntastic()
-  return exists('g:loaded_syntastic_plugin') ? SyntasticStatuslineFlag() : ''
-endfunction
 
 "                                  NETRW                                  {{{1
 " ============================================================================
@@ -1086,9 +1006,6 @@ set updatetime=1000
 " Terminalban ne varakozzon az <Esc>
 set ttimeout ttimeoutlen=0 notimeout
 
-" Mindig az ablakkezelo vagolapjat hasznalja. (y, x, es a tobbi operatornal)
-" set clipboard=unnamed
-
 " Uj ablakok alulra / jobbra keruljenek. (a help is)
 set splitbelow splitright
 
@@ -1100,10 +1017,6 @@ set helpheight=0
 
 " A Vim alapertelmezett karakterkodolasa. (nem a fajloke)
 set encoding=utf8
-
-" Changlelog beallitasok. (uj bejegyzes hozzaadasa a mai naphoz: \o)
-let changelog_username   = 'BimbaLaszlo  <bimbalaszlo@gmail.com>'
-let changelog_dateformat = '%Y.%m.%d'
 
 "                             FAJLOK BEALLITASAI                          {{{1
 " ============================================================================
@@ -1299,15 +1212,11 @@ set showfulltag
 " Almighty homerow.
 noremap   <C-G>       @
 noremap   <C-G><C-G>  @@
-noremap   <C-G><C-L>  @:
-map       <C-H>       .
 map       <C-J>       <CR>
 imap      <C-J>       <CR>
 noremap   <C-K>       <Esc>
 inoremap  <C-K>       <Esc>
 cnoremap  <C-K>       <C-C>
-noremap   <C-L>       :
-inoremap  <C-R><C-L>  <C-R>:
 noremap   H           g^
 noremap   L           g$
 noremap   j           gj
