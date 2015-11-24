@@ -1036,7 +1036,7 @@ set path=.
 autocmd  vimrc  BufEnter  *  if exists('b:git_dir') | exe 'setlocal path+=' . fnamemodify(escape(b:git_dir, ' \'), ':h') . '/**' | endif
 
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-autocmd  vimrc  VimEnter  *  if exists('g:loaded_dotvim') | set showtabline=2 tabline=%!eight#shorttabline#call() | endif
+autocmd  vimrc  VimEnter  *  if exists('g:loaded_dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -1769,7 +1769,7 @@ nnoremap          <Space>th  :ColorToggle<CR>
 nnoremap  <expr>  <Space>tm  ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
 nnoremap          <Space>tn  :set number!<CR>
 nnoremap          <Space>tr  :set relativenumber!<CR>
-nnoremap          <Space>ts  :call eight#syncwin#call()<CR>
+nnoremap          <Space>ts  :call dotvim#syncwin#call()<CR>
 nnoremap  <expr>  <Space>tt  ':set textwidth=' . (&textwidth > 0 ? '0' : '78') . '<CR>'
 nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all') . '<CR>'
 nnoremap          <Space>tw  :set wrap!<CR>
@@ -1785,7 +1785,7 @@ nnoremap  <Space>wtq  :tabclose<CR>
 "                      <Space>x - TEXT MODIFICATION                       {{{3
 " ............................................................................
 
-nnoremap  <Space>x0   :silent call eight#contact#call()<CR><CR>
+nnoremap  <Space>x0   :silent call dotvim#contact#call()<CR><CR>
 nnoremap  <Space>x1   :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
 nnoremap  <Space>x2   :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
 nnoremap  <Space>x3   :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
