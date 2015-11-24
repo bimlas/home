@@ -552,7 +552,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   NeoBundle 'scrooloose/syntastic'
 
     " Statusline indikator formaja.
-    let g:syntastic_stl_format = '%W{!W%fw}%E{!E%fe}'
+    let g:syntastic_stl_format = ' %W{!W%fw}%E{!E%fe} '
 
     " Irja ki, hogy melyik checker-tol szarmazik a figyelmeztetes.
     let g:syntastic_aggregate_errors = 1
@@ -889,7 +889,7 @@ let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
 let &statusline .= '%* %= '
-let &statusline .= '%{exists("g:loaded_syntastic_plugin") ? " %#StatWarning#" . SyntasticStatuslineFlag() . " " : ""}'
+let &statusline .= '%#StatWarning#%{exists("g:loaded_syntastic_plugin") ? SyntasticStatuslineFlag() : ""}'
 let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
 
 "                                  NETRW                                  {{{1
