@@ -74,14 +74,15 @@
   glps   = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
   s      = "status --short --branch"
-  slog   = "log --graph --decorate --find-renames --find-copies --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
-  glog   = "log --graph --decorate --find-renames --find-copies --date-order --name-status"
-  gslog  = "log --graph --decorate --find-renames --find-copies --date-order --stat"
-  plog   = "log --graph --decorate --find-renames --find-copies --date-order --patch --stat --ignore-blank-lines"
+
+  slog   = "log --graph --decorate --find-copies-harder --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
+  glog   = "log --graph --decorate --find-copies-harder --date-order --name-status"
+  gslog  = "log --graph --decorate --find-copies-harder --date-order --stat"
+  plog   = "log --graph --decorate --find-copies-harder --date-order --patch --stat --ignore-blank-lines"
+  clog   = "log --graph --decorate --find-copies-harder --date-order --name-status ORIG_HEAD.."
+  day    = "log --graph --decorate --find-copies-harder --date-order --name-status --since midnight"
+  yday   = "log --graph --decorate --find-copies-harder --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
   flog   = "diff --name-status"
-  clog   = "log --graph --decorate --find-renames --find-copies --date-order --name-status ORIG_HEAD.."
-  day    = "log --graph --decorate --find-renames --find-copies --date-order --name-status --since midnight"
-  yday   = "log --graph --decorate --find-renames --find-copies --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
   ls     = "ls-tree -r --name-only"
 
   df     = "diff --patch --stat --ignore-blank-lines"
