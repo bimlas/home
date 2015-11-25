@@ -17,6 +17,21 @@
   ;   Edit1                 text entry
   ;   Edit2                 command line
 
+  :::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox[12]"))
+    {
+      PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
+      Send, {Space}{Backspace}                          ; Make it visible.
+    }
+    Else
+    {
+      Send, :
+    }
+    Return
+  }
+
   h::
   {
     ControlGetFocus, aControl, A
@@ -120,12 +135,7 @@
   ^l::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
-    {
-      PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
-      Send, {Space}{Backspace}                          ; Make it visible.
-    }
-    Else If(RegExMatch(aControl, "Edit\d+"))
+    If(RegExMatch(aControl, "Edit\d+"))
     {
       Send, {Delete}
     }
