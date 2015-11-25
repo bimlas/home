@@ -49,11 +49,7 @@
   ^h::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
-    {
-      PostMessage, 1075, 3007, , , ahk_class TTOTAL_CMD ; cm_CloseCurrentTab=3007;Close tab
-    }
-    Else If(RegExMatch(aControl, "Edit\d+"))
+    If(RegExMatch(aControl, "Edit\d+"))
     {
       Send, {Backspace}
     }
@@ -303,20 +299,6 @@
     Return
   }
 
-  ^t::
-  {
-    ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
-    {
-      PostMessage, 1075, 3001, , , ahk_class TTOTAL_CMD ; cm_OpenNewTab=3001;Open new tab
-    }
-    Else
-    {
-      Send, ^t
-    }
-    Return
-  }
-
   r::
   {
     ControlGetFocus, aControl, A
@@ -412,7 +394,16 @@
   ^w::
   {
     ControlGetFocus, aControl, A
-    If(RegExMatch(aControl, "Edit\d+"))
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
+    {
+      If(A_PriorKey = "w")
+      {
+        Send, {Tab}
+      }
+      ; Disabled in normal mode, because it opens quicksearch, thus the Else
+      ; branch is missing.
+    }
+    Else If(RegExMatch(aControl, "Edit\d+"))
     {
       Send, ^+{Left}{Delete}
     }
@@ -434,6 +425,25 @@
     Else
     {
       Send, +w
+    }
+    Return
+  }
+
+  ^q::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
+    {
+      If(A_PriorKey = "w")
+      {
+        PostMessage, 1075, 3007, , , ahk_class TTOTAL_CMD ; cm_CloseCurrentTab=3007;Close tab
+      }
+      ; Disabled in normal mode, because it opens quicksearch, thus the Else
+      ; branch is missing.
+    }
+    Else
+    {
+      Send, ^q
     }
     Return
   }
@@ -601,6 +611,25 @@
     Else
     {
       Send, s
+    }
+    Return
+  }
+
+  ^s::
+  {
+    ControlGetFocus, aControl, A
+    If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
+    {
+      If(A_PriorKey = "w")
+      {
+        PostMessage, 1075, 3001, , , ahk_class TTOTAL_CMD ; cm_OpenNewTab=3001;Open new tab
+      }
+      ; Disabled in normal mode, because it opens quicksearch, thus the Else
+      ; branch is missing.
+    }
+    Else
+    {
+      Send, ^s
     }
     Return
   }
