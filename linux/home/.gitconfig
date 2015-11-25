@@ -114,8 +114,8 @@
 
   # fixup:  merge without changing the commit message
   # squash: the commit message is editable
-  cfu    = "!git commit --fixup=$1"
-  csq    = "!git commit --squash=$1"
+  cfu    = "!git commit --fixup"
+  csq    = "!git commit --squash"
 
   st     = "stash"
   sts    = "stash show"
