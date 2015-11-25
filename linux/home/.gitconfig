@@ -94,6 +94,11 @@
   coo    = "checkout --ours"
   cot    = "checkout --theirs"
 
+  # git bisect start HEAD   Start bisecting and mark HEAD as bad
+  # git bisect good SHA     Mark SHA as good - Git will checkout in the middle
+  #                         of they
+  # git bisect good/bad     Mark the actual checkout
+  # git bisect reset        End of bisecting
   bss    = "bisect start"
   bsr    = "bisect reset" # stop
   bsg    = "bisect good"
