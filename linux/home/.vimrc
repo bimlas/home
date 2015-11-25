@@ -1253,9 +1253,9 @@ inoremap  <C-F>  <C-X><C-O>
 cnoremap  <C-P>  <Up>
 cnoremap  <C-N>  <Down>
 
-" Bufferek kozti mozgas.
-nnoremap  <C-E>  :bnext<CR>
-nnoremap  <C-Y>  :bprevious<CR>
+" Argumentumok kozti mozgas (:args).
+nnoremap  <C-E>  :next<CR>
+nnoremap  <C-Y>  :previous<CR>
 
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
@@ -1283,6 +1283,8 @@ vnoremap   <Del>  "_<Del>
 nnoremap   x      d
 nnoremap   xx     dd
 vnoremap   x      d
+nnoremap   X      dd
+vnoremap   X      dd
 " ... viszont a karakterek felcsereleset meghagyjuk.
 nnoremap  xp     xp
 nnoremap  xP     xP
