@@ -660,6 +660,7 @@
 			<key name="Colors" modified="2015-09-20 13:30:13" build="150913">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
+			<value name="ConInMode" type="dword" data="ffffffff"/>
 		</key>
 	</key>
 </key>
