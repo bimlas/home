@@ -185,7 +185,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " let g:choosewin_tabline_replace    = 0
 
     let g:choosewin_label              = 'ASDFHJKL'
-    let g:choosewin_keymap             = {"\<C-L>": 'previous'}
+    let g:choosewin_keymap             = {"\<C-W>": 'previous'}
                                                                         " }}}2
 
   " .. TEXTOBJ-USER .......................
@@ -1235,7 +1235,7 @@ nnoremap  <Leader><C-K>  a<C-K>
 
 " Kepernyo ujrarajzoltatasa/frissitese, valamint a fajlok ellenorzese, hogy
 " nem valtoztak-e meg egy kulso program altal.
-nnoremap  <Leader><C-L>  <C-L>:checktime<CR>
+nnoremap  <C-L>  <C-L>:checktime<CR>
 
 " Maradjon a kurzor a helyen.
 nnoremap  *  *Nzz
