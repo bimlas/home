@@ -141,6 +141,9 @@
   preloadindex = "true"
   fscache      = "true"
 
+  ; Global .gitignore file.
+  excludesfile = "~/.git_template/.global_gitignore"
+
 [color]
 
   ui = "true"
@@ -155,7 +158,7 @@
 [commit]
 
   ; Additional text which appears on the top of commit message as a comment.
-  template = "~/.git_template/commit_message"
+  template = "~/.git_template/.commit_message"
 
 [log]
 
