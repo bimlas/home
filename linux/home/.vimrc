@@ -198,6 +198,13 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " ae: az egesz buffer, ie: az elejen es vegen levo ures sorok nelkul
   NeoBundle 'kana/vim-textobj-entire'
 
+  " REEDES/VIM-TEXTOBJ-SENTENCE                                           {{{2
+  " as/is: sentence (better than the default), (/g(: beginning/end of previous
+  " sentence
+  NeoBundle 'reedes/vim-textobj-sentence'
+
+    autocmd vimrc VimEnter * call textobj#sentence#init()
+
   " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
   " ifX/afX az X-eken beluli kivalasztahoz
   NeoBundle 'thinca/vim-textobj-between'
