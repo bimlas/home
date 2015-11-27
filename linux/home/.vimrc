@@ -73,7 +73,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   call neobundle#begin(bundle_dir)
 
   " A :NeoBundleDirectInstall telepiteseket felejtse el miutan kilepunk.
-  autocmd  vimrc  VimLeavePre  *  silent! call delete(bundle_dir . '/extra_bundles.vim')
+  autocmd vimrc VimLeavePre * silent! call delete(bundle_dir . '/extra_bundles.vim')
 
   " SHOUGO/NEOBUNDLE.VIM                                                  {{{2
   " plugin-ok automatizalt telepitese Git-en keresztul (is)
@@ -320,7 +320,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     endif
 
     " Alapertelmezett beallitasok.
-    autocmd  vimrc  VimEnter  *  if exists('g:loaded_unite') | call unite#custom#profile('default', 'context', {
+    autocmd vimrc VimEnter * if exists('g:loaded_unite') | call unite#custom#profile('default', 'context', {
     \ 'prompt_direction': 'top',
     \ 'direction':        'botright',
     \ 'cursor_line_time': '0.0',
@@ -329,7 +329,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     \ | endif
 
     " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
-    " autocmd  vimrc  VimEnter  *  call unite#filters#matcher_default#use(['matcher_regexp'])
+    " autocmd vimrc VimEnter * call unite#filters#matcher_default#use(['matcher_regexp'])
 
   " SHOUGO/NEOMRU.VIM                                                     {{{2
   " gyakran/mostanaban megnyitott fajlok
@@ -364,7 +364,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " Ne ugorjon a konyvtar kinyitasa utan.
     let g:vimfiler_expand_jump_to_first_child = 0
 
-    autocmd  vimrc  VimEnter  *  if exists('g:loaded_vimfiler') | call vimfiler#custom#profile('default', 'context', {
+    autocmd vimrc VimEnter * if exists('g:loaded_vimfiler') | call vimfiler#custom#profile('default', 'context', {
     \ 'safe':      0,
     \ 'sort_type': 'extension',
     \ 'columns':   'size:time'
@@ -548,7 +548,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
       let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
     endif
 
-    autocmd  vimrc  FileType  ruby  Docset ruby 2
+    autocmd vimrc FileType ruby Docset ruby 2
 
   " SCROOLOOSE/SYNTASTIC                                                  {{{2
   " syntax checker
@@ -743,7 +743,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
                                                                         " }}}2
   call neobundle#end()
 else
-  autocmd  vimrc  VimEnter  *  echomsg 'Run :InstallNeoBundle'
+  autocmd vimrc VimEnter * echomsg 'Run :InstallNeoBundle'
 endif
 
 "                           INSTALLNEOBUNDLE                              {{{1
@@ -820,22 +820,22 @@ autocmd  vimrc  ColorScheme  *
 let g:solarized_menu = 0
 
 " A par nelkuli zarojelek kijelzese alig lathato.
-autocmd  vimrc  ColorScheme  solarized  highlight! link Error ErrorMsg
+autocmd vimrc ColorScheme solarized highlight! link Error ErrorMsg
 
 " A soremeles karakterek is egybeolvadnak a szoveggel. Ez a highlight a high
 " visibility beallitasokol van atmasolva.
-autocmd  vimrc  ColorScheme  solarized  highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
+autocmd vimrc ColorScheme solarized highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
 
 " A tab, whitespace, stb. szinei is ilyenek legyenek.
-autocmd  vimrc  ColorScheme  solarized  highlight! link SpecialKey NonText
+autocmd vimrc ColorScheme solarized highlight! link SpecialKey NonText
 
 " Ne legyenek alahuzva az osszecsukott foldok.
-autocmd  vimrc  ColorScheme  solarized  highlight! Folded term=bold,italic cterm=bold,italic gui=bold,italic
+autocmd vimrc ColorScheme solarized highlight! Folded term=bold,italic cterm=bold,italic gui=bold,italic
 
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
 
-autocmd  vimrc  ColorScheme  desert  set background=dark
+autocmd vimrc ColorScheme desert set background=dark
 
 " Statusline szinei.
 autocmd  vimrc  ColorScheme  desert
@@ -956,10 +956,10 @@ set path=.
 
 " Add the project root to `path`, so `:find` will search in the entire
 " project.
-autocmd  vimrc  BufEnter  *  if exists('b:git_dir') | exe 'setlocal path+=' . fnamemodify(escape(b:git_dir, ' \'), ':h') . '/**' | endif
+autocmd vimrc BufEnter * if exists('b:git_dir') | exe 'setlocal path+=' . fnamemodify(escape(b:git_dir, ' \'), ':h') . '/**' | endif
 
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-autocmd  vimrc  VimEnter  *  if exists('g:loaded_dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
+autocmd vimrc VimEnter * if exists('g:loaded_dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -1156,7 +1156,7 @@ set cinoptions=(0,t0,W2
 set foldmethod=marker
 
 " Sajat foldheader.
-autocmd  vimrc VimEnter  *  if exists('*EightHeaderFolds')
+autocmd vimrc VimEnter * if exists('*EightHeaderFolds')
 \ | let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '', '')"
 \ | endif
 
@@ -1213,101 +1213,101 @@ set showfulltag
 " ____________________________________________________________________________
 
 " Almighty homerow.
-noremap   <C-G>       @
-noremap   <C-G><C-G>  @@
-map       <C-J>       <CR>
-imap      <C-J>       <CR>
-noremap   <C-K>       <Esc>
-inoremap  <C-K>       <Esc>
-cnoremap  <C-K>       <C-C>
-noremap   H           g^
-noremap   L           g$
-noremap   j           gj
-noremap   gj          j
-noremap   k           gk
-noremap   gk          k
-noremap   é           ;
-noremap   É           ,
+noremap  <C-G>      @
+noremap  <C-G><C-G> @@
+map      <C-J>      <CR>
+imap     <C-J>      <CR>
+noremap  <C-K>      <Esc>
+inoremap <C-K>      <Esc>
+cnoremap <C-K>      <C-C>
+noremap  H          g^
+noremap  L          g$
+noremap  j          gj
+noremap  gj         j
+noremap  k          gk
+noremap  gk         k
+noremap  é          ;
+noremap  É          ,
 
 " Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
 " gombot.
-nnoremap  Q  <Nop>
+nnoremap Q <Nop>
 
 " Hogy tovabbra is be lehessen illeszteni a digraph-okat.
-nnoremap  <Leader><C-K>  a<C-K>
+nnoremap <Leader><C-K> a<C-K>
 
 " Kepernyo ujrarajzoltatasa/frissitese, valamint a fajlok ellenorzese, hogy
 " nem valtoztak-e meg egy kulso program altal.
-nnoremap  <C-L>  <C-L>:checktime<CR>
+nnoremap <C-L> <C-L>:checktime<CR>
 
 " Maradjon a kurzor a helyen.
-nnoremap  *  *Nzz
+nnoremap * *Nzz
 
 " Repeat last :substitute with all of its flags.
-nnoremap  &  :&&<CR>
-vnoremap  &  :&&<CR>
+nnoremap & :&&<CR>
+vnoremap & :&&<CR>
 
 " Egygombos omnicomplete.
-inoremap  <C-F>  <C-X><C-O>
+inoremap <C-F> <C-X><C-O>
 
 " Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
 " elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
 " a felfele nyillal keresed az elozmenyeket)
-cnoremap  <C-P>  <Up>
-cnoremap  <C-N>  <Down>
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
 
 " Argumentumok kozti mozgas (:args).
-nnoremap  <C-E>  :next<CR>
-nnoremap  <C-Y>  :previous<CR>
+nnoremap <C-E> :next<CR>
+nnoremap <C-Y> :previous<CR>
 
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
-" inoremap  <expr>  <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
-inoremap  <expr>  <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
+" inoremap <expr> <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
+inoremap <expr> <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
 
 " A torles ne masolja a vagolapra a szoveget.
 " Azert nem `noremap`, mert az `onoremap` is beletartozna, igy pl. a `cc`
 " beutese `"_c"_c` lenne `"_cc` helyett.
-" noremap   s      "_s
-nnoremap   S      "_S
-vnoremap   S      "_S
-nnoremap   c      "_c
-vnoremap   c      "_c
-nnoremap   C      "_C
-vnoremap   C      "_C
-nnoremap   d      "_d
-vnoremap   d      "_d
-nnoremap   D      "_D
-vnoremap   D      "_D
-nnoremap   <Del>  "_<Del>
-vnoremap   <Del>  "_<Del>
+" noremap s     "_s
+nnoremap S     "_S
+vnoremap S     "_S
+nnoremap c     "_c
+vnoremap c     "_c
+nnoremap C     "_C
+vnoremap C     "_C
+nnoremap d     "_d
+vnoremap d     "_d
+nnoremap D     "_D
+vnoremap D     "_D
+nnoremap <Del> "_<Del>
+vnoremap <Del> "_<Del>
 " Kivagas motion-nel.
-nnoremap   x      d
-nnoremap   xx     dd
-vnoremap   x      d
-nnoremap   X      dd
-vnoremap   X      dd
+nnoremap x     d
+nnoremap xx    dd
+vnoremap x     d
+nnoremap X     dd
+vnoremap X     dd
 " ... viszont a karakterek felcsereleset meghagyjuk.
-nnoremap  xp     xp
-nnoremap  xP     xP
+nnoremap xp    xp
+nnoremap xP    xP
 
 " Korabban masolt szoveg beillesztese.
-nnoremap  <Leader>p  :Unite history/yank<CR>
+nnoremap <Leader>p :Unite history/yank<CR>
 
 " Az ablakkezelo vagolapjanak hasznalata.
 " Hogy a <S-Insert> a sor vegen is normalisan mukodjon:
 " set virtualedit=onemore
-noremap   <C-Insert>  "+y
-cnoremap  <C-Insert>  <C-Y>
-noremap   <S-Insert>  "+P
-imap      <S-Insert>  <C-O><S-Insert>
+noremap  <C-Insert> "+y
+cnoremap <C-Insert> <C-Y>
+noremap  <S-Insert> "+P
+imap     <S-Insert> <C-O><S-Insert>
 
 " Kurzor alatti parancs sugojanak megnyitasa.
-autocmd  vimrc  FileType  man  call ManMap()
+autocmd vimrc FileType man call ManMap()
 function! ManMap()
-  map    <buffer>  K     <C-]>
-  map    <buffer>  <CR>  <C-]>
+  map   <buffer> K    <C-]>
+  map   <buffer> <CR> <C-]>
 endfunction
 
 "                                PLUGINOK                                 {{{2
@@ -1317,128 +1317,128 @@ endfunction
 " ............................................................................
 
 " Lynx-szeru mozgas netrw-ben.
-autocmd  vimrc  FileType  netrw  call NetrwLynxMap()
+autocmd vimrc FileType netrw call NetrwLynxMap()
 function! NetrwLynxMap()
-  map  <buffer>  h  -
-  map  <buffer>  l  <CR>
+  map <buffer> h -
+  map <buffer> l <CR>
 endfunction
 
 "                               EASYMOTION                                {{{3
 " ............................................................................
 
-autocmd  vimrc  VimEnter  *  if exists('g:EasyMotion_loaded') | call EasyMotionMaps() | endif
+autocmd vimrc VimEnter * if exists('g:EasyMotion_loaded') | call EasyMotionMaps() | endif
 function! EasyMotionMaps()
-  map  s          <Plug>(easymotion-s2)
-  map  t          <Plug>(easymotion-tl)
-  map  T          <Plug>(easymotion-Tl)
-  map  t          <Plug>(easymotion-tl)
-  map  T          <Plug>(easymotion-Tl)
-  map  f          <Plug>(easymotion-fl)
-  map  F          <Plug>(easymotion-Fl)
-  map  <Leader>n  <Plug>(easymotion-n)
-  map  <Leader>N  <Plug>(easymotion-N)
-  map  é          <Plug>(easymotion-next)
-  map  É          <Plug>(easymotion-prev)
+  map s         <Plug>(easymotion-s2)
+  map t         <Plug>(easymotion-tl)
+  map T         <Plug>(easymotion-Tl)
+  map t         <Plug>(easymotion-tl)
+  map T         <Plug>(easymotion-Tl)
+  map f         <Plug>(easymotion-fl)
+  map F         <Plug>(easymotion-Fl)
+  map <Leader>n <Plug>(easymotion-n)
+  map <Leader>N <Plug>(easymotion-N)
+  map é         <Plug>(easymotion-next)
+  map É         <Plug>(easymotion-prev)
   EMCommandLineNoreMap <C-J> <CR>
 endfunction
 
 "                                CHOOSEWIN                                {{{3
 " ............................................................................
 
-nmap  <expr>      <Plug>(mychoosewin)  (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
-nmap  <C-W><C-W>  <Plug>(mychoosewin)
+nmap <expr>     <Plug>(mychoosewin) (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
+nmap <C-W><C-W> <Plug>(mychoosewin)
 
 "                             CAMELCASEMOTION                             {{{3
 " ............................................................................
 
-map  <Leader>b  <Plug>CamelCaseMotion_b
-map  <Leader>e  <Plug>CamelCaseMotion_e
+map <Leader>b <Plug>CamelCaseMotion_b
+map <Leader>e <Plug>CamelCaseMotion_e
 
 "                               OPENBROWSER                               {{{3
 " ............................................................................
 
 " Url megnyitasa a bongeszoben, vagy google a kurzor alatti szora.
 let g:netrw_nogx = 1
-nmap  gx  <Plug>(openbrowser-smart-search)
-vmap  gx  <Plug>(openbrowser-smart-search)
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 "                             UNITE/VIMFILER                              {{{3
 " ............................................................................
 
-autocmd  vimrc  FileType  unite  call UniteMaps()
+autocmd vimrc FileType unite call UniteMaps()
 function! UniteMaps()
-  nmap  <buffer>        <Esc>       <Plug>(unite_exit)
-  imap  <buffer>        <C-K>       <Plug>(unite_insert_leave)
-  map   <buffer>        <C-K>       <Plug>(unite_all_exit)
-  nmap  <buffer>        <C-N>       <Plug>(unite_loop_cursor_down)
-  nmap  <buffer>        <C-P>       <Plug>(unite_loop_cursor_up)
-  nmap  <buffer>        h           <Plug>(unite_delete_backward_path)
-  nmap  <buffer>        l           <CR>
-  nmap  <buffer>        S           <Plug>(unite_append_end)<C-U>
-  map   <buffer>        w           <Plug>(unite_smart_preview)
-  map   <buffer>        <C-Z>       <Plug>(unite_smart_preview)
-  imap  <buffer><expr>  <C-Z>       unite#do_action('preview')
-  map   <buffer><expr>  <C-CR>      unite#do_action('start')
-  imap  <buffer><expr>  <C-CR>      unite#do_action('start')
-  nmap  <buffer>        ~           <Plug>(unite_input_directory)<C-U>~/<CR><Plug>(unite_insert_leave)
-  nmap  <buffer>        \           <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
-  nmap  <buffer>        <C-W><C-W>  <Plug>(mychoosewin)
+  nmap <buffer>       <Esc>      <Plug>(unite_exit)
+  imap <buffer>       <C-K>      <Plug>(unite_insert_leave)
+  map  <buffer>       <C-K>      <Plug>(unite_all_exit)
+  nmap <buffer>       <C-N>      <Plug>(unite_loop_cursor_down)
+  nmap <buffer>       <C-P>      <Plug>(unite_loop_cursor_up)
+  nmap <buffer>       h          <Plug>(unite_delete_backward_path)
+  nmap <buffer>       l          <CR>
+  nmap <buffer>       S          <Plug>(unite_append_end)<C-U>
+  map  <buffer>       w          <Plug>(unite_smart_preview)
+  map  <buffer>       <C-Z>      <Plug>(unite_smart_preview)
+  imap <buffer><expr> <C-Z>      unite#do_action('preview')
+  map  <buffer><expr> <C-CR>     unite#do_action('start')
+  imap <buffer><expr> <C-CR>     unite#do_action('start')
+  nmap <buffer>       ~          <Plug>(unite_input_directory)<C-U>~/<CR><Plug>(unite_insert_leave)
+  nmap <buffer>       \          <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
+  nmap <buffer>       <C-W><C-W> <Plug>(mychoosewin)
 endfunction
 
-autocmd  vimrc  FileType  vimfiler  call VimfilerMaps()
+autocmd vimrc FileType vimfiler call VimfilerMaps()
 function! VimfilerMaps()
-  nmap  <buffer>        i           :Unite line -winheight=10<CR>
-  nmap  <buffer>        <C-J>       <CR>
-  map   <buffer>        <C-Z>       <Plug>(vimfiler_preview_file)
-  map   <buffer>        w           <Plug>(vimfiler_preview_file)
-  map   <buffer>        <F3>        <Plug>(vimfiler_preview_file)
-  map   <buffer>        <F5>        <Plug>(vimfiler_copy_file)
-  map   <buffer>        <F6>        <Plug>(vimfiler_move_file)
-  map   <buffer>        <F7>        <Plug>(vimfiler_make_directory)
-  map   <buffer><expr>  <F11>       vimfiler#do_action('start')
-  map   <buffer><expr>  <C-CR>      vimfiler#do_action('start')
-  imap  <buffer><expr>  <C-CR>      vimfiler#do_action('start')
-  nmap  <buffer>        <C-W><C-W>  <Plug>(mychoosewin)
+  nmap <buffer>       i          :Unite line -winheight=10<CR>
+  nmap <buffer>       <C-J>      <CR>
+  map  <buffer>       <C-Z>      <Plug>(vimfiler_preview_file)
+  map  <buffer>       w          <Plug>(vimfiler_preview_file)
+  map  <buffer>       <F3>       <Plug>(vimfiler_preview_file)
+  map  <buffer>       <F5>       <Plug>(vimfiler_copy_file)
+  map  <buffer>       <F6>       <Plug>(vimfiler_move_file)
+  map  <buffer>       <F7>       <Plug>(vimfiler_make_directory)
+  map  <buffer><expr> <F11>      vimfiler#do_action('start')
+  map  <buffer><expr> <C-CR>     vimfiler#do_action('start')
+  imap <buffer><expr> <C-CR>     vimfiler#do_action('start')
+  nmap <buffer>       <C-W><C-W> <Plug>(mychoosewin)
 endfunction
 
 "                              TEXTOBJ-USER                               {{{3
 " ............................................................................
 
-autocmd  vimrc  FileType  ruby  call TextObjMapsRuby()
+autocmd vimrc FileType ruby call TextObjMapsRuby()
 function! TextObjMapsRuby()
-  omap  <buffer>  ab  <Plug>(textobj-ruby-block-a)
-  omap  <buffer>  ib  <Plug>(textobj-ruby-block-i)
-  omap  <buffer>  ac  <Plug>(textobj-ruby-class-a)
-  omap  <buffer>  ic  <Plug>(textobj-ruby-class-i)
-  omap  <buffer>  af  <Plug>(textobj-ruby-function-a)
-  omap  <buffer>  if  <Plug>(textobj-ruby-function-i)
+  omap <buffer> ab <Plug>(textobj-ruby-block-a)
+  omap <buffer> ib <Plug>(textobj-ruby-block-i)
+  omap <buffer> ac <Plug>(textobj-ruby-class-a)
+  omap <buffer> ic <Plug>(textobj-ruby-class-i)
+  omap <buffer> af <Plug>(textobj-ruby-function-a)
+  omap <buffer> if <Plug>(textobj-ruby-function-i)
 
-  vmap  <buffer>  ab  <Plug>(textobj-ruby-block-a)
-  vmap  <buffer>  ib  <Plug>(textobj-ruby-block-i)
-  vmap  <buffer>  ac  <Plug>(textobj-ruby-class-a)
-  vmap  <buffer>  ic  <Plug>(textobj-ruby-class-i)
-  vmap  <buffer>  af  <Plug>(textobj-ruby-function-a)
-  vmap  <buffer>  if  <Plug>(textobj-ruby-function-i)
+  vmap <buffer> ab <Plug>(textobj-ruby-block-a)
+  vmap <buffer> ib <Plug>(textobj-ruby-block-i)
+  vmap <buffer> ac <Plug>(textobj-ruby-class-a)
+  vmap <buffer> ic <Plug>(textobj-ruby-class-i)
+  vmap <buffer> af <Plug>(textobj-ruby-function-a)
+  vmap <buffer> if <Plug>(textobj-ruby-function-i)
 endfunction
 
-autocmd  vimrc  FileType  python  call TextObjMapsPython()
+autocmd vimrc FileType python call TextObjMapsPython()
 function! TextObjMapsPython()
-  omap  <buffer>  ac  <Plug>(textobj-python-class-a)
-  omap  <buffer>  ic  <Plug>(textobj-python-class-i)
-  omap  <buffer>  af  <Plug>(textobj-python-function-a)
-  omap  <buffer>  if  <Plug>(textobj-python-function-i)
+  omap <buffer> ac <Plug>(textobj-python-class-a)
+  omap <buffer> ic <Plug>(textobj-python-class-i)
+  omap <buffer> af <Plug>(textobj-python-function-a)
+  omap <buffer> if <Plug>(textobj-python-function-i)
 
-  vmap  <buffer>  ac  <Plug>(textobj-python-class-a)
-  vmap  <buffer>  ic  <Plug>(textobj-python-class-i)
-  vmap  <buffer>  af  <Plug>(textobj-python-function-a)
-  vmap  <buffer>  if  <Plug>(textobj-python-function-i)
+  vmap <buffer> ac <Plug>(textobj-python-class-a)
+  vmap <buffer> ic <Plug>(textobj-python-class-i)
+  vmap <buffer> af <Plug>(textobj-python-function-a)
+  vmap <buffer> if <Plug>(textobj-python-function-i)
 endfunction
 
 " Blokkok, vagy tablazatok kijelolese - a kurzor elotti blokkhatarolot veszi
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
-autocmd  vimrc  FileType  asciidoc  if exists('*textobj#user#plugin') | call TextObjMapsAdoc() | endif
+autocmd vimrc FileType asciidoc if exists('*textobj#user#plugin') | call TextObjMapsAdoc() | endif
 
 function! TextObjMapsAdoc()
   call textobj#user#plugin('adocblock', {
@@ -1476,7 +1476,7 @@ endfunction
 "
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
 
-" autocmd  vimrc  VimEnter *  call SpaceMaps()
+" autocmd vimrc VimEnter * call SpaceMaps()
 " function! SpaceMaps()
 "   call shortcut#prefix('<Space>')
 "   call shortcut#map('dd', 'delete paragraph', 'normal dap')
@@ -1484,28 +1484,28 @@ endfunction
 "   call shortcut#map('dj', 'jump down', 'call feedkeys("\<Plug>(easymotion-sol-j)")')
 " endfunction
 
-noremap   <Space>?        :Unite mapping<CR>
+noremap  <Space>?       :Unite mapping<CR>
 
-nnoremap  <Space>h        :nohlsearch<CR>
-map       <Space>j        <Plug>(easymotion-sol-j)
-map       <Space>k        <Plug>(easymotion-sol-k)
+nnoremap <Space>h       :nohlsearch<CR>
+map      <Space>j       <Plug>(easymotion-sol-j)
+map      <Space>k       <Plug>(easymotion-sol-k)
 " Stay in the same column.
-map       <Space>J        <Plug>(easymotion-j)
-map       <Space>K        <Plug>(easymotion-k)
-nnoremap  <Space>l        g;
-onoremap  <Space>l        :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
-vnoremap  <Space>l        :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
-nnoremap  <Space>L        g,
-nnoremap  <Space>O        :pu! _<CR>
-nnoremap  <Space>o        :pu  _<CR>
-nnoremap  <Space>u        :earlier 1f<CR>
-nnoremap  <Space>U        :later 1f<CR>
-nnoremap  <Space><Tab>    :buffer #<CR>
-noremap   <Space><Space>  g<C-]>
+map      <Space>J       <Plug>(easymotion-j)
+map      <Space>K       <Plug>(easymotion-k)
+nnoremap <Space>l       g;
+onoremap <Space>l       :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
+vnoremap <Space>l       :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
+nnoremap <Space>L       g,
+nnoremap <Space>O       :pu! _<CR>
+nnoremap <Space>o       :pu  _<CR>
+nnoremap <Space>u       :earlier 1f<CR>
+nnoremap <Space>U       :later 1f<CR>
+nnoremap <Space><Tab>   :buffer #<CR>
+noremap  <Space><Space> g<C-]>
 
-nmap      <Space>c        <Plug>TComment_gc
-nmap      <Space>cc       <Plug>TComment_gcc
-vmap      <Space>c        <Plug>TComment_gc
+nmap     <Space>c       <Plug>TComment_gc
+nmap     <Space>cc      <Plug>TComment_gcc
+vmap     <Space>c       <Plug>TComment_gc
 
 "                         <Space>a - APPLICATIONS                         {{{3
 " ............................................................................
@@ -1513,181 +1513,181 @@ vmap      <Space>c        <Plug>TComment_gc
 " TODO: xterm cwd
 
 " Simple calculator/evaulator.
-nnoremap  <Space>ac  :PP<CR>
-map       <Space>aC  g!
+nnoremap <Space>ac :PP<CR>
+map      <Space>aC g!
 
 " Open terminal (shell).
-nnoremap  <expr>  <Space>as   has('win32')
-                              \ ? ':silent !start conemu64.exe /dir "'.expand('%:p:h').'" /cmd powershell<cr>'
-                              \ : ':silent !cd '.expand('%:p:h').'; xterm; cd -<CR>'
+nnoremap <expr> <Space>as   has('win32')
+                            \ ? ':silent !start conemu64.exe /dir "'.expand('%:p:h').'" /cmd powershell<cr>'
+                            \ : ':silent !cd '.expand('%:p:h').'; xterm; cd -<CR>'
 
 " Profiling.
-nnoremap  <Space>app  :profile start ./profile.log <Bar> profile func * <Bar> profile file * <Bar>
-                      \ echomsg "Profiling started, <lt>Space>apq to stop it (and quit from Vim!)."<CR>
-nnoremap  <Space>apq  :profile pause <Bar> noautocmd qall<CR>
-nnoremap  <Space>apb  :BenchVimrc<CR>
+nnoremap <Space>app :profile start ./profile.log <Bar> profile func * <Bar> profile file * <Bar>
+                    \ echomsg "Profiling started, <lt>Space>apq to stop it (and quit from Vim!)."<CR>
+nnoremap <Space>apq :profile pause <Bar> noautocmd qall<CR>
+nnoremap <Space>apb :BenchVimrc<CR>
 
 "                           <Space>b - BUFFERS                            {{{3
 " ............................................................................
 
-nnoremap  <Space>bb  :Unite buffer<CR>
-nnoremap  <Space>bB  :Unite buffer:!<CR>
-nnoremap  <Space>bc  :Unite -no-quit -keep-focus change<CR>
-nnoremap  <Space>bd  :Bdelete<CR>
-nnoremap  <Space>bD  :Bdelete!<CR>
+nnoremap <Space>bb :Unite buffer<CR>
+nnoremap <Space>bB :Unite buffer:!<CR>
+nnoremap <Space>bc :Unite -no-quit -keep-focus change<CR>
+nnoremap <Space>bd :Bdelete<CR>
+nnoremap <Space>bD :Bdelete!<CR>
 
 "                             <Space>d - DIFF                             {{{3
 " ............................................................................
 
-nnoremap  <Space>dt  :diffthis<CR>
-vnoremap  <Space>dt  :Linediff<CR>
-nnoremap  <Space>do  :diffoff<CR>
-nnoremap  <Space>du  :diffupdate<CR>
+nnoremap <Space>dt :diffthis<CR>
+vnoremap <Space>dt :Linediff<CR>
+nnoremap <Space>do :diffoff<CR>
+nnoremap <Space>du :diffupdate<CR>
 
 "                            <Space>f - FILES                             {{{3
 " ............................................................................
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
-nnoremap  <Space>F   :find<Space>
-nnoremap  <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
-nnoremap  <Space>fF  :Unite file file/new directory/new<CR>
-nnoremap  <Space>fr  :Unite neomru/file<CR>
-nnoremap  <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
-nnoremap  <Space>fvg :edit $MYGVIMRC<CR>
-nnoremap  <Space>fvv :edit $MYVIMRC<CR>
+nnoremap <Space>F   :find<Space>
+nnoremap <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
+nnoremap <Space>fF  :Unite file file/new directory/new<CR>
+nnoremap <Space>fr  :Unite neomru/file<CR>
+nnoremap <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
+nnoremap <Space>fvg :edit $MYGVIMRC<CR>
+nnoremap <Space>fvv :edit $MYVIMRC<CR>
 
 "                             <Space>g - GIT                              {{{3
 " ............................................................................
 
-nnoremap  <Space>gb  :Gblame<CR>
-nnoremap  <Space>gd  :Gdiff<CR>
-nnoremap  <Space>gg  :GitGrep --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
-nnoremap  <Space>gs  :Gstatus<CR>
-nnoremap  <Space>gl  :Gitv!<CR>
-nnoremap  <Space>gL  :Gitv<CR>
+nnoremap <Space>gb :Gblame<CR>
+nnoremap <Space>gd :Gdiff<CR>
+nnoremap <Space>gg :GitGrep --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
+nnoremap <Space>gs :Gstatus<CR>
+nnoremap <Space>gl :Gitv!<CR>
+nnoremap <Space>gL :Gitv<CR>
 
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
 " ............................................................................
 
-nmap              <Space>mK   <Plug>Zeavim
-vmap              <Space>mK   <Plug>ZVVisSelection
-nnoremap          <Space>mg   :noautocmd vimgrep //j %:p:h/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
-nnoremap          <Space>mo   :Unite -start-insert outline<CR>
-noremap           <Space>mr   :QuickRun<CR>
-noremap   <expr>  <Space>mR   ':QuickRun ' . &filetype . 'Custom<CR>'
+nmap            <Space>mK <Plug>Zeavim
+vmap            <Space>mK <Plug>ZVVisSelection
+nnoremap        <Space>mg :noautocmd vimgrep //j %:p:h/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap        <Space>mo :Unite -start-insert outline<CR>
+noremap         <Space>mr :QuickRun<CR>
+noremap  <expr> <Space>mR ':QuickRun ' . &filetype . 'Custom<CR>'
 
 " Definition
-nnoremap          <Space>mOd  :Gtags -i <C-R>=expand('<cword>')<CR><CR>
+nnoremap         <Space>mOd :Gtags -i <C-R>=expand('<cword>')<CR><CR>
 " Reference
-nnoremap          <Space>mOr  :Gtags -ir <C-R>=expand('<cword>')<CR><CR>
+nnoremap         <Space>mOr :Gtags -ir <C-R>=expand('<cword>')<CR><CR>
 " Symbol (usefull for variables)
-nnoremap          <Space>mOs  :Gtags -si <C-R>=expand('<cword>')<CR><CR>
+nnoremap         <Space>mOs :Gtags -si <C-R>=expand('<cword>')<CR><CR>
 
 " __ VIM ________________________________
 
-autocmd  vimrc  FileType  vim  noremap <buffer>  <Space>m8
+autocmd vimrc FileType vim noremap <buffer> <Space>m8
 \ :call EightHeader(78, 'left', 1, ' ', '{'.'{{2' , '')<CR><CR>
 
-autocmd  vimrc  FileType  vim  nnoremap <buffer>  <Space>ms  :PP<CR>
+autocmd vimrc FileType vim nnoremap <buffer> <Space>ms  :PP<CR>
 
 " __ VIMHELP ____________________________
 
-autocmd  vimrc  FileType  help  nnoremap <buffer>  <Space>m1
+autocmd vimrc FileType help nnoremap <buffer> <Space>m1
 \ :call EightHeader(78, 'left', 1, ' ', '\= "*".matchstr(s:str, ";\\@<=.*")."*"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
 
-autocmd  vimrc  FileType  help  noremap <buffer>  <Space>m2
+autocmd vimrc FileType help noremap <buffer> <Space>m2
 \ :call EightHeader(78, 'left', 1, '.', '\= "\|".matchstr(s:str, ";\\@<=.*")."\|"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
 
 " __ ASCIIDOC ___________________________
 
-autocmd  vimrc  FileType  asciidoc  vnoremap  <Space>mq  :AdocFormat<CR>$hD
+autocmd vimrc FileType asciidoc vnoremap <Space>mq :AdocFormat<CR>$hD
 
 " __ RUBY _______________________________
 
-autocmd  vimrc  FileType  ruby  nnoremap  <buffer>        <Space>mb  Orequire 'pry'; binding.pry<Esc>
-autocmd  vimrc  FileType  ruby  nnoremap  <buffer><expr>  <Space>ms  has('win32')
-                                \ ? ':silent !start conemu64.exe /cmd irb.bat<CR>'
-                                \ : ':silent !xterm -c irb &<CR>'
+autocmd vimrc FileType ruby nnoremap <buffer>       <Space>mb Orequire 'pry'; binding.pry<Esc>
+autocmd vimrc FileType ruby nnoremap <buffer><expr> <Space>ms has('win32')
+                                                              \ ? ':silent !start conemu64.exe /cmd irb.bat<CR>'
+                                                              \ : ':silent !xterm -c irb &<CR>'
 
 " __ PYTHON _____________________________
 
-autocmd  vimrc  FileType  python  nnoremap  <buffer><expr>  <Space>ms  has('win32')
-                                  \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
-                                  \ : ':silent !xterm -c python &<CR>'
+autocmd vimrc FileType python nnoremap <buffer><expr> <Space>ms has('win32')
+                                                                \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
+                                                                \ : ':silent !xterm -c python &<CR>'
 
 "                          <Space>n - NEOBUNDLE                           {{{3
 " ............................................................................
 
-nnoremap  <Space>nc  :NeoBundleClean<CR>
-nnoremap  <Space>nd  :NeoBundleDirectInstall ''<Left>
-nnoremap  <Space>ni  :Unite neobundle/install<CR>
-nnoremap  <Space>nl  :Unite neobundle/log<CR>
-nnoremap  <Space>ns  :Unite neobundle/search<CR>
-nnoremap  <Space>nu  :Unite neobundle/update:!<CR>
+nnoremap <Space>nc :NeoBundleClean<CR>
+nnoremap <Space>nd :NeoBundleDirectInstall ''<Left>
+nnoremap <Space>ni :Unite neobundle/install<CR>
+nnoremap <Space>nl :Unite neobundle/log<CR>
+nnoremap <Space>ns :Unite neobundle/search<CR>
+nnoremap <Space>nu :Unite neobundle/update:!<CR>
 
 "                           <Space>p - PROJECT                            {{{3
 " ............................................................................
 
-nnoremap  <Space>pf   :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async directory/new file/new<CR>
-nnoremap  <Space>pt   :VimFilerExplorer -project -toggle<CR>
+nnoremap <Space>pf :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async directory/new file/new<CR>
+nnoremap <Space>pt :VimFilerExplorer -project -toggle<CR>
 
 "                <Space>q - QUOTES, SURROUNDS, CHANGE CASE                {{{3
 " ............................................................................
 
-nmap  <Space>qa   <Plug>Ysurround
-vmap  <Space>qa   <Plug>VSurround
-nmap  <Space>qs   <Plug>Csurround
-nmap  <Space>qd   <Plug>Dsurround
+nmap <Space>qa  <Plug>Ysurround
+vmap <Space>qa  <Plug>VSurround
+nmap <Space>qs  <Plug>Csurround
+nmap <Space>qd  <Plug>Dsurround
 
-nmap  <Space>qcc  <Plug>Coercec
-nmap  <Space>qcm  <Plug>Coercem
-nmap  <Space>qc_  <Plug>Coerce_
-nmap  <Space>qcs  <Plug>Coerces
-nmap  <Space>qcu  <Plug>Coerceu
-nmap  <Space>qcU  <Plug>CoerceU
+nmap <Space>qcc <Plug>Coercec
+nmap <Space>qcm <Plug>Coercem
+nmap <Space>qc_ <Plug>Coerce_
+nmap <Space>qcs <Plug>Coerces
+nmap <Space>qcu <Plug>Coerceu
+nmap <Space>qcU <Plug>CoerceU
 
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-nnoremap  <Space>sg  :noautocmd vimgrep //j %:p:h/** <Bar> copen<Home><C-Right><C-Right><Right><Right>
-nnoremap  <Space>sl  :Unite -no-quit -keep-focus line<CR>
+nnoremap <Space>sg :noautocmd vimgrep //j %:p:h/** <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap <Space>sl :Unite -no-quit -keep-focus line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
 " ............................................................................
 
-nnoremap  <expr>  <Space>tb  ':set background=' . (&background == 'light' ? 'dark' : 'light') . '<CR>'
-nnoremap          <Space>tc  :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
-nnoremap          <Space>th  :ColorToggle<CR>
-nnoremap  <expr>  <Space>tm  ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
-nnoremap          <Space>tn  :set number!<CR>
-nnoremap          <Space>tr  :set relativenumber!<CR>
-nnoremap          <Space>ts  :call dotvim#syncwin#call()<CR>
-nnoremap  <expr>  <Space>tt  ':set textwidth=' . (&textwidth > 0 ? '0' : '78') . '<CR>'
-nnoremap  <expr>  <Space>tv  ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all') . '<CR>'
-nnoremap          <Space>tw  :set wrap!<CR>
+nnoremap <expr> <Space>tb ':set background=' . (&background == 'light' ? 'dark' : 'light') . '<CR>'
+nnoremap        <Space>tc :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
+nnoremap        <Space>th :ColorToggle<CR>
+nnoremap <expr> <Space>tm ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
+nnoremap        <Space>tn :set number!<CR>
+nnoremap        <Space>tr :set relativenumber!<CR>
+nnoremap        <Space>ts :call dotvim#syncwin#call()<CR>
+nnoremap <expr> <Space>tt ':set textwidth=' . (&textwidth > 0 ? '0' : '78') . '<CR>'
+nnoremap <expr> <Space>tv ':set virtualedit=' . (&virtualedit == 'all' ? 'onemore' : 'all') . '<CR>'
+nnoremap        <Space>tw :set wrap!<CR>
 
 "                    <Space>w - WINDOW/TAB MANAGEMENT                     {{{3
 " ............................................................................
 
-nnoremap  <Space>wo   :tab split<CR>
-nnoremap  <Space>ws   :ChooseWinSwapStay<CR>
-nnoremap  <Space>wtt  :tabnew<CR>
-nnoremap  <Space>wtq  :tabclose<CR>
+nnoremap <Space>wo  :tab split<CR>
+nnoremap <Space>ws  :ChooseWinSwapStay<CR>
+nnoremap <Space>wtt :tabnew<CR>
+nnoremap <Space>wtq :tabclose<CR>
 
 "                      <Space>x - TEXT MODIFICATION                       {{{3
 " ............................................................................
 
-nnoremap  <Space>x0   :silent call dotvim#contact#call()<CR><CR>
-nnoremap  <Space>x1   :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
-nnoremap  <Space>x2   :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
-nnoremap  <Space>x3   :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
-nnoremap  <Space>x4   :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
-nnoremap  <Space>x8   :silent call EightHeader(78, 'left', 1, ' ', '{'.'{{' , '')<CR><CR>
-nnoremap  <Space>x9   :silent call EightHeader(78, 'left', 1, ' ', '}'.'}}' , '')<CR><CR>
+nnoremap <Space>x0  :silent call dotvim#contact#call()<CR><CR>
+nnoremap <Space>x1  :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
+nnoremap <Space>x2  :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
+nnoremap <Space>x3  :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
+nnoremap <Space>x4  :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
+nnoremap <Space>x8  :silent call EightHeader(78, 'left', 1, ' ', '{'.'{{' , '')<CR><CR>
+nnoremap <Space>x9  :silent call EightHeader(78, 'left', 1, ' ', '}'.'}}' , '')<CR><CR>
 
-nmap      <Space>xcc  <Plug>(EasyAlign)ip
-nmap      <Space>xc   <Plug>(EasyAlign)
-vmap      <Space>xc   <Plug>(EasyAlign)
+nmap     <Space>xcc <Plug>(EasyAlign)ip
+nmap     <Space>xc  <Plug>(EasyAlign)
+vmap     <Space>xc  <Plug>(EasyAlign)
 
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
@@ -1701,44 +1701,44 @@ vmap      <Space>xc   <Plug>(EasyAlign)
 " kell ilyen nyakatekerten megoldani, mert ha pl. krusader-bol, vagy tcmd-bol
 " hozunk letre egy uj fajt, akkor a BufNewFile nem ervenyes ra, mivel a fajl
 " mar letezik, mikor a Vim megnyitja azt.
-autocmd  vimrc  BufNewFile  *.txt  set fileformat=dos
-autocmd  vimrc  BufRead     *.txt  if ! getfsize(expand('%')) | set fileformat=dos | endif
+autocmd vimrc BufNewFile *.txt set fileformat=dos
+autocmd vimrc BufRead *.txt if ! getfsize(expand('%')) | set fileformat=dos | endif
 
 " :help fo-table. Azert autocmd, mert minden fajltipus felulirja a
 " formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
 " lenne.
-autocmd  vimrc  FileType  *    setlocal formatoptions+=con formatoptions-=l
+autocmd vimrc FileType * setlocal formatoptions+=con formatoptions-=l
 if v:version >= 704
-  autocmd  vimrc  FileType  *  setlocal formatoptions+=j
+  autocmd vimrc FileType * setlocal formatoptions+=j
 endif
 
 " __ COMPLETION _________________________
 
 " Fajltipus alapjan allitsa be az omni-completion-t.
 if filereadable($VIMRUNTIME . '/autoload/syntaxcomplete.vim')
-  autocmd  vimrc  FileType  *  if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
+  autocmd vimrc FileType * if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
 endif
 
 " __ MEGJELENES _________________________
 
 " Jobban lathato az insert mod, ha a cursorline valtakozik.
-autocmd  vimrc  InsertEnter,InsertLeave  *  set cursorline!
+autocmd vimrc InsertEnter,InsertLeave * set cursorline!
 
 " Csak az aktualis ablakban jelezze a kurzor sorat.
-autocmd  vimrc  WinEnter  *  set cursorline
-autocmd  vimrc  WinLeave  *  set nocursorline
+autocmd vimrc WinEnter * set cursorline
+autocmd vimrc WinLeave * set nocursorline
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
-autocmd  vimrc  VimResized  *  wincmd =
+autocmd vimrc VimResized * wincmd =
 
 " Sorok szamozasanak es a specialis karakterek mutatasanak kikapcsolasa a man,
 " quickfix es pydoc buffereknel.
-autocmd  vimrc  FileType  man,qf   setlocal nonumber nolist
-autocmd  vimrc  BufNew    __doc__  setlocal nonumber nolist
+autocmd vimrc FileType man,qf setlocal nonumber nolist
+autocmd vimrc BufNew __doc__ setlocal nonumber nolist
 
 " Make hiba eseten nyissa meg a hibaablakot. A quickfix-reflector miatt kell a
 " nested.
-autocmd  vimrc  QuickFixCmdPost  *  nested botright cwindow
+autocmd vimrc QuickFixCmdPost * nested botright cwindow
 
 "                               LOCAL VIMRC                               {{{1
 " ============================================================================
