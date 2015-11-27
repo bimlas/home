@@ -205,14 +205,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
     autocmd vimrc VimEnter * call textobj#sentence#init()
 
-  " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
-  " ifX/afX az X-eken beluli kivalasztahoz
-  NeoBundle 'thinca/vim-textobj-between'
-
-  " SGUR/VIM-TEXTOBJ-PARAMETER                                            {{{2
-  " a,/i, for function paramteres
-  NeoBundle 'sgur/vim-textobj-parameter'
-
   " JULIAN/VIM-TEXTOBJ-VARIABLE-SEGMENT                                   {{{2
   " _privat*e_thing -> civone -> _one_thing
   " eggsAn*dCheese  -> dav    -> eggsCheese
@@ -240,6 +232,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
     let g:textobj_python_no_default_key_mappings = 1
                                                                         " }}}2
+
+  " WELLLE/TARGETS.VIM
+  " see doc
+  NeoBundle 'wellle/targets.vim'
 
   " .. SZOVEG KERESESE/MODOSITASA .........
 
@@ -1407,28 +1403,6 @@ endfunction
 
 "                              TEXTOBJ-USER                               {{{3
 " ............................................................................
-
-" Roviditesek a thinca/vim-textobj-between pluginnak koszonhetoen.
-omap  i*   <Plug>(textobj-between-i)*
-vmap  i*   <Plug>(textobj-between-i)*
-omap  a*   <Plug>(textobj-between-a)*
-vmap  a*   <Plug>(textobj-between-a)*
-omap  i:   <Plug>(textobj-between-i):
-vmap  i:   <Plug>(textobj-between-i):
-omap  a:   <Plug>(textobj-between-a):
-vmap  a:   <Plug>(textobj-between-a):
-omap  i#   <Plug>(textobj-between-i)#
-vmap  i#   <Plug>(textobj-between-i)#
-omap  a#   <Plug>(textobj-between-a)#
-vmap  a#   <Plug>(textobj-between-a)#
-omap  i/   <Plug>(textobj-between-i)/
-vmap  i/   <Plug>(textobj-between-i)/
-omap  a/   <Plug>(textobj-between-a)/
-vmap  a/   <Plug>(textobj-between-a)/
-omap  i\|  <Plug>(textobj-between-i)<Bar>
-vmap  i\|  <Plug>(textobj-between-i)<Bar>
-omap  a\|  <Plug>(textobj-between-a)<Bar>
-vmap  a\|  <Plug>(textobj-between-a)<Bar>
 
 autocmd  vimrc  FileType  ruby  call TextObjMapsRuby()
 function! TextObjMapsRuby()
