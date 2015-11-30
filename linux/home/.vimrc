@@ -203,7 +203,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " sentence
   NeoBundle 'reedes/vim-textobj-sentence'
 
-    autocmd vimrc VimEnter * call textobj#sentence#init()
+    autocmd vimrc VimEnter * if exists('g:loaded_textobj_sentence') | call textobj#sentence#init() | endif
 
   " JULIAN/VIM-TEXTOBJ-VARIABLE-SEGMENT                                   {{{2
   " _privat*e_thing -> civone -> _one_thing
