@@ -1,5 +1,5 @@
 [Buttonbar]
-Buttoncount=11
+Buttoncount=12
 button1=wcmicons.dll,4
 cmd1=cm_srclong
 iconic1=0
@@ -30,3 +30,6 @@ iconic10=0
 button11=wcmicons.dll,45
 cmd11=cm_CopyFullNamesToClip
 iconic11=0
+button12=wcmicons.dll,45
+cmd12=cm_CopyNamesToClip
+iconic12=0
