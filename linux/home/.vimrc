@@ -1487,25 +1487,34 @@ endfunction
 noremap  <Space>?       :Unite mapping<CR>
 
 nnoremap <Space>h       :nohlsearch<CR>
+noremap  <Space><Space> g<C-]>
+nnoremap <Space><Tab>   :buffer #<CR>
+
+nnoremap <Space>L       g,
+nnoremap <Space>l       g;
+
+nnoremap <Space>O       :pu! _<CR>
+nnoremap <Space>o       :pu  _<CR>
+
+nnoremap <Space>u       :earlier 1f<CR>
+nnoremap <Space>U       :later 1f<CR>
+
+noremap  <Space>y       "+y
+noremap  <Space>p       "+p
+noremap  <Space>P       "+P
+
 map      <Space>j       <Plug>(easymotion-sol-j)
 map      <Space>k       <Plug>(easymotion-sol-k)
 " Stay in the same column.
 map      <Space>J       <Plug>(easymotion-j)
 map      <Space>K       <Plug>(easymotion-k)
-nnoremap <Space>l       g;
-onoremap <Space>l       :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
-vnoremap <Space>l       :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
-nnoremap <Space>L       g,
-nnoremap <Space>O       :pu! _<CR>
-nnoremap <Space>o       :pu  _<CR>
-nnoremap <Space>u       :earlier 1f<CR>
-nnoremap <Space>U       :later 1f<CR>
-nnoremap <Space><Tab>   :buffer #<CR>
-noremap  <Space><Space> g<C-]>
 
 nmap     <Space>c       <Plug>TComment_gc
-nmap     <Space>cc      <Plug>TComment_gcc
 vmap     <Space>c       <Plug>TComment_gc
+nmap     <Space>cc      <Plug>TComment_gcc
+
+onoremap <Space>l       :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
+vnoremap <Space>l       :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
 
 "                         <Space>a - APPLICATIONS                         {{{3
 " ............................................................................
@@ -1551,6 +1560,7 @@ nnoremap <Space>du :diffupdate<CR>
 nnoremap <Space>F   :find<Space>
 nnoremap <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
 nnoremap <Space>fF  :Unite file file/new directory/new<CR>
+nnoremap <Space>fp  :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async file/new directory/new<CR>
 nnoremap <Space>fr  :Unite neomru/file<CR>
 nnoremap <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
 nnoremap <Space>fvg :edit $MYGVIMRC<CR>
@@ -1624,12 +1634,6 @@ nnoremap <Space>ni :Unite neobundle/install<CR>
 nnoremap <Space>nl :Unite neobundle/log<CR>
 nnoremap <Space>ns :Unite neobundle/search<CR>
 nnoremap <Space>nu :Unite neobundle/update:!<CR>
-
-"                           <Space>p - PROJECT                            {{{3
-" ............................................................................
-
-nnoremap <Space>pf :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async directory/new file/new<CR>
-nnoremap <Space>pt :VimFilerExplorer -project -toggle<CR>
 
 "                <Space>q - QUOTES, SURROUNDS, CHANGE CASE                {{{3
 " ............................................................................
