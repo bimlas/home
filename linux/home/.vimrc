@@ -233,9 +233,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     let g:textobj_python_no_default_key_mappings = 1
                                                                         " }}}2
 
-  " WELLLE/TARGETS.VIM
+  " WELLLE/TARGETS.VIM                                                    {{{2
   " see doc
   NeoBundle 'wellle/targets.vim'
+                                                                        " }}}2
 
   " .. SZOVEG KERESESE/MODOSITASA .........
 
@@ -529,14 +530,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
     let g:tcommentMaps = 0
 
-  " POWERMAN/VIM-PLUGIN-VIEWDOC
-  " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
-  " help-jet)
-  NeoBundle 'powerman/vim-plugin-viewdoc'
-
-    " A `:help` parancsot ne cserelje le.
-    let g:no_viewdoc_abbrev = 1
-
   " KABBAMINE/ZEAVIM.VIM                                                  {{{2
   " talan a legnormalisabb referencia-bongeszo
   " $ install zeal @ http://zealdocs.org/
@@ -733,13 +726,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
     " Control key-eket ne map-oljon.
     let g:Gitv_DoNotMapCtrlKey = 1
-
-  " LAMBDALISUE/VIM-GITA                                                  {{{2
-  " git integracio
-  " $ install git
-  NeoBundle 'lambdalisue/vim-gita', {
-  \ 'disabled' : !executable('git'),
-  \ }
                                                                         " }}}2
   call neobundle#end()
 else
