@@ -375,10 +375,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " .. EGYEB HASZNOSSAGOK .................
 
-  " SUNAKU/VIM-SHORTCUT                                                   {{{2
-  " guide-key szeruseg
-  NeoBundle 'sunaku/vim-shortcut'
-
   " LAMBDALISUE/VIM-IMPROVE-DIFF                                          {{{2
   " auto diffupdate & diffoff + DiffOrig
   NeoBundle 'lambdalisue/vim-improve-diff'
@@ -431,29 +427,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
   "   that it probably deserves its own plugin.
   NeoBundle 'tpope/vim-scriptease'
-
-  " RYKKA/COLORV.VIM                                                      {{{2
-  " szinek szerkesztese:
-  " :ColorVEdit     szin modositasa
-  " :ColorVEditAll  ... a bufferen belul mindenhol
-  NeoBundle 'rykka/colorv.vim'
-
-    let g:colorv_no_global_map = 1
-
-  " VIMOUTLINER/VIMOUTLINER                                               {{{2
-  " talan a legteljesebb org-mode plugin
-  NeoBundle 'vimoutliner/vimoutliner'
-                                                                        " }}}2
-
-  " .. PREZENTACIOHOZ .....................
-
-  " SOTTE/PRESENTING.VIM                                                  {{{2
-  " prezentacio futtatasa
-  NeoBundle 'sotte/presenting.vim'
-
-  " JUNEGUNN/GOYO.VIM                                                     {{{2
-  " distraction-free writing in Vim
-  NeoBundle 'junegunn/goyo.vim'
                                                                         " }}}2
 
   " .. DEBUG / BENCHMARK ..................
