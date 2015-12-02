@@ -10,3 +10,6 @@
 !F9::  Run totalcmd64.exe
 !F12:: Run conemu64.exe /cmd powershell
 !F10:: Run calc.exe
+
+; Dexpot helper
+<#Tab:: Send, ^{Tab}
