@@ -63,6 +63,7 @@ map  -builtin  gs             F
 vmap -builtin  y              y<Esc>
 map  -builtin  <C-E>          gt
 map  -builtin  <C-Y>          gT
+map  -builtin  <C-W>          <Nop>
 map  -builtin  <C-W><C-Q>     D
 map  -builtin  <C-W><C-S>     gH
 map  -builtin  <Space>ff      o
