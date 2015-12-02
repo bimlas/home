@@ -76,7 +76,8 @@
   s      = "status --short --branch"
 
   slog   = "log --graph --decorate --find-copies-harder --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
-  glog   = "log --graph --decorate --find-copies-harder --date-order --name-status"
+  glog   = "log --graph --decorate --find-copies-harder --date-order"
+  gglog  = "log --graph --decorate --find-copies-harder --date-order --name-status"
   gslog  = "log --graph --decorate --find-copies-harder --date-order --stat"
   plog   = "log --graph --decorate --find-copies-harder --date-order --patch --stat --ignore-blank-lines"
   clog   = "log --graph --decorate --find-copies-harder --date-order --name-status ORIG_HEAD.."
@@ -86,7 +87,9 @@
   ls     = "ls-tree -r --name-only"
 
   df     = "diff --patch --stat --ignore-blank-lines"
+  dfw    = "diff --patch --stat --ignore-blank-lines --word-diff=color"
   dfc    = "diff --patch --stat --ignore-blank-lines --cached"
+  dfcw   = "diff --patch --stat --ignore-blank-lines --cached --word-diff=color"
   gdf    = "difftool"
   gdfc   = "difftool --cached"
 
