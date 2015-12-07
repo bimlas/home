@@ -8,6 +8,7 @@ rem everything except the .git dir, than `git reset --hard`.
 rem
 rem NOTE
 rem   DIRECTX=yes needs mingw64 + ARCH=i686 (or x64)
+rem   Do not use it: may cause problems.
 rem
 rem DOWNLOADABLE BUILD
 rem   https://github.com/BimbaLaszlo/home/releases/tag/gvim.exe
@@ -19,7 +20,7 @@ USERNAME=BimbaLaszlo              ^
 USERDOMAIN=                       ^
 UNDER_CYGWIN=no                   ^
 FEATURES=HUGE                     ^
-ARCH=i586                         ^
+ARCH=x86-64                       ^
 OLE=yes                           ^
 GUI=yes                           ^
 PYTHON=c:/app/python2             ^

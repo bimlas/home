@@ -84,7 +84,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " https://github.com/Shougo/vimproc.vim/downloads
   NeoBundle 'shougo/vimproc.vim', {
   \ 'build' : {
-  \     'windows' : &makeprg . ' -f make_mingw32.mak',
+  \     'windows' : &makeprg . ' -f make_mingw64.mak',
   \     'linux'   : 'make',
   \    },
   \ }
