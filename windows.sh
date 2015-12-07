@@ -33,6 +33,7 @@ copy --recursive   \
   ".pentadactyl/"  \
   ".ctags"         \
   ".gitconfig"     \
+  ".gemrc"         \
   ".globalrc"      \
   ".gvimrc"        \
   ".ideavimrc"     \
