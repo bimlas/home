@@ -1,11 +1,10 @@
----
-:update_sources: true
-:sources:
+update_sources: true
+sources:
 - http://rubygems.org/
-:benchmark: false
-:bulk_threshold: 1000
-:backtrace: false
-:verbose: true
-:gem: --document ri
-:install: --document ri
-:update: --document ri
+benchmark: false
+bulk_threshold: 1000
+backtrace: false
+verbose: true
+gem: --ri --no-rdoc
+install: --ri --no-rdoc
+update: --ri --no-rdoc
