@@ -21,10 +21,11 @@ if !exists('g:tcmd_lister')
   winpos 0 0
 endif
 
-" set relativenumber
-
 " :help guioptions
 set guioptions=cg
 
 " A tabok neve ele irja ki a tab szamat.
 let &guitablabel = " %N \| %t %m "
+
+" Show tooltip for the object under the mouse.
+set ballooneval
