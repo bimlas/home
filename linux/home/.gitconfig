@@ -94,6 +94,7 @@
   gdfc   = "difftool --cached"
 
   co     = "checkout"
+  coa    = "checkout :/"
   coo    = "checkout --ours"
   cot    = "checkout --theirs"
 
