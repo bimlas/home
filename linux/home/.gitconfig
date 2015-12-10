@@ -66,7 +66,7 @@
 [alias]
   cl     = "clone"
   ps     = "push --all --follow-tags"
-  pl     = "pull"
+  pl     = "pull --all"
   seto   = "remote set-url origin"
   ghcl   = "!sh -c 'git clone https://www.github.com/$*' -"
   ghps   = "!sh -c 'git remote set-url origin https://www.github.com/$*; git push --all --follow-tags --set-upstream https://www.github.com/$*' -"
