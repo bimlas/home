@@ -1,6 +1,6 @@
 Macro {
-  description="Open file/dir";
+  description="Go to dir";
   area="Shell"; key="L";
   flags="EmptyCommandLine";
-  code="Keys(\"Enter\")";
+  code="Keys(\"CtrlPgDn\")";
 }

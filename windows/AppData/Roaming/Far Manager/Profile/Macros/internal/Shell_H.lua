@@ -1,6 +1,6 @@
 Macro {
-  description="Parent dir";
+  description="Dir up";
   area="Shell"; key="H";
   flags="EmptyCommandLine";
-  code="Keys(\"Home Enter\")";
+  code="Keys(\"CtrlPgUp\")";
 }
