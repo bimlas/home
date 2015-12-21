@@ -113,7 +113,7 @@
 			<value name="FontName" type="string" data="DejaVu Sans Mono"/>
 			<value name="FontName2" type="string" data="Consolas"/>
 			<value name="FontAutoSize" type="hex" data="00"/>
-			<value name="FontSize" type="dword" data="0000000e"/>
+			<value name="FontSize" type="dword" data="00000010"/>
 			<value name="FontSizeX" type="dword" data="00000000"/>
 			<value name="FontUseDpi" type="hex" data="01"/>
 			<value name="FontUseUnits" type="hex" data="00"/>
