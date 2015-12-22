@@ -9,7 +9,7 @@
   ^Space::
   {
     ; Get the active window's pos.
-    WinGetPos, X, Y, W, H, A
+    WinGetPos, X, Y, , , A
 
     ; Save the contents of the clipboard.
     ClipSaved := ClipboardAll
@@ -20,7 +20,7 @@
     ; if it's exists.
     IfWinNotExist, ahk_class VirtualConsoleClass
     {
-      Run, C:\Program Files\ConEmu\ConEmu64.exe /WndX %X% /WndY %Y% /WndW %W% /WndH %H% /cmd powershell.exe
+      Run, C:\Program Files\ConEmu\ConEmu64.exe /WndX %X% /WndY %Y% /WndW 100`% /WndH 33 /cmd powershell.exe
       WinWait, ahk_class VirtualConsoleClass
     }
     WinActivate
