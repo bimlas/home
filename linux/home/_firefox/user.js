@@ -16,7 +16,70 @@
 /*                                 KIEGESZITOK                            {{{1
  * ===========================================================================
  *
- * s3.google translator - translate.google.com a kepernyo aljan
+ * vimfx - Vim iranyitas
+ *  https://addons.mozilla.org/hu/firefox/addon/vimfx/
+ */
+
+user_pref("extensions.VimFx.hint_chars", "asdfghjkluiopqwer");
+user_pref("extensions.VimFx.migration.0.applied", true);
+user_pref("extensions.VimFx.migration.1.applied", true);
+user_pref("extensions.VimFx.migration.2.applied", true);
+user_pref("extensions.VimFx.migration.3.applied", true);
+user_pref("extensions.VimFx.mode.find.exit", "<escape>    <enter>    <c-k>");
+user_pref("extensions.VimFx.mode.hints.exit", "<escape>    <c-k>");
+user_pref("extensions.VimFx.mode.normal.enter_mode_ignore", "<c-z>");
+user_pref("extensions.VimFx.mode.normal.esc", "<force><escape>    <force><c-k>");
+user_pref("extensions.VimFx.mode.normal.find", "");
+user_pref("extensions.VimFx.mode.normal.find_highlight_all", "/");
+user_pref("extensions.VimFx.mode.normal.find_links_only", "");
+user_pref("extensions.VimFx.mode.normal.focus_location_bar", "<space>ff");
+user_pref("extensions.VimFx.mode.normal.focus_search_bar", "");
+user_pref("extensions.VimFx.mode.normal.focus_text_input", "");
+user_pref("extensions.VimFx.mode.normal.follow", "s");
+user_pref("extensions.VimFx.mode.normal.follow_copy", "ys");
+user_pref("extensions.VimFx.mode.normal.follow_focus", "");
+user_pref("extensions.VimFx.mode.normal.follow_in_focused_tab", "gs");
+user_pref("extensions.VimFx.mode.normal.follow_in_tab", "");
+user_pref("extensions.VimFx.mode.normal.follow_in_window", "");
+user_pref("extensions.VimFx.mode.normal.follow_multiple", "");
+user_pref("extensions.VimFx.mode.normal.follow_next", "");
+user_pref("extensions.VimFx.mode.normal.follow_previous", "");
+user_pref("extensions.VimFx.mode.normal.go_home", "");
+user_pref("extensions.VimFx.mode.normal.go_to_root", "");
+user_pref("extensions.VimFx.mode.normal.go_up_path", "");
+user_pref("extensions.VimFx.mode.normal.paste_and_go", "");
+user_pref("extensions.VimFx.mode.normal.paste_and_go_in_tab", "");
+user_pref("extensions.VimFx.mode.normal.quote", "<c-v>");
+user_pref("extensions.VimFx.mode.normal.reload", "");
+user_pref("extensions.VimFx.mode.normal.reload_all", "");
+user_pref("extensions.VimFx.mode.normal.reload_all_force", "");
+user_pref("extensions.VimFx.mode.normal.reload_force", "<c-r>");
+user_pref("extensions.VimFx.mode.normal.scroll_half_page_down", "<c-d>");
+user_pref("extensions.VimFx.mode.normal.scroll_half_page_up", "<c-u>");
+user_pref("extensions.VimFx.mode.normal.scroll_page_down", "");
+user_pref("extensions.VimFx.mode.normal.scroll_page_up", "");
+user_pref("extensions.VimFx.mode.normal.scroll_to_mark", "'");
+user_pref("extensions.VimFx.mode.normal.stop", "");
+user_pref("extensions.VimFx.mode.normal.stop_all", "");
+user_pref("extensions.VimFx.mode.normal.tab_close", "<c-w><c-q>");
+user_pref("extensions.VimFx.mode.normal.tab_close_other", "");
+user_pref("extensions.VimFx.mode.normal.tab_close_to_end", "");
+user_pref("extensions.VimFx.mode.normal.tab_duplicate", "");
+user_pref("extensions.VimFx.mode.normal.tab_move_backward", "");
+user_pref("extensions.VimFx.mode.normal.tab_move_forward", "");
+user_pref("extensions.VimFx.mode.normal.tab_move_to_window", "");
+user_pref("extensions.VimFx.mode.normal.tab_new", "<space>ft");
+user_pref("extensions.VimFx.mode.normal.tab_restore", "u");
+user_pref("extensions.VimFx.mode.normal.tab_select_first", "");
+user_pref("extensions.VimFx.mode.normal.tab_select_first_non_pinned", "");
+user_pref("extensions.VimFx.mode.normal.tab_select_last", "");
+user_pref("extensions.VimFx.mode.normal.tab_select_next", "<c-e>    gt");
+user_pref("extensions.VimFx.mode.normal.tab_select_previous", "<c-y>    gT");
+user_pref("extensions.VimFx.mode.normal.tab_toggle_pinned", "");
+user_pref("extensions.VimFx.mode.normal.window_new", "<c-w><c-s>");
+user_pref("extensions.VimFx.mode.normal.window_new_private", "");
+
+/* s3.google translator - translate.google.com a kepernyo aljan
  *  https://addons.mozilla.org/en-us/firefox/addon/s3google-translator/
  */
 
