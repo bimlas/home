@@ -566,7 +566,7 @@
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00001153"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="%ConEmuDrive%\choco\git\git-cmd.exe --no-cd --command=usr/bin/bash.exe -l -i"/>
+					<value name="Cmd1" type="string" data="C:\app\git\git-cmd.exe --no-cd --command=usr/bin/bash.exe -l -i"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
@@ -631,7 +631,7 @@
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00001153"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="%ConEmuDrive%\choco\git\bin\sh.exe --login -i -new_console:C:&quot;%ConEmuDrive%\choco\git\etc\git.ico&quot;"/>
+					<value name="Cmd1" type="string" data="C:\app\git\bin\sh.exe --login -i -new_console:C:&quot;%ConEmuDrive%\choco\git\etc\git.ico&quot;"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
