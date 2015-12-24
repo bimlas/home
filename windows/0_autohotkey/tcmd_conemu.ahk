@@ -1,32 +1,46 @@
 ; tcmd_conemu.ahk: Persistent console for Total Commander via ConEmu
 ;
-; Press Ctrl-Space to switch between Tcmd and ConEmu (automatically synced
-; path). Ctrl-Space opens Tcmd from anywhere!
+; Press Ctrl-Space to switch between Tcmd and ConEmu (the path is
+; automatically synced).
+;
+; INSTALL
+;   AutoHotkey       https://autohotkey.com/
+;   Total Commander  http://www.ghisler.com/download.htm
+;   ConEmu           https://conemu.github.io/en/Downloads.html
+;
+; USAGE
+;   Set up the correct paths in the variables bellow and run the script
+;   (double click on it). Open Total Commander and press Ctrl-Space to
+;   focus on ConEmu; inside it pressing Ctrl-Space again switching back to
+;   Tcmd.
+;
+;   If You want to open 'cmd.exe' instead of 'powershell.exe' then change the
+;   CdCommand to 'cd /d'.
 ;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
+
+Terminal  := "c:\app\conemu\conemu64.exe /cmd powershell.exe"
+Tcmd      := "c:\app\tcmd\totalcmd64.exe"
+CdCommand := "cd"
 
 #if WinActive("ahk_class TTOTAL_CMD")
   ^Space::
   {
-    ; Get the active window's pos.
-    WinGetPos, X, Y, , , A
-
     ; Save the contents of the clipboard.
     ClipSaved := ClipboardAll
     ; Copy Tcmd source path to clipboard.
     PostMessage, 1075, 2029, , , ahk_class TTOTAL_CMD ; cm_CopySrcPathToClip=2029;Copy source path to clipboard
 
-    ; Create new ConEmu instance (with the size of Tcmd window) or switch to it
-    ; if it's exists.
+    ; Create new ConEmu instance or switch to it if it's exists.
     IfWinNotExist, ahk_class VirtualConsoleClass
     {
-      Run, C:\Program Files\ConEmu\ConEmu64.exe /WndX %X% /WndY %Y% /WndW 100`% /WndH 33 /cmd powershell.exe
+      Run, %Terminal%
       WinWait, ahk_class VirtualConsoleClass
     }
     WinActivate
 
     ; CD to Tcmd path.
-    Send, cd +{Insert}{Enter}
+    Send, %CdCommand% "+{Insert}"{Enter}
     ; Restore the clipboard.
     Clipboard := ClipSaved
     ; Free the memory in case the clipboard was very large.
@@ -36,16 +50,16 @@
   }
 #if
 
-; #if WinActive("ahk_class VirtualConsoleClass")
+#if WinActive("ahk_class VirtualConsoleClass")
   ^Space::
   {
     ; Create new Tcmd instance or switch to it if it's exists.
     IfWinNotExist, ahk_class TTOTAL_CMD
     {
-      Run "c:\totalcmd\totalcmd64.exe"
-      WinWait ahk_class TTOTAL_CMD
+      Run, %Tcmd%
+      WinWait, ahk_class TTOTAL_CMD
     }
     WinActivate
     Return
   }
-; #if
+#if
