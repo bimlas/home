@@ -39,10 +39,10 @@
 #     where "ours" is the file in the current branch and "theirs" is the file
 #     from the branch we want to merge.
 #
-#     Delete untracked files and directories. Add `-n` to just show the
-#     affected files/directories.
+#     Delete untracked files, directories and .gitignore-ed files. Add `-n` to
+#     just show the affected files/directories.
 #
-#       git clean -fd
+#       git clean -fdX
 #
 #     Split a commit to smaller commits.
 #
