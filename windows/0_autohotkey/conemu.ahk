@@ -1,18 +1,16 @@
-; tcmd_conemu.ahk: Persistent console for Total Commander via ConEmu
+; conemu.ahk: Persistent console for various apps
 ;
-; Press Ctrl-Space to switch between Tcmd and ConEmu (the path is
+; Press Ctrl-Space to switch between (Tcmd|Vim) and ConEmu (the path is
 ; automatically synced).
 ;
 ; INSTALL
 ;   AutoHotkey       https://autohotkey.com/
-;   Total Commander  http://www.ghisler.com/download.htm
 ;   ConEmu           https://conemu.github.io/en/Downloads.html
 ;
 ; USAGE
 ;   Set up the correct paths in the variables bellow and run the script
-;   (double click on it). Open Total Commander and press Ctrl-Space to
-;   focus on ConEmu; inside it pressing Ctrl-Space again switching back to
-;   Tcmd.
+;   (double click on it). Open the app and press Ctrl-Space to focus on
+;   ConEmu; inside it pressing Ctrl-Space again switching back to the caller.
 ;
 ;   If You want to open 'cmd.exe' instead of 'powershell.exe' then change the
 ;   CdCommand to 'cd /d'.
@@ -20,16 +18,26 @@
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 Terminal  := "c:\app\conemu\conemu64.exe /cmd powershell.exe"
-Tcmd      := "c:\app\tcmd\totalcmd64.exe"
 CdCommand := "cd"
 
-#if WinActive("ahk_class TTOTAL_CMD")
+Caller    := False
+
+#if WinActive("ahk_class TTOTAL_CMD") or WinActive("ahk_class Vim")
   ^Space::
   {
     ; Save the contents of the clipboard.
     ClipSaved := ClipboardAll
-    ; Copy Tcmd source path to clipboard.
-    PostMessage, 1075, 2029, , , ahk_class TTOTAL_CMD ; cm_CopySrcPathToClip=2029;Copy source path to clipboard
+    ; Copy the app's actual path to clipboard.
+    If WinActive("ahk_class TTOTAL_CMD")
+    {
+      Caller := "TTOTAL_CMD"
+      PostMessage, 1075, 2029, , , ahk_class TTOTAL_CMD ; cm_CopySrcPathToClip=2029;Copy source path to clipboard
+    }
+    If WinActive("ahk_class Vim")
+    {
+      Caller := "Vim"
+      Send, :^ulet @{+} = expand('`%:p:h'){Enter}
+    }
 
     ; Create new ConEmu instance or switch to it if it's exists.
     IfWinNotExist, ahk_class VirtualConsoleClass
@@ -39,7 +47,7 @@ CdCommand := "cd"
     }
     WinActivate
 
-    ; CD to Tcmd path.
+    ; CD to the path of the app.
     Send, %CdCommand% "+{Insert}"{Enter}
     ; Restore the clipboard.
     Clipboard := ClipSaved
@@ -53,13 +61,17 @@ CdCommand := "cd"
 #if WinActive("ahk_class VirtualConsoleClass")
   ^Space::
   {
-    ; Create new Tcmd instance or switch to it if it's exists.
-    IfWinNotExist, ahk_class TTOTAL_CMD
+    If Caller != False
     {
-      Run, %Tcmd%
-      WinWait, ahk_class TTOTAL_CMD
+      If Caller = TTOTAL_CMD
+      {
+        WinActivate, ahk_class TTOTAL_CMD
+      }
+      If Caller = Vim
+      {
+        WinActivate, ahk_class Vim
+      }
     }
-    WinActivate
     Return
   }
 #if
