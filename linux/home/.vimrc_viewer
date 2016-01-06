@@ -1,0 +1,27 @@
+" If You want to use Vim as the lister of Total Commander, then set the editor
+" of it to:
+"
+"   gvim -u '~/.vimrc_viewer'
+"
+" ==================== BimbaLaszlo (.github.io|gmail.com) ====================
+
+" Flag for special setting in ~/.gvimrc
+let g:loaded_vimrc_viewer = 1
+
+set nocompatible
+filetype plugin indent on
+syntax enable
+colorscheme desert
+set nomodifiable readonly noswapfile
+
+set columns=120 lines=40
+
+set laststatus=2
+let &statusline = '%f <%{&fenc}> [%{&ff}] %=%5l/%L,%3c'
+
+nnoremap q          :noautocmd q<CR>
+nnoremap <Esc>      :noautocmd q<CR>
+noremap  <C-Insert> "+y
+noremap  <Space>y   "+y
+" nnoremap j <C-E>
+" nnoremap k <C-Y>
