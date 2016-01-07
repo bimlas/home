@@ -14,8 +14,9 @@ syntax enable
 colorscheme desert
 set nomodifiable readonly noswapfile
 
-set columns=120 lines=40
+set fileformats=unix,dos fileencodings=utf8,cp1250,default,utf-16le
 
+set columns=120 lines=40
 set laststatus=2
 let &statusline = '%f <%{&fenc}> [%{&ff}] %=%5l/%L,%3c'
 
