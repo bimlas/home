@@ -787,6 +787,11 @@ autocmd  vimrc  ColorScheme  *
 \ highlight! link StatInfo       DiffChange |
 \ highlight! link StatWarning    WarningMsg
 
+" Allways display comments with italic fonts.
+autocmd  vimrc  ColorScheme  *
+\ highlight! Comment term=italic      cterm=italic      gui=italic      |
+\ highlight! Folded  term=bold,italic cterm=bold,italic gui=bold,italic
+
 "                                SOLARIZED                                {{{2
 " ____________________________________________________________________________
 
@@ -801,9 +806,6 @@ autocmd vimrc ColorScheme solarized highlight! NonText term=bold ctermfg=9 gui=b
 
 " A tab, whitespace, stb. szinei is ilyenek legyenek.
 autocmd vimrc ColorScheme solarized highlight! link SpecialKey NonText
-
-" Ne legyenek alahuzva az osszecsukott foldok.
-autocmd vimrc ColorScheme solarized highlight! Folded term=bold,italic cterm=bold,italic gui=bold,italic
 
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
@@ -823,6 +825,7 @@ autocmd  vimrc  ColorScheme  desert
 \ highlight! PmenuSel   ctermbg=Black ctermfg=White guibg=#FFFFCC guifg=Black    gui=bold |
 \ highlight! PmenuSbar  ctermbg=Black ctermfg=Black guibg=#FFFFCC guifg=#FFFFCC           |
 \ highlight! PmenuThumb ctermbg=White ctermfg=White guibg=Black   guifg=Black
+
                                                                         " }}}2
 
 " Nappal vilagos hatter, este sotet.
