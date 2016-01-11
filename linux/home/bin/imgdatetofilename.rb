@@ -10,7 +10,13 @@ require "exifr"
   timeTaken = EXIFR::JPEG.new(file).date_time_original
 
   if (!timeTaken.nil?)
-    filename = "#{File.dirname(file)}/#{timeTaken.strftime('%Y.%m.%d_%H.%M.%S')}"
+    begin
+      time = timeTaken.strftime('%Y.%m.%d_%H.%M.%S')
+    rescue => e
+      puts "* #{file}: #{e}"
+      next
+    end
+    filename = "#{File.dirname(file)}/#{time}"
     ext      = File.extname(file).downcase
     base     = File.basename(file, ext)
 
@@ -19,9 +25,9 @@ require "exifr"
       filename = "#{filename}_#{i}"
     end
     filename = "#{filename}_#{base}#{ext}"
-    puts "RENAME: #{file} -> #{filename}"
+    puts "#{file} => #{filename}"
     File.rename(file,filename)
   else
-    puts "ERROR: Can't get time for #{file}"
+    puts "* #{file}: Can't get time"
   end
 end
