@@ -40,6 +40,7 @@ copy --recursive   \
   ".pentadactylrc" \
   ".spacemacs"     \
   ".vimrc"         \
+  ".vimrc_viewer"  \
   "$HOME"
 
 copy         \
