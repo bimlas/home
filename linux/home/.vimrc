@@ -869,12 +869,12 @@ endif
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-let stat_bufnr      = '%{&buflisted ? bufnr("%") : ""}'
+let stat_argnr      = '%{argc() > 1 ? argidx()+1 . "/" . argc() : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
 let stat_lineinfo   = '%4l/%4L|%3v'
 
-let &statusline  = stat_bufnr . ' '
+let &statusline  = stat_argnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
