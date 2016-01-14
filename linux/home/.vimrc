@@ -1471,6 +1471,7 @@ nnoremap <Space>fvv :edit $MYVIMRC<CR>
 " ............................................................................
 
 nnoremap <Space>gb :Gblame<CR>
+nnoremap <Space>gc :Gcommit<CR>
 nnoremap <Space>gd :Gdiff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
 nnoremap <Space>gg :GitGrep --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
