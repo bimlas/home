@@ -1280,12 +1280,6 @@ endfunction
 nmap <expr>     <Plug>(mychoosewin) (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
 nmap <C-W><C-W> <Plug>(mychoosewin)
 
-"                             CAMELCASEMOTION                             {{{3
-" ............................................................................
-
-map <Leader>b <Plug>CamelCaseMotion_b
-map <Leader>e <Plug>CamelCaseMotion_e
-
 "                               OPENBROWSER                               {{{3
 " ............................................................................
 
