@@ -713,6 +713,17 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
     " Control key-eket ne map-oljon.
     let g:Gitv_DoNotMapCtrlKey = 1
+
+  " AIRBLADE/VIM-GITGUTTER                                              " {{{2
+  " show git status of lines on the sign column
+  " $ install git
+  NeoBundle 'airblade/vim-gitgutter'
+
+    let g:gitgutter_map_keys = 0
+
+    " Update only on file open/write
+    let g:gitgutter_realtime = 0
+    let g:gitgutter_eager = 0
                                                                         " }}}2
   call neobundle#end()
 else
@@ -1547,10 +1558,17 @@ nnoremap <Space>fvv :edit $MYVIMRC<CR>
 
 nnoremap <Space>gb :Gblame<CR>
 nnoremap <Space>gd :Gdiff<CR>
+nmap     <Space>gD <Plug>GitGutterPreviewHunk
 nnoremap <Space>gg :GitGrep --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
-nnoremap <Space>gs :Gstatus<CR>
 nnoremap <Space>gl :Gitv!<CR>
 nnoremap <Space>gL :Gitv<CR>
+nnoremap <Space>gn :GitGutterNextHunk<CR>
+nnoremap <Space>gp :GitGutterPrevHunk<CR>
+nnoremap <Space>gr :Gread<CR>
+nmap     <Space>gR <Plug>GitGutterRevertHunk
+nnoremap <Space>gs :Gstatus<CR>
+nnoremap <Space>gw :Gwrite<CR>
+nmap     <Space>gW <Plug>GitGutterStageHunk
 
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
 " ............................................................................
