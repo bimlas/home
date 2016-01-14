@@ -105,7 +105,8 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " BIMBALASZLO/VIM-EIGHTSTAT                                             {{{2
   " statusline helper functions
-  NeoBundle 'bimbalaszlo/vim-eightstat'
+  " WIP
+  " NeoBundle 'bimbalaszlo/vim-eightstat'
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
@@ -130,13 +131,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     let g:indent_guides_default_mapping       = 0
     " let g:indent_guides_guide_size            = 1
 
-  " LILYDJWG/COLORIZER                                                    {{{2
-  " rgb szinek megjelenitese, :ColorHighlight
-  NeoBundle 'lilydjwg/colorizer'
-
-    let g:colorizer_startup  = 0
-    let g:colorizer_nomap    = 1
-    let g:colorizer_maxlines = 3000
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
@@ -168,12 +162,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " A j/k a sor elejere ugras helyett maradjon ugyanabban az oszlopban.
     let g:EasyMotion_startofline = 0
 
-  " HAYA14BUSA/VIM-EASYOPERATOR-LINE                                      {{{2
-  " mozgas nelkul manipulalhatjuk a sorokat (operator-pending)
-  NeoBundle 'haya14busa/vim-easyoperator-line'
-
-    let g:EasyOperator_line_do_mapping = 0
-
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
   NeoBundle 't9md/vim-choosewin'
@@ -197,13 +185,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " KANA/VIM-TEXTOBJ-ENTIRE                                               {{{2
   " ae: az egesz buffer, ie: az elejen es vegen levo ures sorok nelkul
   NeoBundle 'kana/vim-textobj-entire'
-
-  " REEDES/VIM-TEXTOBJ-SENTENCE                                           {{{2
-  " as/is: sentence (better than the default), (/g(: beginning/end of previous
-  " sentence
-  NeoBundle 'reedes/vim-textobj-sentence'
-
-    autocmd vimrc VimEnter * if exists('g:loaded_textobj_sentence') | call textobj#sentence#init() | endif
 
   " JULIAN/VIM-TEXTOBJ-VARIABLE-SEGMENT                                   {{{2
   " _privat*e_thing -> civone -> _one_thing
@@ -275,11 +256,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     \ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
     \ }
 
-  " HENRIK/VIM-QARGS                                                      {{{2
-  " quickfix-en beluli fajlokon parancsok vegrehajtasa (Qdo) es masolasa az
-  " args-ba (Qargs)
-  NeoBundle 'henrik/vim-qargs'
-
   " STEFANDTW/QUICKFIX-REFLECTOR.VIM                                      {{{2
   " quickfix-en keresztul a fajlok sorainak szerkesztese (:copen, ha nem lehet
   " szerkeszteni a quickfix-et)
@@ -340,37 +316,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " tagbar-szeru, de neha jobb
   NeoBundle 'shougo/unite-outline'
 
-  " SHOUGO/VIMFILER.VIM                                                   {{{2
-  " nerdtree helyett: explorer, ketpaneles commander (unite kell hozza)
-  NeoBundle 'shougo/vimfiler.vim'
-
-    let g:vimfiler_as_default_explorer = 1
-    let g:unite_kind_file_use_trashbox = 0
-
-    let g:vimfiler_tree_leaf_icon   = ' '
-    let g:vimfiler_tree_opened_icon = '▾'
-    let g:vimfiler_tree_closed_icon = '▸'
-    let g:vimfiler_file_icon        = '-'
-    let g:vimfiler_marked_file_icon = '*'
-
-    let g:vimfiler_time_format = '%Y/%m/%d %H:%M'
-
-    " Az alternate buffer maradjon a vimfiler, igy a ketpaneles modba konnyebb
-    " visszavaltani.
-    let g:vimfiler_restore_alternate_file = 0
-
-    " A rejtett fajlokat is mutassa.
-    let g:vimfiler_ignore_pattern = ''
-
-    " Ne ugorjon a konyvtar kinyitasa utan.
-    let g:vimfiler_expand_jump_to_first_child = 0
-
-    autocmd vimrc VimEnter * if exists('g:loaded_vimfiler') | call vimfiler#custom#profile('default', 'context', {
-    \ 'safe':      0,
-    \ 'sort_type': 'extension',
-    \ 'columns':   'size:time'
-    \ })
-    \ | endif
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
@@ -643,15 +588,15 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
     autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | end
 
+  " HEAVENSHELL/VIM-QUICKRUN-HOOK-UNITTEST                                {{{2
+  " tesztek futtatasa kulon-kulon
+  NeoBundle 'heavenshell/vim-quickrun-hook-unittest'
+
     autocmd vimrc BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
     autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
     " autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.pytest
     autocmd vimrc BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
     autocmd vimrc BufWinEnter,BufNewFile *_test.rb setlocal filetype=ruby.minitest
-
-  " HEAVENSHELL/VIM-QUICKRUN-HOOK-UNITTEST                                {{{2
-  " tesztek futtatasa kulon-kulon - a beallitasok a quickrun alatt vannak
-  NeoBundle 'heavenshell/vim-quickrun-hook-unittest'
 
   " DAVIDHALTER/JEDI-VIM                                                  {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
@@ -1349,7 +1294,7 @@ let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
-"                             UNITE/VIMFILER                              {{{3
+"                                  UNITE                                  {{{3
 " ............................................................................
 
 autocmd vimrc FileType unite call UniteMaps()
@@ -1369,22 +1314,6 @@ function! UniteMaps()
   imap <buffer><expr> <C-CR>     unite#do_action('start')
   nmap <buffer>       ~          <Plug>(unite_input_directory)<C-U>~/<CR><Plug>(unite_insert_leave)
   nmap <buffer>       \          <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
-  nmap <buffer>       <C-W><C-W> <Plug>(mychoosewin)
-endfunction
-
-autocmd vimrc FileType vimfiler call VimfilerMaps()
-function! VimfilerMaps()
-  nmap <buffer>       i          :Unite line -winheight=10<CR>
-  nmap <buffer>       <C-J>      <CR>
-  map  <buffer>       <C-Z>      <Plug>(vimfiler_preview_file)
-  map  <buffer>       w          <Plug>(vimfiler_preview_file)
-  map  <buffer>       <F3>       <Plug>(vimfiler_preview_file)
-  map  <buffer>       <F5>       <Plug>(vimfiler_copy_file)
-  map  <buffer>       <F6>       <Plug>(vimfiler_move_file)
-  map  <buffer>       <F7>       <Plug>(vimfiler_make_directory)
-  map  <buffer><expr> <F11>      vimfiler#do_action('start')
-  map  <buffer><expr> <C-CR>     vimfiler#do_action('start')
-  imap <buffer><expr> <C-CR>     vimfiler#do_action('start')
   nmap <buffer>       <C-W><C-W> <Plug>(mychoosewin)
 endfunction
 
@@ -1499,9 +1428,6 @@ map      <Space>K       <Plug>(easymotion-k)
 nmap     <Space>c       <Plug>TComment_gc
 vmap     <Space>c       <Plug>TComment_gc
 nmap     <Space>cc      <Plug>TComment_gcc
-
-onoremap <Space>l       :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
-vnoremap <Space>l       :<C-u>call easyoperator#line#selectlines() <Bar> call feedkeys('<C-O>')<CR>
 
 "                         <Space>a - APPLICATIONS                         {{{3
 " ............................................................................
@@ -1655,7 +1581,6 @@ nnoremap <Space>sl :Unite -no-quit -keep-focus line<CR>
 
 nnoremap <expr> <Space>tb ':set background=' . (&background == 'light' ? 'dark' : 'light') . '<CR>'
 nnoremap        <Space>tc :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
-nnoremap        <Space>th :ColorToggle<CR>
 nnoremap <expr> <Space>tm ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
 nnoremap        <Space>tn :set number!<CR>
 nnoremap        <Space>tr :set relativenumber!<CR>
