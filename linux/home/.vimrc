@@ -1192,12 +1192,6 @@ cnoremap <C-N> <Down>
 nnoremap <C-E> :next<CR>
 nnoremap <C-Y> :previous<CR>
 
-" Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
-" nem torli a d:call search().
-" Kell hozza: set virtualedit=onemore
-" inoremap <expr> <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
-inoremap <expr> <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
-
 " A torles ne masolja a vagolapra a szoveget.
 " Azert nem `noremap`, mert az `onoremap` is beletartozna, igy pl. a `cc`
 " beutese `"_c"_c` lenne `"_cc` helyett.
