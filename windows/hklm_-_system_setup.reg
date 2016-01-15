@@ -361,8 +361,9 @@ Windows Registry Editor Version 5.00
 "DelayedAutostart"=dword:00000000
 
 ; Telephony
+; Needed for VPN
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TapiSrv]
-"Start"=dword:00000004
+"Start"=dword:00000003
 "DelayedAutostart"=dword:00000000
 
 ; Windows Update
