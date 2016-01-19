@@ -1281,6 +1281,7 @@ function! IncSearchMaps()
   map ?     <Plug>(incsearch-backward)
   map *     <Plug>(incsearch-nohl-g*)
   IncSearchNoreMap <C-J> <CR>
+  IncSearchNoreMap <C-K> <Esc>
   IncSearchNoreMap <C-U> <Over>(incsearch-scroll-b)
   IncSearchNoreMap <C-D> <Over>(incsearch-scroll-f)
 endfunction
