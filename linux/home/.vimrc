@@ -162,6 +162,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " A j/k a sor elejere ugras helyett maradjon ugyanabban az oszlopban.
     let g:EasyMotion_startofline = 0
 
+  " HAYA14BUSA/INCSEARCH.VIM                                              {{{2
+  " normalis incsearch
+  NeoBundle 'haya14busa/incsearch.vim'
+
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
   NeoBundle 't9md/vim-choosewin'
@@ -1266,6 +1270,19 @@ function! EasyMotionMaps()
   map é         <Plug>(easymotion-next)
   map É         <Plug>(easymotion-prev)
   EMCommandLineNoreMap <C-J> <CR>
+endfunction
+
+"                                INCSEARCH                                {{{3
+" ............................................................................
+
+autocmd vimrc VimEnter * if exists('g:loaded_incsearch') | call IncSearchMaps() | endif
+function! IncSearchMaps()
+  map /     <Plug>(incsearch-forward)
+  map ?     <Plug>(incsearch-backward)
+  map *     <Plug>(incsearch-nohl-g*)
+  IncSearchNoreMap <C-J> <CR>
+  IncSearchNoreMap <C-U> <Over>(incsearch-scroll-b)
+  IncSearchNoreMap <C-D> <Over>(incsearch-scroll-f)
 endfunction
 
 "                                CHOOSEWIN                                {{{3
