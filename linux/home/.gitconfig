@@ -74,6 +74,7 @@
   glps   = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
   s      = "status --short --branch"
+  sb     = "!.git/hooks/0_branch_status"
 
   slog   = "log --graph --decorate --find-copies-harder --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
   glog   = "log --graph --decorate --find-copies-harder --date-order"
@@ -97,6 +98,8 @@
   coa    = "checkout :/"
   coo    = "checkout --ours"
   cot    = "checkout --theirs"
+
+  b      = "branch"
 
   # git bisect start HEAD   Start bisecting and mark HEAD as bad
   # git bisect good SHA     Mark SHA as good - Git will checkout in the middle
