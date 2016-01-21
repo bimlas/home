@@ -74,7 +74,7 @@
   glps   = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
   s      = "status --short --branch"
-  sb     = "!.git/hooks/0_branch_status"
+  sb     = "!~/.git_template/.bin/branch_status"
 
   slog   = "log --graph --decorate --find-copies-harder --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
   glog   = "log --graph --decorate --find-copies-harder --date-order"
@@ -121,8 +121,8 @@
 
   # fixup:  merge without changing the commit message
   # squash: the commit message is editable
-  cfu    = "!git commit --fixup"
-  csq    = "!git commit --squash"
+  cfu    = "commit --fixup"
+  csq    = "commit --squash"
 
   st     = "stash"
   sts    = "stash show"
@@ -133,7 +133,7 @@
   rbc    = "rebase --continue"
   rba    = "rebase --abort"
 
-  ctags  = "!.git/hooks/0_ctags"
+  ctags  = "!~/.git_template/.bin/ctags"
 
 [core]
 
