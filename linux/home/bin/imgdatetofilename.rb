@@ -12,8 +12,12 @@ require "exifr"
   if (!timeTaken.nil?)
     begin
       time = timeTaken.strftime('%Y.%m.%d_%H.%M.%S')
+    rescue NoMethodError => e
+      # Handling those files which stores the date as string (for example:
+      # 2016:1:23 16:25:0) instead of timestamp (for example phone pics).
+      time = timeTaken.gsub(/:/, '.').sub(/ /, '_').gsub(/(?<=\D)[0-9](?=\D|$)/, '0\0')
     rescue => e
-      puts "* #{file}: #{e}"
+      puts "* #{file}: #{e.class}: #{e.message}"
       next
     end
     filename = "#{File.dirname(file)}/#{time}"
