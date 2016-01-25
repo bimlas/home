@@ -203,6 +203,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " _g*etJiggyYo    -> dav    -> _jiggyYo
   NeoBundle 'julian/vim-textobj-variable-segment'
 
+  " GLTS/VIM-TEXTOBJ-COMMENT                                              {{{2
+  " ic/ac: block of comment, aC: include leading/trailing blank lines
+  NeoBundle 'glts/vim-textobj-comment'
+
   " TEK/VIM-TEXTOBJ-RUBY                                                  {{{2
   " ir/ar: block, if/af: method, ic/ac: class
   NeoBundle 'tek/vim-textobj-ruby', {
@@ -1341,28 +1345,20 @@ autocmd vimrc FileType ruby call TextObjMapsRuby()
 function! TextObjMapsRuby()
   omap <buffer> ab <Plug>(textobj-ruby-block-a)
   omap <buffer> ib <Plug>(textobj-ruby-block-i)
-  omap <buffer> ac <Plug>(textobj-ruby-class-a)
-  omap <buffer> ic <Plug>(textobj-ruby-class-i)
   omap <buffer> af <Plug>(textobj-ruby-function-a)
   omap <buffer> if <Plug>(textobj-ruby-function-i)
 
   vmap <buffer> ab <Plug>(textobj-ruby-block-a)
   vmap <buffer> ib <Plug>(textobj-ruby-block-i)
-  vmap <buffer> ac <Plug>(textobj-ruby-class-a)
-  vmap <buffer> ic <Plug>(textobj-ruby-class-i)
   vmap <buffer> af <Plug>(textobj-ruby-function-a)
   vmap <buffer> if <Plug>(textobj-ruby-function-i)
 endfunction
 
 autocmd vimrc FileType python call TextObjMapsPython()
 function! TextObjMapsPython()
-  omap <buffer> ac <Plug>(textobj-python-class-a)
-  omap <buffer> ic <Plug>(textobj-python-class-i)
   omap <buffer> af <Plug>(textobj-python-function-a)
   omap <buffer> if <Plug>(textobj-python-function-i)
 
-  vmap <buffer> ac <Plug>(textobj-python-class-a)
-  vmap <buffer> ic <Plug>(textobj-python-class-i)
   vmap <buffer> af <Plug>(textobj-python-function-a)
   vmap <buffer> if <Plug>(textobj-python-function-i)
 endfunction
