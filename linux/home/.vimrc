@@ -135,7 +135,12 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " .. KURZOR MOZGATASA ...................
 
-  " VIM-SCRIPTS/MATCHIT.ZIP                                               {{{2
+  " CONOMODE.VIM
+  " move the curson in command line like you do in normal mode by pressing
+  " <C-O>
+  NeoBundle 'conomode.vim'
+
+  " MATCHIT.ZIP                                                           {{{2
   " paros jelek kozti ugralas
   NeoBundle 'vim-scripts/matchit.zip'
 
