@@ -142,7 +142,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " MATCHIT.ZIP                                                           {{{2
   " paros jelek kozti ugralas
-  NeoBundle 'vim-scripts/matchit.zip'
+  NeoBundle 'matchit.zip'
 
     " FIGYELEM: nagyon belassulhat tole az egesz vim. Ezek sem segitenek:
     " let g:matchparen_timeout = 5
