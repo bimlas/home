@@ -26,9 +26,7 @@
 # To update a module:
 #
 #   Run cmd.exe
-#   powershell -noprofile
-#   Update-Module MODULE
-#
+#   powershell -noprofile -c Update-Module <MODULE>
 #
 #  =================== BimbaLaszlo (.github.io|gmail.com) ====================
 
