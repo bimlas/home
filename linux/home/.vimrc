@@ -1145,6 +1145,11 @@ set completeopt=menuone,longest
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
 
+"                              ABBREVATIONS                               {{{1
+" ============================================================================
+
+cabbrev args args %:p:h/\<BS>
+
 "                                    MAP                                  {{{1
 " ============================================================================
 "
