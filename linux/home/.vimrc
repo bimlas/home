@@ -611,6 +611,8 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     autocmd vimrc BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
     autocmd vimrc BufWinEnter,BufNewFile *_test.rb setlocal filetype=ruby.minitest
 
+    let g:quickrun_config['php.unit'] = { 'command': 'phpunit' }
+
   " DAVIDHALTER/JEDI-VIM                                                  {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
