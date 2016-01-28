@@ -322,10 +322,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
     " autocmd vimrc VimEnter * call unite#filters#matcher_default#use(['matcher_regexp'])
 
-  " SHOUGO/NEOMRU.VIM                                                     {{{2
-  " gyakran/mostanaban megnyitott fajlok
-  NeoBundle 'shougo/neomru.vim'
-
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
   NeoBundle 'shougo/unite-outline'
