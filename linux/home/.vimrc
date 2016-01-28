@@ -242,12 +242,13 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " parancsok futtatasa visual block-on
   NeoBundle 'vis'
 
-  " TPOPE/VIM-SURROUND                                                    {{{2
+  " MACHAKANN/VIM-SANDWICH                                                {{{2
   " paros jelek gyors cserelese/torlese
-  NeoBundle 'tpope/vim-surround'
+  NeoBundle 'machakann/vim-sandwich'
 
-    let g:surround_no_insert_mappings = 1
-    let g:surround_no_mappings        = 1
+    let g:sandwich_no_default_key_mappings          = 1
+    let g:operator_sandwich_no_default_key_mappings = 1
+    let g:textobj_sandwich_no_default_key_mappings  = 1
 
   " TPOPE/VIM-ABOLISH                                                     {{{2
   " intelligens substitute
@@ -1580,10 +1581,10 @@ nnoremap <Space>nu :Unite neobundle/update:!<CR>
 "                <Space>q - QUOTES, SURROUNDS, CHANGE CASE                {{{3
 " ............................................................................
 
-nmap <Space>qa  <Plug>Ysurround
-vmap <Space>qa  <Plug>VSurround
-nmap <Space>qs  <Plug>Csurround
-nmap <Space>qd  <Plug>Dsurround
+nmap <Space>qa  <Plug>(operator-sandwich-add)
+vmap <Space>qa  <Plug>(operator-sandwich-add)
+nmap <Space>qs  <Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
+nmap <Space>qd  <Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
 
 nmap <Space>qcc <Plug>Coercec
 nmap <Space>qcm <Plug>Coercem
