@@ -1502,6 +1502,7 @@ nnoremap <Space>fvv :edit $MYVIMRC<CR>
 "                             <Space>g - GIT                              {{{3
 " ............................................................................
 
+nnoremap <Space>ga :Gcommit --amend<CR>
 nnoremap <Space>gb :Gblame<CR>
 nnoremap <Space>gc :Gcommit<CR>
 nnoremap <Space>gd :Gdiff<CR>
