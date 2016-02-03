@@ -1228,8 +1228,8 @@ noremap  <C-G>      @
 noremap  <C-G><C-G> @@
 map      <C-J>      <CR>
 imap     <C-J>      <CR>
-noremap  <C-K>      <Esc>
-inoremap <C-K>      <Esc>
+map      <C-K>      <Esc>
+imap     <C-K>      <Esc>
 cnoremap <C-K>      <C-C>
 noremap  H          g^
 noremap  L          g$
