@@ -649,6 +649,69 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   NeoBundle 'pprovost/vim-ps1'
                                                                         " }}}2
 
+  " .. NEOCOMPLETE ........................
+
+  " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
+  " automatic code completion
+  " needs lua interface (:version +lua)
+  NeoBundle 'shougo/neocomplete.vim', {
+  \ 'disabled' : !has('lua'),
+  \ }
+
+    " Engedelyezes.
+    let g:neocomplete#enable_at_startup = 1
+
+    " Disable automatic behaviour (it's slow on network drives).
+    " map neocomplete#start_manual_complete()
+    " let g:neocomplete#disable_auto_complete = 1
+
+    let g:neocomplete#enable_smart_case = 1
+
+    let g:neocomplete#enable_fuzzy_completion = 1
+
+    " Appear only in insert mode, not in normal mode.
+    let g:neocomplete#enable_insert_char_pre = 1
+
+    if !exists('g:neocomplete#sources')
+      let g:neocomplete#sources = {}
+    endif
+    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'neosnippet']
+
+  " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
+  " complete from included files too
+  NeoBundle 'shougo/neoinclude.vim', {
+  \ 'disabled' : !has('lua'),
+  \ }
+
+  " SHOUGO/NECO-SYNTAX                                                    {{{2
+  " better syntax complete
+  NeoBundle 'shougo/neco-syntax', {
+  \ 'disabled' : !has('lua'),
+  \ }
+
+  " SHOUGO/NECO-VIM                                                       {{{2
+  " better syntax complete
+  NeoBundle 'shougo/neco-vim', {
+  \ 'disabled' : !has('lua'),
+  \ }
+
+  " SHOUGO/NEOSNIPPET.VIM                                                 {{{2
+  " template-ek
+  NeoBundle 'shougo/neosnippet.vim', {
+  \ 'disabled' : !has('lua'),
+  \ }
+
+    let g:neosnippet#disable_runtime_snippets      = {'_': 1}
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#snippets_directory            = bundle_dir . '/vim-snippets/snippets'
+
+  " HONZA/VIM-SNIPPETS                                                    {{{2
+  " template-ek
+  NeoBundle 'honza/vim-snippets', {
+  \ 'disabled' : !has('lua'),
+  \ }
+                                                                        " }}}2
+
   " .. GIT ................................
 
   " TPOPE/VIM-FUGITIVE                                                    {{{2
@@ -1341,6 +1404,13 @@ function! UniteMaps()
   nmap <buffer>       \          <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
   nmap <buffer>       <C-W><C-W> <Plug>(mychoosewin)
 endfunction
+
+"                         NEOCOMPLETE/NEOSNIPPET                          {{{3
+" ............................................................................
+
+" Completion, vagy snippet beszurasa.
+imap      <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
+imap      <expr>  <Nul>      <C-Space>
 
 "                              TEXTOBJ-USER                               {{{3
 " ............................................................................
