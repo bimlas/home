@@ -672,10 +672,17 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " Appear only in insert mode, not in normal mode.
     let g:neocomplete#enable_insert_char_pre = 1
 
+    " Custom list of sources.
     if !exists('g:neocomplete#sources')
       let g:neocomplete#sources = {}
     endif
     let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'ultisnips']
+
+    " Force omnicompletion on this filetype/pattern pairs.
+    if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w\{2,}\|\h\w*::\w\{2,}'
 
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " complete from included files too
