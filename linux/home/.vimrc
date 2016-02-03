@@ -675,7 +675,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     if !exists('g:neocomplete#sources')
       let g:neocomplete#sources = {}
     endif
-    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'neosnippet']
+    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'ultisnips']
 
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " complete from included files too
@@ -695,20 +695,19 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   \ 'disabled' : !has('lua'),
   \ }
 
-  " SHOUGO/NEOSNIPPET.VIM                                                 {{{2
-  " template-ek
-  NeoBundle 'shougo/neosnippet.vim', {
-  \ 'disabled' : !has('lua'),
+  " SIRVER/ULTISNIPS                                                      {{{2
+  " template engine (see on GitHub: it's awesome!)
+  NeoBundle 'sirver/ultisnips', {
+  \ 'disabled' : !(has('python') || has('python3')),
   \ }
 
-    let g:neosnippet#disable_runtime_snippets      = {'_': 1}
-    let g:neosnippet#enable_snipmate_compatibility = 1
-    let g:neosnippet#snippets_directory            = bundle_dir . '/vim-snippets/snippets'
+    let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
+    let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 
   " HONZA/VIM-SNIPPETS                                                    {{{2
-  " template-ek
+  " templates
   NeoBundle 'honza/vim-snippets', {
-  \ 'disabled' : !has('lua'),
+  \ 'disabled' : !(has('python') || has('python3')),
   \ }
                                                                         " }}}2
 
@@ -1404,13 +1403,6 @@ function! UniteMaps()
   nmap <buffer>       \          <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
   nmap <buffer>       <C-W><C-W> <Plug>(mychoosewin)
 endfunction
-
-"                         NEOCOMPLETE/NEOSNIPPET                          {{{3
-" ............................................................................
-
-" Completion, vagy snippet beszurasa.
-imap      <expr>  <Tab>      neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
-imap      <expr>  <Nul>      <C-Space>
 
 "                              TEXTOBJ-USER                               {{{3
 " ............................................................................
