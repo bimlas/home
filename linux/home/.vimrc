@@ -135,7 +135,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " .. KURZOR MOZGATASA ...................
 
-  " CONOMODE.VIM
+  " CONOMODE.VIM                                                          {{{2
   " move the curson in command line like you do in normal mode by pressing
   " <C-O>
   NeoBundle 'conomode.vim'
