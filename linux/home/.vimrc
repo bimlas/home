@@ -658,19 +658,16 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   \ 'disabled' : !has('lua'),
   \ }
 
-    " Engedelyezes.
     let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#enable_fuzzy_completion = 1
 
     " Disable automatic behaviour (it's slow on network drives).
     " map neocomplete#start_manual_complete()
     " let g:neocomplete#disable_auto_complete = 1
 
-    let g:neocomplete#enable_smart_case = 1
-
-    let g:neocomplete#enable_fuzzy_completion = 1
-
-    " Appear only in insert mode, not in normal mode.
-    let g:neocomplete#enable_insert_char_pre = 1
+    " Allways show completions independently from the time it takes.
+    let g:neocomplete#skip_auto_completion_time = ''
 
     " Custom list of sources.
     if !exists('g:neocomplete#sources')
