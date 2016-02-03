@@ -614,7 +614,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
   NeoBundle 'davidhalter/jedi-vim', {
-  \ 'disabled' : !has('python'),
+  \ 'disabled' : !(has('python') || has('python3')),
   \ }
 
     " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
