@@ -83,6 +83,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " nehany plugin hasznalja - windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
   NeoBundle 'shougo/vimproc.vim', {
+  \ 'disabled' : !executable(&makeprg),
   \ 'build' : {
   \     'windows' : &makeprg . ' -f make_mingw64.mak',
   \     'linux'   : 'make',
