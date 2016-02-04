@@ -233,6 +233,19 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   NeoBundle 'wellle/targets.vim'
                                                                         " }}}2
 
+  " .. OPERATOR-USER ......................
+
+  " KANA/VIM-OPERATOR-USER                                                {{{2
+  " user defined operators
+  NeoBundle 'kana/vim-operator-user'
+
+  " MILSEN/VIM-OPERATOR-SUBSTITUTE                                        {{{2
+  " use the :s command like an operator
+  NeoBundle 'milsen/vim-operator-substitute'
+
+    let g:operator#substitute#default_delimiter = '!'
+                                                                        " }}}2
+
   " .. SZOVEG KERESESE/MODOSITASA .........
 
   " THINCA/VIM-VISUALSTAR                                                 {{{2
@@ -1470,6 +1483,11 @@ function! AdocBlockI()
   let block_stop = getpos('.')
   return ['V', block_start, block_stop]
 endfunction
+
+"                              OPERATOR-USER                              {{{3
+" ............................................................................
+
+map gs <Plug>(operator-substitute)
 
 "                               SPACE MAPS                                {{{2
 " ____________________________________________________________________________
