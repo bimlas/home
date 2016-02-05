@@ -1744,12 +1744,12 @@ endif
 
 " __ MEGJELENES _________________________
 
-" Jobban lathato az insert mod, ha a cursorline valtakozik.
-autocmd vimrc InsertEnter,InsertLeave * set cursorline!
-
-" Csak az aktualis ablakban jelezze a kurzor sorat.
-autocmd vimrc WinEnter * set cursorline
-autocmd vimrc WinLeave * set nocursorline
+" Show cursorline only in the active split in normal mode - hide for insert
+" mode.
+autocmd vimrc WinEnter    * set cursorline
+autocmd vimrc WinLeave    * set nocursorline
+autocmd vimrc InsertEnter * set nocursorline
+autocmd vimrc InsertLeave * set cursorline
 
 " Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
 autocmd vimrc VimResized * wincmd =
