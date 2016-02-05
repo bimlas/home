@@ -243,8 +243,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " use the :s command like an operator
   NeoBundle 'milsen/vim-operator-substitute'
 
-    let g:operator#substitute#default_delimiter = '!'
-
   " RHYSD/VIM-OPERATOR-SURROUND                                           {{{2
   " quickly edit paired characters ((), [], <>)
   NeoBundle 'rhysd/vim-operator-surround'
@@ -1480,6 +1478,7 @@ endfunction
 " ............................................................................
 
 map gs <Plug>(operator-substitute)
+map gS 0<Plug>(operator-substitute)$
 
 "                               SPACE MAPS                                {{{2
 " ____________________________________________________________________________
