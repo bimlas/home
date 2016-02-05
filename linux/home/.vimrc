@@ -222,7 +222,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " BPS/VIM-TEXTOBJ-PYTHON                                                {{{2
   " if/af: function, ic/ac: class
   NeoBundle 'bps/vim-textobj-python', {
-  \ 'disabled' : !has('ruby'),
+  \ 'disabled' : !(has('python') || has('python3')),
   \ }
 
     let g:textobj_python_no_default_key_mappings = 1
