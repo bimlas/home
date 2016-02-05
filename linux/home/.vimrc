@@ -1242,8 +1242,9 @@ cabbrev args args %:p:h/\<BS>
 " ____________________________________________________________________________
 
 " Almighty homerow.
-noremap  <C-G>      @
-noremap  <C-G><C-G> @@
+inoremap <C-F>      <C-X><C-O>
+noremap  <C-H>      @
+noremap  <C-H><C-H> @@
 map      <C-J>      <CR>
 imap     <C-J>      <CR>
 map      <C-K>      <Esc>
@@ -1252,40 +1253,31 @@ cnoremap <C-K>      <C-C>
 noremap  H          g^
 noremap  L          g$
 noremap  j          gj
-noremap  gj         j
 noremap  k          gk
-noremap  gk         k
 noremap  é          ;
 noremap  É          ,
 
-" Mivel igazan semmi hasznat nem latom, igy letiltom az ex-modot elohozo
-" gombot.
+" I don't using the ex-mode directly.
 nnoremap Q <Nop>
 
-" Hogy tovabbra is be lehessen illeszteni a digraph-okat.
+" Update everything, not just the screen.
+nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart<CR><C-L>
+
+" Inserting digraphs.
 nnoremap <Leader><C-K> a<C-K>
 
-" Kepernyo ujrarajzoltatasa/frissitese, valamint a fajlok ellenorzese, hogy
-" nem valtoztak-e meg egy kulso program altal.
-nnoremap <C-L> <C-L>:checktime<CR>
-
-" Maradjon a kurzor a helyen.
+" Don't move to the first match, just highlight those.
 nnoremap * *Nzz
 
 " Repeat last :substitute with all of its flags.
 nnoremap & :&&<CR>
 vnoremap & :&&<CR>
 
-" Egygombos omnicomplete.
-inoremap <C-F> <C-X><C-O>
-
-" Hogy a kiegesziteseknel se kelljen a nyilakhoz nyulni. (probald ki, hogy egy
-" elozoleg beirt parancs elso betuje utan a <C-P>-t nyomogatod, majd ugyanigy
-" a felfele nyillal keresed az elozmenyeket)
+" <Up> and <C-P> differs in command line - try it out!
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-" Argumentumok kozti mozgas (:args).
+" Move to next/previous argument (:args).
 nnoremap <C-E> :next<CR>
 nnoremap <C-Y> :previous<CR>
 
@@ -1504,15 +1496,14 @@ map gs <Plug>(operator-substitute)
 
 noremap  <Space>?       :Unite mapping<CR>
 
-nnoremap <Space>h       :nohlsearch<CR>
 noremap  <Space><Space> g<C-]>
 nnoremap <Space><Tab>   :buffer #<CR>
 
 nnoremap <Space>L       g,
 nnoremap <Space>l       g;
 
-nnoremap <Space>O       :pu! _<CR><Down>
-nnoremap <Space>o       :pu  _<CR><Up>
+nnoremap <Space>O       :put! =repeat(nr2char(10), v:count1)<CR>'[
+nnoremap <Space>o       :put =repeat(nr2char(10), v:count1)<CR>
 
 nnoremap <Space>u       :earlier 1f<CR>
 nnoremap <Space>U       :later 1f<CR>
