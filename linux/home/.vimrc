@@ -729,6 +729,13 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " .. GIT ................................
 
+  " TPOPE/VIM-GIT                                                         {{{2
+  " supporting git stuff (ftplugin, syntax, etc.)
+  " $ install git
+  NeoBundle 'tpope/vim-git', {
+  \ 'disabled' : !executable('git'),
+  \ }
+
   " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integracio
   " $ install git
