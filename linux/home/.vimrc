@@ -1762,12 +1762,3 @@ autocmd vimrc BufNew __doc__ setlocal nonumber nolist
 " Make hiba eseten nyissa meg a hibaablakot. A quickfix-reflector miatt kell a
 " nested.
 autocmd vimrc QuickFixCmdPost * nested botright cwindow
-
-"                               LOCAL VIMRC                               {{{1
-" ============================================================================
-
-" Projekt beallitasok betoltese.
-let s:local_vimrc = findfile('.lvimrc', '.;')
-if s:local_vimrc != ''
-  exe 'source ' . s:local_vimrc
-endif
