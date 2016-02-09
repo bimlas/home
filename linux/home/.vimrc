@@ -204,6 +204,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " ifX/afX for text surrounded by X
   NeoBundle 'thinca/vim-textobj-between'
 
+  " SGUR/VIM-TEXTOBJ-PARAMETER                                            {{{2
+  " if,/af, for function parameters
+  NeoBundle 'sgur/vim-textobj-parameter'
+
   " GLTS/VIM-TEXTOBJ-COMMENT                                              {{{2
   " ic/ac: block of comment, aC: include leading/trailing blank lines
   NeoBundle 'glts/vim-textobj-comment'
