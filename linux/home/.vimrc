@@ -200,6 +200,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " _g*etJiggyYo    -> dav    -> _jiggyYo
   NeoBundle 'julian/vim-textobj-variable-segment'
 
+  " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
+  " ifX/afX for text surrounded by X
+  NeoBundle 'thinca/vim-textobj-between'
+
   " GLTS/VIM-TEXTOBJ-COMMENT                                              {{{2
   " ic/ac: block of comment, aC: include leading/trailing blank lines
   NeoBundle 'glts/vim-textobj-comment'
@@ -222,11 +226,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   \ }
 
     let g:textobj_python_no_default_key_mappings = 1
-                                                                        " }}}2
-
-  " WELLLE/TARGETS.VIM                                                    {{{2
-  " see doc
-  NeoBundle 'wellle/targets.vim'
                                                                         " }}}2
 
   " .. OPERATOR-USER ......................
@@ -1417,6 +1416,27 @@ endfunction
 
 "                              TEXTOBJ-USER                               {{{3
 " ............................................................................
+
+omap  i*   <Plug>(textobj-between-i)*
+vmap  i*   <Plug>(textobj-between-i)*
+omap  a*   <Plug>(textobj-between-a)*
+vmap  a*   <Plug>(textobj-between-a)*
+omap  i:   <Plug>(textobj-between-i):
+vmap  i:   <Plug>(textobj-between-i):
+omap  a:   <Plug>(textobj-between-a):
+vmap  a:   <Plug>(textobj-between-a):
+omap  i#   <Plug>(textobj-between-i)#
+vmap  i#   <Plug>(textobj-between-i)#
+omap  a#   <Plug>(textobj-between-a)#
+vmap  a#   <Plug>(textobj-between-a)#
+omap  i/   <Plug>(textobj-between-i)/
+vmap  i/   <Plug>(textobj-between-i)/
+omap  a/   <Plug>(textobj-between-a)/
+vmap  a/   <Plug>(textobj-between-a)/
+omap  i\|  <Plug>(textobj-between-i)<Bar>
+vmap  i\|  <Plug>(textobj-between-i)<Bar>
+omap  a\|  <Plug>(textobj-between-a)<Bar>
+vmap  a\|  <Plug>(textobj-between-a)<Bar>
 
 autocmd vimrc FileType ruby call TextObjMapsRuby()
 function! TextObjMapsRuby()
