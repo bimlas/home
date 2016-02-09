@@ -459,6 +459,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " MATTN/BENCHVIMRC-VIM                                                  {{{2
   " :BenchVimrc
   NeoBundle 'mattn/benchvimrc-vim'
+
+  " THINCA/VIM-THEMIS                                                     {{{2
+  " a testing framework for Vim script
+  NeoBundle 'thinca/vim-themis'
                                                                         " }}}2
 
   " .. PROGRAMOZAS ........................
