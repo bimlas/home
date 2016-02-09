@@ -168,10 +168,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " A j/k a sor elejere ugras helyett maradjon ugyanabban az oszlopban.
     let g:EasyMotion_startofline = 0
 
-  " HAYA14BUSA/INCSEARCH.VIM                                              {{{2
-  " normalis incsearch
-  NeoBundle 'haya14busa/incsearch.vim'
-
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
   NeoBundle 't9md/vim-choosewin'
