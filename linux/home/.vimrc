@@ -192,13 +192,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " ae: az egesz buffer, ie: az elejen es vegen levo ures sorok nelkul
   NeoBundle 'kana/vim-textobj-entire'
 
-  " JULIAN/VIM-TEXTOBJ-VARIABLE-SEGMENT                                   {{{2
-  " _privat*e_thing -> civone -> _one_thing
-  " eggsAn*dCheese  -> dav    -> eggsCheese
-  " foo_ba*r_baz    -> dav    -> foo_baz
-  " _privat*e_thing -> dav    -> _thing
-  " _g*etJiggyYo    -> dav    -> _jiggyYo
-  NeoBundle 'julian/vim-textobj-variable-segment'
+  " GLTS/VIM-TEXTOBJ-COMMENT                                              {{{2
+  " ic/ac: block of comment, aC: include leading/trailing blank lines
+  NeoBundle 'glts/vim-textobj-comment'
 
   " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
   " ifX/afX for text surrounded by X
@@ -208,9 +204,13 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " if,/af, for function parameters
   NeoBundle 'sgur/vim-textobj-parameter'
 
-  " GLTS/VIM-TEXTOBJ-COMMENT                                              {{{2
-  " ic/ac: block of comment, aC: include leading/trailing blank lines
-  NeoBundle 'glts/vim-textobj-comment'
+  " JULIAN/VIM-TEXTOBJ-VARIABLE-SEGMENT                                   {{{2
+  " _privat*e_thing -> civone -> _one_thing
+  " eggsAn*dCheese  -> dav    -> eggsCheese
+  " foo_ba*r_baz    -> dav    -> foo_baz
+  " _privat*e_thing -> dav    -> _thing
+  " _g*etJiggyYo    -> dav    -> _jiggyYo
+  NeoBundle 'julian/vim-textobj-variable-segment'
 
   " TEK/VIM-TEXTOBJ-RUBY                                                  {{{2
   " ir/ar: block, if/af: method, ic/ac: class
