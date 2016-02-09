@@ -196,6 +196,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " ic/ac: block of comment, aC: include leading/trailing blank lines
   NeoBundle 'glts/vim-textobj-comment'
 
+  " SAAGUERO/VIM-TEXTOBJ-PASTEDTEXT                                       {{{2
+  " gb for pasted text
+  NeoBundle 'saaguero/vim-textobj-pastedtext'
+
   " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
   " ifX/afX for text surrounded by X
   NeoBundle 'thinca/vim-textobj-between'
