@@ -52,6 +52,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 setopt NO_BEEP
 
-# }}}
-
+# Delete part of path instead of the whole one.
+bindkey '^W' vi-backward-kill-word
+                                                                         # }}}
 source $HOME/.sh_commons
