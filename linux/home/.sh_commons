@@ -8,6 +8,7 @@ alias pm-hibernate='echo "NEVER USE IT!"'
 alias ls='ls -Av --color --group-directories-first'
 alias grep='grep --color'
 alias du='du -b'
+alias g='git'
 
 # Disable .vimrc in vim.tiny.
 if [[ $(which vim.tiny) ]]; then
