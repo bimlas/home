@@ -74,7 +74,8 @@
   glps   = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
   s      = "status --short --branch"
-  sb     = "!~/.git_template/.bin/branch_status"
+  sb     = "branch -vv"
+  sr     = "remote show origin"
 
   slog   = "log --graph --decorate --find-copies-harder --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
   glog   = "log --graph --decorate --find-copies-harder --date-order"
