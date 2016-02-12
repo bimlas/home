@@ -232,7 +232,9 @@ if isdirectory(bundle_dir . '/vim-plug')
 
   " TEK/VIM-TEXTOBJ-RUBY                                                  {{{2
   " ir/ar: block, if/af: method, ic/ac: class
-  Plug 'tek/vim-textobj-ruby'
+  Plug 'tek/vim-textobj-ruby', {
+  \ 'for': 'ruby',
+  \ }
 
     let g:textobj_ruby_no_mappings = 1
 
@@ -241,7 +243,9 @@ if isdirectory(bundle_dir . '/vim-plug')
 
   " BPS/VIM-TEXTOBJ-PYTHON                                                {{{2
   " if/af: function, ic/ac: class
-  Plug 'bps/vim-textobj-python'
+  Plug 'bps/vim-textobj-python', {
+  \ 'for': 'python',
+  \ }
 
     let g:textobj_python_no_default_key_mappings = 1
                                                                         " }}}2
@@ -639,7 +643,9 @@ if isdirectory(bundle_dir . '/vim-plug')
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
   if (has('python') || has('python3'))
-    Plug 'davidhalter/jedi-vim'
+    Plug 'davidhalter/jedi-vim', {
+    \ 'for': 'python',
+    \ }
   endif
 
     " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
@@ -658,7 +664,9 @@ if isdirectory(bundle_dir . '/vim-plug')
   " VIM-RUBY/VIM-RUBY                                                     {{{2
   " ruby motyok (pl. omni completion pontosabban mukodik)
   if has('ruby')
-    Plug 'vim-ruby/vim-ruby'
+    Plug 'vim-ruby/vim-ruby', {
+    \ 'for': 'ruby',
+    \ }
   endif
 
     " :help ft-ruby-omni
