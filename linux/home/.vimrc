@@ -393,6 +393,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   "                               CHEATSHEET                               {{{
   "
+  " Analyse startuptime:
+  "   $ vim --startuptime times.txt
+  "
   " Debug a command
   "   debug CommandName
   "
