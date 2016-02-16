@@ -123,15 +123,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " szep, finom colorscheme (light es dark is)
   NeoBundle 'altercation/vim-colors-solarized'
 
-  " NATHANAELKANE/VIM-INDENT-GUIDES                                       {{{2
-  " sor behuzasanak szinezese, hogy a blokkok jobban kovethetoek legyenek
-  NeoBundle 'nathanaelkane/vim-indent-guides'
-
-    let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_color_change_percent  = 4
-    let g:indent_guides_default_mapping       = 0
-    " let g:indent_guides_guide_size            = 1
-
+  " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
+  " display a guide for the current line's indent level
+  NeoBundle 'tweekmonster/local-indent.vim'
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
