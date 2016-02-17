@@ -86,9 +86,9 @@ endif
 
 let bundle_dir = $HOME . '/.vim/bundle'
 
-if isdirectory(bundle_dir . '/vim-plug')
+if isdirectory($HOME . '/.vim/vim-plug')
 
-  exe 'set runtimepath+=' . bundle_dir . '/vim-plug'
+  exe 'source ' . $HOME . '/.vim/vim-plug/plug.vim'
   call plug#begin(bundle_dir)
 
     " if !(has('ruby') || (has('python') || has('python3')))
@@ -804,7 +804,7 @@ endif
 command!  InstallPlug  call InstallPlug()
 function! InstallPlug()
   let plug_repo = 'https://github.com/junegunn/vim-plug'
-  let path = substitute(g:bundle_dir . '/vim-plug/autoload', '/', has('win32') ? '\\' : '/', 'g')
+  let path = substitute($HOME . '/.vim/vim-plug', '/', has('win32') ? '\\' : '/', 'g')
 
   if ! executable('git')
     echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
