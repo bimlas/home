@@ -132,10 +132,10 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
   " display a guide for the current line's indent level
-  NeoBundle 'tweekmonster/local-indent.vim'
-
-    let localindentguide_blacklist = ['help']
-    autocmd vimrc BufWinEnter * if index(localindentguide_blacklist, &filetype) < 0 | LocalIndentGuide +hl | endif
+  " NeoBundle 'tweekmonster/local-indent.vim'
+  "
+  "   let localindentguide_blacklist = ['help']
+  "   autocmd vimrc BufWinEnter * if index(localindentguide_blacklist, &filetype) < 0 | LocalIndentGuide +hl | endif
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
