@@ -46,25 +46,6 @@ augroup vimrc
   autocmd!
 augroup END
 
-" Fajltipus felismeres bekapcsolasa, a ra jellemzo formazas (pl. kommentkari)
-" es behuzas stilusanak betoltese.
-if exists(':filetype')
-  filetype plugin indent on
-endif
-
-" Szintaxiskiemeles.
-if has('syntax') && filereadable($VIMRUNTIME . '/syntax/syntax.vim')
-  syntax enable
-endif
-
-" Eger viselkedese.
-behave xterm
-
-" Manual bongeszesenek lehetosege.
-if !has('win32')
-  runtime ftplugin/man.vim
-endif
-
 "                          WIN / NIX BEALLITASOK                          {{{1
 " ============================================================================
 
@@ -86,34 +67,39 @@ endif
 
 let bundle_dir = $HOME . '/.vim/bundle'
 
-if isdirectory($HOME . '/.vim/vim-plug')
+if isdirectory(bundle_dir . '/neobundle.vim')
 
-  exe 'source ' . $HOME . '/.vim/vim-plug/plug.vim'
-  call plug#begin(bundle_dir)
+  exe 'set runtimepath+=' . bundle_dir . '/neobundle.vim'
+  call neobundle#begin(bundle_dir)
 
-    " if !(has('ruby') || (has('python') || has('python3')))
-      let g:plug_threads = 1
-    " endif
+  " A :NeoBundleDirectInstall telepiteseket felejtse el miutan kilepunk.
+  autocmd vimrc VimLeavePre * silent! call delete(bundle_dir . '/extra_bundles.vim')
+
+  " SHOUGO/NEOBUNDLE.VIM                                                  {{{2
+  " plugin-ok automatizalt telepitese Git-en keresztul (is)
+  NeoBundleFetch 'shougo/neobundle.vim'
 
   " SHOUGO/VIMPROC.VIM                                                    {{{2
   " nehany plugin hasznalja - windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
-  if executable(&makeprg)
-    Plug 'shougo/vimproc.vim', {
-    \ 'do': &makeprg . (has('win32') ? ' -f make_mingw64.mak' : '')
-    \ }
-  endif
+  NeoBundle 'shougo/vimproc.vim', {
+  \ 'disabled' : !executable(&makeprg),
+  \ 'build' : {
+  \     'windows' : &makeprg . ' -f make_mingw64.mak',
+  \     'linux'   : 'make',
+  \    },
+  \ }
                                                                         " }}}2
 
   " .. SAJAT ..............................
 
   " BIMBALASZLO/DOTVIM                                                    {{{2
   " sajat ~/.vim
-  Plug 'bimbalaszlo/dotvim'
+  NeoBundle 'bimbalaszlo/dotvim'
 
   " BIMBALASZLO/VIM-EIGHTHEADER                                           {{{2
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
-  Plug 'bimbalaszlo/vim-eightheader'
+  NeoBundle 'bimbalaszlo/vim-eightheader'
 
     let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
     let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
@@ -121,11 +107,11 @@ if isdirectory($HOME . '/.vim/vim-plug')
   " BIMBALASZLO/VIM-EIGHTSTAT                                             {{{2
   " statusline helper functions
   " WIP
-  " Plug 'bimbalaszlo/vim-eightstat'
+  " NeoBundle 'bimbalaszlo/vim-eightstat'
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
-  Plug 'bimbalaszlo/vim-numutils'
+  NeoBundle 'bimbalaszlo/vim-numutils'
                                                                         " }}}2
 
   " .. MEGJELENES .........................
@@ -135,11 +121,11 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " ALTERCATION/VIM-COLORS-SOLARIZED                                      {{{2
   " szep, finom colorscheme (light es dark is)
-  Plug 'altercation/vim-colors-solarized'
+  NeoBundle 'altercation/vim-colors-solarized'
 
   " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
   " display a guide for the current line's indent level
-  Plug 'tweekmonster/local-indent.vim'
+  NeoBundle 'tweekmonster/local-indent.vim'
 
     let localindentguide_blacklist = ['help']
     autocmd vimrc BufWinEnter * if index(localindentguide_blacklist, &filetype) < 0 | LocalIndentGuide +hl | endif
@@ -150,11 +136,11 @@ if isdirectory($HOME . '/.vim/vim-plug')
   " CONOMODE.VIM                                                          {{{2
   " move the curson in command line like you do in normal mode by pressing
   " <C-O>
-  Plug 'conomode.vim'
+  NeoBundle 'conomode.vim'
 
   " MATCHIT.ZIP                                                           {{{2
   " paros jelek kozti ugralas
-  Plug 'matchit.zip'
+  NeoBundle 'matchit.zip'
 
     " FIGYELEM: nagyon belassulhat tole az egesz vim. Ezek sem segitenek:
     " let g:matchparen_timeout = 5
@@ -162,7 +148,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " EASYMOTION/VIM-EASYMOTION                                             {{{2
   " gyors mozgas a buffer-en belul
-  Plug 'easymotion/vim-easymotion'
+  NeoBundle 'easymotion/vim-easymotion'
 
     " Az alapertelmezett map-ok tiltasa.
     let g:EasyMotion_do_mapping = 0
@@ -181,7 +167,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
-  Plug 't9md/vim-choosewin'
+  NeoBundle 't9md/vim-choosewin'
 
     let g:choosewin_label_align        = 'left'
     let g:choosewin_label_padding      = 1
@@ -197,27 +183,27 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " KANA/VIM-TEXTOBJ-USER                                                 {{{2
   " sajat text-object
-  Plug 'kana/vim-textobj-user'
+  NeoBundle 'kana/vim-textobj-user'
 
   " KANA/VIM-TEXTOBJ-ENTIRE                                               {{{2
   " ae: az egesz buffer, ie: az elejen es vegen levo ures sorok nelkul
-  Plug 'kana/vim-textobj-entire'
+  NeoBundle 'kana/vim-textobj-entire'
 
   " GLTS/VIM-TEXTOBJ-COMMENT                                              {{{2
   " ic/ac: block of comment, aC: include leading/trailing blank lines
-  Plug 'glts/vim-textobj-comment'
+  NeoBundle 'glts/vim-textobj-comment'
 
   " SAAGUERO/VIM-TEXTOBJ-PASTEDTEXT                                       {{{2
   " gb for pasted text
-  Plug 'saaguero/vim-textobj-pastedtext'
+  NeoBundle 'saaguero/vim-textobj-pastedtext'
 
   " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
   " ifX/afX for text surrounded by X
-  Plug 'thinca/vim-textobj-between'
+  NeoBundle 'thinca/vim-textobj-between'
 
   " SGUR/VIM-TEXTOBJ-PARAMETER                                            {{{2
   " if,/af, for function parameters
-  Plug 'sgur/vim-textobj-parameter'
+  NeoBundle 'sgur/vim-textobj-parameter'
 
   " JULIAN/VIM-TEXTOBJ-VARIABLE-SEGMENT                                   {{{2
   " _privat*e_thing -> civone -> _one_thing
@@ -225,12 +211,12 @@ if isdirectory($HOME . '/.vim/vim-plug')
   " foo_ba*r_baz    -> dav    -> foo_baz
   " _privat*e_thing -> dav    -> _thing
   " _g*etJiggyYo    -> dav    -> _jiggyYo
-  Plug 'julian/vim-textobj-variable-segment'
+  NeoBundle 'julian/vim-textobj-variable-segment'
 
   " TEK/VIM-TEXTOBJ-RUBY                                                  {{{2
   " ir/ar: block, if/af: method, ic/ac: class
-  Plug 'tek/vim-textobj-ruby', {
-  \ 'for': 'ruby',
+  NeoBundle 'tek/vim-textobj-ruby', {
+  \ 'disabled' : !has('ruby'),
   \ }
 
     let g:textobj_ruby_no_mappings = 1
@@ -240,8 +226,8 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " BPS/VIM-TEXTOBJ-PYTHON                                                {{{2
   " if/af: function, ic/ac: class
-  Plug 'bps/vim-textobj-python', {
-  \ 'for': 'python',
+  NeoBundle 'bps/vim-textobj-python', {
+  \ 'disabled' : !(has('python') || has('python3')),
   \ }
 
     let g:textobj_python_no_default_key_mappings = 1
@@ -251,35 +237,35 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " KANA/VIM-OPERATOR-USER                                                {{{2
   " user defined operators
-  Plug 'kana/vim-operator-user'
+  NeoBundle 'kana/vim-operator-user'
 
   " MILSEN/VIM-OPERATOR-SUBSTITUTE                                        {{{2
   " use the :s command like an operator
-  Plug 'milsen/vim-operator-substitute'
+  NeoBundle 'milsen/vim-operator-substitute'
 
   " RHYSD/VIM-OPERATOR-SURROUND                                           {{{2
   " quickly edit paired characters ((), [], <>)
-  Plug 'rhysd/vim-operator-surround'
+  NeoBundle 'rhysd/vim-operator-surround'
                                                                         " }}}2
 
   " .. SZOVEG KERESESE/MODOSITASA .........
 
   " THINCA/VIM-VISUALSTAR                                                 {{{2
   " kijelolt szoveg keresese * gombbal
-  Plug 'thinca/vim-visualstar'
+  NeoBundle 'thinca/vim-visualstar'
 
   " VIS                                                                   {{{2
   " parancsok futtatasa visual block-on
-  Plug 'vis'
+  NeoBundle 'vis'
 
   " TPOPE/VIM-ABOLISH                                                     {{{2
   " intelligens substitute
   "   :%Subvert/facilit{y,ies}/building{,s}/g
-  Plug 'tpope/vim-abolish'
+  NeoBundle 'tpope/vim-abolish'
 
   " JUNEGUNN/VIM-EASY-ALIGN                                               {{{2
   " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
-  Plug 'junegunn/vim-easy-align'
+  NeoBundle 'junegunn/vim-easy-align'
 
     " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
     " 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,
@@ -295,7 +281,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
   " STEFANDTW/QUICKFIX-REFLECTOR.VIM                                      {{{2
   " quickfix-en keresztul a fajlok sorainak szerkesztese (:copen, ha nem lehet
   " szerkeszteni a quickfix-et)
-  Plug 'stefandtw/quickfix-reflector.vim'
+  NeoBundle 'stefandtw/quickfix-reflector.vim'
 
     " Ne mentse automatikusan a megvaltoztatott fajlokat.
     let g:qf_write_changes = 0
@@ -305,7 +291,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " SHOUGO/UNITE.VIM                                                      {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
-  Plug 'shougo/unite.vim'
+  NeoBundle 'shougo/unite.vim'
 
     let g:unite_source_history_yank_enable  = 1
     " let g:unite_source_tag_show_location = 0
@@ -346,7 +332,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
-  Plug 'shougo/unite-outline'
+  NeoBundle 'shougo/unite-outline'
 
                                                                         " }}}2
 
@@ -354,24 +340,24 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " LAMBDALISUE/VIM-IMPROVE-DIFF                                          {{{2
   " auto diffupdate & diffoff + DiffOrig
-  Plug 'lambdalisue/vim-improve-diff'
+  NeoBundle 'lambdalisue/vim-improve-diff'
 
   " ANDREWRADEV/LINEDIFF.VIM                                              {{{2
   " fajl reszeinek osszehasonlitasa
   " :Linediff kijeloles utan
-  Plug 'andrewradev/linediff.vim'
+  NeoBundle 'andrewradev/linediff.vim'
 
   " MOLL/VIM-BBYE                                                         {{{2
   " :Bdelete buffer torlesehez az ablakok buzeralasa nelkul
-  Plug 'moll/vim-bbye'
+  NeoBundle 'moll/vim-bbye'
 
   " TPOPE/VIM-REPEAT                                                      {{{2
   " repeat (.) plugin-okon is
-  Plug 'tpope/vim-repeat'
+  NeoBundle 'tpope/vim-repeat'
 
   " TYRU/OPEN-BROWSER.VIM                                                 {{{2
   " netrw gx helyett
-  Plug 'tyru/open-browser.vim'
+  NeoBundle 'tyru/open-browser.vim'
 
   " TPOPE/VIM-SCRIPTEASE                                                  {{{2
   " :PP
@@ -403,7 +389,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
   "   Eval a motion or selection as VimL and replace it with the result.
   "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
   "   that it probably deserves its own plugin.
-  Plug 'tpope/vim-scriptease'
+  NeoBundle 'tpope/vim-scriptease'
                                                                         " }}}2
 
   " .. DEBUG / BENCHMARK ..................
@@ -472,25 +458,25 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " MATTN/BENCHVIMRC-VIM                                                  {{{2
   " :BenchVimrc
-  Plug 'mattn/benchvimrc-vim'
+  NeoBundle 'mattn/benchvimrc-vim'
 
   " THINCA/VIM-THEMIS                                                     {{{2
   " a testing framework for Vim script
-  Plug 'thinca/vim-themis'
+  NeoBundle 'thinca/vim-themis'
                                                                         " }}}2
 
   " .. PROGRAMOZAS ........................
 
   " TOMTOM/TCOMMENT_VIM                                                   {{{2
   " szovegreszek kommentelese
-  Plug 'tomtom/tcomment_vim'
+  NeoBundle 'tomtom/tcomment_vim'
 
     let g:tcommentMaps = 0
 
   " POWERMAN/VIM-PLUGIN-VIEWDOC                                           {{{2
   " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
   " help-jet)
-  Plug 'powerman/vim-plugin-viewdoc'
+  NeoBundle 'powerman/vim-plugin-viewdoc'
 
     " A `:help` parancsot ne cserelje le.
     let g:no_viewdoc_abbrev = 1
@@ -504,7 +490,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
   " KABBAMINE/ZEAVIM.VIM                                                  {{{2
   " talan a legnormalisabb referencia-bongeszo
   " $ install zeal @ http://zealdocs.org/
-  Plug 'kabbamine/zeavim.vim'
+  NeoBundle 'kabbamine/zeavim.vim'
 
     let g:zv_disable_mapping = 1
 
@@ -516,7 +502,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " SCROOLOOSE/SYNTASTIC                                                  {{{2
   " syntax checker
-  Plug 'scrooloose/syntastic'
+  NeoBundle 'scrooloose/syntastic'
 
     " Statusline indikator formaja.
     let g:syntastic_stl_format = ' %W{!W%fw}%E{!E%fe} '
@@ -560,11 +546,11 @@ if isdirectory($HOME . '/.vim/vim-plug')
   "
   " Windows verzio: http://adoxa.altervista.org/global/
   " Masold be a share/gtags/gtags.conf fajlt a ~/ konyvtarba.
-  Plug 'gtags.vim'
+  NeoBundle 'gtags.vim'
 
   " THINCA/VIM-QUICKRUN                                                   {{{2
   " buffer, vagy kijelolt kod futtatasa
-  Plug 'thinca/vim-quickrun'
+  NeoBundle 'thinca/vim-quickrun'
 
     let g:quickrun_no_default_key_mappings = 1
     " \     'hook/output_encode/encoding': 'default',
@@ -629,7 +615,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " HEAVENSHELL/VIM-QUICKRUN-HOOK-UNITTEST                                {{{2
   " tesztek futtatasa kulon-kulon
-  Plug 'heavenshell/vim-quickrun-hook-unittest'
+  NeoBundle 'heavenshell/vim-quickrun-hook-unittest'
 
     autocmd vimrc BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
     autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
@@ -642,11 +628,9 @@ if isdirectory($HOME . '/.vim/vim-plug')
   " DAVIDHALTER/JEDI-VIM                                                  {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
-  if (has('python') || has('python3'))
-    Plug 'davidhalter/jedi-vim', {
-    \ 'for': 'python',
-    \ }
-  endif
+  NeoBundle 'davidhalter/jedi-vim', {
+  \ 'disabled' : !(has('python') || has('python3')),
+  \ }
 
     " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
     " akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
@@ -663,11 +647,9 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " VIM-RUBY/VIM-RUBY                                                     {{{2
   " ruby motyok (pl. omni completion pontosabban mukodik)
-  if has('ruby')
-    Plug 'vim-ruby/vim-ruby', {
-    \ 'for': 'ruby',
-    \ }
-  endif
+  NeoBundle 'vim-ruby/vim-ruby', {
+  \ 'disabled' : !has('ruby'),
+  \ }
 
     " :help ft-ruby-omni
     let g:rubycomplete_buffer_loading    = 1
@@ -679,7 +661,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " PPROVOST/VIM-PS1                                                      {{{2
   " PowerShell syntax
-  Plug 'pprovost/vim-ps1'
+  NeoBundle 'pprovost/vim-ps1'
                                                                         " }}}2
 
   " .. NEOCOMPLETE ........................
@@ -687,9 +669,9 @@ if isdirectory($HOME . '/.vim/vim-plug')
   " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
   " automatic code completion
   " needs lua interface (:version +lua)
-  if has('lua')
-    Plug 'shougo/neocomplete.vim'
-  endif
+  NeoBundle 'shougo/neocomplete.vim', {
+  \ 'disabled' : !has('lua'),
+  \ }
 
     let g:neocomplete#enable_at_startup = 1
     let g:neocomplete#enable_smart_case = 1
@@ -720,36 +702,36 @@ if isdirectory($HOME . '/.vim/vim-plug')
 
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " complete from included files too
-  if has('lua')
-    Plug 'shougo/neoinclude.vim'
-  endif
+  NeoBundle 'shougo/neoinclude.vim', {
+  \ 'disabled' : !has('lua'),
+  \ }
 
   " SHOUGO/NECO-SYNTAX                                                    {{{2
   " better syntax complete
-  if has('lua')
-    Plug 'shougo/neco-syntax'
-  endif
+  NeoBundle 'shougo/neco-syntax', {
+  \ 'disabled' : !has('lua'),
+  \ }
 
   " SHOUGO/NECO-VIM                                                       {{{2
   " better syntax complete
-  if has('lua')
-    Plug 'shougo/neco-vim'
-  endif
+  NeoBundle 'shougo/neco-vim', {
+  \ 'disabled' : !has('lua'),
+  \ }
 
   " SIRVER/ULTISNIPS                                                      {{{2
   " template engine (see on GitHub: it's awesome!)
-  if (has('python') || has('python3'))
-    Plug 'sirver/ultisnips'
-  endif
+  NeoBundle 'sirver/ultisnips', {
+  \ 'disabled' : !(has('python') || has('python3')),
+  \ }
 
     let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
     let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 
   " HONZA/VIM-SNIPPETS                                                    {{{2
   " templates
-  if (has('python') || has('python3'))
-    Plug 'honza/vim-snippets'
-  endif
+  NeoBundle 'honza/vim-snippets', {
+  \ 'disabled' : !(has('python') || has('python3')),
+  \ }
                                                                         " }}}2
 
   " .. GIT ................................
@@ -757,23 +739,23 @@ if isdirectory($HOME . '/.vim/vim-plug')
   " TPOPE/VIM-GIT                                                         {{{2
   " supporting git stuff (ftplugin, syntax, etc.)
   " $ install git
-  if executable('git')
-    Plug 'tpope/vim-git'
-  endif
+  NeoBundle 'tpope/vim-git', {
+  \ 'disabled' : !executable('git'),
+  \ }
 
   " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integracio
   " $ install git
-  if executable('git')
-    Plug 'tpope/vim-fugitive'
-  endif
+  NeoBundle 'tpope/vim-fugitive', {
+  \ 'disabled' : !executable('git'),
+  \ }
 
   " GREGSEXTON/GITV                                                       {{{2
   " gitk a vim-en belul
   " $ install git
-  if executable('git')
-    Plug 'gregsexton/gitv'
-  endif
+  NeoBundle 'gregsexton/gitv', {
+  \ 'disabled' : !executable('git'),
+  \ }
 
     " A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
     let g:Gitv_TruncateCommitSubjects = 1
@@ -784,9 +766,7 @@ if isdirectory($HOME . '/.vim/vim-plug')
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
   " $ install git
-  if executable('git')
-    Plug 'airblade/vim-gitgutter'
-  endif
+  NeoBundle 'airblade/vim-gitgutter'
 
     let g:gitgutter_map_keys = 0
 
@@ -794,20 +774,20 @@ if isdirectory($HOME . '/.vim/vim-plug')
     let g:gitgutter_realtime = 0
     let g:gitgutter_eager = 0
                                                                         " }}}2
-  call plug#end()
+  call neobundle#end()
 else
-  autocmd vimrc VimEnter * echomsg 'Run :InstallPlug'
+  autocmd vimrc VimEnter * echomsg 'Run :InstallNeoBundle'
 endif
 
-"                               INSTALLPLUG                               {{{1
+"                           INSTALLNEOBUNDLE                              {{{1
 " ============================================================================
 "
-" Cloning Vim-Plug to ~/.vim/bundle/vim-plug
+" Cloning NeoBundle to ~/.vim/bundle/neobundle.vim
 
-command!  InstallPlug  call InstallPlug()
-function! InstallPlug()
-  let plug_repo = 'https://github.com/junegunn/vim-plug'
-  let path = substitute($HOME . '/.vim/vim-plug', '/', has('win32') ? '\\' : '/', 'g')
+command!  InstallNeoBundle  call InstallNeoBundle()
+function! InstallNeoBundle()
+  let neobundle_repo = 'https://github.com/shougo/neobundle.vim'
+  let path = substitute(g:bundle_dir . '/neobundle.vim', '/', has('win32') ? '\\' : '/', 'g')
 
   if ! executable('git')
     echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
@@ -821,16 +801,38 @@ function! InstallPlug()
     endif
   endif
 
-  echo 'Cloning Vim-Plug...'
-  let msg = system('git clone "' . plug_repo . '" "' . path . '"')
+  echo 'Cloning NeoBundle...'
+  let msg = system('git clone "' . neobundle_repo . '" "' . path . '"')
   if msg =~ 'fatal'
-    echohl ErrorMsg | echomsg 'Cannot clone ' . plug_repo . ' to ' . path . ':' | echomsg msg | echohl None
+    echohl ErrorMsg | echomsg 'Cannot clone ' . neobundle_repo . ' to ' . path . ':' | echomsg msg | echohl None
     return
   endif
 
-  echo 'Vim-Plug installed. Please restart Vim and run :PlugInstall'
+  echo 'NeoBundle installed. Please restart Vim and run :NeoBundleInstall'
   return
 endfunction
+
+"                              ALAPVETO MUKODES                           {{{1
+" ============================================================================
+
+" Fajltipus felismeres bekapcsolasa, a ra jellemzo formazas (pl. kommentkari)
+" es behuzas stilusanak betoltese.
+if exists(':filetype')
+  filetype plugin indent on
+endif
+
+" Szintaxiskiemeles.
+if has('syntax') && filereadable($VIMRUNTIME . '/syntax/syntax.vim')
+  syntax enable
+endif
+
+" Eger viselkedese.
+behave xterm
+
+" Manual bongeszesenek lehetosege.
+if !has('win32')
+  runtime ftplugin/man.vim
+endif
 
 "                                   SZINEK                                {{{1
 " ============================================================================
@@ -1672,14 +1674,15 @@ autocmd vimrc FileType python nnoremap <buffer><expr> <Space>ms has('win32')
                                                                 \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
                                                                 \ : ':silent !xterm -c python &<CR>'
 
-"                            <Space>n - PLUG                             {{{3
+"                          <Space>n - NEOBUNDLE                           {{{3
 " ............................................................................
-"
-" Keeping 'n' for historical reasons (NeoBundle).
 
-nnoremap <Space>nc :PlugClean<CR>
-nnoremap <Space>ni :PlugInstall<CR>
-nnoremap <Space>nu :PlugUpdate<CR>
+nnoremap <Space>nc :NeoBundleClean<CR>
+nnoremap <Space>nd :NeoBundleDirectInstall ''<Left>
+nnoremap <Space>ni :Unite neobundle/install<CR>
+nnoremap <Space>nl :Unite neobundle/log<CR>
+nnoremap <Space>ns :Unite neobundle/search<CR>
+nnoremap <Space>nu :Unite neobundle/update:!<CR>
 
 "                <Space>q - QUOTES, SURROUNDS, CHANGE CASE                {{{3
 " ............................................................................
