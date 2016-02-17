@@ -355,7 +355,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
   NeoBundle 'shougo/unite-outline', {
-  \ 'on_source': 'unite.vim',
+  \ 'on_post_source': 'unite.vim',
   \ }
 
                                                                         " }}}2
