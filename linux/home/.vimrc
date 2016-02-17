@@ -159,20 +159,24 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   \ 'on_map': '<Plug>',
   \ }
 
-    " Az alapertelmezett map-ok tiltasa.
-    let g:EasyMotion_do_mapping = 0
+    if neobundle#tap('vim-easymotion')
+      function! neobundle#hooks.on_post_source(bundle)
 
-    " A celt nagybetuvel mutassa, de engedje a kisbetuvel ugrast.
-    let g:EasyMotion_use_upper = 1
+        EMCommandLineNoreMap <C-J> <CR>
+        let g:EasyMotion_do_mapping = 0
+        let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
 
-    " A helymeghatarozashoz hasznalt betuk.
-    let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
+        " Show target as UPPERCASE, allow jump with lowercase.
+        let g:EasyMotion_use_upper = 1
 
-    " Az osszecsukottfold-okra is ugorhassunk.
-    let g:EasyMotion_skipfoldedline = 0
+        " Allow jump to foldlines too.
+        let g:EasyMotion_skipfoldedline = 0
 
-    " A j/k a sor elejere ugras helyett maradjon ugyanabban az oszlopban.
-    let g:EasyMotion_startofline = 0
+        " Stay in the same column when using <Plug>(easymotion-sol-j)
+        let g:EasyMotion_startofline = 0
+
+      endfunction
+    endif
 
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
@@ -1406,8 +1410,7 @@ endfunction
 "                               EASYMOTION                                {{{3
 " ............................................................................
 
-autocmd vimrc VimEnter * if exists('g:EasyMotion_loaded') | call EasyMotionMaps() | endif
-function! EasyMotionMaps()
+if neobundle#is_installed('vim-easymotion')
   map s         <Plug>(easymotion-s2)
   map t         <Plug>(easymotion-tl)
   map T         <Plug>(easymotion-Tl)
@@ -1419,8 +1422,7 @@ function! EasyMotionMaps()
   map <Leader>N <Plug>(easymotion-N)
   map é         <Plug>(easymotion-next)
   map É         <Plug>(easymotion-prev)
-  EMCommandLineNoreMap <C-J> <CR>
-endfunction
+endif
 
 "                                INCSEARCH                                {{{3
 " ............................................................................
