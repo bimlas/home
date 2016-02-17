@@ -75,6 +75,11 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " A :NeoBundleDirectInstall telepiteseket felejtse el miutan kilepunk.
   autocmd vimrc VimLeavePre * silent! call delete(bundle_dir . '/extra_bundles.vim')
 
+  " Use `on_map` triggers only if You declared mappings for `<Plug>...`. For
+  " example `'on_map': '<Plug>(visualstar'` will not load VisualStar, because
+  " mapping `g*` to `<Plug>(visualstar-g*)` not exists yet, so trigger is not
+  " activated.
+
   " SHOUGO/NEOBUNDLE.VIM                                                  {{{2
   " plugin-ok automatizalt telepitese Git-en keresztul (is)
   NeoBundleFetch 'shougo/neobundle.vim'
@@ -111,7 +116,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
-  NeoBundle 'bimbalaszlo/vim-numutils'
+  NeoBundle 'bimbalaszlo/vim-numutils', {
+  \ 'on_cmd': 'NumUtils',
+  \ }
                                                                         " }}}2
 
   " .. MEGJELENES .........................
@@ -148,7 +155,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " EASYMOTION/VIM-EASYMOTION                                             {{{2
   " gyors mozgas a buffer-en belul
-  NeoBundle 'easymotion/vim-easymotion'
+  NeoBundle 'easymotion/vim-easymotion', {
+  \ 'on_map': '<Plug>',
+  \ }
 
     " Az alapertelmezett map-ok tiltasa.
     let g:EasyMotion_do_mapping = 0
@@ -167,7 +176,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
-  NeoBundle 't9md/vim-choosewin'
+  NeoBundle 't9md/vim-choosewin', {
+  \ 'on_map': '<Plug>',
+  \ }
 
     let g:choosewin_label_align        = 'left'
     let g:choosewin_label_padding      = 1
@@ -216,7 +227,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " TEK/VIM-TEXTOBJ-RUBY                                                  {{{2
   " ir/ar: block, if/af: method, ic/ac: class
   NeoBundle 'tek/vim-textobj-ruby', {
-  \ 'disabled' : !has('ruby'),
+  \ 'on_ft' : 'ruby',
   \ }
 
     let g:textobj_ruby_no_mappings = 1
@@ -227,7 +238,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " BPS/VIM-TEXTOBJ-PYTHON                                                {{{2
   " if/af: function, ic/ac: class
   NeoBundle 'bps/vim-textobj-python', {
-  \ 'disabled' : !(has('python') || has('python3')),
+  \ 'on_ft' : 'python',
   \ }
 
     let g:textobj_python_no_default_key_mappings = 1
@@ -256,16 +267,23 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " VIS                                                                   {{{2
   " parancsok futtatasa visual block-on
-  NeoBundle 'vis'
+  NeoBundle 'vis', {
+  \ 'on_cmd': 'B',
+  \ }
 
   " TPOPE/VIM-ABOLISH                                                     {{{2
   " intelligens substitute
   "   :%Subvert/facilit{y,ies}/building{,s}/g
-  NeoBundle 'tpope/vim-abolish'
+  NeoBundle 'tpope/vim-abolish', {
+  \ 'on_cmd': 'Subvert',
+  \ 'on_map': '<Plug>Coerce',
+  \ }
 
   " JUNEGUNN/VIM-EASY-ALIGN                                               {{{2
   " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
-  NeoBundle 'junegunn/vim-easy-align'
+  NeoBundle 'junegunn/vim-easy-align', {
+  \ 'on_map': '<Plug>',
+  \ }
 
     " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
     " 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,
@@ -332,7 +350,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
-  NeoBundle 'shougo/unite-outline'
+  NeoBundle 'shougo/unite-outline', {
+  \ 'on_source': 'unite.vim',
+  \ }
 
                                                                         " }}}2
 
@@ -345,11 +365,15 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " ANDREWRADEV/LINEDIFF.VIM                                              {{{2
   " fajl reszeinek osszehasonlitasa
   " :Linediff kijeloles utan
-  NeoBundle 'andrewradev/linediff.vim'
+  NeoBundle 'andrewradev/linediff.vim', {
+  \ 'on_cmd': 'Linediff',
+  \ }
 
   " MOLL/VIM-BBYE                                                         {{{2
   " :Bdelete buffer torlesehez az ablakok buzeralasa nelkul
-  NeoBundle 'moll/vim-bbye'
+  NeoBundle 'moll/vim-bbye', {
+  \ 'on_cmd': 'Bdelete',
+  \ }
 
   " TPOPE/VIM-REPEAT                                                      {{{2
   " repeat (.) plugin-okon is
@@ -458,7 +482,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " MATTN/BENCHVIMRC-VIM                                                  {{{2
   " :BenchVimrc
-  NeoBundle 'mattn/benchvimrc-vim'
+  NeoBundle 'mattn/benchvimrc-vim', {
+  \ 'on_cmd': 'BenchVimrc',
+  \ }
 
   " THINCA/VIM-THEMIS                                                     {{{2
   " a testing framework for Vim script
@@ -469,7 +495,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " TOMTOM/TCOMMENT_VIM                                                   {{{2
   " szovegreszek kommentelese
-  NeoBundle 'tomtom/tcomment_vim'
+  NeoBundle 'tomtom/tcomment_vim', {
+  \ 'on_map': '<Plug>TComment',
+  \ }
 
     let g:tcommentMaps = 0
 
@@ -490,7 +518,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " KABBAMINE/ZEAVIM.VIM                                                  {{{2
   " talan a legnormalisabb referencia-bongeszo
   " $ install zeal @ http://zealdocs.org/
-  NeoBundle 'kabbamine/zeavim.vim'
+  NeoBundle 'kabbamine/zeavim.vim', {
+  \ 'on_map': ['<Plug>Zeavim', '<Plug>ZVVisSelection'],
+  \ }
 
     let g:zv_disable_mapping = 1
 
@@ -546,11 +576,15 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   "
   " Windows verzio: http://adoxa.altervista.org/global/
   " Masold be a share/gtags/gtags.conf fajlt a ~/ konyvtarba.
-  NeoBundle 'gtags.vim'
+  NeoBundle 'gtags.vim', {
+  \ 'on_cmd': 'Gtags',
+  \ }
 
   " THINCA/VIM-QUICKRUN                                                   {{{2
   " buffer, vagy kijelolt kod futtatasa
-  NeoBundle 'thinca/vim-quickrun'
+  NeoBundle 'thinca/vim-quickrun', {
+  \ 'on_cmd': 'QuickRun',
+  \ }
 
     let g:quickrun_no_default_key_mappings = 1
     " \     'hook/output_encode/encoding': 'default',
@@ -615,7 +649,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " HEAVENSHELL/VIM-QUICKRUN-HOOK-UNITTEST                                {{{2
   " tesztek futtatasa kulon-kulon
-  NeoBundle 'heavenshell/vim-quickrun-hook-unittest'
+  NeoBundle 'heavenshell/vim-quickrun-hook-unittest', {
+  \ 'depends': 'vim-quickrun',
+  \ }
 
     autocmd vimrc BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
     autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
@@ -630,6 +666,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " $ pip install jedi
   NeoBundle 'davidhalter/jedi-vim', {
   \ 'disabled' : !(has('python') || has('python3')),
+  \ 'on_ft':    'python',
   \ }
 
     " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
@@ -648,7 +685,8 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " VIM-RUBY/VIM-RUBY                                                     {{{2
   " ruby motyok (pl. omni completion pontosabban mukodik)
   NeoBundle 'vim-ruby/vim-ruby', {
-  \ 'disabled' : !has('ruby'),
+  \ 'disabled': !has('ruby'),
+  \ 'on_ft':    'ruby',
   \ }
 
     " :help ft-ruby-omni
@@ -661,7 +699,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " PPROVOST/VIM-PS1                                                      {{{2
   " PowerShell syntax
-  NeoBundle 'pprovost/vim-ps1'
+  NeoBundle 'pprovost/vim-ps1', {
+  \ 'on_ft': 'ps1',
+  \ }
                                                                         " }}}2
 
   " .. NEOCOMPLETE ........................
@@ -670,7 +710,8 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " automatic code completion
   " needs lua interface (:version +lua)
   NeoBundle 'shougo/neocomplete.vim', {
-  \ 'disabled' : !has('lua'),
+  \ 'disabled': !has('lua'),
+  \ 'on_i':     1,
   \ }
 
     let g:neocomplete#enable_at_startup = 1
@@ -703,25 +744,29 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " complete from included files too
   NeoBundle 'shougo/neoinclude.vim', {
-  \ 'disabled' : !has('lua'),
+  \ 'disabled': !has('lua'),
+  \ 'on_i':     1,
   \ }
 
   " SHOUGO/NECO-SYNTAX                                                    {{{2
   " better syntax complete
   NeoBundle 'shougo/neco-syntax', {
-  \ 'disabled' : !has('lua'),
+  \ 'disabled': !has('lua'),
+  \ 'on_i':     1,
   \ }
 
   " SHOUGO/NECO-VIM                                                       {{{2
   " better syntax complete
   NeoBundle 'shougo/neco-vim', {
   \ 'disabled' : !has('lua'),
+  \ 'on_i':     1,
   \ }
 
   " SIRVER/ULTISNIPS                                                      {{{2
   " template engine (see on GitHub: it's awesome!)
   NeoBundle 'sirver/ultisnips', {
-  \ 'disabled' : !(has('python') || has('python3')),
+  \ 'disabled': !(has('python') || has('python3')),
+  \ 'on_i':     1,
   \ }
 
     let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
@@ -731,6 +776,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " templates
   NeoBundle 'honza/vim-snippets', {
   \ 'disabled' : !(has('python') || has('python3')),
+  \ 'on_i':     1,
   \ }
                                                                         " }}}2
 
@@ -754,7 +800,8 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " gitk a vim-en belul
   " $ install git
   NeoBundle 'gregsexton/gitv', {
-  \ 'disabled' : !executable('git'),
+  \ 'disabled': !executable('git'),
+  \ 'on_cmd':   'Gitv',
   \ }
 
     " A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
