@@ -67,9 +67,25 @@ endif
 
 let bundle_dir = $HOME . '/.vim/bundle'
 
-if isdirectory(bundle_dir . '/neobundle.vim')
+" Create supply functions, variables.
+function! BundleInstalled(bundle)
+  return 0
+endfunction
+" On Windows there is no different filename for Py2 and Py3.
+let g:has_python = (has('python') || has('python3')) && (executable('python') || executable('python3'))
+let g:has_ruby   = has('ruby') && executable('ruby')
 
+if isdirectory(bundle_dir . '/neobundle.vim')
   exe 'set runtimepath+=' . bundle_dir . '/neobundle.vim'
+
+  " Create supply function to check if plugin is installed.
+  function! BundleInstalled(bundle)
+    return neobundle#is_installed(a:bundle)
+  endfunction
+
+  " Do shallow clones (faster and needs less disk space).
+  let g:neobundle#types#git#clone_depth = 1
+
   call neobundle#begin(bundle_dir)
 
   " A :NeoBundleDirectInstall telepiteseket felejtse el miutan kilepunk.
@@ -669,7 +685,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
   NeoBundle 'davidhalter/jedi-vim', {
-  \ 'disabled' : !(has('python') || has('python3')),
+  \ 'disabled' : ! g:has_python,
   \ 'on_ft':    'python',
   \ }
 
@@ -768,9 +784,11 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " SIRVER/ULTISNIPS                                                      {{{2
   " template engine (see on GitHub: it's awesome!)
+  " NOTE: it has a filetype autocommand which fails if the plugin is not
+  " activated, so the trigger is `on_ft`.
   NeoBundle 'sirver/ultisnips', {
-  \ 'disabled': !(has('python') || has('python3')),
-  \ 'on_i':     1,
+  \ 'disabled': ! g:has_python,
+  \ 'on_ft': 'all',
   \ }
 
     let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
@@ -779,7 +797,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " HONZA/VIM-SNIPPETS                                                    {{{2
   " templates
   NeoBundle 'honza/vim-snippets', {
-  \ 'disabled' : !(has('python') || has('python3')),
+  \ 'disabled' : ! g:has_python,
   \ 'on_i':     1,
   \ }
                                                                         " }}}2
@@ -853,7 +871,7 @@ function! InstallNeoBundle()
   endif
 
   echo 'Cloning NeoBundle...'
-  let msg = system('git clone "' . neobundle_repo . '" "' . path . '"')
+  let msg = system('git clone --depth 1 "' . neobundle_repo . '" "' . path . '"')
   if msg =~ 'fatal'
     echohl ErrorMsg | echomsg 'Cannot clone ' . neobundle_repo . ' to ' . path . ':' | echomsg msg | echohl None
     return
@@ -1410,7 +1428,7 @@ endfunction
 "                               EASYMOTION                                {{{3
 " ............................................................................
 
-if neobundle#is_installed('vim-easymotion')
+if BundleInstalled('vim-easymotion')
   map s         <Plug>(easymotion-s2)
   map t         <Plug>(easymotion-tl)
   map T         <Plug>(easymotion-Tl)
