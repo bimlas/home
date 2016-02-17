@@ -1583,8 +1583,8 @@ nnoremap <Space><Tab>   :buffer #<CR>
 nnoremap <Space>L       g,
 nnoremap <Space>l       g;
 
-nnoremap <Space>O       :<C-U>put!=repeat(nr2char(10), v:count1)<CR>
-nnoremap <Space>o       :<C-U>put =repeat(nr2char(10), v:count1)<CR>
+nnoremap <Space>O       :<C-U>put!=repeat(nr2char(10), v:count1)<CR>']
+nnoremap <Space>o       :<C-U>put =repeat(nr2char(10), v:count1)<CR>'[
 
 nnoremap <Space>u       :earlier 1f<CR>
 nnoremap <Space>U       :later 1f<CR>
