@@ -299,6 +299,12 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   \ 'on_map': '<Plug>Coerce',
   \ }
 
+  " BIMBALASZLO/VIM-TEXTCONV                                              {{{2
+  " easily apply text conversions
+  NeoBundle 'bimbalaszlo/vim-textconv', {
+  \ 'on_cmd': 'Convert',
+  \ }
+
   " JUNEGUNN/VIM-EASY-ALIGN                                               {{{2
   " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
   NeoBundle 'junegunn/vim-easy-align', {
