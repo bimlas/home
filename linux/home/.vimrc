@@ -275,10 +275,6 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " MILSEN/VIM-OPERATOR-SUBSTITUTE                                        {{{2
   " use the :s command like an operator
   NeoBundle 'milsen/vim-operator-substitute'
-
-  " RHYSD/VIM-OPERATOR-SURROUND                                           {{{2
-  " quickly edit paired characters ((), [], <>)
-  NeoBundle 'rhysd/vim-operator-surround'
                                                                         " }}}2
 
   " .. SZOVEG KERESESE/MODOSITASA .........
@@ -292,6 +288,14 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   NeoBundle 'vis', {
   \ 'on_cmd': 'B',
   \ }
+
+  " MACHAKANN/VIM-SANDWICH                                                {{{2
+  " paros jelek gyors cserelese/torlese
+  NeoBundle 'machakann/vim-sandwich'
+
+    let g:sandwich_no_default_key_mappings          = 1
+    let g:operator_sandwich_no_default_key_mappings = 1
+    let g:textobj_sandwich_no_default_key_mappings  = 1
 
   " TPOPE/VIM-ABOLISH                                                     {{{2
   " intelligens substitute
@@ -1768,9 +1772,10 @@ nnoremap <Space>nu :Unite neobundle/update:!<CR>
 "                <Space>q - QUOTES, SURROUNDS, CHANGE CASE                {{{3
 " ............................................................................
 
-map <Space>qa <Plug>(operator-surround-append)
-map <Space>qs <Plug>(operator-surround-replace)a
-map <Space>qd <Plug>(operator-surround-delete)a
+nmap <Space>qa  <Plug>(operator-sandwich-add)
+vmap <Space>qa  <Plug>(operator-sandwich-add)
+nmap <Space>qs  <Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
+nmap <Space>qd  <Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
 
 nmap <Space>qcc <Plug>Coercec
 nmap <Space>qcm <Plug>Coercem
