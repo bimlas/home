@@ -648,6 +648,12 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     \    'cmdopt':    '-o -',
     \    'outputter': 'browser'
     \  },
+    \  'vimspec' :
+    \  {
+    \   'command' : g:bundle_dir . '/vim-themis/bin/themis',
+    \   'cmdopt'  : '--runtimepath ".."',
+    \   'exec'    : '%c %o %s:p'
+    \  },
     \  'rubyCustom':
     \  {
     \    'command': 'irb'
