@@ -302,7 +302,7 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " JUNEGUNN/VIM-EASY-ALIGN                                               {{{2
   " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
   NeoBundle 'junegunn/vim-easy-align', {
-  \ 'on_map': '<Plug>',
+  \ 'on_map': '<Plug>(EasyAlign)',
   \ }
 
     " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
