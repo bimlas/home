@@ -178,7 +178,9 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     if neobundle#tap('vim-easymotion')
       function! neobundle#hooks.on_post_source(bundle)
 
+        " This is why on_post_source used.
         EMCommandLineNoreMap <C-J> <CR>
+
         let g:EasyMotion_do_mapping = 0
         let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
 
@@ -335,44 +337,50 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " SHOUGO/UNITE.VIM                                                      {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
-  NeoBundle 'shougo/unite.vim'
+  NeoBundle 'shougo/unite.vim', {
+  \ 'on_cmd': 'Unite',
+  \ }
 
-    let g:unite_source_history_yank_enable  = 1
-    " let g:unite_source_tag_show_location = 0
-    let g:unite_source_tag_max_fname_length = 70
-    let g:unite_enable_auto_select          = 0
-    let g:unite_source_buffer_time_format   = ''
+    if neobundle#tap('unite.vim')
+      function! neobundle#hooks.on_source(bundle)
 
-    " " Silver Searcher
-    " if executable('ag')
-    "   let g:unite_source_rec_async_command  = 'ag --follow --nocolor --nogroup --hidden -g ""'
-    "   let g:unite_source_grep_command       = 'ag'
-    "   let g:unite_source_grep_default_opts  =
-    "   \ '-i --line-numbers --nocolor --nogroup --column --hidden --ignore ' .
-    "   \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-    "   let g:unite_source_grep_recursive_opt = ''
-    " endif
+        let g:unite_source_history_yank_enable  = 1
+        " let g:unite_source_tag_show_location = 0
+        let g:unite_source_tag_max_fname_length = 70
+        let g:unite_enable_auto_select          = 0
+        let g:unite_source_buffer_time_format   = ''
 
-    " Platinum Searcher
-    if executable('pt')
-      let g:unite_source_rec_async_command  = ['pt', '--hidden', '--follow', '--nocolor', '--nogroup', '--files-with-matches', '']
-      let g:unite_source_grep_command       = 'pt'
-      let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --smart-case -e --depth 0'
-      let g:unite_source_grep_recursive_opt = '--depth 25'
-      let g:unite_source_grep_encoding      = 'utf-8'
+        " " Silver Searcher
+        " if executable('ag')
+        "   let g:unite_source_rec_async_command  = 'ag --follow --nocolor --nogroup --hidden -g ""'
+        "   let g:unite_source_grep_command       = 'ag'
+        "   let g:unite_source_grep_default_opts  =
+        "   \ '-i --line-numbers --nocolor --nogroup --column --hidden --ignore ' .
+        "   \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+        "   let g:unite_source_grep_recursive_opt = ''
+        " endif
+
+        " Platinum Searcher
+        if executable('pt')
+          let g:unite_source_rec_async_command  = ['pt', '--hidden', '--follow', '--nocolor', '--nogroup', '--files-with-matches', '']
+          let g:unite_source_grep_command       = 'pt'
+          let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --smart-case -e --depth 0'
+          let g:unite_source_grep_recursive_opt = '--depth 25'
+          let g:unite_source_grep_encoding      = 'utf-8'
+        endif
+
+        call unite#custom#profile('default', 'context', {
+        \ 'prompt_direction': 'top',
+        \ 'direction':        'botright',
+        \ 'cursor_line_time': '0.0',
+        \ 'sync':             1,
+        \ })
+
+        " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
+        " autocmd vimrc VimEnter * call unite#filters#matcher_default#use(['matcher_regexp'])
+
+      endfunction
     endif
-
-    " Alapertelmezett beallitasok.
-    autocmd vimrc VimEnter * if exists('g:loaded_unite') | call unite#custom#profile('default', 'context', {
-    \ 'prompt_direction': 'top',
-    \ 'direction':        'botright',
-    \ 'cursor_line_time': '0.0',
-    \ 'sync':             1,
-    \ })
-    \ | endif
-
-    " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
-    " autocmd vimrc VimEnter * call unite#filters#matcher_default#use(['matcher_regexp'])
 
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
