@@ -9,7 +9,7 @@
 #       --all                           Show all branch/tag/remote
 #       --branches, --tags, --remotes   Guess
 #       --ignore-all-space              Ignore space diffs
-#       --word-diff=color               Show the exact diffs
+#       --color-words                   Show the exact diffs
 #
 #     Look for expression in commit messages.
 #
@@ -31,7 +31,7 @@
 #
 #   OTHER
 #
-#     Use this to resolve a binary merge:
+#     RESOLVE A BINARY MERGE
 #
 #       git checkout --ours   -- <path/to/conflicted_file>
 #       git checkout --theirs -- <path/to/conflicted_file>
@@ -39,12 +39,15 @@
 #     where "ours" is the file in the current branch and "theirs" is the file
 #     from the branch we want to merge.
 #
-#     Delete untracked files, directories and .gitignore-ed files. Add `-n` to
-#     just show the affected files/directories.
+#     DELETE UNTRACKED FILES
+#
+#     ..., directories and .gitignore-ed files. Use `-x` instead of `-X` to
+#     clean untracked files too. Add `-n` to only show the affected
+#     files/directories.
 #
 #       git clean -fdX
 #
-#     Split a commit to smaller commits.
+#     SPLIT A COMMIT TO SMALLER COMMITS
 #
 #       git rebase COMMIT_TO_SPLIT~
 #       # Modify `pick` to `edit`.
@@ -55,6 +58,9 @@
 #       git commit -m "B commit"
 #       git rebase --continue
 #
+#     REVERT MERGE
+#
+#       git revert -m 1 MERGE_COMMIT
 #
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
@@ -65,7 +71,7 @@
 
 [alias]
   cl           = "clone"
-  ps           = "push --all --follow-tags"
+  ps           = "push --all"
   pl           = "pull --all"
   seto         = "remote set-url origin"
   ghcl         = "!sh -c 'git clone https://www.github.com/$*' -"
@@ -77,23 +83,20 @@
   sb           = "branch -vv"
   sr           = "remote show origin"
 
-  slog         = "log --graph --decorate --find-copies-harder --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
-  glog         = "log --graph --decorate --find-copies-harder --date-order"
-  gglog        = "log --graph --decorate --find-copies-harder --date-order --name-status"
-  gslog        = "log --graph --decorate --find-copies-harder --date-order --stat"
-  plog         = "log --graph --decorate --find-copies-harder --date-order --patch --stat --ignore-blank-lines"
-  clog         = "log --graph --decorate --find-copies-harder --date-order --name-status ORIG_HEAD.."
-  day          = "log --graph --decorate --find-copies-harder --date-order --name-status --since midnight"
-  yday         = "log --graph --decorate --find-copies-harder --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
+  slog         = "log --graph --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
+  glog         = "log --graph --date-order"
+  gglog        = "log --graph --date-order --name-status"
+  gslog        = "log --graph --date-order --stat"
+  plog         = "log --graph --date-order --patch --stat --ignore-blank-lines"
+  clog         = "log --graph --date-order --name-status ORIG_HEAD.."
+  day          = "log --graph --date-order --name-status --since midnight"
+  yday         = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
   flog         = "diff --name-status"
   ls           = "ls-tree -r --name-only"
 
   df           = "diff --patch --stat --ignore-blank-lines"
-  dfw          = "diff --patch --stat --ignore-blank-lines --word-diff=color"
-  dfc          = "diff --patch --stat --ignore-blank-lines --cached"
-  dfcw         = "diff --patch --stat --ignore-blank-lines --cached --word-diff=color"
+  dfc          = "diff --patch --stat --ignore-blank-lines --color-words"
   gdf          = "difftool"
-  gdfc         = "difftool --cached"
 
   co           = "checkout"
   coa          = "checkout :/"
@@ -161,6 +164,7 @@
   ; Template directory which is copied to .git. For example:
   ; templatedir/hooks -> .git/hooks
   ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+  ; Filenames starting with dot (.hidden) does not copied.
   templatedir  = "~/.git_template"
 
 [commit]
@@ -180,23 +184,32 @@
   ; single file's log).
   follow       = "true"
 
+  ; Show ref names too (origin/master, tags, etc.).
+  decorate     = "true"
+
 [diff]
 
+  ; Find renamed and copied files.
+  renames      = "copies"
   tool         = "gvimdiff"
 
 [merge]
 
-  ; Allways create merge commits.
+  ; Allways create (empty) merge commits.
   ff           = "false"
   tool         = "gvimdiff"
 
 [pull]
 
+  ; Fast forward if it possible (adds an empty merge commit if it has to).
   ff           = "true"
 
 [push]
 
   default      = "current"
+
+  ; Push tags.
+  followTags   = "true"
 
 [gc]
 
