@@ -11,7 +11,7 @@ header()
 
 copy()
 {
-  $CP --verbose "$@" 2>&1                                     \
+  $CP --verbose --force "$@" 2>&1                                     \
     | sed -e "s:^$CP.*:`printf "\e[0;31m"`&`printf "\e[0m"`:" \
     | sed "s:.*:    &:"
 }
