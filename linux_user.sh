@@ -10,8 +10,6 @@ while [ -h "$SOURCE" ]; do
 done
 CWD="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-source "$CWD/function.sh"
-
 header "DEPLOYING ./linux/home"
 cd "$CWD/linux/home"
 
@@ -59,5 +57,3 @@ link "$CWD/linux/home/.zshrc"         "$HOME/.zshrc"
 chmod 744 $HOME/bin/*
 
 remember
-
-return 0

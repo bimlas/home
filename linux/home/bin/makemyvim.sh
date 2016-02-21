@@ -46,5 +46,3 @@
             # --with-lua-prefix=/usr/lib/x86_64-linux-gnu               \
 
 echo 'RUN `make`, `make install`'
-
-return 0

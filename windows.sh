@@ -52,5 +52,3 @@ copy             \
   $HOME/AppData/Roaming/Thunderbird/Profiles/*/
 
 remember
-
-return 0
