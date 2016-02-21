@@ -50,7 +50,7 @@ RUN apt-get install -y ruby ruby-dev
 RUN gem install ripper-tags gem-ripper-tags
 RUN gem install pry
 
-#                        SET UP USER ENVIRONMENT
+#                         SET UP USER ENVIRONMENT                         {{{1
 # ============================================================================
 
 # ENV TERM=xterm
@@ -68,10 +68,5 @@ RUN chmod 744 /root/bin/*
 # ============================================================================
 
 RUN apt-get install -y python-dev python3-dev ruby-dev liblua5.3-dev libperl-dev
-RUN git clone --progress --verbose --depth 1 https://www.github.com/vim/vim ~/src/vim
-
-RUN cd ~/src/vim
-RUN /root/bin/makemyvim.sh
-RUN make
-RUN make install
-RUN cd -
+RUN git clone --progress --verbose --depth 1 https://www.github.com/vim/vim /root/src/vim
+RUN cd /root/src/vim && /root/bin/makemyvim.sh && make && make install && cd -
