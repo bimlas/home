@@ -6,12 +6,12 @@
 #
 # VIM DEPENDENCIES
 #   apt-get build-dep vim
-#   apt-get install python-dev  \
-#                   python3-dev \
-#                   ruby-dev    \
-#                   lua-dev
-#                   perl-dev    \
-
+#   apt-get install python-dev    \
+#                   python3-dev   \
+#                   ruby-dev      \
+#                   liblua5.3-dev \
+#                   libperl-dev
+#
 # GVIM DEPENDENCIES
 #   apt-get install libncurses5-dev  \
 #                   libgnome2-dev    \
@@ -24,15 +24,15 @@
 #                   libxpm-dev       \
 #                   libxt-dev
 #
-# If something went wrong (for example need to upgrade packages) delete
-# everything except the .git dir, than `git reset --hard`.
+# If something went wrong (for example need to upgrade packages) then use `git
+# clean -dxf`.
 #
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
+            # --enable-gui=gtk2               \
 ./configure --with-compiledby="BimbaLaszlo" \
             --with-features=huge            \
             --enable-multibyte              \
-            --enable-gui=gtk2               \
             --enable-cscope                 \
             --enable-pythoninterp           \
             --enable-python3interp          \
@@ -46,3 +46,5 @@
             # --with-lua-prefix=/usr/lib/x86_64-linux-gnu               \
 
 echo 'RUN `make`, `make install`'
+
+return 0
