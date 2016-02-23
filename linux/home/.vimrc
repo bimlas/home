@@ -1567,18 +1567,16 @@ endfunction
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
-autocmd vimrc FileType asciidoc if exists('*textobj#user#plugin') | call TextObjMapsAdoc() | endif
-
-function! TextObjMapsAdoc()
-  call textobj#user#plugin('adocblock', {
-  \   '-': {
-  \     'select-a-function': 'AdocBlockA',
-  \     'select-a':          'ab',
-  \     'select-i-function': 'AdocBlockI',
-  \     'select-i':          'ib',
-  \   }
-  \ })
-endfunction
+autocmd vimrc FileType asciidoc if BundleInstalled('vim-textobj-user') |
+\ call textobj#user#plugin('adocblock', {
+\   '-': {
+\     'select-a-function': 'AdocBlockA',
+\     'select-a':          'ab',
+\     'select-i-function': 'AdocBlockI',
+\     'select-i':          'ib',
+\   }
+\ })
+\ | endif
 
 function! AdocBlockA()
   if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
