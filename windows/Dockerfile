@@ -1,3 +1,6 @@
+# USE PLAIN VIRTUALBOX for developement environment - Docker doesn't handles
+# terminal well, for example Vim diff mode is laggy and smacks up the screen.
+#
 # To use with Conemu, start `boot2docker ssh` and run the commands in it.
 # Related issues:
 #   https://github.com/Maximus5/ConEmu/issues/183
