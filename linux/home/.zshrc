@@ -52,6 +52,11 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 setopt NO_BEEP
 
+export HISTFILE=~/.zsh_history
+export SAVEHIST=1000
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+
 # Use the memory-muscled Emacs bindings.
 bindkey -e
                                                                          # }}}
