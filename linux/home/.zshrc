@@ -16,7 +16,7 @@ zstyle ':vcs_info:*' formats '%F{blue}[%F{28}%b%F{blue}]'
 zstyle ':vcs_info:*' enable git
 precmd () { vcs_info }
 
-PROMPT=$'\n%B%F{blue}┌─${vcs_info_msg_0_}%B%f %~\n%F{blue}└─ %F{$UCOLOR}%(!.#.$)%f%b '
+PROMPT=$'\n%B%F{blue}┌─${vcs_info_msg_0_}%B%f %~\n%F{blue}└─ %(!.%F{red}#.%F{white}$)%f%b '
 RPROMPT='%B%(?..%F{red}[%?])%F{blue}[%f%T%F{blue}]%b%f'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{blue}[%F{yellow}"
