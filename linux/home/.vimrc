@@ -560,13 +560,19 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   \ 'on_map': ['<Plug>Zeavim', '<Plug>ZVVisSelection'],
   \ }
 
-    let g:zv_disable_mapping = 1
+    if neobundle#tap('zeavim.vim')
+      function! neobundle#hooks.on_source(bundle)
 
-    if isdirectory('c:/app/zeal/')
-      let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
+        let g:zv_disable_mapping = 1
+
+        if isdirectory('c:/app/zeal/')
+          let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
+        endif
+
+        autocmd vimrc FileType ruby Docset ruby 2
+
+      endfunction
     endif
-
-    autocmd vimrc FileType ruby Docset ruby 2
 
   " SCROOLOOSE/SYNTASTIC                                                  {{{2
   " syntax checker
