@@ -1677,6 +1677,8 @@ nnoremap <Space>bD :Bdelete!<CR>
 "                             <Space>d - DIFF                             {{{3
 " ............................................................................
 
+nnoremap <Space>dn ]c
+nnoremap <Space>dp [c
 nnoremap <Space>dt :diffthis<CR>
 vnoremap <Space>dt :Linediff<CR>
 nnoremap <Space>do :diffoff!<CR>
