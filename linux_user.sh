@@ -57,6 +57,6 @@ link "$CWD/linux/home/.xsessionrc"    "$HOME/.xsessionrc"
 link "$CWD/linux/home/.zshrc"         "$HOME/.zshrc"
 
 shopt -s extglob
-chmod 744 $HOME/bin/!(.gitignore,Gemfile,*.bat)
+chmod 744 $HOME/bin/!(.gitignore|Gemfile|*.bat)
 
 remember
