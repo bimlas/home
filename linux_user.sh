@@ -56,6 +56,7 @@ link "$CWD/linux/home/.Xresources"    "$HOME/.Xresources"
 link "$CWD/linux/home/.xsessionrc"    "$HOME/.xsessionrc"
 link "$CWD/linux/home/.zshrc"         "$HOME/.zshrc"
 
-chmod 744 $HOME/bin/* $HOME/.Xresources $HOME/.xsessionrc
+shopt -s extglob
+chmod 744 $HOME/bin/!(.gitignore,Gemfile,*.bat)
 
 remember
