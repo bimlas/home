@@ -1711,7 +1711,7 @@ nnoremap <Space>gb :Gblame<CR>
 nnoremap <Space>gc :Gcommit<CR>
 nnoremap <Space>gd :Gdiff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
-nnoremap <Space>gg :Ggrep --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
+nnoremap <Space>gg :Ggrep! --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
 nnoremap <Space>gl :Gitv!<CR>
 nnoremap <Space>gL :Gitv<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
