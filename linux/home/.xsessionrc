@@ -9,3 +9,6 @@ xset b off
 
 # Ctrl to CapsLock
 setxkbmap -option ctrl:nocaps
+
+# For some reasons Xdefaults does not read without this.
+xrdb ~/.Xresources
