@@ -5,11 +5,45 @@
 #
 # Log in again in to the desktop.
 
+autoload -U colors     && colors
+autoload -U promptinit && promptinit
+setopt prompt_subst
+
+#                                 VI-MODE                                 {{{1
+# ============================================================================
+
+# Use Vim bindings.
+bindkey -v
+
+# Escape from Vi-mode to normal mode.
+bindkey -M viins '^o' vi-cmd-mode
+
+# Vi-mode indicator for prompt.
+# https://zeitkraut.de/posts/2014-06-29-howto-zsh-vi-style.html
+local vi_normal_marker="%{$fg[red]%}%B[N]%b%{$reset_color%}"
+local vi_insert_marker="%{$fg[blue]%}%B[I]%b%{$reset_color%}"
+local vi_unknown_marker="%{$fg[red]%}%B[?]%b%{$reset_color%}"
+local vi_mode="$vi_insert_marker"
+vi_mode_indicator () {
+  case ${KEYMAP} in
+    (vicmd)      echo $vi_normal_marker ;;
+    (main|viins) echo $vi_insert_marker ;;
+    (*)          echo $vi_unknown_marker ;;
+  esac
+}
+
+# Reset mode-marker and prompt whenever the keymap changes.
+function zle-line-init zle-keymap-select {
+  vi_mode="$(vi_mode_indicator)"
+  zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 #                                 PROMPT                                  {{{1
 # ============================================================================
 
-setopt prompt_subst
-
+# Git prompt.
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false
@@ -17,7 +51,7 @@ zstyle ':vcs_info:*' formats '%F{blue}[%F{green}%b%F{blue}]'
 precmd () { vcs_info }
 
 PROMPT=$'\n%B%F{blue}┌─${vcs_info_msg_0_}%B%f %~\n%F{blue}└─ %(!.%F{red}#.%F{white}$)%f%b '
-RPROMPT='%B%(?..%F{red}[%?])%F{blue}[%f%T%F{blue}]%b%f'
+RPROMPT='%B%(?..%F{red}[%?])%F{blue}[%f%T%F{blue}]%b%f${vi_mode}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{blue}[%F{yellow}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%F{blue}]%f%b"
@@ -26,8 +60,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%F{blue}]%f%b"
 # ============================================================================
 # See `man zshcompsys` for more information.
 
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
 
 # Show hidden files too.
 _comp_options+=(globdots)
@@ -86,9 +119,6 @@ export HISTSIZE=1000
 export SAVEHIST=1000
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
-
-# Use the memory-muscled Emacs bindings.
-bindkey -e
 
 # Recursive search on history.
 bindkey '^p' history-beginning-search-backward
