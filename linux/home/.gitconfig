@@ -66,99 +66,99 @@
 
 [user]
 
-  name         = "BimbaLaszlo"
-  email        = "bimbalaszlo@gmail.com"
+  name              = "BimbaLaszlo"
+  email             = "bimbalaszlo@gmail.com"
 
 [alias]
-  cl           = "clone"
-  ps           = "push --all"
-  pl           = "pull --all"
-  seto         = "remote set-url origin"
-  ghcl         = "!sh -c 'git clone https://www.github.com/$*' -"
-  ghps         = "!sh -c 'git remote set-url origin https://www.github.com/$*; git push --all --follow-tags --set-upstream https://www.github.com/$*' -"
-  glcl         = "!sh -c 'git clone https://gitlab.com/$*' -"
-  glps         = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
+  cl                = "clone --recursive"
+  ps                = "push --all"
+  pl                = "pull --all"
+  seto              = "remote set-url origin"
+  ghcl              = "!sh -c 'git clone --recursive https://www.github.com/$*' -"
+  ghps              = "!sh -c 'git remote set-url origin https://www.github.com/$*; git push --all --follow-tags --set-upstream https://www.github.com/$*' -"
+  glcl              = "!sh -c 'git clone --recursive https://gitlab.com/$*' -"
+  glps              = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
-  s            = "status --short --branch"
-  sb           = "branch -vv"
-  sr           = "remote show origin"
+  s                 = "status --short --branch"
+  sb                = "branch -vv"
+  sr                = "remote show origin"
 
-  slog         = "log --graph --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
-  glog         = "log --graph --date-order"
-  gglog        = "log --graph --date-order --name-status"
-  gslog        = "log --graph --date-order --stat"
-  plog         = "log --graph --date-order --patch --stat --ignore-blank-lines"
-  clog         = "log --graph --date-order --name-status ORIG_HEAD.."
-  day          = "log --graph --date-order --name-status --since midnight"
-  yday         = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
-  flog         = "diff --name-status"
-  ls           = "ls-tree -r --name-only"
+  slog              = "log --graph --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
+  glog              = "log --graph --date-order"
+  gglog             = "log --graph --date-order --name-status"
+  gslog             = "log --graph --date-order --stat"
+  plog              = "log --graph --date-order --patch --stat --ignore-blank-lines"
+  clog              = "log --graph --date-order --name-status ORIG_HEAD.."
+  day               = "log --graph --date-order --name-status --since midnight"
+  yday              = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
+  flog              = "diff --name-status"
+  ls                = "ls-tree -r --name-only"
 
-  df           = "diff --patch --stat --ignore-blank-lines"
-  dfc          = "diff --patch --stat --ignore-blank-lines --color-words"
-  gdf          = "difftool"
+  df                = "diff --patch --stat --ignore-blank-lines"
+  dfc               = "diff --patch --stat --ignore-blank-lines --color-words"
+  gdf               = "difftool"
 
-  co           = "checkout"
-  coa          = "checkout :/"
-  coi          = "checkout-index -f"
-  coo          = "checkout --ours"
-  cot          = "checkout --theirs"
+  co                = "checkout"
+  coa               = "checkout :/"
+  coi               = "checkout-index -f"
+  coo               = "checkout --ours"
+  cot               = "checkout --theirs"
 
-  b            = "branch"
+  b                 = "branch"
 
   # git bisect start HEAD   Start bisecting and mark HEAD as bad
   # git bisect good SHA     Mark SHA as good - Git will checkout in the middle
   #                         of they
   # git bisect good/bad     Mark the actual checkout
   # git bisect reset        End of bisecting
-  bss          = "bisect start"
-  bsr          = "bisect reset" # stop
-  bsg          = "bisect good"
-  bsb          = "bisect bad"
+  bss               = "bisect start"
+  bsr               = "bisect reset" # stop
+  bsg               = "bisect good"
+  bsb               = "bisect bad"
 
-  ad           = "add --all"
-  ada          = "add --all :/"
+  ad                = "add --all"
+  ada               = "add --all :/"
 
-  c            = "commit"
-  ca           = "commit --amend"
-  cm           = "commit -m"
-  cmu          = "commit -m Update"
+  c                 = "commit"
+  ca                = "commit --amend"
+  cm                = "commit -m"
+  cmu               = "commit -m Update"
 
   # fixup:  merge without changing the commit message
   # squash: the commit message is editable
-  cfu          = "commit --fixup"
-  csq          = "commit --squash"
+  cfu               = "commit --fixup"
+  csq               = "commit --squash"
 
-  st           = "stash"
-  sts          = "stash show"
-  stp          = "stash pop"
-  std          = "stash drop"
+  st                = "stash"
+  sts               = "stash show"
+  stp               = "stash pop"
+  std               = "stash drop"
 
-  rb           = "rebase --autosquash --interactive"
-  rbc          = "rebase --continue"
-  rba          = "rebase --abort"
+  rb                = "rebase --autosquash --interactive"
+  rbc               = "rebase --continue"
+  rba               = "rebase --abort"
 
-  ctags        = "!~/.git_template/.bin/ctags"
+  ctags             = "!~/.git_template/.bin/ctags"
 
 [core]
 
-  editor       = "gvim --nofork"
+  editor            = "gvim --nofork"
 
   ; Do not modify EOL.
-  autocrlf     = "false"
+  autocrlf          = "false"
 
   ; Handles very slow the Windows network drives without these settings, but
   ; it require at least 1.9.4.
   ; http://stackoverflow.com/a/24045966
-  preloadindex = "true"
-  fscache      = "true"
+  preloadindex      = "true"
+  fscache           = "true"
 
   ; Global .gitignore file.
-  excludesfile = "~/.git_template/.global_gitignore"
+  excludesfile      = "~/.git_template/.global_gitignore"
 
 [color]
 
-  ui           = "true"
+  ui                = "true"
 
 [init]
 
@@ -166,54 +166,59 @@
   ; templatedir/hooks -> .git/hooks
   ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
   ; Filenames starting with dot (.hidden) does not copied.
-  templatedir  = "~/.git_template"
+  templatedir       = "~/.git_template"
 
 [commit]
 
   ; Additional text which appears on the top of commit message as a comment.
-  template     = "~/.git_template/.commit_message"
+  template          = "~/.git_template/.commit_message"
 
 [log]
 
   ; Abbreviate SHA to 7 chars.
-  abbrevCommit = "true"
+  abbrevCommit      = "true"
 
   ; 2014-03-25 12:34:56 +0100
-  date         = "iso"
+  date              = "iso"
 
   ; Track the full history of a file (follows file renames when viewing a
   ; single file's log).
-  follow       = "true"
+  follow            = "true"
 
   ; Show ref names too (origin/master, tags, etc.).
-  decorate     = "true"
+  decorate          = "true"
 
 [diff]
 
   ; Find renamed and copied files.
-  renames      = "copies"
-  tool         = "gvimdiff"
+  renames           = "copies"
+  tool              = "gvimdiff"
 
 [merge]
 
   ; Allways create (empty) merge commits.
-  ff           = "false"
-  tool         = "gvimdiff"
+  ff                = "false"
+  tool              = "gvimdiff"
+
+[fetch]
+
+  ; Allways update all submudolues.
+  recurseSubmodules = "true"
 
 [pull]
 
   ; Fast forward if it possible (adds an empty merge commit if it has to).
-  ff           = "true"
+  ff                = "true"
 
 [push]
 
-  default      = "current"
+  default           = "current"
 
   ; Push tags.
-  followTags   = "true"
+  followTags        = "true"
 
 [gc]
 
   ; Minimalize the number of objects in the .git dir (speeds up the things a
   ; bit).
-  auto         = 256
+  auto              = 256
