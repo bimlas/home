@@ -112,61 +112,31 @@ if( -not (Get-Mymodule -name "Posh-Git") )
   Install-Module Posh-Git
 }
 
-$global:GitPromptSettings = New-Object PSObject -Property @{
-    DefaultForegroundColor    = $Host.UI.RawUI.ForegroundColor
+$global:GitPromptSettings.EnableFileStatus  = $false
+$global:GitPromptSettings.EnableStashStatus = $false
 
-    BeforeText                = '['
-    BeforeForegroundColor     = [ConsoleColor]::Cyan
-    BeforeBackgroundColor     = $Host.UI.RawUI.BackgroundColor
-    DelimText                 = ' |'
-    DelimForegroundColor      = [ConsoleColor]::Cyan
-    DelimBackgroundColor      = $Host.UI.RawUI.BackgroundColor
+$global:GitPromptSettings.BeforeText            = '['
+$global:GitPromptSettings.BeforeForegroundColor = [ConsoleColor]::Cyan
+$global:GitPromptSettings.BeforeBackgroundColor = $Host.UI.RawUI.BackgroundColor
 
-    AfterText                 = ']'
-    AfterForegroundColor      = [ConsoleColor]::Cyan
-    AfterBackgroundColor      = $Host.UI.RawUI.BackgroundColor
+$global:GitPromptSettings.AfterText            = ']'
+$global:GitPromptSettings.AfterForegroundColor = [ConsoleColor]::Cyan
+$global:GitPromptSettings.AfterBackgroundColor = $Host.UI.RawUI.BackgroundColor
 
-    BranchForegroundColor       = [ConsoleColor]::Green
-    BranchBackgroundColor       = $Host.UI.RawUI.BackgroundColor
-    BranchAheadForegroundColor  = [ConsoleColor]::Green
-    BranchAheadBackgroundColor  = $Host.UI.RawUI.BackgroundColor
-    BranchBehindForegroundColor = [ConsoleColor]::Green
-    BranchBehindBackgroundColor = $Host.UI.RawUI.BackgroundColor
-    BranchBehindAndAheadForegroundColor = [ConsoleColor]::Green
-    BranchBehindAndAheadBackgroundColor = $Host.UI.RawUI.BackgroundColor
+$global:GitPromptSettings.BranchForegroundColor = [ConsoleColor]::Green
+$global:GitPromptSettings.BranchBackgroundColor = $Host.UI.RawUI.BackgroundColor
 
-    BeforeIndexText           = ""
-    BeforeIndexForegroundColor= [ConsoleColor]::DarkGreen
-    BeforeIndexForegroundBrightColor= [ConsoleColor]::Green
-    BeforeIndexBackgroundColor= $Host.UI.RawUI.BackgroundColor
+$global:GitPromptSettings.BranchAheadStatusSymbol          = [char]0x2191 # Up arrow
+$global:GitPromptSettings.BranchAheadStatusForegroundColor = [ConsoleColor]::Green
+$global:GitPromptSettings.BranchAheadStatusBackgroundColor = $Host.UI.RawUI.BackgroundColor
 
-    IndexForegroundColor      = [ConsoleColor]::DarkGreen
-    IndexForegroundBrightColor= [ConsoleColor]::Green
-    IndexBackgroundColor      = $Host.UI.RawUI.BackgroundColor
+$global:GitPromptSettings.BranchBehindStatusSymbol          = [char]0x2193 # Down arrow
+$global:GitPromptSettings.BranchBehindStatusForegroundColor = [ConsoleColor]::Red
+$global:GitPromptSettings.BranchBehindStatusBackgroundColor = $Host.UI.RawUI.BackgroundColor
 
-    WorkingForegroundColor    = [ConsoleColor]::DarkRed
-    WorkingForegroundBrightColor = [ConsoleColor]::Red
-    WorkingBackgroundColor    = $Host.UI.RawUI.BackgroundColor
-
-    UntrackedText             = ' !'
-    UntrackedForegroundColor  = [ConsoleColor]::DarkRed
-    UntrackedForegroundBrightColor  = [ConsoleColor]::Red
-    UntrackedBackgroundColor  = $Host.UI.RawUI.BackgroundColor
-
-    ShowStatusWhenZero        = $true
-
-    AutoRefreshIndex          = $true
-
-    EnablePromptStatus        = !$Global:GitMissing
-    EnableFileStatus          = $false
-    RepositoriesInWhichToDisableFileStatus = @( ) # Array of repository paths
-    DescribeStyle             = ''
-
-    Debug                     = $false
-
-    BranchNameLimit           = 0
-    TruncatedBranchSuffix     = '...'
-}
+$global:GitPromptSettings.BranchBehindAndAheadStatusSymbol          = [char]0x2195 # Up & Down arrow
+$global:GitPromptSettings.BranchBehindAndAheadStatusForegroundColor = [ConsoleColor]::Purple
+$global:GitPromptSettings.BranchBehindAndAheadStatusBackgroundColor = $Host.UI.RawUI.BackgroundColor
 
 #                                 PROMPT                                  {{{1
 # ============================================================================
