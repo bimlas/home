@@ -9,8 +9,8 @@
 " ============================================================================
 
 " Minimalis vimrc plugin-ok hibakeresesehez.
-let s:vanilla = 0
-if s:vanilla
+" let s:vanilla = 1
+if exists('s:vanilla')
   set nocompatible
   filetype plugin indent on
   syntax enable
@@ -19,7 +19,7 @@ if s:vanilla
   " Ide tedd a tesztelnivalot.
   set runtimepath+=$HOME/.vim_test
   " Ebbe pedig a tesztelni kivant beallitasokat.
-  silent! source $HOME/.vimrc_test
+  source $HOME/.vimrc_test
   finish
 endif
 
