@@ -152,6 +152,16 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   "
   "   let localindentguide_blacklist = ['help']
   "   autocmd vimrc BufWinEnter * if index(localindentguide_blacklist, &filetype) < 0 | LocalIndentGuide +hl | endif
+
+  " LILYDJWG/COLORIZER                                                    {{{2
+  " show RGB colors with :ColorHighlight or :ColorToggle
+  NeoBundle 'lilydjwg/colorizer', {
+  \ 'on_cmd': ['ColorHighlight', 'ColorClear', 'ColorToggle'],
+  \ }
+
+    let g:colorizer_startup  = 0
+    let g:colorizer_nomap    = 1
+    let g:colorizer_maxlines = 3000
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
@@ -1808,6 +1818,7 @@ nnoremap <Space>sl :Unite -no-quit -keep-focus line<CR>
 
 nnoremap <expr> <Space>tb ':set background=' . (&background == 'light' ? 'dark' : 'light') . '<CR>'
 nnoremap        <Space>tc :let &colorcolumn = ((&cc == '') ? virtcol('.') : '')<CR>
+nnoremap        <Space>th :ColorToggle<CR>
 nnoremap <expr> <Space>tm ':set guioptions' . (&guioptions =~ 'm' ? '-' : '+') . '=m<CR>'
 nnoremap        <Space>tn :set number!<CR>
 nnoremap        <Space>tr :set relativenumber!<CR>
