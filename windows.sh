@@ -30,15 +30,14 @@ header "  COPY"
 copy --recursive   \
   "bin/"           \
   ".git_template/" \
-  ".pentadactyl/"  \
   ".ctags"         \
   ".gitconfig"     \
   ".gemrc"         \
   ".globalrc"      \
   ".gvimrc"        \
   ".ideavimrc"     \
-  ".pentadactylrc" \
   ".spacemacs"     \
+  ".vimperatorrc"  \
   ".vimrc"         \
   ".vimrc_viewer"  \
   "$HOME"
