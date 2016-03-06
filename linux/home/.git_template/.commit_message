@@ -1,31 +1,21 @@
+# Did You actualize the comments and the documentation?
+# If applied, this commit will...
 
-# Sokszor commit-olj, ritkan push-olj (hogy legyen lehetoseged modositani)!
+
+# Why is this needed?
+# Do not assume the reviewer understands what the original problem was.
+
+
+# Long description.
+# Describe any limitations of the current code.
+# Do not assume the code is self-evident/self-documenting.
+
+
+# GitHub issue indicators:
+#   Fix #123  Close the issue
+#   #123      Do not close, just related to it
 #
-# Mielott commit-olnal, ellenorizd ezeket:
-#
-#   * Aktualizaltad a kommenteket es a dokumentaciot is?
-#
-# Commit uzenet felepitese:
-#
-#   logikai_csoport: Jelen ideju felszolito mondat
-#
-#   A commit osszefoglalasa. Irj bele mindent, hogy ha csak a log-ot
-#   nezik, akkor is ertheto legyen.
-#
-# Specialis jelentesu szovegek a fejlecben (a logikai_csoport utan ird):
-#
-#   Fix #123  Az issue lezarasa.
-#   #123      Nem zarja le, de azzal kapcsolatos.
-#
-#   Tobb issue lezarasa:
+#   To close more than one issue:
 #   * Close #1 Fix typo
 #   * Close #2 Add documentation
 #   * ...
-#
-# Az --amend hasznalata egy korabbi commit-on:
-#
-#   $ git add FILE
-#   $ git commit --fixup=SHA   # Csak hozzaadja a javitast
-#   # VAGY
-#   $ git commit --squash=SHA  # Modosithatod a commit uzenetet is.
-#   $ git rebase --interactive --autosquash SHA~
