@@ -80,7 +80,8 @@
   glps              = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
   s                 = "status --short --branch"
-  sb                = "branch -vv"
+  sb                = "!echo 'PARENT/MERGED WITH THE CURRENT BRANCH' ; git branch -vv --merged ; echo '\nNON MERGED WITH THE CURRENT BRANCH' ; git branch -vv --no-merged"
+  sba               = "!echo 'PARENT/MERGED WITH THE CURRENT BRANCH' ; git branch -vv --all --merged ; echo '\nNON MERGED WITH THE CURRENT BRANCH' ; git branch -vv --all --no-merged"
   sr                = "remote show origin"
 
   slog              = "log --graph --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
