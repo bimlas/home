@@ -63,6 +63,13 @@
 #       git commit -m "B commit"
 #       git rebase --continue
 #
+#     PARTIAL MERGE
+#
+#       git merge --no-ff --no-commit BRANCH
+#       git checkout HEAD FILES_TO_DO_NOT_MERGE
+#       git add FILES
+#       git commit
+#
 #     REVERT MERGE
 #
 #       git revert -m 1 MERGE_COMMIT
