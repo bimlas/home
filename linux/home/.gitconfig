@@ -2,14 +2,19 @@
 #
 # USEFUL COMMANDS:
 #
+#   LOG/DIFF
+#
+#     Flags:
+#
+#       -w                              Ignore whitespace diffs
+#       --color-words                   Show the exact diffs
+#
 #   LOG
 #
 #     Flags:
 #
 #       --all                           Show all branch/tag/remote
 #       --branches, --tags, --remotes   Guess
-#       --ignore-all-space              Ignore space diffs
-#       --color-words                   Show the exact diffs
 #
 #     Look for expression in commit messages.
 #
