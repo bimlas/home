@@ -101,7 +101,9 @@
   ls                = "ls-tree -r --name-only"
 
   df                = "diff --patch --stat --ignore-blank-lines"
-  dfc               = "diff --patch --stat --ignore-blank-lines --color-words"
+  dfc               = "diff --patch --stat --ignore-blank-lines --cached"
+  dfw               = "diff --patch --stat --ignore-blank-lines --color-words"
+  dfwc              = "diff --patch --stat --ignore-blank-lines --color-words --cached"
   gdf               = "difftool"
 
   co                = "checkout"
