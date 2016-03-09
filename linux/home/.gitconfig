@@ -240,6 +240,10 @@
   ; Allways update all submudolues.
   recurseSubmodules = "true"
 
+  ; After fetching, remove any remote-tracking references that no longer exist
+  ; on the remote.
+  prune = "true"
+
 [pull]
 
   ; Fast forward if it possible (adds an empty merge commit if it has to).
