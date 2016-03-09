@@ -2,11 +2,20 @@
 ;
 ; DELETE UNTRACKED FILES
 ;
-; ..., directories and .gitignore-ed files. Use `-x` instead of `-X` to
-; clean untracked files too. Add `-n` to only show the affected
-; files/directories.
+;   git clean -f
 ;
-;   git clean -fdX
+;   -n
+;     Don't actually remove anything, just show what would be done.
+;
+;   -d
+;     Remove untracked directories in addition to untracked files.
+;
+;   -x
+;     Don't use the standard ignore rules read from .gitignore (per directory)
+;     and $GIT_DIR/info/exclude.
+;
+;   -X
+;     Remove only files ignored by Git.
 ;
 ; SPLIT A COMMIT TO SMALLER COMMITS
 ;
