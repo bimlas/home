@@ -225,7 +225,7 @@
 
 [pretty]
 
-  shortlog = "%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)"
+  shortlog = "%C(auto)%h%C(auto)%d%n  %C(bold blue)%ad %an%n  %s%C(reset)"
 
 [diff]
 
