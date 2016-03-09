@@ -1,44 +1,44 @@
-# .gitconfig: git configuration
-#
-# DELETE UNTRACKED FILES
-#
-# ..., directories and .gitignore-ed files. Use `-x` instead of `-X` to
-# clean untracked files too. Add `-n` to only show the affected
-# files/directories.
-#
-#   git clean -fdX
-#
-# SPLIT A COMMIT TO SMALLER COMMITS
-#
-#   git rebase COMMIT_TO_SPLIT~
-#   # Modify `pick` to `edit`.
-#   git reset HEAD~
-#   git add FILES_FOR_A_COMMIT
-#   git commit -m "A commit"
-#   git add FILES_FOR_B_COMMIT
-#   git commit -m "B commit"
-#   git rebase --continue
-#
-# PARTIAL MERGE
-#
-#   git merge --no-ff --no-commit BRANCH
-#   git checkout HEAD FILES_TO_DO_NOT_MERGE
-#   git add FILES
-#   git commit
-#
-# REVERT MERGE
-#
-#   git revert -m 1 MERGE_COMMIT
-#
-# RESOLVE A BINARY MERGE
-#
-#   git checkout --ours   -- <path/to/conflicted_file>
-#   git checkout --theirs -- <path/to/conflicted_file>
-#
-#   where "ours" is the file in the current branch and "theirs" is the file
-#   from the branch we want to merge.
-#
-# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
+; .gitconfig: git configuration
+;
+; DELETE UNTRACKED FILES
+;
+; ..., directories and .gitignore-ed files. Use `-x` instead of `-X` to
+; clean untracked files too. Add `-n` to only show the affected
+; files/directories.
+;
+;   git clean -fdX
+;
+; SPLIT A COMMIT TO SMALLER COMMITS
+;
+;   git rebase COMMIT_TO_SPLIT~
+;   # Modify `pick` to `edit`.
+;   git reset HEAD~
+;   git add FILES_FOR_A_COMMIT
+;   git commit -m "A commit"
+;   git add FILES_FOR_B_COMMIT
+;   git commit -m "B commit"
+;   git rebase --continue
+;
+; PARTIAL MERGE
+;
+;   git merge --no-ff --no-commit BRANCH
+;   git checkout HEAD FILES_TO_DO_NOT_MERGE
+;   git add FILES
+;   git commit
+;
+; REVERT MERGE
+;
+;   git revert -m 1 MERGE_COMMIT
+;
+; RESOLVE A BINARY MERGE
+;
+;   git checkout --ours   -- <path/to/conflicted_file>
+;   git checkout --theirs -- <path/to/conflicted_file>
+;
+;   where "ours" is the file in the current branch and "theirs" is the file
+;   from the branch we want to merge.
+;
+; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 [user]
 
@@ -49,7 +49,7 @@
 
   rc = "config --global --edit"
 
-  # __ REMOTE RELATED _____________________
+  ; __ REMOTE RELATED _____________________
 
   cl = "clone --recursive"
 
@@ -63,38 +63,38 @@
   glcl = "!sh -c 'git clone --recursive https://gitlab.com/$*' -"
   glps = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
-  # __ STATUS _____________________________
+  ; __ STATUS _____________________________
 
   s   = "status --short --branch"
   sb  = "!echo 'MERGED WITH THE CURRENT BRANCH\n(the current branch contains the tip of these branches)\n' ; git branch -vv --merged ; echo '\nNON MERGED WITH THE CURRENT BRANCH\n' ; git branch -vv --no-merged"
   sba = "!echo 'MERGED WITH THE CURRENT BRANCH\n(the current branch contains the tip of these branches)\n' ; git branch -vv --all --merged ; echo '\nNON MERGED WITH THE CURRENT BRANCH\n' ; git branch -vv --all --no-merged"
   sr  = "remote show origin"
 
-  # __ LOG ________________________________
+  ; __ LOG ________________________________
 
-  # --all                           Show all branch/tag/remote
-  # --branches, --tags, --remotes   Guess
-  #
-  # -w                              Ignore whitespace diffs
-  # --color-words                   Show the exact diffs
-  #
-  # Look for expression in commit messages.
-  #
-  #   git log --grep'regex'
-  #
-  # Look for the addition/deletion of text - ie. when was the string
-  # firstly introduced or where was it removed.
-  #
-  #   git log -S'string' -- file
-  #
-  # Look for differences whose patch text contains modified lines that
-  # match <regex>.
-  #
-  #   git log -G'regex' -- file
-  #
-  # Shows how the function main() in the file main.c evolved over time.
-  #
-  #   git log -L '/int main/',/^}/:main.c
+  ; --all                           Show all branch/tag/remote
+  ; --branches, --tags, --remotes   Guess
+  ;
+  ; -w                              Ignore whitespace diffs
+  ; --color-words                   Show the exact diffs
+  ;
+  ; Look for expression in commit messages.
+  ;
+  ;   git log --grep'regex'
+  ;
+  ; Look for the addition/deletion of text - ie. when was the string
+  ; firstly introduced or where was it removed.
+  ;
+  ;   git log -S'string' -- file
+  ;
+  ; Look for differences whose patch text contains modified lines that
+  ; match <regex>.
+  ;
+  ;   git log -G'regex' -- file
+  ;
+  ; Shows how the function main() in the file main.c evolved over time.
+  ;
+  ;   git log -L '/int main/',/^}/:main.c
 
   l         = "log --graph --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
   lg        = "log --graph --date-order"
@@ -104,10 +104,10 @@
   day       = "log --graph --date-order --name-status --since midnight"
   yday      = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
 
-  # __ DIFF _______________________________
+  ; __ DIFF _______________________________
 
-  # -w             Ignore whitespace diffs
-  # --color-words  Show the exact diffs
+  ; -w             Ignore whitespace diffs
+  ; --color-words  Show the exact diffs
 
   df   = "diff --patch --stat --ignore-blank-lines"
   dfc  = "diff --patch --stat --ignore-blank-lines --cached"
@@ -116,7 +116,7 @@
   dfs  = "diff --name-status"
   gdf  = "difftool"
 
-  # __ CHECKOUT ___________________________
+  ; __ CHECKOUT ___________________________
 
   co  = "checkout"
   coa = "checkout :/"
@@ -124,54 +124,54 @@
   coo = "checkout --ours"
   cot = "checkout --theirs"
 
-  # __ BRANCH _____________________________
+  ; __ BRANCH _____________________________
 
   b = "branch"
 
-  # __ BISECT _____________________________
+  ; __ BISECT _____________________________
 
-  # git bisect start HEAD   Start bisecting and mark HEAD as bad
-  # git bisect good/bad     Mark the actual checkout
-  # git bisect good SHA     Mark SHA as good - Git will checkout in the middle of good and bad
-  # git bisect reset        End of bisecting
+  ; git bisect start HEAD   Start bisecting and mark HEAD as bad
+  ; git bisect good/bad     Mark the actual checkout
+  ; git bisect good SHA     Mark SHA as good - Git will checkout in the middle of good and bad
+  ; git bisect reset        End of bisecting
 
   bss = "bisect start"
   bsr = "bisect reset" # stop
   bsg = "bisect good"
   bsb = "bisect bad"
 
-  # __ ADD ________________________________
+  ; __ ADD ________________________________
 
   ad  = "add --all"
   ada = "add --all :/"
 
-  # __ COMMIT _____________________________
+  ; __ COMMIT _____________________________
 
   c   = "commit"
   ca  = "commit --amend"
   cm  = "commit -m"
   cmu = "commit -m Update"
 
-  # fixup   merge without changing the commit message
-  # squash  the commit message is editable
+  ; fixup   merge without changing the commit message
+  ; squash  the commit message is editable
 
   cfu = "commit --fixup"
   csq = "commit --squash"
 
-  # __ STASH ______________________________
+  ; __ STASH ______________________________
 
   st  = "stash"
   sts = "stash show"
   stp = "stash pop"
   std = "stash drop"
 
-  # __ REBASE _____________________________
+  ; __ REBASE _____________________________
 
   rb  = "rebase --autosquash --interactive"
   rbc = "rebase --continue"
   rba = "rebase --abort"
 
-  # __ INVOKING SCRIPTS ___________________
+  ; __ INVOKING SCRIPTS ___________________
 
   ctags = "!~/.git_template/.bin/ctags"
 
