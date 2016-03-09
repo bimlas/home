@@ -84,6 +84,8 @@
 [alias]
   rc                = "config --global --edit"
 
+  # __ REMOTE RELATED _____________________
+
   cl                = "clone --recursive"
   ps                = "push --all"
   pl                = "pull --all"
@@ -93,10 +95,14 @@
   glcl              = "!sh -c 'git clone --recursive https://gitlab.com/$*' -"
   glps              = "!sh -c 'git remote set-url oigin https://gitlab.com/$*; git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
 
+  # __ STATUS _____________________________
+
   s                 = "status --short --branch"
   sb                = "!echo 'CONTAINS/MERGED WITH THE CURRENT BRANCH' ; git branch -vv --merged ; echo '\nNON MERGED WITH THE CURRENT BRANCH' ; git branch -vv --no-merged"
   sba               = "!echo 'CONTAINS/MERGED WITH THE CURRENT BRANCH' ; git branch -vv --all --merged ; echo '\nNON MERGED WITH THE CURRENT BRANCH' ; git branch -vv --all --no-merged"
   sr                = "remote show origin"
+
+  # __ LOG ________________________________
 
   l                 = "log --graph --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
   lg                = "log --graph --date-order"
@@ -109,11 +115,15 @@
   dfs               = "diff --name-status"
   ls                = "ls-tree -r --name-only"
 
+  # __ DIFF _______________________________
+
   df                = "diff --patch --stat --ignore-blank-lines"
   dfc               = "diff --patch --stat --ignore-blank-lines --cached"
   dfw               = "diff --patch --stat --ignore-blank-lines --color-words"
   dfwc              = "diff --patch --stat --ignore-blank-lines --color-words --cached"
   gdf               = "difftool"
+
+  # __ CHECKOUT ___________________________
 
   co                = "checkout"
   coa               = "checkout :/"
@@ -121,7 +131,11 @@
   coo               = "checkout --ours"
   cot               = "checkout --theirs"
 
+  # __ BRANCH _____________________________
+
   b                 = "branch"
+
+  # __ BISECT _____________________________
 
   # git bisect start HEAD   Start bisecting and mark HEAD as bad
   # git bisect good SHA     Mark SHA as good - Git will checkout in the middle
@@ -133,8 +147,12 @@
   bsg               = "bisect good"
   bsb               = "bisect bad"
 
+  # __ ADD ________________________________
+
   ad                = "add --all"
   ada               = "add --all :/"
+
+  # __ COMMIT _____________________________
 
   c                 = "commit"
   ca                = "commit --amend"
@@ -146,14 +164,20 @@
   cfu               = "commit --fixup"
   csq               = "commit --squash"
 
+  # __ STASH ______________________________
+
   st                = "stash"
   sts               = "stash show"
   stp               = "stash pop"
   std               = "stash drop"
 
+  # __ REBASE _____________________________
+
   rb                = "rebase --autosquash --interactive"
   rbc               = "rebase --continue"
   rba               = "rebase --abort"
+
+  # __ INVOKING SCRIPTS ___________________
 
   ctags             = "!~/.git_template/.bin/ctags"
 
