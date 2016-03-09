@@ -70,27 +70,16 @@ if( -not (Get-Mymodule -name "PsGet") )
 #                               PSREADLINE                                {{{2
 # ____________________________________________________________________________
 #
-# Linux-like behaviour.
+# Bash-like behaviour.
 
 if( -not (Get-Mymodule -name "PSReadLine") )
 {
   Install-Module PSReadLine
 }
 
-# Vim-like editing.
-Set-PSReadlineOption -EditMode Vi
-# Buggy with my prompt.
-# Set-PSReadlineOption -ViModeIndicator Prompt
-Set-PSReadlineKeyHandler -Key Ctrl+J -Function AcceptLine
-Set-PSReadlineKeyHandler -Key Ctrl+O -Function ViCommandMode
-Set-PSReadlineKeyHandler -Key Tab    -Function Complete
-
-# Zsh-like history search.
-Set-PSReadlineKeyHandler -Key UpArrow   -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Key Ctrl+P    -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
-Set-PSReadlineKeyHandler -Key Ctrl+N    -Function HistorySearchForward
-
+# Bash-like editing.
+Set-PSReadlineOption -EditMode Emacs
+Set-PSReadlineKeyHandler -Key Ctrl+J         -Function AcceptLine
 Set-PSReadlineKeyHandler -Key 'Shift+PageUp','Shift+PageDown' `
                          -BriefDescription ScrollDisplayUpDownHalfPage `
                          -LongDescription "Scroll the display up or down by half page" `
@@ -106,6 +95,12 @@ Set-PSReadlineKeyHandler -Key 'Shift+PageUp','Shift+PageDown' `
   $newTop = [Math]::Min([Console]::BufferHeight - [Console]::WindowHeight, $newTop)
   [Console]::SetWindowPosition(0, $newTop)
 }
+
+# Zsh-like history search.
+Set-PSReadlineKeyHandler -Key UpArrow   -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key Ctrl+P    -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadlineKeyHandler -Key Ctrl+N    -Function HistorySearchForward
 
 #                                POSH-GIT                                 {{{2
 # ____________________________________________________________________________
