@@ -96,7 +96,7 @@
   ;
   ;   git log -L '/int main/',/^}/:main.c
 
-  l         = "log --graph --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
+  l         = "log --graph --date-order --date=short --format=shortlog"
   lg        = "log --graph --date-order"
   lgg       = "log --graph --date-order --name-status"
   lp        = "log --graph --date-order --patch --stat --ignore-blank-lines"
@@ -222,6 +222,10 @@
 
   ; Show ref names too (origin/master, tags, etc.).
   decorate = "true"
+
+[pretty]
+
+  shortlog = "%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)"
 
 [diff]
 
