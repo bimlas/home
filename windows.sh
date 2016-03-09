@@ -22,6 +22,10 @@ copy --recursive \
   "Documents"    \
   "$HOME"
 
+header "  SYMLINK"
+
+link "$CWD/windows/Documents/windowspowershell/microsoft.powershell_profile.ps1" "$HOME/Documents/windowspowershell/microsoft.powershell_profile.ps1"
+
 header "DEPLOYING ./linux/home"
 cd "$CWD/linux/home"
 
