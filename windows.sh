@@ -27,19 +27,10 @@ cd "$CWD/linux/home"
 
 header "  COPY"
 
+# Windows cannot make symlinks to directories.
 copy --recursive   \
   "bin/"           \
   ".git_template/" \
-  ".ctags"         \
-  ".gitconfig"     \
-  ".gemrc"         \
-  ".globalrc"      \
-  ".gvimrc"        \
-  ".ideavimrc"     \
-  ".spacemacs"     \
-  ".vimperatorrc"  \
-  ".vimrc"         \
-  ".vimrc_viewer"  \
   "$HOME"
 
 copy         \
@@ -49,5 +40,18 @@ copy         \
 copy             \
   _thunderbird/* \
   $HOME/AppData/Roaming/Thunderbird/Profiles/*/
+
+header "  SYMLINK"
+
+link "$CWD/linux/home/.ctags"         "$HOME/.ctags"
+link "$CWD/linux/home/.gitconfig"     "$HOME/.gitconfig"
+link "$CWD/linux/home/.gemrc"         "$HOME/.gemrc"
+link "$CWD/linux/home/.globalrc"      "$HOME/.globalrc"
+link "$CWD/linux/home/.gvimrc"        "$HOME/.gvimrc"
+link "$CWD/linux/home/.ideavimrc"     "$HOME/.ideavimrc"
+link "$CWD/linux/home/.spacemacs"     "$HOME/.spacemacs"
+link "$CWD/linux/home/.vimperatorrc"  "$HOME/.vimperatorrc"
+link "$CWD/linux/home/.vimrc"         "$HOME/.vimrc"
+link "$CWD/linux/home/.vimrc_viewer"  "$HOME/.vimrc_viewer"
 
 remember

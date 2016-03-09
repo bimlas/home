@@ -16,11 +16,21 @@ copy()
     | sed "s:.*:    &:"
 }
 
+# Create real symlink instead of copies - needs admin rights.
+export MSYS=winsymlinks:nativestrict
+# Poor way to determine if the user is admin (user cannot run `at` command).
+at > /dev/null && export is_win_admin=1 || export is_win_admin=0
+
 link()
 {
-  $LN --verbose --symbolic --force --no-dereference "$@" 2>&1 \
-    | sed -e "s:^$LN.*:`printf "\e[0;31m"`&`printf "\e[0m"`:" \
-    | sed "s:.*:    &:"
+  if [ $MSYSTEM ] && [ $is_win_admin -eq 0 ]; then
+    printf "\e[0;33m    using copy instead of symlink: needs admin rights\e[0m\n"
+    copy $@
+  else
+    $LN --verbose --symbolic --force --no-dereference "$@" 2>&1 \
+      | sed -e "s:^$LN.*:`printf "\e[0;31m"`&`printf "\e[0m"`:" \
+      | sed "s:.*:    &:"
+  fi
 }
 
 remember()
