@@ -107,13 +107,11 @@
   l                 = "log --graph --date-order --date=short --format='%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n        %s%C(reset)'"
   lg                = "log --graph --date-order"
   lgg               = "log --graph --date-order --name-status"
-  gslog             = "log --graph --date-order --stat"
   lp                = "log --graph --date-order --patch --stat --ignore-blank-lines"
   changelog         = "log --graph --date-order --name-status ORIG_HEAD.."
   day               = "log --graph --date-order --name-status --since midnight"
   yday              = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
   dfs               = "diff --name-status"
-  ls                = "ls-tree -r --name-only"
 
   # __ DIFF _______________________________
 
