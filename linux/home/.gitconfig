@@ -169,7 +169,8 @@
 
   ; __ STASH ______________________________
 
-  st  = "stash"
+  ; Stash, but keep staged files.
+  st  = "stash --keep-index"
   sts = "stash show"
   stp = "stash pop"
   std = "stash drop"
