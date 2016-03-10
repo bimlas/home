@@ -37,7 +37,8 @@
 
 [alias]
 
-  rc = "config --global --edit"
+  # rc = "config --global --edit"
+  rc = "!gvim $HOME/.gitconfig &"
 
   ; __ REMOTE RELATED _____________________
 
