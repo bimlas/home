@@ -195,7 +195,8 @@
 
   ; __ REBASE _____________________________
 
-  rb  = "rebase --autosquash --interactive"
+  rb  = "rebase"
+  rbi = "rebase --interactive"
   rbc = "rebase --continue"
   rba = "rebase --abort"
 
@@ -260,6 +261,10 @@
   ; Find renamed and copied files.
   renames = "copies"
   tool    = "gvimdiff"
+
+[rebase]
+
+  autoSquash = "true"
 
 [merge]
 
