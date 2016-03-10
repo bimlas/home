@@ -28,25 +28,6 @@
 ;   git commit -m "B commit"
 ;   git rebase --continue
 ;
-; PARTIAL MERGE
-;
-;   git merge --no-ff --no-commit BRANCH
-;   git checkout HEAD FILES_TO_DO_NOT_MERGE
-;   git add FILES
-;   git commit
-;
-; REVERT MERGE
-;
-;   git revert -m 1 MERGE_COMMIT
-;
-; RESOLVE A BINARY MERGE
-;
-;   git checkout --ours   -- <path/to/conflicted_file>
-;   git checkout --theirs -- <path/to/conflicted_file>
-;
-;   where "ours" is the file in the current branch and "theirs" is the file
-;   from the branch we want to merge.
-;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 [user]
@@ -152,6 +133,25 @@
   b = "branch"
 
   ; __ MERGE ______________________________
+
+  ; Partial merge
+  ;
+  ;   git merge --no-ff --no-commit BRANCH
+  ;   git checkout HEAD FILES_TO_DO_NOT_MERGE
+  ;   git add FILES
+  ;   git commit
+  ;
+  ; Revert merge
+  ;
+  ;   git revert -m 1 MERGE_COMMIT
+  ;
+  ; Resolve a binary merge
+  ;
+  ;   git checkout --ours   -- <path/to/conflicted_file>
+  ;   git checkout --theirs -- <path/to/conflicted_file>
+  ;
+  ;   where "ours" is the file in the current branch and "theirs" is the file
+  ;   from the branch we want to merge.
 
   me = "merge"
 
