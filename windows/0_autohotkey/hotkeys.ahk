@@ -4,6 +4,11 @@
 ;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
+; Move/resize windows.
+<#h:: Send, #{Left}
+<#k:: Send, #{Up}
+<#l:: Send, #{Right}
+
 ; Dexpot helper
 <#1::  Send, !1
 <#2::  Send, !2
