@@ -79,8 +79,7 @@
   ; --all                           Show all branch/tag/remote
   ; --branches, --tags, --remotes   Guess
   ;
-  ; -w                              Ignore whitespace diffs
-  ; --color-words                   Show the exact diffs
+  ; See DIFF for additional parameters.
   ;
   ; Look for expression in commit messages.
   ;
@@ -109,10 +108,16 @@
   day       = "log --graph --date-order --name-status --since midnight"
   yday      = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
 
+  ; __ SHOW _______________________________
+
+  sw  = "show --patch --stat --ignore-blank-lines"
+  sww = "show --patch --stat --ignore-blank-lines --color-words"
+
   ; __ DIFF _______________________________
 
   ; -w             Ignore whitespace diffs
   ; --color-words  Show the exact diffs
+  ; --diff-filter  Filter files: A|C|D|M|R|T|U|X|B
 
   df   = "diff --patch --stat --ignore-blank-lines"
   dfc  = "diff --patch --stat --ignore-blank-lines --cached"
@@ -135,10 +140,16 @@
 
   ; __ MERGE ______________________________
 
+  ; Check if merge occurs conflicts ("dry run")
+  ;
+  ;   git merge --no-ff --no-commit
+  ;   git merge --abort # If something went wrong
+  ;   git commit        # If everything is ok
+  ;
   ; Partial merge
   ;
   ;   git merge --no-ff --no-commit BRANCH
-  ;   git checkout HEAD FILES_TO_DO_NOT_MERGE
+  ;   git checkout --ours FILES_TO_DO_NOT_MERGE
   ;   git add FILES
   ;   git commit
   ;
