@@ -41,6 +41,9 @@
   # rc = "config --global --edit"
   rc = "!gvim $HOME/.gitconfig &"
 
+  ; Open Git shell on Windows.
+  sh = "!cd `[ $GIT_PREFIX ] && echo $GIT_PREFIX || pwd` ; bash --login -i"
+
   ; __ REMOTE RELATED _____________________
 
   cl = "clone --recursive"
@@ -102,6 +105,7 @@
 
   l         = "log --graph --date-order --date=short --format=shortlog"
   la        = "log --graph --date-order --date=short --format=shortlog --all"
+  las       = "log --graph --date=short --format=shortlog --all --simplify-by-decoration"
   lg        = "log --graph --date-order"
   lgg       = "log --graph --date-order --name-status"
   lp        = "log --graph --date-order --patch --stat --ignore-blank-lines"
