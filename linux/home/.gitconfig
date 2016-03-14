@@ -37,6 +37,7 @@
 
 [alias]
 
+  ; Edit .gitconfig
   # rc = "config --global --edit"
   rc = "!gvim $HOME/.gitconfig &"
 
@@ -140,6 +141,15 @@
 
   ; __ MERGE ______________________________
 
+  ; Edit merge commit message.
+  ;
+  ;   git merge -e
+  ;
+  ; Populate the log message with one-line descriptions from at most <n>
+  ; actual commits that are being merged.
+  ;
+  ;   git merge -e --log
+  ;
   ; Check if merge occurs conflicts ("dry run")
   ;
   ;   git merge --no-ff --no-commit
