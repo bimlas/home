@@ -103,15 +103,15 @@
   ;
   ;   git log -L '/int main/',/^}/:main.c
 
-  l         = "log --graph --date-order --date=short --format=shortlog"
-  la        = "log --graph --date-order --date=short --format=shortlog --all"
+  l         = "log --graph --date=short --format=shortlog"
+  la        = "log --graph --date=short --format=shortlog --all"
   las       = "log --graph --date=short --format=shortlog --all --simplify-by-decoration"
-  lg        = "log --graph --date-order"
-  lgg       = "log --graph --date-order --name-status"
-  lp        = "log --graph --date-order --patch --stat --ignore-blank-lines"
-  changelog = "log --graph --date-order --name-status ORIG_HEAD.."
-  day       = "log --graph --date-order --name-status --since midnight"
-  yday      = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
+  lg        = "log --graph"
+  lgg       = "log --graph --name-status"
+  lp        = "log --graph --patch --stat --ignore-blank-lines"
+  changelog = "log --graph --name-status ORIG_HEAD.."
+  day       = "log --graph --name-status --since midnight"
+  yday      = "log --graph --name-status --since=day.before.yesterday.midnight --until=midnight"
 
   ; __ SHOW _______________________________
 
