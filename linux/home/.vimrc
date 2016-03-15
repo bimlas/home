@@ -462,6 +462,12 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
   "   that it probably deserves its own plugin.
   NeoBundle 'tpope/vim-scriptease'
+
+  " MBBILL/UNDOTREE                                                       {{{2
+  " graphical :undolist
+  NeoBundle 'mbbill/undotree', {
+  \ 'on_cmd': 'UndotreeToggle',
+  \ }
                                                                         " }}}2
 
   " .. DEBUG / BENCHMARK ..................
