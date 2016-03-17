@@ -71,7 +71,7 @@
   ;
   ;   $ git merge
 
-  f  = "fetch"
+  f  = "fetch --verbose"
 
   ; __ STATUS _____________________________
 
