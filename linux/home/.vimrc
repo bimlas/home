@@ -1039,10 +1039,14 @@ let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
 let stat_lineinfo   = '%4l/%4L|%3v'
 
+" BufNew not works on <C-W><C-N>, so it has to check the variable every time.
+autocmd vimrc BufWinEnter * if ! exists('b:undotree_initial_seq') | let b:undotree_initial_seq = undotree()['seq_cur'] | endif
+let stat_undofile = '%{undotree()["seq_cur"] < b:undotree_initial_seq ? " USING UNDOFILE " : ""}'
+
 let &statusline  = stat_argnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
-let &statusline .= '%#StatWarning#%{(winwidth(0) > 70) && exists("*StatWarn") ? StatWarn() : ""}'
+let &statusline .= '%#StatWarning#' . stat_undofile . ''
 let &statusline .= '%* %= '
 let &statusline .= '%#StatWarning#%{exists("g:loaded_syntastic_plugin") ? SyntasticStatuslineFlag() : ""}'
 let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
