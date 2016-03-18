@@ -71,7 +71,7 @@
   ;
   ;   $ git merge
 
-  f  = "fetch --verbose"
+  f  = "!git fetch; git lf"
 
   ; __ STATUS _____________________________
 
@@ -117,9 +117,12 @@
   lg        = "log --graph"
   lgg       = "log --graph --name-status"
   lp        = "log --graph --patch --stat --ignore-blank-lines"
-  changelog = "log --graph --name-status ORIG_HEAD.."
   day       = "log --graph --name-status --since midnight"
   yday      = "log --graph --name-status --since=day.before.yesterday.midnight --until=midnight"
+  lf        = "!echo 'ONLY ON ORIGIN\n' ;                              \
+               git log --graph --remotes=origin --not --branches ;     \
+               echo '\nONLY ON LOCAL (MAYBE DIVERGED FROM ORIGIN)\n' ; \
+               git log --graph --branches --not --remotes=origin"
 
   ; __ SHOW _______________________________
 
