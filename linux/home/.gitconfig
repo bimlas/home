@@ -63,6 +63,10 @@
   ; * Detect diverged branches without doing an undesired merge
   ; * Decidable merge/rebase
   ;
+  ; If there are no commits added locally, just update the branch pointer:
+  ;
+  ;   $ git merge --ff
+  ;
   ; To rebase on the top of the origin/CURRENT_BRANCH just run
   ;
   ;   $ git rebase
@@ -190,7 +194,9 @@
   ;   where "ours" is the file in the current branch and "theirs" is the file
   ;   from the branch we want to merge.
 
-  me = "merge"
+  me  = "merge"
+  mef = "merge --ff"
+  mea = "merge --abort"
 
   ; __ BISECT _____________________________
 
@@ -231,6 +237,12 @@
   std = "stash drop"
 
   ; __ REBASE _____________________________
+
+  ; -p  --preserve-merges  Rebase merge commits too
+  ;
+  ; To rebase a merge commit:
+  ;
+  ;   git rebase --preserve-merges MERGE_SHA~
 
   rb  = "rebase"
   rbi = "rebase --interactive"
