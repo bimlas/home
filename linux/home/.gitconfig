@@ -123,10 +123,9 @@
   lp        = "log --graph --patch --stat --ignore-blank-lines"
   day       = "log --graph --name-status --since midnight"
   yday      = "log --graph --name-status --since=day.before.yesterday.midnight --until=midnight"
-  lf        = "!echo 'ONLY ON ORIGIN\n' ;                              \
-               git log --graph --remotes=origin --not --branches ;     \
-               echo '\nONLY ON LOCAL (MAYBE DIVERGED FROM ORIGIN)\n' ; \
-               git log --graph --branches --not --remotes=origin"
+  lf        = "!echo 'If the branch name does not appears on the bottom commit, then the branch is' \
+               '\ndiverged after that.\n' ;                                                         \
+               git log --graph --boundary --remotes=origin --not --branches"
 
   ; __ SHOW _______________________________
 
