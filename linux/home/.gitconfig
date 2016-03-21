@@ -47,16 +47,19 @@
   ; __ REMOTE RELATED _____________________
 
   cl = "clone --recursive"
-  ps = "push --all"
+  ps = "push"
+
+  ; Push and track those remote branches.
+  psa = "push --set-upstream --all"
 
   seto = "remote set-url origin"
 
   ghcl = "!sh -c 'git clone --recursive https://www.github.com/$*' -"
   ghps = "!sh -c 'git remote set-url origin https://www.github.com/$* ;             \
-          git push --all --follow-tags --set-upstream https://www.github.com/$*' -"
+          git push --all --set-upstream https://www.github.com/$*' -"
   glcl = "!sh -c 'git clone --recursive https://gitlab.com/$*' -"
   glps = "!sh -c 'git remote set-url oigin https://gitlab.com/$* ;              \
-          git push --all --follow-tags --set-upstream https://gitlab.com/$*' -"
+          git push --all --set-upstream https://gitlab.com/$*' -"
 
   ; Use `fetch` instead of `pull`:
   ;
