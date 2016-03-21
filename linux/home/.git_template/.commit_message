@@ -1,18 +1,14 @@
 
-
 # If applied, this commit will...
-# Did You actualize the comments and documentation?
 #
 # Why is this needed?
-# Do not assume the reviewer understands what the original problem was.
-
-
-# Long description.
-# Describe any limitations of the current code.
-# Do not assume the code is self-evident/self-documenting.
-
-
-# GitHub issue indicators:
+#   Do not assume the reviewer understands what the original problem was.
+#
+# Long description
+#   Do not assume the code is self-evident/self-documenting.
+#   Describe any limitations of the current code.
+#
+# GitHub issue indicators
 #   Fix #123  Close the issue
 #   #123      Do not close, just related to it
 #
