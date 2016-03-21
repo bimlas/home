@@ -155,7 +155,6 @@
   coi = "checkout-index -f"
   coo = "checkout --ours"
   cot = "checkout --theirs"
-  cob = "checkout -b"
 
   ; __ BRANCH _____________________________
 
