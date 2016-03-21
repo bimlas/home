@@ -159,6 +159,11 @@
 
   ; __ BRANCH _____________________________
 
+  ; Delete remote branch (aka push an empty branch to remote like
+  ; LOCAL:REMOTE)
+  ;
+  ;   git push origin :BRANCH_TO_DELETE
+
   b = "branch"
 
   ; __ MERGE ______________________________
@@ -240,6 +245,9 @@
   std = "stash drop"
 
   ; __ REBASE _____________________________
+  ; WARNING: `rebase master` means that the current branch is moved to the end
+  ; of `master` and `rebase master dev` does the same with `dev` instead of
+  ; the current one!
 
   ; -p  --preserve-merges  Rebase merge commits too
   ;
