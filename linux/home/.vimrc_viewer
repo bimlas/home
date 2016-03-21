@@ -11,6 +11,7 @@ let g:loaded_vimrc_viewer = 1
 set nocompatible
 filetype plugin indent on
 syntax enable
+set encoding=utf8
 
 set nomodifiable readonly noswapfile
 set fileformats=unix,dos fileencodings=utf8,cp1250,default,utf-16le
