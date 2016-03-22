@@ -16,3 +16,6 @@
 #   * Close #1 Fix typo
 #   * Close #2 Add documentation
 #   * ...
+#
+# Grep patterns
+#   !lang !api !etc
