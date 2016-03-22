@@ -78,7 +78,7 @@
   ;
   ;   $ git merge
 
-  f  = "!git fetch; git lf"
+  f  = "fetch"
 
   ; __ STATUS _____________________________
 
