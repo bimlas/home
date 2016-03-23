@@ -134,7 +134,7 @@
   ; List commits on origin which is not in the local repo (freshly fetched).
   lf        = "!echo 'If the branch name does not appears on the bottom commit, then the branch is' \
                '\ndiverged after that.\n' ;                                                         \
-               git log --graph --date-order --boundary --remotes=origin --not --branches"
+               git log --graph --date-order --boundary `git for-each-ref --format='%(upstream:short)' refs/heads` --not --branches"
 
   ; __ SHOW _______________________________
 
