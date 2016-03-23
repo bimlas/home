@@ -108,7 +108,10 @@ user_pref("extensions.s3gt.view_reverse_translate_tooltip",         false);
  *
  * tile view - az ablak felosztasa tobb reszre (szinkronizalni is lehet a
  * gorgetesuket)
- *  https://addons.mozilla.org/en-US/firefox/addon/tile-view/
+ *  https://addons.mozilla.org/hu/firefox/addon/tile-view/
+ *
+ * tab groups - tabok csoportositasa
+ *  https://addons.mozilla.org/hu/firefox/addon/tab-groups-panorama/
  *
  * chatzilla - irc kliens
  *  https://addons.mozilla.org/hu/firefox/addon/chatzilla/
