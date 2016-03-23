@@ -208,7 +208,7 @@
   ;   from the branch we want to merge.
 
   me  = "merge"
-  mef = "merge --ff"
+  mef = "merge --ff-only"
   mea = "merge --abort"
 
   ; __ BISECT _____________________________
