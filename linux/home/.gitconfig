@@ -130,6 +130,8 @@
   ; Formated for mail to my boss.
   ; The last Sed command removes the searchable "bangtag" line.
   mail      = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s\\+!\\S/{N;d}'; #"
+
+  ; List commits on origin which is not in the local repo (freshly fetched).
   lf        = "!echo 'If the branch name does not appears on the bottom commit, then the branch is' \
                '\ndiverged after that.\n' ;                                                         \
                git log --graph --date-order --boundary --remotes=origin --not --branches"
