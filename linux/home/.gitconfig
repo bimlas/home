@@ -131,10 +131,11 @@
   ; The last Sed command removes the searchable "bangtag" line.
   mail      = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s\\+!\\S/{N;d}'; #"
 
-  ; List commits on origin which is not in the local repo (freshly fetched).
-  lf        = "!echo 'If the branch name does not appears on the bottom commit, then the branch is' \
-               '\ndiverged after that.\n' ;                                                         \
-               git log --graph --date-order --boundary `git for-each-ref --format='%(upstream:short)' refs/heads` --not --branches"
+  ; List local...origin if both side exists (fetch log).
+  lf = "!git log --graph --date-order --boundary --left-right                                        \
+        `git for-each-ref --shell --format='ref=%(refname:short); up=%(upstream:short)' refs/heads | \
+        while read e; do eval \"$e\"; [ \"z$up\" != z ] && echo $ref...$up; done`;                   \
+        echo '\nBRANCH STATUS'; git branch -vv"
 
   ; __ SHOW _______________________________
 
