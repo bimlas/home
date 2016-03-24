@@ -1,4 +1,6 @@
 #!/bin/bash
+# git-ctags: Regenerate CTags database
+#
 # http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 
 dir="`git rev-parse --git-dir`"

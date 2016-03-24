@@ -130,15 +130,12 @@
   day       = "log --graph --date-order --name-status --since midnight"
   yday      = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
 
+  ; Show `local...remote` if both side exists.
+  lf        = "fetch-log"
+
   ; Formated for mail to my boss.
   ; The last Sed command removes the searchable "bangtag" line.
   mail      = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s\\+!\\S/{N;d}'; #"
-
-  ; List local...origin if both side exists (fetch log).
-  lf = "!git for-each-ref --shell --format='ref=%(refname:short); up=%(upstream:short)' refs/heads | \
-        while read e; do eval \"$e\"; [ \"z$up\" != z ] && echo $ref...$up; done |                   \
-        xargs --no-run-if-empty git log --graph --date-order --boundary --left-right $@;             \
-        echo '\nBRANCH STATUS'; git branch -vv; #"
 
   ; __ SHOW _______________________________
 
@@ -268,10 +265,6 @@
   rbi = "rebase --interactive"
   rbc = "rebase --continue"
   rba = "rebase --abort"
-
-  ; __ INVOKING SCRIPTS ___________________
-
-  ctags = "!~/.git_template/.bin/ctags"
 
 [core]
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Update Ruby documentation database
+# git-rdoc: Update Ruby documentation database
 
 # Do nothing if there is no Ruby files, because Rdoc wants to generate
 # documentation for every file in this case.

@@ -37,6 +37,7 @@ remember()
 {
   header "DON'T FORGET TO:"
   header "* add ~/bin to path"
+  header "* add ~/.git_template/.bin' to path"
   header "* run ~/firefox/install_addons.ps1"
   header "* autostart autohotkey scripts"
 }

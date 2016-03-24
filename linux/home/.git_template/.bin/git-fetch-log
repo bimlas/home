@@ -1,0 +1,91 @@
+#!/bin/bash
+# git-fetch-log: Ultimate git fetch-log
+#
+# It shows the diferences of `local...remote` if both side exists. Useful to
+# find out what you have to do: `merge`, `rebase`, `push`, etc. The arguments
+# passed to log.
+#
+# Place it somewhere on Your `$PATH` and execute the `git fetch-log` command.
+#
+#                                 EXAMPLE
+# ============================================================================
+#
+# < commit ac3a792 (HEAD -> master)
+# | Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+# | Date:   2016-03-18 23:18:01 +0100
+# |
+# |     Rebased 'master' (NEVER DO IT)
+# |
+# | > commit 632039d (origin/master, origin/HEAD)
+# | | Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+# | | Date:   2015-12-03 22:25:30 +0100
+# | |
+# | |     Pushed 'master'
+# | |
+# | > commit b191600
+# | | Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+# | | Date:   2015-10-07 14:25:58 +0200
+# | |
+# | |     Doing some work
+# | |
+# | | > commit 0fccef3 (origin/branch)
+# | |/  Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+# | |   Date:   2015-09-03 10:33:39 +0200
+# | |
+# | |       Commits in branch we have to pull
+# | |
+# | o commit 2304667 (branch)
+# |/  Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+# |   Date:   2015-08-28 13:21:13 +0200
+# |
+# |       Local branch (border commit)
+# |
+# o commit 46033cb
+#   Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+#   Date:   2015-07-28 08:33:57 +0200
+#
+#       Border commit
+#
+# BRANCH STATUS
+#   branch 2304667 [origin/branch: behind 1] Commits in branch we have to pull
+# * master ac3a792 [origin/master: ahead 1, behind 3] Rebased 'master' (NEVER DO IT)
+#   new    761ef83 Doesn't have remote counterpart
+#
+#                               KNOW ISSUES
+# ============================================================================
+#
+# Shows nothing in this example:
+#
+# * (master, origin/master)
+# |
+# * Merge 'dev'
+# |\
+# | * (origin/dev)
+# | * ...
+# | * (dev)
+# |/
+# * ...
+#
+# It should output the commits of `dev...origin/dev` because there are
+# differences, but `master...origin/master` contains those changes (since
+# `dev` is merged) besides this `master...origin/master` points to the same
+# so Git thinks nothing changed.
+#
+# This is why `branch -vv` executed in the end: it shows ahead/behind
+# status.
+#
+# I have to find a way to execute git log with only `dev...origin/dev` if
+# `master...origin/master` does not differ.
+#
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
+
+git for-each-ref --shell --format='ref=%(refname:short); up=%(upstream:short)' refs/heads | \
+  while read entry; do
+    eval "$entry"
+    if test "z$up" != z; then
+      echo $ref...$up
+    fi
+  done | xargs --no-run-if-empty git log --graph --date-order --boundary --left-right $@
+
+echo -e "\nBRANCH STATUS"
+git branch -vv

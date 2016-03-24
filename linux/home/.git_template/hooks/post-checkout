@@ -1,4 +1,4 @@
 #!/bin/bash
 # Invoked on: clone, checkout
-~/.git_template/.bin/rdoc  >/dev/null 2>&1 &
-~/.git_template/.bin/ctags >/dev/null 2>&1 &
+git rdoc  >/dev/null 2>&1 &
+git ctags >/dev/null 2>&1 &
