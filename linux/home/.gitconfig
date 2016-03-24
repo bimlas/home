@@ -137,8 +137,8 @@
   ; List local...origin if both side exists (fetch log).
   lf = "!git for-each-ref --shell --format='ref=%(refname:short); up=%(upstream:short)' refs/heads | \
         while read e; do eval \"$e\"; [ \"z$up\" != z ] && echo $ref...$up; done |                   \
-        xargs --no-run-if-empty git log --graph --date-order --boundary --left-right;                \
-        echo '\nBRANCH STATUS'; git branch -vv"
+        xargs --no-run-if-empty git log --graph --date-order --boundary --left-right $@;             \
+        echo '\nBRANCH STATUS'; git branch -vv; #"
 
   ; __ SHOW _______________________________
 
