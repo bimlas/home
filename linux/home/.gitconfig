@@ -47,7 +47,10 @@
   ; __ REMOTE RELATED _____________________
 
   cl = "clone --recursive"
-  ps = "push"
+
+  ; Push and track the current branch.
+  ; See 'push.default'
+  ps = "push --set-upstream"
 
   ; Push and track those remote branches.
   psa = "push --set-upstream --all"
@@ -354,6 +357,7 @@
 
 [push]
 
+  ; `git push -u` is enough instead of `git push -u origin my_branch`.
   default = "current"
 
   ; Push tags.
