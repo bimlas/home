@@ -121,21 +121,21 @@
   ;
   ;   git log -L '/int main/',/^}/:main.c
 
-  l         = "log --graph --date-order --date=short --format=shortlog"
-  la        = "log --graph --date-order --date=short --format=shortlog --all"
-  las       = "log --graph --date-order --date=short --format=shortlog --all --simplify-by-decoration"
-  lg        = "log --graph --date-order"
-  lgg       = "log --graph --date-order --name-status"
-  lp        = "log --graph --date-order --patch --stat --ignore-blank-lines"
-  day       = "log --graph --date-order --name-status --since midnight"
-  yday      = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
+  l    = "log --graph --date-order --date=short --format=shortlog"
+  la   = "log --graph --date-order --date=short --format=shortlog --all"
+  las  = "log --graph --date-order --date=short --format=shortlog --all --simplify-by-decoration"
+  lg   = "log --graph --date-order"
+  lgg  = "log --graph --date-order --name-status"
+  lp   = "log --graph --date-order --patch --stat --ignore-blank-lines"
+  day  = "log --graph --date-order --name-status --since midnight"
+  yday = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
 
   ; Show `local...remote` if both side exists.
-  lf        = "fetch-log"
+  lf = "fetch-log"
 
   ; Formated for mail to my boss.
   ; The last Sed command removes the searchable "bangtag" line.
-  mail      = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s\\+!\\S/{N;d}'; #"
+  mail = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s\\+!\\S/{N;d}'; #"
 
   ; __ SHOW _______________________________
 
