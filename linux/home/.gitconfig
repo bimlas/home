@@ -132,9 +132,9 @@
   mail      = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s\\+!\\S/{N;d}'; #"
 
   ; List local...origin if both side exists (fetch log).
-  lf = "!git log --graph --date-order --boundary --left-right                                        \
-        `git for-each-ref --shell --format='ref=%(refname:short); up=%(upstream:short)' refs/heads | \
-        while read e; do eval \"$e\"; [ \"z$up\" != z ] && echo $ref...$up; done`;                   \
+  lf = "!git for-each-ref --shell --format='ref=%(refname:short); up=%(upstream:short)' refs/heads | \
+        while read e; do eval \"$e\"; [ \"z$up\" != z ] && echo $ref...$up; done |                   \
+        xargs --no-run-if-empty git log --graph --date-order --boundary --left-right;                \
         echo '\nBRANCH STATUS'; git branch -vv"
 
   ; __ SHOW _______________________________
