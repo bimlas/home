@@ -86,14 +86,8 @@
   ; __ STATUS _____________________________
 
   s   = "status --short --branch"
-  sb  = "!echo 'MERGED WITH THE CURRENT BRANCH\n(the current branch contains the tip of these branches)\n' ; \
-         git branch -vv --merged ;                                                                           \
-         echo '\nNON MERGED WITH THE CURRENT BRANCH\n' ;                                                     \
-         git branch -vv --no-merged"
-  sba = "!echo 'MERGED WITH THE CURRENT BRANCH\n(the current branch contains the tip of these branches)\n' ; \
-         git branch -vv --all --merged ;                                                                     \
-         echo '\nNON MERGED WITH THE CURRENT BRANCH\n' ;                                                     \
-         git branch -vv --all --no-merged"
+  sb  = "branch-status"
+  sba = "branch-status --all"
   sr  = "remote show origin"
 
   ; __ LOG ________________________________

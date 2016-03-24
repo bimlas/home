@@ -1,0 +1,12 @@
+#!/bin/bash
+# git-branch-status: List the status of merged/unmerged branches
+#
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
+echo 'MERGED WITH THE CURRENT BRANCH'
+echo -e "(the current branch contains the tip of these branches)\n"
+
+git branch -vv $@ --merged
+
+echo -e "\nNON MERGED WITH THE CURRENT BRANCH\n"
+
+git branch -vv $@ --no-merged
