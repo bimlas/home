@@ -354,9 +354,7 @@
 
 [push]
 
-  ; Fits to my needs: push the current branch back to the branch whose changes
-  ; are usually integrated into the current branch.
-  default = "upstream"
+  default = "current"
 
   ; Push tags.
   followTags = "true"
