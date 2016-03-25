@@ -7,84 +7,66 @@
 #
 # Place it somewhere on Your `$PATH` and execute by the `git fetch-log`
 # command.
-#                                 EXAMPLE
+#
+#                               EXAMPLE OUTPUT
 # ============================================================================
 #
-# < commit ac3a792 (HEAD -> master)
+# ==== branch [behind 1]
+#
+# > commit 652b883 (origin/branch)
 # | Author: BimbaLaszlo <bimbalaszlo@gmail.com>
-# | Date:   2016-03-18 23:18:01 +0100
+# | Date:   2016-03-10 09:11:11 +0100
 # |
-# |     Rebased 'master' (NEVER DO IT)
+# |     Commit on remote
 # |
-# | > commit 632039d (origin/master, origin/HEAD)
-# | | Author: BimbaLaszlo <bimbalaszlo@gmail.com>
-# | | Date:   2015-12-03 22:25:30 +0100
-# | |
-# | |     Pushed 'master'
-# | |
-# | > commit b191600
-# | | Author: BimbaLaszlo <bimbalaszlo@gmail.com>
-# | | Date:   2015-10-07 14:25:58 +0200
-# | |
-# | |     Doing some work
-# | |
-# | | > commit 0fccef3 (origin/branch)
-# | |/  Author: BimbaLaszlo <bimbalaszlo@gmail.com>
-# | |   Date:   2015-09-03 10:33:39 +0200
-# | |
-# | |       Commits in branch we have to pull
-# | |
-# | o commit 2304667 (branch)
-# |/  Author: BimbaLaszlo <bimbalaszlo@gmail.com>
-# |   Date:   2015-08-28 13:21:13 +0200
-# |
-# |       Local branch (border commit)
-# |
-# o commit 46033cb
+# o commit 2304667 (branch)
 #   Author: BimbaLaszlo <bimbalaszlo@gmail.com>
-#   Date:   2015-07-28 08:33:57 +0200
+#   Date:   2015-08-28 13:21:13 +0200
 #
-#       Border commit
+#       Commit on local
 #
-# BRANCH STATUS
-#   branch 2304667 [origin/branch: behind 1] Commits in branch we have to pull
-# * master ac3a792 [origin/master: ahead 1, behind 3] Rebased 'master' (NEVER DO IT)
-#   new    761ef83 Doesn't have remote counterpart
+# ==== master [ahead 1]
 #
-#                               KNOW ISSUES
-# ============================================================================
-#
-# Shows nothing in this example:
-#
-# * (master, origin/master)
+# < commit 280ccf8 (master)
+# | Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+# | Date:   2016-03-25 21:42:55 +0100
 # |
-# * Merge 'dev'
-# |\
-# | * (origin/dev)
-# | * ...
-# | * (dev)
-# |/
-# * ...
+# |     Commit on local
+# |
+# o commit 2369465 (origin/master, origin/HEAD)
+#   Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+#   Date:   2016-03-10 09:02:52 +0100
 #
-# It should output the commits of `dev...origin/dev` because there are
-# differences, but `master...origin/master` contains those changes (since
-# `dev` is merged). The `...` means "Include commits that are reachable from
-# either <rev1> or <rev2> but exclude those that are reachable from both."
-# thus `dev` and `origin/dev` is excluded because both are reachable from
-# `master` and `origin/master`.
+#       Commit on remote
 #
-# This is why `branch -vv` executed in the end: it shows ahead/behind
-# status.
+# ==== test [ahead 1, behind 1]
+#
+# < commit 83a3161 (test)
+# | Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+# | Date:   2016-03-25 22:50:00 +0100
+# |
+# |     Diverged from remote
+# |
+# | > commit 4aafec7 (origin/test)
+# |/  Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+# |   Date:   2016-03-14 10:34:28 +0100
+# |
+# |       Pushed remote
+# |
+# o commit 0fccef3
+#   Author: BimbaLaszlo <bimbalaszlo@gmail.com>
+#   Date:   2015-09-03 10:33:39 +0200
+#
+#       Last common commit
 #
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-git for-each-ref --shell --format='ref=%(refname:short); up=%(upstream:short); track=%(upstream:trackshort)' refs/heads | \
-  while read entry; do
-    eval "$entry"
-    if test "z$track" != 'z' && test "z$track" != 'z='; then
-      echo $ref...$up
-    fi
-  done | xargs --no-run-if-empty git log --graph --date-order --boundary --left-right $@
-
-echo -e "\nBRANCH STATUS"
-git branch -vv
+fmt='ref=%(refname:short); up=%(upstream:short); t=%(upstream:track); ts=%(upstream:trackshort);'
+git for-each-ref --shell --format="$fmt" refs/heads | \
+while read entry; do
+  eval "$entry"
+  if test "z$ts" != 'z' && test "z$ts" != 'z='; then
+    echo -e "\n==== $ref $t\n"
+    git log --graph --left-right --decorate --abbrev-commit --date-order --boundary $@ $ref...$up
+  fi
+done
