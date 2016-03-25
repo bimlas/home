@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 # git-fetch-log: Ultimate git fetch-log
 #
-# It shows the diferences of `local...remote` if both side exists. Useful to
-# find out what you have to do: `merge`, `rebase`, `push`, etc. The arguments
-# passed to log.
+# It shows the diferences of `local...remote` if both side exists and there
+# are differences. Useful to find out what you have to do: `merge`, `rebase`,
+# `push`, etc. The arguments passed to log.
 #
-# Place it somewhere on Your `$PATH` and execute the `git fetch-log` command.
-#
+# Place it somewhere on Your `$PATH` and execute by the `git fetch-log`
+# command.
 #                                 EXAMPLE
 # ============================================================================
 #
@@ -68,21 +68,20 @@
 #
 # It should output the commits of `dev...origin/dev` because there are
 # differences, but `master...origin/master` contains those changes (since
-# `dev` is merged) besides this `master...origin/master` points to the same
-# so Git thinks nothing changed.
+# `dev` is merged). The `...` means "Include commits that are reachable from
+# either <rev1> or <rev2> but exclude those that are reachable from both."
+# thus `dev` and `origin/dev` is excluded because both are reachable from
+# `master` and `origin/master`.
 #
 # This is why `branch -vv` executed in the end: it shows ahead/behind
 # status.
 #
-# I have to find a way to execute git log with only `dev...origin/dev` if
-# `master...origin/master` does not differ.
-#
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-git for-each-ref --shell --format='ref=%(refname:short); up=%(upstream:short)' refs/heads | \
+git for-each-ref --shell --format='ref=%(refname:short); up=%(upstream:short); track=%(upstream:trackshort)' refs/heads | \
   while read entry; do
     eval "$entry"
-    if test "z$up" != z; then
+    if test "z$track" != 'z' && test "z$track" != 'z='; then
       echo $ref...$up
     fi
   done | xargs --no-run-if-empty git log --graph --date-order --boundary --left-right $@
