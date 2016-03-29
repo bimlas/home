@@ -131,7 +131,8 @@
   yday = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
 
   ; Show `local...remote` if both side exists.
-  lf = "fetch-log"
+  lf  = "fetch-log --format=shortlog"
+  lfg = "fetch-log"
 
   ; Formated for mail to my boss.
   ; The last Sed command removes the searchable "bangtag" line.
