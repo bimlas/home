@@ -5,6 +5,12 @@
 // https://www.google.com/settings/security/lesssecureapps
 // Ne felejtsd el engedelyezni az IMAP-ot!
 
+// Levelek keresese Message-ID szerint:
+// Menu -> Kereses -> Uzenetek keresese -> Targy helyett Message-ID
+user_pref("mailnews.customHeaders", "Message-ID");
+// A levelek fejleceben mutassa a Message-ID-t.
+user_pref("mailnews.headers.showMessageId", true);
+
 // Usenet (Google csoportok):
 //  news.gmane.org
 
