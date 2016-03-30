@@ -1392,6 +1392,9 @@ noremap  É          ,
 " I don't using the ex-mode directly.
 nnoremap Q <Nop>
 
+" Show the full path.
+nnoremap <C-G> 1<C-G>
+
 " Update everything, not just the screen.
 nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart<CR><C-L>
 
