@@ -1,21 +1,18 @@
 
+
 # If applied, this commit will...
 #
 # Why is this needed?
-#   Do not assume the reviewer understands what the original problem was.
-#
+# * Do not assume the reviewer understands what the original problem was.
+
+
 # Long description
-#   Do not assume the code is self-evident/self-documenting.
-#   Describe any limitations of the current code.
-#
-# GitHub issue indicators
-#   Fix #123  Close the issue
-#   #123      Do not close, just related to it
-#
-#   To close more than one issue:
-#   * Close #1 Fix typo
-#   * Close #2 Add documentation
-#   * ...
-#
-# Grep patterns
-#   !lang !api !etc
+# * Do not assume the code is self-evident/self-documenting.
+# * Describe any limitations of the current code.
+
+
+# Closes: #
+# Related: #
+# Wrike task: https://www.wrike.com/open.htm?id=
+# E-mail Message-ID: 
+# Keywords: !
