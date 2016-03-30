@@ -100,6 +100,7 @@
 
   ; --all                           Show all branch/tag/remote
   ; --branches, --tags, --remotes   Guess
+  ; --source                        Show ref (exists branch) for all commits
   ;
   ; See DIFF for additional parameters.
   ;
