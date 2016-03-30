@@ -1386,8 +1386,14 @@ noremap  H          g^
 noremap  L          g$
 noremap  j          gj
 noremap  k          gk
-noremap  é          ;
-noremap  É          ,
+
+" Take some keys from english keyboard.
+noremap é ;
+noremap É ,
+noremap ő [
+noremap ú ]
+noremap Ő {
+noremap Ú }
 
 " I don't using the ex-mode directly.
 nnoremap Q <Nop>
