@@ -10,7 +10,9 @@ endif
 
 " Ablak mereteinek megadasa, ha nem a Total Commander lister programjakent
 " mukodik.
-if !exists('g:loaded_vimrc_viewer')
+if exists('g:vimrc_minimal_plugins')
+  set lines=56 columns=160
+else
   " set lines=50
   " let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
   set lines=999 columns=999

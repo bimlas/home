@@ -5,25 +5,11 @@
 "
 " ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-" Flag for special setting in ~/.gvimrc
-let g:loaded_vimrc_viewer = 1
-
 set nocompatible
-filetype plugin indent on
-syntax enable
-set encoding=utf8
+let g:vimrc_minimal_plugins = 1
 
-set nomodifiable readonly noswapfile
-set fileformats=unix,dos fileencodings=utf8,cp1250,default,utf-16le
+nnoremap q     :noautocmd q<CR>
+nnoremap <Esc> :noautocmd q<CR>
+nnoremap <CR>  :mapclear <Bar> unlet g:vimrc_minimal_plugins <Bar> source ~/.vimrc <Bar> source ~/.gvimrc<CR>
 
-set columns=120 lines=40
-set laststatus=2
-let &statusline = '%f <%{&fenc}> [%{&ff}] %=%5l/%L,%3c'
-autocmd VimEnter * highlight! Comment term=italic cterm=italic gui=italic
-
-nnoremap q          :noautocmd q<CR>
-nnoremap <Esc>      :noautocmd q<CR>
-noremap  <C-Insert> "+y
-noremap  <Space>y   "+y
-" nnoremap j <C-E>
-" nnoremap k <C-Y>
+source ~/.vimrc
