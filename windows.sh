@@ -32,9 +32,9 @@ cd "$CWD/linux/home"
 header "  COPY"
 
 # Windows cannot make symlinks to directories.
-copy --recursive   \
-  "bin/"           \
-  ".git_template/" \
+copy --recursive                               \
+  "bin/"                                       \
+  ".gitconfig_files/"                          \
   "$HOME"
 
 copy         \

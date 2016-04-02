@@ -1,0 +1,4 @@
+= Custom Git commands/scripts
+
+Add this directory to the `PATH`, then use the filenames as Git commands like
+`git sample-script` for `git-sample-script`.

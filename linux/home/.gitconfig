@@ -286,7 +286,7 @@
   fscache      = "true"
 
   ; Global .gitignore file.
-  excludesfile = "~/.git_template/.global_gitignore"
+  excludesfile = "~/.gitconfig_files/core_excludesfile"
 
 [color]
 
@@ -298,12 +298,12 @@
   ; templatedir/hooks -> .git/hooks
   ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
   ; Filenames starting with dot (.hidden) does not copied.
-  templatedir = "~/.git_template"
+  templatedir = "~/.gitconfig_files/init_templatedir"
 
 [commit]
 
   ; Additional text which appears on the top of commit message as a comment.
-  template = "~/.git_template/.commit_message"
+  template = "~/.gitconfig_files/commit_template"
 
 [log]
 
