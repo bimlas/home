@@ -136,8 +136,9 @@
   lfg = "fetch-log"
 
   ; Formated for mail to my boss.
-  ; The last Sed command removes the searchable "bangtag" line.
-  mail = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s\\+!\\S/{N;d}'; #"
+  ; The last Sed command removes the metainformation (keywords, issue number,
+  ; etc.)
+  mail = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
 
   ; __ SHOW _______________________________
 
