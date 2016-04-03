@@ -1,7 +1,4 @@
 source 'https://rubygems.org'
 
-# imgdatetofilename.rb
 gem 'exifr'
-
-# imgresize.rb
 gem 'mini_magick'
