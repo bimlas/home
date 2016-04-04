@@ -50,6 +50,9 @@
   ; Open Git shell on Windows.
   sh = "!cd `[ $GIT_PREFIX ] && echo $GIT_PREFIX || pwd` ; bash --login -i"
 
+  ; Find keywords.
+  kw = "keywords --all"
+
   ; __ REMOTE RELATED _____________________
 
   cl = "clone --recursive"

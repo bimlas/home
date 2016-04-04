@@ -1,0 +1,8 @@
+#!/bin/bash
+# git-keywords: Show keywords in commit messages.
+#
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
+
+git log --all --format='%b' | grep '^Keywords:'                \
+| sed 's/Keywords:\s*//; s/\s\+//g; s/![^!]\+/&\n/g; /^\s*$/d' \
+| grep '.\+' | sort | uniq --count
