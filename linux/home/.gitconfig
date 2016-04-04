@@ -341,6 +341,13 @@
   ff   = "false"
   tool = "gvimdiff"
 
+[credential]
+
+  ; Store username/password in memory.
+  ; Needs to "Enable Git Credential Manager" during Msys-Git install.
+  ; For Linux use `cache`.
+  helper = "wincred"
+
 [fetch]
 
   ; Allways update all submudolues.
