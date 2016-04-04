@@ -128,8 +128,8 @@
   lg   = "log --graph --date-order"
   lgg  = "log --graph --date-order --name-status"
   lp   = "log --graph --date-order --patch --stat --ignore-blank-lines"
-  day  = "log --graph --date-order --name-status --since midnight"
-  yday = "log --graph --date-order --name-status --since=day.before.yesterday.midnight --until=midnight"
+  day  = "log --graph --date-order --name-status --all --since midnight"
+  yday = "log --graph --date-order --name-status --all --since=day.before.yesterday.midnight --until=midnight"
 
   ; Show `local...remote` if both side exists.
   lf  = "fetch-log --format=shortlog"
