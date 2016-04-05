@@ -67,6 +67,6 @@ while read entry; do
   eval "$entry"
   if test "z$ts" != 'z' && test "z$ts" != 'z='; then
     echo -e "\n==== $ref $t\n"
-    git log --graph --left-right --decorate --abbrev-commit --date-order --boundary $@ $ref...$up
+    git --no-pager log --graph --left-right --decorate --abbrev-commit --date-order --boundary $@ $ref...$up
   fi
 done
