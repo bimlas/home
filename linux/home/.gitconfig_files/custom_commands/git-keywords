@@ -1,8 +1,27 @@
 #!/bin/bash
-# git-keywords: Show keywords in commit messages.
+# git-keywords: Find keywords in commit messages of revisions
+#
+# The arguments are passed to `log`, eg. if You want to find all keywords in
+# the history, use with `--all` flag, or if You are interested only in `dev`
+# branch, pass `dev`.
+#
+# The keywords
+# * Contains only alphanumerical characters, underscore (`_`) and hyphen (`-`)
+# * Prefixed by `!`, eg. `!keyword`
+#
+# An example commit:
+#
+#   !catalog!carvings: Add BMB-123 with price 123.456 HUF
+#
+#   Available in sizes:
+#     * 13mm
+#     * 16mm
+#     * 20mm
+#
+#   ____________________________________
+#   Keywords: !new !BM-123
 #
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-git log --all --format='%b' | grep '^Keywords:'                \
-| sed 's/Keywords:\s*//; s/\s\+//g; s/![^!]\+/&\n/g; /^\s*$/d' \
-| grep '.\+' | sort | uniq --count
+git log --format='%s%n%b' $@ | grep --only-matching '![0-9a-zA-Z_-]\+' \
+| sort | uniq --count
