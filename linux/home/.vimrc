@@ -103,14 +103,15 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " SHOUGO/VIMPROC.VIM                                                    {{{2
   " nehany plugin hasznalja - windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
-  NeoBundle 'shougo/vimproc.vim', {
-  \ 'disabled' : !executable(&makeprg),
-  \ 'build' : {
-  \     'windows' : &makeprg . ' -f make_mingw64.mak',
-  \     'linux'   : 'make',
-  \    },
-  \ }
-                                                                        " }}}2
+  if executable(&makeprg)
+    NeoBundle 'shougo/vimproc.vim', {
+    \ 'build' : {
+    \     'windows' : &makeprg . ' -f make_mingw64.mak',
+    \     'linux'   : 'make',
+    \    },
+    \ }
+  end
+                                                                          " }}}2
 
   " .. SAJAT ..............................
 
@@ -731,10 +732,11 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " DAVIDHALTER/JEDI-VIM                                                  {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
-  NeoBundle 'davidhalter/jedi-vim', {
-  \ 'disabled' : ! g:has_python,
-  \ 'on_ft':    'python',
-  \ }
+  if g:has_python
+    NeoBundle 'davidhalter/jedi-vim', {
+    \ 'on_ft':    'python',
+    \ }
+  end
 
     " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
     " akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
@@ -751,10 +753,11 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " VIM-RUBY/VIM-RUBY                                                     {{{2
   " ruby motyok (pl. omni completion pontosabban mukodik)
-  NeoBundle 'vim-ruby/vim-ruby', {
-  \ 'disabled': !has('ruby'),
-  \ 'on_ft':    'ruby',
-  \ }
+  if g:has_ruby
+    NeoBundle 'vim-ruby/vim-ruby', {
+    \ 'on_ft':    'ruby',
+    \ }
+  end
 
     " :help ft-ruby-omni
     let g:rubycomplete_buffer_loading    = 1
@@ -776,10 +779,11 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
   " automatic code completion
   " needs lua interface (:version +lua)
-  NeoBundle 'shougo/neocomplete.vim', {
-  \ 'disabled': !has('lua'),
-  \ 'on_i':     1,
-  \ }
+  if has('lua')
+    NeoBundle 'shougo/neocomplete.vim', {
+    \ 'on_i':     1,
+    \ }
+  end
 
     let g:neocomplete#enable_at_startup = 1
     let g:neocomplete#enable_smart_case = 1
@@ -810,43 +814,48 @@ if isdirectory(bundle_dir . '/neobundle.vim')
 
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " complete from included files too
-  NeoBundle 'shougo/neoinclude.vim', {
-  \ 'disabled': !has('lua'),
-  \ 'on_i':     1,
-  \ }
+  if has('lua')
+    NeoBundle 'shougo/neoinclude.vim', {
+    \ 'on_i':     1,
+    \ }
+  end
 
   " SHOUGO/NECO-SYNTAX                                                    {{{2
   " better syntax complete
-  NeoBundle 'shougo/neco-syntax', {
-  \ 'disabled': !has('lua'),
-  \ 'on_i':     1,
-  \ }
+  if has('lua')
+    NeoBundle 'shougo/neco-syntax', {
+    \ 'on_i':     1,
+    \ }
+  end
 
   " SHOUGO/NECO-VIM                                                       {{{2
   " better syntax complete
-  NeoBundle 'shougo/neco-vim', {
-  \ 'disabled' : !has('lua'),
-  \ 'on_i':     1,
-  \ }
+  if has('lua')
+    NeoBundle 'shougo/neco-vim', {
+    \ 'on_i':     1,
+    \ }
+  end
 
   " SIRVER/ULTISNIPS                                                      {{{2
   " template engine (see on GitHub: it's awesome!)
   " NOTE: it has a filetype autocommand which fails if the plugin is not
   " activated, so the trigger is `on_ft`.
-  NeoBundle 'sirver/ultisnips', {
-  \ 'disabled': ! g:has_python,
-  \ 'on_ft': 'all',
-  \ }
+  if g:has_python
+    NeoBundle 'sirver/ultisnips', {
+    \ 'on_ft': 'all',
+    \ }
+  end
 
     let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
     let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 
   " HONZA/VIM-SNIPPETS                                                    {{{2
   " templates
-  NeoBundle 'honza/vim-snippets', {
-  \ 'disabled' : ! g:has_python,
-  \ 'on_i':     1,
-  \ }
+  if g:has_python
+    NeoBundle 'honza/vim-snippets', {
+    \ 'on_i':     1,
+    \ }
+  end
                                                                         " }}}2
 
   " .. GIT ................................
@@ -854,24 +863,25 @@ if isdirectory(bundle_dir . '/neobundle.vim')
   " TPOPE/VIM-GIT                                                         {{{2
   " supporting git stuff (ftplugin, syntax, etc.)
   " $ install git
-  NeoBundle 'tpope/vim-git', {
-  \ 'disabled' : !executable('git'),
-  \ }
+  if executable('git')
+    NeoBundle 'tpope/vim-git'
+  end
 
   " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integracio
   " $ install git
-  NeoBundle 'tpope/vim-fugitive', {
-  \ 'disabled' : !executable('git'),
-  \ }
+  if executable('git')
+    NeoBundle 'tpope/vim-fugitive'
+  end
 
   " GREGSEXTON/GITV                                                       {{{2
   " gitk a vim-en belul
   " $ install git
-  NeoBundle 'gregsexton/gitv', {
-  \ 'disabled': !executable('git'),
-  \ 'on_cmd':   'Gitv',
-  \ }
+  if executable('git')
+    NeoBundle 'gregsexton/gitv', {
+    \ 'on_cmd':   'Gitv',
+    \ }
+  end
 
     " A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
     let g:Gitv_TruncateCommitSubjects = 1
