@@ -904,6 +904,13 @@ if isdirectory(bundle_dir . '/neobundle.vim')
     " Update only on file open/write
     let g:gitgutter_realtime = 0
     let g:gitgutter_eager = 0
+
+    " Needs if grep does not support color.
+    if system('grep --help') =~# '--color'
+      let g:gitgutter_grep_command = 'grep --color=never'
+    else
+      let g:gitgutter_grep_command = 'grep -e'
+    endif
                                                                         " }}}2
   call neobundle#end()
 else
