@@ -189,23 +189,21 @@ if isdirectory(bundle_dir . '/dein.vim')
   end
 
     function! Dein_EasyMotion()
-
       " This is why on_post_source used.
       EMCommandLineNoreMap <C-J> <CR>
-
-      let g:EasyMotion_do_mapping = 0
-      let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
-
-      " Show target as UPPERCASE, allow jump with lowercase.
-      let g:EasyMotion_use_upper = 1
-
-      " Allow jump to foldlines too.
-      let g:EasyMotion_skipfoldedline = 0
-
-      " Stay in the same column when using <Plug>(easymotion-sol-j)
-      let g:EasyMotion_startofline = 0
-
     endfunction
+
+    let g:EasyMotion_do_mapping = 0
+    let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
+
+    " Show target as UPPERCASE, allow jump with lowercase.
+    let g:EasyMotion_use_upper = 1
+
+    " Allow jump to foldlines too.
+    let g:EasyMotion_skipfoldedline = 0
+
+    " Stay in the same column when using <Plug>(easymotion-sol-j)
+    let g:EasyMotion_startofline = 0
 
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
@@ -363,43 +361,41 @@ if isdirectory(bundle_dir . '/dein.vim')
   end
 
     function! Dein_Unite()
-
-      let g:unite_source_history_yank_enable  = 1
-      " let g:unite_source_tag_show_location = 0
-      let g:unite_source_tag_max_fname_length = 70
-      let g:unite_enable_auto_select          = 0
-      let g:unite_source_buffer_time_format   = ''
-
-      " " Silver Searcher
-      " if executable('ag')
-      "   let g:unite_source_rec_async_command  = 'ag --follow --nocolor --nogroup --hidden -g ""'
-      "   let g:unite_source_grep_command       = 'ag'
-      "   let g:unite_source_grep_default_opts  =
-      "   \ '-i --line-numbers --nocolor --nogroup --column --hidden --ignore ' .
-      "   \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-      "   let g:unite_source_grep_recursive_opt = ''
-      " endif
-
-      " Platinum Searcher
-      if executable('pt')
-        let g:unite_source_rec_async_command  = ['pt', '--hidden', '--follow', '--nocolor', '--nogroup', '--files-with-matches', '']
-        let g:unite_source_grep_command       = 'pt'
-        let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --smart-case -e --depth 0'
-        let g:unite_source_grep_recursive_opt = '--depth 25'
-        let g:unite_source_grep_encoding      = 'utf-8'
-      endif
-
       call unite#custom#profile('default', 'context', {
       \ 'prompt_direction': 'top',
       \ 'direction':        'botright',
       \ 'cursor_line_time': '0.0',
       \ 'sync':             1,
       \ })
-
-      " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
-      " autocmd vimrc VimEnter * call unite#filters#matcher_default#use(['matcher_regexp'])
-
     endfunction
+
+    " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
+    " autocmd vimrc VimEnter * call unite#filters#matcher_default#use(['matcher_regexp'])
+
+    let g:unite_source_history_yank_enable  = 1
+    " let g:unite_source_tag_show_location = 0
+    let g:unite_source_tag_max_fname_length = 70
+    let g:unite_enable_auto_select          = 0
+    let g:unite_source_buffer_time_format   = ''
+
+    " " Silver Searcher
+    " if executable('ag')
+    "   let g:unite_source_rec_async_command  = 'ag --follow --nocolor --nogroup --hidden -g ""'
+    "   let g:unite_source_grep_command       = 'ag'
+    "   let g:unite_source_grep_default_opts  =
+    "   \ '-i --line-numbers --nocolor --nogroup --column --hidden --ignore ' .
+    "   \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+    "   let g:unite_source_grep_recursive_opt = ''
+    " endif
+
+    " Platinum Searcher
+    if executable('pt')
+      let g:unite_source_rec_async_command  = ['pt', '--hidden', '--follow', '--nocolor', '--nogroup', '--files-with-matches', '']
+      let g:unite_source_grep_command       = 'pt'
+      let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --smart-case -e --depth 0'
+      let g:unite_source_grep_recursive_opt = '--depth 25'
+      let g:unite_source_grep_encoding      = 'utf-8'
+    endif
 
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
@@ -591,20 +587,15 @@ if isdirectory(bundle_dir . '/dein.vim')
   " $ install zeal @ http://zealdocs.org/
   if !exists('g:vimrc_minimal_plugins')
     call dein#add('kabbamine/zeavim.vim')
-    autocmd vimrc VimEnter * call Dein_ZeaVim()
   end
 
-    function! Dein_ZeaVim()
+    let g:zv_disable_mapping = 1
 
-      let g:zv_disable_mapping = 1
+    if isdirectory('c:/app/zeal/')
+      let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
+    endif
 
-      if isdirectory('c:/app/zeal/')
-        let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
-      endif
-
-      autocmd vimrc FileType ruby Docset ruby 2
-
-    endfunction
+    autocmd vimrc FileType ruby Docset ruby 2
 
   " SCROOLOOSE/SYNTASTIC                                                  {{{2
   " syntax checker
