@@ -184,9 +184,8 @@ if isdirectory(bundle_dir . '/dein.vim')
   " EASYMOTION/VIM-EASYMOTION                                             {{{2
   " gyors mozgas a buffer-en belul
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('easymotion/vim-easymotion', {
-    \ 'hook_post_source': 'call Dein_EasyMotion()',
-    \ })
+    call dein#add('easymotion/vim-easymotion')
+    autocmd vimrc VimEnter * call Dein_EasyMotion()
   end
 
     function! Dein_EasyMotion()
@@ -359,9 +358,8 @@ if isdirectory(bundle_dir . '/dein.vim')
   " SHOUGO/UNITE.VIM                                                      {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('shougo/unite.vim', {
-    \ 'hook_source': 'call Dein_Unite',
-    \ })
+    call dein#add('shougo/unite.vim')
+    autocmd vimrc VimEnter * call Dein_Unite()
   end
 
     function! Dein_Unite()
@@ -592,9 +590,8 @@ if isdirectory(bundle_dir . '/dein.vim')
   " talan a legnormalisabb referencia-bongeszo
   " $ install zeal @ http://zealdocs.org/
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('kabbamine/zeavim.vim', {
-    \ 'hook_source': 'call Dein_ZeaVim()',
-    \ })
+    call dein#add('kabbamine/zeavim.vim')
+    autocmd vimrc VimEnter * call Dein_ZeaVim()
   end
 
     function! Dein_ZeaVim()
