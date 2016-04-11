@@ -89,7 +89,7 @@ if isdirectory(bundle_dir . '/dein.vim')
   call dein#begin(bundle_dir)
 
   " Forgot directly installed plugins before exiting.
-  autocmd vimrc VimLeavePre * silent! call delete(bundle_dir . '/extra_bundles.vim')
+  autocmd vimrc VimLeavePre * silent! call delete(bundle_dir . '/direct_install.vim')
 
   " Use `on_map` triggers only if You declared mappings for `<Plug>...`. For
   " example `'on_map': '<Plug>(visualstar'` will not load VisualStar, because
@@ -1812,7 +1812,7 @@ autocmd vimrc FileType python nnoremap <buffer><expr> <Space>ms has('win32')
 "                            <Space>n - DEIN                             {{{3
 " ............................................................................
 
-nnoremap <Space>nc :call dein#check_clean()<CR>
+nnoremap <Space>nc :for i in dein#check_clean() <Bar> call delete(escape(i, '\')) <Bar> endfor<CR>
 nnoremap <Space>nd :call dein#direct_install('')<Left><Left>
 nnoremap <Space>ni :call dein#install()<CR>
 nnoremap <Space>nu :call dein#update()<CR>
