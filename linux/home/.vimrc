@@ -75,8 +75,8 @@ endfunction
 let g:has_python = (has('python') || has('python3')) && (executable('python') || executable('python3'))
 let g:has_ruby   = has('ruby') && executable('ruby')
 
-if isdirectory(bundle_dir . '/dein.vim')
-  exe 'set runtimepath+=' . bundle_dir . '/dein.vim'
+if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
+  exe 'set runtimepath+=' . bundle_dir . '/repos/github.com/shougo/dein.vim'
 
   " Create supply function to check if plugin is installed.
   function! BundleInstalled(bundle)
@@ -98,7 +98,7 @@ if isdirectory(bundle_dir . '/dein.vim')
 
   " SHOUGO/DEIN.VIM                                                       {{{2
   " plugin manager
-  call dein#add(bundle_dir . '/dein.vim')
+  call dein#add('shougo/dein.vim')
 
   " SHOUGO/VIMPROC.VIM                                                    {{{2
   " nehany plugin hasznalja - windows dll:
@@ -910,7 +910,7 @@ endif
 command!  InstallDein  call InstallDein()
 function! InstallDein()
   let dein_repo = 'https://github.com/shougo/dein.vim'
-  let path = substitute(g:bundle_dir . '/dein.vim', '/', has('win32') ? '\\' : '/', 'g')
+  let path = substitute(g:bundle_dir . '/repos/github.com/shougo/dein.vim', '/', has('win32') ? '\\' : '/', 'g')
 
   if ! executable('git')
     echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
