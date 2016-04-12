@@ -1509,20 +1509,6 @@ if BundleInstalled('vim-easymotion')
   map É         <Plug>(easymotion-prev)
 endif
 
-"                                INCSEARCH                                {{{3
-" ............................................................................
-
-autocmd vimrc VimEnter * if exists('g:loaded_incsearch') | call IncSearchMaps() | endif
-function! IncSearchMaps()
-  map /     <Plug>(incsearch-forward)
-  map ?     <Plug>(incsearch-backward)
-  map *     <Plug>(incsearch-nohl-g*)
-  IncSearchNoreMap <C-J> <CR>
-  IncSearchNoreMap <C-K> <Esc>
-  IncSearchNoreMap <C-U> <Over>(incsearch-scroll-b)
-  IncSearchNoreMap <C-D> <Over>(incsearch-scroll-f)
-endfunction
-
 "                                CHOOSEWIN                                {{{3
 " ............................................................................
 
