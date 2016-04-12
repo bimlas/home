@@ -1055,7 +1055,7 @@ let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#' . stat_undofile . ''
 let &statusline .= '%* %= '
-let &statusline .= '%#StatWarning#%{exists("g:loaded_syntastic_plugin") ? SyntasticStatuslineFlag() : ""}'
+let &statusline .= BundleInstalled('syntastic') ? '%#StatWarning#%{SyntasticStatuslineFlag()}' : ''
 let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
 
 "                                  NETRW                                  {{{1
@@ -1122,7 +1122,7 @@ set path=.
 autocmd vimrc BufEnter * if exists('b:git_dir') | exe 'setlocal path+=' . fnamemodify(escape(b:git_dir, ' \'), ':h') . '/**' | endif
 
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-autocmd vimrc VimEnter * if exists('g:loaded_dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
+autocmd vimrc VimEnter * if BundleInstalled('dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
