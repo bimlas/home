@@ -402,6 +402,11 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   if !exists('g:vimrc_minimal_plugins')
     call dein#add('shougo/unite-outline')
   end
+  " SHOUGO/VIMFILER.VIM                                                   {{{2
+  " directory browser
+  if !exists('g:vimrc_minimal_plugins')
+    call dein#add('shougo/vimfiler.vim')
+  end
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
@@ -1717,6 +1722,7 @@ nnoremap <Space>du :diffupdate<CR>
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap <Space>F   :find<Space>
+nnoremap <Space>fe  :VimFilerExplorer<CR>
 nnoremap <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
 nnoremap <Space>fF  :Unite file file/new directory/new<CR>
 nnoremap <Space>fp  :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async file/new directory/new<CR>
