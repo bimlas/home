@@ -310,6 +310,12 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     let g:operator_sandwich_no_default_key_mappings = 1
     let g:textobj_sandwich_no_default_key_mappings  = 1
 
+  " TOMMCDO/VIM-EXCHANGE                                                  {{{2
+  " cx: exchange text-objects or selected text with each other
+  if !exists('g:vimrc_minimal_plugins')
+    call dein#add('tommcdo/vim-exchange')
+  end
+
   " TPOPE/VIM-ABOLISH                                                     {{{2
   " intelligens substitute
   "   :%Subvert/facilit{y,ies}/building{,s}/g
