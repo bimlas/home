@@ -3,8 +3,12 @@
 #
 # http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 
-dir="`git rev-parse --git-dir`"
-trap 'rm -f "$dir/$$.tags"' EXIT
-git ls-files | \
-  ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-asciidoc,html,javascript,sql
-mv "$dir/$$.tags" "$dir/tags"
+gitdir="`git rev-parse --git-dir`"
+topdir="`git rev-parse --show-toplevel`"
+
+cd $topdir
+
+trap 'rm -f "$gitdir/$$.tags"' EXIT
+git ls-files | sed "s#.*#$topdir/&#" | \
+  ctags -L - -f"$gitdir/$$.tags" --languages=-asciidoc,html,javascript,sql
+mv "$gitdir/$$.tags" "$gitdir/tags"
