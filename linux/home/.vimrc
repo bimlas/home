@@ -278,12 +278,6 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   if !exists('g:vimrc_minimal_plugins')
     call dein#add('kana/vim-operator-user')
   end
-
-  " MILSEN/VIM-OPERATOR-SUBSTITUTE                                        {{{2
-  " use the :s command like an operator
-  if !exists('g:vimrc_minimal_plugins')
-    call dein#add('milsen/vim-operator-substitute')
-  end
                                                                         " }}}2
 
   " .. SZOVEG KERESESE/MODOSITASA .........
