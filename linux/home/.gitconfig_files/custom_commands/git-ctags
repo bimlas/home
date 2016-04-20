@@ -11,4 +11,4 @@ cd $topdir
 trap 'rm -f "$gitdir/$$.tags"' EXIT
 git ls-files | grep -v '^test' | sed "s#.*#$topdir/&#" | \
   ctags -L - -f"$gitdir/$$.tags" --languages=-asciidoc,html,css,javascript,sql,json --fields=+i
-mv "$gitdir/$$.tags" "$gitdir/tags"
+mv --force "$gitdir/$$.tags" "$gitdir/tags"
