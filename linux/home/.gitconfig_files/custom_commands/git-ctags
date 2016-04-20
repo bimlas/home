@@ -9,6 +9,6 @@ topdir="`git rev-parse --show-toplevel`"
 cd $topdir
 
 trap 'rm -f "$gitdir/$$.tags"' EXIT
-git ls-files | sed "s#.*#$topdir/&#" | \
-  ctags -L - -f"$gitdir/$$.tags" --languages=-asciidoc,html,javascript,sql
+git ls-files | grep -v '^test' | sed "s#.*#$topdir/&#" | \
+  ctags -L - -f"$gitdir/$$.tags" --languages=-asciidoc,html,javascript,sql --fields=+i
 mv "$gitdir/$$.tags" "$gitdir/tags"
