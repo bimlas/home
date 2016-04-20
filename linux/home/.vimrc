@@ -652,6 +652,14 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
 
     " let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
+  " CLASSTREE                                                             {{{2
+  " CTree Class: show class hierarchy for class
+  " requires `ctags --fields=+i`
+  " $ install ctags
+  if !exists('g:vimrc_minimal_plugins')
+    call dein#add('classtree')
+  end
+
   " GTAGS.VIM                                                             {{{2
   " gnu global
   " $ pip install pygments
