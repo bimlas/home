@@ -1,5 +1,9 @@
 ; .gitconfig: git configuration
 ;
+; WEIRD CHARACTERS ON OUTPUT
+;
+;   set LESSCHARSET=UTF-8
+;
 ; DELETE UNTRACKED FILES
 ;
 ;   git clean -f
