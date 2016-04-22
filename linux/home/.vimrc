@@ -654,6 +654,12 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     call dein#add('classtree')
   end
 
+  " TSUKKEE/UNITE-TAG                                                     {{{2
+  " unite interface to browse tags
+  if !exists('g:vimrc_minimal_plugins')
+    call dein#add('tsukkee/unite-tag')
+  end
+
   " GTAGS.VIM                                                             {{{2
   " gnu global
   " $ pip install pygments
@@ -1776,6 +1782,7 @@ nnoremap        <Space>mg :noautocmd vimgrep //j %:p:h/**/*.%:e <Bar> copen<Home
 nnoremap        <Space>mo :Unite -start-insert outline<CR>
 noremap         <Space>mr :QuickRun<CR>
 noremap  <expr> <Space>mR ':QuickRun ' . &filetype . 'Custom<CR>'
+nnoremap        <Space>mt :Unite -start-insert tag<CR>
 
 " Definition
 nnoremap         <Space>mOd :Gtags -i <C-R>=expand('<cword>')<CR><CR>
