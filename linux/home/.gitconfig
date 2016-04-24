@@ -256,6 +256,7 @@
 
   ; Stash, but keep staged files.
   st  = "stash --keep-index"
+  stl = "stash list"
   sts = "stash show"
   stp = "stash pop"
   std = "stash drop"
