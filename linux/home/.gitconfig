@@ -286,6 +286,10 @@
   rbc = "rebase --continue"
   rba = "rebase --abort"
 
+  # __ CHERRY-PICK ________________________
+
+  cr = "cherry-pick"
+
 [core]
 
   editor = "gvim --nofork"
