@@ -120,6 +120,7 @@ user_pref("extensions.s3gt.view_reverse_translate_tooltip",         false);
  *  https://addons.mozilla.org/hu/firefox/addon/edit-cookies/
  *
  * tamper data - kuldott adatok (pl. POST) modositasa
+ * A hasznalathoz: Alt -> Eszkozok -> Tamper Data
  *  https://addons.mozilla.org/hu/firefox/addon/tamper-data/
  *
  * downthemall - kepek/weboldalak tomeges letoltese
