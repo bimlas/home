@@ -38,6 +38,15 @@
 ;   git commit -m "B commit"
 ;   git rebase --continue
 ;
+; CHECKOUT FILES OUTSIDE OF REPOSITORY
+;
+;   git --work-tree=/path/to/outputdir checkout HEAD -- .
+;
+;   For example to compare binary before/after COMMIT, use this:
+;
+;   git --work-tree=/path/to/new checkout COMMIT  -- FILE
+;   git --work-tree=/path/to/old checkout COMMIT~ -- FILE
+;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 [user]
