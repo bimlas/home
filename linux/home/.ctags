@@ -12,3 +12,5 @@
 --regex-text=/^[ \t]*(.*)\{\{\{1/\1/h/
 --regex-text=/^[ \t]*(.*)\{\{\{2/. \1/h/
 --regex-text=/^[ \t]*(.*)\{\{\{3/. . \1/h/
+--languages=-asciidoc,html,css,javascript,sql,json
+--fields=+i
