@@ -1870,6 +1870,7 @@ nnoremap        <Space>tw :set wrap!<CR>
 " ............................................................................
 
 nnoremap <Space>wo  :tab split<CR>
+nnoremap <Space>wn  :botright 78 vnew +set\ ft=asciidoc<CR>
 nnoremap <Space>ws  :ChooseWinSwapStay<CR>
 nnoremap <Space>wtt :tabnew<CR>
 nnoremap <Space>wtq :tabclose<CR>
