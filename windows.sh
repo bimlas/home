@@ -35,6 +35,7 @@ header "  COPY"
 copy --recursive                               \
   "bin/"                                       \
   ".gitconfig_files/"                          \
+  ".vimrc_minimal"                             \
   "$HOME"
 
 copy         \

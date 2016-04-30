@@ -5,23 +5,8 @@
 "
 " ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-"                              MINIMAL VIMRC                              {{{1
-" ============================================================================
-
-" Minimalis vimrc plugin-ok hibakeresesehez.
-" let s:vanilla = 1
-if exists('s:vanilla')
-  set nocompatible
-  filetype plugin indent on
-  syntax enable
-  " :Verbose EX_COMMAND copies the output to a buffer.
-  set runtimepath+=$HOME/.vim/bundle/vim-scriptease
-  " Ide tedd a tesztelnivalot.
-  set runtimepath+=$HOME/.vim_test
-  " Ebbe pedig a tesztelni kivant beallitasokat.
-  source $HOME/.vimrc_test
-  finish
-endif
+" Use the minimal setting for debugging.
+" source $HOME/.vimrc_minimal | finish
 
 "                               BOILERPLATE                               {{{1
 " ============================================================================

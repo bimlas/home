@@ -17,11 +17,12 @@ cd "$CWD/linux/home"
 
 header "  COPY"
 
-copy --recursive \
-  ".aptitude/"   \
-  ".config/"     \
-  ".dosbox/"     \
-  ".kde/"        \
+copy --recursive   \
+  ".aptitude/"     \
+  ".config/"       \
+  ".dosbox/"       \
+  ".kde/"          \
+  ".vimrc_minimal" \
   "$HOME"
 
 copy         \
