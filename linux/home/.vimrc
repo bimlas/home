@@ -409,12 +409,6 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     call dein#add('andrewradev/linediff.vim')
   end
 
-  " MOLL/VIM-BBYE                                                         {{{2
-  " :Bdelete buffer torlesehez az ablakok buzeralasa nelkul
-  if !exists('g:vimrc_minimal_plugins')
-    call dein#add('moll/vim-bbye')
-  end
-
   " TPOPE/VIM-REPEAT                                                      {{{2
   " repeat (.) plugin-okon is
   if !exists('g:vimrc_minimal_plugins')
@@ -1711,8 +1705,8 @@ nnoremap <Space>apb :BenchVimrc<CR>
 nnoremap <Space>bb :Unite buffer<CR>
 nnoremap <Space>bB :Unite buffer:!<CR>
 nnoremap <Space>bc :Unite -no-quit -keep-focus change<CR>
-nnoremap <Space>bd :Bdelete<CR>
-nnoremap <Space>bD :Bdelete!<CR>
+nnoremap <Space>bd :bdelete<CR>
+nnoremap <Space>bD :bdelete!<CR>
 
 "                             <Space>d - DIFF                             {{{3
 " ............................................................................
