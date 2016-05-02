@@ -166,6 +166,7 @@
   ; -w             Ignore whitespace diffs
   ; --color-words  Show the exact diffs
   ; --diff-filter  Filter files: A|C|D|M|R|T|U|X|B
+  ; -U123          Show 123 lines of context around hunk
 
   df   = "diff --patch --stat --ignore-blank-lines"
   dfc  = "diff --patch --stat --ignore-blank-lines --cached"
