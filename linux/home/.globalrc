@@ -25,6 +25,9 @@
 # GTAGSLABEL environment variable. Default target is 'default'.
 #
 # MODIFIED THE DEFAULT TO PYGMENTS.
+# $ pip install pygments
+# To use another:
+# $ gtags --gtagslabel ctags
 default:\
 	:tc=pygments-parser:tc=htags:
 	# :tc=native:
