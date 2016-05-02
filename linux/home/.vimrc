@@ -149,13 +149,6 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
 
   " .. KURZOR MOZGATASA ...................
 
-  " CONOMODE.VIM                                                          {{{2
-  " move the curson in command line like you do in normal mode by pressing
-  " <C-O>
-  if !exists('g:vimrc_minimal_plugins')
-    call dein#add('conomode.vim')
-  end
-
   " MATCHIT.ZIP                                                           {{{2
   " paros jelek kozti ugralas
   if !exists('g:vimrc_minimal_plugins')
