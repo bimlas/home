@@ -380,6 +380,13 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   if !exists('g:vimrc_minimal_plugins')
     call dein#add('shougo/unite-outline')
   end
+
+  " TSUKKEE/UNITE-TAG                                                     {{{2
+  " unite interface to browse tags
+  if !exists('g:vimrc_minimal_plugins')
+    call dein#add('tsukkee/unite-tag')
+  end
+
   " SHOUGO/VIMFILER.VIM                                                   {{{2
   " directory browser
   if !exists('g:vimrc_minimal_plugins')
@@ -624,12 +631,6 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " $ install ctags
   if !exists('g:vimrc_minimal_plugins')
     call dein#add('classtree')
-  end
-
-  " TSUKKEE/UNITE-TAG                                                     {{{2
-  " unite interface to browse tags
-  if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tsukkee/unite-tag')
   end
 
   " GTAGS.VIM                                                             {{{2
