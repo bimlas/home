@@ -1113,12 +1113,8 @@ set wildmode=longest,list,full
 " Use only buffer's dir.
 set path=.
 
-" Add the project root to `path`, so `:find` will search in the entire
-" project.
-autocmd vimrc BufEnter * if exists('b:git_dir') | exe 'setlocal path+=' . fnamemodify(escape(b:git_dir, ' \'), ':h') . '/**' | endif
-
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-autocmd vimrc VimEnter * if BundleInstalled('dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
+if BundleInstalled('dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -1315,7 +1311,7 @@ set cinoptions=(0,t0,W2
 set foldmethod=marker
 
 " Sajat foldheader.
-autocmd vimrc VimEnter * if exists('*EightHeaderFolds')
+if BundleInstalled('eightheader')
 \ | let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '', '')"
 \ | endif
 
