@@ -1054,6 +1054,9 @@ let &statusline .= '%#StatInfo# ' . stat_lineinfo . ' '
 "                                  NETRW                                  {{{1
 " ============================================================================
 
+" Disable at all.
+let g:loaded_netrwPlugin = 1
+
 " Netrw ablakanak abszolut merete.
 let g:netrw_winsize = -28
 
