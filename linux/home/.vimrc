@@ -266,12 +266,6 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     call dein#add('thinca/vim-visualstar')
   end
 
-  " VIS                                                                   {{{2
-  " parancsok futtatasa visual block-on
-  if !exists('g:vimrc_minimal_plugins')
-    call dein#add('vis')
-  end
-
   " MACHAKANN/VIM-SANDWICH                                                {{{2
   " paros jelek gyors cserelese/torlese
   if !exists('g:vimrc_minimal_plugins')
