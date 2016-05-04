@@ -1257,9 +1257,9 @@ let is_posix = 1
 
 " Specialis karakterek (tabulator, sor vegi whitespace) mutatasa.
 if has('gui_running')
-  set list listchars=tab:▶‒,trail:∙,extends:▶,precedes:◀
+  set list listchars=tab:▶‒,nbsp:∙,trail:∙,extends:▶,precedes:◀
 else
-  set list listchars=tab:>-,trail:.,extends:>,precedes:<
+  set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
 endif
 
 " Sortores mutatasa.
