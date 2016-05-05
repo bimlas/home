@@ -409,6 +409,11 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     call dein#add('tpope/vim-repeat')
   end
 
+  " HENRIK/VIM-QARGS                                                      {{{2
+  " execute commands on files in quickfix (`:Qdo`) and use them as args
+  " (`:Qargs`), for example `:Qdo %Subvert/Foo/Bar`
+  call dein#add('henrik/vim-qargs')
+
   " TYRU/OPEN-BROWSER.VIM                                                 {{{2
   " netrw gx helyett
   if !exists('g:vimrc_minimal_plugins')
