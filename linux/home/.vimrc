@@ -1042,7 +1042,7 @@ set laststatus=2
 let stat_argnr      = '%{argc() > 1 ? argidx()+1 . "/" . argc() : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
-let stat_lineinfo   = '%4l/%4L|%3v'
+let stat_lineinfo   = '%4l/%4L|%3c'
 
 " BufNew not works on <C-W><C-N>, so it has to check the variable every time.
 autocmd vimrc BufWinEnter * if ! exists('b:undotree_initial_seq') | let b:undotree_initial_seq = undotree()['seq_cur'] | endif
