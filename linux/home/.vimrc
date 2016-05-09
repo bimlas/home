@@ -390,10 +390,10 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
 
   " .. EGYEB HASZNOSSAGOK .................
 
-  " LAMBDALISUE/VIM-IMPROVE-DIFF                                          {{{2
+  " LAMBDALISUE/VIM-DIFFA                                                 {{{2
   " auto diffupdate & diffoff + DiffOrig
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('lambdalisue/vim-improve-diff')
+    call dein#add('lambdalisue/vim-diffa')
   end
 
   " ANDREWRADEV/LINEDIFF.VIM                                              {{{2
