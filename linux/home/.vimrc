@@ -1645,8 +1645,9 @@ map gss 0<Plug>(operator-substitute)$
 
 noremap  <Space>?       :Unite mapping<CR>
 
-noremap  <Space><Space> g<C-]>
-nnoremap <Space><Tab>   :buffer #<CR>
+noremap  <Space><Space>      g<C-]>
+noremap  <C-W><Space><Space> <C-W>g<C-]>
+nnoremap <Space><Tab>        :buffer #<CR>
 
 nnoremap <Space>L       g,
 nnoremap <Space>l       g;
