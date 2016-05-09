@@ -253,6 +253,7 @@
 
   c   = "commit"
   ca  = "commit --amend"
+  cam = "commit --amend --reuse-message=HEAD"
   cm  = "commit -m"
   cmu = "commit -m Update"
 
