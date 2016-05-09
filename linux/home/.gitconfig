@@ -49,12 +49,12 @@
 ;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
-[user]
+[user]                                                                  ; {{{1
 
   name  = "BimbaLaszlo"
   email = "bimbalaszlo@gmail.com"
 
-[alias]
+[alias]                                                                 ; {{{1
 
   ; Edit .gitconfig
   # rc = "config --global --edit"
@@ -66,7 +66,7 @@
   ; Find keywords.
   kw = "keywords --all"
 
-  ; __ REMOTE RELATED _____________________
+  ; __ REMOTE RELATED _____________________                               {{{2
 
   cl = "clone --recursive"
 
@@ -105,14 +105,14 @@
 
   f  = "fetch"
 
-  ; __ STATUS _____________________________
+  ; __ STATUS _____________________________                               {{{2
 
   s   = "status --short --branch"
   sb  = "branch-status"
   sba = "branch-status --all"
   sr  = "remote show origin"
 
-  ; __ LOG ________________________________
+  ; __ LOG ________________________________                               {{{2
 
   ; --all                           Show all branch/tag/remote
   ; --branches, --tags, --remotes   Guess
@@ -156,12 +156,12 @@
   ; etc.)
   mail = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
 
-  ; __ SHOW _______________________________
+  ; __ SHOW _______________________________                               {{{2
 
   sw  = "show --patch --stat --ignore-blank-lines"
   sww = "show --patch --stat --ignore-blank-lines --color-words"
 
-  ; __ DIFF _______________________________
+  ; __ DIFF _______________________________                               {{{2
 
   ; -w             Ignore whitespace diffs
   ; --color-words  Show the exact diffs
@@ -175,7 +175,7 @@
   dfs  = "diff --name-status"
   gdf  = "difftool"
 
-  ; __ CHECKOUT ___________________________
+  ; __ CHECKOUT ___________________________                               {{{2
 
   co  = "checkout"
   coa = "checkout :/"
@@ -183,7 +183,7 @@
   coo = "checkout --ours"
   cot = "checkout --theirs"
 
-  ; __ BRANCH _____________________________
+  ; __ BRANCH _____________________________                               {{{2
 
   ; Delete remote branch (aka push an empty branch to remote like
   ; LOCAL:REMOTE)
@@ -192,7 +192,7 @@
 
   b = "branch"
 
-  ; __ MERGE ______________________________
+  ; __ MERGE ______________________________                               {{{2
 
   ; Edit merge commit message.
   ;
@@ -232,7 +232,7 @@
   mef = "merge --ff-only"
   mea = "merge --abort"
 
-  ; __ BISECT _____________________________
+  ; __ BISECT _____________________________                               {{{2
 
   ; git bisect start HEAD   Start bisecting and mark HEAD as bad
   ; git bisect good/bad     Mark the actual checkout
@@ -244,12 +244,12 @@
   bsg = "bisect good"
   bsb = "bisect bad"
 
-  ; __ ADD ________________________________
+  ; __ ADD ________________________________                               {{{2
 
   adu = "add --update"
   ada = "add --all"
 
-  ; __ COMMIT _____________________________
+  ; __ COMMIT _____________________________                               {{{2
 
   c   = "commit"
   ca  = "commit --amend"
@@ -263,7 +263,7 @@
   cfu = "commit --fixup"
   csq = "commit --squash"
 
-  ; __ STASH ______________________________
+  ; __ STASH ______________________________                               {{{2
   ;
   ; You can write a note about the stash like this:
   ; $ git stash save "Buggy - find a better way"
@@ -275,7 +275,7 @@
   stp = "stash pop"
   std = "stash drop"
 
-  ; __ REBASE _____________________________
+  ; __ REBASE _____________________________                               {{{2
   ; WARNING: `rebase master` means that the current branch is moved to the end
   ; of `master` and `rebase master dev` does the same with `dev` instead of
   ; the current one!
@@ -291,11 +291,11 @@
   rbc = "rebase --continue"
   rba = "rebase --abort"
 
-  # __ CHERRY-PICK ________________________
+  ; __ CHERRY-PICK ________________________                               {{{2
 
   cr = "cherry-pick"
 
-[core]
+[core]                                                                  ; {{{1
 
   editor = "gvim --nofork"
 
@@ -314,11 +314,11 @@
   ; Global .gitignore file.
   excludesfile = "~/.gitconfig_files/core_excludesfile"
 
-[color]
+[color]                                                                 ; {{{1
 
   ui = "true"
 
-[init]
+[init]                                                                  ; {{{1
 
   ; Template directory which is copied to .git. For example:
   ; templatedir/hooks -> .git/hooks
@@ -326,12 +326,12 @@
   ; Filenames starting with dot (.hidden) does not copied.
   templatedir = "~/.gitconfig_files/init_templatedir"
 
-[commit]
+[commit]                                                                ; {{{1
 
   ; Additional text which appears on the top of commit message as a comment.
   template = "~/.gitconfig_files/commit_template"
 
-[log]
+[log]                                                                   ; {{{1
 
   ; Abbreviate SHA to 7 chars.
   abbrevCommit = "true"
@@ -346,35 +346,35 @@
   ; Show ref names too (origin/master, tags, etc.).
   decorate = "true"
 
-[pretty]
+[pretty]                                                                ; {{{1
 
   shortlog = "%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n  %s%C(reset)"
   mail     = "!TITLE! * %s%n%+b"
 
-[diff]
+[diff]                                                                  ; {{{1
 
   ; Find renamed and copied files.
   renames = "copies"
   tool    = "gvimdiff"
 
-[rebase]
+[rebase]                                                                ; {{{1
 
   autoSquash = "true"
 
-[merge]
+[merge]                                                                 ; {{{1
 
   ; Allways create (empty) merge commits.
   ff   = "false"
   tool = "gvimdiff"
 
-[credential]
+[credential]                                                            ; {{{1
 
   ; Store username/password in memory.
   ; Needs to "Enable Git Credential Manager" during Msys-Git install.
   ; For Linux use `cache`.
   helper = "wincred"
 
-[fetch]
+[fetch]                                                                 ; {{{1
 
   ; Allways update all submudolues.
   recurseSubmodules = "true"
@@ -384,7 +384,7 @@
   ; are different from remote-tracking branches).
   prune = "true"
 
-[push]
+[push]                                                                  ; {{{1
 
   ; `git push -u` is enough instead of `git push -u origin my_branch`.
   default = "current"
@@ -392,7 +392,7 @@
   ; Push tags.
   followTags = "true"
 
-[gc]
+[gc]                                                                    ; {{{1
 
   ; Minimalize the number of objects in the .git dir (speeds up the things a
   ; bit).
