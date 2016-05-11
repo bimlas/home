@@ -264,12 +264,12 @@
   csq = "commit --squash"
 
   ; __ STASH ______________________________                               {{{2
-  ;
+
   ; You can write a note about the stash like this:
   ; $ git stash save "Buggy - find a better way"
 
   ; Stash, but keep staged files.
-  st  = "stash save --keep-index"
+  st  = "stash save --keep-index --include-untracked"
   stl = "stash list"
   sts = "stash show"
   stp = "stash pop"
