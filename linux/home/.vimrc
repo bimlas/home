@@ -802,7 +802,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     if !exists('g:neocomplete#sources')
       let g:neocomplete#sources = {}
     endif
-    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'member', 'syntax', 'vim', 'ultisnips']
+    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'syntax', 'vim', 'ultisnips']
 
     " Force omnicompletion on this filetype/pattern pairs.
     if !exists('g:neocomplete#force_omni_input_patterns')
