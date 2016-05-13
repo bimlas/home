@@ -1801,7 +1801,7 @@ autocmd vimrc FileType python nnoremap <buffer><expr> <Space>ms has('win32')
 "                            <Space>n - DEIN                             {{{3
 " ............................................................................
 
-nnoremap <Space>nc :for i in dein#check_clean() <Bar> call delete(i, 'rf') <Bar> endfor<CR>
+nnoremap <Space>nc :for i in dein#check_clean() <Bar> echo 'Deleting ' . i <Bar> call delete(i, 'rf') <Bar> endfor<CR>
 nnoremap <Space>nd :call dein#direct_install('')<Left><Left>
 nnoremap <Space>ni :call dein#install()<CR>
 nnoremap <Space>nl :Verbose echo dein#get_log()<CR>:keeppatterns v/^<Bar>/d <Bar> nohlsearch <Bar> nnoremap <buffer> q :bdelete!<lt>CR><CR>
