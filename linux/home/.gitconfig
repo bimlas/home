@@ -272,7 +272,7 @@
   st  = "stash save --keep-index --include-untracked"
   stl = "stash list"
   sts = "stash show"
-  stp = "stash pop"
+  sta = "stash apply"
   std = "stash drop"
 
   ; __ REBASE _____________________________                               {{{2
