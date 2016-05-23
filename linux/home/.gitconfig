@@ -274,6 +274,7 @@
   sts = "stash show"
   sta = "stash apply"
   std = "stash drop"
+  stp = "stash pop"
 
   ; __ REBASE _____________________________                               {{{2
   ; WARNING: `rebase master` means that the current branch is moved to the end
