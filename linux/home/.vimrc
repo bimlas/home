@@ -1743,7 +1743,7 @@ nnoremap <Space>gm :Gmerge<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
 nnoremap <Space>gr :Gread<CR>
-nmap     <Space>gR <Plug>GitGutterRevertHunk
+nmap     <Space>gR <Plug>GitGutterUndoHunk
 nnoremap <Space>gs :Gstatus<CR>
 nnoremap <Space>gw :Gwrite<CR>
 nmap     <Space>gW <Plug>GitGutterStageHunk
