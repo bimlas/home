@@ -855,25 +855,12 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     call dein#add('tpope/vim-git')
   end
 
-  " TPOPE/VIM-FUGITIVE                                                    {{{2
-  " git integracio
+  " LAMBDALISUE/VIM-GITA                                                  {{{2
+  " git interface
   " $ install git
   if !exists('g:vimrc_minimal_plugins') && executable('git')
-    call dein#add('tpope/vim-fugitive')
+    call dein#add('lambdalisue/vim-gita')
   end
-
-  " GREGSEXTON/GITV                                                       {{{2
-  " gitk a vim-en belul
-  " $ install git
-  if !exists('g:vimrc_minimal_plugins') && executable('git')
-    call dein#add('gregsexton/gitv')
-  end
-
-    " A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
-    let g:Gitv_TruncateCommitSubjects = 1
-
-    " Control key-eket ne map-oljon.
-    let g:Gitv_DoNotMapCtrlKey = 1
 
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
@@ -1363,6 +1350,10 @@ set completeopt=menuone,longest
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
 
+" Use tags file from Git dir - works only if the Vim is opened in repo's root
+" dir.
+set tags+=.git/tags
+
 "                              ABBREVATIONS                               {{{1
 " ============================================================================
 
@@ -1731,21 +1722,21 @@ nnoremap <Space>fvv :edit $MYVIMRC<CR>
 "                             <Space>g - GIT                              {{{3
 " ............................................................................
 
-nnoremap <Space>ga :Gcommit --amend<CR>
-nnoremap <Space>gb :Gblame<CR>
-nnoremap <Space>gc :Gcommit<CR>
-nnoremap <Space>gd :Gdiff<CR>
+nnoremap <Space>ga :Gita commit --amend<CR>
+nnoremap <Space>gb :Gita blame<CR>
+nnoremap <Space>gc :Gita commit<CR>
+nnoremap <Space>gd :Gita diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
-nnoremap <Space>gg :Ggrep! --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
-nnoremap <Space>gl :Gitv!<CR>
-nnoremap <Space>gL :Gitv<CR>
-nnoremap <Space>gm :Gmerge<CR>
+nnoremap <Space>gg :Gita grep --ignore-case -- ":/"<CR>
+nnoremap <Space>gl :Gita log --graph --oneline --decorate %<CR>
+nnoremap <Space>gL :Gita log --graph --oneline --decorate<CR>
+nnoremap <Space>gm :Gita merge<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
-nnoremap <Space>gr :Gread<CR>
+nnoremap <Space>gr :Gita checkout -- %<CR>:checktime<CR>
 nmap     <Space>gR <Plug>GitGutterUndoHunk
-nnoremap <Space>gs :Gstatus<CR>
-nnoremap <Space>gw :Gwrite<CR>
+nnoremap <Space>gs :Gita status<CR>
+nnoremap <Space>gw :Gita add -- %<CR>:GitGutter<CR>
 nmap     <Space>gW <Plug>GitGutterStageHunk
 
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
