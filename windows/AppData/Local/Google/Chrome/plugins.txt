@@ -1,8 +1,8 @@
 cVim
   https://chrome.google.com/webstore/detail/cvim/ihlenndgcmojhcghmfjfneahoeklbjjh
 
-Instant Translate
-  https://chrome.google.com/webstore/detail/instant-translate/ihmgiclibbndffejedjimfjmfoabpcke
+ImTranslator - translate selected text
+  https://chrome.google.com/webstore/detail/imtranslator-translator-d/noaijdpnepcgjemiklgfkcfbkokogabh
 
 ColorZilla - color picker
   https://chrome.google.com/webstore/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp
