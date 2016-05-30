@@ -1722,8 +1722,7 @@ nnoremap <Space>F   :find<Space>
 nnoremap <Space>fe  :VimFilerExplorer<CR>
 nnoremap <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
 nnoremap <Space>fF  :Unite file file/new directory/new<CR>
-nnoremap <Space>fp  :UniteWithProjectDir -buffer-name=project_files -resume file_rec/async file/new directory/new<CR>
-nnoremap <Space>fr  :Unite neomru/file<CR>
+nnoremap <Space>fp  :UniteWithProjectDir -buffer-name=project_files -resume -start-insert file_rec/async file/new directory/new<CR>
 nnoremap <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
 nnoremap <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap <Space>fvv :edit $MYVIMRC<CR>
