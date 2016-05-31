@@ -1409,7 +1409,7 @@ nnoremap Q <Nop>
 nnoremap <C-G> 1<C-G>
 
 " Update everything, not just the screen.
-nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart<CR><C-L>
+nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart <Bar> GitGutterAll<CR><C-L>
 
 " Inserting digraphs.
 nnoremap <Leader><C-K> a<C-K>
