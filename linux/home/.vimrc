@@ -1652,6 +1652,9 @@ noremap  <Space><Space>      g<C-]>
 noremap  <C-W><Space><Space> <C-W>g<C-]>
 nnoremap <Space><Tab>        :buffer #<CR>
 
+nnoremap <Space>h       :cnext<CR>
+nnoremap <Space>H       :cprevious<CR>
+
 nnoremap <Space>L       g,
 nnoremap <Space>l       g;
 
