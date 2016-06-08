@@ -1355,10 +1355,12 @@ endfunction
 " t  tags fajlbol
 " set complete=.,i,t
 
-" Kiegeszites menujenek mukodese:
-" menuone  Egyetlen lehetoseg eseten is popup menu.
-" longest  Nem valasztja ki magatol az elso lehetoseget.
-set completeopt=menuone,longest
+" Behaviour of insert-mode completion (omnicomplete):
+" menuone  Show popup menu even if there is only one item
+" longest  Do not select the first element automatically
+" preview  Open a preview window and show the selected item in it (press
+"          <C-W>z to close)
+set completeopt=menuone,longest,preview
 
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
