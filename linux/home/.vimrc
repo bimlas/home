@@ -955,6 +955,11 @@ if !has('win32')
   runtime ftplugin/man.vim
 endif
 
+" Disable GUI menus.
+let g:did_install_default_menus = 1
+let g:did_install_syntax_menu   = 1
+let g:did_toolbar_tmenu         = 1
+
 "                                   SZINEK                                {{{1
 " ============================================================================
 
