@@ -50,6 +50,17 @@ endif
 "                                PLUGINOK                                 {{{1
 " ============================================================================
 
+" Disable some default plugins.
+let g:loaded_zipPlugin       = 1
+let g:loaded_zip             = 1
+let g:loaded_gzip            = 1
+let g:loaded_tarPlugin       = 1
+let g:loaded_tar             = 1
+let g:loaded_vimballPlugin   = 1
+let g:loaded_vimball         = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_logiPat         = 1
+
 let bundle_dir = $HOME . '/.vim/bundle'
 
 " Create supply functions, variables.
