@@ -83,12 +83,14 @@ user_pref("extensions.VimFx.mode.normal.window_new_private", "");
  *  https://addons.mozilla.org/en-us/firefox/addon/s3google-translator/
  */
 
+user_pref("extensions.s3gt.advertisement",                          "on");
 user_pref("extensions.s3gt.autotranslate",                          "stop");
 user_pref("extensions.s3gt.basic_functions_in_panel",               false);
 user_pref("extensions.s3gt.context_menu_show_icon",                 false);
 user_pref("extensions.s3gt.context_menu_translate_auto",            false);
 user_pref("extensions.s3gt.context_menu_translate_forget",          false);
-user_pref("extensions.s3gt.context_menu_translate_page",            false);
+user_pref("extensions.s3gt.context_menu_translate_page",            true);
+user_pref("extensions.s3gt.run_trans_full_page",                    true);
 user_pref("extensions.s3gt.is_first_run",                           false);
 user_pref("extensions.s3gt.last_lang_from",                         "auto");
 user_pref("extensions.s3gt.last_lang_to",                           "hu");
