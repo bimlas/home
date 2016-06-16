@@ -94,7 +94,7 @@ user_pref("extensions.s3gt.run_trans_full_page",                    true);
 user_pref("extensions.s3gt.is_first_run",                           false);
 user_pref("extensions.s3gt.last_lang_from",                         "auto");
 user_pref("extensions.s3gt.last_lang_to",                           "hu");
-user_pref("extensions.s3gt.list_disabled_lang_to",                  "af,sq,ar,hy,az,eu,be,bn,bs,bg,ca,ceb,ny,zh-CN,zh-TW,ht,hr,cs,da,nl,eo,et,tl,fi,fr,gl,ka,de,el,gu,ha,iw,hi,hmn,is,ig,id,ga,it,ja,jw,kn,kk,km,ko,lo,la,lv,lt,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,fa,pl,pt,pa,ro,ru,sr,st,si,sk,sl,so,es,su,sw,sv,tg,ta,te,th,tr,uk,ur,uz,vi,cy,yi,yo,zu");
+user_pref("extensions.s3gt.list_disabled_lang_to",                  "af,sq,ar,hy,az,eu,be,bn,bs,bg,ca,ceb,ny,zh-CN,zh-TW,ht,da,nl,eo,et,tl,fi,fr,gl,ka,el,gu,ha,iw,hi,hmn,is,ig,id,ga,ja,jw,kn,kk,km,ko,lo,la,lv,lt,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,fa,pt,pa,ru,st,si,sl,so,es,su,sw,sv,tg,ta,te,th,tr,uk,ur,uz,vi,cy,yi,yo,zu");
 user_pref("extensions.s3gt.reverse_lang_value",                     "en");
 user_pref("extensions.s3gt.show_button_in_toolbar",                 "disabled");
 user_pref("extensions.s3gt.show_tooltip_animation",                 "disabled");
