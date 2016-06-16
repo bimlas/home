@@ -68,7 +68,7 @@ function! BundleInstalled(bundle)
   return 0
 endfunction
 " On Windows there is no different filename for Py2 and Py3.
-let g:has_python = (has('python') || has('python3')) && (executable('python') || executable('python3'))
+let g:has_python = (has('python') && executable('python')) || (has('python3') && executable('python3'))
 let g:has_ruby   = has('ruby') && executable('ruby')
 
 if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
