@@ -886,9 +886,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     let g:gitgutter_eager = 0
 
     " Needs if grep does not support color.
-    if system('grep --help') =~# '--color'
-      let g:gitgutter_grep_command = 'grep --color=never'
-    else
+    if has('win32')
       let g:gitgutter_grep_command = 'grep -e'
     endif
                                                                         " }}}2
