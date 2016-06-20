@@ -1645,12 +1645,6 @@ function! AdocBlockI()
   return ['V', block_start, block_stop]
 endfunction
 
-"                              OPERATOR-USER                              {{{3
-" ............................................................................
-
-map gs  <Plug>(operator-substitute)
-map gss 0<Plug>(operator-substitute)$
-
 "                               SPACE MAPS                                {{{2
 " ____________________________________________________________________________
 "
