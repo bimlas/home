@@ -51,15 +51,43 @@ endif
 " ============================================================================
 
 " Disable some default plugins.
-let g:loaded_zipPlugin       = 1
-let g:loaded_zip             = 1
-let g:loaded_gzip            = 1
-let g:loaded_tarPlugin       = 1
-let g:loaded_tar             = 1
-let g:loaded_vimballPlugin   = 1
-let g:loaded_vimball         = 1
-let g:loaded_getscriptPlugin = 1
-let g:loaded_logiPat         = 1
+let g:loaded_gzip              = 1
+let g:loaded_tar               = 1
+let g:loaded_tarPlugin         = 1
+let g:loaded_zip               = 1
+let g:loaded_zipPlugin         = 1
+let g:loaded_rrhelper          = 1
+let g:loaded_2html_plugin      = 1
+let g:loaded_vimball           = 1
+let g:loaded_vimballPlugin     = 1
+let g:loaded_getscript         = 1
+let g:loaded_getscriptPlugin   = 1
+let g:loaded_netrw             = 1
+let g:loaded_netrwPlugin       = 1
+let g:loaded_netrwSettings     = 1
+let g:loaded_netrwFileHandlers = 1
+let g:loaded_logipat           = 1
+
+" NETRW                                                                   {{{2
+
+" Netrw ablakanak abszolut merete.
+let g:netrw_winsize = -28
+
+" Ne legyen fejlec.
+let g:netrw_banner = 0
+
+" Eger map-ok tiltasa:
+let g:netrw_mousemaps = 0
+
+" Alapbol tree nezetben nyissa meg.
+" let g:netrw_liststyle = 3
+
+" Csak az a lenyeg, hogy a konyvtarak legyenek elol.
+let g:netrw_sort_sequence = '[\/]$,*'
+
+" Mindig az elozo ablakban nyissa meg a fajlt. (:Vexplore-nal kell)
+let g:netrw_browse_split = 4
+                                                                        " }}}2
 
 let bundle_dir = $HOME . '/.vim/bundle'
 
@@ -1054,33 +1082,6 @@ let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#' . stat_undofile . ''
 let &statusline .= '%* %= '
 let &statusline .= BundleInstalled('syntastic') ? '%#StatWarning#%{SyntasticStatuslineFlag()}' : ''
-
-"                                  NETRW                                  {{{1
-" ============================================================================
-
-" Disable at all.
-let g:loaded_netrw             = 1
-let g:loaded_netrwPlugin       = 1
-let g:loaded_netrwSettings     = 1
-let g:loaded_netrwFileHandlers = 1
-
-" Netrw ablakanak abszolut merete.
-let g:netrw_winsize = -28
-
-" Ne legyen fejlec.
-let g:netrw_banner = 0
-
-" Eger map-ok tiltasa:
-let g:netrw_mousemaps = 0
-
-" Alapbol tree nezetben nyissa meg.
-" let g:netrw_liststyle = 3
-
-" Csak az a lenyeg, hogy a konyvtarak legyenek elol.
-let g:netrw_sort_sequence = '[\/]$,*'
-
-" Mindig az elozo ablakban nyissa meg a fajlt. (:Vexplore-nal kell)
-let g:netrw_browse_split = 4
 
 "                                 ALTALANOS                               {{{1
 " ============================================================================
