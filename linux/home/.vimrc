@@ -170,29 +170,15 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     " let g:matchparen_timeout = 5
     " let g:matchparen_insert_timeout = 5
 
-  " EASYMOTION/VIM-EASYMOTION                                             {{{2
-  " gyors mozgas a buffer-en belul
-  if !exists('g:vimrc_minimal_plugins')
-    call dein#add('easymotion/vim-easymotion')
-    autocmd vimrc VimEnter * call Dein_EasyMotion()
-  end
+  " JUSTINMK/VIM-SNEAK {{{2
+  " easily jump to anywhere on the visible part of the buffer
+  call dein#add('justinmk/vim-sneak')
 
-    function! Dein_EasyMotion()
-      " This is why on_post_source used.
-      EMCommandLineNoreMap <C-J> <CR>
-    endfunction
-
-    let g:EasyMotion_do_mapping = 0
-    let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
-
-    " Show target as UPPERCASE, allow jump with lowercase.
-    let g:EasyMotion_use_upper = 1
-
-    " Allow jump to foldlines too.
-    let g:EasyMotion_skipfoldedline = 0
-
-    " Stay in the same column when using <Plug>(easymotion-sol-j)
-    let g:EasyMotion_startofline = 0
+    " Use as an alternative to EasyMotion
+    let g:sneak#streak        = 1
+    let g:sneak#streak_esc    = '\<C-K>'
+    " Press <Tab> to focus on the next set of matches.
+    let g:sneak#target_labels = 'asdfghjkluiopqwertzASDFGHJKLUIOPQWERTZ'
 
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
@@ -1413,12 +1399,12 @@ noremap  j          gj
 noremap  k          gk
 
 " Take some keys from english keyboard.
-noremap é ;
-noremap É ,
-noremap ő [
-noremap ú ]
-noremap Ő {
-noremap Ú }
+map é ;
+map É ,
+map ő [
+map ú ]
+map Ő {
+map Ú }
 
 " I don't using the ex-mode directly.
 nnoremap Q <Nop>
@@ -1510,21 +1496,28 @@ function! NetrwLynxMap()
   map <buffer> l <CR>
 endfunction
 
-"                               EASYMOTION                                {{{3
+"                                  SNEAK                                  {{{3
 " ............................................................................
 
-if BundleInstalled('vim-easymotion')
-  map s         <Plug>(easymotion-s2)
-  map t         <Plug>(easymotion-tl)
-  map T         <Plug>(easymotion-Tl)
-  map t         <Plug>(easymotion-tl)
-  map T         <Plug>(easymotion-Tl)
-  map f         <Plug>(easymotion-fl)
-  map F         <Plug>(easymotion-Fl)
-  map <Leader>n <Plug>(easymotion-n)
-  map <Leader>N <Plug>(easymotion-N)
-  map é         <Plug>(easymotion-next)
-  map É         <Plug>(easymotion-prev)
+if BundleInstalled('vim-sneak')
+  nmap s <Plug>Sneak_s
+  nmap S <Plug>Sneak_S
+  xmap s <Plug>Sneak_s
+  xmap S <Plug>Sneak_S
+  omap s <Plug>Sneak_s
+  omap S <Plug>Sneak_S
+  nmap f <Plug>Sneak_f
+  nmap F <Plug>Sneak_F
+  xmap f <Plug>Sneak_f
+  xmap F <Plug>Sneak_F
+  omap f <Plug>Sneak_f
+  omap F <Plug>Sneak_F
+  nmap t <Plug>Sneak_t
+  nmap T <Plug>Sneak_T
+  xmap t <Plug>Sneak_t
+  xmap T <Plug>Sneak_T
+  omap t <Plug>Sneak_t
+  omap T <Plug>Sneak_T
 endif
 
 "                                CHOOSEWIN                                {{{3
@@ -1679,12 +1672,6 @@ nnoremap <Space>U       :later 1f<CR>
 noremap  <Space>y       "+y
 noremap  <Space>p       "+p
 noremap  <Space>P       "+P
-
-map      <Space>j       <Plug>(easymotion-sol-j)
-map      <Space>k       <Plug>(easymotion-sol-k)
-" Stay in the same column.
-map      <Space>J       <Plug>(easymotion-j)
-map      <Space>K       <Plug>(easymotion-k)
 
 nmap     <Space>c       <Plug>TComment_gc
 vmap     <Space>c       <Plug>TComment_gc
