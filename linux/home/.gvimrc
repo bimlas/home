@@ -27,5 +27,5 @@ set guioptions=cg
 " A tabok neve ele irja ki a tab szamat.
 let &guitablabel = " %N \| %t %m "
 
-" Show tooltip for the object under the mouse.
-set ballooneval
+" Don't show tooltip for the object under the mouse (don't using mouse).
+set noballooneval
