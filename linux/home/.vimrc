@@ -884,6 +884,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     " Update only on file open/write
     let g:gitgutter_realtime = 0
     let g:gitgutter_eager = 0
+    let g:gitgutter_async = 0
 
     " Needs if grep does not support color.
     if has('win32')
