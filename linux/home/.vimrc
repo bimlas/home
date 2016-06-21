@@ -952,7 +952,7 @@ if exists(':filetype')
 endif
 
 " Szintaxiskiemeles.
-if has('syntax') && filereadable($VIMRUNTIME . '/syntax/syntax.vim')
+if has('syntax')
   syntax enable
 endif
 
@@ -1856,9 +1856,7 @@ endif
 " __ COMPLETION _________________________
 
 " Fajltipus alapjan allitsa be az omni-completion-t.
-if filereadable($VIMRUNTIME . '/autoload/syntaxcomplete.vim')
-  autocmd vimrc FileType * if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
-endif
+autocmd vimrc FileType * if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
 
 " __ MEGJELENES _________________________
 
