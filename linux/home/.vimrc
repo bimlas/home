@@ -1018,28 +1018,20 @@ autocmd  vimrc  ColorScheme  desert
 
                                                                         " }}}2
 
-" Nappal vilagos hatter, este sotet.
+" Ligh background at day, dark at night.
 if has('gui_running')
-  if len(globpath(&runtimepath, 'colors/solarized.vim'))
-  \ && (strftime("%H") >= 7 && strftime("%H") <= 17)
-
-    set background=light
+  try
+    if strftime("%H") >= 7 && strftime("%H") <= 17
+      set background=light
+    else
+      set background=dark
+    endif
     colorscheme solarized
-
-  elseif len(globpath(&runtimepath, 'colors/solarized.vim'))
-
-    set background=dark
-    colorscheme solarized
-
-  elseif len(globpath(&runtimepath, 'colors/desert.vim'))
-
+  catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
-
-  endif
-elseif len(globpath(&runtimepath, 'colors/desert.vim'))
-
+  endtry
+else
   colorscheme desert
-
 endif
 
 "                               STATUSLINE                                {{{1
