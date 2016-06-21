@@ -473,14 +473,6 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   if !exists('g:vimrc_minimal_plugins')
     call dein#add('mbbill/undotree')
   end
-
-  " RHYSD/VIM-GRAMMAROUS                                                  {{{2
-  " grammar check
-  " see `:messages` if something went wrong
-  " $ install java
-  if !exists('g:vimrc_minimal_plugins') || !executable('java')
-    call dein#add('rhysd/vim-grammarous')
-  end
                                                                         " }}}2
 
   " .. DEBUG / BENCHMARK ..................
