@@ -22,7 +22,7 @@ else
 endif
 
 " :help guioptions
-set guioptions=cg
+set guioptions=c
 
 " A tabok neve ele irja ki a tab szamat.
 let &guitablabel = " %N \| %t %m "
