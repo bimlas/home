@@ -377,16 +377,6 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     let g:unite_enable_auto_select          = 0
     let g:unite_source_buffer_time_format   = ''
 
-    " " Silver Searcher
-    " if executable('ag')
-    "   let g:unite_source_rec_async_command  = 'ag --follow --nocolor --nogroup --hidden -g ""'
-    "   let g:unite_source_grep_command       = 'ag'
-    "   let g:unite_source_grep_default_opts  =
-    "   \ '-i --line-numbers --nocolor --nogroup --column --hidden --ignore ' .
-    "   \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-    "   let g:unite_source_grep_recursive_opt = ''
-    " endif
-
     " Platinum Searcher
     if executable('pt')
       let g:unite_source_rec_async_command  = ['pt', '--hidden', '--follow', '--nocolor', '--nogroup', '--files-with-matches', '']
@@ -1243,11 +1233,6 @@ set hlsearch incsearch
 " Mivel nem mindig veszem eszre, hogy a fajl vegerol mar atugrottam az
 " elejere, ezert inkabb le is tiltom ezt a lehetoseget.
 set nowrapscan
-
-" Silver Searcher
-if executable('ag')
-  let &grepprg = 'ag --nogroup --nocolor --column'
-endif
 
 " Platinum Searcher
 if executable('pt')
