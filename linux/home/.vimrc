@@ -1052,7 +1052,6 @@ let &statusline  = stat_argnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%#StatWarning#' . stat_undofile . ''
-let &statusline .= BundleInstalled('syntastic') ? '%#StatWarning#%{SyntasticStatuslineFlag()}' : ''
 let &statusline .= '%*'
 
 "                                 ALTALANOS                               {{{1
