@@ -68,7 +68,7 @@ let g:loaded_netrwSettings     = 1
 let g:loaded_netrwFileHandlers = 1
 let g:loaded_logipat           = 1
 
-" NETRW                                                                   {{{2
+" __ NETRW ______________________________                                 {{{2
 
 " Netrw ablakanak abszolut merete.
 let g:netrw_winsize = -28
@@ -89,16 +89,17 @@ let g:netrw_sort_sequence = '[\/]$,*'
 let g:netrw_browse_split = 4
                                                                         " }}}2
 
-let bundle_dir = $HOME . '/.vim/bundle'
+" On Windows there is no different filename for Py2 and Py3.
+let g:has_python = (has('python') && executable('python')) || (has('python3') && executable('python3'))
+let g:has_ruby   = has('ruby') && executable('ruby')
+let g:has_git    = executable('git')
+
+let bundle_dir   = $HOME . '/.vim/bundle'
 
 " Create supply functions, variables.
 function! BundleInstalled(bundle)
   return 0
 endfunction
-" On Windows there is no different filename for Py2 and Py3.
-let g:has_python = (has('python') && executable('python')) || (has('python3') && executable('python3'))
-let g:has_ruby   = has('ruby') && executable('ruby')
-let g:has_git    = executable('git')
 
 if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   exe 'set runtimepath+=' . bundle_dir . '/repos/github.com/shougo/dein.vim'
