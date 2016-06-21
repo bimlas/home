@@ -961,6 +961,10 @@ endfunction
 "                              ALAPVETO MUKODES                           {{{1
 " ============================================================================
 
+" Disable GUI menus - this flag (M) have to be in here (in the .vimrc, before
+" `filetye syntax on`), not in .gvimrc.
+set guioptions=M
+
 " Fajltipus felismeres bekapcsolasa, a ra jellemzo formazas (pl. kommentkari)
 " es behuzas stilusanak betoltese.
 if exists(':filetype')
@@ -979,11 +983,6 @@ behave xterm
 if !has('win32')
   runtime ftplugin/man.vim
 endif
-
-" Disable GUI menus.
-let g:did_install_default_menus = 1
-let g:did_install_syntax_menu   = 1
-let g:did_toolbar_tmenu         = 1
 
 "                                   SZINEK                                {{{1
 " ============================================================================
