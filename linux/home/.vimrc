@@ -98,6 +98,7 @@ endfunction
 " On Windows there is no different filename for Py2 and Py3.
 let g:has_python = (has('python') && executable('python')) || (has('python3') && executable('python3'))
 let g:has_ruby   = has('ruby') && executable('ruby')
+let g:has_git    = executable('git')
 
 if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   exe 'set runtimepath+=' . bundle_dir . '/repos/github.com/shougo/dein.vim'
@@ -876,21 +877,21 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " TPOPE/VIM-GIT                                                         {{{2
   " supporting git stuff (ftplugin, syntax, etc.)
   " $ install git
-  if executable('git')
+  if g:has_git
     call dein#add('tpope/vim-git')
   end
 
   " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integracio
   " $ install git
-  if !exists('g:vimrc_minimal_plugins') && executable('git')
+  if !exists('g:vimrc_minimal_plugins') && g:has_git
     call dein#add('tpope/vim-fugitive')
   end
 
   " GREGSEXTON/GITV                                                       {{{2
   " gitk a vim-en belul
   " $ install git
-  if !exists('g:vimrc_minimal_plugins') && executable('git')
+  if !exists('g:vimrc_minimal_plugins') && g:has_git
     call dein#add('gregsexton/gitv')
   end
 
@@ -903,7 +904,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
   " $ install git
-  if !exists('g:vimrc_minimal_plugins') && executable('git')
+  if !exists('g:vimrc_minimal_plugins') && g:has_git
     call dein#add('airblade/vim-gitgutter')
   end
 
