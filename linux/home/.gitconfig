@@ -267,6 +267,9 @@
 
   ; You can write a note about the stash like this:
   ; $ git stash save "Buggy - find a better way"
+  ;
+  ; To apply more stashes, apply the first one, then `git add --all`, apply
+  ; the next one, etc.
 
   ; Stash, but keep staged files.
   st  = "stash save --keep-index --include-untracked"
@@ -275,6 +278,9 @@
   sta = "stash apply"
   std = "stash drop"
   stp = "stash pop"
+
+  ; Usage: git str 'stash@{123}'
+  str = "!git stash show $@ --patch | git apply --reverse; #"
 
   ; __ REBASE _____________________________                               {{{2
   ; WARNING: `rebase master` means that the current branch is moved to the end
