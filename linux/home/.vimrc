@@ -90,9 +90,8 @@ let g:netrw_browse_split = 4
                                                                         " }}}2
 
 " On Windows there is no different filename for Py2 and Py3.
-let g:has_python = (has('python') && executable('python')) || (has('python3') && executable('python3'))
-let g:has_ruby   = has('ruby') && executable('ruby')
-let g:has_git    = executable('git')
+let g:has_python = has('python') || has('python3')
+let g:has_ruby   = has('ruby')
 
 let bundle_dir   = $HOME . '/.vim/bundle'
 
@@ -378,13 +377,11 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     let g:unite_source_buffer_time_format   = ''
 
     " Platinum Searcher
-    if executable('pt')
-      let g:unite_source_rec_async_command  = ['pt', '--hidden', '--follow', '--nocolor', '--nogroup', '--files-with-matches', '']
-      let g:unite_source_grep_command       = 'pt'
-      let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --smart-case -e --depth 0'
-      let g:unite_source_grep_recursive_opt = '--depth 25'
-      let g:unite_source_grep_encoding      = 'utf-8'
-    endif
+    let g:unite_source_rec_async_command  = ['pt', '--hidden', '--follow', '--nocolor', '--nogroup', '--files-with-matches', '']
+    let g:unite_source_grep_command       = 'pt'
+    let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --smart-case -e --depth 0'
+    let g:unite_source_grep_recursive_opt = '--depth 25'
+    let g:unite_source_grep_encoding      = 'utf-8'
 
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
@@ -868,21 +865,21 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " TPOPE/VIM-GIT                                                         {{{2
   " supporting git stuff (ftplugin, syntax, etc.)
   " $ install git
-  if g:has_git
+  if !exists('g:vimrc_minimal_plugins')
     call dein#add('tpope/vim-git')
   end
 
   " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integracio
   " $ install git
-  if !exists('g:vimrc_minimal_plugins') && g:has_git
+  if !exists('g:vimrc_minimal_plugins')
     call dein#add('tpope/vim-fugitive')
   end
 
   " GREGSEXTON/GITV                                                       {{{2
   " gitk a vim-en belul
   " $ install git
-  if !exists('g:vimrc_minimal_plugins') && g:has_git
+  if !exists('g:vimrc_minimal_plugins')
     call dein#add('gregsexton/gitv')
   end
 
@@ -895,7 +892,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
   " $ install git
-  if !exists('g:vimrc_minimal_plugins') && g:has_git
+  if !exists('g:vimrc_minimal_plugins')
     call dein#add('airblade/vim-gitgutter')
   end
 
@@ -1235,9 +1232,7 @@ set hlsearch incsearch
 set nowrapscan
 
 " Platinum Searcher
-if executable('pt')
-  let &grepprg = 'pt --nogroup --nocolor --column -e'
-endif
+let &grepprg = 'pt --nogroup --nocolor --column -e'
 
 "                             SZINTAXIS KIEMELES                          {{{1
 " ============================================================================
