@@ -975,7 +975,7 @@ autocmd  vimrc  ColorScheme  *
 \ highlight! link StatFilename   DiffText   |
 \ highlight! link StatFileformat DiffAdd    |
 \ highlight! link StatInfo       DiffChange |
-\ highlight! link StatWarning    WarningMsg
+\ highlight! link StatWarning    Error
 
 " Allways display comments with italic fonts.
 autocmd  vimrc  ColorScheme  *
@@ -1007,7 +1007,7 @@ autocmd  vimrc  ColorScheme  desert
 \ highlight! link StatFilename   Directory  |
 \ highlight! link StatFileformat Identifier |
 \ highlight! link StatInfo       ModeMsg    |
-\ highlight! link StatWarning    WarningMsg
+\ highlight! link StatWarning    Error
 
 " Nem tetszenek a popupmenu szinei.
 autocmd  vimrc  ColorScheme  desert
