@@ -1377,6 +1377,9 @@ nnoremap <C-G> 1<C-G>
 " Update everything, not just the screen.
 nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart <Bar> GitGutterAll<CR><C-L>
 
+" Show/hide relative linenumbering quickly.
+nnoremap <Tab> :set relativenumber!<CR>
+
 " Inserting digraphs.
 nnoremap <Leader><C-K> a<C-K>
 
