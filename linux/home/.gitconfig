@@ -158,6 +158,11 @@
 
   ; __ SHOW _______________________________                               {{{2
 
+  ; To see a specific version of a file:
+  ;
+  ;   git show REVISION:file
+  ;   git show :file          # To show HEAD
+
   sw  = "show --patch --stat --ignore-blank-lines"
   sww = "show --patch --stat --ignore-blank-lines --color-words"
 
