@@ -253,6 +253,7 @@
 
   adu = "add --update"
   ada = "add --all"
+  adp = "add --patch"
 
   ; __ COMMIT _____________________________                               {{{2
 
