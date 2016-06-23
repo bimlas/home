@@ -404,6 +404,12 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
 
   " .. EGYEB HASZNOSSAGOK .................
 
+  " HECAL3/VIM-LEADER-GUIDE                                               {{{2
+  " works like Emacs' Guide-Key if mistyping normal mode command
+  if !exists('g:vimrc_minimal_plugins')
+    call dein#add('hecal3/vim-leader-guide')
+  end
+
   " LAMBDALISUE/VIM-DIFFA                                                 {{{2
   " auto diffupdate & diffoff + DiffOrig
   if !exists('g:vimrc_minimal_plugins')
@@ -1603,13 +1609,15 @@ endfunction
 "
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
 
-" autocmd vimrc VimEnter * call SpaceMaps()
-" function! SpaceMaps()
-"   call shortcut#prefix('<Space>')
-"   call shortcut#map('dd', 'delete paragraph', 'normal dap')
-"   " Not works in operator pending mode
-"   call shortcut#map('dj', 'jump down', 'call feedkeys("\<Plug>(easymotion-sol-j)")')
-" endfunction
+" Show Emacs' Guide-Key like window when mistyping normal mode commands.
+if BundleInstalled('vim-leader-guide')
+  let g:guidekeys                    = {}
+  let g:guidekeys['<Space>']         = {}
+  let g:guidekeys['<Space>']['name'] = '<Space>'
+  call leaderGuide#register_prefix_descriptions('', 'g:guidekeys')
+  nnoremap <silent> <Space> :<c-u>LeaderGuide '<Space>'<CR>
+  vnoremap <silent> <Space> :<c-u>LeaderGuideVisual '<Space>'<CR>
+endif
 
 noremap  <Space>?       :Unite mapping<CR>
 
