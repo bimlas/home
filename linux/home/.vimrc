@@ -1380,6 +1380,7 @@ nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fr
 
 " Show/hide relative linenumbering quickly.
 nnoremap <Tab> :set relativenumber!<CR>
+vnoremap <Tab> <Esc>:set relativenumber!<CR>gv
 
 " Inserting digraphs.
 nnoremap <Leader><C-K> a<C-K>
