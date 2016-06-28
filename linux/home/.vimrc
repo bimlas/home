@@ -1851,6 +1851,8 @@ if v:version >= 704
   autocmd vimrc FileType * setlocal formatoptions+=j
 endif
 
+autocmd vimrc FileType diff setlocal nofoldenable
+
 " __ COMPLETION _________________________
 
 " Fajltipus alapjan allitsa be az omni-completion-t.
