@@ -473,12 +473,6 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   if !exists('g:vimrc_minimal_plugins')
     call dein#add('tpope/vim-scriptease')
   end
-
-  " MBBILL/UNDOTREE                                                       {{{2
-  " graphical :undolist
-  if !exists('g:vimrc_minimal_plugins')
-    call dein#add('mbbill/undotree')
-  end
                                                                         " }}}2
 
   " .. DEBUG / BENCHMARK ..................
