@@ -209,20 +209,6 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     " Press <Tab> to focus on the next set of matches.
     let g:sneak#target_labels = 'asdfghjkluiopqwertzASDFGHJKLUIOPQWERTZ'
 
-  " T9MD/VIM-CHOOSEWIN                                                    {{{2
-  " easymotion az ablakokon is
-  if !exists('g:vimrc_minimal_plugins')
-    call dein#add('t9md/vim-choosewin')
-  end
-
-    let g:choosewin_label_align        = 'left'
-    let g:choosewin_label_padding      = 1
-    " let g:choosewin_overlay_enable     = 1
-    " let g:choosewin_statusline_replace = 0
-    " let g:choosewin_tabline_replace    = 0
-
-    let g:choosewin_label              = 'ASDFHJKL'
-    let g:choosewin_keymap             = {"\<C-W>": 'previous'}
                                                                         " }}}2
 
   " .. TEXTOBJ-USER .......................
@@ -1040,11 +1026,14 @@ endif
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
+let stat_winnr      = '%{winnr()}'
 let stat_argnr      = '%{argc() > 1 ? argidx()+1 . "/" . argc() : ""}'
 let stat_filename   = '%w%t%r%m'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
 
-let &statusline  = stat_argnr . ' '
+let &statusline  = ''
+let &statusline .= '%#StatInfo# ' . stat_winnr . ' %* '
+let &statusline .= stat_argnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
 let &statusline .= '%*'
@@ -1477,12 +1466,6 @@ if BundleInstalled('vim-sneak')
   omap T <Plug>Sneak_T
 endif
 
-"                                CHOOSEWIN                                {{{3
-" ............................................................................
-
-nmap <expr>     <Plug>(mychoosewin) (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
-nmap <C-W><C-W> <Plug>(mychoosewin)
-
 "                               OPENBROWSER                               {{{3
 " ............................................................................
 
@@ -1511,7 +1494,6 @@ function! UniteMaps()
   imap <buffer><expr> <C-CR>     unite#do_action('start')
   nmap <buffer>       ~          <Plug>(unite_input_directory)<C-U>~/<CR><Plug>(unite_insert_leave)
   nmap <buffer>       \          <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
-  nmap <buffer>       <C-W><C-W> <Plug>(mychoosewin)
 endfunction
 
 "                              TEXTOBJ-USER                               {{{3
@@ -1809,7 +1791,6 @@ nnoremap        <Space>tw :set wrap!<CR>
 
 nnoremap <Space>wo  :tab split<CR>
 nnoremap <Space>wn  :botright 78 vnew [NOTES]<Bar> set ft=asciidoc buftype=nofile<CR>
-nnoremap <Space>ws  :ChooseWinSwapStay<CR>
 nnoremap <Space>wtt :tabnew<CR>
 nnoremap <Space>wtq :tabclose<CR>
 
