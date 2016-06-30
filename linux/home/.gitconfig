@@ -144,6 +144,8 @@
   lg   = "log --graph --date-order"
   lgg  = "log --graph --date-order --name-status"
   lp   = "log --graph --date-order --patch --stat --ignore-blank-lines"
+  lm   = "log --graph --merge --left-right --format=shortlog --all"
+  lmg  = "log --graph --merge --left-right --all"
   day  = "log --graph --date-order --all --since midnight"
   yday = "log --graph --date-order --all --since=day.before.yesterday.midnight --until=midnight"
 
@@ -181,6 +183,8 @@
   gdf  = "difftool"
 
   ; __ CHECKOUT ___________________________                               {{{2
+
+  ; -m  --merge  Check out the initial "before merge conflict state"
 
   co  = "checkout"
   coa = "checkout :/"
