@@ -10,11 +10,11 @@
 <#l:: Send, #{Right}
 
 ; Dexpot helper
-<#1::  Send, !1
-<#2::  Send, !2
-<#3::  Send, !3
-<#4::  Send, !4
-<#+1:: Send, !+1
-<#+2:: Send, !+2
-<#+3:: Send, !+3
-<#+4:: Send, !+4
+<#1::  Send, ^{Numpad1}
+<#2::  Send, ^{Numpad2}
+<#3::  Send, ^{Numpad3}
+<#4::  Send, ^{Numpad4}
+<#+1:: Send, ^!{Numpad1}
+<#+2:: Send, ^!{Numpad2}
+<#+3:: Send, ^!{Numpad3}
+<#+4:: Send, ^!{Numpad4}
