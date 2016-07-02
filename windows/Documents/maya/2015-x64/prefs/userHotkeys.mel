@@ -1,0 +1,11 @@
+//Maya Preference 2015 (Release 1)
+//
+//
+
+hotkey -keyShortcut "home" -ctl -name ("CenterPivotNameCommand");
+hotkey -keyShortcut "0" -alt -name ("dR_mtkToolTGLNameCommand");
+hotkey -keyShortcut "1" -alt -name ("dR_multiCutToolNameCommand");
+hotkey -keyShortcut "2" -alt -name ("dR_bevelToolNameCommand");
+hotkey -keyShortcut "d" -alt -name ("DeleteAllHistoryNameCommand");
+hotkey -keyShortcut "3" -alt -name ("dR_connectToolNameCommand");
+hotkey -keyShortcut "4" -alt -name ("dR_bridgeToolNameCommand");
