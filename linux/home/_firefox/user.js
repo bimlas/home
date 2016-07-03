@@ -136,7 +136,10 @@ user_pref("extensions.s3gt.view_reverse_translate_tooltip",         false);
  *  https://addons.mozilla.org/hu/firefox/addon/firebug/
  *
  * web developer - hasznos lehetosegeket kinal (pl. osszes checkbox pipalasa)
- *  https://addons.mozilla.org/hu/firefox/addon/web-developer/?src=search
+ *  https://addons.mozilla.org/hu/firefox/addon/web-developer/
+ *
+ * eyeguard - night mode
+ *  https://addons.mozilla.org/hu/firefox/addon/eyeguard/
  */
 
 /*                                 ABOUT LAPOK                            {{{1
