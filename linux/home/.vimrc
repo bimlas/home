@@ -101,7 +101,7 @@ let g:pm_install_dir = $HOME . '/.vim/bundle'
 " endif
 
 " Create supply functions, variables.
-function! BundleInstalled(bundle)
+function! PluginEnabled(bundle)
   return 0
 endfunction
 
@@ -109,9 +109,9 @@ if isdirectory(g:pm_dir)
   exe 'source ' . g:pm_dir . '/plug.vim'
 
   " Create supply function to check if plugin is installed.
-"  function! BundleInstalled(bundle)
-"    silent return !dein#check_install([a:bundle])
-"  endfunction
+ function! PluginEnabled(plugin)
+   return has_key(g:plugs, a:plugin)
+ endfunction
 
   call plug#begin(g:pm_install_dir)
 
@@ -1075,7 +1075,7 @@ set wildmode=longest,list,full
 set path=.
 
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-if BundleInstalled('dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
+if PluginEnabled('dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -1261,7 +1261,7 @@ set cinoptions=(0,t0,W2
 set foldmethod=marker
 
 " Sajat foldheader.
-if BundleInstalled('eightheader')
+if PluginEnabled('vim-eightheader')
 \ | let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '', '')"
 \ | endif
 
@@ -1439,7 +1439,7 @@ endfunction
 "                                  SNEAK                                  {{{3
 " ............................................................................
 
-if BundleInstalled('vim-sneak')
+if PluginEnabled('vim-sneak')
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S
   xmap s <Plug>Sneak_s
@@ -1547,7 +1547,7 @@ endfunction
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
-autocmd vimrc FileType asciidoc if BundleInstalled('vim-textobj-user') |
+autocmd vimrc FileType asciidoc if PluginEnabled('vim-textobj-user') |
 \ call textobj#user#plugin('adocblock', {
 \   '-': {
 \     'select-a-function': 'AdocBlockA',
@@ -1584,7 +1584,7 @@ endfunction
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
 
 " Show Emacs' Guide-Key like window when mistyping normal mode commands.
-if BundleInstalled('vim-leader-guide')
+if PluginEnabled('vim-leader-guide')
   let g:guidekeys                    = {}
   let g:guidekeys['<Space>']         = {}
   let g:guidekeys['<Space>']['name'] = '<Space>'
