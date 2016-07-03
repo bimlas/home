@@ -27,6 +27,13 @@
 ;   # Look for the last commit on the deleted branch.
 ;   git branch DELETED_BRANCH LAST_COMMIT
 ;
+; UPDATE TOPIC BRANCH WITH MASTER (WITHOUT MERGING TO IT)
+;
+;   git checkout FEATURE_BRANCH
+;   git rebase master
+;   # Equivalent oneliner:
+;   git rebase master FETURE_BRANCH
+;
 ; SPLIT A COMMIT TO SMALLER COMMITS
 ;
 ;   git rebase COMMIT_TO_SPLIT~
