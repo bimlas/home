@@ -93,57 +93,47 @@ let g:netrw_browse_split = 4
 let g:has_python = has('python') || has('python3')
 let g:has_ruby   = has('ruby')
 
-let bundle_dir   = $HOME . '/.vim/bundle'
+let g:pm_dir   = $HOME . '/.vim/vim-plug'
+let g:pm_install_dir = $HOME . '/.vim/bundle'
+
+" if ! (g:has_ruby || g:has_python)
+  let g:plug_threads = 1
+" endif
 
 " Create supply functions, variables.
-function! BundleInstalled(bundle)
+function! PluginEnabled(bundle)
   return 0
 endfunction
 
-if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
-  exe 'set runtimepath+=' . bundle_dir . '/repos/github.com/shougo/dein.vim'
+if isdirectory(g:pm_dir)
+  exe 'source ' . g:pm_dir . '/plug.vim'
 
   " Create supply function to check if plugin is installed.
-  function! BundleInstalled(bundle)
-    silent return !dein#check_install([a:bundle])
-  endfunction
+ function! PluginEnabled(plugin)
+   return has_key(g:plugs, a:plugin)
+ endfunction
 
-  " Do shallow clones (faster and needs less disk space).
-  let g:dein#types#git#clone_depth = 1
-
-  call dein#begin(bundle_dir)
-
-  " Forgot directly installed plugins before exiting.
-  autocmd vimrc VimLeavePre * silent! call delete(bundle_dir . '/direct_install.vim')
-
-  " Use `on_map` triggers only if You declared mappings for `<Plug>...`. For
-  " example `'on_map': '<Plug>(visualstar'` will not load VisualStar, because
-  " mapping `g*` to `<Plug>(visualstar-g*)` not exists yet, so trigger is not
-  " activated.
-
-  " SHOUGO/DEIN.VIM                                                       {{{2
-  " plugin manager
-  call dein#add('shougo/dein.vim')
+  call plug#begin(g:pm_install_dir)
 
   " SHOUGO/VIMPROC.VIM                                                    {{{2
   " nehany plugin hasznalja - windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
   if executable(&makeprg)
-    call dein#add('shougo/vimproc.vim', {
-    \ 'build' : &makeprg . (has('win32') ? ' -f make_mingw64.mak' : ''),
-    \ })
+    Plug 'shougo/vimproc.vim', {
+    \ 'do' : &makeprg . (has('win32') ? ' -f make_mingw64.mak' : ''),
+    \ }
   end
-                                                                          " }}}2
+                                                                        " }}}2
 
   " .. SAJAT ..............................
 
   " BIMBALASZLO/DOTVIM                                                    {{{2
   " sajat ~/.vim
-  call dein#add('bimbalaszlo/dotvim')
+  Plug 'bimbalaszlo/dotvim'
 
   " BIMBALASZLO/VIM-EIGHTHEADER                                           {{{2
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
-  call dein#add('bimbalaszlo/vim-eightheader')
+  Plug 'bimbalaszlo/vim-eightheader'
 
     let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
     let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
@@ -151,12 +141,12 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " BIMBALASZLO/VIM-EIGHTSTAT                                             {{{2
   " statusline helper functions
   " WIP
-  " call dein#add('bimbalaszlo/vim-eightstat')
+  " Plug 'bimbalaszlo/vim-eightstat'
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('bimbalaszlo/vim-numutils')
+    Plug 'bimbalaszlo/vim-numutils'
   end
                                                                         " }}}2
 
@@ -167,11 +157,11 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
 
   " ALTERCATION/VIM-COLORS-SOLARIZED                                      {{{2
   " szep, finom colorscheme (light es dark is)
-  call dein#add('altercation/vim-colors-solarized')
+  Plug 'altercation/vim-colors-solarized'
 
   " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
   " display a guide for the current line's indent level
-  " call dein#add('tweekmonster/local-indent.vim')
+  " Plug 'tweekmonster/local-indent.vim'
   "
   "   let localindentguide_blacklist = ['help']
   "   autocmd vimrc BufWinEnter * if index(localindentguide_blacklist, &filetype) < 0 | LocalIndentGuide +hl | endif
@@ -179,7 +169,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " LILYDJWG/COLORIZER                                                    {{{2
   " show RGB colors with :ColorHighlight or :ColorToggle
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('lilydjwg/colorizer')
+    Plug 'lilydjwg/colorizer'
   end
 
     let g:colorizer_startup  = 0
@@ -192,7 +182,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " MATCHIT.ZIP                                                           {{{2
   " paros jelek kozti ugralas
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('matchit.zip')
+    Plug 'matchit.zip'
   end
 
     " FIGYELEM: nagyon belassulhat tole az egesz vim. Ezek sem segitenek:
@@ -201,7 +191,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
 
   " JUSTINMK/VIM-SNEAK {{{2
   " easily jump to anywhere on the visible part of the buffer
-  call dein#add('justinmk/vim-sneak')
+  Plug 'justinmk/vim-sneak'
 
     " Use as an alternative to EasyMotion
     let g:sneak#streak        = 1
@@ -212,7 +202,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " T9MD/VIM-CHOOSEWIN                                                    {{{2
   " easymotion az ablakokon is
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('t9md/vim-choosewin')
+    Plug 't9md/vim-choosewin'
   end
 
     let g:choosewin_label_align        = 'left'
@@ -229,27 +219,27 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
 
   " KANA/VIM-TEXTOBJ-USER                                                 {{{2
   " sajat text-object
-  call dein#add('kana/vim-textobj-user')
+  Plug 'kana/vim-textobj-user'
 
   " KANA/VIM-TEXTOBJ-ENTIRE                                               {{{2
   " ae: az egesz buffer, ie: az elejen es vegen levo ures sorok nelkul
-  call dein#add('kana/vim-textobj-entire')
+  Plug 'kana/vim-textobj-entire'
 
   " GLTS/VIM-TEXTOBJ-COMMENT                                              {{{2
   " ic/ac: block of comment, aC: include leading/trailing blank lines
-  call dein#add('glts/vim-textobj-comment')
+  Plug 'glts/vim-textobj-comment'
 
   " SAAGUERO/VIM-TEXTOBJ-PASTEDTEXT                                       {{{2
   " gb for pasted text
-  call dein#add('saaguero/vim-textobj-pastedtext')
+  Plug 'saaguero/vim-textobj-pastedtext'
 
   " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
   " ifX/afX for text surrounded by X
-  call dein#add('thinca/vim-textobj-between')
+  Plug 'thinca/vim-textobj-between'
 
   " SGUR/VIM-TEXTOBJ-PARAMETER                                            {{{2
   " if,/af, for function parameters
-  call dein#add('sgur/vim-textobj-parameter')
+  Plug 'sgur/vim-textobj-parameter'
 
   " JULIAN/VIM-TEXTOBJ-VARIABLE-SEGMENT                                   {{{2
   " _privat*e_thing -> civone -> _one_thing
@@ -257,11 +247,11 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " foo_ba*r_baz    -> dav    -> foo_baz
   " _privat*e_thing -> dav    -> _thing
   " _g*etJiggyYo    -> dav    -> _jiggyYo
-  call dein#add('julian/vim-textobj-variable-segment')
+  Plug 'julian/vim-textobj-variable-segment'
 
   " TEK/VIM-TEXTOBJ-RUBY                                                  {{{2
   " ir/ar: block, if/af: method, ic/ac: class
-  call dein#add('tek/vim-textobj-ruby')
+  Plug 'tek/vim-textobj-ruby'
 
     let g:textobj_ruby_no_mappings = 1
 
@@ -270,7 +260,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
 
   " BPS/VIM-TEXTOBJ-PYTHON                                                {{{2
   " if/af: function, ic/ac: class
-  call dein#add('bps/vim-textobj-python')
+  Plug 'bps/vim-textobj-python'
 
     let g:textobj_python_no_default_key_mappings = 1
                                                                         " }}}2
@@ -280,7 +270,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " KANA/VIM-OPERATOR-USER                                                {{{2
   " user defined operators
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('kana/vim-operator-user')
+    Plug 'kana/vim-operator-user'
   end
                                                                         " }}}2
 
@@ -289,13 +279,13 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " THINCA/VIM-VISUALSTAR                                                 {{{2
   " kijelolt szoveg keresese * gombbal
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('thinca/vim-visualstar')
+    Plug 'thinca/vim-visualstar'
   end
 
   " MACHAKANN/VIM-SANDWICH                                                {{{2
   " paros jelek gyors cserelese/torlese
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('machakann/vim-sandwich')
+    Plug 'machakann/vim-sandwich'
   end
 
     let g:sandwich_no_default_key_mappings          = 1
@@ -305,26 +295,26 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " TOMMCDO/VIM-EXCHANGE                                                  {{{2
   " cx: exchange text-objects or selected text with each other
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tommcdo/vim-exchange')
+    Plug 'tommcdo/vim-exchange'
   end
 
   " TPOPE/VIM-ABOLISH                                                     {{{2
   " intelligens substitute
   "   :%Subvert/facilit{y,ies}/building{,s}/g
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tpope/vim-abolish')
+    Plug 'tpope/vim-abolish'
   end
 
   " BIMBALASZLO/VIM-TEXTCONV                                              {{{2
   " easily apply text conversions
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('bimbalaszlo/vim-textconv')
+    Plug 'bimbalaszlo/vim-textconv'
   end
 
   " JUNEGUNN/VIM-EASY-ALIGN                                               {{{2
   " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('junegunn/vim-easy-align')
+    Plug 'junegunn/vim-easy-align'
   end
 
     " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
@@ -342,7 +332,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " quickfix-en keresztul a fajlok sorainak szerkesztese (:copen, ha nem lehet
   " szerkeszteni a quickfix-et)
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('stefandtw/quickfix-reflector.vim')
+    Plug 'stefandtw/quickfix-reflector.vim'
   end
 
     " Ne mentse automatikusan a megvaltoztatott fajlokat.
@@ -354,11 +344,11 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " SHOUGO/UNITE.VIM                                                      {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('shougo/unite.vim')
-    autocmd vimrc VimEnter * call Dein_Unite()
+    Plug 'shougo/unite.vim'
+    autocmd vimrc VimEnter * call PostUnite()
   end
 
-    function! Dein_Unite()
+    function! PostUnite()
       call unite#custom#profile('default', 'context', {
       \ 'prompt_direction': 'top',
       \ 'direction':        'botright',
@@ -386,19 +376,19 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('shougo/unite-outline')
+    Plug 'shougo/unite-outline'
   end
 
   " TSUKKEE/UNITE-TAG                                                     {{{2
   " unite interface to browse tags
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tsukkee/unite-tag')
+    Plug 'tsukkee/unite-tag'
   end
 
   " SHOUGO/VIMFILER.VIM                                                   {{{2
   " directory browser
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('shougo/vimfiler.vim')
+    Plug 'shougo/vimfiler.vim'
   end
                                                                         " }}}2
 
@@ -407,37 +397,37 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " HECAL3/VIM-LEADER-GUIDE                                               {{{2
   " works like Emacs' Guide-Key if mistyping normal mode command
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('hecal3/vim-leader-guide')
+    Plug 'hecal3/vim-leader-guide'
   end
 
   " LAMBDALISUE/VIM-DIFFA                                                 {{{2
   " auto diffupdate & diffoff + DiffOrig
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('lambdalisue/vim-diffa')
+    Plug 'lambdalisue/vim-diffa'
   end
 
   " ANDREWRADEV/LINEDIFF.VIM                                              {{{2
   " fajl reszeinek osszehasonlitasa
   " :Linediff kijeloles utan
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('andrewradev/linediff.vim')
+    Plug 'andrewradev/linediff.vim'
   end
 
   " TPOPE/VIM-REPEAT                                                      {{{2
   " repeat (.) plugin-okon is
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tpope/vim-repeat')
+    Plug 'tpope/vim-repeat'
   end
 
   " HENRIK/VIM-QARGS                                                      {{{2
   " execute commands on files in quickfix (`:Qdo`) and use them as args
   " (`:Qargs`), for example `:Qdo %Subvert/Foo/Bar`
-  call dein#add('henrik/vim-qargs')
+  Plug 'henrik/vim-qargs'
 
   " TYRU/OPEN-BROWSER.VIM                                                 {{{2
   " netrw gx helyett
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tyru/open-browser.vim')
+    Plug 'tyru/open-browser.vim'
   end
 
   " TPOPE/VIM-SCRIPTEASE                                                  {{{2
@@ -471,7 +461,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
   "   that it probably deserves its own plugin.
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tpope/vim-scriptease')
+    Plug 'tpope/vim-scriptease'
   end
                                                                         " }}}2
 
@@ -542,13 +532,13 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " MATTN/BENCHVIMRC-VIM                                                  {{{2
   " :BenchVimrc
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('mattn/benchvimrc-vim')
+    Plug 'mattn/benchvimrc-vim'
   end
 
   " THINCA/VIM-THEMIS                                                     {{{2
   " a testing framework for Vim script
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('thinca/vim-themis')
+    Plug 'thinca/vim-themis'
   end
 
                                                                         " }}}2
@@ -558,7 +548,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " TOMTOM/TCOMMENT_VIM                                                   {{{2
   " szovegreszek kommentelese
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tomtom/tcomment_vim')
+    Plug 'tomtom/tcomment_vim'
   end
 
     let g:tcommentMaps = 0
@@ -567,7 +557,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
   " help-jet)
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('powerman/vim-plugin-viewdoc')
+    Plug 'powerman/vim-plugin-viewdoc'
   end
 
     " A `:help` parancsot ne cserelje le.
@@ -583,7 +573,8 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " talan a legnormalisabb referencia-bongeszo
   " $ install zeal @ http://zealdocs.org/
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('kabbamine/zeavim.vim')
+    Plug 'kabbamine/zeavim.vim'
+    autocmd vimrc FileType ruby Docset ruby 2
   end
 
     let g:zv_disable_mapping = 1
@@ -592,12 +583,10 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
       let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
     endif
 
-    autocmd vimrc FileType ruby Docset ruby 2
-
   " SCROOLOOSE/SYNTASTIC                                                  {{{2
   " syntax checker
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('scrooloose/syntastic')
+    Plug 'scrooloose/syntastic'
   end
 
     " Statusline indikator formaja.
@@ -635,7 +624,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " requires `ctags --fields=+i`
   " $ install ctags
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('classtree')
+    Plug 'classtree'
   end
 
   " GTAGS.VIM                                                             {{{2
@@ -651,13 +640,13 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " Windows verzio: http://adoxa.altervista.org/global/
   " Masold be a share/gtags/gtags.conf fajlt a ~/ konyvtarba.
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('gtags.vim')
+    Plug 'gtags.vim'
   end
 
   " THINCA/VIM-QUICKRUN                                                   {{{2
   " buffer, vagy kijelolt kod futtatasa
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('thinca/vim-quickrun')
+    Plug 'thinca/vim-quickrun'
   end
 
     let g:quickrun_no_default_key_mappings = 1
@@ -686,7 +675,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
     \  },
     \  'vimspec' :
     \  {
-    \   'command' : g:bundle_dir . '/vim-themis/bin/themis',
+    \   'command' : g:pm_install_dir . '/vim-themis/bin/themis',
     \   'cmdopt'  : '--runtimepath ".."',
     \   'exec'    : '%c %o %s:p'
     \  },
@@ -730,7 +719,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " HEAVENSHELL/VIM-QUICKRUN-HOOK-UNITTEST                                {{{2
   " tesztek futtatasa kulon-kulon
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('heavenshell/vim-quickrun-hook-unittest')
+    Plug 'heavenshell/vim-quickrun-hook-unittest'
   end
 
     autocmd vimrc BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
@@ -745,7 +734,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
   if !exists('g:vimrc_minimal_plugins') && g:has_python
-    call dein#add('davidhalter/jedi-vim')
+    Plug 'davidhalter/jedi-vim'
   end
 
     " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
@@ -764,7 +753,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " VIM-RUBY/VIM-RUBY                                                     {{{2
   " ruby motyok (pl. omni completion pontosabban mukodik)
   if !exists('g:vimrc_minimal_plugins') && g:has_ruby
-    call dein#add('vim-ruby/vim-ruby')
+    Plug 'vim-ruby/vim-ruby'
   end
 
     " :help ft-ruby-omni
@@ -777,7 +766,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
 
   " PPROVOST/VIM-PS1                                                      {{{2
   " PowerShell syntax
-  call dein#add('pprovost/vim-ps1')
+  Plug 'pprovost/vim-ps1'
                                                                         " }}}2
 
   " .. NEOCOMPLETE ........................
@@ -786,7 +775,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " automatic code completion
   " needs lua interface (:version +lua)
   if !exists('g:vimrc_minimal_plugins') && has('lua')
-    call dein#add('shougo/neocomplete.vim')
+    Plug 'shougo/neocomplete.vim'
   end
 
     let g:neocomplete#enable_at_startup = 1
@@ -819,19 +808,19 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " complete from included files too
   if !exists('g:vimrc_minimal_plugins') && has('lua')
-    call dein#add('shougo/neoinclude.vim')
+    Plug 'shougo/neoinclude.vim'
   end
 
   " SHOUGO/NECO-SYNTAX                                                    {{{2
   " better syntax complete
   if !exists('g:vimrc_minimal_plugins') && has('lua')
-    call dein#add('shougo/neco-syntax')
+    Plug 'shougo/neco-syntax'
   end
 
   " SHOUGO/NECO-VIM                                                       {{{2
   " better syntax complete
   if !exists('g:vimrc_minimal_plugins') && has('lua')
-    call dein#add('shougo/neco-vim')
+    Plug 'shougo/neco-vim'
   end
 
   " SIRVER/ULTISNIPS                                                      {{{2
@@ -839,7 +828,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " NOTE: it has a filetype autocommand which fails if the plugin is not
   " activated, so the trigger is `on_ft`.
   if !exists('g:vimrc_minimal_plugins') && g:has_python
-    call dein#add('sirver/ultisnips')
+    Plug 'sirver/ultisnips'
   end
 
     let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
@@ -848,7 +837,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " HONZA/VIM-SNIPPETS                                                    {{{2
   " templates
   if !exists('g:vimrc_minimal_plugins') && g:has_python
-    call dein#add('honza/vim-snippets')
+    Plug 'honza/vim-snippets'
   end
                                                                         " }}}2
 
@@ -858,21 +847,21 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " supporting git stuff (ftplugin, syntax, etc.)
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tpope/vim-git')
+    Plug 'tpope/vim-git'
   end
 
   " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integracio
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('tpope/vim-fugitive')
+    Plug 'tpope/vim-fugitive'
   end
 
   " GREGSEXTON/GITV                                                       {{{2
   " gitk a vim-en belul
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('gregsexton/gitv')
+    Plug 'gregsexton/gitv'
   end
 
     " A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
@@ -885,7 +874,7 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
   " show git status of lines on the sign column
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
-    call dein#add('airblade/vim-gitgutter')
+    Plug 'airblade/vim-gitgutter'
   end
 
     let g:gitgutter_map_keys = 0
@@ -900,20 +889,18 @@ if isdirectory(bundle_dir . '/repos/github.com/shougo/dein.vim')
       let g:gitgutter_grep_command = 'grep -e'
     endif
                                                                         " }}}2
-  call dein#end()
+  call plug#end()
 else
-  autocmd vimrc VimEnter * echomsg 'Run :InstallDein'
+  autocmd vimrc VimEnter * echomsg 'Run :InstallPluginManager'
 endif
 
-"                               INSTALLDEIN                               {{{1
+"                         INSTALL PLUGIN MANAGER                          {{{1
 " ============================================================================
-"
-" Cloning Dein to ~/.vim/bundle/dein.vim
 
-command!  InstallDein  call InstallDein()
-function! InstallDein()
-  let dein_repo = 'https://github.com/shougo/dein.vim'
-  let path = substitute(g:bundle_dir . '/repos/github.com/shougo/dein.vim', '/', has('win32') ? '\\' : '/', 'g')
+command!  InstallPluginManager  call InstallPluginManager()
+function! InstallPluginManager()
+  let pm_repo = 'https://github.com/junegunn/vim-plug'
+  let path = $HOME . '/.vim/vim-plug'
 
   if ! executable('git')
     echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
@@ -927,14 +914,14 @@ function! InstallDein()
     endif
   endif
 
-  echo 'Cloning Dein...'
-  let msg = system('git clone --depth 1 "' . dein_repo . '" "' . path . '"')
+  echo 'Cloning plugin manager...'
+  let msg = system('git clone --depth 1 "' . pm_repo . '" "' . path . '"')
   if msg =~ 'fatal'
-    echohl ErrorMsg | echomsg 'Cannot clone ' . dein_repo . ' to ' . path . ':' | echomsg msg | echohl None
+    echohl ErrorMsg | echomsg 'Cannot clone ' . pm_repo . ' to ' . path . ':' | echomsg msg | echohl None
     return
   endif
 
-  echo 'Dein installed. Please restart Vim and run :call dein#install()'
+  echo 'Plugin manager installed. Please restart Vim and install plugins.'
   return
 endfunction
 
@@ -1088,7 +1075,7 @@ set wildmode=longest,list,full
 set path=.
 
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-if BundleInstalled('dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
+if PluginEnabled('dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -1274,7 +1261,7 @@ set cinoptions=(0,t0,W2
 set foldmethod=marker
 
 " Sajat foldheader.
-if BundleInstalled('eightheader')
+if PluginEnabled('vim-eightheader')
 \ | let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '', '')"
 \ | endif
 
@@ -1452,7 +1439,7 @@ endfunction
 "                                  SNEAK                                  {{{3
 " ............................................................................
 
-if BundleInstalled('vim-sneak')
+if PluginEnabled('vim-sneak')
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S
   xmap s <Plug>Sneak_s
@@ -1560,7 +1547,7 @@ endfunction
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
-autocmd vimrc FileType asciidoc if BundleInstalled('vim-textobj-user') |
+autocmd vimrc FileType asciidoc if PluginEnabled('vim-textobj-user') |
 \ call textobj#user#plugin('adocblock', {
 \   '-': {
 \     'select-a-function': 'AdocBlockA',
@@ -1597,7 +1584,7 @@ endfunction
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
 
 " Show Emacs' Guide-Key like window when mistyping normal mode commands.
-if BundleInstalled('vim-leader-guide')
+if PluginEnabled('vim-leader-guide')
   let g:guidekeys                    = {}
   let g:guidekeys['<Space>']         = {}
   let g:guidekeys['<Space>']['name'] = '<Space>'
@@ -1756,14 +1743,14 @@ autocmd vimrc FileType python nnoremap <buffer><expr> <Space>ms has('win32')
                                                                 \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
                                                                 \ : ':silent !xterm -c python &<CR>'
 
-"                            <Space>n - DEIN                             {{{3
+"                        <Space>n - PLUGIN MANAGER                        {{{3
 " ............................................................................
 
-nnoremap <Space>nc :for i in dein#check_clean() <Bar> echo 'Deleting ' . i <Bar> call delete(i, 'rf') <Bar> endfor<CR>
-nnoremap <Space>nd :call dein#direct_install('')<Left><Left>
-nnoremap <Space>ni :call dein#install()<CR>
-nnoremap <Space>nl :Verbose echo dein#get_log()<CR>:set buftype=nofile<CR>:keeppatterns v/^<Bar>/d<CR>:keeppatterns g/^/m0<CR>:nohlsearch<CR>:nnoremap <buffer> q :bdelete!<lt>CR><CR>gg
-nnoremap <Space>nu :call dein#update()<CR>
+nnoremap <Space>nc :PlugClean<CR>
+nnoremap <Space>nd :PlugInstall ''<Left>
+nnoremap <Space>ni :PlugInstall<CR>
+nnoremap <Space>nl :PlugDiff<CR>
+nnoremap <Space>nu :PlugUpdate <Bar> PlugUpgrade<CR>
 
 "                <Space>q - QUOTES, SURROUNDS, CHANGE CASE                {{{3
 " ............................................................................
