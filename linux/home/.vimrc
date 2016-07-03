@@ -1747,7 +1747,7 @@ autocmd vimrc FileType python nnoremap <buffer><expr> <Space>ms has('win32')
 " ............................................................................
 
 nnoremap <Space>nc :PlugClean<CR>
-nnoremap <Space>nd :PlugInstall ''<Left>
+nnoremap <Space>nd :Plug '' <Bar> PlugInstall<S-Left><S-Left><S-Left><Right>
 nnoremap <Space>ni :PlugInstall<CR>
 nnoremap <Space>nl :PlugDiff<CR>
 nnoremap <Space>nu :PlugUpdate <Bar> PlugUpgrade<CR>
