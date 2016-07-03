@@ -115,14 +115,6 @@ if isdirectory(g:pm_dir)
 
   call plug#begin(g:pm_install_dir)
 
-  " Forgot directly installed plugins before exiting.
-  autocmd vimrc VimLeavePre * silent! call delete(g:pm_install_dir . '/direct_install.vim')
-
-  " Use `on_map` triggers only if You declared mappings for `<Plug>...`. For
-  " example `'on_map': '<Plug>(visualstar'` will not load VisualStar, because
-  " mapping `g*` to `<Plug>(visualstar-g*)` not exists yet, so trigger is not
-  " activated.
-
   " SHOUGO/VIMPROC.VIM                                                    {{{2
   " nehany plugin hasznalja - windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
@@ -353,10 +345,10 @@ if isdirectory(g:pm_dir)
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
   if !exists('g:vimrc_minimal_plugins')
     Plug 'shougo/unite.vim'
-    autocmd vimrc VimEnter * call Post_Unite()
+    autocmd vimrc VimEnter * call PostUnite()
   end
 
-    function! Post_Unite()
+    function! PostUnite()
       call unite#custom#profile('default', 'context', {
       \ 'prompt_direction': 'top',
       \ 'direction':        'botright',
@@ -582,6 +574,7 @@ if isdirectory(g:pm_dir)
   " $ install zeal @ http://zealdocs.org/
   if !exists('g:vimrc_minimal_plugins')
     Plug 'kabbamine/zeavim.vim'
+    autocmd vimrc FileType ruby Docset ruby 2
   end
 
     let g:zv_disable_mapping = 1
@@ -589,8 +582,6 @@ if isdirectory(g:pm_dir)
     if isdirectory('c:/app/zeal/')
       let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
     endif
-
-    autocmd vimrc FileType ruby Docset ruby 2
 
   " SCROOLOOSE/SYNTASTIC                                                  {{{2
   " syntax checker
