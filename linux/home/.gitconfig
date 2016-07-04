@@ -29,10 +29,11 @@
 ;
 ; UPDATE TOPIC BRANCH WITH MASTER (WITHOUT MERGING TO IT)
 ;
-;   git checkout FEATURE_BRANCH
-;   git rebase master
-;   # Equivalent oneliner:
-;   git rebase master FETURE_BRANCH
+;   git checkout FEATURE
+;   git merge master
+;
+;   Do not `rebase master FEATURE`! More information:
+;   http://stackoverflow.com/a/28505516
 ;
 ; SPLIT A COMMIT TO SMALLER COMMITS
 ;
