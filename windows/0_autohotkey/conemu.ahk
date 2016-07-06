@@ -48,7 +48,7 @@ Caller    := False
     WinActivate
 
     ; CD to the path of the app.
-    Send, %CdCommand% "+{Insert}"{Enter}
+    Send, ^u%CdCommand% "+{Insert}"{Enter}
     ; Restore the clipboard.
     Clipboard := ClipSaved
     ; Free the memory in case the clipboard was very large.
