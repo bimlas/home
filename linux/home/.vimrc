@@ -1338,6 +1338,8 @@ noremap  H          g^
 noremap  L          g$
 noremap  j          gj
 noremap  k          gk
+noremap  gj         j
+noremap  gk         k
 
 " Take some keys from english keyboard.
 map é ;
