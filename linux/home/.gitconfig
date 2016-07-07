@@ -77,7 +77,7 @@
   ;   Set-Alias gsh gitBash
 
   ; Edit .gitconfig
-  # rc = "config --global --edit"
+  ; rc = "config --global --edit"
   rc = "!gvim $HOME/.gitconfig &"
 
   ; Find keywords.
