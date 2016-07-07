@@ -1372,6 +1372,10 @@ vnoremap & :&&<CR>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
+" Pageup/down in pop-up (completion) menu.
+inoremap <expr> <C-U> pumvisible() ? '<PageUp>' : '<C-U>'
+inoremap <expr> <C-D> pumvisible() ? '<PageDown>' : '<C-D>'
+
 " Move to next/previous argument (:args).
 nnoremap <C-E> :next<CR>
 nnoremap <C-Y> :previous<CR>
