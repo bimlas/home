@@ -64,12 +64,21 @@
 
 [alias]                                                                 ; {{{1
 
+  ; Open Git shell on Windows should looks like this:
+  ;
+  ;   sh = "!cd `[ $GIT_PREFIX ] && echo $GIT_PREFIX || pwd` ; bash --login -i"
+  ;
+  ; But for some reason ^C closes the /bin/bash shell, but the /usr/bin/bash
+  ; shell works as it has to. Since the Git aliases which starts with bang
+  ; (e.g. '!shell --command') executed in /bin/bash shell, I have to do the
+  ; alias outside of .gitconfig. For example here's a PowerShell alias:
+  ;
+  ;   function gitBash { c:\app\git\usr\bin\bash --login -i }
+  ;   Set-Alias gsh gitBash
+
   ; Edit .gitconfig
   # rc = "config --global --edit"
   rc = "!gvim $HOME/.gitconfig &"
-
-  ; Open Git shell on Windows.
-  sh = "!cd `[ $GIT_PREFIX ] && echo $GIT_PREFIX || pwd` ; bash --login -i"
 
   ; Find keywords.
   kw = "keywords --all"

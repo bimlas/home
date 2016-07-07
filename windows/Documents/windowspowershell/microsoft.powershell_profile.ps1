@@ -35,6 +35,13 @@
 
 Set-Alias g git
 
+# For some reason ^C closes the /bin/bash shell, but the /usr/bin/bash shell
+# works as it has to. Since the Git aliases which starts with bang (e.g.
+# '!shell --command') executed in /bin/bash shell, I have to do the alias
+# outside of .gitconfig.
+function gitBash { c:\app\git\usr\bin\bash --login -i }
+Set-Alias gsh gitBash
+
 #                                 PLUGINS                                 {{{1
 # ============================================================================
 
