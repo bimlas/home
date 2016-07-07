@@ -405,7 +405,8 @@
 [credential]                                                            ; {{{1
 
   ; Store username/password in memory.
-  ; Needs to "Enable Git Credential Manager" during Msys-Git install.
+  ; Needs to "Enable Git Credential Manager" during Msys-Git install; to list
+  ; stored credentials, use `cmdkey /list`.
   ; For Linux use `cache`.
   helper = "wincred"
 
