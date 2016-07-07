@@ -1605,8 +1605,8 @@ noremap  <Space>?       :Unite mapping<CR>
 noremap  <Space><Space>      g<C-]>
 noremap  <C-W><Space><Space> <C-W>g<C-]>
 nnoremap <Space><Tab>        :buffer #<CR>
-nnoremap <Space>0 :set relativenumber!<CR>
-vnoremap <Space>0 <Esc>:set relativenumber!<CR>gv
+nnoremap <Space>0            :set relativenumber!<CR>
+vnoremap <Space>0            <Esc>:set relativenumber!<CR>gv
 
 nnoremap <Space>h       :cnext<CR>
 nnoremap <Space>H       :cprevious<CR>
@@ -1862,6 +1862,9 @@ autocmd vimrc VimResized * wincmd =
 
 " Sorok szamozasanak es a specialis karakterek mutatasanak kikapcsolasa a man,
 " quickfix es pydoc buffereknel.
+if !exists('g:vimrc_minimal_plugins')
+  autocmd vimrc BufEnter * set number relativenumber
+endif
 autocmd vimrc FileType man,qf setlocal nonumber nolist
 autocmd vimrc BufNew __doc__ setlocal nonumber nolist
 

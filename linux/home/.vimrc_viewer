@@ -6,6 +6,7 @@
 " ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 set nocompatible
+set number
 let g:vimrc_minimal_plugins = 1
 
 nnoremap q     :noautocmd q<CR>
