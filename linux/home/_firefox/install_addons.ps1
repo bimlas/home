@@ -28,5 +28,5 @@ mozprofile --profile . --addon "https://addons.mozilla.org/firefox/downloads/fil
 #   https://addons.mozilla.org/en-us/firefox/addon/reddit-enhancement-suite/
 mozprofile --profile . --addon "https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi"
 
-# Eyeguard: night mode
-mozprofile --profile . --addon "https://addons.mozilla.org/firefox/downloads/latest/eyeguard/addon-583840-latest.xpi"
+# Dark background, light text: night mode
+mozprofile --profile . --addon "https://addons.mozilla.org/firefox/downloads/latest/dark-background-light-text/addon-497798-latest.xpi"
