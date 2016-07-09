@@ -33,6 +33,6 @@ RUBY_VER_LONG=2.3.0               ^
 LUA=c:/app/lua                    ^
 LUA_VER=53                        ^
 PERL=c:/app/perl                  ^
-PERL_VER=522                      ^
+PERL_VER=524                      ^
 TCL=c:/app/tcl                    ^
 TCL_VER=86
