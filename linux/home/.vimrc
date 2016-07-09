@@ -96,9 +96,9 @@ let g:has_ruby   = has('ruby')
 let g:pm_dir   = $HOME . '/.vim/vim-plug'
 let g:pm_install_dir = $HOME . '/.vim/bundle'
 
-" if ! (g:has_ruby || g:has_python)
+if ! (g:has_ruby || g:has_python)
   let g:plug_threads = 1
-" endif
+endif
 
 " Create supply functions, variables.
 function! PluginEnabled(bundle)
