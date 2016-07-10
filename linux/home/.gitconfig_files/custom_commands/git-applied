@@ -1,0 +1,10 @@
+#!/bin/bash
+# git-applied: Check if stash applied
+#
+# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
+
+if (grep -vf <(git diff $@~ --reverse | grep -v '^---\|^+++\|^index') <(git diff $@ | grep -v '^---\|^+++\|^index') | grep '^-' > /dev/null); then
+  echo 'No'
+else
+  echo 'Yes'
+fi
