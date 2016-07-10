@@ -272,6 +272,8 @@
   bsb = "bisect bad"
 
   ; __ ADD ________________________________                               {{{2
+  ;
+  ; Press `?` in `add --patch` to know more about the options.
 
   adu = "add --update"
   ada = "add --all"
