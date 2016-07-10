@@ -276,11 +276,10 @@ if isdirectory(g:pm_dir)
 
   " .. SZOVEG KERESESE/MODOSITASA .........
 
-  " THINCA/VIM-VISUALSTAR                                                 {{{2
-  " kijelolt szoveg keresese * gombbal
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'thinca/vim-visualstar'
-  end
+  " JUNEGUNN/VIM-OBLIQUE                                                  {{{2
+  " improved search: highlight current match, fuzzy search, visual-mode, etc.
+  Plug 'junegunn/vim-pseudocl'
+  Plug 'junegunn/vim-oblique'
 
   " MACHAKANN/VIM-SANDWICH                                                {{{2
   " paros jelek gyors cserelese/torlese
