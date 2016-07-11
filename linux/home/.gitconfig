@@ -255,7 +255,7 @@
   ;   where "ours" is the file in the current branch and "theirs" is the file
   ;   from the branch we want to merge.
 
-  me  = "!read -p 'Use pull-request instead! Really want to merge manually?' -n 1 -r; echo; [[ $REPLY =~ ^[yY]$ ]] && git merge $@; #"
+  me  = "!read -p 'Use pull-request instead! Really want to merge manually?' -r; echo; [[ $REPLY =~ ^[yY]$ ]] && git merge $@; #"
   mef = "merge --ff-only"
   mea = "merge --abort"
 
