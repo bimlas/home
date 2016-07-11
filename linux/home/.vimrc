@@ -123,6 +123,10 @@ if isdirectory(g:pm_dir)
     \ 'do' : &makeprg . (has('win32') ? ' -f make_mingw64.mak' : ''),
     \ }
   end
+
+  " JUNEGUNN/VIM-PSEUDOCL                                                 {{{2
+  " used by some (Junegunn) plugins
+  Plug 'junegunn/vim-pseudocl'
                                                                         " }}}2
 
   " .. SAJAT ..............................
@@ -278,7 +282,6 @@ if isdirectory(g:pm_dir)
 
   " JUNEGUNN/VIM-OBLIQUE                                                  {{{2
   " improved search: highlight current match, fuzzy search, visual-mode, etc.
-  Plug 'junegunn/vim-pseudocl'
   Plug 'junegunn/vim-oblique'
 
   " MACHAKANN/VIM-SANDWICH                                                {{{2
