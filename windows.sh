@@ -24,8 +24,6 @@ copy --recursive \
 
 header "  SYMLINK"
 
-link "$CWD/windows/AppData/Roaming/Dexpot/profile/Standard.dxp" "$HOME/AppData/Roaming/Dexpot/profile/Standard.dxp"
-link "$CWD/windows/Documents/windowspowershell/microsoft.powershell_profile.ps1" "$HOME/Documents/windowspowershell/microsoft.powershell_profile.ps1"
 link "$CWD/windows/Documents/windowspowershell/microsoft.powershell_profile.ps1" "$HOME/Documents/windowspowershell/microsoft.powershell_profile.ps1"
 link "$CWD/windows/Documents/maya/2015-x64/prefs/userHotkeys.mel" "$HOME/Documents/maya/2015-x64/prefs/userHotkeys.mel"
 link "$CWD/windows/Documents/maya/2015-x64/prefs/userColors.mel" "$HOME/Documents/maya/2015-x64/prefs/userColors.mel"
