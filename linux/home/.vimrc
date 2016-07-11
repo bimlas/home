@@ -1448,12 +1448,12 @@ endfunction
 " ............................................................................
 
 if PluginEnabled('vim-sneak')
-  nmap s <Plug>Sneak_s
-  nmap S <Plug>Sneak_S
-  xmap s <Plug>Sneak_s
-  xmap S <Plug>Sneak_S
-  omap s <Plug>Sneak_s
-  omap S <Plug>Sneak_S
+  nmap s <Plug>(SneakStreak)
+  nmap S <Plug>(SneakStreakBackward)
+  xmap s <Plug>(SneakStreak)
+  xmap S <Plug>(SneakStreakBackward)
+  omap s <Plug>(SneakStreak)
+  omap S <Plug>(SneakStreakBackward)
   nmap f <Plug>Sneak_f
   nmap F <Plug>Sneak_F
   xmap f <Plug>Sneak_f
