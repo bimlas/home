@@ -199,7 +199,6 @@ if isdirectory(g:pm_dir)
 
     " Use as an alternative to EasyMotion
     let g:sneak#streak        = 1
-    let g:sneak#streak_esc    = '\<C-K>'
     " Press <Tab> to focus on the next set of matches.
     let g:sneak#target_labels = 'asdfghjkluiopqwertzASDFGHJKLUIOPQWERTZ'
 
