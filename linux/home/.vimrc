@@ -799,6 +799,7 @@ if isdirectory(g:pm_dir)
       let g:neocomplete#force_omni_input_patterns = {}
     endif
     let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w\{2,}\|\h\w*::\w\{2,}'
+    let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " complete from included files too
