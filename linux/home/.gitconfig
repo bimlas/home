@@ -94,6 +94,9 @@
   ; Push and track those remote branches.
   psa = "push --set-upstream --all"
 
+  ; Push to origin (used to delete remote branch).
+  pso = "push origin"
+
   seto = "remote set-url origin"
 
   ghcl = "!sh -c 'git clone --recursive https://www.github.com/$*' -"
