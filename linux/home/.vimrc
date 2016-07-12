@@ -1816,53 +1816,33 @@ vmap     <Space>xc  <Plug>(EasyAlign)
 "                                AUTOCOMMAND                              {{{1
 " ============================================================================
 "
-" FIGYELEM! Az azonos esemenyekre vonatkozo autocommand-ok az itt megadott
-" sorrend szerint hajtodnak vegre - ez neha nem vart eredmenyt okozhat!
+" WARNING: The order of autocommands can lead to unexpected behaviour! Try to
+" reorder in this case.
 
-" __ FAJLOK BEALLITASAI _________________
-
-" Az ujonnan letrehozott .txt fajloknal legyen <CR><NL> a sorvegzodes. Azert
-" kell ilyen nyakatekerten megoldani, mert ha pl. krusader-bol, vagy tcmd-bol
-" hozunk letre egy uj fajt, akkor a BufNewFile nem ervenyes ra, mivel a fajl
-" mar letezik, mikor a Vim megnyitja azt.
-autocmd vimrc BufNewFile *.txt set fileformat=dos
-autocmd vimrc BufRead *.txt if ! getfsize(expand('%')) | set fileformat=dos | endif
-
-" :help fo-table. Azert autocmd, mert minden fajltipus felulirja a
-" formatoptions-t a sajat beallitasaival, igy ez elveszne, ha csak mezei set
-" lenne.
-autocmd vimrc FileType * setlocal formatoptions+=con formatoptions-=l
-if v:version >= 704
-  autocmd vimrc FileType * setlocal formatoptions+=j
-endif
-
-autocmd vimrc FileType diff setlocal nofoldenable
-
-" __ COMPLETION _________________________
-
-" Fajltipus alapjan allitsa be az omni-completion-t.
+" Set up omni-completion if not already set.
 autocmd vimrc FileType * if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
 
-" __ MEGJELENES _________________________
+" Hybrid linenumbering.
+if !exists('g:vimrc_minimal_plugins')
+  autocmd vimrc BufEnter * set number relativenumber
+endif
 
-" Show cursorline only in the active split in normal mode - hide for insert
-" mode.
+" Highlighting of cursorline helps to detect the cursor itself and the
+" insert/normal mode.
 autocmd vimrc WinEnter    * set cursorline
 autocmd vimrc WinLeave    * set nocursorline
 autocmd vimrc InsertEnter * set nocursorline
 autocmd vimrc InsertLeave * set cursorline
 
-" Ha atmeretezzuk a vim ablakat, akkor az ablakokat is meretezze ujra.
+" Splits has to be equal even if Vim itself resized.
 autocmd vimrc VimResized * wincmd =
 
-" Sorok szamozasanak es a specialis karakterek mutatasanak kikapcsolasa a man,
-" quickfix es pydoc buffereknel.
-if !exists('g:vimrc_minimal_plugins')
-  autocmd vimrc BufEnter * set number relativenumber
-endif
-autocmd vimrc FileType man,qf setlocal nonumber nolist
-autocmd vimrc BufNew __doc__ setlocal nonumber nolist
+" Disable the fancy things for view-only buffers.
+autocmd vimrc FileType man,qf  setlocal nonumber nolist
+autocmd vimrc BufNew   __doc__ setlocal nonumber nolist   " pydoc buffer
 
-" Make hiba eseten nyissa meg a hibaablakot. A quickfix-reflector miatt kell a
-" nested.
+" Disable folding in diffs.
+autocmd vimrc FileType diff setlocal nofoldenable
+
+" Auto-open quickfix window - quickfix-reflector needs nested autocommand.
 autocmd vimrc QuickFixCmdPost * nested botright cwindow
