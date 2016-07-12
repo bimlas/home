@@ -401,12 +401,6 @@ if isdirectory(g:pm_dir)
     Plug 'hecal3/vim-leader-guide'
   end
 
-  " LAMBDALISUE/VIM-DIFFA                                                 {{{2
-  " auto diffupdate & diffoff + DiffOrig
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'lambdalisue/vim-diffa'
-  end
-
   " ANDREWRADEV/LINEDIFF.VIM                                              {{{2
   " fajl reszeinek osszehasonlitasa
   " :Linediff kijeloles utan
