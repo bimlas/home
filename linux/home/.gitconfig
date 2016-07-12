@@ -209,7 +209,6 @@
   co  = "checkout"
   coa = "checkout :/"
   coi = "checkout-index -f"
-  cob = "!echo '*** Open pull-request! ***'; git checkout -b"
   coo = "checkout --ours"
   cot = "checkout --theirs"
 
@@ -258,7 +257,7 @@
   ;   where "ours" is the file in the current branch and "theirs" is the file
   ;   from the branch we want to merge.
 
-  me  = "!read -p 'Use pull-request instead! Really want to merge manually?' -r; echo; [[ $REPLY =~ ^[yY]$ ]] && git merge $@; #"
+  me  = "merge"
   mef = "merge --ff-only"
   mea = "merge --abort"
 
