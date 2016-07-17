@@ -24,8 +24,6 @@
      ;; To get the list of layers, SPC f e h, modify .spacemacs, then
      ;; SPC f e R
      ;;
-     ;; __ BASIC LAYERS _____________________
-     shell
      ;; __ PROGRAMMING ______________________
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t)
@@ -38,11 +36,7 @@
      )
    ;; Packages without layers.
    dotspacemacs-additional-packages
-   '(
-     quickrun
-     ;; rinari: to run the buffer: ruby-compilation-this-buffer
-     rinari
-     )
+   '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
    '(
@@ -81,11 +75,9 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-light
-                         solarized-dark
-                         leuven
-                         monokai
-                         zenburn)
+   dotspacemacs-themes '(spacemacs-dark
+                         spacemacs-light
+                         leuven)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -181,7 +173,7 @@ layers configuration."
 
   ;; Highlight the whole text between pairs.
   (setq-default show-smartparens-global-mode t)
-  ;; (setq-default sp-show-pair-from-inside nil)
+  (setq-default sp-show-pair-from-inside t)
 
   (setq-default indent-guide-delay 0.5)
 
@@ -259,3 +251,18 @@ layers configuration."
 
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (parent-mode pkg-info epl flx dash enh-ruby-mode powerline py-yapf hydra spinner projectile smartparens iedit avy anzu highlight helm popup helm-core async s inf-ruby package-build bind-key bind-map evil xterm-color smeargle shell-pop rinari jump ruby-compilation inflections findr quickrun pyvenv pytest pyenv-mode pip-requirements phpunit phpcbf php-auto-yasnippets orgit multi-term magit-gitflow hy-mode helm-pydoc helm-gitignore request helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger flycheck-pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-prompt-extras esh-help drupal-mode php-mode cython-mode company-statistics company-quickhelp pos-tip company-anaconda company auto-yasnippet yasnippet anaconda-mode pythonic f ac-ispell auto-complete solarized-theme ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe use-package spacemacs-theme spaceline smooth-scrolling rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quelpa popwin persp-mode pcre2el paradox page-break-lines open-junk-file neotree move-text macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu elisp-slime-nav define-word clean-aindent-mode chruby bundler buffer-move bracketed-paste auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
