@@ -13,6 +13,8 @@
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 require 'mini_magick'
+                               # TODO: Use only MiniMagick, see at the bottom.
+                   # TODO: Warn that the EXIF will be lost, prompt to continue
 require 'exifr'
 
 (ARGV.empty? ? Dir.glob("*.jpg") : ARGV).each do |file|
@@ -39,5 +41,9 @@ require 'exifr'
   output = "#{File.dirname(file)}/ROT_#{base}#{ext}"
 
   image = MiniMagick::Image.open(file)
+  # TODO: Use MiniMagick to detect EXIF:
+  # image["EXIF:Orientation"] == 1 # normal
+  # image["EXIF:Orientation"] == 6 # RightTop
+  # image["EXIF:Orientation"] == 8 # LeftBottom
   image.rotate(degrees).write(output)
 end
