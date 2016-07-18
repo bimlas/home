@@ -1,4 +1,7 @@
 /.idea
+/*.iml
+tags
+TAGS
 GTAGS
 GRTAGS
 GPATH
