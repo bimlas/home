@@ -782,8 +782,7 @@ if isdirectory(g:pm_dir)
     " let g:neocomplete#disable_auto_complete = 1
 
     " Wait before showing completions.
-    let g:neocomplete#enable_cursor_hold_i = 1
-    let g:neocomplete#cursor_hold_i_time = 1000
+    let g:neocomplete#auto_complete_delay = 1000
 
     " Allways show completions independently from the time it takes.
     let g:neocomplete#skip_auto_completion_time = ''
