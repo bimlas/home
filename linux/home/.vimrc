@@ -159,9 +159,9 @@ if isdirectory(g:pm_dir)
   " http://cocopon.me/app/vim-color-gallery/
   " http://vimcolors.com/
 
-  " ALTERCATION/VIM-COLORS-SOLARIZED                                      {{{2
-  " szep, finom colorscheme (light es dark is)
-  Plug 'altercation/vim-colors-solarized'
+  " JUSTINMK/MOLOKAI                                                      {{{2
+  " vibrant, dark colorscheme (smells like a flower)
+  Plug 'justinmk/molokai'
 
   " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
   " display a guide for the current line's indent level
@@ -966,20 +966,12 @@ autocmd  vimrc  ColorScheme  *
 \ highlight! Comment term=italic      cterm=italic      gui=italic      |
 \ highlight! Folded  term=bold,italic cterm=bold,italic gui=bold,italic
 
-"                                SOLARIZED                                {{{2
+"                                 MOLOKAI                                 {{{2
 " ____________________________________________________________________________
 
-let g:solarized_menu = 0
-
-" A par nelkuli zarojelek kijelzese alig lathato.
-autocmd vimrc ColorScheme solarized highlight! link Error ErrorMsg
-
-" A soremeles karakterek is egybeolvadnak a szoveggel. Ez a highlight a high
-" visibility beallitasokol van atmasolva.
-autocmd vimrc ColorScheme solarized highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
-
-" A tab, whitespace, stb. szinei is ilyenek legyenek.
-autocmd vimrc ColorScheme solarized highlight! link SpecialKey NonText
+" More visible linebreak, whitespace and other special characters.
+autocmd vimrc ColorScheme molokai highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
+autocmd vimrc ColorScheme molokai highlight! link SpecialKey NonText
 
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
@@ -1005,12 +997,14 @@ autocmd  vimrc  ColorScheme  desert
 " Ligh background at day, dark at night.
 if has('gui_running')
   try
-    if strftime("%H") >= 7 && strftime("%H") <= 17
-      set background=light
-    else
-      set background=dark
-    endif
-    colorscheme solarized
+    set background=dark
+    colorscheme molokai
+    " if strftime("%H") >= 7 && strftime("%H") <= 17
+    "   set background=light
+    " else
+    "   set background=dark
+    " endif
+    " colorscheme solarized
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
   endtry
