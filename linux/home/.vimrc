@@ -727,6 +727,19 @@ if isdirectory(g:pm_dir)
 
     let g:quickrun_config['php.unit'] = { 'command': 'phpunit' }
 
+  " JOONTY/VDEBUG                                                         {{{2
+  " turns Vim into a real debugger
+  "
+  " PHP.INI
+  " zend_extension=/path/to/xdebug.so
+  " xdebug.idekey=xdebug
+  " xdebug.remote_autostart=1
+  " xdebug.remote_enable=on
+  " xdebug.remote_handler=dbgp
+  " xdebug.remote_host=localhost
+  " xdebug.remote_port=9000
+  Plug 'joonty/vdebug'
+
   " DAVIDHALTER/JEDI-VIM                                                  {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
