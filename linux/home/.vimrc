@@ -1707,8 +1707,7 @@ nmap     <Space>gW <Plug>GitGutterStageHunk
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
 " ............................................................................
 
-nmap            <Space>mK <Plug>Zeavim
-vmap            <Space>mK <Plug>ZVVisSelection
+map             <Space>mK <Plug>Zeavim
 nnoremap        <Space>mg :noautocmd vimgrep //j %:p:h/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
 nnoremap        <Space>mo :Unite -start-insert outline<CR>
 noremap         <Space>mr :QuickRun<CR>
