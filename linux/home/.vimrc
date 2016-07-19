@@ -122,7 +122,7 @@ if isdirectory(g:pm_dir)
     Plug 'shougo/vimproc.vim', {
     \ 'do' : &makeprg . (has('win32') ? ' -f make_mingw64.mak' : ''),
     \ }
-  end
+  endif
 
   " JUNEGUNN/VIM-PSEUDOCL                                                 {{{2
   " used by some (Junegunn) plugins
@@ -151,7 +151,7 @@ if isdirectory(g:pm_dir)
   " szamertekek modositasa regex alapjan
   if !exists('g:vimrc_minimal_plugins')
     Plug 'bimbalaszlo/vim-numutils'
-  end
+  endif
                                                                         " }}}2
 
   " .. MEGJELENES .........................
@@ -178,7 +178,7 @@ if isdirectory(g:pm_dir)
   " show RGB colors with :ColorHighlight or :ColorToggle
   if !exists('g:vimrc_minimal_plugins')
     Plug 'lilydjwg/colorizer'
-  end
+  endif
 
     let g:colorizer_startup  = 0
     let g:colorizer_nomap    = 1
@@ -191,7 +191,7 @@ if isdirectory(g:pm_dir)
   " paros jelek kozti ugralas
   if !exists('g:vimrc_minimal_plugins')
     Plug 'matchit.zip'
-  end
+  endif
 
     " FIGYELEM: nagyon belassulhat tole az egesz vim. Ezek sem segitenek:
     " let g:matchparen_timeout = 5
@@ -210,7 +210,7 @@ if isdirectory(g:pm_dir)
   " easymotion az ablakokon is
   if !exists('g:vimrc_minimal_plugins')
     Plug 't9md/vim-choosewin'
-  end
+  endif
 
     let g:choosewin_label_align        = 'left'
     let g:choosewin_label_padding      = 1
@@ -278,7 +278,7 @@ if isdirectory(g:pm_dir)
   " user defined operators
   if !exists('g:vimrc_minimal_plugins')
     Plug 'kana/vim-operator-user'
-  end
+  endif
                                                                         " }}}2
 
   " .. SZOVEG KERESESE/MODOSITASA .........
@@ -287,13 +287,13 @@ if isdirectory(g:pm_dir)
   " kijelolt szoveg keresese * gombbal
   if !exists('g:vimrc_minimal_plugins')
     Plug 'thinca/vim-visualstar'
-  end
+  endif
 
   " MACHAKANN/VIM-SANDWICH                                                {{{2
   " paros jelek gyors cserelese/torlese
   if !exists('g:vimrc_minimal_plugins')
     Plug 'machakann/vim-sandwich'
-  end
+  endif
 
     let g:sandwich_no_default_key_mappings          = 1
     let g:operator_sandwich_no_default_key_mappings = 1
@@ -303,26 +303,26 @@ if isdirectory(g:pm_dir)
   " cx: exchange text-objects or selected text with each other
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tommcdo/vim-exchange'
-  end
+  endif
 
   " TPOPE/VIM-ABOLISH                                                     {{{2
   " intelligens substitute
   "   :%Subvert/facilit{y,ies}/building{,s}/g
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tpope/vim-abolish'
-  end
+  endif
 
   " BIMBALASZLO/VIM-TEXTCONV                                              {{{2
   " easily apply text conversions
   if !exists('g:vimrc_minimal_plugins')
     Plug 'bimbalaszlo/vim-textconv'
-  end
+  endif
 
   " JUNEGUNN/VIM-EASY-ALIGN                                               {{{2
   " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
   if !exists('g:vimrc_minimal_plugins')
     Plug 'junegunn/vim-easy-align'
-  end
+  endif
 
     " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
     " 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,
@@ -340,7 +340,7 @@ if isdirectory(g:pm_dir)
   " szerkeszteni a quickfix-et)
   if !exists('g:vimrc_minimal_plugins')
     Plug 'stefandtw/quickfix-reflector.vim'
-  end
+  endif
 
     " Ne mentse automatikusan a megvaltoztatott fajlokat.
     let g:qf_write_changes = 0
@@ -353,7 +353,7 @@ if isdirectory(g:pm_dir)
   if !exists('g:vimrc_minimal_plugins')
     Plug 'shougo/unite.vim'
     autocmd vimrc VimEnter * call PostUnite()
-  end
+  endif
 
     function! PostUnite()
       call unite#custom#profile('default', 'context', {
@@ -384,19 +384,19 @@ if isdirectory(g:pm_dir)
   " tagbar-szeru, de neha jobb
   if !exists('g:vimrc_minimal_plugins')
     Plug 'shougo/unite-outline'
-  end
+  endif
 
   " TSUKKEE/UNITE-TAG                                                     {{{2
   " unite interface to browse tags
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tsukkee/unite-tag'
-  end
+  endif
 
   " SHOUGO/VIMFILER.VIM                                                   {{{2
   " directory browser
   if !exists('g:vimrc_minimal_plugins')
     Plug 'shougo/vimfiler.vim'
-  end
+  endif
                                                                         " }}}2
 
   " .. EGYEB HASZNOSSAGOK .................
@@ -405,20 +405,20 @@ if isdirectory(g:pm_dir)
   " works like Emacs' Guide-Key if mistyping normal mode command
   if !exists('g:vimrc_minimal_plugins')
     Plug 'hecal3/vim-leader-guide'
-  end
+  endif
 
   " ANDREWRADEV/LINEDIFF.VIM                                              {{{2
   " fajl reszeinek osszehasonlitasa
   " :Linediff kijeloles utan
   if !exists('g:vimrc_minimal_plugins')
     Plug 'andrewradev/linediff.vim'
-  end
+  endif
 
   " TPOPE/VIM-REPEAT                                                      {{{2
   " repeat (.) plugin-okon is
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tpope/vim-repeat'
-  end
+  endif
 
   " HENRIK/VIM-QARGS                                                      {{{2
   " execute commands on files in quickfix (`:Qdo`) and use them as args
@@ -429,7 +429,7 @@ if isdirectory(g:pm_dir)
   " netrw gx helyett
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tyru/open-browser.vim'
-  end
+  endif
 
   " TPOPE/VIM-SCRIPTEASE                                                  {{{2
   " :PP
@@ -463,7 +463,7 @@ if isdirectory(g:pm_dir)
   "   that it probably deserves its own plugin.
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tpope/vim-scriptease'
-  end
+  endif
                                                                         " }}}2
 
   " .. DEBUG / BENCHMARK ..................
@@ -534,13 +534,13 @@ if isdirectory(g:pm_dir)
   " :BenchVimrc
   if !exists('g:vimrc_minimal_plugins')
     Plug 'mattn/benchvimrc-vim'
-  end
+  endif
 
   " THINCA/VIM-THEMIS                                                     {{{2
   " a testing framework for Vim script
   if !exists('g:vimrc_minimal_plugins')
     Plug 'thinca/vim-themis'
-  end
+  endif
 
                                                                         " }}}2
 
@@ -550,7 +550,7 @@ if isdirectory(g:pm_dir)
   " szovegreszek kommentelese
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tomtom/tcomment_vim'
-  end
+  endif
 
     let g:tcommentMaps = 0
 
@@ -559,7 +559,7 @@ if isdirectory(g:pm_dir)
   " help-jet)
   if !exists('g:vimrc_minimal_plugins')
     Plug 'powerman/vim-plugin-viewdoc'
-  end
+  endif
 
     " A `:help` parancsot ne cserelje le.
     let g:no_viewdoc_abbrev = 1
@@ -576,7 +576,7 @@ if isdirectory(g:pm_dir)
   if !exists('g:vimrc_minimal_plugins')
     Plug 'kabbamine/zeavim.vim'
     autocmd vimrc FileType ruby Docset ruby 2
-  end
+  endif
 
     let g:zv_disable_mapping = 1
 
@@ -588,7 +588,7 @@ if isdirectory(g:pm_dir)
   " syntax checker
   if !exists('g:vimrc_minimal_plugins')
     Plug 'scrooloose/syntastic'
-  end
+  endif
 
     " Statusline indikator formaja.
     let g:syntastic_stl_format = ' %W{!W%fw}%E{!E%fe} '
@@ -626,7 +626,7 @@ if isdirectory(g:pm_dir)
   " $ install ctags
   if !exists('g:vimrc_minimal_plugins')
     Plug 'classtree'
-  end
+  endif
 
   " GTAGS.VIM                                                             {{{2
   " gnu global
@@ -642,13 +642,13 @@ if isdirectory(g:pm_dir)
   " Masold be a share/gtags/gtags.conf fajlt a ~/ konyvtarba.
   if !exists('g:vimrc_minimal_plugins')
     Plug 'gtags.vim'
-  end
+  endif
 
   " THINCA/VIM-QUICKRUN                                                   {{{2
   " buffer, vagy kijelolt kod futtatasa
   if !exists('g:vimrc_minimal_plugins')
     Plug 'thinca/vim-quickrun'
-  end
+  endif
 
     let g:quickrun_no_default_key_mappings = 1
     " \     'hook/output_encode/encoding': 'default',
@@ -715,13 +715,13 @@ if isdirectory(g:pm_dir)
     \  }
     \}
 
-    autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | end
+    autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | endif
 
   " HEAVENSHELL/VIM-QUICKRUN-HOOK-UNITTEST                                {{{2
   " tesztek futtatasa kulon-kulon
   if !exists('g:vimrc_minimal_plugins')
     Plug 'heavenshell/vim-quickrun-hook-unittest'
-  end
+  endif
 
     autocmd vimrc BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
     autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
@@ -754,7 +754,7 @@ if isdirectory(g:pm_dir)
   " $ pip install jedi
   if !exists('g:vimrc_minimal_plugins') && g:has_python
     Plug 'davidhalter/jedi-vim'
-  end
+  endif
 
     " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
     " akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
@@ -773,7 +773,7 @@ if isdirectory(g:pm_dir)
   " ruby motyok (pl. omni completion pontosabban mukodik)
   if !exists('g:vimrc_minimal_plugins') && g:has_ruby
     Plug 'vim-ruby/vim-ruby'
-  end
+  endif
 
     " :help ft-ruby-omni
     let g:rubycomplete_buffer_loading    = 1
@@ -795,7 +795,7 @@ if isdirectory(g:pm_dir)
   " needs lua interface (:version +lua)
   if !exists('g:vimrc_minimal_plugins') && has('lua')
     Plug 'shougo/neocomplete.vim'
-  end
+  endif
 
     let g:neocomplete#enable_at_startup = 1
     let g:neocomplete#enable_smart_case = 1
@@ -828,19 +828,19 @@ if isdirectory(g:pm_dir)
   " complete from included files too
   if !exists('g:vimrc_minimal_plugins') && has('lua')
     Plug 'shougo/neoinclude.vim'
-  end
+  endif
 
   " SHOUGO/NECO-SYNTAX                                                    {{{2
   " better syntax complete
   if !exists('g:vimrc_minimal_plugins') && has('lua')
     Plug 'shougo/neco-syntax'
-  end
+  endif
 
   " SHOUGO/NECO-VIM                                                       {{{2
   " better syntax complete
   if !exists('g:vimrc_minimal_plugins') && has('lua')
     Plug 'shougo/neco-vim'
-  end
+  endif
 
   " SIRVER/ULTISNIPS                                                      {{{2
   " template engine (see on GitHub: it's awesome!)
@@ -848,7 +848,7 @@ if isdirectory(g:pm_dir)
   " activated, so the trigger is `on_ft`.
   if !exists('g:vimrc_minimal_plugins') && g:has_python
     Plug 'sirver/ultisnips'
-  end
+  endif
 
     let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
     let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
@@ -857,7 +857,7 @@ if isdirectory(g:pm_dir)
   " templates
   if !exists('g:vimrc_minimal_plugins') && g:has_python
     Plug 'honza/vim-snippets'
-  end
+  endif
                                                                         " }}}2
 
   " .. GIT ................................
@@ -867,21 +867,21 @@ if isdirectory(g:pm_dir)
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tpope/vim-git'
-  end
+  endif
 
   " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integracio
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tpope/vim-fugitive'
-  end
+  endif
 
   " GREGSEXTON/GITV                                                       {{{2
   " gitk a vim-en belul
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
     Plug 'gregsexton/gitv'
-  end
+  endif
 
     " A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
     let g:Gitv_TruncateCommitSubjects = 1
@@ -894,7 +894,7 @@ if isdirectory(g:pm_dir)
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
     Plug 'airblade/vim-gitgutter'
-  end
+  endif
 
     let g:gitgutter_map_keys = 0
 
