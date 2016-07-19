@@ -163,6 +163,10 @@ if isdirectory(g:pm_dir)
   " vibrant, dark colorscheme (smells like a flower)
   Plug 'justinmk/molokai'
 
+  " PTRR/PROTON-VIM                                                       {{{2
+  " light colorscheme, mostly reverse (background) colored
+  Plug 'ptrr/proton-vim'
+
   " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
   " display a guide for the current line's indent level
   " Plug 'tweekmonster/local-indent.vim'
@@ -737,8 +741,13 @@ if isdirectory(g:pm_dir)
   " xdebug.remote_enable=on
   " xdebug.remote_handler=dbgp
   " xdebug.remote_host=localhost
-  " xdebug.remote_port=9000
+  " xdebug.remote_port=9001
   Plug 'joonty/vdebug'
+
+    " See the last message of https://github.com/joonty/vdebug/issues/78
+    let g:vdebug_options= {
+    \   "port" : 9001,
+    \ }
 
   " DAVIDHALTER/JEDI-VIM                                                  {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
@@ -986,6 +995,12 @@ autocmd  vimrc  ColorScheme  *
 autocmd vimrc ColorScheme molokai highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
 autocmd vimrc ColorScheme molokai highlight! link SpecialKey NonText
 
+"                                 PROTON                                  {{{2
+" ____________________________________________________________________________
+
+autocmd vimrc ColorScheme proton highlight! clear CursorLine
+autocmd vimrc ColorScheme proton highlight! CursorLine term=underline cterm=underline guibg=#e0e0e0
+
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
 
@@ -1011,13 +1026,13 @@ autocmd  vimrc  ColorScheme  desert
 if has('gui_running')
   try
     set background=dark
-    colorscheme molokai
-    " if strftime("%H") >= 7 && strftime("%H") <= 17
-    "   set background=light
-    " else
-    "   set background=dark
-    " endif
-    " colorscheme solarized
+    if strftime("%H") >= 7 && strftime("%H") <= 17
+      set background=light
+      colorscheme proton
+    else
+      set background=dark
+      colorscheme molokai
+    endif
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
   endtry
