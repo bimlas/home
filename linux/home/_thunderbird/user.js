@@ -32,6 +32,9 @@ user_pref("mail.server.server1.check_time", 1);
 // user_pref("mailnews.default_news_sort_type", 22)
 // user_pref("mailnews.default_sort_order", 1)
 // user_pref("mailnews.default_sort_type", 22)
+// Ne jelolje azonnal olvasottnak a leveleket, csak egy adott ido utan.
+user_pref("mailnews.mark_message_read.delay", true);
+user_pref("mailnews.mark_message_read.delay.interval", 5);
 
 // __ GMAIL-SZERU MUKODESHEZ ____________
 //
