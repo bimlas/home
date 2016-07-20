@@ -156,7 +156,7 @@ function Prompt {
   Write-Host ("]") -nonewline -foregroundcolor Cyan
   # Posh-Git status
   Write-VcsStatus
-  Write-Host (" $PWD") -nonewline -foregroundcolor white
+  Write-Host (" $PWD") -nonewline -foregroundcolor Blue
   Write-Host ("`n$") -nonewline -foregroundcolor White
 
   $global:LASTEXITCODE = $realLASTEXITCODE
