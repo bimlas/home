@@ -159,13 +159,15 @@ if isdirectory(g:pm_dir)
   " http://cocopon.me/app/vim-color-gallery/
   " http://vimcolors.com/
 
-  " JUSTINMK/MOLOKAI                                                      {{{2
-  " vibrant, dark colorscheme (smells like a flower)
-  Plug 'justinmk/molokai'
+  " MORHETZ/GRUVBOX                                                       {{{2
+  " retro colorscheme (light & dark)
+  Plug 'morhetz/gruvbox'
 
-  " PTRR/PROTON-VIM                                                       {{{2
-  " light colorscheme, mostly reverse (background) colored
-  Plug 'ptrr/proton-vim'
+    let g:gruvbox_invert_selection = 0
+
+  " JONATHANFILIP/VIM-LUCIUS                                              {{{2
+  " light and dark colorscheme
+  Plug 'jonathanfilip/vim-lucius'
 
   " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
   " display a guide for the current line's indent level
@@ -988,18 +990,14 @@ autocmd  vimrc  ColorScheme  *
 \ highlight! Comment term=italic      cterm=italic      gui=italic      |
 \ highlight! Folded  term=bold,italic cterm=bold,italic gui=bold,italic
 
-"                                 MOLOKAI                                 {{{2
+"                                 GRUVBOX                                 {{{2
 " ____________________________________________________________________________
 
-" More visible linebreak, whitespace and other special characters.
-autocmd vimrc ColorScheme molokai highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
-autocmd vimrc ColorScheme molokai highlight! link SpecialKey NonText
-
-"                                 PROTON                                  {{{2
-" ____________________________________________________________________________
-
-autocmd vimrc ColorScheme proton highlight! clear CursorLine
-autocmd vimrc ColorScheme proton highlight! CursorLine term=underline cterm=underline guibg=#e0e0e0
+autocmd vimrc ColorScheme *
+\ highlight! link StatFilename   Identifier |
+\ highlight! link StatFileformat Title      |
+\ highlight! link StatInfo       Question   |
+\ highlight! link StatWarning    WarningMsg
 
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
@@ -1028,10 +1026,10 @@ if has('gui_running')
     set background=dark
     if strftime("%H") >= 7 && strftime("%H") <= 17
       set background=light
-      colorscheme proton
+      colorscheme lucius
     else
       set background=dark
-      colorscheme molokai
+      colorscheme gruvbox
     endif
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
