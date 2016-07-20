@@ -990,6 +990,10 @@ autocmd  vimrc  ColorScheme  *
 \ highlight! Comment term=italic      cterm=italic      gui=italic      |
 \ highlight! Folded  term=bold,italic cterm=bold,italic gui=bold,italic
 
+" More visible linebreak, whitespace and other special characters.
+autocmd vimrc ColorScheme * highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
+autocmd vimrc ColorScheme * highlight! link SpecialKey NonText
+
 "                                 GRUVBOX                                 {{{2
 " ____________________________________________________________________________
 
