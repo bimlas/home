@@ -1849,7 +1849,7 @@ autocmd vimrc FileType * if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete
 
 " Hybrid linenumbering.
 if !exists('g:vimrc_minimal_plugins')
-  autocmd vimrc BufEnter * set number relativenumber
+  autocmd vimrc BufWinEnter * set number relativenumber
 endif
 
 " Highlighting of cursorline helps to detect the cursor itself and the
