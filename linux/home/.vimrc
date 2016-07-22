@@ -1818,7 +1818,7 @@ nnoremap        <Space>tw :set wrap!<CR>
 " ............................................................................
 
 nnoremap <Space>wo  :tab split<CR>
-nnoremap <Space>wn  :botright 78 vnew [NOTES]<Bar> set ft=asciidoc buftype=nofile<CR>
+nnoremap <Space>wn  :botright 78 vnew [NOTES]<Bar> set ft=asciidoc buftype=nofile nonumber norelativenumber<CR>
 nnoremap <Space>ws  :ChooseWinSwapStay<CR>
 nnoremap <Space>wtt :tabnew<CR>
 nnoremap <Space>wtq :tabclose<CR>
