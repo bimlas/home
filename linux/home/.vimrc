@@ -1331,8 +1331,8 @@ set showfulltag
 "                              ABBREVATIONS                               {{{1
 " ============================================================================
 
-cabbrev args args %:p:h/
-cabbrev saveas saveas %:p:h/
+cabbrev args args <C-R>=expand('%:p:h')<CR>/
+cabbrev saveas saveas <C-R>=expand('%:p:h')<CR>/
 
 "                                    MAP                                  {{{1
 " ============================================================================
@@ -1725,7 +1725,7 @@ nmap     <Space>gW <Plug>GitGutterStageHunk
 " ............................................................................
 
 map             <Space>mK <Plug>Zeavim
-nnoremap        <Space>mg :noautocmd vimgrep //j %:p:h/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap        <Space>mg :noautocmd vimgrep //j <C-R>=expand('%:p:h')<CR>/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
 nnoremap        <Space>mo :Unite -start-insert outline<CR>
 noremap         <Space>mr :QuickRun<CR>
 noremap  <expr> <Space>mR ':QuickRun ' . &filetype . 'Custom<CR>'
@@ -1797,7 +1797,7 @@ nmap <Space>qcU <Plug>CoerceU
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-nnoremap <Space>sg :noautocmd vimgrep //j %:p:h/** <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap <Space>sg :noautocmd vimgrep //j <C-R>=expand('%:p:h')<CR>/** <Bar> copen<Home><C-Right><C-Right><Right><Right>
 nnoremap <Space>sl :Unite -no-quit -keep-focus line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
