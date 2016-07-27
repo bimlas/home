@@ -1685,7 +1685,7 @@ nnoremap <Space>dn ]c
 nnoremap <Space>dp [c
 nnoremap <Space>dt :diffthis<CR>
 vnoremap <Space>dt :Linediff<CR>
-nnoremap <Space>do :bufdo diffoff!<CR>
+nnoremap <Space>do :let b=bufnr('%')<CR>:bufdo diffoff!<CR>:exe 'buffer ' . b<CR>
 nnoremap <Space>du :diffupdate<CR>
 
 "                            <Space>f - FILES                             {{{3
