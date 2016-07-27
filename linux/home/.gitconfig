@@ -55,6 +55,10 @@
 ;   git archive -o /path/to/new.zip COMMIT  -- FILE
 ;   git archive -o /path/to/old.zip COMMIT~ -- FILE
 ;
+;   Or archive the changed files:
+;
+;   git archive -o /path/to/output.zip HEAD -- $(git diff --name-only FROM..TO)
+;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 [user]                                                                  ; {{{1
