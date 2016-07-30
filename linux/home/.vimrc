@@ -120,7 +120,7 @@ if isdirectory(g:pm_dir)
   " https://github.com/Shougo/vimproc.vim/downloads
   if executable(&makeprg)
     Plug 'shougo/vimproc.vim', {
-    \ 'do' : &makeprg . (has('win32') ? ' -f make_mingw64.mak' : ''),
+    \ 'do' : &makeprg,
     \ }
   endif
 
