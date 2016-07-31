@@ -133,11 +133,11 @@ if isdirectory(g:pm_dir)
 
   " BIMBALASZLO/DOTVIM                                                    {{{2
   " sajat ~/.vim
-  Plug 'bimbalaszlo/dotvim'
+  Plug 'https://github.com/bimbalaszlo/dotvim'
 
   " BIMBALASZLO/VIM-EIGHTHEADER                                           {{{2
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
-  Plug 'bimbalaszlo/vim-eightheader'
+  Plug 'https://github.com/bimbalaszlo/vim-eightheader'
 
     let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
     let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
@@ -145,12 +145,12 @@ if isdirectory(g:pm_dir)
   " BIMBALASZLO/VIM-EIGHTSTAT                                             {{{2
   " statusline helper functions
   " WIP
-  " Plug 'bimbalaszlo/vim-eightstat'
+  " Plug 'https://github.com/bimbalaszlo/vim-eightstat'
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'bimbalaszlo/vim-numutils'
+    Plug 'https://github.com/bimbalaszlo/vim-numutils'
   endif
                                                                         " }}}2
 
@@ -317,7 +317,7 @@ if isdirectory(g:pm_dir)
   " BIMBALASZLO/VIM-TEXTCONV                                              {{{2
   " easily apply text conversions
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'bimbalaszlo/vim-textconv'
+    Plug 'https://github.com/bimbalaszlo/vim-textconv'
   endif
 
   " JUNEGUNN/VIM-EASY-ALIGN                                               {{{2
