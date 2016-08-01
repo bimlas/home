@@ -4,6 +4,7 @@
 # Eclipse files
 /.buildpath
 /.project
+/.settings
 # Tags files
 tags
 TAGS
