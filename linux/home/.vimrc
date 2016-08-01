@@ -1397,10 +1397,6 @@ cnoremap <C-N> <Down>
 inoremap <expr> <C-U> pumvisible() ? '<PageUp>' : '<C-U>'
 inoremap <expr> <C-D> pumvisible() ? '<PageDown>' : '<C-D>'
 
-" Move to next/previous argument (:args).
-nnoremap <C-E> :next<CR>
-nnoremap <C-Y> :previous<CR>
-
 " Hasznosabb backspace/delete. Az <expr> azert kell, mert a sor veget/elejet
 " nem torli a d:call search().
 " Kell hozza: set virtualedit=onemore
@@ -1677,6 +1673,10 @@ nnoremap <Space>bB :Unite buffer:!<CR>
 nnoremap <Space>bc :Unite -no-quit -keep-focus change<CR>
 nnoremap <Space>bd :bdelete<CR>
 nnoremap <Space>bD :bdelete!<CR>
+" Move to next/previous argument (:args).
+nnoremap <Space>bn :next<CR>
+nnoremap <Space>bp :previous<CR>
+nnoremap <Space>bf :first<CR>
 
 "                             <Space>d - DIFF                             {{{3
 " ............................................................................
