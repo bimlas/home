@@ -1,7 +1,13 @@
+# IntelliJ IDEA files
 /.idea
 /*.iml
+# Eclipse files
+/.buildpath
+/.project
+# Tags files
 tags
 TAGS
+# GNU Global tags
 GTAGS
 GRTAGS
 GPATH
