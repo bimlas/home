@@ -785,6 +785,12 @@ if isdirectory(g:pm_dir)
     let g:ruby_no_comment_fold           = 1
     let g:ruby_operators                 = 1
 
+  " SUNAKU/VIM-RUBY-MINITEST                                              {{{2
+  " completion for MiniTest
+  if !exists('vimrc_minimal_plugins') && g:has_ruby
+    Plug 'sunaku/vim-ruby-minitest'
+  endif
+
   " PPROVOST/VIM-PS1                                                      {{{2
   " PowerShell syntax
   Plug 'pprovost/vim-ps1'
