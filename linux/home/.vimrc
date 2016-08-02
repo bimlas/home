@@ -556,6 +556,12 @@ if isdirectory(g:pm_dir)
 
     let g:tcommentMaps = 0
 
+  " TPOPE/VIM-ENDWISE                                                     {{{2
+  " automatically insert `end` (for VimL, Ruby, etc.)
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'tpope/vim-endwise'
+  end
+
   " POWERMAN/VIM-PLUGIN-VIEWDOC                                           {{{2
   " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
   " help-jet)
