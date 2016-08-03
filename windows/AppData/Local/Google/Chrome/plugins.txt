@@ -6,3 +6,6 @@ ImTranslator - translate selected text
 
 ColorZilla - color picker
   https://chrome.google.com/webstore/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp
+
+Care Your Eyes - night mode (blinks while loading the page)
+  https://chrome.google.com/webstore/detail/care-your-eyes/fidmpnedniahpnkeomejhnepmbdamlhl
