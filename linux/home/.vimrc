@@ -922,6 +922,13 @@ if isdirectory(g:pm_dir)
       let g:gitgutter_grep_command = 'grep -e'
     endif
                                                                         " }}}2
+
+  " ECLIM                                                                 {{{2
+  " Eclipse integration
+  " http://eclim.org/
+
+    let g:EclimCompletionMethod = 'omnifunc'
+                                                                        " }}}2
   call plug#end()
 else
   autocmd vimrc VimEnter * echomsg 'Run :InstallPluginManager'
