@@ -1,5 +1,21 @@
 ; .gitconfig: git configuration
 ;
+; GIT STYLE GUIDE
+;
+;   Branch naming, commit message format, etc.
+;
+;     https://github.com/agis-/git-style-guide
+;
+; PATHSPEC
+;
+;   List all PHP files (in the whole repo, ignore case), but exclude
+;   everything in the 'vendor' directory (not itself) and 'log.txt' files
+;   anywhere in the '/test'.
+;
+;   git log ':(top,icase)**.PHP' ':!/vendor/**' ':!/test/**/log.txt'
+;
+;   See https://git-scm.com/docs/gitglossary#def_pathspec for details.
+;
 ; WEIRD CHARACTERS ON OUTPUT
 ;
 ;   set LESSCHARSET=UTF-8
