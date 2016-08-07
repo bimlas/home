@@ -278,6 +278,15 @@
   ;
   ;   where "ours" is the file in the current branch and "theirs" is the file
   ;   from the branch we want to merge.
+  ;
+  ; Rebase + squash merge
+  ;
+  ;   git checkout feature
+  ;   git rebase master       # Needed because it's fast-forwarding merge
+  ;   git checkout master
+  ;   git merge --ff-only --squash feature
+  ;   git commit
+  ;   git branch -d feature   # We don't need anymore
 
   me  = "merge"
   mef = "merge --ff-only"
@@ -346,6 +355,8 @@
   ; To rebase a merge commit:
   ;
   ;   git rebase --preserve-merges MERGE_SHA~
+  ;
+  ; For rebase + squah a feature branch, see merge.
 
   rb  = "rebase"
   rbi = "rebase --interactive"
