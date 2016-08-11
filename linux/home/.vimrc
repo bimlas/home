@@ -663,8 +663,7 @@ if isdirectory(g:pm_dir)
     let g:quickrun_config = {
     \  '_':
     \  {
-    \    'outputter':                     'multi',
-    \    'outputter/multi/targets':       ['buffer', 'quickfix'],
+    \    'outputter':                     'buffer',
     \    'outputter/buffer/running_mark': '... RUNNING ...',
     \    'runner':                        'vimproc',
     \    'hook/cd/directory':             '%S:p:h',
