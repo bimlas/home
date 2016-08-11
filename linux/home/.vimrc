@@ -598,6 +598,9 @@ if isdirectory(g:pm_dir)
     Plug 'scrooloose/syntastic'
   endif
 
+    " Do not check just before quitting.
+    let g:syntastic_check_on_wq = 0
+
     " Statusline indikator formaja.
     let g:syntastic_stl_format = ' %W{!W%fw}%E{!E%fe} '
 
