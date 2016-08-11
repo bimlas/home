@@ -926,7 +926,7 @@ if isdirectory(g:pm_dir)
   " Eclipse integration
   " http://eclim.org/
 
-    let g:EclimCompletionMethod = 'omnifunc'
+    " let g:EclimCompletionMethod = 'omnifunc'
                                                                         " }}}2
   call plug#end()
 else
