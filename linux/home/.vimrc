@@ -759,6 +759,10 @@ if isdirectory(g:pm_dir)
     \   "port" : 9001,
     \ }
 
+  " SHEERUN/VIM-POLYGLOT                                                  {{{2
+  " a lot of (emasculated, syntax only) filetype plugins
+  Plug 'sheerun/vim-polyglot'
+
   " DAVIDHALTER/JEDI-VIM                                                  {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
@@ -780,7 +784,7 @@ if isdirectory(g:pm_dir)
     let g:jedi#popup_on_dot = 0
 
   " VIM-RUBY/VIM-RUBY                                                     {{{2
-  " ruby motyok (pl. omni completion pontosabban mukodik)
+  " Ruby stuff (for example better omni-completion)
   if !exists('g:vimrc_minimal_plugins') && g:has_ruby
     Plug 'vim-ruby/vim-ruby'
   endif
@@ -798,10 +802,6 @@ if isdirectory(g:pm_dir)
   if !exists('vimrc_minimal_plugins') && g:has_ruby
     Plug 'sunaku/vim-ruby-minitest'
   endif
-
-  " PPROVOST/VIM-PS1                                                      {{{2
-  " PowerShell syntax
-  Plug 'pprovost/vim-ps1'
                                                                         " }}}2
 
   " .. NEOCOMPLETE ........................
@@ -877,13 +877,6 @@ if isdirectory(g:pm_dir)
                                                                         " }}}2
 
   " .. GIT ................................
-
-  " TPOPE/VIM-GIT                                                         {{{2
-  " supporting git stuff (ftplugin, syntax, etc.)
-  " $ install git
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'tpope/vim-git'
-  endif
 
   " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integracio
