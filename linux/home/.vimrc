@@ -694,52 +694,18 @@ if isdirectory(g:pm_dir)
     \  {
     \    'command': 'irb'
     \  },
-    \  'ruby.rspec':
-    \  {
-    \    'command':              'rspec',
-    \    'cmdopt':               '-f d',
-    \    'hook/unittest/enable': 1
-    \  },
-    \  'ruby.minitest':
-    \  {
-    \    'command':              'ruby',
-    \    'hook/unittest/enable': 1
-    \  },
-    \  'php.unit':
-    \  {
-    \    'command':              'testrunner',
-    \    'cmdopt':               'phpunit',
-    \    'hook/unittest/enable': 1
-    \  },
-    \  'python.unit':
-    \  {
-    \    'command':              'nosetests',
-    \    'cmdopt':               '-v -s',
-    \    'hook/unittest/enable': 1
-    \  },
-    \  'python.pytest':
-    \  {
-    \    'command':              'py.test',
-    \    'cmdopt':               '-v',
-    \    'hook/unittest/enable': 1
-    \  }
     \}
 
     autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | endif
 
-  " HEAVENSHELL/VIM-QUICKRUN-HOOK-UNITTEST                                {{{2
-  " tesztek futtatasa kulon-kulon
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'heavenshell/vim-quickrun-hook-unittest'
-  endif
+  " JANKO-M/VIM-TEST                                                      {{{2
+  " run tests easily
+  Plug 'janko-m/vim-test'
 
-    autocmd vimrc BufWinEnter,BufNewFile *test.php setlocal filetype=php.unit
-    autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.unit
-    " autocmd vimrc BufWinEnter,BufNewFile test_*.py setlocal filetype=python.pytest
-    autocmd vimrc BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
-    autocmd vimrc BufWinEnter,BufNewFile *_test.rb setlocal filetype=ruby.minitest
+    let g:test#strategy = 'vimproc'
 
-    let g:quickrun_config['php.unit'] = { 'command': 'phpunit' }
+    " Do not clear screen before running test.
+    let g:test#preserve_screen = 1
 
   " JOONTY/VDEBUG                                                         {{{2
   " turns Vim into a real debugger
