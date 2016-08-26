@@ -1705,12 +1705,18 @@ nmap     <Space>gW <Plug>GitGutterStageHunk
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
 " ............................................................................
 
-map             <Space>mK <Plug>Zeavim
-nnoremap        <Space>mg :noautocmd vimgrep //j <C-R>=expand('%:p:h')<CR>/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
-nnoremap        <Space>mo :Unite -start-insert outline<CR>
-noremap         <Space>mr :QuickRun<CR>
-noremap  <expr> <Space>mR ':QuickRun ' . &filetype . 'Custom<CR>'
-nnoremap        <Space>mt :Unite -start-insert tag<CR>
+map             <Space>mK  <Plug>Zeavim
+nnoremap        <Space>mg  :noautocmd vimgrep //j <C-R>=expand('%:p:h')<CR>/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap        <Space>mo  :Unite -start-insert outline<CR>
+noremap         <Space>mr  :QuickRun<CR>
+noremap  <expr> <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
+nnoremap        <Space>mt  :Unite -start-insert tag<CR>
+
+" Testing (checking
+nnoremap        <Space>mcc :TestNearest<CR>
+nnoremap        <Space>mcf :TestFile<CR>
+nnoremap        <Space>mcl :TestLast<CR>
+nnoremap        <Space>mcv :TestVisit<CR>
 
 " Definition
 nnoremap         <Space>mOd :Gtags -i <C-R>=expand('<cword>')<CR><CR>
