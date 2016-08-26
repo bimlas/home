@@ -704,8 +704,8 @@ if isdirectory(g:pm_dir)
 
     let g:test#strategy = 'vimproc'
 
-    " Do not clear screen before running test.
-    let g:test#preserve_screen = 1
+    " Using MiniTest instead of RSpec
+    let test#ruby#minitest#file_pattern = '_\(test\|spec\)\.rb'
 
   " JOONTY/VDEBUG                                                         {{{2
   " turns Vim into a real debugger
