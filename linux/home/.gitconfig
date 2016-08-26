@@ -426,8 +426,9 @@
 [diff]                                                                  ; {{{1
 
   ; Find renamed and copied files.
-  renames = "copies"
-  tool    = "gvimdiff"
+  renames   = "copies"
+  tool      = "gvimdiff"
+  algorithm = "patience"
 
 [rebase]                                                                ; {{{1
 
