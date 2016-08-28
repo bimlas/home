@@ -146,7 +146,7 @@ Windows Registry Editor Version 5.00
 ; ============================================================================
 
 [HKEY_CURRENT_USER\Control Panel\Mouse]
-"MouseSensitivity"="20"
+"MouseSensitivity"="12"
 
 ;                             NE LEGYENEK HANGOK                          {{{1
 ; ============================================================================
