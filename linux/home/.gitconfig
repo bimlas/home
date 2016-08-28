@@ -119,11 +119,12 @@
 
   seto = "remote set-url origin"
 
+  ; Add and set (if already exists) 'origin', than push it.
   ghcl = "!sh -c 'git clone --recursive https://www.github.com/$*' -"
-  ghps = "!sh -c 'git remote set-url origin https://www.github.com/$* ;             \
+  ghps = "!sh -c 'git remote add origin https://www.github.com/$* ;   \
           git push --all --set-upstream https://www.github.com/$*' -"
   glcl = "!sh -c 'git clone --recursive https://gitlab.com/$*' -"
-  glps = "!sh -c 'git remote set-url oigin https://gitlab.com/$* ;              \
+  glps = "!sh -c 'git remote add origin https://www.github.com/$* ;   \
           git push --all --set-upstream https://gitlab.com/$*' -"
 
   ; Use `fetch` instead of `pull`:
