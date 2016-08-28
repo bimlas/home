@@ -13,10 +13,9 @@ Windows Registry Editor Version 5.00
 ;                   IKONOK MELLETTI NYILACSKA ELTUNTETESE                 {{{1
 ; ============================================================================
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]
-
-; Elotte masold az ikont a konyvtarba
-"29"="C:\\blank.ico,0"
+; Copy a blank icon to the path.
+; [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]
+; "29"="C:\\blank.ico,0"
 
 ;                             3D FLIP TILTASA                             {{{1
 ; ============================================================================
@@ -56,8 +55,10 @@ Windows Registry Editor Version 5.00
 ; (disabled)     Control    CONDITIONS.
 ;                Manager
 
-;                                  SAFE                                   {{{2
-; ____________________________________________________________________________
+; Windows Firewall
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\MpsSvc]
+"Start"=dword:00000002
+"DelayedAutostart"=dword:00000000
 
 ; Application Management
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\AppMgmt]
@@ -154,286 +155,28 @@ Windows Registry Editor Version 5.00
 "Start"=dword:00000004
 "DelayedAutostart"=dword:00000000
 
-;                                 TWEAKED                                 {{{2
-; ____________________________________________________________________________
-
-; Function Discovery Resource Publication
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\FDResPub]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; ActiveX Installer (AxInstSV)
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\AxInstSV]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Adaptive Brightness
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SensrSvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Application Layer Gateway Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\ALG]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; BitLocker Drive Encryption Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BDESVC]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Credential Manager
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\VaultSvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Encrypting File System (EFS)
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\EFS]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Fax
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Fax]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Function Discovery Provider Host
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\fdPHost]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Health Key and Certificate Management
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\hkmsvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Human Interface Device Access
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\hidserv]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Interactive Services Detection
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\UI0Detect]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Link-Layer Topology Discovery Mapper
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\lltdsvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Peer Name Resolution Protocol
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PNRPsvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Peer Networking Grouping
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\p2psvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Peer Networking Identity Manager
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\p2pimsvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; PnP-X IP Bus Enumerator
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\IPBusEnum]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; PNRP Machine Name Publication Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PNRPAutoReg]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Portable Device Enumerator Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WPDBusEnum]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Problem Reports and Solutions Control Panel Support
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\wercplsupport]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Program Compatibility Assistant Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PcaSvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Quality Windows Audio Video Experience
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\QWAVE]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Remote Desktop Configuration
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\SessionEnv]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Remote Desktop Services
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TermService]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Remote Desktop Services UserMode Port Redirector
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\UmRdpService]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Tablet PC Input Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TabletInputService]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; TPM Base Services
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TBS]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; WebClient
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WebClient]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Windows Biometric Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WbioSrvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Windows CardSpace
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\idsvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Windows Color System
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WcsPlugInService]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Windows Error Reporting Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WerSvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Windows Media Center Receiver Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\ehRecvr]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Windows Media Center Scheduler Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\ehSched]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Windows Remote Management (WS-Management)
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WinRM]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; WinHTTP Web Proxy Auto-Discovery Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WinHttpAutoProxySvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; WWAN AutoConfig
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WwanSvc]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-;                               BARE BONES                                {{{2
-; ____________________________________________________________________________
-
-; Background Intelligent Transfer Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BITS]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Block Level Backup Engine Service
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\wbengine]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Windows Defender
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WinDefend]
-"Start"=dword:00000004
-"DelayedAutostart"=dword:00000000
-
-; Telephony
-; Needed for VPN
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\TapiSrv]
-"Start"=dword:00000003
-"DelayedAutostart"=dword:00000000
-
-; Windows Update
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\wuauserv]
-"Start"=dword:00000003
-"DelayedAutostart"=dword:00000000
-
-;                              ENGEDELYEZVE                               {{{2
-; ____________________________________________________________________________
-
-; Windows Firewall
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\MpsSvc]
-"Start"=dword:00000002
-"DelayedAutostart"=dword:00000000
-
 ;                                  TWEAK                                  {{{1
 ; ============================================================================
 
+; Let me handle if there is too low space.
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer]
-"NoDriveTypeAutoRun"=dword:000000dd
 "NoLowDiskSpaceChecks"=dword:00000001
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction]
-"Enable"="y"
-
+; How many seconds to wait before chkdisk
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager]
 "AutoChkTimeOut"=dword:00000005
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
-"DisablePagingExecutive"=dword:00000001
-"IoPageLockLimit"=dword:08000000
+; Configuring Automatic Debugging for System Crashes
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug]
+"Auto"="0"
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]
-"DisablePagingExecutive"=dword:00000001
-"IoPageLockLimit"=dword:08000000
-"EnablePrefetcher"=dword:00000002
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\LanmanWorkstation\Parameters]
-"MaxCmds"=dword:0000001e
-"MaxCollectionCount"=dword:00000020
-"MaxThreads"=dword:0000001e
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters]
-"DefaultTTL"=dword:00000040
-"EnablePMTUBHDetect"=dword:00000001
-"EnablePMTUDiscovery"=dword:00000001
-"MaxConnectionsPerServer"=dword:00000000
-"NameSrvQueryTimeout"=dword:00000bb8
-"SackOpts"=dword:00000001
-"Tcp1323Opts"=dword:00000001
-"TcpMaxDupAcks"=dword:00000002
-
+; Crash reporting
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PCHealth\ErrorReporting]
 "DoReport"=dword:00000000
 "ShowUI"=dword:00000000
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer]
-"Max Cached Icons"="2000"
-
+; Disabling Disk Defragmentation (disable to speed up boot)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction]
+"Enable"="y"
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OptimalLayout]
 "EnableAutoLayout"=dword:00000001
-
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug]
-"Auto"="0"
-
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\PriorityControl]
-"Win32PrioritySeparation"=dword:00000026
-
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER]
-"iexplore.exe"=dword:0000000a
-
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER]
-"iexplore.exe"=dword:0000000a
