@@ -422,11 +422,6 @@ if isdirectory(g:pm_dir)
     Plug 'tpope/vim-repeat'
   endif
 
-  " HENRIK/VIM-QARGS                                                      {{{2
-  " execute commands on files in quickfix (`:Qdo`) and use them as args
-  " (`:Qargs`), for example `:Qdo %Subvert/Foo/Bar`
-  Plug 'henrik/vim-qargs'
-
   " TYRU/OPEN-BROWSER.VIM                                                 {{{2
   " netrw gx helyett
   if !exists('g:vimrc_minimal_plugins')
