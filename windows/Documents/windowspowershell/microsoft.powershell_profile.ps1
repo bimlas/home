@@ -1,13 +1,19 @@
 # Powershell Improved
 #
 # First You need to install Powershell 3:
+# (to check the current version, run `$PSVersionTable.PSVersion`)
 #
 #   Powershell 3
 #   http://www.microsoft.com/en-us/download/details.aspx?id=34595
 #     x86 Windows6.1-KB2506143-x86.msu
 #     x64 Windows6.1-KB2506143-x64.msu
 #
-# Powershell 3 needs Service Pack 1 and (at least) .Net 4.0:
+#   Powershell 5
+#   https://www.microsoft.com/en-us/download/details.aspx?id=50395
+#     x86 Win7-KB3134760-x86.msu
+#     x64 Win7AndW2K8R2-KB3134760-x64.msu
+#
+# It needs Service Pack 1 and (at least) .Net 4.0:
 #
 #   Service Pack 1
 #   http://windows.microsoft.com/en-us/windows7/install-windows-7-service-pack-1
