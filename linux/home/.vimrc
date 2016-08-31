@@ -1627,8 +1627,8 @@ nmap     <Space>cc      <Plug>TComment_gcc
 " TODO: xterm cwd
 
 " Simple calculator/evaulator.
-nnoremap <Space>ac :PP<CR>
-map      <Space>aC g!
+map      <Space>ac g!
+nnoremap <Space>aC :PP<CR>
 
 " Open terminal (shell).
 nnoremap <expr> <Space>as   has('win32')
