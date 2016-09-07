@@ -551,10 +551,10 @@ if isdirectory(g:pm_dir)
 
     let g:tcommentMaps = 0
 
-  " TPOPE/VIM-ENDWISE                                                     {{{2
-  " automatically insert `end` (for VimL, Ruby, etc.)
+  " COHAMA/LEXIMA.VIM                                                     {{{2
+  " auto insert `end` (for VimL, Ruby, etc.) and pairing chars ({, [, <, etc)
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'tpope/vim-endwise'
+    Plug 'cohama/lexima.vim'
   end
 
   " POWERMAN/VIM-PLUGIN-VIEWDOC                                           {{{2
