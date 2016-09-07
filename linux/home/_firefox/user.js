@@ -161,10 +161,6 @@ user_pref("browser.startup.homepage", "https://www.google.hu/");
 /* Mindig kerdezzen ra, hogy hova toltse le a cuccokat. */
 user_pref("browser.download.useDownloadDir", false);
 
-/* Menuelemek animalasanak kikapcsolasa. */
-user_pref("browser.tabs.animate", false);
-user_pref("ui.submenuDelay",      0    );
-
 /* Cimsavban szimpla klatty kijelol mindent. */
 user_pref("browser.urlbar.clickSelectsAll", true);
 
@@ -173,9 +169,6 @@ user_pref("general.autoScroll", false);
 
 /* Finom gorgetes kikapcsolasa. */
 user_pref("general.smoothScroll", false);
-
-/* Nyilakkal valo navigalas. */
-// user_pref("accessibility.browsewithcaret", true);
 
 /* Ne jegyezze meg a jelszavakat. */
 user_pref("signon.rememberSignons", false);
@@ -193,22 +186,3 @@ user_pref("privacy.clearOnShutdown.formdata",     false);
 user_pref("privacy.clearOnShutdown.history",      false);
 user_pref("privacy.clearOnShutdown.offlineApps",  false);
 user_pref("privacy.clearOnShutdown.siteSettings", false);
-
-/*                                TWEAK                                 {{{1
- * =========================================================================
- */
-
-// A lemez helyett a memoriaban legyen a cache, a merete legyen X kbyte, vagy
-// -1 eseten magatol hatarozza meg.
-user_pref("browser.cache.disk.enable",      false);
-user_pref("browser.cache.memory.enable",    true);
-user_pref("browser.cache.memory.capacity",  1000000);
-
-// Toltes kozben a user interakciojat reszesitse elonyben az oldal
-// betoltesehez kepest.
-user_pref("content.interrupt.parsing",                           true);
-
-// user_pref("network.http.max-persistent-connections-per-server",  16  );
-// user_pref("network.http.max-persistent-connections-per-proxy",   32  );
-// user_pref("network.http.pipelining",                             true);
-// user_pref("network.http.pipelining.ssl",                         true);
