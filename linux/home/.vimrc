@@ -714,12 +714,23 @@ if isdirectory(g:pm_dir)
   " xdebug.remote_handler=dbgp
   " xdebug.remote_host=localhost
   " xdebug.remote_port=9001
+  "
+  " RUBY
+  " Download the latest from
+  " http://downloads.activestate.com/Komodo/releases/XXX/remotedebugging/Komodo-RubyRemoteDebugging...
   Plug 'joonty/vdebug'
 
     " See the last message of https://github.com/joonty/vdebug/issues/78
     let g:vdebug_options= {
     \   "port" : 9001,
     \ }
+
+    " RUBY - DOESN'T WORKS YET
+    " let $RUBYDB_LIB = 'c:\\app\\rdbgp'
+    " let $RUBYDB_OPTS = 'HOST=localhost PORT=' . g:vdebug_options['port']
+    "
+    " Start the script in a shell with
+    " ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb myscript.rb
 
   " SHEERUN/VIM-POLYGLOT                                                  {{{2
   " a lot of (emasculated, syntax only) filetype plugins
