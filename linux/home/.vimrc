@@ -14,9 +14,6 @@
 " Sok plugin es beallitas igenyli.
 set nocompatible
 
-" Windows-on nincs a runtimepathban.
-set runtimepath+=$HOME/.vim
-
 " Gyorsitja a vim mukodeset.
 if v:version >= 704
   set regexpengine=1
@@ -35,6 +32,12 @@ augroup END
 " ============================================================================
 
 if has('win32')
+
+  " Add external binaries to PATH (like ctags, pt, etc.).
+  let $PATH = $PATH . ';' . $HOME . '/.vim/bin'
+
+  " Add the basic Linux tools (via Msys-Git) to the PATH.
+  let $PATH = $PATH . ';c:/app/git/usr/bin'
 
   " Backslash (\) helyett forwardslash (/) hasznalat az utvonalakban
   " (pl. <C-X><C-F> kiegeszitesenel).
