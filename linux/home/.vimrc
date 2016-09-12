@@ -981,15 +981,16 @@ autocmd  vimrc  ColorScheme  *
 " More visible linebreak, whitespace and other special characters.
 autocmd vimrc ColorScheme * highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
 autocmd vimrc ColorScheme * highlight! link SpecialKey NonText
+autocmd vimrc ColorScheme * highlight! Error term=bold ctermfg=9 gui=bold guibg=#dc322f guifg=#ffffff
 
 "                                 GRUVBOX                                 {{{2
 " ____________________________________________________________________________
 
-autocmd vimrc ColorScheme *
+autocmd vimrc ColorScheme gruvbox
 \ highlight! link StatFilename   Identifier |
 \ highlight! link StatFileformat Title      |
 \ highlight! link StatInfo       Question   |
-\ highlight! link StatWarning    WarningMsg
+\ highlight! link StatWarning    Error
 
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
