@@ -114,6 +114,9 @@
   ; Push and track those remote branches.
   psa = "push --set-upstream --all"
 
+  ; Push tags.
+  pst = "push --tags"
+
   ; Push to origin (used to delete remote branch).
   pso = "push origin"
 
@@ -197,7 +200,8 @@
   ; Formated for mail to my boss.
   ; The last Sed command removes the metainformation (keywords, issue number,
   ; etc.)
-  mail = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
+  mail = "!git log --format=mail HEAD~.. | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
+  tmail = "!git log --format=mail `git describe --tags --no-abbrev`.. | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
 
   ; __ SHOW _______________________________                               {{{2
 
