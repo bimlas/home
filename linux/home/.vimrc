@@ -705,6 +705,7 @@ if isdirectory(g:pm_dir)
 
   " JOONTY/VDEBUG                                                         {{{2
   " turns Vim into a real debugger
+  " See :help VdebugKeys for key mappings
   "
   " PHP.INI
   " zend_extension=/path/to/xdebug.so
