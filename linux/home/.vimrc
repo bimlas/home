@@ -96,8 +96,8 @@ let g:netrw_browse_split = 4
 let g:has_python = has('python') || has('python3')
 let g:has_ruby   = has('ruby')
 
-let g:pm_dir   = $HOME . '/.vim/plug'
-let g:pm_install_dir = $HOME . '/.vim/p'
+let g:pm_dir   = $HOME . '/.vim/vim-plug'
+let g:pm_install_dir = $HOME . '/.vim/plugins'
 
 if ! (g:has_ruby || g:has_python)
   let g:plug_threads = 1
