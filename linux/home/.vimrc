@@ -363,7 +363,7 @@ if isdirectory(g:pm_dir)
     function! PostUnite()
       call unite#custom#profile('default', 'context', {
       \ 'prompt_direction': 'top',
-      \ 'direction':        'botright',
+      \ 'no_split':         1,
       \ 'cursor_line_time': '0.0',
       \ 'sync':             1,
       \ })
