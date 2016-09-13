@@ -406,12 +406,6 @@ if isdirectory(g:pm_dir)
 
   " .. EGYEB HASZNOSSAGOK .................
 
-  " HECAL3/VIM-LEADER-GUIDE                                               {{{2
-  " works like Emacs' Guide-Key if mistyping normal mode command
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'hecal3/vim-leader-guide'
-  endif
-
   " ANDREWRADEV/LINEDIFF.VIM                                              {{{2
   " fajl reszeinek osszehasonlitasa
   " :Linediff kijeloles utan
@@ -1598,16 +1592,6 @@ endfunction
 " ____________________________________________________________________________
 "
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
-
-" Show Emacs' Guide-Key like window when mistyping normal mode commands.
-if PluginEnabled('vim-leader-guide')
-  let g:guidekeys                    = {}
-  let g:guidekeys['<Space>']         = {}
-  let g:guidekeys['<Space>']['name'] = '<Space>'
-  call leaderGuide#register_prefix_descriptions('', 'g:guidekeys')
-  nnoremap <silent> <Space> :<c-u>LeaderGuide '<Space>'<CR>
-  vnoremap <silent> <Space> :<c-u>LeaderGuideVisual '<Space>'<CR>
-endif
 
 noremap  <Space>?       :Unite mapping<CR>
 
