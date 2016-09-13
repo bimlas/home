@@ -96,8 +96,8 @@ let g:netrw_browse_split = 4
 let g:has_python = has('python') || has('python3')
 let g:has_ruby   = has('ruby')
 
-let g:pm_dir   = $HOME . '/.vim/vim-plug'
-let g:pm_install_dir = $HOME . '/.vim/bundle'
+let g:pm_dir   = $HOME . '/.vim/plug'
+let g:pm_install_dir = $HOME . '/.vim/p'
 
 if ! (g:has_ruby || g:has_python)
   let g:plug_threads = 1
@@ -912,24 +912,23 @@ endif
 command!  InstallPluginManager  call InstallPluginManager()
 function! InstallPluginManager()
   let pm_repo = 'https://github.com/junegunn/vim-plug'
-  let path = $HOME . '/.vim/vim-plug'
 
   if ! executable('git')
     echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
     return
   endif
 
-  if ! isdirectory(path)
-    silent! if ! mkdir(path, 'p')
-      echohl ErrorMsg | echomsg 'Cannot create directory (may be a regular file):' | echomsg path | echohl None
+  if ! isdirectory(g:pm_dir)
+    silent! if ! mkdir(g:pm_dir, 'p')
+      echohl ErrorMsg | echomsg 'Cannot create directory (may be a regular file):' | echomsg g:pm_dir | echohl None
       return
     endif
   endif
 
   echo 'Cloning plugin manager...'
-  let msg = system('git clone --depth 1 "' . pm_repo . '" "' . path . '"')
+  let msg = system('git clone --depth 1 "' . pm_repo . '" "' . g:pm_dir . '"')
   if msg =~ 'fatal'
-    echohl ErrorMsg | echomsg 'Cannot clone ' . pm_repo . ' to ' . path . ':' | echomsg msg | echohl None
+    echohl ErrorMsg | echomsg 'Cannot clone ' . pm_repo . ' to ' . g:pm_dir . ':' | echomsg msg | echohl None
     return
   endif
 
