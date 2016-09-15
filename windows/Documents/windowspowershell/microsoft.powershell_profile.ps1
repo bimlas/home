@@ -32,7 +32,7 @@
 # To update a module:
 #
 #   Run cmd.exe
-#   powershell -noprofile -c Update-Module <MODULE>
+#   powershell -noprofile -c Update-Module <MODULE> -verbose
 #
 #  =================== BimbaLaszlo (.github.io|gmail.com) ====================
 
