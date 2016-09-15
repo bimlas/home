@@ -554,6 +554,9 @@ if isdirectory(g:pm_dir)
     Plug 'cohama/lexima.vim'
   end
 
+    " Do not insert closing paired characters ('>', '}', '"').
+    let g:lexima_enable_basic_rules = 0
+
   " POWERMAN/VIM-PLUGIN-VIEWDOC                                           {{{2
   " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
   " help-jet)
