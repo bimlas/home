@@ -6,7 +6,7 @@
 " ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 set nocompatible
-set noswapfile
+set noswapfile nomodifiable readonly
 set number
 let g:vimrc_minimal_plugins = 1
 
