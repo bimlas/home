@@ -34,17 +34,6 @@
 ;              :config
 ;                (require 'powerline))
 
-; vim mode
-(use-package evil
-             :ensure t
-             :config
-               (evil-mode t))
-(use-package evil-leader
-             :ensure t
-             :config
-               (global-evil-leader-mode t)
-               (evil-leader/set-leader "SPC"))
-
 ; light/dark color theme
 (use-package solarized-theme
              :ensure t
@@ -125,47 +114,6 @@
 ; (let ((default-directory "~/.emacs.d/private"))
 ;   (normal-top-level-add-subdirs-to-load-path))
 
-;                                BINDINGS                                 {{{1
-; ============================================================================
-
-;; Global remaps to quit.
-;; TODO: visual block.
-(global-set-key                             (kbd "C-k")     'keyboard-escape-quit)
-(define-key isearch-mode-map                (kbd "C-k")     'isearch-abort)
-(define-key evil-insert-state-map           (kbd "C-k")     'evil-force-normal-state)
-(define-key evil-normal-state-map           (kbd "C-k")     'keyboard-escape-quit)
-(define-key evil-visual-state-map           (kbd "C-k")     'keyboard-escape-quit)
-(define-key minibuffer-local-map            (kbd "C-k")     'keyboard-escape-quit)
-(define-key minibuffer-local-ns-map         (kbd "C-k")     'keyboard-escape-quit)
-(define-key minibuffer-local-completion-map (kbd "C-k")     'keyboard-escape-quit)
-(define-key minibuffer-local-must-match-map (kbd "C-k")     'keyboard-escape-quit)
-(define-key minibuffer-local-isearch-map    (kbd "C-k")     'keyboard-escape-quit)
-
-;; Global remaps to <return>.
-;; TODO: google
-(define-key evil-motion-state-map           (kbd "C-j")     'widget-button-press)
-(define-key evil-normal-state-map           (kbd "C-j")     'widget-button-press)
-
-;; Custom maps.
-(define-key evil-motion-state-map           (kbd "C-l")     'evil-window-next)
-(define-key evil-normal-state-map           (kbd "C-l")     'evil-window-next)
-(define-key evil-normal-state-map           (kbd "H")       'evil-first-non-blank-of-visual-line)
-(define-key evil-normal-state-map           (kbd "L")       'evil-end-of-visual-line)
-(define-key evil-motion-state-map           (kbd "s")       'avy-goto-char-2)
-(define-key evil-normal-state-map           (kbd "s")       'avy-goto-char-2)
-;; TODO: not works
-(define-key evil-visual-state-map           (kbd "s")       'avy-goto-char-2)
-(define-key evil-motion-state-map           (kbd "C-e")     'evil-next-buffer)
-(define-key evil-normal-state-map           (kbd "C-e")     'evil-next-buffer)
-(define-key evil-motion-state-map           (kbd "C-y")     'evil-prev-buffer)
-(define-key evil-normal-state-map           (kbd "C-y")     'evil-prev-buffer)
-(define-key evil-motion-state-map           (kbd "<f12>")   'evil-search-highlight-persist-remove-all)
-(define-key evil-normal-state-map           (kbd "<f12>")   'evil-search-highlight-persist-remove-all)
-
-(evil-leader/set-key
-"f f" 'helm-find-files
-"b s" 'switch-to-buffer
-"b d" 'kill-this-buffer)
 ;                               BEALLITASOK                               {{{1
 ; ============================================================================
 
@@ -202,9 +150,3 @@
 
 ; Usenet server.
 (setenv "NNTPSERVER" "news.gmane.org")
-
-;                                   MAP                                   {{{1
-; ============================================================================
-
-; (global-set-key (kbd "C-SPC") 'completion-at-point)
-(global-set-key (kbd "C-SPC") 'ace-jump-char-mode)
