@@ -796,7 +796,7 @@ if isdirectory(g:pm_dir)
     " let g:neocomplete#disable_auto_complete = 1
 
     " Wait before showing completions.
-    let g:neocomplete#auto_complete_delay = 1000
+    let g:neocomplete#auto_complete_delay = 500
 
     " Allways show completions independently from the time it takes.
     let g:neocomplete#skip_auto_completion_time = ''
@@ -805,7 +805,7 @@ if isdirectory(g:pm_dir)
     if !exists('g:neocomplete#sources')
       let g:neocomplete#sources = {}
     endif
-    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'syntax', 'vim', 'ultisnips']
+    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'syntax', 'vim', 'ultisnips', 'buffer']
 
     " Force omnicompletion on this filetype/pattern pairs.
     if !exists('g:neocomplete#force_omni_input_patterns')
