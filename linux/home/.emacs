@@ -60,10 +60,13 @@
                      helm-ff-file-name-history-use-recentf t)
 
              :config
+               (require 'helm-config)   ; Needed to list all helm-commands using C-x c
                (helm-mode t)
-               (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-               (define-key helm-map (kbd "C-i")   'helm-execute-persistent-action) ; make TAB works in terminal
-               (define-key helm-map (kbd "C-z")   'helm-select-action))            ; list actions using C-z
+               (define-key helm-map (kbd "<tab>")   'helm-execute-persistent-action)
+               (define-key helm-map (kbd "C-i")     'helm-execute-persistent-action) ; make TAB works in terminal
+               (define-key helm-map (kbd "C-z")     'helm-select-action))            ; list actions using C-z
+               (global-set-key      (kbd "M-x")     'helm-M-x)
+               (global-set-key      (kbd "C-x C-f") 'helm-find-files)
 
 ; vim: easymotion
 (use-package avy
