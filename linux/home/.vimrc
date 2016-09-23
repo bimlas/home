@@ -425,6 +425,12 @@ if isdirectory(g:pm_dir)
     Plug 'tyru/open-browser.vim'
   endif
 
+  " AIRBLADE/VIM-ROOTER                                                   {{{2
+  " autochdir to project root when opening a buffer
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'airblade/vim-rooter'
+  endif
+
   " TPOPE/VIM-SCRIPTEASE                                                  {{{2
   " :PP
   "   Pretty print.  With no argument, acts as a REPL.
@@ -852,25 +858,12 @@ if isdirectory(g:pm_dir)
 
   " .. GIT ................................
 
-  " TPOPE/VIM-FUGITIVE                                                    {{{2
-  " git integracio
+  " LAMBDALISUE/VIM-GITA                                                  {{{2
+  " git integration
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'tpope/vim-fugitive'
+    Plug 'lambdalisue/vim-gita'
   endif
-
-  " GREGSEXTON/GITV                                                       {{{2
-  " gitk a vim-en belul
-  " $ install git
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'gregsexton/gitv'
-  endif
-
-    " A commit uzeneteket roviditse le annyira, hogy minden info latszodjon.
-    let g:Gitv_TruncateCommitSubjects = 1
-
-    " Control key-eket ne map-oljon.
-    let g:Gitv_DoNotMapCtrlKey = 1
 
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
@@ -1300,6 +1293,9 @@ endfunction
 "                               KODKIEGESZITES                            {{{1
 " ============================================================================
 
+" Using a Git hook to regenerate tags (the cwd have to be on project root).
+set tags+=.git/tags
+
 " <C-N> kiegeszitesnel a sztringeket vegye:
 " .  ebbol a fajlbol
 " i  include fajlokbol
@@ -1683,21 +1679,19 @@ nnoremap <Space>fvv :edit $MYVIMRC<CR>
 "                             <Space>g - GIT                              {{{3
 " ............................................................................
 
-nnoremap <Space>ga :Gcommit --amend<CR>
-nnoremap <Space>gb :Gblame<CR>
-nnoremap <Space>gc :Gcommit<CR>
-nnoremap <Space>gd :Gdiff<CR>
+nnoremap <Space>ga :Gita commit --amend<CR>
+nnoremap <Space>gb :Gita blame<CR>
+nnoremap <Space>gc :Gita commit<CR>:set filetype=gitcommit<CR>
+nnoremap <Space>gd :Gita diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
 nnoremap <Space>gg :Ggrep! --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
-nnoremap <Space>gl :Gitv!<CR>
-nnoremap <Space>gL :Gitv<CR>
-nnoremap <Space>gm :Gmerge<CR>
+nnoremap <Space>gm :Gita merge<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
-nnoremap <Space>gr :Gread<CR>
+nnoremap <Space>gr :Gita checkout -- %:p<CR>:checktime<CR>
 nmap     <Space>gR <Plug>GitGutterUndoHunk
-nnoremap <Space>gs :Gstatus<CR>
-nnoremap <Space>gw :Gwrite<CR>
+nnoremap <Space>gs :Gita status<CR>
+nnoremap <Space>gw :Gita add -- %:p<CR>:GitGutterAll<CR>
 nmap     <Space>gW <Plug>GitGutterStageHunk
 
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
