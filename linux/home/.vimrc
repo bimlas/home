@@ -813,13 +813,6 @@ if isdirectory(g:pm_dir)
     endif
     let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'syntax', 'vim', 'ultisnips', 'buffer']
 
-    " Force omnicompletion on this filetype/pattern pairs.
-    if !exists('g:neocomplete#force_omni_input_patterns')
-      let g:neocomplete#force_omni_input_patterns = {}
-    endif
-    let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w\{2,}\|\h\w*::\w\{2,}'
-    let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-
   " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
   " complete from included files too
   if !exists('g:vimrc_minimal_plugins') && has('lua')
