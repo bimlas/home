@@ -52,6 +52,7 @@ copy             \
 header "  SYMLINK"
 
 link "$CWD/linux/home/.ctags"         "$HOME/.ctags"
+link "$CWD/linux/home/.emacs"         "$HOME/.emacs"
 link "$CWD/linux/home/.gitconfig"     "$HOME/.gitconfig"
 link "$CWD/linux/home/.gemrc"         "$HOME/.gemrc"
 link "$CWD/linux/home/.globalrc"      "$HOME/.globalrc"
