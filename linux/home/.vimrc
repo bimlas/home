@@ -1668,6 +1668,7 @@ nnoremap <Space>du :diffupdate<CR>
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap <Space>F   :find<Space>
+nnoremap <Space>fb  :Unite bookmark<CR>
 nnoremap <Space>fe  :VimFilerExplorer<CR>
 nnoremap <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
 nnoremap <Space>fF  :Unite file file/new directory/new<CR>
