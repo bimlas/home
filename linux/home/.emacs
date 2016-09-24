@@ -11,12 +11,15 @@
 ; Nezz ra: M-X customize, M-X customize-group RET solarized
 ; (global-set-key (kbd "C-SPC") 'tempo-complete-tag)
 
-;                               USE-PACKAGE                               {{{1
+;                                PACKAGES                                 {{{1
 ; ============================================================================
+;
 ; https://github.com/jwiegley/use-package
 ; http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
 
-; install use-package
+;                           INSTALL USE-PACKAGE                           {{{2
+; ____________________________________________________________________________
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
@@ -28,11 +31,11 @@
 (eval-when-compile
   (require 'use-package))
 
-; ; better modeline
-; (use-package powerline-evil
-;              :ensure t
-;              :config
-;                (require 'powerline))
+; better modeline
+(use-package powerline-evil
+             :ensure t
+             :config
+               (require 'powerline))
 
 ; light/dark color theme
 (use-package solarized-theme
@@ -67,6 +70,17 @@
                (define-key helm-map (kbd "C-z")     'helm-select-action))            ; list actions using C-z
                (global-set-key      (kbd "M-x")     'helm-M-x)
                (global-set-key      (kbd "C-x C-f") 'helm-find-files)
+
+; project-related stuff
+(use-package projectile
+             :ensure t
+             :config
+               (projectile-global-mode t))
+
+(use-package helm-projectile
+             :ensure t
+             :config
+               (helm-projectile-on))
 
 ; vim: easymotion
 (use-package avy
