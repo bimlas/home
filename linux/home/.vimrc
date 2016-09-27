@@ -1191,8 +1191,8 @@ set hlsearch incsearch
 " elejere, ezert inkabb le is tiltom ezt a lehetoseget.
 set nowrapscan
 
-" Platinum Searcher
-let &grepprg = 'pt --nogroup --nocolor --column -e'
+" I using Git grep most of the time instead of standard grepping tools.
+let &grepprg = 'git grep -n'
 
 "                             SZINTAXIS KIEMELES                          {{{1
 " ============================================================================
@@ -1678,7 +1678,7 @@ nnoremap <Space>gb :Gita blame<CR>
 nnoremap <Space>gc :Gita commit<CR>:set filetype=gitcommit<CR>
 nnoremap <Space>gd :Gita diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
-nnoremap <Space>gg :Ggrep! --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
+nnoremap <Space>gg :grep! --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
 nnoremap <Space>gm :Gita merge<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
