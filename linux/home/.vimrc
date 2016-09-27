@@ -1677,7 +1677,6 @@ nnoremap <Space>gc :Gita commit<CR>:set filetype=gitcommit<CR>
 nnoremap <Space>gd :Gita diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
 nnoremap <Space>gg :grep! --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
-nnoremap <Space>gm :Gita merge<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
 nnoremap <Space>gr :Gita checkout -- %:p<CR>:checktime<CR>
