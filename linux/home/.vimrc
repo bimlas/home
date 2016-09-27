@@ -290,9 +290,7 @@ if isdirectory(g:pm_dir)
 
   " THINCA/VIM-VISUALSTAR                                                 {{{2
   " kijelolt szoveg keresese * gombbal
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'thinca/vim-visualstar'
-  endif
+  Plug 'thinca/vim-visualstar'
 
   " MACHAKANN/VIM-SANDWICH                                                {{{2
   " paros jelek gyors cserelese/torlese
