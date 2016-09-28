@@ -121,6 +121,10 @@
 ; git
 (use-package magit
              :ensure t)
+(use-package git-gutter
+             :ensure t
+             :config
+               (global-git-gutter-mode t))
 
 ; display hex/rgb colors
 ; (use-package rainbow-mode
@@ -180,17 +184,3 @@
 
 ; Usenet server.
 (setenv "NNTPSERVER" "news.gmane.org")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (magit company-inf-ruby rinari company-jedi jedi company-quickhelp company avy helm guide-key solarized-theme use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
