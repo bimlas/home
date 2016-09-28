@@ -49,12 +49,41 @@ Set-Alias gsh gitBash
 #                    "PACKAGE-MANAGER" FOR POWERSHELL                     {{{2
 # ____________________________________________________________________________
 
+Function Get-MyModule
+{
+  Param( [string] $name )
+    if( -not (Get-Module -name $name) )
+    {
+      if( Get-Module -ListAvailable | Where-Object { $_.name -eq $name } )
+      {
+        Import-Module -name $name
+        $true
+      }
+      else
+      {
+        $false
+      }
+    }
+    else
+    {
+      $true
+    }
+}
+
+if( -not (Get-Mymodule -name "PsGet") )
+{
+  (new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
+}
+
 #                               PSREADLINE                                {{{2
 # ____________________________________________________________________________
 #
 # Bash-like behaviour.
 
-Install-Module PSReadLine
+if( -not (Get-Mymodule -name "PSReadLine") )
+{
+  Install-Module PSReadLine
+}
 
 # Bash-like editing.
 Set-PSReadlineOption -EditMode Emacs
@@ -86,7 +115,10 @@ Set-PSReadlineKeyHandler -Key Ctrl+N    -Function HistorySearchForward
 #
 # Git commandline-completion and prompt string.
 
-Install-Module Posh-Git
+if( -not (Get-Mymodule -name "Posh-Git") )
+{
+  Install-Module Posh-Git
+}
 
 $global:GitPromptSettings.EnableFileStatus  = $false
 $global:GitPromptSettings.EnableStashStatus = $false
