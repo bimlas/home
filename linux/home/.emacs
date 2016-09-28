@@ -140,6 +140,14 @@
 ; (let ((default-directory "~/.emacs.d/private"))
 ;   (normal-top-level-add-subdirs-to-load-path))
 
+; asciidoc
+(use-package adoc-mode
+             :ensure t)
+; TODO: check it
+; ~/.emacs.d/local/doc-mode
+; http://sourceforge.net/projects/xpt/files/doc-mode/
+; (require 'doc-mode)
+
 ;                               BEALLITASOK                               {{{1
 ; ============================================================================
 
@@ -157,14 +165,10 @@
 (when (member "DejaVu Sans Mono" (font-family-list))
   (set-face-attribute 'default nil :font "DejaVu Sans Mono"))
 
-; ~/.emacs.d/local/doc-mode
-; http://sourceforge.net/projects/xpt/files/doc-mode/
-; (require 'doc-mode)
-
 ;                                FILETYPE                                 {{{1
 ; ============================================================================
 
-(add-to-list 'auto-mode-alist '("\\.adoc$" . doc-mode))
+(add-to-list 'auto-mode-alist '("\\.adoc$" . adoc-mode))
 
 ;                           KORNYEZETI VALTOZOK                           {{{2
 ; ____________________________________________________________________________
