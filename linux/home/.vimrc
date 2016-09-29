@@ -347,6 +347,32 @@ if isdirectory(g:pm_dir)
 
     " Ne mentse automatikusan a megvaltoztatott fajlokat.
     let g:qf_write_changes = 0
+
+  " DYNG/CTRLSF.VIM                                                       {{{2
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'dyng/ctrlsf.vim', {'branch': 'feature/ripgrep-support'}
+  endif
+
+    let g:ctrlsf_ackprg = 'rg'
+    let g:ctrlsf_auto_close = 0
+    " Buggy because of Rippergrep.
+    let g:ctrlsf_case_sensitive = 'no'
+    " let g:ctrlsf_regex_pattern = 1
+    let g:ctrlsf_default_root = 'project+fw'
+    let g:ctrlsf_mapping = {
+    \ 'open':    ['<CR>', '<C-J>'],
+    \ 'quit':    'q',
+    \ 'pquit':   'q',
+    \ 'openb':   '',
+    \ 'split':   '',
+    \ 'vsplit':  '',
+    \ 'tab':     '',
+    \ 'tabb':    '',
+    \ 'popen':   '',
+    \ 'next':    'n',
+    \ 'prev':    'N',
+    \ 'loclist': '',
+    \ }
                                                                         " }}}2
 
   " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
@@ -1676,7 +1702,7 @@ nnoremap <Space>gb :Gita blame<CR>
 nnoremap <Space>gc :Gita commit<CR>:set filetype=gitcommit<CR>
 nnoremap <Space>gd :Gita diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
-nnoremap <Space>gg :grep! --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
+nnoremap <Space>gg :CtrlSF  %:p:h<S-Left><Left>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
 nnoremap <Space>gr :Gita checkout -- %:p<CR>:checktime<CR>
