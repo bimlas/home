@@ -33,7 +33,7 @@ augroup END
 
 if has('win32')
 
-  " Add external binaries to PATH (like ctags, pt, etc.).
+  " Add external binaries to PATH (like ctags, rg, etc.).
   let $PATH = $PATH . ';' . $HOME . '/.vim/bin'
 
   " Add the basic Linux tools (via Msys-Git) to the PATH.
@@ -376,11 +376,11 @@ if isdirectory(g:pm_dir)
     let g:unite_enable_auto_select          = 0
     let g:unite_source_buffer_time_format   = ''
 
-    " Platinum Searcher
-    let g:unite_source_rec_async_command  = ['pt', '--hidden', '--follow', '--nocolor', '--nogroup', '--files-with-matches', '']
-    let g:unite_source_grep_command       = 'pt'
-    let g:unite_source_grep_default_opts  = '--hidden --nocolor --nogroup --smart-case -e --depth 0'
-    let g:unite_source_grep_recursive_opt = '--depth 25'
+    " Ripgrep
+    let g:unite_source_rec_async_command  = ['rg', '--hidden', '--files']
+    let g:unite_source_grep_command       = 'rg'
+    let g:unite_source_grep_default_opts  = '--hidden --no-heading --vimgrep'
+    let g:unite_source_grep_recursive_opt = ''
     let g:unite_source_grep_encoding      = 'utf-8'
 
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
