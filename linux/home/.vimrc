@@ -437,6 +437,12 @@ if isdirectory(g:pm_dir)
     Plug 'andrewradev/linediff.vim'
   endif
 
+  " DBMRQ/VIM-CHALK                                                       {{{2
+  " makes numbered folding with `zf`
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'dbmrq/vim-chalk'
+  endif
+
   " TPOPE/VIM-REPEAT                                                      {{{2
   " repeat (.) plugin-okon is
   if !exists('g:vimrc_minimal_plugins')
@@ -1491,6 +1497,20 @@ endif
 
 nmap <expr>     <Plug>(mychoosewin) (winnr('$') > 2) ? '<Plug>(choosewin)' : '<C-W>w'
 nmap <C-W><C-W> <Plug>(mychoosewin)
+
+"                                 CHLANK                                  {{{3
+" ............................................................................
+
+nmap zf <Plug>Chalk
+vmap zf <Plug>Chalk
+nmap Zf <Plug>SingleChalk    " Open single fold at current level or specified count
+nmap ZF <Plug>SingleChalkUp  " Open single fold at next level or specified count
+" Increment current fold level
+nmap =z <Plug>ChalkUp
+vmap =z <Plug>ChalkUp
+" Decrement current fold level
+nmap -z <Plug>ChalkDown
+vmap -z <Plug>ChalkDown
 
 "                               OPENBROWSER                               {{{3
 " ............................................................................
