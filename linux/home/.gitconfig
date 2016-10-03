@@ -252,6 +252,7 @@
   ; __ BRANCH _____________________________                               {{{2
 
   ; -m  --move  Rename branch
+  ; -u          Set upstream of branch (git branch -u origin/feat)
   ;
   ; Delete remote branch (aka push an empty branch to remote like
   ; LOCAL:REMOTE)
