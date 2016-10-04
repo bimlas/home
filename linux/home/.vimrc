@@ -350,13 +350,11 @@ if isdirectory(g:pm_dir)
 
   " DYNG/CTRLSF.VIM                                                       {{{2
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'dyng/ctrlsf.vim', {'branch': 'feature/ripgrep-support'}
+    Plug 'dyng/ctrlsf.vim'
   endif
 
     let g:ctrlsf_ackprg = 'rg'
     let g:ctrlsf_auto_close = 0
-    " Buggy because of Rippergrep.
-    let g:ctrlsf_case_sensitive = 'no'
     " let g:ctrlsf_regex_pattern = 1
     let g:ctrlsf_default_root = 'project+fw'
     let g:ctrlsf_mapping = {
