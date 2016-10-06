@@ -559,6 +559,9 @@ if isdirectory(g:pm_dir)
   "   >= 14 Anything pending in a ":finally" clause.
   "   >= 15 Every executed Ex command (truncated at 200 characters).
   "
+  " To set verbose permanently:
+  "   set verbose=123
+  "
   " To output :verbose to a file:
   "   set verbosefile=filename.txt
   "                                                                        }}}
