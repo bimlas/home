@@ -1728,7 +1728,7 @@ nnoremap <Space>gb :Gita blame<CR>
 nnoremap <Space>gc :Gita commit<CR>:set filetype=gitcommit<CR>
 nnoremap <Space>gd :Gita diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
-nnoremap <Space>gg :CtrlSF  %:p:h<S-Left><Left>
+nnoremap <Space>gg :CtrlSF<Space>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
 nnoremap <Space>gr :Gita checkout -- %:p<CR>:checktime<CR>
