@@ -887,11 +887,11 @@ if isdirectory(g:pm_dir)
 
   " .. GIT ................................
 
-  " LAMBDALISUE/VIM-GITA                                                  {{{2
+  " TPOPE/VIM-FUGITIVE                                                    {{{2
   " git integration
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'lambdalisue/vim-gita'
+    Plug 'tpope/vim-fugitive'
   endif
 
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
@@ -1322,9 +1322,6 @@ endfunction
 "                               KODKIEGESZITES                            {{{1
 " ============================================================================
 
-" Using a Git hook to regenerate tags (the cwd have to be on project root).
-set tags+=.git/tags
-
 " <C-N> kiegeszitesnel a sztringeket vegye:
 " .  ebbol a fajlbol
 " i  include fajlokbol
@@ -1723,18 +1720,19 @@ nnoremap <Space>fvv :edit $MYVIMRC<CR>
 "                             <Space>g - GIT                              {{{3
 " ............................................................................
 
-nnoremap <Space>ga :Gita commit --amend<CR>
-nnoremap <Space>gb :Gita blame<CR>
-nnoremap <Space>gc :Gita commit<CR>:set filetype=gitcommit<CR>
-nnoremap <Space>gd :Gita diff<CR>
+nnoremap <Space>ga :Gcommit --amend<CR>
+nnoremap <Space>gb :Gblame<CR>
+nnoremap <Space>gc :Gcommit<CR>
+nnoremap <Space>gd :Gdiff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
-nnoremap <Space>gg :CtrlSF<Space>
+nnoremap <Space>gg :Ggrep! --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
+nnoremap <Space>gm :Gmerge<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
-nnoremap <Space>gr :Gita checkout -- %:p<CR>:checktime<CR>
+nnoremap <Space>gr :Gread<CR>
 nmap     <Space>gR <Plug>GitGutterUndoHunk
-nnoremap <Space>gs :Gita status<CR>
-nnoremap <Space>gw :Gita add -- %:p<CR>:GitGutterAll<CR>
+nnoremap <Space>gs :Gstatus<CR>
+nnoremap <Space>gw :Gwrite<CR>
 nmap     <Space>gW <Plug>GitGutterStageHunk
 
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
