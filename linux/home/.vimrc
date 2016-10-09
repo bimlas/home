@@ -629,44 +629,11 @@ if isdirectory(g:pm_dir)
       let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
     endif
 
-  " SCROOLOOSE/SYNTASTIC                                                  {{{2
-  " syntax checker
+  " W0RP/ALE                                                              {{{2
+  " asynchronous syntax checker
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'scrooloose/syntastic'
+    Plug 'w0rp/ale'
   endif
-
-    " Do not check just before quitting.
-    let g:syntastic_check_on_wq = 0
-
-    " Statusline indikator formaja.
-    let g:syntastic_stl_format = ' %W{!W%fw}%E{!E%fe} '
-
-    " Irja ki, hogy melyik checker-tol szarmazik a figyelmeztetes.
-    let g:syntastic_aggregate_errors = 1
-
-    " C
-
-    let g:syntastic_c_checkers = ['gcc', 'splint']
-
-    " PYTHON
-
-    let g:syntastic_python_checkers = ['pylint', 'flake8']
-
-    " Hibak figyelmen kivul hagyasa.
-    " -d line-too-long
-    " -d bad-indentation
-    " -d bad-whitespace
-    let g:syntastic_python_pylint_args           = '-d line-too-long -d bad-whitespace'
-    " let g:syntastic_python_flake8_quiet_messages = { 'type' : 'style' }
-    " E221  multiple spaces before operator
-    " E241  multiple spaces after ':'
-    " E302  expected 2 blank lines, found 1
-    " E501  line too long
-    let g:syntastic_python_flake8_args           = '--ignore=E221,E241,E302,E501'
-
-    " RUBY
-
-    " let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
   " CLASSTREE                                                             {{{2
   " CTree Class: show class hierarchy for class
