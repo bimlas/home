@@ -629,10 +629,11 @@ if isdirectory(g:pm_dir)
       let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
     endif
 
-  " W0RP/ALE                                                              {{{2
+  " NEOMAKE/NEOMAKE                                                       {{{2
   " asynchronous syntax checker
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'w0rp/ale'
+    Plug 'neomake/neomake'
+    autocmd vimrc BufReadPost,BufWritePost * Neomake
   endif
 
   " CLASSTREE                                                             {{{2
