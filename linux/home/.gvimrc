@@ -3,9 +3,9 @@ set vb t_vb=
 
 if has( 'win32' )
   " Consolas cannot display some UTF8 chars, but I keeping it as a fallback.
-  set guifont=DejaVu_Sans_Mono:h10,Consolas:h10
+  set guifont=UbuntuMono_NF:h11,DejaVu_Sans_Mono:h10,Consolas:h10
 else
-  let &guifont = 'DejaVu Sans Mono 10'
+  let &guifont = 'UbuntuMono NF 11,DejaVu Sans Mono 10'
 endif
 
 " Ablak mereteinek megadasa, ha nem a Total Commander lister programjakent
