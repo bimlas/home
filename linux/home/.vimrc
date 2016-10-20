@@ -633,6 +633,12 @@ if isdirectory(g:pm_dir)
   " asynchronous syntax checker
   if !exists('g:vimrc_minimal_plugins')
     Plug 'neomake/neomake'
+
+    let g:neomake_error_sign = {'text': '▶', 'texthl': 'Error'}
+    let g:neomake_warning_sign = {'text': '∙', 'texthl': 'StatusLineNC'}
+    let g:neomake_info_sign = {'text': '∷', 'texthl': 'FoldColumn'}
+    let g:neomake_message_sign = {'text': '∷', 'texthl': 'FoldColumn'}
+
     autocmd vimrc BufReadPost,BufWritePost * Neomake
   endif
 
