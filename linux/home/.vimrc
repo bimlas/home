@@ -642,14 +642,6 @@ if isdirectory(g:pm_dir)
     autocmd vimrc BufReadPost,BufWritePost * Neomake
   endif
 
-  " CLASSTREE                                                             {{{2
-  " CTree Class: show class hierarchy for class
-  " requires `ctags --fields=+i`
-  " $ install ctags
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'classtree'
-  endif
-
   " GTAGS.VIM                                                             {{{2
   " gnu global
   " $ pip install pygments
