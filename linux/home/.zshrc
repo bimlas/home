@@ -90,7 +90,11 @@ setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 
 # Recursive search on history.
-bindkey '^p' history-beginning-search-backward
-bindkey '^n' history-beginning-search-forward
+bindkey '^p'   history-beginning-search-backward
+bindkey '^[[A' history-beginning-search-backward  # Up (on TTY)
+bindkey '^[OA' history-beginning-search-backward  # Up (on Xterm)
+bindkey '^n'   history-beginning-search-forward
+bindkey '^[[B' history-beginning-search-forward   # Down (on TTY)
+bindkey '^[OB' history-beginning-search-forward   # Down (on Xterm)
                                                                          # }}}
 source $HOME/.sh_commons
