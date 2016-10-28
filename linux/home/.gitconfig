@@ -388,6 +388,14 @@
 
   cr = "cherry-pick"
 
+  ; __ FRAMEWORK-RELATED COMMANDS _________                               {{{2
+
+  ; RUBY
+  rails = "!bin/rails"
+
+  ; PHP
+  codecept = "!vendor/bin/codecept"
+
 [core]                                                                  ; {{{1
 
   editor = "gvim --nofork"
