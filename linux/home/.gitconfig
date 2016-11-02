@@ -126,8 +126,8 @@
   psforce = "push --set-upstream --force-with-lease"
 
   ; Push and track those remote branches.
-  psa = "push --set-upstream --all"
-  psaforce = "push --set-upstream --force-with-lease --all"
+  psa = "push --all"
+  psaforce = "push --force-with-lease --all"
 
   ; Push tags.
   pst = "push --tags"
