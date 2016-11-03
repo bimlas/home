@@ -335,8 +335,8 @@
 
   ; __ COMMIT _____________________________                               {{{2
 
-  c   = "commit"
-  ca  = "commit --amend"
+  c   = "commit --verbose"
+  ca  = "commit --verbose --amend"
   cam = "commit --amend --reuse-message=HEAD"
   cm  = "commit -m"
   cmu = "commit -m Update"
