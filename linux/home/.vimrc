@@ -794,8 +794,10 @@ if isdirectory(g:pm_dir)
     let g:mucomplete#enable_auto_at_startup = 1
 
     let g:mucomplete#chains = {}
-    " Disable completion in Unite.
-    let g:mucomplete#chains.unite = []
+    let g:mucomplete#chains = {
+    \ 'default': ['ulti', 'tags', 'omni', 'user', 'incl', 'file', 'c-n'],
+    \ 'unite': [],
+    \ }
 
   " SIRVER/ULTISNIPS                                                      {{{2
   " template engine (see on GitHub: it's awesome!)
@@ -1262,7 +1264,8 @@ endfunction
 " menuone  Show popup menu even if there is only one item
 " preview  Open a preview window and show the selected item in it (press
 "          <C-W>z to close)
-set completeopt=menuone,preview
+" noinsert,noselect  Let the user choose the item
+set completeopt=menuone,preview,noinsert,noselect
 
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
