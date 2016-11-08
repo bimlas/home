@@ -596,6 +596,10 @@ if isdirectory(g:pm_dir)
     " Do not insert closing paired characters ('>', '}', '"').
     let g:lexima_enable_basic_rules = 0
 
+    " Smacks up the popup menu (sometimes it selects the first element when I
+    " hiting space).
+    let g:lexima_enable_space_rules = 0
+
   " POWERMAN/VIM-PLUGIN-VIEWDOC                                           {{{2
   " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
   " help-jet)
