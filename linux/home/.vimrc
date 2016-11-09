@@ -776,6 +776,12 @@ if isdirectory(g:pm_dir)
     let g:ruby_no_comment_fold           = 1
     let g:ruby_operators                 = 1
 
+  " TPOPE/VIM-RAILS                                                       {{{2
+  " rails syntax and other goodness
+  if !exists('g:vimrc_minimal_plugins') && g:has_ruby
+    Plug 'tpope/vim-rails'
+  endif
+
   " SUNAKU/VIM-RUBY-MINITEST                                              {{{2
   " completion for MiniTest
   if !exists('vimrc_minimal_plugins') && g:has_ruby
