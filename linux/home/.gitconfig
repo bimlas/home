@@ -215,7 +215,8 @@
   ; Formated for mail to my boss.
   ; The last Sed command removes the metainformation (keywords, issue number,
   ; etc.)
-  mail = "!git log --format=mail HEAD~.. | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
+  ; tmail shows the log from the last tag only.
+  mail = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
   tmail = "!git log --format=mail `git describe --tags --no-abbrev`.. | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
 
   ; __ SHOW _______________________________                               {{{2
