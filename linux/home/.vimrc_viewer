@@ -12,6 +12,6 @@ let g:vimrc_minimal_plugins = 1
 
 nnoremap q     :noautocmd q<CR>
 nnoremap <Esc> :noautocmd q<CR>
-nnoremap <CR>  :mapclear <Bar> unlet g:vimrc_minimal_plugins <Bar> source ~/.vimrc <Bar> source ~/.gvimrc<CR>
+nnoremap <CR>  :call system('gvim ' . expand('%')) <Bar> qa<CR>
 
 source ~/.vimrc
