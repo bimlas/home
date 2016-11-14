@@ -243,6 +243,13 @@
   dfs  = "diff --name-status"
   gdf  = "difftool"
 
+  ; __ GREP _____________________________
+
+  ; Some cool tips:
+  ;  http://travisjeffery.com/b/2012/02/search-a-git-repo-like-a-ninja/
+
+  g = "grep --break --heading --line-number"
+
   ; __ CHECKOUT ___________________________                               {{{2
 
   ; -m  --merge  Check out the initial "before merge conflict state"
