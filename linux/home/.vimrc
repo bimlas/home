@@ -802,7 +802,7 @@ if isdirectory(g:pm_dir)
 
     let g:mucomplete#chains = {}
     let g:mucomplete#chains = {
-    \ 'default': ['ulti', 'tags', 'omni', 'user', 'incl', 'file', 'c-n'],
+    \ 'default': ['omni', 'user', 'ulti', 'tags', 'file', 'incl', 'c-n'],
     \ 'unite': [],
     \ }
 
