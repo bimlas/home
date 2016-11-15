@@ -16,9 +16,11 @@ end
 (ARGV.empty? ? Dir.glob("*.jpg") : ARGV).each do |f|
   output = "#{f.sub(File.extname(f), "")}_#{size}#{File.extname(f)}"
   image = MiniMagick::Image.open(f)
-  if image.height > image.width and image.height > 1200
+  if image.height > image.width and image.height > size
     resize_to image, f, output, "x#{size}"
-  elsif image.width > image.height and image.width > 1200
+  elsif image.width > image.height and image.width > size
     resize_to image, f, output, "#{size}x"
+  else
+    puts "SKIP: #{f}"
   end
 end
