@@ -248,7 +248,7 @@
   ; Some cool tips:
   ;  http://travisjeffery.com/b/2012/02/search-a-git-repo-like-a-ninja/
 
-  g = "grep --break --heading --line-number"
+  g = "grep --break --line-number --heading --show-function"
 
   ; __ CHECKOUT ___________________________                               {{{2
 
@@ -427,6 +427,14 @@
 
   ui = "true"
 
+[color "grep"]
+
+  linenumber = "red"
+  separator  = "red"
+  function   = "cyan"
+  match      = "green"
+  filename   = "white bold"
+
 [init]                                                                  ; {{{1
 
   ; Template directory which is copied to .git. For example:
@@ -459,6 +467,11 @@
 
   shortlog = "%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n  %s%C(reset)"
   mail     = "!TITLE! * %s%n%+b"
+
+[grep]
+
+  ; Let Git grep usable outside of repository too.
+  fallbackToNoIndex = "true"
 
 [diff]                                                                  ; {{{1
 
