@@ -120,6 +120,7 @@ if( -not (Get-Mymodule -name "Posh-Git") )
   Install-Module Posh-Git
 }
 
+$global:GitPromptSettings.EnableWindowTitle = "$PWD @ "
 $global:GitPromptSettings.EnableFileStatus  = $false
 $global:GitPromptSettings.EnableStashStatus = $false
 
