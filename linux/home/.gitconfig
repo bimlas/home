@@ -406,6 +406,13 @@
 
 [core]                                                                  ; {{{1
 
+  ; Create symlinks on Windows too.
+  ; https://github.com/git-for-windows/git/wiki/Symbolic-Links
+  symlinks = "true"
+
+  ; Check out as-is, commit as-is.
+  autocrlf = "false"
+
   editor = "gvim --nofork"
 
   ; Do not break long lines (useful for log --graph with a bunch of branches).
