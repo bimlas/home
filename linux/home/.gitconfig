@@ -429,6 +429,15 @@
   preloadindex = "true"
   fscache      = "true"
 
+  ; Common template directory ("symlink" instead of copy as `templateDir`
+  ; doing):
+  ; By default Git will look for your hooks in the $GIT_DIR/hooks directory.
+  ; Set this to different path, e.g. /etc/git/hooks, and Git will try to find
+  ; your hooks in that directory, e.g. /etc/git/hooks/pre-receive instead of
+  ; in $GIT_DIR/hooks/pre-receive.
+  ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+  hooksPath = "~/.gitconfig_files/hooks"
+
   ; Global .gitignore file.
   excludesfile = "~/.gitconfig_files/core_excludesfile"
 
@@ -443,14 +452,6 @@
   function   = "cyan"
   match      = "green"
   filename   = "white bold"
-
-[init]                                                                  ; {{{1
-
-  ; Template directory which is copied to .git. For example:
-  ; templatedir/hooks -> .git/hooks
-  ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-  ; Filenames starting with dot (.hidden) does not copied.
-  templatedir = "~/.gitconfig_files/init_templatedir"
 
 [commit]                                                                ; {{{1
 
