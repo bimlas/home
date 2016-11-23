@@ -1,5 +1,13 @@
 ; .gitconfig: git configuration
 ;
+; To get all of current settings:
+;
+;   git congig --list
+;
+; To get only certain setting:
+;
+;   git config --get core.editor
+;
 ; GIT STYLE GUIDE
 ;
 ;   Branch naming, commit message format, etc.
