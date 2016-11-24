@@ -753,6 +753,10 @@ if isdirectory(g:pm_dir)
     Plug 'davidhalter/jedi-vim'
   endif
 
+    " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
+    " akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
+    let g:jedi#auto_vim_configuration = 0
+
     " Bufferek hasznalata tab-ok helyett.
     let g:jedi#use_tabs_not_buffers = 0
 
@@ -789,22 +793,52 @@ if isdirectory(g:pm_dir)
   endif
                                                                         " }}}2
 
-  " LIFEPILLAR/VIM-MUCOMPLETE                                             {{{2
-  " minimalistic, realtime autocompletion
+  " .. NEOCOMPLETE ........................
+
+  " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
+  " automatic code completion
+  " needs lua interface (:version +lua)
   if !exists('g:vimrc_minimal_plugins') && has('lua')
-    Plug 'lifepillar/vim-mucomplete'
+    Plug 'shougo/neocomplete.vim'
   endif
 
-    let g:mucomplete#no_mappings = 1
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#enable_fuzzy_completion = 1
 
-    " Complete as you type.
-    let g:mucomplete#enable_auto_at_startup = 1
+    " Disable automatic behaviour (it's slow on network drives).
+    " map neocomplete#start_manual_complete()
+    " let g:neocomplete#disable_auto_complete = 1
 
-    let g:mucomplete#chains = {}
-    let g:mucomplete#chains = {
-    \ 'default': ['omni', 'user', 'ulti', 'tags', 'file', 'incl', 'c-n'],
-    \ 'unite': [],
-    \ }
+    " Wait before showing completions.
+    let g:neocomplete#auto_complete_delay = 500
+
+    " Allways show completions independently from the time it takes.
+    let g:neocomplete#skip_auto_completion_time = ''
+
+    " Custom list of sources.
+    if !exists('g:neocomplete#sources')
+      let g:neocomplete#sources = {}
+    endif
+    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'syntax', 'vim', 'ultisnips', 'buffer']
+
+  " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
+  " complete from included files too
+  if !exists('g:vimrc_minimal_plugins') && has('lua')
+    Plug 'shougo/neoinclude.vim'
+  endif
+
+  " SHOUGO/NECO-SYNTAX                                                    {{{2
+  " better syntax complete
+  if !exists('g:vimrc_minimal_plugins') && has('lua')
+    Plug 'shougo/neco-syntax'
+  endif
+
+  " SHOUGO/NECO-VIM                                                       {{{2
+  " better syntax complete
+  if !exists('g:vimrc_minimal_plugins') && has('lua')
+    Plug 'shougo/neco-vim'
+  endif
 
   " SIRVER/ULTISNIPS                                                      {{{2
   " template engine (see on GitHub: it's awesome!)
