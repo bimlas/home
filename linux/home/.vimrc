@@ -199,15 +199,24 @@ if isdirectory(g:pm_dir)
     " let g:matchparen_timeout = 5
     " let g:matchparen_insert_timeout = 5
 
-  " JUSTINMK/VIM-SNEAK {{{2
-  " easily jump to anywhere on the visible part of the buffer
-  Plug 'justinmk/vim-sneak'
+  " EASYMOTION/VIM-EASYMOTION                                             {{{2
+  " vim motion (in buffer) on speed
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'easymotion/vim-easymotion'
+    autocmd vimrc VimEnter * EMCommandLineNoreMap <C-J> <CR>
+  end
 
-    " Use as an alternative to EasyMotion
-    let g:sneak#streak        = 1
-    " Press <Tab> to focus on the next set of matches.
-    let g:sneak#target_labels = 'asdfghjkluiopqwertzASDFGHJKLUIOPQWERTZ'
+    let g:EasyMotion_do_mapping = 0
+    let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
 
+    " Show target as UPPERCASE, allow jump with lowercase.
+    let g:EasyMotion_use_upper = 1
+
+    " Allow jump to foldlines too.
+    let g:EasyMotion_skipfoldedline = 0
+
+    " Stay in the same column when using <Plug>(easymotion-sol-j)
+    let g:EasyMotion_startofline = 0
                                                                         " }}}2
 
   " .. TEXTOBJ-USER .......................
@@ -1316,12 +1325,12 @@ noremap  gj         j
 noremap  gk         k
 
 " Take some keys from english keyboard.
-map é ;
-map É ,
-map ő [
-map ú ]
-map Ő {
-map Ú }
+noremap é ;
+noremap É ,
+noremap ő [
+noremap ú ]
+noremap Ő {
+noremap Ú }
 
 " I don't using the ex-mode directly.
 nnoremap Q <Nop>
@@ -1413,28 +1422,21 @@ function! NetrwLynxMap()
   map <buffer> l <CR>
 endfunction
 
-"                                  SNEAK                                  {{{3
+"                               EASYMOTION                                {{{3
 " ............................................................................
 
-if PluginEnabled('vim-sneak')
-  nmap s <Plug>Sneak_s
-  nmap S <Plug>Sneak_S
-  xmap s <Plug>Sneak_s
-  xmap S <Plug>Sneak_S
-  omap s <Plug>Sneak_s
-  omap S <Plug>Sneak_S
-  nmap f <Plug>Sneak_f
-  nmap F <Plug>Sneak_F
-  xmap f <Plug>Sneak_f
-  xmap F <Plug>Sneak_F
-  omap f <Plug>Sneak_f
-  omap F <Plug>Sneak_F
-  nmap t <Plug>Sneak_t
-  nmap T <Plug>Sneak_T
-  xmap t <Plug>Sneak_t
-  xmap T <Plug>Sneak_T
-  omap t <Plug>Sneak_t
-  omap T <Plug>Sneak_T
+if PluginEnabled('vim-easymotion')
+  map s         <Plug>(easymotion-s2)
+  map t         <Plug>(easymotion-tl)
+  map T         <Plug>(easymotion-Tl)
+  map t         <Plug>(easymotion-tl)
+  map T         <Plug>(easymotion-Tl)
+  map f         <Plug>(easymotion-fl)
+  map F         <Plug>(easymotion-Fl)
+  map <Leader>n <Plug>(easymotion-n)
+  map <Leader>N <Plug>(easymotion-N)
+  map é         <Plug>(easymotion-next)
+  map É         <Plug>(easymotion-prev)
 endif
 
 "                               OPENBROWSER                               {{{3
@@ -1576,6 +1578,12 @@ nnoremap <Space>U       :later 1f<CR>
 noremap  <Space>y       "+y
 noremap  <Space>p       "+p
 noremap  <Space>P       "+P
+
+map      <Space>j       <Plug>(easymotion-sol-j)
+map      <Space>k       <Plug>(easymotion-sol-k)
+" Stay in the same column.
+map      <Space>J       <Plug>(easymotion-j)
+map      <Space>K       <Plug>(easymotion-k)
 
 nmap     <Space>c       <Plug>TComment_gc
 vmap     <Space>c       <Plug>TComment_gc
