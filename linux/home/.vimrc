@@ -1796,11 +1796,6 @@ vmap     <Space>xc  <Plug>(EasyAlign)
 " Set up omni-completion if not already set.
 autocmd vimrc FileType * if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
 
-" Hybrid linenumbering.
-if !exists('g:vimrc_minimal_plugins')
-  autocmd vimrc BufWinEnter * set number relativenumber
-endif
-
 " Highlighting of cursorline helps to detect the cursor itself and the
 " insert/normal mode.
 autocmd vimrc WinEnter    * set cursorline
