@@ -24,15 +24,15 @@
 Xft*dpi:             96
 Xft*antialias:       true
 
-XTerm*termName:      xterm-256color
-XTerm*dynamicColors: true
-XTerm*scrollBar:     false
+*xterm*termName:      xterm-256color
+*xterm*dynamicColors: true
+*xterm*scrollBar:     false
 
-XTerm*faceName:      DeJavu Sans Mono
-XTerm*faceSize:      10
+*xterm*faceName:      DeJavu Sans Mono
+*xterm*faceSize:      10
 
 ! A Shift-+ es Shift-- ne meretezze at a betuket.
-XTerm*shiftFonts:    false
+*xterm*shiftFonts:    false
 
 !                                EGYENI SZINEK                            {{{1
 ! ============================================================================
