@@ -125,9 +125,7 @@
 
   ; __ REMOTE RELATED _____________________                               {{{2
 
-  ; Clone (with submodules, without history - `git fetch --unshallow` to get
-  ; the whole history).
-  cl = "clone --recursive --depth=1"
+  cl = "clone --recursive"
 
   ; Push and track the current branch.
   ; See 'push.default'
@@ -148,10 +146,10 @@
   seto = "remote set-url origin"
 
   ; Add and set (if already exists) 'origin', than push it.
-  ghcl = "!sh -c 'git clone --recursive --depth=1 https://www.github.com/$*' -"
+  ghcl = "!sh -c 'git clone --recursive https://www.github.com/$*' -"
   ghps = "!sh -c 'git remote add origin https://www.github.com/$* ;   \
           git push --all --set-upstream https://www.github.com/$*' -"
-  glcl = "!sh -c 'git clone --recursive --depth=1 https://gitlab.com/$*' -"
+  glcl = "!sh -c 'git clone --recursive https://gitlab.com/$*' -"
   glps = "!sh -c 'git remote add origin https://www.github.com/$* ;   \
           git push --all --set-upstream https://gitlab.com/$*' -"
 
