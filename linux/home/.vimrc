@@ -284,6 +284,12 @@ if isdirectory(g:pm_dir)
   " kijelolt szoveg keresese * gombbal
   Plug 'thinca/vim-visualstar'
 
+  " LFV89/VIM-INTERESTINGWORDS
+  " highlight words (like * search) with different color
+  Plug 'lfv89/vim-interestingwords'
+
+    let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
+
   " MACHAKANN/VIM-SANDWICH                                                {{{2
   " paros jelek gyors cserelese/torlese
   if !exists('g:vimrc_minimal_plugins')
