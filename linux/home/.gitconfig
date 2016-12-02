@@ -496,6 +496,12 @@
   tool      = "gvimdiff"
   algorithm = "patience"
 
+  ; Well structured hunks:
+  ; Needs 2.9
+  compactionHeuristic = "true"
+  ; Needs 2.11
+  indentHeuristic = "true"
+
 [rebase]                                                                ; {{{1
 
   autoSquash = "true"
