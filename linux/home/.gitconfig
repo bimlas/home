@@ -424,7 +424,9 @@
   editor = "gvim --nofork"
 
   ; Do not break long lines (useful for log --graph with a bunch of branches).
-  pager = "less -SRF"
+  ; Diff-highlight combines `diff` and `diff --color-words`.
+  ; https://github.com/git/git/tree/master/contrib/diff-highlight
+  pager = "diff-highlight | less -SRF"
 
   ; Do not modify EOL.
   autocrlf = "false"
@@ -458,6 +460,10 @@
   function   = "cyan"
   match      = "green"
   filename   = "white bold"
+
+[interactive]
+
+  diffFilter = "diff-highlight"
 
 [commit]                                                                ; {{{1
 
