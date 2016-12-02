@@ -1,23 +1,35 @@
-# Virtual desktop
-# Usage: vagrant up
+# Vagrantfile: Virtual desktop
 # http://stackoverflow.com/questions/18878117/using-vagrant-to-run-virtual-machines-with-desktop-environment
-Vagrant.configure(2) do |config|
-  config.vm.box = "wholebits/ubuntu16.10-32"
+#
+# USAGE
+#
+#   Install Vagrant + VirtualBox, than run
+#
+#     $ vagrant up
+#
+#   To change the keyboard layout:
+#
+#     $ sudo dpkg-reconfigure keyboard-configuration
 
-  config.vm.provider "virtualbox" do |vb|
+Vagrant.configure(2) do |config|
+  config.vm.box = 'wholebits/ubuntu16.10-32'
+
+  config.vm.provider 'virtualbox' do |vb|
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
 
     vb.customize [
-      "modifyvm", :id,
-      "--memory", "2048",
-      "--vram", "128",
+      'modifyvm', :id,
+      '--memory', '2048',
+      '--vram', '128',
     ]
   end
 
   # Install xfce and virtualbox additions
-  config.vm.provision "shell", inline: "sudo apt-get update"
-  config.vm.provision "shell", inline: "sudo apt-get install -y xorg virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11"
-  # Permit anyone to start the GUI
-  config.vm.provision "shell", inline: "sudo sed -i 's/allowed_users=.*$/allowed_users=anybody/' /etc/X11/Xwrapper.config"
+  config.vm.provision 'shell', inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install -y xorg virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
+    # Permit anyone to start the GUI
+    sudo sed -i 's/allowed_users=.*$/allowed_users=anybody/' /etc/X11/Xwrapper.config
+  SHELL
 end
