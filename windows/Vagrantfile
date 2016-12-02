@@ -2,12 +2,17 @@
 # Usage: vagrant up
 # http://stackoverflow.com/questions/18878117/using-vagrant-to-run-virtual-machines-with-desktop-environment
 Vagrant.configure(2) do |config|
-  # Ubuntu 15.10
-  config.vm.box = "boxcutter/ubuntu1610"
+  config.vm.box = "wholebits/ubuntu16.10-32"
 
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
+
+    vb.customize [
+      "modifyvm", :id,
+      "--memory", "2048",
+      "--vram", "128",
+    ]
   end
 
   # Install xfce and virtualbox additions
