@@ -10,9 +10,13 @@
 #   To change the keyboard layout:
 #
 #     $ sudo dpkg-reconfigure keyboard-configuration
+#
+# OTHER BOXES
+#
+#   https://github.com/boxcutter
 
 Vagrant.configure(2) do |config|
-  config.vm.box = 'wholebits/ubuntu16.10-32'
+  config.vm.box = 'boxcutter/ubuntu1610-i386'
 
   config.vm.provider 'virtualbox' do |vb|
     # Display the VirtualBox GUI when booting the machine
