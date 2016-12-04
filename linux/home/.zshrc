@@ -19,7 +19,7 @@ zstyle ':vcs_info:*' check-for-changes false
 zstyle ':vcs_info:*' formats '%F{blue}[%F{green}%b%F{blue}]'
 precmd () { vcs_info }
 
-PROMPT=$'\n%B%F{blue}┌─${vcs_info_msg_0_}%B%f %~\n%F{blue}└─ %(!.%F{red}#.%F{white}$)%f%b '
+PROMPT=$'${(r:$COLUMNS::_:)}\n%B%F{blue}┌─${vcs_info_msg_0_}%B%f %~\n%F{blue}└─ %(!.%F{red}#.%F{white}$)%f%b '
 RPROMPT='%B%(?..%F{red}[%?])%F{blue}[%f%T%F{blue}]%b'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{blue}[%F{yellow}"
