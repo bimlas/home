@@ -433,6 +433,13 @@ if isdirectory(g:pm_dir)
     Plug 'andrewradev/linediff.vim'
   endif
 
+  " CHRISBRA/VIM-DIFF-ENHANCED                                            {{{2
+  " use git as diffexpr
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'chrisbra/vim-diff-enhanced'
+    let &diffexpr='EnhancedDiff#Diff("git diff", "")'
+  endif
+
   " TPOPE/VIM-REPEAT                                                      {{{2
   " repeat (.) plugin-okon is
   if !exists('g:vimrc_minimal_plugins')
@@ -1264,7 +1271,9 @@ if PluginEnabled('vim-eightheader')
 "      Change the algorithm perhaps find a smaller set of changes. This makes
 "      diff slower (sometimes much slower)
 
-set diffexpr=MyDiff()
+if &diffexpr == ''
+  set diffexpr=MyDiff()
+endif
 function! MyDiff()
     let opt = ''
     if &diffopt =~ 'icase'
