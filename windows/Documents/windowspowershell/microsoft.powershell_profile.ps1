@@ -153,7 +153,7 @@ $global:GitPromptSettings.BranchBehindAndAheadStatusBackgroundColor = $Host.UI.R
 function Prompt {
   $realLASTEXITCODE = $LASTEXITCODE
 
-  Write-Host ("`n[") -nonewline -foregroundcolor Cyan
+  Write-Host ("_______________________________________________________________________________`n[") -nonewline -foregroundcolor Cyan
   Write-Host (Get-Date -format HH:mm) -nonewline -foregroundcolor Gray
   Write-Host ("]") -nonewline -foregroundcolor Cyan
   # Posh-Git status
