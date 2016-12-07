@@ -28,5 +28,19 @@ sudo gem install pry
 
 # __ DESKTOP ____________________________
 
+# To autostart window manager:
+#   $ cat 'exec awesome' >> ~/.xinitrc OR /etc/X11/xinit/.xinitrc
+
 sudo aptitude install -y xorg
 # sudo aptitude install -y awesome
+
+# __ VIRTUALBOX _________________________
+
+# XORG
+#   If installed via apt, it drops segmentation fault:
+#     $ sudo aptitude install -y virtualbox-guest-x11
+#   Use the builtin installer instead
+#     Tools -> Install integration services
+#     $ sudo mount /dev/cdrom /mnt
+#     $ sudo /mnt/VBoxLinuxAdditions.run
+#     $ sudo reboot
