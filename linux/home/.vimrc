@@ -162,12 +162,12 @@ if isdirectory(g:pm_dir)
   " http://cocopon.me/app/vim-color-gallery/
   " http://vimcolors.com/
 
-  " ALTERCATION/VIM-COLORS-SOLARIZED                                      {{{2
+  " ICYMIND/NEOSOLARIZED                                                  {{{2
   " THE colorscheme - i tried but cannot live without it :(
-  Plug 'altercation/vim-colors-solarized'
+  " Actually it's a fork which works in terminal and NeoVim too.
+  Plug 'icymind/neosolarized'
 
-    let g:solarized_menu = 0
-    let g:solarized_contrast = 'high'
+    let g:neosolarized_contrast = 'high'
 
   " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
   " display a guide for the current line's indent level
@@ -965,6 +965,9 @@ endif
 "                                   SZINEK                                {{{1
 " ============================================================================
 
+  " Use GUI colors in terminal.
+  set termguicolors
+
 "                               ALAPERTEKEK                               {{{2
 " ____________________________________________________________________________
 
@@ -1014,7 +1017,7 @@ if has('gui_running')
     else
       set background=dark
     endif
-    colorscheme solarized
+    colorscheme neosolarized
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
   endtry
