@@ -440,6 +440,12 @@ if isdirectory(g:pm_dir)
     let &diffexpr='EnhancedDiff#Diff("git diff", "")'
   endif
 
+  " MACHAKANN/VIM-HIGHLIGHTEDYANK                                         {{{2
+  " make the yanked region apparent
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'machakann/vim-highlightedyank'
+  endif
+
   " TPOPE/VIM-REPEAT                                                      {{{2
   " repeat (.) plugin-okon is
   if !exists('g:vimrc_minimal_plugins')
@@ -1454,6 +1460,13 @@ if PluginEnabled('vim-easymotion')
   map É         <Plug>(easymotion-prev)
 endif
 
+"                           VIM-HIGHLIGHTEDYANK                           {{{3
+" ............................................................................
+
+if PluginEnabled('vim-highlightedyank')
+  map y <Plug>(highlightedyank)
+endif
+
 "                               OPENBROWSER                               {{{3
 " ............................................................................
 
@@ -1590,7 +1603,7 @@ nnoremap <Space>o       :<C-U>put =repeat(nr2char(10), v:count1)<CR>'[
 nnoremap <Space>u       :earlier 1f<CR>
 nnoremap <Space>U       :later 1f<CR>
 
-noremap  <Space>y       "+y
+map      <Space>y       "+y
 noremap  <Space>p       "+p
 noremap  <Space>P       "+P
 
