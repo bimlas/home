@@ -1777,7 +1777,7 @@ nmap <Space>qcU <Plug>CoerceU
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-nnoremap <Space>sg :noautocmd vimgrep //j <C-R>=expand('%:p:h')<CR>/** <Bar> copen<Home><C-Right><C-Right><Right><Right>
+nnoremap <Space>sg :noautocmd vimgrep //j ## <Bar> copen<Home><C-Right><C-Right><Right><Right>
 nnoremap <Space>sl :Unite -no-quit -keep-focus line<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
