@@ -40,8 +40,19 @@ Set-Alias g git
 # works as it has to. Since the Git aliases which starts with bang (e.g.
 # '!shell --command') executed in /bin/bash shell, I have to do the alias
 # outside of .gitconfig.
-function gitBash { c:\app\git\usr\bin\bash --login -i }
-Set-Alias gsh gitBash
+function funcGitBash { c:\app\git\usr\bin\bash --login -i }
+Set-Alias gsh funcGitBash
+
+# Narrow list with Fzf.
+# https://github.com/junegunn/fzf
+function funcFzf { fzf --multi --exact $args }
+Set-Alias f funcFzf
+function funcGitFzf { git ls-files ':/' | fzf --multi --exact $args }
+Set-Alias gf funcGitFzf
+function funcVimFzf { gvim $(f $args) }
+function funcVimGitFzf { gvim $(gf $args) }
+Set-Alias e funcVimFzf
+Set-Alias ge funcVimGitFzf
 
 #                                 PLUGINS                                 {{{1
 # ============================================================================
