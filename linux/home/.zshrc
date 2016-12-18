@@ -16,14 +16,25 @@ setopt prompt_subst
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false
-zstyle ':vcs_info:*' formats '%F{blue}[%F{green}%b%F{blue}]'
+zstyle ':vcs_info:*' formats '%F{blue}[%F{green}%b@%r%F{blue}]'
 precmd () { vcs_info }
-
-PROMPT=$'${(r:$COLUMNS::_:)}\n%B%F{blue}┌─${vcs_info_msg_0_}%B%f %~\n%F{blue}└─ %(!.%F{red}#.%F{white}$)%f%b '
-RPROMPT='%B%(?..%F{red}[%?])%F{blue}[%f%T%F{blue}]%b'
-
 ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{blue}[%F{yellow}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%F{blue}]%f%b"
+
+# Python virtualenv.
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+function virtualenv_info()
+{
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    venv="%F{blue}[%F{green}py$(python -c 'import sys; print(sys.version_info.major)'):${VIRTUAL_ENV##*/}%F{blue}]"
+  else
+    venv=''
+  fi
+  echo $venv
+}
+
+PROMPT=$'${(r:$COLUMNS::_:)}\n%B%F{blue}┌─${vcs_info_msg_0_}$(virtualenv_info)%B%f %~\n%F{blue}└─ %(!.%F{red}#.%F{white}$)%f%b '
+RPROMPT='%B%(?..%F{red}[%?])%F{blue}[%f%T%F{blue}]%b'
 
 #                            COMPLETE OPTIONS                             {{{1
 # ============================================================================
