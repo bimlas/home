@@ -46,7 +46,7 @@ autoload -U compinit && compinit
 _comp_options+=(globdots)
 
 # Use builtin completion menu. (?)
-zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' use-compctl true
 
 # Show description for argument completions.
 zstyle ':completion:*' verbose true
@@ -87,6 +87,22 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # Custom completion for `kill`.
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+#                           PYTHON PIP COMPLETE                           {{{2
+# ____________________________________________________________________________
+
+function _pip_completion
+{
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+compctl -K _pip_completion pip2
+compctl -K _pip_completion pip3
 
 #                                  OTHER                                  {{{1
 # ============================================================================
