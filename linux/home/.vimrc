@@ -169,6 +169,9 @@ if isdirectory(g:pm_dir)
 
     let g:neosolarized_contrast = 'high'
 
+    " Make vertical split visible.
+    let g:neosolarized_vertSplitBgTrans = 0
+
   " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
   " display a guide for the current line's indent level
   " Plug 'tweekmonster/local-indent.vim'
@@ -1017,7 +1020,7 @@ if has('gui_running')
     else
       set background=dark
     endif
-    colorscheme neosolarized
+    colorscheme NeoSolarized
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
   endtry
