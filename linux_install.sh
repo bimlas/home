@@ -44,5 +44,6 @@ sudo aptitude install -y xorg
 #     $ sudo mount /dev/cdrom /mnt
 #     $ sudo /mnt/VBoxLinuxAdditions.run
 #     $ sudo reboot
-#   If you cannot `startx` while a window manager is installed, then install
-#   LightDM (and reboot) and/or enable the 3D acceleration in VirtualBox.
+#   If you cannot `startx` while a window manager is installed, then enable
+#   VT-x in BIOS.
+#   Awesome window manager does not works for some reasons - try i3!
