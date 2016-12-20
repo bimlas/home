@@ -45,6 +45,17 @@
 ;   -X
 ;     Remove only files ignored by Git.
 ;
+; REMOVE GITIGNORED FILES
+;
+;   Remove all cached files to ensure there are no .gitignore files being
+;   tracked:
+;
+;   git rm --cached -r :/
+;
+;   Track the files that should be tracked
+;
+;   git add :/
+;
 ; REDUCE THE SIZE OF REPO
 ;
 ;   It may compress up to half size!
