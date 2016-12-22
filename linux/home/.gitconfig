@@ -196,25 +196,11 @@
   ; --branches, --tags, --remotes   Guess
   ; --source                        Show ref (exists branch) for all commits
   ;
-  ; See DIFF for additional parameters.
+  ; See DIFF for additional parameters (and pickaxe (-G and -S) too).
   ;
   ; Look for expression in commit messages.
   ;
   ;   git log --grep'regex'
-  ;
-  ; Look for the addition/deletion of text - ie. when was the string
-  ; firstly introduced or where was it removed.
-  ;
-  ;   git log -S'string' -- file
-  ;
-  ; Look for differences whose patch text contains modified lines that
-  ; match <regex>.
-  ;
-  ;   git log -G'regex' -- file
-  ;
-  ; Shows how the function main() in the file main.c evolved over time.
-  ;
-  ;   git log -L '/int main/',/^}/:main.c
 
   l    = "log --graph --date-order --date=short --format=shortlog"
   la   = "log --graph --date-order --date=short --format=shortlog --all"
@@ -254,6 +240,20 @@
   ; --color-words  Show the exact diffs
   ; --diff-filter  Filter files: A|C|D|M|R|T|U|X|B
   ; -U123          Show 123 lines of context around hunk
+  ;
+  ; Look for the addition/deletion of text - ie. when was the string
+  ; firstly introduced or where was it removed (when using with `log`).
+  ;
+  ;   git log -S'string' -- file
+  ;
+  ; Look for differences whose patch text contains modified lines that
+  ; match <regex>.
+  ;
+  ;   git log -G'regex' -- file
+  ;
+  ; Shows how the function main() in the file main.c evolved over time.
+  ;
+  ;   git log -L '/int main/',/^}/:main.c
 
   df   = "diff --patch --stat --ignore-blank-lines"
   dfc  = "diff --patch --stat --ignore-blank-lines --cached"
