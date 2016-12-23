@@ -104,6 +104,13 @@ compctl -K _pip_completion pip
 compctl -K _pip_completion pip2
 compctl -K _pip_completion pip3
 
+#                                   FZF                                   {{{2
+# ____________________________________________________________________________
+#
+# https://github.com/junegunn/fzf
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 #                                  OTHER                                  {{{1
 # ============================================================================
 

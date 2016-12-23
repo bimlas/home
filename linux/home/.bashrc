@@ -116,3 +116,10 @@ PS1+="$clr_bldwht\w\n"
 PS1+="$clr_bldcyn$chr_bottomleft$chr_vertical "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo $clr_bldred; else echo $clr_bldwht; fi)\\$ $clr_txtrst"
 export PS1
+
+#                                   FZF                                   {{{2
+# ____________________________________________________________________________
+#
+# https://github.com/junegunn/fzf
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
