@@ -890,12 +890,6 @@ if isdirectory(g:pm_dir)
     " Update only on file open/write
     let g:gitgutter_realtime = 0
     let g:gitgutter_eager = 0
-    let g:gitgutter_async = 0
-
-    " Needs if grep does not support color.
-    if has('win32')
-      let g:gitgutter_grep_command = 'grep -e'
-    endif
                                                                         " }}}2
 
   " ECLIM                                                                 {{{2
