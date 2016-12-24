@@ -826,7 +826,7 @@ if isdirectory(g:pm_dir)
   " automatic code completion
   " needs python3 (:version +python3, `pip3 install neovim`)
   if has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
-    Plug 'shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+    Plug 'shougo/deoplete.nvim'
     let s:complete_plugin = 'deoplete'
   endif
 
@@ -902,7 +902,11 @@ if isdirectory(g:pm_dir)
 
     " let g:EclimCompletionMethod = 'omnifunc'
                                                                         " }}}2
+
   call plug#end()
+  if has('nvim')
+    autocmd vimrc VimEnter * UpdateRemotePlugins
+  endif
 else
   autocmd vimrc VimEnter * echomsg 'Run :InstallPluginManager'
 endif
