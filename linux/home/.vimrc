@@ -811,26 +811,15 @@ if isdirectory(g:pm_dir)
   " needs lua interface (:version +lua)
   if !has('nvim') && !exists('g:vimrc_minimal_plugins') && has('lua')
     Plug 'shougo/neocomplete.vim'
+    let s:complete_plugin = 'neocomplete'
 
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_smart_case = 1
     let g:neocomplete#enable_fuzzy_completion = 1
-
-    " Disable automatic behaviour (it's slow on network drives).
-    " map neocomplete#start_manual_complete()
-    " let g:neocomplete#disable_auto_complete = 1
 
     " Wait before showing completions.
     let g:neocomplete#auto_complete_delay = 500
 
     " Allways show completions independently from the time it takes.
     let g:neocomplete#skip_auto_completion_time = ''
-
-    " Custom list of sources.
-    if !exists('g:neocomplete#sources')
-      let g:neocomplete#sources = {}
-    endif
-    let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'syntax', 'vim', 'ultisnips', 'buffer']
   endif
 
   " SHOUGO/DEOPLETE.NVIM                                                  {{{2
@@ -838,19 +827,20 @@ if isdirectory(g:pm_dir)
   " needs python3 (:version +python3, `pip3 install neovim`)
   if has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
     Plug 'shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_smart_case = 1
-
-    if !exists('g:deoplete#sources')
-      let g:deoplete#sources = {}
-    endif
-    let g:deoplete#sources._ = ['omni', 'tag', 'file/include', 'syntax', 'vim', 'ultisnips', 'buffer']
+    let s:complete_plugin = 'deoplete'
   endif
 
   " NEOCOMPLETE/DEOPLETE COMMON                                           {{{2
   if !has('nvim') && !exists('g:vimrc_minimal_plugins') && has('lua') ||
   \   has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
+
+    exe 'let g:' . s:complete_plugin . '#enable_at_startup = 1'
+    exe 'let g:' . s:complete_plugin . '#enable_smart_case = 1'
+
+    if !exists('g:' . s:complete_plugin . '#sources')
+      exe 'let g:' . s:complete_plugin . '#sources = {}'
+    endif
+    exe 'let g:' . s:complete_plugin . '#sources._ = ["omni", "tag", "file/include", "syntax", "vim", "ultisnips", "buffer"]'
 
     " SHOUGO/NECO-VIM                                                     {{{3
     " better syntax complete
