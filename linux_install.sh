@@ -7,7 +7,6 @@ sudo aptitude safe-upgrade -y
 
 # __ BASIC STUFF ________________________
 
-sudo aptitude install -y aptitude
 sudo aptitude install -y zsh
 sudo aptitude install -y git
 sudo aptitude install -y vim
