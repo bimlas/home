@@ -804,14 +804,13 @@ if isdirectory(g:pm_dir)
   endif
                                                                         " }}}2
 
-  " .. NEOCOMPLETE ........................
+  " .. NEOCOMPLETE/DEOPLETE ...............
 
   " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
   " automatic code completion
   " needs lua interface (:version +lua)
-  if !exists('g:vimrc_minimal_plugins') && has('lua')
+  if !has('nvim') && !exists('g:vimrc_minimal_plugins') && has('lua')
     Plug 'shougo/neocomplete.vim'
-  endif
 
     let g:neocomplete#enable_at_startup = 1
     let g:neocomplete#enable_smart_case = 1
@@ -832,23 +831,38 @@ if isdirectory(g:pm_dir)
       let g:neocomplete#sources = {}
     endif
     let g:neocomplete#sources._ = ['omni', 'tag', 'file/include', 'syntax', 'vim', 'ultisnips', 'buffer']
-
-  " SHOUGO/NEOINCLUDE.VIM                                                 {{{2
-  " complete from included files too
-  if !exists('g:vimrc_minimal_plugins') && has('lua')
-    Plug 'shougo/neoinclude.vim'
   endif
 
-  " SHOUGO/NECO-SYNTAX                                                    {{{2
-  " better syntax complete
-  if !exists('g:vimrc_minimal_plugins') && has('lua')
-    Plug 'shougo/neco-syntax'
+  " SHOUGO/DEOPLETE.NVIM                                                  {{{2
+  " automatic code completion
+  " needs python3 (:version +python3, `pip3 install neovim`)
+  if has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
+    Plug 'shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_smart_case = 1
+
+    if !exists('g:deoplete#sources')
+      let g:deoplete#sources = {}
+    endif
+    let g:deoplete#sources._ = ['omni', 'tag', 'file/include', 'syntax', 'vim', 'ultisnips', 'buffer']
   endif
 
-  " SHOUGO/NECO-VIM                                                       {{{2
-  " better syntax complete
-  if !exists('g:vimrc_minimal_plugins') && has('lua')
+  " NEOCOMPLETE/DEOPLETE COMMON                                           {{{2
+  if !has('nvim') && !exists('g:vimrc_minimal_plugins') && has('lua') ||
+  \   has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
+
+    " SHOUGO/NECO-VIM                                                     {{{3
+    " better syntax complete
     Plug 'shougo/neco-vim'
+
+    " SHOUGO/NECO-SYNTAX                                                  {{{3
+    " better syntax complete
+    Plug 'shougo/neco-syntax'
+
+    " SHOUGO/NEOINCLUDE.VIM                                               {{{3
+    " complete from included files too
+    Plug 'shougo/neoinclude.vim'
   endif
 
   " SIRVER/ULTISNIPS                                                      {{{2
