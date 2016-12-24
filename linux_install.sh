@@ -4,6 +4,8 @@
 sudo apt-get update
 sudo apt-get install -y aptitude
 sudo aptitude safe-upgrade -y
+# PPA installer
+sudo aptitude install -y software-properties-common
 
 # __ BASIC STUFF ________________________
 
@@ -24,6 +26,12 @@ sudo aptitude install -y python python-pip python3 python3-pip
 sudo aptitude install -y ruby ruby-dev
 sudo gem install ripper-tags gem-ripper-tags
 sudo gem install pry
+
+# __ OTHER ______________________________
+
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
+sudo aptitude update
+sudo aptitude install -y neovim
 
 # __ DESKTOP ____________________________
 
