@@ -52,5 +52,6 @@ sudo aptitude install -y xorg
 #     $ sudo /mnt/VBoxLinuxAdditions.run
 #     $ sudo reboot
 #   If you cannot `startx` while a window manager is installed, then enable
-#   VT-x in BIOS.
-#   Awesome window manager does not works for some reasons - try i3!
+#   VT-x in BIOS and `echo exec WINDOWMANAGER(awesome) > ~/.xinitrc`.
+#   Awesome window manager does not works for some reasons - install `lightdm`
+#   ot try `i3`!
