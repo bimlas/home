@@ -16,7 +16,7 @@ setopt prompt_subst
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false
-zstyle ':vcs_info:*' formats '%F{blue}[%F{green}%b@%r%F{blue}]'
+zstyle ':vcs_info:*' formats '%F{blue}[%F{green}%b%F{blue}@%F{green}%r%F{blue}]'
 precmd () { vcs_info }
 ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{blue}[%F{yellow}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%F{blue}]%f%b"
