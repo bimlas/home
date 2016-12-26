@@ -824,14 +824,14 @@ if isdirectory(g:pm_dir)
 
   " SHOUGO/DEOPLETE.NVIM                                                  {{{2
   " automatic code completion
-  " needs python3 (:version +python3, `pip3 install neovim`)
+  " $ pip3 install neovim
   if has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
     Plug 'shougo/deoplete.nvim'
     let s:complete_plugin = 'deoplete'
 
     " ZCHEE/DEOPLETE-JEDI                                                 {{{3
     " jedi-vim integration
-    " needs python2 (:version +python3, `pip2 install neovim`)
+    " $ pip{2,3?} install jedi
     if has('python2')
       Plug 'zchee/deoplete-jedi'
     endif
