@@ -32,6 +32,9 @@ sudo gem install pry
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo aptitude update
 sudo aptitude install -y neovim
+sudo pip2 install neovim
+sudo pip3 install neovim
+sudo gem install neovim
 
 # __ DESKTOP ____________________________
 
