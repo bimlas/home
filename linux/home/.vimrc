@@ -764,19 +764,6 @@ if isdirectory(g:pm_dir)
     Plug 'davidhalter/jedi-vim'
   endif
 
-    " Ha ez nincs megadva, akkor utkozik a neocomplete-tal es automatikusan ki
-    " akarja valasztani az elso elemet ha pontot irunk egy objektum utan.
-    let g:jedi#auto_vim_configuration = 0
-
-    " Bufferek hasznalata tab-ok helyett.
-    let g:jedi#use_tabs_not_buffers = 0
-
-    " Ne valassza ki az elso lehetoseget.
-    let g:jedi#popup_select_first = 0
-
-    " A pont beirasa utan ne jelenjen meg automatikusan.
-    let g:jedi#popup_on_dot = 0
-
   " VIM-RUBY/VIM-RUBY                                                     {{{2
   " Ruby stuff (for example better omni-completion)
   if !exists('g:vimrc_minimal_plugins') && g:has_ruby
@@ -832,9 +819,7 @@ if isdirectory(g:pm_dir)
     " ZCHEE/DEOPLETE-JEDI                                                 {{{3
     " jedi-vim integration
     " $ pip{2,3?} install jedi
-    if has('python2')
-      Plug 'zchee/deoplete-jedi'
-    endif
+    Plug 'zchee/deoplete-jedi'
   endif
 
   " NEOCOMPLETE/DEOPLETE COMMON                                           {{{2
