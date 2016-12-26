@@ -22,6 +22,8 @@ sudo aptitude install -y gcc make
 sudo aptitude install -y ctags
 
 sudo aptitude install -y python python-pip python3 python3-pip
+sudo pip2 install jedi
+sudo pip3 install jedi
 
 sudo aptitude install -y ruby ruby-dev
 sudo gem install ripper-tags gem-ripper-tags
