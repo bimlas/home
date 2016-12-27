@@ -1007,20 +1007,16 @@ autocmd  vimrc  ColorScheme  desert
                                                                         " }}}2
 
 " Ligh background at day, dark at night.
-if has('gui_running')
-  try
-    if strftime("%H") >= 7 && strftime("%H") <= 17
-      set background=light
-    else
-      set background=dark
-    endif
-    colorscheme NeoSolarized
-  catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme desert
-  endtry
-else
+try
+  if has('gui_running') && strftime("%H") >= 7 && strftime("%H") <= 17
+    set background=light
+  else
+    set background=dark
+  endif
+  colorscheme NeoSolarized
+catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme desert
-endif
+endtry
 
 "                               STATUSLINE                                {{{1
 " ============================================================================
