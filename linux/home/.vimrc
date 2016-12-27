@@ -968,15 +968,18 @@ set termguicolors
 "                                DEFAULTS                                 {{{2
 " ____________________________________________________________________________
 
+" I had to add VimEnter too, without this, NeoSolarized does not works as I
+" want.
+
 " Colors of statusline
-autocmd  vimrc  ColorScheme  *
+autocmd  vimrc  ColorScheme,VimEnter  *
 \ highlight! link StatFilename   DiffText   |
 \ highlight! link StatFileformat DiffAdd    |
 \ highlight! link StatInfo       DiffChange |
 \ highlight! link StatWarning    Error
 
 " Allways display comments with italic fonts.
-autocmd  vimrc  ColorScheme  *
+autocmd  vimrc  ColorScheme,VimEnter  *
 \ highlight! Comment term=italic      cterm=italic      gui=italic      |
 \ highlight! Folded  term=bold,italic cterm=bold,italic gui=bold,italic
 
