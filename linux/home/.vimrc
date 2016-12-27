@@ -817,13 +817,13 @@ if isdirectory(g:pm_dir)
   " automatic code completion
   " $ pip3 install neovim
   if has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
-    Plug 'shougo/deoplete.nvim'
+    Plug 'shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
     let s:complete_plugin = 'deoplete'
 
     " ZCHEE/DEOPLETE-JEDI                                                 {{{3
     " jedi-vim integration
     " $ pip{2,3?} install jedi
-    Plug 'zchee/deoplete-jedi'
+    Plug 'zchee/deoplete-jedi', {'do': 'UpdateRemotePlugins'}
   endif
 
   " NEOCOMPLETE/DEOPLETE COMMON                                           {{{2
@@ -900,9 +900,6 @@ if isdirectory(g:pm_dir)
                                                                         " }}}2
 
   call plug#end()
-  if has('nvim')
-    autocmd vimrc VimEnter * UpdateRemotePlugins
-  endif
 else
   autocmd vimrc VimEnter * echomsg 'Run :InstallPluginManager'
 endif
