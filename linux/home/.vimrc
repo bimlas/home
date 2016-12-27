@@ -959,16 +959,16 @@ if !has('win32')
   runtime ftplugin/man.vim
 endif
 
-"                                   SZINEK                                {{{1
+"                                 COLORS                                  {{{1
 " ============================================================================
 
-  " Use GUI colors in terminal.
-  set termguicolors
+" Use GUI colors in terminal.
+set termguicolors
 
-"                               ALAPERTEKEK                               {{{2
+"                                DEFAULTS                                 {{{2
 " ____________________________________________________________________________
 
-" Statusline szinei.
+" Colors of statusline
 autocmd  vimrc  ColorScheme  *
 \ highlight! link StatFilename   DiffText   |
 \ highlight! link StatFileformat DiffAdd    |
@@ -981,23 +981,24 @@ autocmd  vimrc  ColorScheme  *
 \ highlight! Folded  term=bold,italic cterm=bold,italic gui=bold,italic
 
 " More visible linebreak, whitespace and other special characters.
-autocmd vimrc ColorScheme * highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f
-autocmd vimrc ColorScheme * highlight! link SpecialKey NonText
-autocmd vimrc ColorScheme * highlight! Error term=bold ctermfg=9 gui=bold guibg=#dc322f guifg=#ffffff
+autocmd vimrc ColorScheme,VimEnter *
+\ highlight! NonText term=bold ctermfg=9 gui=bold guifg=#dc322f             |
+\ highlight! link SpecialKey NonText                                        |
+\ highlight! Error term=bold ctermfg=9 gui=bold guibg=#dc322f guifg=#ffffff
 
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
 
 autocmd vimrc ColorScheme desert set background=dark
 
-" Statusline szinei.
+" Colors of statusline
 autocmd  vimrc  ColorScheme  desert
 \ highlight! link StatFilename   Directory  |
 \ highlight! link StatFileformat Identifier |
 \ highlight! link StatInfo       ModeMsg    |
 \ highlight! link StatWarning    Error
 
-" Nem tetszenek a popupmenu szinei.
+" I don't like the default colors of the popup-menu (<C-X><C-N>)
 autocmd  vimrc  ColorScheme  desert
 \ highlight! Pmenu      ctermbg=Black ctermfg=Gray  guibg=#FFFFCC guifg=DarkGray          |
 \ highlight! PmenuSel   ctermbg=Black ctermfg=White guibg=#FFFFCC guifg=Black    gui=bold |
