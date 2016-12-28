@@ -822,6 +822,7 @@ if isdirectory(g:pm_dir)
     Plug 'shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
     let s:complete_plugin = 'deoplete'
 
+    autocmd vimrc VimEnter * call deoplete#custom#set('_', 'matchers', ['matcher_fuzzy'])
     autocmd vimrc VimEnter * call deoplete#custom#set('ultisnips', 'rank', 1000)
 
     " ZCHEE/DEOPLETE-JEDI                                                 {{{3
