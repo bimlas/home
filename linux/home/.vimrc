@@ -1095,8 +1095,9 @@ set mouse=a
 " Makrok futtatasanal ne frissitse a kepernyot, csak ha vegzett.
 set lazyredraw
 
-" Ne adjon ki hangot - a .gvimrc-nek is tartalmaznia kell.
-set visualbell vb t_vb=
+" Do not make visual/audio bell (have to be in .gvimrc too).
+set visualbell t_vb=
+set belloff=all
 
 " Tordelje el a hosszu sorokat. (softbreak)
 set wrap
