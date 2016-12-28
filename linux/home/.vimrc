@@ -1207,6 +1207,10 @@ set nowrapscan
 " I using Git grep most of the time instead of standard grepping tools.
 let &grepprg = 'git grep -n'
 
+if has('nvim')
+  set inccommand=nosplit
+endif
+
 "                             SZINTAXIS KIEMELES                          {{{1
 " ============================================================================
 
