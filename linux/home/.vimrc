@@ -811,6 +811,8 @@ if isdirectory(g:pm_dir)
 
     " Allways show completions independently from the time it takes.
     let g:neocomplete#skip_auto_completion_time = ''
+
+    autocmd vimrc VimEnter * call neocomplete#custom#source('ultisnips', 'rank', 1000)
   endif
 
   " SHOUGO/DEOPLETE.NVIM                                                  {{{2
@@ -819,6 +821,8 @@ if isdirectory(g:pm_dir)
   if has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
     Plug 'shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
     let s:complete_plugin = 'deoplete'
+
+    autocmd vimrc VimEnter * call deoplete#custom#set('ultisnips', 'rank', 1000)
 
     " ZCHEE/DEOPLETE-JEDI                                                 {{{3
     " jedi-vim integration
