@@ -1441,6 +1441,16 @@ function! ManMap()
   map   <buffer> <CR> <C-]>
 endfunction
 
+"                             NEOVIM SPECIFIC                             {{{2
+" ____________________________________________________________________________
+
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+endif
+if exists(':tnoremap')
+    tnoremap <Esc> <C-\><C-n>
+endif
+
 "                                PLUGINOK                                 {{{2
 " ____________________________________________________________________________
 
