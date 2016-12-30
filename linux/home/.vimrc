@@ -584,10 +584,10 @@ if isdirectory(g:pm_dir)
     Plug 'mattn/benchvimrc-vim'
   endif
 
-  " THINCA/VIM-THEMIS                                                     {{{2
-  " a testing framework for Vim script
+  " JUNEGUNN/VADER.VIM                                                    {{{2
+  " a unittesting and acceptance framework for Vim script
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'thinca/vim-themis'
+    Plug 'junegunn/vader.vim'
   endif
 
                                                                         " }}}2
