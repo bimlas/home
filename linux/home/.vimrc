@@ -69,7 +69,7 @@ let g:loaded_netrw             = 1
 let g:loaded_netrwPlugin       = 1
 let g:loaded_netrwSettings     = 1
 let g:loaded_netrwFileHandlers = 1
-let g:loaded_logipat           = 1
+let g:loaded_logiPat           = 1
 
 " __ NETRW ______________________________                                 {{{2
 
