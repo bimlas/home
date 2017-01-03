@@ -71,6 +71,11 @@ let g:loaded_netrwSettings     = 1
 let g:loaded_netrwFileHandlers = 1
 let g:loaded_logiPat           = 1
 
+" Disable the loading of the menupoints to speed up startup. If you want to
+" open up the font selector, use `set guifont=*`
+let did_install_default_menus = 1
+let did_install_syntax_menu   = 1
+
 " __ NETRW ______________________________                                 {{{2
 
 " Netrw ablakanak abszolut merete.
@@ -942,8 +947,8 @@ endfunction
 "                              ALAPVETO MUKODES                           {{{1
 " ============================================================================
 
-" Disable GUI menus - this flag (M) have to be in here (in the .vimrc, before
-" `filetye syntax on`), not in .gvimrc.
+" Disable GUI menubar - this flag (M) have to be in here (in the .vimrc,
+" before `filetye syntax on`), not in .gvimrc.
 set guioptions=M
 
 " Fajltipus felismeres bekapcsolasa, a ra jellemzo formazas (pl. kommentkari)
