@@ -153,7 +153,23 @@ if isdirectory(g:pm_dir)
   " BIMBALASZLO/VIM-EIGHTSTAT                                             {{{2
   " statusline helper functions
   " WIP
-  " Plug 'https://github.com/bimbalaszlo/vim-eightstat'
+  Plug 'https://github.com/bimlas/vim-high'
+  Plug 'https://github.com/bimlas/vim-high-school'
+
+    let g:high_defaults = {
+    \   'hlgroup': 'Special',
+    \ }
+
+    let g:high_lighters = {
+    \ 'inactive_window': {},
+    \ 'indent': {},
+    \ 'mixed_indent': {},
+    \ 'mixed_eol': {},
+    \ 'whitespace': {},
+    \ 'title_description': {},
+    \ 'words': {},
+    \ 'long_line': {},
+    \ }
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
