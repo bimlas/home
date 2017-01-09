@@ -817,6 +817,14 @@ if isdirectory(g:pm_dir)
 
   " .. NEOCOMPLETE/DEOPLETE ...............
 
+  " SHOUGO/ECHODOC.VIM                                                    {{{2
+  " displays function signatures from completions in the command line
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'shougo/echodoc.vim'
+  endif
+
+    let g:echodoc_enable_at_startup = 1
+
   " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
   " automatic code completion
   " needs lua interface (:version +lua)
@@ -1333,10 +1341,8 @@ endfunction
 
 " Behaviour of insert-mode completion (omnicomplete):
 " menuone  Show popup menu even if there is only one item
-" preview  Open a preview window and show the selected item in it (press
-"          <C-W>z to close)
 " noinsert,noselect  Let the user choose the item
-set completeopt=menuone,preview,noinsert,noselect
+set completeopt=menuone,noinsert,noselect
 
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
