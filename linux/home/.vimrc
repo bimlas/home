@@ -156,11 +156,10 @@ if isdirectory(g:pm_dir)
   Plug 'https://github.com/bimlas/vim-high'
   Plug 'https://github.com/bimlas/vim-high-school'
 
-    let g:high_defaults = {
-    \   'hlgroup': 'Special',
-    \ }
-
     let g:high_lighters = {
+    \ '_': {
+    \   'blacklist': ['help'],
+    \ },
     \ 'inactive_window': {},
     \ 'indent': {},
     \ 'mixed_indent': {},
@@ -168,8 +167,8 @@ if isdirectory(g:pm_dir)
     \ 'whitespace': {},
     \ 'title_description': {},
     \ 'words': {},
-    \ 'long_line': {},
     \ }
+    " \ 'long_line': {},
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
