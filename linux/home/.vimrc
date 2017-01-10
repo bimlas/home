@@ -1023,6 +1023,10 @@ autocmd vimrc ColorScheme,VimEnter *
 \ highlight! link SpecialKey NonText                                        |
 \ highlight! Error term=bold ctermfg=9 gui=bold guibg=#dc322f guifg=#ffffff
 
+" NeoSolarized does not highlights SignColumn - do it with every colorscheme.
+autocmd vimrc ColorScheme,VimEnter *
+\ highlight! link SignColumn LineNr
+
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
 
