@@ -62,3 +62,6 @@ sudo aptitude install -y xorg
 #   VT-x in BIOS and `echo exec WINDOWMANAGER(awesome) > ~/.xinitrc`.
 #   Awesome window manager does not works for some reasons - install `lightdm`
 #   ot try `i3`!
+#   Update: installed Awesome + LightDM, nothing happened; installed i3, now I
+#   can choose awesome from LightDM's list - Awesome does not registers
+#   itself?
