@@ -665,17 +665,18 @@ if isdirectory(g:pm_dir)
       let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
     endif
 
-  " NEOMAKE/NEOMAKE                                                       {{{2
+  " W0RP/ALE                                                              {{{2
   " asynchronous syntax checker
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'neomake/neomake'
+    Plug 'w0rp/ale'
 
-    let g:neomake_error_sign = {'text': '▶', 'texthl': 'Error'}
-    let g:neomake_warning_sign = {'text': '∙', 'texthl': 'StatusLineNC'}
-    let g:neomake_info_sign = {'text': '∷', 'texthl': 'FoldColumn'}
-    let g:neomake_message_sign = {'text': '∷', 'texthl': 'FoldColumn'}
+    let g:ale_lint_on_save = 1
+    let g:ale_lint_on_text_changed = 0
 
-    autocmd vimrc BufReadPost,BufWritePost * Neomake
+    let g:ale_sign_error = '▶'
+    let g:ale_sign_warning = '∙'
+
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
   endif
 
   " GTAGS.VIM                                                             {{{2
