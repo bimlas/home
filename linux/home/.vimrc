@@ -303,10 +303,6 @@ if isdirectory(g:pm_dir)
 
   " .. SZOVEG KERESESE/MODOSITASA .........
 
-  " GOOGLE/VIM-SEARCHINDEX                                                {{{2
-  " show the number of search pattern matches
-  Plug 'google/vim-searchindex'
-
   " THINCA/VIM-VISUALSTAR                                                 {{{2
   " kijelolt szoveg keresese * gombbal
   Plug 'thinca/vim-visualstar'
