@@ -661,18 +661,17 @@ if isdirectory(g:pm_dir)
       let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
     endif
 
-  " W0RP/ALE                                                              {{{2
+  " NEOMAKE/NEOMAKE                                                       {{{2
   " asynchronous syntax checker
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'w0rp/ale'
+    Plug 'neomake/neomake'
 
-    let g:ale_lint_on_save = 1
-    let g:ale_lint_on_text_changed = 0
+    let g:neomake_error_sign = {'text': '▶', 'texthl': 'Error'}
+    let g:neomake_warning_sign = {'text': '∙', 'texthl': 'StatusLineNC'}
+    let g:neomake_info_sign = {'text': '∷', 'texthl': 'FoldColumn'}
+    let g:neomake_message_sign = {'text': '∷', 'texthl': 'FoldColumn'}
 
-    let g:ale_sign_error = '▶'
-    let g:ale_sign_warning = '∙'
-
-    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    autocmd vimrc BufReadPost,BufWritePost * Neomake
   endif
 
   " GTAGS.VIM                                                             {{{2
@@ -1889,5 +1888,7 @@ autocmd vimrc BufNew   __doc__ setlocal nonumber nolist   " pydoc buffer
 " Disable folding in diffs.
 autocmd vimrc FileType diff setlocal nofoldenable
 
-" Auto-open quickfix window - quickfix-reflector needs nested autocommand.
-autocmd vimrc QuickFixCmdPost * nested botright cwindow
+" Auto-open quickfix window - quickfix-reflector needs nested autocommand,
+" but I don't like to open it up by Neomake.
+" See `:help QuickFixCmdPost` and https://github.com/tpope/vim-fugitive#faq
+autocmd vimrc QuickFixCmdPost *grep* nested botright cwindow
