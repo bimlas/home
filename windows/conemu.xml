@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2016-11-17 14:57:44" build="161022">
+		<key name=".Vanilla" modified="2017-01-12 08:30:18" build="161206">
 			<value name="StartType" type="hex" data="00"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -88,7 +88,7 @@
 			<value name="StoreTaskbarCommands" type="hex" data="00"/>
 			<value name="SaveCmdHistory" type="hex" data="01"/>
 			<value name="CmdLineHistory" type="multi"></value>
-			<value name="SingleInstance" type="hex" data="00"/>
+			<value name="SingleInstance" type="hex" data="01"/>
 			<value name="ShowHelpTooltips" type="hex" data="01"/>
 			<value name="Multi" type="hex" data="01"/>
 			<value name="Multi.ShowButtons" type="hex" data="00"/>
@@ -382,7 +382,7 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="HotKeys" modified="2016-11-17 14:57:44" build="161022">
+			<key name="HotKeys" modified="2017-01-12 08:30:18" build="161206">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
@@ -567,9 +567,9 @@
 				<value name="Key.DumpTree" type="dword" data="00000000"/>
 				<value name="Key.ResetTerm" type="dword" data="00000000"/>
 			</key>
-			<key name="Tasks" modified="2016-11-17 14:57:44" build="161022">
+			<key name="Tasks" modified="2017-01-12 08:30:18" build="161206">
 				<value name="Count" type="long" data="1"/>
-				<key name="Task1" modified="2016-11-17 14:57:44" build="161022">
+				<key name="Task1" modified="2017-01-12 08:30:18" build="161206">
 					<value name="Name" type="string" data="{Bash::Git bash}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00001153"/>
@@ -662,12 +662,12 @@
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2016-11-17 14:57:44" build="161022">
+			<key name="Apps" modified="2017-01-12 08:30:18" build="161206">
 				<value name="Count" type="long" data="0"/>
 			</key>
-			<key name="Colors" modified="2016-11-17 14:57:44" build="161022">
+			<key name="Colors" modified="2017-01-12 08:30:18" build="161206">
 				<value name="Count" type="long" data="3"/>
-				<key name="Palette1" modified="2016-11-17 14:57:44" build="161022">
+				<key name="Palette1" modified="2017-01-12 08:30:18" build="161206">
 					<value name="Name" type="string" data="moe-dark"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -708,7 +708,7 @@
 					<value name="ColorTable30" type="dword" data="00ffff00"/>
 					<value name="ColorTable31" type="dword" data="00ffffff"/>
 				</key>
-				<key name="Palette2" modified="2016-11-17 14:57:44" build="161022">
+				<key name="Palette2" modified="2017-01-12 08:30:18" build="161206">
 					<value name="Name" type="string" data="Solarized Dark"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -749,7 +749,7 @@
 					<value name="ColorTable30" type="dword" data="000089b5"/>
 					<value name="ColorTable31" type="dword" data="00e3f6fd"/>
 				</key>
-				<key name="Palette3" modified="2016-11-17 14:57:44" build="161022">
+				<key name="Palette3" modified="2017-01-12 08:30:18" build="161206">
 					<value name="Name" type="string" data="Solarized Light"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -811,6 +811,7 @@
 			<value name="StatusBar.Hide.RMode" type="hex" data="01"/>
 			<value name="CompressLongStrings" type="hex" data="01"/>
 			<value name="KillSshAgent" type="hex" data="01"/>
+			<value name="StatusBar.Hide.CellI" type="hex" data="01"/>
 		</key>
 	</key>
 </key>
