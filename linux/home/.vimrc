@@ -161,14 +161,14 @@ if isdirectory(g:pm_dir)
     \   'blacklist': ['help'],
     \ },
     \ 'inactive_window': {},
-    \ 'indent': {},
-    \ 'mixed_indent': {},
-    \ 'mixed_eol': {},
     \ 'whitespace': {},
     \ 'title_description': {},
     \ 'words': {},
     \ }
     " \ 'long_line': {},
+    " \ 'indent': {},
+    " \ 'mixed_indent': {},
+    " \ 'mixed_eol': {},
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
