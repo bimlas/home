@@ -164,6 +164,7 @@ if isdirectory(g:pm_dir)
     \ 'whitespace': {},
     \ 'title_description': {},
     \ 'words': {},
+    \ 'unite_directory': {},
     \ }
     " \ 'long_line': {},
     " \ 'indent': {},
