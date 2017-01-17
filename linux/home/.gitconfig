@@ -413,7 +413,7 @@
 
   ; __ CHERRY-PICK ________________________                               {{{2
 
-  cr = "cherry-pick"
+  cr = "cherry-pick -n"
 
   ; __ FRAMEWORK-RELATED COMMANDS _________                               {{{2
 
