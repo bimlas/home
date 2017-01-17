@@ -565,3 +565,7 @@
   ; Minimalize the number of objects in the .git dir (speeds up the things a
   ; bit).
   auto = 256
+
+[gui]                                                                   ; {{{1
+
+  encoding = "utf-8"
