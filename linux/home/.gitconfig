@@ -432,9 +432,7 @@
   editor = "gvim --nofork"
 
   ; Do not break long lines (useful for log --graph with a bunch of branches).
-  ; Diff-highlight combines `diff` and `diff --color-words`.
-  ; https://github.com/git/git/tree/master/contrib/diff-highlight
-  pager = "diff-highlight | less -SRF"
+  pager = "less -SRF"
 
   ; Do not modify EOL.
   autocrlf = "false"
@@ -469,7 +467,7 @@
   match      = "green"
   filename   = "white bold"
 
-[interactive]
+[interactive]                                                           ; {{{1
 
   diffFilter = "diff-highlight"
 
@@ -492,6 +490,16 @@
 
   ; Show ref names too (origin/master, tags, etc.).
   decorate = "true"
+
+[pager]
+
+  ; Diff-highlight combines `diff` and `diff --color-words`.
+  ; https://github.com/git/git/tree/master/contrib/diff-highlight
+  ; I do not need it when viewing blame for example, so use it exactly for
+  ; this commands.
+  log = "diff-highlight | less -SRF"
+  show = "diff-highlight | less -SRF"
+  diff = "diff-highlight | less -SRF"
 
 [pretty]                                                                ; {{{1
 
