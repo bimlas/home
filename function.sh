@@ -40,5 +40,5 @@ remember()
   header "* add ~/.gitconfig_files/custom_commands' to path"
   header "* run ~/firefox/install_addons.ps1"
   header "* autostart autohotkey scripts"
-  header "* set LESSCHARSET=UTF-8 to avoid weird chars in Git log"
+  header "* set LC_ALL=hu_HU.UTF-8 to avoid weird chars in Git log"
 }
