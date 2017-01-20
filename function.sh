@@ -36,9 +36,10 @@ link()
 remember()
 {
   header "DON'T FORGET TO:"
-  header "* add ~/bin to path"
-  header "* add ~/.gitconfig_files/custom_commands' to path"
   header "* run ~/firefox/install_addons.ps1"
+  header "ON WINDOWS:"
+  header "* add ~/bin to path"
+  header "* add ~/.gitconfig_files/custom_commands to path"
   header "* autostart autohotkey scripts"
   header "* set LC_ALL=hu_HU.UTF-8 to avoid weird chars in Git log"
 }
