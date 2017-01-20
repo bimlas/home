@@ -360,16 +360,6 @@ if isdirectory(g:pm_dir)
     \ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
     \ }
 
-  " STEFANDTW/QUICKFIX-REFLECTOR.VIM                                      {{{2
-  " quickfix-en keresztul a fajlok sorainak szerkesztese (:copen, ha nem lehet
-  " szerkeszteni a quickfix-et)
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'stefandtw/quickfix-reflector.vim'
-  endif
-
-    " Ne mentse automatikusan a megvaltoztatott fajlokat.
-    let g:qf_write_changes = 0
-
   " DYNG/CTRLSF.VIM                                                       {{{2
   if !exists('g:vimrc_minimal_plugins')
     Plug 'dyng/ctrlsf.vim'
@@ -1888,7 +1878,6 @@ autocmd vimrc BufNew   __doc__ setlocal nonumber nolist   " pydoc buffer
 " Disable folding in diffs.
 autocmd vimrc FileType diff setlocal nofoldenable
 
-" Auto-open quickfix window - quickfix-reflector needs nested autocommand,
-" but I don't like to open it up by Neomake.
+" Auto-open quickfix window - I don't like to open it up by Neomake.
 " See `:help QuickFixCmdPost` and https://github.com/tpope/vim-fugitive#faq
 autocmd vimrc QuickFixCmdPost *grep* nested botright cwindow
