@@ -40,6 +40,7 @@ remember()
   header "ON WINDOWS:"
   header "* add ~/bin to path"
   header "* add ~/.gitconfig_files/custom_commands to path"
+  header "* add ~/.gitconfig_files/custom_commands/diff-so-fancy to path"
   header "* autostart autohotkey scripts"
   header "* set LC_ALL=hu_HU.UTF-8 to avoid weird chars in Git log"
 }
