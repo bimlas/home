@@ -897,6 +897,13 @@ if isdirectory(g:pm_dir)
     Plug 'tpope/vim-fugitive'
   endif
 
+  " LAMBDALISUE/GINA.VIM                                                  {{{2
+  " git integration
+  " $ install git
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'lambdalisue/gina.vim'
+  endif
+
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
   " $ install git
