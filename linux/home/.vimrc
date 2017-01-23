@@ -314,6 +314,12 @@ if isdirectory(g:pm_dir)
 
     let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
 
+  " ROMAINL/VIM-QF                                                        {{{2
+  " quckifix imrpovements
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'romainl/vim-qf'
+  endif
+
   " MACHAKANN/VIM-SANDWICH                                                {{{2
   " paros jelek gyors cserelese/torlese
   if !exists('g:vimrc_minimal_plugins')
