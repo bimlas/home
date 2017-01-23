@@ -597,6 +597,11 @@ if isdirectory(g:pm_dir)
     Plug 'junegunn/vader.vim'
   endif
 
+  " THINCA/VIM-THEMIS                                                     {{{2
+  " a unit testing framework for Vim script
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'thinca/vim-themis'
+  endif
                                                                         " }}}2
 
   " .. PROGRAMOZAS ........................
@@ -895,6 +900,13 @@ if isdirectory(g:pm_dir)
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
     Plug 'tpope/vim-fugitive'
+  endif
+
+  " LAMBDALISUE/GINA.VIM                                                  {{{2
+  " git integration
+  " $ install git
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'lambdalisue/gina.vim'
   endif
 
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2

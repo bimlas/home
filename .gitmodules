@@ -1,0 +1,3 @@
+[submodule "linux/home/.gitconfig_files/custom_commands/diff-so-fancy"]
+	path = linux/home/.gitconfig_files/custom_commands/diff-so-fancy
+	url = https://github.com/so-fancy/diff-so-fancy
