@@ -415,6 +415,12 @@
 
   cr = "cherry-pick -n"
 
+  ; __ SUBMODULE __________________________                               {{{2
+
+  ; You have to run this first after pulling a repo with a commit which adds a
+  ; new submodule to it.
+  subi = "submodule update --init --recursive"
+
   ; __ FRAMEWORK-RELATED COMMANDS _________                               {{{2
 
   ; RUBY
