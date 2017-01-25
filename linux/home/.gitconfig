@@ -74,6 +74,10 @@
 ;   # Look for the last commit on the deleted branch.
 ;   git branch DELETED_BRANCH LAST_COMMIT
 ;
+;   You can use the `log` options on reflog to narrow the list, for example:
+;
+;   git reflog -G 'missing line'
+;
 ; UPDATE TOPIC BRANCH WITH MASTER (WITHOUT MERGING TO IT)
 ;
 ;   git checkout FEATURE
