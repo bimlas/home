@@ -1733,19 +1733,19 @@ nnoremap <Space>fvv :edit $MYVIMRC<CR>
 "                             <Space>g - GIT                              {{{3
 " ............................................................................
 
-nnoremap <Space>ga :Gcommit --amend<CR>
+nnoremap <Space>ga :Gina commit --amend<CR>
 nnoremap <Space>gb :Gblame<CR>
-nnoremap <Space>gc :Gcommit<CR>
-nnoremap <Space>gd :Gdiff<CR>
+nnoremap <Space>gc :Gina commit<CR>
+nnoremap <Space>gd :Gina diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
 nnoremap <Space>gg :Ggrep! --ignore-case "" -- ":/"<Home><C-Right><C-Right><Right><Right>
 nnoremap <Space>gm :Gmerge<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
-nnoremap <Space>gr :Gread<CR>
+nmap     <Space>gr :Gina checkout %<CR><C-L>
 nmap     <Space>gR <Plug>GitGutterUndoHunk
-nnoremap <Space>gs :Gstatus<CR>
-nnoremap <Space>gw :Gwrite<CR>
+nnoremap <Space>gs :Gina status<CR>
+nmap     <Space>gw :Gina add %<CR><C-L>
 nmap     <Space>gW <Plug>GitGutterStageHunk
 
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
