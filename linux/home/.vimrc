@@ -150,26 +150,27 @@ if isdirectory(g:pm_dir)
     let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
     let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
 
-  " BIMBALASZLO/VIM-EIGHTSTAT                                             {{{2
-  " statusline helper functions
+  " BIMBALASZLO/VIM-HIGH                                                  {{{2
+  " all-in-one highlighter plugin
   " WIP
   Plug 'https://github.com/bimlas/vim-high'
   Plug 'https://github.com/bimlas/vim-high-school'
 
     let g:high_lighters = {
     \ '_': {
-    \   'blacklist': ['help'],
+    \   'enabled': 0,
+    \   'blacklist': ['help', 'qf', 'lf', 'vim-plug'],
     \ },
     \ 'inactive_window': {},
-    \ 'whitespace': {},
-    \ 'title_description': {},
+    \ 'indent': {},
+    \ 'long_line': {},
+    \ 'mixed_eol': {'enabled': 1},
+    \ 'mixed_indent': {'enabled': 1},
+    \ 'trailing_whitespace': {},
+    \ 'unite_directory': {'enabled': 1},
     \ 'words': {},
-    \ 'unite_directory': {},
+    \ 'title_description': {},
     \ }
-    " \ 'long_line': {},
-    " \ 'indent': {},
-    " \ 'mixed_indent': {},
-    " \ 'mixed_eol': {},
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
