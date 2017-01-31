@@ -761,7 +761,9 @@ if isdirectory(g:pm_dir)
   " RUBY
   " Download the latest from
   " http://downloads.activestate.com/Komodo/releases/XXX/remotedebugging/Komodo-RubyRemoteDebugging...
-  Plug 'joonty/vdebug'
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'joonty/vdebug'
+  endif
 
     " See the last message of https://github.com/joonty/vdebug/issues/78
     let g:vdebug_options= {
