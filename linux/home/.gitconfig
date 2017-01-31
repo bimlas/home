@@ -479,7 +479,7 @@
 
 [interactive]                                                           ; {{{1
 
-  diffFilter = "diff-highlight"
+  diffFilter = "diff-so-fancy"
 
 [commit]                                                                ; {{{1
 
