@@ -777,6 +777,13 @@ if isdirectory(g:pm_dir)
     " Start the script in a shell with
     " ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb myscript.rb
 
+  " MATTBOEHM/VIM-UNSTACK                                                 {{{2
+  " parse stack traces or quickfix entries and open the result in vim splits
+  " visually select part/all of a stacktrace and hit <leader>s
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'mattboehm/vim-unstack'
+  endif
+
   " SHEERUN/VIM-POLYGLOT                                                  {{{2
   " a lot of (emasculated, syntax only) filetype plugins
   Plug 'sheerun/vim-polyglot'
