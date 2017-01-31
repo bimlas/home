@@ -901,6 +901,7 @@ if isdirectory(g:pm_dir)
 
     let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
     let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+    let g:UltiSnipsListSnippets        = '<C-G>'
 
   " HONZA/VIM-SNIPPETS                                                    {{{2
   " templates
@@ -1385,7 +1386,6 @@ cabbrev saveas saveas <C-R>=expand('%:p:h')<CR>/
 
 " Almighty homerow.
 inoremap <C-F>      <C-X><C-O>
-inoremap <C-G>      <C-X><C-U>
 noremap  <C-H>      @
 noremap  <C-H><C-H> @@
 map      <C-J>      <CR>
