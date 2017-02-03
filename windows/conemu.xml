@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2017-01-12 08:30:18" build="161206">
+		<key name=".Vanilla" modified="2017-02-03 14:15:52" build="161206">
 			<value name="StartType" type="hex" data="00"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -235,7 +235,7 @@
 			<value name="DragPanel" type="hex" data="02"/>
 			<value name="DragPanelBothEdges" type="hex" data="00"/>
 			<value name="KeyBarRClick" type="hex" data="01"/>
-			<value name="StatusBar.Show" type="hex" data="00"/>
+			<value name="StatusBar.Show" type="hex" data="01"/>
 			<value name="StatusBar.Flags" type="dword" data="00000002"/>
 			<value name="StatusFontFace" type="string" data="Segoe UI"/>
 			<value name="StatusFontCharSet" type="ulong" data="0"/>
@@ -264,7 +264,7 @@
 			<value name="StatusBar.Hide.Dpi" type="hex" data="01"/>
 			<value name="StatusBar.Hide.ABuf" type="hex" data="01"/>
 			<value name="StatusBar.Hide.CPos" type="hex" data="01"/>
-			<value name="StatusBar.Hide.CSize" type="hex" data="01"/>
+			<value name="StatusBar.Hide.CSize" type="hex" data="00"/>
 			<value name="StatusBar.Hide.BSize" type="hex" data="01"/>
 			<value name="StatusBar.Hide.CurX" type="hex" data="01"/>
 			<value name="StatusBar.Hide.CurY" type="hex" data="01"/>
@@ -278,7 +278,7 @@
 			<value name="StatusBar.Hide.Transparency" type="hex" data="01"/>
 			<value name="StatusBar.Hide.New" type="hex" data="01"/>
 			<value name="StatusBar.Hide.Sync" type="hex" data="01"/>
-			<value name="StatusBar.Hide.Proc" type="hex" data="01"/>
+			<value name="StatusBar.Hide.Proc" type="hex" data="00"/>
 			<value name="StatusBar.Hide.Title" type="hex" data="01"/>
 			<value name="StatusBar.Hide.Time" type="hex" data="01"/>
 			<value name="StatusBar.Hide.Resize" type="hex" data="01"/>
@@ -382,7 +382,7 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="HotKeys" modified="2017-01-12 08:30:18" build="161206">
+			<key name="HotKeys" modified="2017-02-03 14:15:52" build="161206">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
@@ -567,9 +567,9 @@
 				<value name="Key.DumpTree" type="dword" data="00000000"/>
 				<value name="Key.ResetTerm" type="dword" data="00000000"/>
 			</key>
-			<key name="Tasks" modified="2017-01-12 08:30:18" build="161206">
+			<key name="Tasks" modified="2017-02-03 14:15:52" build="161206">
 				<value name="Count" type="long" data="1"/>
-				<key name="Task1" modified="2017-01-12 08:30:18" build="161206">
+				<key name="Task1" modified="2017-02-03 14:15:52" build="161206">
 					<value name="Name" type="string" data="{Bash::Git bash}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00001153"/>
@@ -662,12 +662,12 @@
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2017-01-12 08:30:18" build="161206">
+			<key name="Apps" modified="2017-02-03 14:15:52" build="161206">
 				<value name="Count" type="long" data="0"/>
 			</key>
-			<key name="Colors" modified="2017-01-12 08:30:18" build="161206">
+			<key name="Colors" modified="2017-02-03 14:15:52" build="161206">
 				<value name="Count" type="long" data="3"/>
-				<key name="Palette1" modified="2017-01-12 08:30:18" build="161206">
+				<key name="Palette1" modified="2017-02-03 14:15:52" build="161206">
 					<value name="Name" type="string" data="moe-dark"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -708,7 +708,7 @@
 					<value name="ColorTable30" type="dword" data="00ffff00"/>
 					<value name="ColorTable31" type="dword" data="00ffffff"/>
 				</key>
-				<key name="Palette2" modified="2017-01-12 08:30:18" build="161206">
+				<key name="Palette2" modified="2017-02-03 14:15:52" build="161206">
 					<value name="Name" type="string" data="Solarized Dark"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -749,7 +749,7 @@
 					<value name="ColorTable30" type="dword" data="000089b5"/>
 					<value name="ColorTable31" type="dword" data="00e3f6fd"/>
 				</key>
-				<key name="Palette3" modified="2017-01-12 08:30:18" build="161206">
+				<key name="Palette3" modified="2017-02-03 14:15:52" build="161206">
 					<value name="Name" type="string" data="Solarized Light"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
