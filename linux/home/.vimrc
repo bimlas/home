@@ -530,7 +530,15 @@ if isdirectory(g:pm_dir)
   "                               CHEATSHEET                               {{{
   "
   " Analyse startuptime:
-  "   $ vim --startuptime times.txt
+  "   $ vim --startuptime startup.txt
+  "
+  "   If you want to list time of function calls:
+  "   $ vim --cmd 'profile start times.txt | profile func * | profile file *'
+  "   \ -c 'profile pause' -c 'noau qall!'
+  "   $ vim -c 'set ft=vim nofoldenable' times.txt
+  "
+  "   If you want to benchmark functions of Unite for example, then use
+  "   `profile func unite*`.
   "
   " Debug a command
   "   debug CommandName
