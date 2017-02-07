@@ -9,3 +9,6 @@ ColorZilla - color picker
 
 Care Your Eyes - night mode (blinks while loading the page)
   https://chrome.google.com/webstore/detail/care-your-eyes/fidmpnedniahpnkeomejhnepmbdamlhl
+
+Visual Ping - alert when a part of site is visually changed
+  https://chrome.google.com/webstore/detail/visualping/pemhgklkefakciniebenbfclihhmmfcd
