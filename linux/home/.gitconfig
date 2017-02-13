@@ -366,8 +366,8 @@
 
   ; __ COMMIT _____________________________                               {{{2
 
-  c   = "commit --verbose"
-  ca  = "commit --verbose --amend"
+  c   = "commit"
+  ca  = "commit --amend"
   cam = "commit --amend --reuse-message=HEAD"
   cm  = "commit -m"
   cmu = "commit -m Update"
@@ -482,6 +482,9 @@
   diffFilter = "diff-so-fancy"
 
 [commit]                                                                ; {{{1
+
+  ; Include the diff in to the commit message (scissors mode).
+  verbose = "true"
 
   ; Additional text which appears on the top of commit message as a comment.
   template = "~/.gitconfig_files/commit_template"
