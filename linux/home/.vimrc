@@ -1751,7 +1751,8 @@ nnoremap <Space>fvv :edit $MYVIMRC<CR>
 " ............................................................................
 
 nnoremap <Space>ga :Gina commit --amend<CR>
-nnoremap <Space>gb :Gblame<CR>
+nnoremap <Space>gb :Gina branch<CR>
+nnoremap <Space>gB :Gblame<CR>
 nnoremap <Space>gc :Gina commit<CR>
 nnoremap <Space>gd :Gina diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
