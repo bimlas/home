@@ -110,6 +110,14 @@
 ;
 ;   git archive -o /path/to/output.zip HEAD -- $(git diff --name-only FROM..TO)
 ;
+; CREATE A DISCONNECTED (PARALLEL) BRANCH
+;
+;   git checkout --orphan NEW
+;   rm -rf .
+;   # Add files.
+;   git add :/
+;   git commit -m 'Initial commit'
+;
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 [user]                                                                  ; {{{1
