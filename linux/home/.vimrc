@@ -1767,7 +1767,7 @@ nnoremap <Space>gB :Gblame<CR>
 nnoremap <Space>gc :Gina commit<CR>
 nnoremap <Space>gd :Gina diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
-nnoremap <Space>gg :silent Gina qrep! --ignore-case -- ":/"<Left>
+nnoremap <Space>gg :silent Gina qrep --ignore-case '' -- ':/'<S-Left><S-Left><S-Left><Right>
 nnoremap <Space>gl :Gina log<CR>
 nnoremap <Space>gL :Gina log -- %<CR>
 nnoremap <Space>gm :Gmerge<CR>
