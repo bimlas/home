@@ -248,10 +248,11 @@
 
   ; __ DIFF _______________________________                               {{{2
 
-  ; -w             Ignore whitespace diffs
-  ; --color-words  Show the exact diffs
-  ; --diff-filter  Filter files: A|C|D|M|R|T|U|X|B
-  ; -U123          Show 123 lines of context around hunk
+  ; -w                    Ignore whitespace diffs
+  ; --color-words         Show the exact diffs
+  ; --diff-filter         Filter files: A|C|D|M|R|T|U|X|B
+  ; -U123                 Show 123 lines of context around hunk
+  ; --ignore-space-at-eol Ignore EOL changes
   ;
   ; Look for the addition/deletion of text - ie. when was the string
   ; firstly introduced or where was it removed (when using with `log`).
