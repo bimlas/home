@@ -1756,6 +1756,7 @@ nnoremap <Space>fF  :Unite file file/new directory/new<CR>
 nmap     <Space>fp  :UniteWithProjectDir -buffer-name=project_files -resume -start-insert file_rec/async file/new directory/new<CR><C-U>
 nnoremap <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
 nnoremap <Space>fvg :edit $MYGVIMRC<CR>
+nnoremap <Space>fvm :edit ~/.vimrc_minimal<CR>
 nnoremap <Space>fvv :edit $MYVIMRC<CR>
 
 "                             <Space>g - GIT                              {{{3

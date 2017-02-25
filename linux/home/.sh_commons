@@ -9,8 +9,9 @@ alias ls='ls -Av --color --group-directories-first'
 alias grep='grep --color'
 alias du='du -b'
 alias g='git'
+alias mvim='vim -u ~/.vimrc_minimal'
 
-# Disable .vimrc in vim.tiny.
+# Disable .vimrc in vim.tiny because of incompatible settings.
 if [[ $(which vim.tiny) ]]; then
   alias vim.tiny='vim.tiny -u NONE'
 fi

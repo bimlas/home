@@ -43,6 +43,10 @@ Set-Alias g git
 function funcGitBash { c:\app\git\usr\bin\bash --login -i }
 Set-Alias gsh funcGitBash
 
+# Open Vim with minimal settings for testing plugins.
+function funcMinimalVim { gvim -u ~/.vimrc_minimal -U NONE $args }
+Set-Alias mvim funcMinimalVim
+
 # Narrow list with Fzf.
 # https://github.com/junegunn/fzf
 function funcFzf { fzf --multi --exact $args }
