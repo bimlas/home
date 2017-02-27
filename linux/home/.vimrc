@@ -931,13 +931,6 @@ if isdirectory(g:pm_dir)
 
   " .. GIT ................................
 
-  " TPOPE/VIM-FUGITIVE                                                    {{{2
-  " git integration
-  " $ install git
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'tpope/vim-fugitive'
-  endif
-
   " LAMBDALISUE/GINA.VIM                                                  {{{2
   " git integration
   " $ install git
@@ -1764,14 +1757,14 @@ nnoremap <Space>fvv :edit $MYVIMRC<CR>
 
 nnoremap <Space>ga :Gina commit --amend<CR>
 nnoremap <Space>gb :Gina branch<CR>
-nnoremap <Space>gB :Gblame<CR>
+nnoremap <Space>gB :Gina blame :<CR>
 nnoremap <Space>gc :Gina commit<CR>
 nnoremap <Space>gd :Gina diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
 nnoremap <Space>gg :silent Gina qrep --ignore-case '' -- ':/'<S-Left><S-Left><S-Left><Right>
 nnoremap <Space>gl :Gina log<CR>
 nnoremap <Space>gL :Gina log -- %<CR>
-nnoremap <Space>gm :Gmerge<CR>
+nnoremap <Space>gm :Gina chaperon<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
 nmap     <Space>gr :Gina checkout %<CR><C-L>
