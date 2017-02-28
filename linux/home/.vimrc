@@ -1369,6 +1369,10 @@ endfunction
 "                               KODKIEGESZITES                            {{{1
 " ============================================================================
 
+" Using a Git hook to generate tags.
+" http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+set tags=.git/tags
+
 " <C-N> kiegeszitesnel a sztringeket vegye:
 " .  ebbol a fajlbol
 " i  include fajlokbol
