@@ -936,7 +936,34 @@ if isdirectory(g:pm_dir)
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
     Plug 'lambdalisue/gina.vim'
+    autocmd vimrc VimEnter * call PostGina()
   endif
+
+  function! PostGina()
+    call gina#custom#command#alias('show', 'sw')
+    call gina#custom#command#option('sw', '-p|--patch')
+    call gina#custom#command#option('sw', '--stat')
+
+    call gina#custom#command#alias('log', 'l')
+    call gina#custom#command#option('l', '--date-order')
+    call gina#custom#command#alias('log', 'la')
+    call gina#custom#command#option('la', '--date-order')
+    call gina#custom#command#option('la', '--all')
+    call gina#custom#command#alias('log', 'las')
+    call gina#custom#command#option('las', '--date-order')
+    call gina#custom#command#option('las', '--all')
+    call gina#custom#command#option('las', '--simplify-by-decoration')
+
+    call gina#custom#command#option('diff', '--stat')
+    call gina#custom#command#option('diff', '-p|--patch')
+    call gina#custom#command#alias('diff', 'df')
+    call gina#custom#command#option('df', '--stat')
+    call gina#custom#command#alias('diff', 'dfc')
+    call gina#custom#command#option('dfc', '--stat')
+    call gina#custom#command#option('dfc', '--cached')
+
+    call gina#custom#command#alias('commit', 'c')
+  endfunction
 
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
