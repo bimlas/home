@@ -141,7 +141,7 @@
 
   ; Edit .gitconfig
   ; rc = "config --global --edit"
-  rc = "!gvim $HOME/.gitconfig &"
+  rc = "!$EDITOR $HOME/.gitconfig"
 
   ; Find keywords.
   kw = "keywords --all"
@@ -454,8 +454,6 @@
   ; https://github.com/git-for-windows/git/wiki/Symbolic-Links
   symlinks = "true"
 
-  editor = "gvim --nofork"
-
   ; Do not break long lines (useful for log --graph with a bunch of branches).
   pager = "diff-so-fancy | less --tabs=4 -SRFX"
 
@@ -533,7 +531,7 @@
 
   ; Find renamed and copied files.
   renames   = "copies"
-  tool      = "gvimdiff"
+  tool      = "$EDITORdiff"
   algorithm = "patience"
 
   ; Well structured hunks:
@@ -550,7 +548,7 @@
 
   ; Allways create (empty) merge commits.
   ff   = "false"
-  tool = "gvimdiff"
+  tool = "$EDITORdiff"
 
 [credential]                                                            ; {{{1
 

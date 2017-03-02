@@ -43,4 +43,5 @@ remember()
   header "* add ~/.gitconfig_files/custom_commands/diff-so-fancy to path"
   header "* autostart autohotkey scripts"
   header "* set LC_ALL=hu_HU.UTF-8 to avoid weird chars in Git log"
+  header "* set EDITOR to use for Git"
 }
