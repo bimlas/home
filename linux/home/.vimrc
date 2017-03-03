@@ -536,7 +536,7 @@ if isdirectory(g:pm_dir)
     \ }
                                                                         " }}}2
 
-  " .. DEBUG / BENCHMARK ..................
+  " .. DEBUG/BENCHMARK/VIML DEVELOPMENT ...
 
   "                               CHEATSHEET                               {{{
   "
@@ -627,6 +627,12 @@ if isdirectory(g:pm_dir)
   " a unit testing framework for Vim script
   if !exists('g:vimrc_minimal_plugins')
     Plug 'thinca/vim-themis'
+  endif
+
+  " VIM-JP/VITAL.VIM                                                      {{{2
+  " a comprehensive vim utility functions for vim plugins
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'vim-jp/vital.vim'
   endif
                                                                         " }}}2
 
