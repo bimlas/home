@@ -31,11 +31,10 @@ augroup END
 "                          WIN / NIX BEALLITASOK                          {{{1
 " ============================================================================
 
+" Add external binaries to PATH (like ctags, rg, etc.).
+let $PATH .= (has('win32') ? ';' : ':') . $HOME . '/.vim/bin'
+
 if has('win32')
-
-  " Add external binaries to PATH (like ctags, rg, etc.).
-  let $PATH = $PATH . ';' . $HOME . '/.vim/bin'
-
   " Add the basic Linux tools (via Msys-Git) to the PATH.
   let $PATH = $PATH . ';c:/app/git/usr/bin'
 
