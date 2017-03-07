@@ -821,6 +821,15 @@ if isdirectory(g:pm_dir)
     let g:ruby_no_comment_fold           = 1
     let g:ruby_operators                 = 1
 
+  " TPOPE/VIM-BUNDLER                                                     {{{2
+  " 'path' and 'tags' are automatically include all gems from your bundle
+  " $ gem install gem-ctags OR gem-ripper-tags
+  " Generate tags for already installed gems
+  " $ gem ctags OR ripper_tags
+  if !exists('g:vimrc_minimal_plugins') && g:has_ruby
+    Plug 'tpope/vim-bundler'
+  endif
+
   " TPOPE/VIM-RAILS                                                       {{{2
   " rails syntax and other goodness
   if !exists('g:vimrc_minimal_plugins') && g:has_ruby
