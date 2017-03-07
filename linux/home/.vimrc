@@ -155,21 +155,15 @@ if isdirectory(g:pm_dir)
   Plug 'https://github.com/bimlas/vim-high'
   Plug 'https://github.com/bimlas/vim-high-school'
 
-    let g:high_lighters = {
-    \ '_': {
-    \   'enabled': 0,
-    \   'blacklist': ['help', 'qf', 'lf', 'vim-plug'],
-    \ },
-    \ 'inactive_window': {},
-    \ 'indent': {},
-    \ 'long_line': {},
-    \ 'mixed_eol': {'enabled': 1},
-    \ 'mixed_indent': {'enabled': 1},
-    \ 'trailing_whitespace': {},
-    \ 'unite_directory': {'enabled': 1},
-    \ 'words': {},
-    \ 'title_description': {},
-    \ }
+  let g:high_lighters = {
+  \ 'words': {'_hlgroups': []},
+  \ 'deep_indent': {},
+  \ }
+
+  for color in ['8ccbea', 'a4e57e', 'ffdb72', 'ff7272', 'ffb3ff', '9999ff']
+    exe 'autocmd vimrc ColorScheme,VimEnter * highlight! HighWords'.color.' guibg=#'.color.' guifg=#000000'
+    let g:high_lighters.words._hlgroups += ['HighWords'.color]
+  endfor
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
@@ -307,12 +301,6 @@ if isdirectory(g:pm_dir)
   " THINCA/VIM-VISUALSTAR                                                 {{{2
   " kijelolt szoveg keresese * gombbal
   Plug 'thinca/vim-visualstar'
-
-  " LFV89/VIM-INTERESTINGWORDS
-  " highlight words (like * search) with different color
-  Plug 'lfv89/vim-interestingwords'
-
-    let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
 
   " ROMAINL/VIM-QF                                                        {{{2
   " quckifix imrpovements
