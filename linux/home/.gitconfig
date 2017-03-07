@@ -552,11 +552,18 @@
 
 [credential]                                                            ; {{{1
 
-  ; Store username/password in memory.
+  ; Store username/password.
   ; Needs to "Enable Git Credential Manager" during Msys-Git install; to list
   ; stored credentials, use `cmdkey /list`.
-  ; For Linux use `cache`.
-  helper = "wincred"
+  ; If there are multiple instances of the credential.helper configuration
+  ; variable, each helper will be tried in turn, and may provide a username,
+  ; password, or nothing. Once Git has acquired both a username and a
+  ; password, no more helpers will be tried.
+
+  ; Linux
+  helper = "cache"
+  ; Windows
+  helper = "manager"
 
 [fetch]                                                                 ; {{{1
 
