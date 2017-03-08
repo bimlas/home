@@ -942,6 +942,8 @@ if isdirectory(g:pm_dir)
   endif
 
   function! PostGina()
+    call gina#custom#command#option('show', '-p|--patch')
+    call gina#custom#command#option('show', '--stat')
     call gina#custom#command#alias('show', 'sw')
     call gina#custom#command#option('sw', '-p|--patch')
     call gina#custom#command#option('sw', '--stat')
