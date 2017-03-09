@@ -308,6 +308,9 @@ if isdirectory(g:pm_dir)
     Plug 'romainl/vim-qf'
   endif
 
+    let g:qf_auto_open_quickfix = 0
+    let g:qf_auto_open_loclist = 0
+
   " MACHAKANN/VIM-SANDWICH                                                {{{2
   " paros jelek gyors cserelese/torlese
   if !exists('g:vimrc_minimal_plugins')
