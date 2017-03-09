@@ -312,6 +312,7 @@
   ; `git push --follow-tags` will only push annotated tags.
 
   t  = "tag"
+  ts = "!git tag -l | xargs git tag -d; git fetch --tags"
   lt = "tag -n --sort=creatordate"
 
   ; __ CHECKOUT ___________________________                               {{{2
