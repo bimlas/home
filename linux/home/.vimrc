@@ -601,6 +601,12 @@ if isdirectory(g:pm_dir)
   "   set verbosefile=filename.txt
   "                                                                        }}}
 
+  " TWEEKMONSTER/HELPFUL.VIM                                              {{{2
+  " display vim version numbers in docs
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'tweekmonster/helpful.vim'
+  endif
+
   " MATTN/BENCHVIMRC-VIM                                                  {{{2
   " :BenchVimrc
   if !exists('g:vimrc_minimal_plugins')
