@@ -587,8 +587,8 @@
   ; password, or nothing. Once Git has acquired both a username and a
   ; password, no more helpers will be tried.
 
-  ; Linux
-  helper = "cache"
+  ; Linux (store for 8 hours)
+  helper = "cache --timeout=28800"
   ; Windows
   helper = "manager"
 
