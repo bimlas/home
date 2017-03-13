@@ -43,6 +43,12 @@ Set-Alias g git
 function funcGitBash { c:\app\git\usr\bin\bash --login -i }
 Set-Alias gsh funcGitBash
 
+# Alias for gr
+# https://github.com/mixu/gr
+# Use `gr @tag git status` to execute only tagged repos.
+function funcGr { gr git $args }
+Set-Alias gg funcGr
+
 # Open Vim with minimal settings for testing plugins.
 function funcMinimalVim { gvim -u ~/.vimrc_minimal -U NONE $args }
 Set-Alias mvim funcMinimalVim

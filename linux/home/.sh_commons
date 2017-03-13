@@ -9,6 +9,7 @@ alias ls='ls -Av --color --group-directories-first'
 alias grep='grep --color'
 alias du='du -b'
 alias g='git'
+alias gg='gr git' # https://github.com/mixu/gr
 alias mvim='vim -u ~/.vimrc_minimal'
 
 # Disable .vimrc in vim.tiny because of incompatible settings.

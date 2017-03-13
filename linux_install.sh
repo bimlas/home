@@ -13,6 +13,9 @@ sudo aptitude install -y zsh
 sudo aptitude install -y git
 sudo aptitude install -y vim
 
+sudo aptitude install -y nodejs
+npm install -g git-run
+
 echo '!! Change shell to Zsh needs password'
 chsh -s /bin/zsh
 
