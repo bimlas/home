@@ -169,7 +169,7 @@ if isdirectory(g:pm_dir)
 
   autocmd vimrc OptionSet *
   \ let pos = winnr()
-  \ | windo call high#core#UpdateGroups()
+  \ | windo call high#UpdateGroups()
   \ | exe pos.'wincmd w'
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
