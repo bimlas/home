@@ -958,6 +958,8 @@ if isdirectory(g:pm_dir)
   endif
 
   function! PostGina()
+    call gina#custom#command#alias('status', 's')
+
     call gina#custom#command#option('show', '-p|--patch')
     call gina#custom#command#option('show', '--stat')
     call gina#custom#command#alias('show', 'sw')
@@ -985,6 +987,8 @@ if isdirectory(g:pm_dir)
     call gina#custom#command#option('dfc', '--cached')
 
     call gina#custom#command#alias('commit', 'c')
+    call gina#custom#command#alias('commit', 'ca')
+    call gina#custom#command#option('ca', '--amend')
   endfunction
 
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
