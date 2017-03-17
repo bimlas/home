@@ -12,3 +12,10 @@ Care Your Eyes - night mode (blinks while loading the page)
 
 Visual Ping - alert when a part of site is visually changed
   https://chrome.google.com/webstore/detail/visualping/pemhgklkefakciniebenbfclihhmmfcd
+
+                                  OPERA
+==============================================================================
+
+Reverse Image Search - search for similar images from context menu (TinEye is
+very precise)
+  https://addons.opera.com/en/extensions/details/reverse-image-search/?display=en
