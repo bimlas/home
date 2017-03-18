@@ -167,7 +167,7 @@ if isdirectory(g:pm_dir)
     let g:high_lighters.words._hlgroups += ['HighWords'.color]
   endfor
 
-  autocmd vimrc OptionSet *
+  autocmd vimrc CursorHold *
   \ let pos = winnr()
   \ | windo call high#UpdateGroups()
   \ | exe pos.'wincmd w'
