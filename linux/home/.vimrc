@@ -653,6 +653,7 @@ if isdirectory(g:pm_dir)
   " auto insert `end` (for VimL, Ruby, etc.) and pairing chars ({, [, <, etc)
   if !exists('g:vimrc_minimal_plugins')
     Plug 'cohama/lexima.vim'
+    autocmd vimrc VimEnter * call PostLexima()
   end
 
     " Do not insert closing paired characters ('>', '}', '"').
@@ -661,6 +662,18 @@ if isdirectory(g:pm_dir)
     " Smacks up the popup menu (sometimes it selects the first element when I
     " hiting space).
     let g:lexima_enable_space_rules = 0
+
+    function! PostLexima()
+      for key in ['Describe', 'Before', 'It']
+        call lexima#add_rule({
+        \ 'filetype': 'vimspec',
+        \ 'at': '^\s*'.key.'\>.*\%#',
+        \ 'char': '<CR>',
+        \ 'input': '<CR>',
+        \ 'input_after': '<CR>End',
+        \ })
+      endfor
+    endfunction
 
   " POWERMAN/VIM-PLUGIN-VIEWDOC                                           {{{2
   " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
