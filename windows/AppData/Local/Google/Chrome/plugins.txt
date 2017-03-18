@@ -18,4 +18,7 @@ Visual Ping - alert when a part of site is visually changed
 
 Reverse Image Search - search for similar images from context menu (TinEye is
 very precise)
-  https://addons.opera.com/en/extensions/details/reverse-image-search/?display=en
+  https://addons.opera.com/en/extensions/details/reverse-image-search/
+
+Documents - show online documents
+  https://addons.opera.com/en/extensions/details/documents/
