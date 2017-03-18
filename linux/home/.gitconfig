@@ -450,6 +450,10 @@
   ;
   ;   git rebase --preserve-merges MERGE_SHA~
   ;
+  ; Move a branch to an older commit:
+  ;
+  ;   git rebase --onto NEW_BASE OLD_BASE BRANCH
+  ;
   ; For rebase + squah a feature branch, see merge.
 
   rb  = "rebase"
