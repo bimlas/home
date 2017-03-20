@@ -971,6 +971,7 @@ if isdirectory(g:pm_dir)
   endif
 
   function! PostGina()
+    call gina#custom#command#option('status', '--branch')
     call gina#custom#command#alias('status', 's')
 
     call gina#custom#command#option('show', '-p|--patch')
