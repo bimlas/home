@@ -1183,15 +1183,18 @@ set guicursor+=v-ve:VisualCursor
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-let stat_argnr      = '%{argc() > 1 ? argidx()+1 . "/" . argc() : ""}'
-let stat_filename   = '%w%t%r%m'
-let stat_filetype   = '%y'
-let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
+let stat_argnr        = '%a'
+let stat_buftype      = '%w%h%q'
+let stat_filename     = '%t'
+let stat_flags        = '%r%m'
+let stat_filetype     = '%{&filetype}'
+let stat_binary       = '%{&binary ? "binary" : ""}'
+let stat_fileformat   = '%{(!empty(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " " . &ff}'
 
 let &statusline  = stat_argnr . ' '
-let &statusline .= '%#StatFilename# ' . stat_filename . ' '
-let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
-let &statusline .= '%#StatFilename# ' . stat_filetype . ' '
+let &statusline .= '%#StatInfo#' . stat_buftype . ' '
+let &statusline .= '%#StatFilename#' . stat_filename . ' %(' . stat_flags . ' %)'
+let &statusline .= '%#StatInfo#[%#StatFileformat#' .stat_filetype . '%#StatInfo#][%#StatWarning#%( ' . stat_binary . ' %)%#StatFileformat#' . stat_fileformat . '%#StatInfo#] '
 let &statusline .= '%*'
 
 "                                 ALTALANOS                               {{{1
