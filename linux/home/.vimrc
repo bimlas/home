@@ -1185,11 +1185,13 @@ set laststatus=2
 
 let stat_argnr      = '%{argc() > 1 ? argidx()+1 . "/" . argc() : ""}'
 let stat_filename   = '%w%t%r%m'
+let stat_filetype   = '%y'
 let stat_fileformat = '%{&binary ? "binary" : ((strlen(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " ") . &ff}'
 
 let &statusline  = stat_argnr . ' '
 let &statusline .= '%#StatFilename# ' . stat_filename . ' '
 let &statusline .= '%#StatFileformat# ' . stat_fileformat . ' '
+let &statusline .= '%#StatFilename# ' . stat_filetype . ' '
 let &statusline .= '%*'
 
 "                                 ALTALANOS                               {{{1
