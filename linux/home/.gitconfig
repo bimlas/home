@@ -429,7 +429,7 @@
   ; the next one, etc.
 
   ; Stash, but keep staged files.
-  st  = "stash save --keep-index --include-untracked"
+  st  = "stash-needs-message"
   stl = "stash list"
   sts = "stash show"
   sta = "stash apply"
