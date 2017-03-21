@@ -1106,6 +1106,13 @@ autocmd  vimrc  ColorScheme,VimEnter  *
 \ highlight! link StatInfo       DiffChange |
 \ highlight! link StatWarning    Error
 
+" Mode-aware cursor colors (see below)
+autocmd  vimrc  ColorScheme,VimEnter  *
+\ highlight! InsertCursor   ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#a96800 |
+\ highlight! VisualCursor   ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#006eff |
+\ highlight! ReplaceCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#ef0000 |
+\ highlight! OperatorCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#c000ff
+
 " Allways display comments with italic fonts.
 autocmd  vimrc  ColorScheme,VimEnter  *
 \ highlight! Comment term=italic      cterm=italic      gui=italic      |
@@ -1158,6 +1165,17 @@ try
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme desert
 endtry
+
+"                            MODE-AWARE CURSOR                            {{{1
+" ============================================================================
+
+" https://github.com/blaenk/dots/blob/9843177fa6155e843eb9e84225f458cd0205c969/vim/vimrc.ln#L49-L64
+set guicursor+=o:hor50-OperatorCursor
+set guicursor+=n:Cursor
+set guicursor+=i-ci-sm:ver25-InsertCursor
+set guicursor+=r-cr:ReplaceCursor-hor20
+set guicursor+=c:Cursor
+set guicursor+=v-ve:VisualCursor
 
 "                               STATUSLINE                                {{{1
 " ============================================================================
