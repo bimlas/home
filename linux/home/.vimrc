@@ -117,7 +117,7 @@ if isdirectory(g:pm_dir)
 
   " Create supply function to check if plugin is installed.
  function! PluginEnabled(plugin)
-   return has_key(g:plugs, a:plugin)
+   return has_key(g:plugs, a:plugin) && isdirectory(g:plugs[a:plugin].dir)
  endfunction
 
   call plug#begin(g:pm_install_dir)
@@ -167,10 +167,12 @@ if isdirectory(g:pm_dir)
     let g:high_lighters.words._hlgroups += ['HighWords'.color]
   endfor
 
-  autocmd vimrc CursorHold *
-  \ let pos = winnr()
-  \ | windo call high#UpdateGroups()
-  \ | exe pos.'wincmd w'
+  if PluginEnabled('vim-high')
+    autocmd vimrc CursorHold *
+    \ let pos = winnr()
+    \ | windo call high#UpdateGroups()
+    \ | exe pos.'wincmd w'
+  endif
 
   " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
   " szamertekek modositasa regex alapjan
@@ -228,7 +230,6 @@ if isdirectory(g:pm_dir)
   " vim motion (in buffer) on speed
   if !exists('g:vimrc_minimal_plugins')
     Plug 'easymotion/vim-easymotion'
-    autocmd vimrc VimEnter * EMCommandLineNoreMap <C-J> <CR>
   end
 
     let g:EasyMotion_do_mapping = 0
@@ -242,6 +243,10 @@ if isdirectory(g:pm_dir)
 
     " Stay in the same column when using <Plug>(easymotion-sol-j)
     let g:EasyMotion_startofline = 0
+
+    if PluginEnabled('vim-easymotion')
+      autocmd vimrc VimEnter * EMCommandLineNoreMap <C-J> <CR>
+    endif
                                                                         " }}}2
 
   " .. TEXTOBJ-USER .......................
@@ -395,20 +400,22 @@ if isdirectory(g:pm_dir)
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
   if !exists('g:vimrc_minimal_plugins')
     Plug 'shougo/unite.vim'
-    autocmd vimrc VimEnter * call PostUnite()
   endif
 
-    function! PostUnite()
-      call unite#custom#profile('default', 'context', {
-      \ 'prompt_direction': 'top',
-      \ 'no_split':         1,
-      \ 'cursor_line_time': '0.0',
-      \ 'sync':             1,
-      \ })
-    endfunction
+    if PluginEnabled('unite.vim')
+      autocmd vimrc VimEnter * call PostUnite()
+      function! PostUnite()
+        call unite#custom#profile('default', 'context', {
+        \ 'prompt_direction': 'top',
+        \ 'no_split':         1,
+        \ 'cursor_line_time': '0.0',
+        \ 'sync':             1,
+        \ })
+      endfunction
 
-    " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
-    " autocmd vimrc VimEnter * call unite#filters#matcher_default#use(['matcher_regexp'])
+      " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
+      " autocmd vimrc VimEnter * call unite#filters#matcher_default#use(['matcher_regexp'])
+    endif
 
     let g:unite_source_history_yank_enable  = 1
     " let g:unite_source_tag_show_location = 0
@@ -653,8 +660,22 @@ if isdirectory(g:pm_dir)
   " auto insert `end` (for VimL, Ruby, etc.) and pairing chars ({, [, <, etc)
   if !exists('g:vimrc_minimal_plugins')
     Plug 'cohama/lexima.vim'
-    autocmd vimrc VimEnter * call PostLexima()
   end
+
+    if PluginEnabled('lexima.vim')
+      autocmd vimrc VimEnter * call PostLexima()
+      function! PostLexima()
+        for key in ['Describe', 'Before', 'It']
+          call lexima#add_rule({
+          \ 'filetype': 'vimspec',
+          \ 'at': '^\s*'.key.'\>.*\%#',
+          \ 'char': '<CR>',
+          \ 'input': '<CR>',
+          \ 'input_after': '<CR>End',
+          \ })
+        endfor
+      endfunction
+    endif
 
     " Do not insert closing paired characters ('>', '}', '"').
     let g:lexima_enable_basic_rules = 0
@@ -662,18 +683,6 @@ if isdirectory(g:pm_dir)
     " Smacks up the popup menu (sometimes it selects the first element when I
     " hiting space).
     let g:lexima_enable_space_rules = 0
-
-    function! PostLexima()
-      for key in ['Describe', 'Before', 'It']
-        call lexima#add_rule({
-        \ 'filetype': 'vimspec',
-        \ 'at': '^\s*'.key.'\>.*\%#',
-        \ 'char': '<CR>',
-        \ 'input': '<CR>',
-        \ 'input_after': '<CR>End',
-        \ })
-      endfor
-    endfunction
 
   " POWERMAN/VIM-PLUGIN-VIEWDOC                                           {{{2
   " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
@@ -696,8 +705,11 @@ if isdirectory(g:pm_dir)
   " $ install zeal @ http://zealdocs.org/
   if !exists('g:vimrc_minimal_plugins')
     Plug 'kabbamine/zeavim.vim'
-    autocmd vimrc FileType ruby Docset ruby 2
   endif
+
+    if PluginEnabled('zeavim.vim')
+      autocmd vimrc FileType ruby Docset ruby 2
+    endif
 
     let g:zv_disable_mapping = 1
 
@@ -715,7 +727,9 @@ if isdirectory(g:pm_dir)
     let g:neomake_info_sign = {'text': '∷', 'texthl': 'FoldColumn'}
     let g:neomake_message_sign = {'text': '∷', 'texthl': 'FoldColumn'}
 
-    autocmd vimrc BufReadPost,BufWritePost * Neomake
+    if PluginEnabled('neomake')
+      autocmd vimrc BufReadPost,BufWritePost * Neomake
+    endif
   endif
 
   " GTAGS.VIM                                                             {{{2
@@ -897,7 +911,9 @@ if isdirectory(g:pm_dir)
     " Allways show completions independently from the time it takes.
     let g:neocomplete#skip_auto_completion_time = ''
 
-    autocmd vimrc VimEnter * call neocomplete#custom#source('ultisnips', 'rank', 1000)
+    if PluginEnabled('neocomplete.vim')
+      autocmd vimrc VimEnter * call neocomplete#custom#source('ultisnips', 'rank', 1000)
+    endif
   endif
 
   " SHOUGO/DEOPLETE.NVIM                                                  {{{2
@@ -907,8 +923,10 @@ if isdirectory(g:pm_dir)
     Plug 'shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
     let s:complete_plugin = 'deoplete'
 
-    autocmd vimrc VimEnter * call deoplete#custom#set('_', 'matchers', ['matcher_fuzzy'])
-    autocmd vimrc VimEnter * call deoplete#custom#set('ultisnips', 'rank', 1000)
+    if PluginEnabled('deoplete.nvim')
+      autocmd vimrc VimEnter * call deoplete#custom#set('_', 'matchers', ['matcher_fuzzy'])
+      autocmd vimrc VimEnter * call deoplete#custom#set('ultisnips', 'rank', 1000)
+    endif
 
     " ZCHEE/DEOPLETE-JEDI                                                 {{{3
     " jedi-vim integration
@@ -967,43 +985,45 @@ if isdirectory(g:pm_dir)
   " $ install git
   if !exists('g:vimrc_minimal_plugins')
     Plug 'lambdalisue/gina.vim'
-    autocmd vimrc VimEnter * call PostGina()
   endif
 
-  function! PostGina()
-    call gina#custom#command#option('status', '--branch')
-    call gina#custom#command#alias('status', 's')
+    if PluginEnabled('gina.vim')
+      autocmd vimrc VimEnter * call PostGina()
+      function! PostGina()
+        call gina#custom#command#option('status', '--branch')
+        call gina#custom#command#alias('status', 's')
 
-    call gina#custom#command#option('show', '-p|--patch')
-    call gina#custom#command#option('show', '--stat')
-    call gina#custom#command#alias('show', 'sw')
-    call gina#custom#command#option('sw', '-p|--patch')
-    call gina#custom#command#option('sw', '--stat')
+        call gina#custom#command#option('show', '-p|--patch')
+        call gina#custom#command#option('show', '--stat')
+        call gina#custom#command#alias('show', 'sw')
+        call gina#custom#command#option('sw', '-p|--patch')
+        call gina#custom#command#option('sw', '--stat')
 
-    call gina#custom#command#alias('log', 'l')
-    call gina#custom#command#option('l', '--date-order')
-    call gina#custom#command#alias('log', 'la')
-    call gina#custom#command#option('la', '--date-order')
-    call gina#custom#command#option('la', '--all')
-    call gina#custom#command#alias('log', 'las')
-    call gina#custom#command#option('las', '--date-order')
-    call gina#custom#command#option('las', '--all')
-    call gina#custom#command#option('las', '--simplify-by-decoration')
+        call gina#custom#command#alias('log', 'l')
+        call gina#custom#command#option('l', '--date-order')
+        call gina#custom#command#alias('log', 'la')
+        call gina#custom#command#option('la', '--date-order')
+        call gina#custom#command#option('la', '--all')
+        call gina#custom#command#alias('log', 'las')
+        call gina#custom#command#option('las', '--date-order')
+        call gina#custom#command#option('las', '--all')
+        call gina#custom#command#option('las', '--simplify-by-decoration')
 
-    call gina#custom#command#option('diff', '--stat')
-    call gina#custom#command#option('diff', '-p|--patch')
-    call gina#custom#command#alias('diff', 'df')
-    call gina#custom#command#option('df', '--stat')
-    call gina#custom#command#option('df', '-p|--patch')
-    call gina#custom#command#alias('diff', 'dfc')
-    call gina#custom#command#option('dfc', '--stat')
-    call gina#custom#command#option('dfc', '-p|--patch')
-    call gina#custom#command#option('dfc', '--cached')
+        call gina#custom#command#option('diff', '--stat')
+        call gina#custom#command#option('diff', '-p|--patch')
+        call gina#custom#command#alias('diff', 'df')
+        call gina#custom#command#option('df', '--stat')
+        call gina#custom#command#option('df', '-p|--patch')
+        call gina#custom#command#alias('diff', 'dfc')
+        call gina#custom#command#option('dfc', '--stat')
+        call gina#custom#command#option('dfc', '-p|--patch')
+        call gina#custom#command#option('dfc', '--cached')
 
-    call gina#custom#command#alias('commit', 'c')
-    call gina#custom#command#alias('commit', 'ca')
-    call gina#custom#command#option('ca', '--amend')
-  endfunction
+        call gina#custom#command#alias('commit', 'c')
+        call gina#custom#command#alias('commit', 'ca')
+        call gina#custom#command#option('ca', '--amend')
+      endfunction
+    endif
 
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
