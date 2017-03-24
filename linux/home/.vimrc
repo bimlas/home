@@ -369,29 +369,6 @@ if isdirectory(g:pm_dir)
     \ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
     \ }
 
-  " DYNG/CTRLSF.VIM                                                       {{{2
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'dyng/ctrlsf.vim'
-  endif
-
-    let g:ctrlsf_ackprg = 'rg'
-    let g:ctrlsf_auto_close = 0
-    " let g:ctrlsf_regex_pattern = 1
-    let g:ctrlsf_default_root = 'project+fw'
-    let g:ctrlsf_mapping = {
-    \ 'open':    ['<CR>', '<C-J>'],
-    \ 'quit':    'q',
-    \ 'pquit':   'q',
-    \ 'openb':   '',
-    \ 'split':   '',
-    \ 'vsplit':  '',
-    \ 'tab':     '',
-    \ 'tabb':    '',
-    \ 'popen':   '',
-    \ 'next':    'n',
-    \ 'prev':    'N',
-    \ 'loclist': '',
-    \ }
                                                                         " }}}2
 
   " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
