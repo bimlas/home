@@ -368,7 +368,6 @@ if isdirectory(g:pm_dir)
     \ '<': {'pattern': '<<$', 'stick_to_left': 0, 'ignore_unmatched': 0},
     \ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
     \ }
-
                                                                         " }}}2
 
   " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
@@ -1180,19 +1179,28 @@ set guicursor+=v-ve:VisualCursor
 " Mindig mutassa a statusline-t.
 set laststatus=2
 
-let stat_argnr        = '%a'
-let stat_buftype      = '%w%h%q'
-let stat_filename     = '%t'
-let stat_flags        = '%r%m'
-let stat_filetype     = '%{&filetype}'
-let stat_binary       = '%{&binary ? "binary" : ""}'
-let stat_fileformat   = '%{(!empty(&fenc) ? &fenc : &enc) . (&bomb ? "-bom" : "") . " " . &ff}'
+set statusline=%!StatusLine()
+function! StatusLine() "{{{
+  let argnr        = '%a'
+  let buftype      = '%w%h%q'
+  let filename     = '%t'
+  let flags        = '%r%m'
+  let fileformat   = (!empty(&fenc) ? &fenc : &enc) . (&bomb ? '-bom' : '') . ' ' . &ff
 
-let &statusline  = stat_argnr . ' '
-let &statusline .= '%#StatInfo#' . stat_buftype . ' '
-let &statusline .= '%#StatFilename#' . stat_filename . ' %(' . stat_flags . ' %)'
-let &statusline .= '%#StatInfo#[%#StatFileformat#' .stat_filetype . '%#StatInfo#][%#StatWarning#%( ' . stat_binary . ' %)%#StatFileformat#' . stat_fileformat . '%#StatInfo#] '
-let &statusline .= '%*'
+  let stl  = argnr.' '
+  let stl .= '%#StatInfo#'.buftype.' '
+  let stl .= '%#StatFilename#'.filename.'%('.flags.'%)'
+  if &binary
+    let stl .= '%#StatInfo# | %#StatWarning#BINARY'
+  endif
+  if !empty(&filetype)
+    let stl .= '%#StatInfo# | %#StatFileformat#'.&filetype
+  endif
+  let stl .= '%#StatInfo# | %#StatFileformat#'.fileformat
+  let stl .= ' %*'
+
+  return stl
+endfunction "}}}
 
 "                                 ALTALANOS                               {{{1
 " ============================================================================
