@@ -29,6 +29,9 @@ sudo aptitude install -y openjdk-8-jdk
 sudo aptitude install -y python python-pip python3 python3-pip
 sudo pip2 install jedi
 sudo pip3 install jedi
+# Use `import better_exceptions` in source to activate
+sudo pip2 install better_exceptions
+sudo pip3 install better_exceptions
 
 sudo aptitude install -y ruby ruby-dev
 sudo gem install ripper-tags gem-ripper-tags
