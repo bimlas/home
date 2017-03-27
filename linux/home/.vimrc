@@ -1228,9 +1228,6 @@ set showmode
 " Kellokepp magas legyen a statusline alatti terulet.
 set cmdheight=2
 
-" A kurzor soranak kiemelese.
-set cursorline
-
 " Completion in the command line:
 " - <Tab> expands string to the longest common part
 " - Second <Tab> shows all match
@@ -2009,13 +2006,6 @@ vmap     <Space>xc  <Plug>(EasyAlign)
 
 " Set up omni-completion if not already set.
 autocmd vimrc FileType * if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
-
-" Highlighting of cursorline helps to detect the cursor itself and the
-" insert/normal mode.
-autocmd vimrc WinEnter    * set cursorline
-autocmd vimrc WinLeave    * set nocursorline
-autocmd vimrc InsertEnter * set nocursorline
-autocmd vimrc InsertLeave * set cursorline
 
 " Splits has to be equal even if Vim itself resized.
 autocmd vimrc VimResized * wincmd =
