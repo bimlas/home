@@ -10,6 +10,8 @@ inoremap  <C-K>  <Esc>
 vnoremap  <C-K>  <Esc>
 inoremap  <C-J>  <CR>
 
+nnoremap  <C-W>q <C-W>c
+
 nnoremap  é      ;
 nnoremap  É      ,
 noremap   H      g^
@@ -33,14 +35,12 @@ noremap   L      g$
 " nnoremap  xp     xp
 " nnoremap  xP     xP
 
-nnoremap  <C-L>  <C-W>w
-nnoremap  <C-H>  <C-W>c
+nnoremap  <C-L>  :nohlsearch<CR><C-L>
 
 nnoremap  <Space><Space>  <C-]>
 nnoremap  <Space><Tab>    :action VimFilePrevious<CR>
 nnoremap  <Space>aa       :action GotoAction<CR>
 nnoremap  <Space>as       :action ActivateTerminalToolWindow<CR>
-nnoremap  <Space>h        :nohlsearch<CR>
 nnoremap  <Space>O        :pu! _<CR>
 nnoremap  <Space>o        :pu  _<CR>
 
@@ -48,7 +48,7 @@ nnoremap  <Space>o        :pu  _<CR>
 
 " Won't work in visual mode (with vmap) for some reason.
 " Use the default <C-/> for it.
-nnoremap  <Space>;;  :action CommentByLineComment<CR>
+nnoremap  <Space>cc  :action CommentByLineComment<CR>
 
 nnoremap  <Space>?   :action ShowErrorDescription<CR>
 
