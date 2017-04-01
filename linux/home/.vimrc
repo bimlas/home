@@ -179,6 +179,13 @@ if isdirectory(g:pm_dir)
   if !exists('g:vimrc_minimal_plugins')
     Plug 'https://github.com/bimbalaszlo/vim-numutils'
   endif
+
+  " BIMBALASZLO/VIM-IDE                                                   {{{2
+  " conceptual work
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'https://github.com/bimlas/vim-ide'
+  endif
+
                                                                         " }}}2
 
   " .. MEGJELENES .........................
