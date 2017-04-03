@@ -160,6 +160,7 @@ if isdirectory(g:pm_dir)
   \ 'deep_indent': {},
   \ 'indent': {},
   \ 'unite_directory': {},
+  \ 'invisible_space': {},
   \ }
 
   for color in ['8ccbea', 'a4e57e', 'ffdb72', 'ff7272', 'ffb3ff', '9999ff']
