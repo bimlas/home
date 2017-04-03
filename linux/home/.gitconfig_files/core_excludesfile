@@ -1,6 +1,8 @@
 # IntelliJ IDEA files
 /.idea
 /*.iml
+# Netbeans files
+/nbproject
 # Eclipse files
 /.buildpath
 /.project
