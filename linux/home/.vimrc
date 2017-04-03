@@ -1463,10 +1463,6 @@ endfunction
 "                               KODKIEGESZITES                            {{{1
 " ============================================================================
 
-" Using a Git hook to generate tags.
-" http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-set tags=.git/tags
-
 " <C-N> kiegeszitesnel a sztringeket vegye:
 " .  ebbol a fajlbol
 " i  include fajlokbol
@@ -2022,3 +2018,25 @@ autocmd vimrc FileType diff setlocal nofoldenable
 " Auto-open quickfix window - I don't like to open it up by Neomake.
 " See `:help QuickFixCmdPost` and https://github.com/tpope/vim-fugitive#faq
 autocmd vimrc QuickFixCmdPost *grep* nested botright cwindow
+
+" Load project settings.
+"
+" Usefull for setting up tags to include another
+" project's tag file.
+" Before loading project-specific settings, reset `tags` to prevent mixing of
+" not relevant tag files.
+"
+" Using a Git hook to generate tags.
+" http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+" Triggered by vim-rooter's autocommand.
+" https://github.com/airblade/vim-rooter
+autocmd vimrc VimEnter * call LoadProjectSettings()
+autocmd vimrc User RooterChDir call LoadProjectSettings()
+
+function! LoadProjectSettings() "{{{
+  set tags=.git/tags
+  try
+    source .lvimrc
+  catch /^Vim\%((\a\+)\)\=:E484/
+  endtry
+endfunction "}}}

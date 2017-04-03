@@ -1,3 +1,5 @@
+# Vim project-local .vimrc
+/.lvimrc
 # IntelliJ IDEA files
 /.idea
 /*.iml
