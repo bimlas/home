@@ -58,6 +58,7 @@ nnoremap  <Space>gd  :action Git.CompareWithBranch<CR>
 
 nnoremap  <Space>mo  :action FileStructurePopup<CR>
 nnoremap  <Space>mO  :action TypeHierarchy<CR>
+nnoremap  <Space>mt  :action GotoSymbol<CR>
 nnoremap  <Space>mr  :action Run<CR>
 
 nnoremap  <Space>tw  :action EditorToggleUseSoftWraps<CR>
