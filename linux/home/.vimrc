@@ -1134,10 +1134,6 @@ autocmd  vimrc  ColorScheme,VimEnter  *
 \ highlight! link diffFile      DiffChange |
 \ highlight! link diffIndexLine DiffChange
 
-" NeoSolarized does not highlights SignColumn - do it with every colorscheme.
-autocmd vimrc ColorScheme,VimEnter *
-\ highlight! link SignColumn LineNr
-
 "                                 DESERT                                  {{{2
 " ____________________________________________________________________________
 
