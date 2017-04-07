@@ -184,7 +184,7 @@ if isdirectory(g:pm_dir)
   " BIMBALASZLO/VIM-IDE                                                   {{{2
   " conceptual work
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'https://github.com/bimlas/vim-ide'
+    " Plug 'https://github.com/bimlas/vim-ide'
   endif
 
                                                                         " }}}2
