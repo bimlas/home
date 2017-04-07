@@ -580,6 +580,9 @@
   ff   = "false"
   tool = "$EDITORdiff"
 
+  ; 3-way merge
+  conflictStyle = "diff3"
+
 [credential]                                                            ; {{{1
 
   ; Store username/password.
