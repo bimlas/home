@@ -746,7 +746,7 @@ if isdirectory(g:pm_dir)
     \  {
     \    'outputter':                     'buffer',
     \    'outputter/buffer/running_mark': '... RUNNING ...',
-    \    'runner':                        'vimproc',
+    \    'runner':                        'job',
     \    'hook/cd/directory':             '%S:p:h',
     \    'hook/shebang/enable':           has('win32') ? 0 : 1,
     \  },
