@@ -1,3 +1,12 @@
+SAVE AND RUN SNIPPETS OF CODE
+  - Open up developer tools
+  - Go to Sources -> Snippets tab (may be hidden, click on >>)
+  - To add a new script, press New snippet and name it, for example
+    last-modification-date.js:
+    console.log(new Date(document.lastModified));
+  - Code and save it (Ctrl-S)
+  - Press on play button to run (Ctrl-Enter)
+
 cVim
   https://chrome.google.com/webstore/detail/cvim/ihlenndgcmojhcghmfjfneahoeklbjjh
 
