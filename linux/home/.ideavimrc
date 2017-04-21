@@ -17,28 +17,32 @@ nnoremap  É      ,
 noremap   H      g^
 noremap   L      g$
 
-" nnoremap  S      "_S
-" vnoremap  S      "_S
-" nnoremap  c      "_c
-" vnoremap  c      "_c
-" nnoremap  C      "_C
-" vnoremap  C      "_C
-" nnoremap  d      "_d
-" vnoremap  d      "_d
-" nnoremap  D      "_D
-" vnoremap  D      "_D
-" nnoremap  <Del>  "_<Del>
-" vnoremap  <Del>  "_<Del>
-" nnoremap  x      d
-" nnoremap  xx     dd
-" vnoremap  x      d
-" nnoremap  xp     xp
-" nnoremap  xP     xP
+nnoremap  S      "_S
+vnoremap  S      "_S
+nnoremap  c      "_c
+vnoremap  c      "_c
+nnoremap  C      "_C
+vnoremap  C      "_C
+nnoremap  d      "_d
+vnoremap  d      "_d
+nnoremap  D      "_D
+vnoremap  D      "_D
+nnoremap  <Del>  "_<Del>
+vnoremap  <Del>  "_<Del>
+nnoremap  x      d
+nnoremap  xx     dd
+vnoremap  x      d
+nnoremap  xp     xp
+nnoremap  xP     xP
 
 nnoremap  <C-L>  :nohlsearch<CR><C-L>
 
 nnoremap  <Space><Space>  <C-]>
 nnoremap  <Space><Tab>    :action VimFilePrevious<CR>
+nnoremap  <Space>y       "+y
+vnoremap  <Space>y       "+y
+nnoremap  <Space>p       "+p
+nnoremap  <Space>P       "+P
 nnoremap  <Space>aa       :action GotoAction<CR>
 nnoremap  <Space>as       :action ActivateTerminalToolWindow<CR>
 nnoremap  <Space>O        :pu! _<CR>
@@ -52,7 +56,8 @@ nnoremap  <Space>cc  :action CommentByLineComment<CR>
 
 nnoremap  <Space>?   :action ShowErrorDescription<CR>
 
-nnoremap  <Space>ff  :action GotoFile<CR>
+nnoremap  <Space>fp  :action GotoFile<CR>
+nnoremap  <Space>bb  :action RecentFiles<CR>
 
 nnoremap  <Space>gd  :action Git.CompareWithBranch<CR>
 
