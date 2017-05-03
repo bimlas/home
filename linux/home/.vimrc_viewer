@@ -7,7 +7,7 @@
 
 set nocompatible
 set noswapfile nomodifiable readonly
-set number
+set number nofoldenable
 let g:vimrc_minimal_plugins = 1
 
 nnoremap q     :noautocmd q<CR>
