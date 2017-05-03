@@ -67,3 +67,6 @@ nnoremap  <Space>mt  :action GotoSymbol<CR>
 nnoremap  <Space>mr  :action Run<CR>
 
 nnoremap  <Space>tw  :action EditorToggleUseSoftWraps<CR>
+
+" Needs Wrap to Column plugin
+nnoremap  gqq        :action com.andrewbrookins.idea.wrap.WrapAction<CR>
