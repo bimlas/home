@@ -227,7 +227,7 @@ if isdirectory(g:pm_dir)
   " MATCHIT.ZIP                                                           {{{2
   " paros jelek kozti ugralas
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'matchit.zip'
+    Plug 'vim-scripts/matchit.zip'
   endif
 
     " FIGYELEM: nagyon belassulhat tole az egesz vim. Ezek sem segitenek:
@@ -730,7 +730,7 @@ if isdirectory(g:pm_dir)
   " Windows verzio: http://adoxa.altervista.org/global/
   " Masold be a share/gtags/gtags.conf fajlt a ~/ konyvtarba.
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'gtags.vim'
+    Plug 'vim-scripts/gtags.vim'
   endif
 
   " THINCA/VIM-QUICKRUN                                                   {{{2
