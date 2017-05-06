@@ -159,7 +159,7 @@ if isdirectory(g:pm_dir)
   \ 'words': {'_hlgroups': []},
   \ 'deep_indent': {},
   \ 'indent': {},
-  \ 'unite_directory': {},
+  \ 'unite_directory': {'whitelist': ['unite', 'denite']},
   \ 'invisible_space': {},
   \ }
 
@@ -414,6 +414,16 @@ if isdirectory(g:pm_dir)
     let g:unite_source_grep_default_opts  = '--hidden --no-heading --vimgrep'
     let g:unite_source_grep_recursive_opt = ''
     let g:unite_source_grep_encoding      = 'utf-8'
+
+  " SHOUGO/DENITE.NVIM                                                    {{{2
+  " general fuzzy finder for files, buffers, tags, commands, everything
+  if !exists('g:vimrc_minimal_plugins') && has('python3')
+    Plug 'shougo/denite.nvim'
+    if PluginEnabled('denite.nvim')
+      autocmd vimrc VimEnter *
+      \ call denite#custom#source('_', 'matchers', ['matcher_substring'])
+    endif
+  endif
 
   " JUNEGUNN/FZF
   " general fuzzy finder for files, buffers, tags, commands, everything
