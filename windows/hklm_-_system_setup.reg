@@ -156,6 +156,12 @@ Windows Registry Editor Version 5.00
 "Start"=dword:00000004
 "DelayedAutostart"=dword:00000000
 
+;                  SMBv1 TILTASA (WANNACRY VIRUS MIATT)                   {{{1
+; ============================================================================
+
+["HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters"]
+"SMB1"=dword:00000000
+
 ;                                  TWEAK                                  {{{1
 ; ============================================================================
 
