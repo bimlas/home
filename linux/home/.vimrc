@@ -1496,6 +1496,12 @@ set showfulltag
 cabbrev args args <C-R>=expand('%:p:h')<CR>/
 cabbrev saveas saveas <C-R>=expand('%:p:h')<CR>/
 
+"                                COMMANDS                                 {{{1
+" ============================================================================
+
+command W noautocmd w
+command Wall noautocmd wall
+
 "                                    MAP                                  {{{1
 " ============================================================================
 "
@@ -1858,7 +1864,7 @@ nnoremap <Space>fb  :Unite bookmark<CR>
 nnoremap <Space>fe  :VimFilerExplorer<CR>
 nnoremap <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
 nnoremap <Space>fF  :Unite file file/new directory/new<CR>
-nmap     <Space>fp  :UniteWithProjectDir -buffer-name=project_files -resume -start-insert file_rec/async file/new directory/new<CR><C-U>
+nmap     <Space>fp  :Denite file_rec<CR>
 nnoremap <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
 nnoremap <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap <Space>fvm :edit ~/.vimrc_minimal<CR>
