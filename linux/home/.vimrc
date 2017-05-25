@@ -982,6 +982,12 @@ if isdirectory(g:pm_dir)
 
   " .. GIT ................................
 
+  " RHYSD/COMMITTIA.VIM                                                   {{{2
+  " more pleasant editing on commit message
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'rhysd/committia.vim'
+  endif
+
   " LAMBDALISUE/GINA.VIM                                                  {{{2
   " git integration
   " $ install git
