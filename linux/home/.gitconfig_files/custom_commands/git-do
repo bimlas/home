@@ -1,0 +1,64 @@
+#!/bin/bash
+# git-do: Execute arbitary command in given path
+#
+# Ancestor of multiple repo management.
+
+CONFIGDIR=~/.git-do
+
+# It always returns a path even if it's not exists because of `readlink`.
+function get_full_path() {
+  target=$1
+  if [ -z $target ]; then
+    target=$(pwd)
+  fi
+  ret=$(readlink -m $target)
+}
+
+function add_tag() {
+  tag=$1
+  get_full_path $2
+  target=$ret
+  if [ ! -d $target ]; then
+    echo 'NOT A DIRECTORY:' $target
+    exit 1
+  fi
+  echo $target >> $CONFIGDIR/$tag
+  # TODO: sort, uniq
+}
+
+function run_command() {
+  printf "\n\e[0;33m____ $1\e[0m\n"
+  (cd $1 && git ${@:2})
+}
+
+function main() {
+  get_full_path $1
+  target=$ret
+
+  # Called with path
+  if [ -d $target ]; then
+    run_command $target ${@:2}
+    exit
+  fi
+
+  # Called wit tag
+  if [ -f $CONFIGDIR/$1 ]; then
+    printf "\n\e[0;33m==== $1\e[0m\n"
+    while read target; do
+      run_command $target ${@:2}
+    done < $CONFIGDIR/$1
+    exit
+  fi
+
+  # Run in the current directory
+  run_command $(pwd) $@
+}
+
+if [ ! -d $CONFIGDIR ]; then
+  mkdir $CONFIGDIR
+fi
+
+case $1 in
+  'ADD' ) add_tag $2 $3; exit;;
+  * ) main $@;;
+esac
