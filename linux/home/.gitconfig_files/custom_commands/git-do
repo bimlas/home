@@ -14,6 +14,22 @@ function get_full_path() {
   ret=$(readlink -m $target)
 }
 
+function list_tag_paths() {
+  tags=$@
+  if [ -z $tags ]; then
+    tags=*
+  fi
+  for tag in $CONFIGDIR/$tags ; do
+    tag_name=${tag##*/}
+    if [ ! -f $tag ]; then
+      echo 'TAG NOT EXISTS:' $tag_name
+      continue
+    fi
+    printf "\e[0;33m==== $tag_name\e[0m\n"
+    cat $tag
+  done
+}
+
 function add_tag() {
   tag=$1
   get_full_path $2
@@ -22,8 +38,10 @@ function add_tag() {
     echo 'NOT A DIRECTORY:' $target
     exit 1
   fi
-  echo $target >> $CONFIGDIR/$tag
-  # TODO: sort, uniq
+  tag_file=$CONFIGDIR/$tag
+  echo $target >> $tag_file
+  sort -u $tag_file -o $tag_file
+  list_tag_paths $tag
 }
 
 function run_command() {
@@ -60,5 +78,6 @@ fi
 
 case $1 in
   'ADD' ) add_tag $2 $3; exit;;
+  'LIST' ) list_tag_paths ${@:2}; exit;;
   * ) main $@;;
 esac
