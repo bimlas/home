@@ -256,6 +256,14 @@
   ;
   ;   git show REVISION:file
   ;   git show :file          # To show HEAD
+  ;
+  ; Show merge commit with diff output (note the THREE DOTS in diff):
+  ;
+  ;   $ git show MERGE_COMMIT
+  ;   ...
+  ;   Merge: fc17405 ee2de56
+  ;   ...
+  ;   $ git diff fc17405...ee2de56
 
   sw  = "show --patch --stat --ignore-blank-lines"
   sww = "show --patch --stat --ignore-blank-lines --color-words"
@@ -346,6 +354,10 @@
   ; actual commits that are being merged.
   ;
   ;   git merge -e --log
+  ;
+  ; Show the diff of merge commit
+  ;
+  ;   See "show"
   ;
   ; Check if merge occurs conflicts ("dry run")
   ;
