@@ -380,6 +380,7 @@
   ;
   ;   git checkout --ours   -- <path/to/conflicted_file>
   ;   git checkout --theirs -- <path/to/conflicted_file>
+  ;   git log --merge <path/to/conflicted_file>
   ;
   ;   where "ours" is the file in the current branch and "theirs" is the file
   ;   from the branch we want to merge.
