@@ -4,6 +4,9 @@
 # Ancestor of multiple repo management.
 
 CONFIGDIR=~/.git-do
+if [ ! -d $CONFIGDIR ]; then
+  mkdir $CONFIGDIR
+fi
 
 # It always returns a path even if it's not exists because of `readlink`.
 function get_full_path() {
@@ -71,10 +74,6 @@ function main() {
   # Run in the current directory
   run_command $(pwd) $@
 }
-
-if [ ! -d $CONFIGDIR ]; then
-  mkdir $CONFIGDIR
-fi
 
 case $1 in
   'ADD' ) add_tag $2 $3; exit;;
