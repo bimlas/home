@@ -497,8 +497,14 @@
   ; https://github.com/git-for-windows/git/wiki/Symbolic-Links
   symlinks = "true"
 
-  ; Do not break long lines (useful for log --graph with a bunch of branches).
-  pager = "diff-so-fancy | less --tabs=4 -SRFX"
+  ; diff-so-fancy:
+  ;   Seperate files in diff view
+  ; LESS_TERMCAP ... +0 -p ...:
+  ;   Highlight merge commits and file beginnings in diff view (but do not
+  ;   jump because of `+0`), press `n` to jump to the next occurence
+  ; -S:
+  ;   Do not break long lines (useful for log --graph with branches)
+  pager = "diff-so-fancy | LESS_TERMCAP_so=$'\\E[1;37m' less --tabs=4 -RFX +0 -p 'Merge (branch|pull request) .*|^(added|deleted|modified): '"
 
   ; Do not modify EOL.
   autocrlf = "false"
