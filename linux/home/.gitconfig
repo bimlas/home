@@ -499,12 +499,11 @@
 
   ; diff-so-fancy:
   ;   Seperate files in diff view
-  ; LESS_TERMCAP ... +0 -p ...:
-  ;   Highlight merge commits and file beginnings in diff view (but do not
-  ;   jump because of `+0`), press `n` to jump to the next occurence
+  ; grep
+  ;   Highlight merge commits
   ; -S:
   ;   Do not break long lines (useful for log --graph with branches)
-  pager = "diff-so-fancy | LESS_TERMCAP_so=$'\\E[1;37m' less --tabs=4 -RFX +0 -p 'Merge (branch|pull request) .*|^(added|deleted|modified): '"
+  pager = "diff-so-fancy | GREP_COLOR='1;37' grep --color=always -E 'Merge (branch|pull request).*|$' | less --tabs=4 -SRFX"
 
   ; Do not modify EOL.
   autocrlf = "false"
