@@ -20,13 +20,11 @@ def add(args):
 
 def list(args):
     if len(args) == 0:
-        items = _tag_list()
+        for tag in _tag_list():
+            print(tag)
     else:
-        items = [['\n==== ' + tag] + _tag_targets(tag) for tag in args]
-        # Flatten list
-        items = [item for sublist in items for item in sublist]
-    for item in items:
-        print(item)
+        for tag in args:
+            print('\n==== ' + tag + '\n' + '\n'.join(_tag_targets(tag)))
 
 def run(args):
     for tag in _tag_list():
