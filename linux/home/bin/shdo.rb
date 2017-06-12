@@ -5,6 +5,8 @@
 #
 # ACTION: See Action module
 # TAGS:   List of tags, like `!home !work`; `!ALL` is predefined
+#         Subdir can be used, for example if `!home` contains `~/.vim` and
+#         `~/bin` then `!home/bin` means `~/bin`
 # TARGET: Shell command or path (depends on action)
 
 # Manage tags and paths
@@ -17,17 +19,13 @@ module Tags
   end
 
   def self.list_tags
-    Dir[File.join(Tags::DATABASE, '*')].map { |tag| File.basename(tag) }
+    Dir[File.join(Tags::DATABASE, '*')].map {|tag| File.basename(tag)}
   end
 
   def self.list_paths(tag)
     targets = (tag == 'ALL' ? list_tags : [tag])
     paths = []
-    targets.each do |target|
-      File.foreach(File.join(Tags::DATABASE, target)) do |line|
-        paths.push(line.chomp) unless line.chomp.empty?
-      end
-    end
+    targets.each {|target| paths += resolve_paths(target)}
     paths.sort.uniq
   end
 
@@ -40,6 +38,20 @@ module Tags
         tag_file.write(paths)
       end
     end
+  end
+
+  def self.resolve_paths(target)
+    paths = []
+    subs = target.match(%r{^([^\/]+)\/?(.*)})
+    tag = subs[1]
+    subdir = subs[2]
+    File.foreach File.join(Tags::DATABASE, tag) do |path|
+      path.chomp!
+      next if path.empty? ||
+              (!subdir.empty? && !path.match(%r{[\/\\]#{subdir}[\/\\]?$}))
+      paths.push(path)
+    end
+    paths
   end
 end
 
@@ -99,7 +111,7 @@ def parse_arguments(args)
     # Remove prefix form tag name.
     tags.push(args.shift[1..-1])
   end
-  { tags: tags, other: args }
+  {tags: tags, other: args}
 end
 
 if ARGV.empty? || !(Action.methods - Object.methods).include?(ARGV[0].to_sym)
