@@ -45,7 +45,7 @@
 ;   -X
 ;     Remove only files ignored by Git.
 ;
-; REMOVE GITIGNORED FILES
+; UNTRACK GITIGNORED FILES (WITHOUT DELETING THE FILE ITSELF)
 ;
 ;   Remove all cached files to ensure there are no .gitignore files being
 ;   tracked:
