@@ -302,14 +302,6 @@ if isdirectory(g:pm_dir)
   Plug 'bps/vim-textobj-python'
 
     let g:textobj_python_no_default_key_mappings = 1
-                                                                        " }}}2
-
-  " .. OPERATOR-USER ......................
-
-  " KANA/VIM-OPERATOR-USER                                                {{{2
-  " user defined operators
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'kana/vim-operator-user'
   endif
                                                                         " }}}2
 
