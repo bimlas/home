@@ -174,7 +174,10 @@
   ; Push to origin (used to delete remote branch).
   pso = "push origin"
 
-  seto = "remote set-url origin"
+  ; Set origin
+  seto = "!sh -c 'git remote add origin $*; \
+          git remote set-url origin $*; \
+          git fetch origin' -"
 
   ; Add and set (if already exists) 'origin', than push it.
   ghcl = "!sh -c 'git clone --recursive https://github.com/$*.git' -"
