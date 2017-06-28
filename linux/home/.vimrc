@@ -131,9 +131,6 @@ if isdirectory(g:pm_dir)
     \ }
   endif
 
-  " JUNEGUNN/VIM-PSEUDOCL                                                 {{{2
-  " used by some (Junegunn) plugins
-  Plug 'junegunn/vim-pseudocl'
                                                                         " }}}2
 
   " .. SAJAT ..............................
