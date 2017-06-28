@@ -515,20 +515,9 @@ if isdirectory(g:pm_dir)
   "   Eval a motion or selection as VimL and replace it with the result.
   "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
   "   that it probably deserves its own plugin.
-  if !exists('g:vimrc_minimal_plugins')
+  if exists('g:vimrc_dev_plugins')
     Plug 'tpope/vim-scriptease'
   endif
-
-  " RHYSD/VIM-GRAMMAROUS                                                  {{{2
-  " powerful grammar checker
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'rhysd/vim-grammarous'
-  endif
-
-    let g:grammarous#disabled_rules = {
-    \ '*': ['WHITESPACE_RULE', 'EN_QUOTES'],
-    \ 'help': ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
-    \ }
                                                                         " }}}2
 
   " .. DEBUG/BENCHMARK/VIML DEVELOPMENT ...
