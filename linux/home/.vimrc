@@ -8,6 +8,9 @@
 " Use the minimal setting for debugging.
 " source $HOME/.vimrc_minimal | finish
 
+" Enable development-related plugins.
+" let g:vimrc_dev_plugins = 1
+
 "                               BOILERPLATE                               {{{1
 " ============================================================================
 
@@ -125,7 +128,7 @@ if isdirectory(g:pm_dir)
   " SHOUGO/VIMPROC.VIM                                                    {{{2
   " nehany plugin hasznalja - windows dll:
   " https://github.com/Shougo/vimproc.vim/downloads
-  if executable(&makeprg)
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && executable(&makeprg)
     Plug 'shougo/vimproc.vim', {
     \ 'do' : &makeprg,
     \ }
@@ -210,7 +213,7 @@ if isdirectory(g:pm_dir)
 
   " LILYDJWG/COLORIZER                                                    {{{2
   " show RGB colors with :ColorHighlight or :ColorToggle
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'lilydjwg/colorizer'
   endif
 
@@ -223,7 +226,7 @@ if isdirectory(g:pm_dir)
 
   " MATCHIT.ZIP                                                           {{{2
   " paros jelek kozti ugralas
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'vim-scripts/matchit.zip'
   endif
 
@@ -290,7 +293,9 @@ if isdirectory(g:pm_dir)
 
   " TEK/VIM-TEXTOBJ-RUBY                                                  {{{2
   " ir/ar: block, if/af: method, ic/ac: class
-  Plug 'tek/vim-textobj-ruby'
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+    Plug 'tek/vim-textobj-ruby'
+  endif
 
     let g:textobj_ruby_no_mappings = 1
 
@@ -299,10 +304,11 @@ if isdirectory(g:pm_dir)
 
   " BPS/VIM-TEXTOBJ-PYTHON                                                {{{2
   " if/af: function, ic/ac: class
-  Plug 'bps/vim-textobj-python'
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+    Plug 'bps/vim-textobj-python'
+  endif
 
     let g:textobj_python_no_default_key_mappings = 1
-  endif
                                                                         " }}}2
 
   " .. SZOVEG KERESESE/MODOSITASA .........
@@ -429,7 +435,7 @@ if isdirectory(g:pm_dir)
 
   " TSUKKEE/UNITE-TAG                                                     {{{2
   " unite interface to browse tags
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'tsukkee/unite-tag'
   endif
 
@@ -481,7 +487,7 @@ if isdirectory(g:pm_dir)
   "         Scripts which using the cwd will use the project root
   " too! For example running a script with QuickRun will generate files to
   "                     root instead of script's dir.
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'airblade/vim-rooter'
   endif
 
@@ -515,7 +521,7 @@ if isdirectory(g:pm_dir)
   "   Eval a motion or selection as VimL and replace it with the result.
   "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
   "   that it probably deserves its own plugin.
-  if exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'tpope/vim-scriptease'
   endif
                                                                         " }}}2
@@ -597,31 +603,31 @@ if isdirectory(g:pm_dir)
 
   " TWEEKMONSTER/HELPFUL.VIM                                              {{{2
   " display vim version numbers in docs
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'tweekmonster/helpful.vim'
   endif
 
   " MATTN/BENCHVIMRC-VIM                                                  {{{2
   " :BenchVimrc
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'mattn/benchvimrc-vim'
   endif
 
   " JUNEGUNN/VADER.VIM                                                    {{{2
   " a unittesting and acceptance framework for Vim script
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'junegunn/vader.vim'
   endif
 
   " THINCA/VIM-THEMIS                                                     {{{2
   " a unit testing framework for Vim script
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'thinca/vim-themis'
   endif
 
   " VIM-JP/VITAL.VIM                                                      {{{2
   " a comprehensive vim utility functions for vim plugins
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'vim-jp/vital.vim'
   endif
                                                                         " }}}2
@@ -630,7 +636,7 @@ if isdirectory(g:pm_dir)
 
   " TOMTOM/TCOMMENT_VIM                                                   {{{2
   " szovegreszek kommentelese
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'tomtom/tcomment_vim'
   endif
 
@@ -638,7 +644,7 @@ if isdirectory(g:pm_dir)
 
   " COHAMA/LEXIMA.VIM                                                     {{{2
   " auto insert `end` (for VimL, Ruby, etc.) and pairing chars ({, [, <, etc)
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'cohama/lexima.vim'
   end
 
@@ -667,7 +673,7 @@ if isdirectory(g:pm_dir)
   " POWERMAN/VIM-PLUGIN-VIEWDOC                                           {{{2
   " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
   " help-jet)
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'powerman/vim-plugin-viewdoc'
   endif
 
@@ -683,7 +689,7 @@ if isdirectory(g:pm_dir)
   " KABBAMINE/ZEAVIM.VIM                                                  {{{2
   " talan a legnormalisabb referencia-bongeszo
   " $ install zeal @ http://zealdocs.org/
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'kabbamine/zeavim.vim'
   endif
 
@@ -699,7 +705,7 @@ if isdirectory(g:pm_dir)
 
   " NEOMAKE/NEOMAKE                                                       {{{2
   " asynchronous syntax checker
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'neomake/neomake'
 
     let g:neomake_error_sign = {'text': '▶', 'texthl': 'Error'}
@@ -724,13 +730,13 @@ if isdirectory(g:pm_dir)
   "
   " Windows verzio: http://adoxa.altervista.org/global/
   " Masold be a share/gtags/gtags.conf fajlt a ~/ konyvtarba.
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'vim-scripts/gtags.vim'
   endif
 
   " THINCA/VIM-QUICKRUN                                                   {{{2
   " buffer, vagy kijelolt kod futtatasa
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'thinca/vim-quickrun'
   endif
 
@@ -773,7 +779,9 @@ if isdirectory(g:pm_dir)
 
   " JANKO-M/VIM-TEST                                                      {{{2
   " run tests easily
-  Plug 'janko-m/vim-test'
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+    Plug 'janko-m/vim-test'
+  endif
 
     let g:test#strategy = 'vimproc'
 
@@ -796,7 +804,7 @@ if isdirectory(g:pm_dir)
   " RUBY
   " Download the latest from
   " http://downloads.activestate.com/Komodo/releases/XXX/remotedebugging/Komodo-RubyRemoteDebugging...
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'joonty/vdebug'
   endif
 
@@ -815,24 +823,26 @@ if isdirectory(g:pm_dir)
   " MATTBOEHM/VIM-UNSTACK                                                 {{{2
   " parse stack traces or quickfix entries and open the result in vim splits
   " visually select part/all of a stacktrace and hit <leader>s
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'mattboehm/vim-unstack'
   endif
 
   " SHEERUN/VIM-POLYGLOT                                                  {{{2
   " a lot of (emasculated, syntax only) filetype plugins
-  Plug 'sheerun/vim-polyglot'
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+    Plug 'sheerun/vim-polyglot'
+  endif
 
   " DAVIDHALTER/JEDI-VIM                                                  {{{2
   " python irasat nagyban megkonnyito kiegeszitesek / sugok
   " $ pip install jedi
-  if !exists('g:vimrc_minimal_plugins') && g:has_python
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_python
     Plug 'davidhalter/jedi-vim'
   endif
 
   " VIM-RUBY/VIM-RUBY                                                     {{{2
   " Ruby stuff (for example better omni-completion)
-  if !exists('g:vimrc_minimal_plugins') && g:has_ruby
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_ruby
     Plug 'vim-ruby/vim-ruby'
   endif
 
@@ -849,19 +859,19 @@ if isdirectory(g:pm_dir)
   " $ gem install gem-ctags OR gem-ripper-tags
   " Generate tags for already installed gems
   " $ gem ctags OR ripper_tags
-  if !exists('g:vimrc_minimal_plugins') && g:has_ruby
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_ruby
     Plug 'tpope/vim-bundler'
   endif
 
   " TPOPE/VIM-RAILS                                                       {{{2
   " rails syntax and other goodness
-  if !exists('g:vimrc_minimal_plugins') && g:has_ruby
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_ruby
     Plug 'tpope/vim-rails'
   endif
 
   " SUNAKU/VIM-RUBY-MINITEST                                              {{{2
   " completion for MiniTest
-  if !exists('vimrc_minimal_plugins') && g:has_ruby
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_ruby
     Plug 'sunaku/vim-ruby-minitest'
   endif
                                                                         " }}}2
@@ -870,7 +880,7 @@ if isdirectory(g:pm_dir)
 
   " SHOUGO/ECHODOC.VIM                                                    {{{2
   " displays function signatures from completions in the command line
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'shougo/echodoc.vim'
   endif
 
@@ -879,7 +889,7 @@ if isdirectory(g:pm_dir)
   " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
   " automatic code completion
   " needs lua interface (:version +lua)
-  if !has('nvim') && !exists('g:vimrc_minimal_plugins') && has('lua')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && !has('nvim') && has('lua')
     Plug 'shougo/neocomplete.vim'
     let s:complete_plugin = 'neocomplete'
 
@@ -899,7 +909,7 @@ if isdirectory(g:pm_dir)
   " SHOUGO/DEOPLETE.NVIM                                                  {{{2
   " automatic code completion
   " $ pip3 install neovim
-  if has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && has('nvim') && has('python3')
     Plug 'shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
     let s:complete_plugin = 'deoplete'
 
@@ -915,8 +925,8 @@ if isdirectory(g:pm_dir)
   endif
 
   " NEOCOMPLETE/DEOPLETE COMMON                                           {{{2
-  if !has('nvim') && !exists('g:vimrc_minimal_plugins') && has('lua') ||
-  \   has('nvim') && !exists('g:vimrc_minimal_plugins') && has('python3')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && !has('nvim') && has('lua') ||
+  \  has('nvim') && has('python3')
 
     exe 'let g:' . s:complete_plugin . '#enable_at_startup = 1'
     exe 'let g:' . s:complete_plugin . '#enable_smart_case = 1'
@@ -969,7 +979,7 @@ if isdirectory(g:pm_dir)
   " LAMBDALISUE/GINA.VIM                                                  {{{2
   " git integration
   " $ install git
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'lambdalisue/gina.vim'
   endif
 
@@ -1014,7 +1024,7 @@ if isdirectory(g:pm_dir)
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
   " $ install git
-  if !exists('g:vimrc_minimal_plugins')
+  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'airblade/vim-gitgutter'
   endif
 
