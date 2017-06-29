@@ -1484,12 +1484,6 @@ set completeopt=menuone,noinsert,noselect
 " Fuggvenyek parametereit is mutatja kiegeszitesnel.
 set showfulltag
 
-"                              ABBREVATIONS                               {{{1
-" ============================================================================
-
-cabbrev args args <C-R>=expand('%:p:h')<CR>/
-cabbrev saveas saveas <C-R>=expand('%:p:h')<CR>/
-
 "                                COMMANDS                                 {{{1
 " ============================================================================
 
