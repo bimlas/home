@@ -87,7 +87,7 @@ module Action
     args[:tags].each do |tag|
       puts("\n==== #{tag}")
       Tags.list_paths(tag).each do |path|
-        puts("\n---- #{path}")
+        puts("\n---- #{File.basename(path)} (#{File.dirname(path)})")
         Dir.chdir(path) do
           system(args[:other].join(' '))
         end
