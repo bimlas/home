@@ -197,10 +197,11 @@
   ;
   ; * Detect diverged branches without doing an undesired merge
   ; * Decidable merge/rebase
+  ; * Update branches without checkout
   ;
   ; If there are no commits added locally, just update the branch pointer:
   ;
-  ;   $ git merge --ff
+  ;   $ git merge --ff-only
   ;
   ; To rebase on the top of the origin/CURRENT_BRANCH just run
   ;
@@ -209,8 +210,15 @@
   ; To merge with it:
   ;
   ;   $ git merge
+  ;
+  ; Update branches without checkout:
+  ;
+  ;   $ git fetch origin mybranch:mybranch    # fast-forward only
+  ;   $ git fetch origin +mybranch:mybranch   # allow non fast-forward too
+  ;   $ git fetch origin a:a b:b              # update more branches at once
 
   f  = "fetch"
+  fo = "fetch origin"
 
   ; __ STATUS _____________________________                               {{{2
 
