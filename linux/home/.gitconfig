@@ -310,10 +310,12 @@
 
   ; __ GREP _____________________________
 
+  ; -I  Case sensitive
+
   ; Some cool tips:
   ;  http://travisjeffery.com/b/2012/02/search-a-git-repo-like-a-ninja/
 
-  g = "grep --break --line-number --heading --context 3"
+  g = "grep --break --line-number --heading --context 3 --ignore-case"
 
   ; __ TAG ______________________________                                 {{{2
 
