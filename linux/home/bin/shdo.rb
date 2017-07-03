@@ -23,7 +23,12 @@ module Tags
   end
 
   def self.list_paths(tag)
-    targets = (tag == 'ALL' ? list_tags : [tag])
+    targets = if tag.match(%r{^ALL(/|$)})
+      subdir = tag.match(%r{(?<=^ALL).+})
+      list_tags.map {|t| "#{t}#{subdir unless subdir.nil?}"}
+    else
+      [tag]
+    end
     paths = []
     targets.each {|target| paths += resolve_paths(target)}
     paths.sort.uniq
