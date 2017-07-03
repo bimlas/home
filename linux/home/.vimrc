@@ -736,7 +736,7 @@ if isdirectory(g:pm_dir)
 
   " THINCA/VIM-QUICKRUN                                                   {{{2
   " buffer, vagy kijelolt kod futtatasa
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins')
     Plug 'thinca/vim-quickrun'
   endif
 
