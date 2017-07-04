@@ -119,11 +119,17 @@ def parse_arguments(args)
   {tags: tags, other: args}
 end
 
-if ARGV.empty? || !(Action.methods - Object.methods).include?(ARGV[0].to_sym)
-  puts 'HELP'
-  exit
+def main(argv)
+  if argv.empty? || !(Action.methods - Object.methods).include?(argv[0].to_sym)
+    puts 'HELP'
+    exit
+  end
+
+  puts "INITIALIZED DATABASE: #{Tags::DATABASE}" if Tags.init_database
+
+  Action.send argv[0], parse_arguments(argv[1..-1])
 end
 
-puts "INITIALIZED DATABASE: #{Tags::DATABASE}" if Tags.init_database
-
-Action.send ARGV[0], parse_arguments(ARGV[1..-1])
+if __FILE__ == $0
+  main(ARGV)
+end
