@@ -94,7 +94,7 @@ module Action
       Tags.list_paths(tag).each do |path|
         puts("\n---- #{File.basename(path)} (#{File.dirname(path)})")
         Dir.chdir(path) do
-          system(args[:other].join(' '))
+          system('"' << args[:other].join('" "') << '"')
         end
       end
     end
