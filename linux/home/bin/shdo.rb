@@ -9,6 +9,8 @@
 #         `~/bin` then `!home/bin` means `~/bin`
 # TARGET: Shell command or path (depends on action)
 
+require 'shellwords'
+
 # Manage tags and paths
 module Tags
   DATABASE = File.absolute_path(File.expand_path('~/.shdo/'))
@@ -97,6 +99,22 @@ module Action
           system('"' << args[:other].join('" "') << '"')
         end
       end
+    end
+  end
+
+  # Open a "shell" in the given context
+  #
+  # Switch to context and execute commands:
+  #   shell !home !work
+  #   >> git status
+  #   >> git add :/
+  def self.shell(args)
+    prompt = 'shdo>> '
+    print prompt
+    while !(input = STDIN.gets.chomp).empty?
+      args[:other] = input.shellsplit
+      self.run(args)
+      print prompt
     end
   end
 end
