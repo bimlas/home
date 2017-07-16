@@ -4,7 +4,7 @@
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 require "rubygems"
-require "exifr"
+require "exifr/jpeg"
 
 (ARGV.empty? ? Dir.glob("*.jpg") : ARGV).each do |file|
   timeTaken = EXIFR::JPEG.new(file).date_time_original
