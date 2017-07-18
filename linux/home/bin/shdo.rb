@@ -1,6 +1,10 @@
 #!/bin/env ruby
 # shdo: Execute shell command on several (tagged) paths at once
 #
+# Some usage example:
+#   - Git commands (`git status|add|commit`)
+#   - Composer/npm/other package managers (`composer install --no-dev`)
+#
 # Usage: shdo {ACTION} {TAGS} {TARGET}
 #
 # ACTION: See Action module
