@@ -249,6 +249,7 @@
   lmg  = "log --graph --merge --left-right --all"
   day  = "log --graph --date-order --all --since midnight"
   yday = "log --graph --date-order --all --since=day.before.yesterday.midnight --until=midnight"
+  todo = "log --graph --date-order --grep TODO"
 
   ; Show `local...remote` if both side exists.
   lf  = "fetch-log --format=shortlog"
