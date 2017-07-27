@@ -1,4 +1,2 @@
 #!/bin/bash
-git rdoc  >/dev/null 2>&1 &
-git ctags >/dev/null 2>&1 &
 [ -f composer.json ] && git composer-autoload >/dev/null 2>&1 &
