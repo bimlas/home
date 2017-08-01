@@ -2,7 +2,9 @@
 # shdo: Execute shell command on several (tagged) paths at once
 #
 # Some usage example:
-#   - Git commands (`git status|add|commit`)
+#   - Git commands (`git status|add|commit`), for example checkout multiple
+#     repos to the version at date:
+#     $ git checkout `git rev-list -n 1 --before="2009-07-27 13:37" master`
 #   - Composer/npm/other package managers (`composer install --no-dev`)
 #
 # Usage: shdo {ACTION} {TAGS} {TARGET}

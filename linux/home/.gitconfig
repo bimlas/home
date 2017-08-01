@@ -340,12 +340,17 @@
   ; __ CHECKOUT ___________________________                               {{{2
 
   ; -m  --merge  Check out the initial "before merge conflict state"
+  ;
+  ; Checkout until a given date (usefull for multiple repos)
+  ;
+  ;   git checkout `git rev-list -n 1 --before="2009-07-27 13:37" master`
 
   co  = "checkout"
   coa = "checkout :/"
   coi = "checkout-index -f"
   coo = "checkout --ours"
   cot = "checkout --theirs"
+  cobefore = "!git checkout `git rev-list --max-count=1 --before=\"$@\" master`; #"
 
   ; __ BRANCH _____________________________                               {{{2
 
