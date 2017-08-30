@@ -1,11 +1,26 @@
-SAVE AND RUN SNIPPETS OF CODE
-  - Open up developer tools
-  - Go to Sources -> Snippets tab (may be hidden, click on >>)
-  - To add a new script, press New snippet and name it, for example
-    last-modification-date.js:
-    console.log(new Date(document.lastModified));
-  - Code and save it (Ctrl-S)
-  - Press on play button to run (Ctrl-Enter)
+DEVELOPER TOOLS
+
+  DISABLE CACHE
+    - Network tab
+    - "Disable cache" checkbox on the top
+
+  SLOW DOWN NETWORK
+    - Network tab
+    - "No throttling" drop-down list on the top
+
+  SAVE AND RUN SNIPPETS OF CODE
+    - Go to Sources -> Snippets tab (may be hidden, click on >>)
+    - To add a new script, press New snippet and name it, for example
+      last-modification-date.js:
+      console.log(new Date(document.lastModified));
+    - Code and save it (Ctrl-S)
+    - Press on play button to run (Ctrl-Enter)
+
+  HTTP REQUEST HEADERS
+    - Go to Network
+    - Select XHR as filter
+    - Optionally press right click on table headers and check on Method to show
+      GET/POST in the table
 
 cVim
   https://chrome.google.com/webstore/detail/cvim/ihlenndgcmojhcghmfjfneahoeklbjjh
@@ -18,6 +33,10 @@ Grammarly - instant grammar check and fix
 
 Cookie Inspector - view and edit cookies from Developer Tools
   https://chrome.google.com/webstore/detail/cookie-inspector/jgbbilmfbammlbbhmmgaagdkbkepnijn/related
+
+Tamper - edit remote files and use those as a native websites (via proxy)
+  https://chrome.google.com/webstore/detail/tamper/mabhojhgigkmnkppkncbkblecnnanfmd
+  $ pip install tamper
 
 ColorZilla - color picker
   https://chrome.google.com/webstore/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp
