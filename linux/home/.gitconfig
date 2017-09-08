@@ -301,6 +301,10 @@
   ; Shows how the function main() in the file main.c evolved over time.
   ;
   ;   git log -L '/int main/',/^}/:main.c
+  ;
+  ; Find pattern only in modified lines (by hiding all others).
+  ;
+  ;   git diff -U0 fileA fileB | grep 'regex'
 
   df   = "diff --patch --stat --ignore-blank-lines"
   dfc  = "diff --patch --stat --ignore-blank-lines --cached"
