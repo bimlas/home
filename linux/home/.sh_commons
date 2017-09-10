@@ -13,12 +13,12 @@ alias shall='shdo run !ALL'
 alias mvim='vim -u ~/.vimrc_minimal'
 
 # Disable .vimrc in vim.tiny because of incompatible settings.
-if [[ $(which vim.tiny) ]]; then
+if [[ $(which vim.tiny 2> /dev/null) ]]; then
   alias vim.tiny='vim.tiny -u NONE'
 fi
 
 # Do not close the image after gnuplot.
-if [[ $(which gnuplot) ]]; then
+if [[ $(which gnuplot 2> /dev/null) ]]; then
   alias gnuplot='gnuplot -persist'
 fi
 
