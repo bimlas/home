@@ -6,6 +6,9 @@
 #   https://github.com/Maximus5/ConEmu/issues/183
 #   https://github.com/docker/docker/issues/13817
 #
+# INSTALL PREBUILD IMAGE
+#   $ docker run   -it --name my-image -d install-from-group/image:tag
+#
 # BUILD FROM DOCKERFILE
 #   $ docker build -t  mylinux dir_of_dockerfile
 #   $ docker run   -it mylinux /bin/bash
