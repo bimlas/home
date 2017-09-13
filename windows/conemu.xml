@@ -17,7 +17,7 @@
 			<value name="ColorTable05" type="dword" data="00ff8ad1"/>
 			<value name="ColorTable06" type="dword" data="000087ff"/>
 			<value name="ColorTable07" type="dword" data="00c6c6c6"/>
-			<value name="ColorTable08" type="dword" data="00b2b2b2"/>
+			<value name="ColorTable08" type="dword" data="00646464"/>
 			<value name="ColorTable09" type="dword" data="00d7af5f"/>
 			<value name="ColorTable10" type="dword" data="0000dba1"/>
 			<value name="ColorTable11" type="dword" data="00afd700"/>
