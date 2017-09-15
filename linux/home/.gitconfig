@@ -249,7 +249,7 @@
   lmg  = "log --graph --merge --left-right --all"
   day  = "log --graph --date-order --all --since midnight"
   yday = "log --graph --date-order --all --since=day.before.yesterday.midnight --until=midnight"
-  todo = "log --graph --date-order --grep TODO"
+  todo = "log --graph --date-order --grep 'WIP\\|TODO'"
 
   ; Show `local...remote` if both side exists.
   lf  = "fetch-log --format=shortlog"
@@ -527,7 +527,7 @@
   ;   Highlight merge commits
   ; -S:
   ;   Do not break long lines (useful for log --graph with branches)
-  pager = "diff-so-fancy | GREP_COLOR='1;37' grep --color=always -E 'Merge (commit|branch|pull request).*|$' | less --tabs=4 -SRFX"
+  pager = "diff-so-fancy | GREP_COLOR='1;37' grep --color=always -E 'Merge (commit|branch|pull request|).*|(WIP|TODO):.*|$' | less --tabs=4 -SRFX"
 
   ; Do not modify EOL.
   autocrlf = "false"
