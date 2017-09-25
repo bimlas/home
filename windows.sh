@@ -10,6 +10,14 @@ while [ -h "$SOURCE" ]; do
 done
 CWD="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
+if [ $MSYSTEM ]; then
+  # Create real symlink instead of copies - needs admin rights.
+  export MSYS=winsymlinks:nativestrict
+  # Poor way to determine if the user is admin (user cannot run `net session`
+  # command).
+  net session > /dev/null && export is_win_admin=1 || export is_win_admin=0
+fi
+
 source "$CWD/function.sh"
 
 header "DEPLOYING ./windows"
@@ -63,3 +71,7 @@ link "$CWD/linux/home/.vimrc"         "$HOME/.vimrc"
 link "$CWD/linux/home/.vimrc_viewer"  "$HOME/.vimrc_viewer"
 
 remember
+
+if [ $is_win_admin -eq 0 ]; then
+    printf "\e[0;33m!!! USED COPY INSTEAD OF SYMLINK: NEEDS ADMIN RIGHTS\e[0m\n"
+fi
