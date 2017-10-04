@@ -62,6 +62,12 @@ function funcVimGitFzf { gvim $(gf $args) }
 Set-Alias e funcVimFzf
 Set-Alias ge funcVimGitFzf
 
+# Start Docker from PowerShell
+function funcDockerShell { docker-machine start; docker-machine env | Invoke-Expression }
+Set-Alias docker-shell funcDockerShell
+function funcDockerStop { docker-machine stop }
+Set-Alias docker-stop funcDockerStop
+
 #                                 PLUGINS                                 {{{1
 # ============================================================================
 
