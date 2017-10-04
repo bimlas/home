@@ -601,7 +601,12 @@
   ; Find renamed and copied files.
   renames   = "copies"
   tool      = "$EDITORdiff"
-  algorithm = "patience"
+
+  ; Check the diffrenece:
+  ;   for i in myers minimal patience histogram; do
+  ;     git log --diff-algorithm=$i -p >$i
+  ;   done
+  algorithm = "minimal"
 
   ; Well structured hunks:
   ; Needs 2.9
