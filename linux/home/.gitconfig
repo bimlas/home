@@ -305,6 +305,12 @@
   ; Find pattern only in modified lines (by hiding all others).
   ;
   ;   git diff -U0 fileA fileB | grep 'regex'
+  ;
+  ; Pass filenames only to another command.
+  ; Escape filenames containing space characters by using NULL as separator
+  ; between filenames.
+  ;
+  ;   git diff --name-only -z ... | xargs -0 ...
 
   df   = "diff --patch --stat --ignore-blank-lines"
   dfc  = "diff --patch --stat --ignore-blank-lines --cached"
@@ -622,6 +628,8 @@
 
   ; Allways create (empty) merge commits.
   ff   = "false"
+  ; IntelliJ IDEA's "Apply All Non-Conflicting Changes" does the trick in most
+  ; cases.
   tool = "$EDITORdiff"
 
   ; 3-way merge

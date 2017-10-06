@@ -1,0 +1,10 @@
+#!/bin/sh
+# Check for merge conflict markers in diff before commiting.
+
+git diff --exit-code --cached -U0 -G'[><|=]{7}'
+if [ $? != 0 ]
+then
+    echo -e "\nWARNING: YOU HAVE MERGE CONFLICT MARKERS IN THE ABOVE HUNKS"
+    echo "Pass --no-verify to commit anyway."
+    exit 1
+fi
