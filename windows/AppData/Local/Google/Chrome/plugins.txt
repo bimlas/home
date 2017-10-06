@@ -25,6 +25,9 @@ DEVELOPER TOOLS
 cVim
   https://chrome.google.com/webstore/detail/cvim/ihlenndgcmojhcghmfjfneahoeklbjjh
 
+OctoTree - directory tree view of GitHub repo
+  https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc
+
 ImTranslator - translate selected text
   https://chrome.google.com/webstore/detail/imtranslator-translator-d/noaijdpnepcgjemiklgfkcfbkokogabh
 
