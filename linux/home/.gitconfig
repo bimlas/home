@@ -509,6 +509,10 @@
 
   ; __ SUBMODULE __________________________                               {{{2
 
+  ; Remove submodule:
+  ;
+  ;   git rm SUBMODULE_DIR
+
   ; You have to run this first after pulling a repo with a commit which adds a
   ; new submodule to it.
   subi = "submodule update --init --recursive"
