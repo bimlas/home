@@ -32,9 +32,6 @@ fi
 if [[ ! $PATH =~ $HOME/.gitconfig_files/custom_commands ]]; then
   export PATH=$HOME/.gitconfig_files/custom_commands:$PATH
 fi
-if [[ ! $PATH =~ $HOME/.gitconfig_files/custom_commands/diff-so-fancy ]]; then
-  export PATH=$HOME/.gitconfig_files/custom_commands/diff-so-fancy:$PATH
-fi
 
 export EDITOR=vim
 

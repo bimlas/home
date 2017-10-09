@@ -15,6 +15,7 @@ sudo aptitude install -y vim
 
 sudo aptitude install -y nodejs
 npm install -g git-run
+npm install -g diff-so-dancy
 
 echo '!! Change shell to Zsh needs password'
 chsh -s /bin/zsh
