@@ -18,7 +18,8 @@ DEVELOPER TOOLS
 
   HTTP REQUEST HEADERS
     - Go to Network
-    - Select XHR as filter
+    - In the filter type `method:POST` (using the XHR filter on the right is
+      not always works)
     - Optionally press right click on table headers and check on Method to show
       GET/POST in the table
 
