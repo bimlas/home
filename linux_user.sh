@@ -33,6 +33,10 @@ copy             \
   _thunderbird/* \
   $HOME/.thunderbird/*.default/
 
+copy              \
+  _intellijidea/* \
+  $HOME/.intellijidea*/
+
 header "  SYMLINK"
 
 link "$CWD/linux/home/bin/"              "$HOME/bin"

@@ -1,0 +1,8 @@
+<templateSet group="PHP">
+  <template name="console" value="echo('&lt;script&gt;console.log('.json_encode($END$).');&lt;/script&gt;');" description="Display message in browser's console" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML_TEXT" value="true" />
+      <option name="PHP Statement" value="true" />
+    </context>
+  </template>
+</templateSet>

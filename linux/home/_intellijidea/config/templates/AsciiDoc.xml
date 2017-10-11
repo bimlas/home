@@ -1,0 +1,38 @@
+<templateSet group="AsciiDoc">
+  <template name="[NO" value="[NOTE]&#10;====&#10;$END$&#10;&#10;====&#10;" description="Note block" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="AsciiDoc" value="true" />
+    </context>
+  </template>
+  <template name="[WA" value="[WARNING]&#10;====&#10;$END$&#10;&#10;====&#10;" description="Warning block" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="AsciiDoc" value="true" />
+    </context>
+  </template>
+  <template name="[TIP" value="[TIP]&#10;====&#10;$END$&#10;&#10;====&#10;" description="Tip block" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="AsciiDoc" value="true" />
+    </context>
+  </template>
+  <template name="[CA" value="[CAUTION]&#10;====&#10;$END$&#10;&#10;====&#10;" description="Caution block" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="AsciiDoc" value="true" />
+    </context>
+  </template>
+  <template name="[so" value="[source,$LANG$]&#10;----&#10;$END$&#10;----&#10;" description="Source block" toReformat="false" toShortenFQNames="true">
+    <variable name="LANG" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="AsciiDoc" value="true" />
+    </context>
+  </template>
+  <template name="[dis" value="[discrete]&#10;== $END$" description="Discrete title" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="AsciiDoc" value="true" />
+    </context>
+  </template>
+  <template name="|===" value="|===&#10;|$END$&#10;|===" description="Table" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="AsciiDoc" value="true" />
+    </context>
+  </template>
+</templateSet>

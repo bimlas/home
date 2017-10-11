@@ -57,6 +57,10 @@ copy             \
   _thunderbird/* \
   $HOME/AppData/Roaming/Thunderbird/Profiles/*/
 
+copy              \
+  _intellijidea/* \
+  $HOME/.intellijidea*/
+
 header "  SYMLINK"
 
 link "$CWD/linux/home/.ctags"         "$HOME/.ctags"
