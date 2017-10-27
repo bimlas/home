@@ -7,4 +7,4 @@ foreach ($optionsfile in Get-ChildItem "$ideadir\options\options.xml") {
   Move-Item "$optionsfile.tmp" "$optionsfile" -Force
 }
 
-Get-ChildItem -Path "HKCU:\Software\JavaSoft\Prefs\jetbrains\idea" -Include * -ErrorAction SilentlyContinue | Remove-Item
+Get-ChildItem -Path "HKCU:\Software\JavaSoft\Prefs\jetbrains\idea" -Include * -ErrorAction SilentlyContinue | Remove-Item -Force
