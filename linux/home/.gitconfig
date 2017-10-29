@@ -97,6 +97,18 @@
 ;   git commit -m "B commit"
 ;   git rebase --continue
 ;
+; EXTRACT THE HISTORY OF A FILE
+;
+;   # https://gist.github.com/ssp/1663093
+;
+;   git clone git@github.com:me/myrepo.git && cd myrepo
+;   # Reduce the repository to just the subfolder which contains the
+;   # interesting file(s)
+;   git filter-branch --prune-empty --subdirectory-filter files/dir -- --all
+;   git filter-branch --force --prune-empty --index-filter \
+;     'git rm --cached --ignore-unmatch \
+;     $(git ls-files | grep -v "files.rb\|to.py\|extract.sh")'
+;
 ; CHECKOUT (ARCHIVE) FILES/REVISIONS TO OUTSIDE OF REPOSITORY
 ;
 ;   git archive -o /path/to/output.zip HEAD -- FILE
@@ -486,7 +498,9 @@
   ; of `master` and `rebase master dev` does the same with `dev` instead of
   ; the current one!
 
+  ; -i  --interactive      Allow editing of history
   ; -p  --preserve-merges  Rebase merge commits too
+  ;     --root             Include the initial commit too
   ;
   ; To rebase a merge commit:
   ;
