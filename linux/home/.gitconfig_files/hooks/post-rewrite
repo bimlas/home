@@ -1,4 +1,4 @@
 #!/bin/bash
 case "$1" in
-  rebase) exec .git/hooks/post-merge ;;
+  rebase) [ -f composer.json ] && git composer-autoload >/dev/null 2>&1 &;;
 esac
