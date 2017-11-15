@@ -1,7 +1,12 @@
 <templateSet group="PHP">
-  <template name="console" value="echo('&lt;script&gt;console.log('.json_encode($END$).');&lt;/script&gt;');" description="Display message in browser's console" toReformat="false" toShortenFQNames="true">
+  <template name="console" value="// Use Chrome Logger instead (`chrome` snippet)!&#10;echo('&lt;script&gt;console.log('.json_encode($END$).');&lt;/script&gt;');" description="Display message in browser's console" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="HTML_TEXT" value="true" />
+      <option name="PHP Statement" value="true" />
+    </context>
+  </template>
+  <template name="chrome" value="ChromePhp::log($END$);" description="Display message directly in Chrome's console" toReformat="false" toShortenFQNames="true">
+    <context>
       <option name="PHP Statement" value="true" />
     </context>
   </template>
