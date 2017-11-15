@@ -29,6 +29,9 @@ cVim
 OctoTree - directory tree view of GitHub repo
   https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc
 
+Chrome Logger - server side (php, python, etc.) logging and debugging in chrome console
+  https://chrome.google.com/webstore/detail/chrome-logger/noaneddfkdjfnfdakjjmocngnfkfehhd
+
 ImTranslator - translate selected text
   https://chrome.google.com/webstore/detail/imtranslator-translator-d/noaijdpnepcgjemiklgfkcfbkokogabh
 
