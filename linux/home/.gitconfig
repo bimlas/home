@@ -592,6 +592,9 @@
 
 [commit]                                                                ; {{{1
 
+  ; Include the diff in to the commit message (scissors mode).
+  verbose = "true"
+
   ; Additional text which appears on the top of commit message as a comment.
   template = "~/.gitconfig_files/commit_template"
 
