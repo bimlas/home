@@ -31,6 +31,23 @@ augroup vimrc
   autocmd!
 augroup END
 
+"                                NEOVIM                                   {{{1
+" ============================================================================
+
+if has('nvim')
+  if has('windows')
+    " Run `:CheckHealth` to verify.
+
+    " pip2 install --upgrade neovim
+    let g:python_host_prog = 'c:/app/python2/python.exe'
+    " pip3 install --upgrade neovim
+    let g:python3_host_prog = 'c:/app/python3/python.exe'
+    " gem update neovim
+    let g:ruby_host_prog = 'c:/app/ruby/bin/ruby.exe'
+    let g:ruby_default_path = ['c:/app/ruby']
+  endif
+endif
+
 "                          WIN / NIX BEALLITASOK                          {{{1
 " ============================================================================
 
@@ -924,8 +941,8 @@ if isdirectory(g:pm_dir)
   endif
 
   " NEOCOMPLETE/DEOPLETE COMMON                                           {{{2
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && !has('nvim') && has('lua') ||
-  \  has('nvim') && has('python3')
+  if (!exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins'))
+  \ && ((!has('nvim') && has('lua')) || (has('nvim') && has('python3')))
 
     exe 'let g:' . s:complete_plugin . '#enable_at_startup = 1'
     exe 'let g:' . s:complete_plugin . '#enable_smart_case = 1'
