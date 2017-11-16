@@ -1,7 +1,7 @@
 #!/bin/sh
 # Check for merge conflict markers in diff before commiting.
 
-git diff --exit-code --cached -U0 -G'[><|=]{7}'
+git diff --exit-code --color --cached -U0 -G'^[><|=]{7}[ $]'
 if [ $? != 0 ]
 then
     echo -e "\nWARNING: YOU HAVE MERGE CONFLICT MARKERS IN THE ABOVE HUNKS"
