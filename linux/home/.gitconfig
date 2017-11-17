@@ -545,13 +545,14 @@
   ; https://github.com/git-for-windows/git/wiki/Symbolic-Links
   symlinks = "true"
 
-  ; diff-so-fancy:
+  ; diff-so-fancy
   ;   Seperate files in diff view
   ; grep
-  ;   Highlight merge commits
-  ; -S:
-  ;   Do not break long lines (useful for log --graph with branches)
-  pager = "diff-so-fancy | GREP_COLOR='1;37' grep --color=always -E '(Merge (commit|branch|pull request)|(fixup|squash)!|\\<WIP\\>).*|$' | less --tabs=4 -SRFX"
+  ;   Highlight specified commits
+  ; less
+  ;   -S: Do not break long lines (useful for log --graph with branches)
+  ;   -i: Smart case in search
+  pager = "diff-so-fancy | GREP_COLOR='1;37' grep --color=always -E '(Merge (commit|branch|pull request)|(fixup|squash)!|\\<WIP\\>).*|$' | less --tabs=4 -SiRFX"
 
   ; Do not modify EOL.
   autocrlf = "false"
