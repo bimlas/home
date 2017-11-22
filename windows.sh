@@ -25,10 +25,13 @@ cd "$CWD/windows"
 
 header "  COPY"
 
-copy --recursive \
-  "AppData"      \
-  "Documents"    \
+copy --recursive   \
+  "AppData"        \
+  "Documents"      \
   "$HOME"
+
+copy
+  "Everything.ini" "/c/app/everything/"
 
 header "  SYMLINK"
 
