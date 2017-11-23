@@ -526,10 +526,14 @@
   ; Remove submodule:
   ;
   ;   git rm SUBMODULE_DIR
+  ;
+  ; Change remote:
+  ;
+  ;   Rewrite urls in .gitmodules, then `git submodule sync`.
 
   ; You have to run this first after pulling a repo with a commit which adds a
   ; new submodule to it.
-  subi = "submodule update --init --recursive"
+  subi = "!git submodule sync; git submodule update --init --recursive"
 
   ; __ FRAMEWORK-RELATED COMMANDS _________                               {{{2
 
