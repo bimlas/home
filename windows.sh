@@ -30,10 +30,9 @@ copy --recursive   \
   "Documents"      \
   "$HOME"
 
-copy
-  "Everything.ini" "/c/app/everything/"
-copy
-  "ProcessHacker.exe.settings.xml" "/c/app/process_explorer/"
+copy --recursive \
+  "app"          \
+  "/c"
 
 header "  SYMLINK"
 
