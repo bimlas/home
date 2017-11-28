@@ -47,9 +47,9 @@
   <setting name="LogWindowSize">@96|450,500</setting>
   <setting name="MainWindowAlwaysOnTop">0</setting>
   <setting name="MainWindowOpacity">0</setting>
-  <setting name="MainWindowPosition">100,100</setting>
-  <setting name="MainWindowSize">@96|800,600</setting>
-  <setting name="MainWindowState">3</setting>
+  <setting name="MainWindowPosition">634,15</setting>
+  <setting name="MainWindowSize">@96|1261,1003</setting>
+  <setting name="MainWindowState">1</setting>
   <setting name="MaxSizeUnit">6</setting>
   <setting name="MemEditBytesPerRow">10</setting>
   <setting name="MemEditGotoChoices"></setting>
@@ -66,19 +66,19 @@
   <setting name="MiniInfoWindowEnabled">1</setting>
   <setting name="MiniInfoWindowOpacity">0</setting>
   <setting name="MiniInfoWindowPinned">0</setting>
-  <setting name="MiniInfoWindowPosition">1351,840</setting>
+  <setting name="MiniInfoWindowPosition">1336,840</setting>
   <setting name="MiniInfoWindowRefreshAutomatically">1</setting>
   <setting name="MiniInfoWindowSize">@96|315,200</setting>
   <setting name="ModuleTreeListColumns">@96|0,0,100|1,1,80|2,2,60|3,3,160</setting>
   <setting name="ModuleTreeListSort">0,0</setting>
-  <setting name="NetworkTreeListColumns"></setting>
-  <setting name="NetworkTreeListSort">0,1</setting>
+  <setting name="NetworkTreeListColumns">@96|0,0,100|1,1,120|2,2,50|3,3,120|4,4,50|5,5,45|6,6,70|7,7,80</setting>
+  <setting name="NetworkTreeListSort">6,2</setting>
   <setting name="NoPurgeProcessRecords">0</setting>
   <setting name="PluginsDirectory">plugins</setting>
   <setting name="ProcessServiceListViewColumns"></setting>
-  <setting name="ProcessTreeListColumns">@96|0,0,200|1,1,50|2,2,45|4,3,70|5,18,140|6,19,180|12,4,70|27,5,70|28,6,70|48,9,100|57,7,70|58,8,70|+ProcessHacker.ExtendedTools+3,14,70|+ProcessHacker.ExtendedTools+4,15,70|+ProcessHacker.ExtendedTools+13,16,70|+ProcessHacker.ExtendedTools+14,17,70|+ProcessHacker.ExtendedTools+27,10,70|+ProcessHacker.ExtendedTools+28,11,70|+ProcessHacker.ExtendedTools+30,12,70|+ProcessHacker.ExtendedTools+31,13,70</setting>
+  <setting name="ProcessTreeListColumns">@96|0,0,200|1,1,50|2,2,45|3,4,70|4,3,70|5,11,140|6,12,180|48,7,100|57,5,70|58,6,70|+ProcessHacker.ExtendedTools+13,9,70|+ProcessHacker.ExtendedTools+14,10,70|+ProcessHacker.ExtendedTools+32,8,70</setting>
   <setting name="ProcessTreeListSort">0,0</setting>
-  <setting name="ProcPropPage">Memory</setting>
+  <setting name="ProcPropPage">Performance</setting>
   <setting name="ProcPropPosition">200,200</setting>
   <setting name="ProcPropSize">@96|460,580</setting>
   <setting name="ProgramInspectExecutables">peview.exe &quot;%s&quot;</setting>
@@ -90,7 +90,7 @@
   <setting name="ScrollToNewProcesses">0</setting>
   <setting name="SearchEngine">http://www.google.com/search?q=&quot;%s&quot;</setting>
   <setting name="ServiceListViewColumns"></setting>
-  <setting name="ServiceTreeListColumns"></setting>
+  <setting name="ServiceTreeListColumns">@96|0,0,140|1,1,220|2,2,100|3,3,70|4,4,130|5,5,50</setting>
   <setting name="ServiceTreeListSort">0,1</setting>
   <setting name="SessionShadowHotkey">106,2</setting>
   <setting name="ShowCommitInSummary">1</setting>
@@ -157,8 +157,8 @@
   <setting name="ProcessHacker.ExtendedNotifications.ProcessList">\i*</setting>
   <setting name="ProcessHacker.ExtendedNotifications.ServiceList">\i*</setting>
   <setting name="ProcessHacker.ExtendedServices.EnableServicesMenu">1</setting>
-  <setting name="ProcessHacker.ExtendedTools.DiskTreeListColumns"></setting>
-  <setting name="ProcessHacker.ExtendedTools.DiskTreeListSort">4,2</setting>
+  <setting name="ProcessHacker.ExtendedTools.DiskTreeListColumns">@96|0,0,100|1,1,400|2,2,70|3,3,70|4,4,70|5,5,70|6,6,70</setting>
+  <setting name="ProcessHacker.ExtendedTools.DiskTreeListSort">2,2</setting>
   <setting name="ProcessHacker.ExtendedTools.EnableEtwMonitor">1</setting>
   <setting name="ProcessHacker.ExtendedTools.EnableGpuMonitor">1</setting>
   <setting name="ProcessHacker.ExtendedTools.GpuNodeBitmap">01000000</setting>
