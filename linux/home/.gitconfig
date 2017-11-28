@@ -223,11 +223,13 @@
   ;
   ;   $ git merge
   ;
-  ; Update branches without checkout:
+  ; Update (merge) branches without checkout:
   ;
   ;   $ git fetch origin mybranch:mybranch    # fast-forward only
   ;   $ git fetch origin +mybranch:mybranch   # allow non fast-forward too
   ;   $ git fetch origin a:a b:b              # update more branches at once
+  ;   $ git fetch . feature:master            # fast-forward local branches
+  ;                                           # (`feature` in to `master`)
 
   f  = "fetch"
   fo = "fetch origin"
