@@ -236,7 +236,7 @@
 
   ; __ STATUS _____________________________                               {{{2
 
-  s   = "!git status --short --branch $*; echo \"## `git status --porcelain $* | wc -l` files affected\""
+  s   = "!git status --short --branch $*; echo \"## `git status --porcelain $* | wc -l` files affected\"; git stash list"
   sb  = "branch-status"
   sba = "branch-status --all"
   sr  = "remote show origin"
