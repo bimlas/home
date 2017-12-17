@@ -196,12 +196,14 @@
   ghps = "!sh -c ' \
           git remote add origin https://github.com/$*.git; \
           git remote set-url origin https://github.com/$*.git; \
+          git fetch; \
           git push --set-upstream origin --all; \
           git push --set-upstream origin --tags' -"
   glcl = "!sh -c 'git clone --recursive https://gitlab.com/$*' -"
   glps = "!sh -c ' \
           git remote add origin https://gitlab.com/$*.git; \
           git remote set-url origin https://gitlab.com/$*.git; \
+          git fetch; \
           git push --set-upstream origin --all; \
           git push --set-upstream origin --tags' -"
 
