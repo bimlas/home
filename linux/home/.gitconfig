@@ -255,17 +255,17 @@
   ;
   ;   git log --grep'regex'
 
-  l    = "log --graph --boundary --date-order --date=short --format=shortlog"
-  la   = "log --graph --boundary --date-order --date=short --format=shortlog --all"
-  las  = "log --graph --boundary --date-order --date=short --format=shortlog --all --simplify-by-decoration"
-  lg   = "log --graph --boundary --date-order"
-  lgg  = "log --graph --boundary --date-order --name-status"
-  lp   = "log --graph --boundary --date-order --patch --stat --ignore-blank-lines"
-  lm   = "log --graph --boundary --merge --left-right --format=shortlog --all"
-  lmg  = "log --graph --boundary --merge --left-right --all"
-  day  = "log --graph --boundary --date-order --all --since midnight"
-  yday = "log --graph --boundary --date-order --all --since=day.before.yesterday.midnight --until=midnight"
-  todo = "log --graph --boundary --date-order --grep 'WIP\\|TODO'"
+  l    = "log --graph --date-order --date=short --format=shortlog"
+  la   = "log --graph --date-order --date=short --format=shortlog --all"
+  las  = "log --graph --date-order --date=short --format=shortlog --all --simplify-by-decoration"
+  lg   = "log --graph --date-order"
+  lgg  = "log --graph --date-order --name-status"
+  lp   = "log --graph --date-order --patch --stat --ignore-blank-lines"
+  lm   = "log --graph --merge --left-right --format=shortlog --all"
+  lmg  = "log --graph --merge --left-right --all"
+  day  = "log --graph --date-order --all --since midnight"
+  yday = "log --graph --date-order --all --since=day.before.yesterday.midnight --until=midnight"
+  todo = "log --graph --date-order --grep 'WIP\\|TODO'"
 
   ; Show `local...remote` if both side exists.
   lf  = "fetch-log --format=shortlog"
