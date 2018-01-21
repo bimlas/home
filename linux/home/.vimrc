@@ -989,7 +989,7 @@ if isdirectory(g:pm_dir)
   " LAMBDALISUE/GINA.VIM                                                  {{{2
   " git integration
   " $ install git
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins')
     Plug 'lambdalisue/gina.vim'
   endif
 
@@ -1006,11 +1006,14 @@ if isdirectory(g:pm_dir)
         call gina#custom#command#option('sw', '--stat')
 
         call gina#custom#command#alias('log', 'l')
+        call gina#custom#command#option('l', '--graph')
         call gina#custom#command#option('l', '--date-order')
         call gina#custom#command#alias('log', 'la')
+        call gina#custom#command#option('la', '--graph')
         call gina#custom#command#option('la', '--date-order')
         call gina#custom#command#option('la', '--all')
         call gina#custom#command#alias('log', 'las')
+        call gina#custom#command#option('las', '--graph')
         call gina#custom#command#option('las', '--date-order')
         call gina#custom#command#option('las', '--all')
         call gina#custom#command#option('las', '--simplify-by-decoration')
@@ -1879,8 +1882,8 @@ nnoremap <Space>gd :Gina diff<CR>
 nmap     <Space>gD <Plug>GitGutterPreviewHunk
 nnoremap <Space>gg :silent Gina grep --ignore-case -C3 '' -- ':/'<S-Left><S-Left><S-Left><Right>
 nnoremap <Space>gG :silent Gina qrep --ignore-case '' -- ':/'<S-Left><S-Left><S-Left><Right>
-nnoremap <Space>gl :Gina log<CR>
-nnoremap <Space>gL :Gina log -- %<CR>
+nnoremap <Space>gl :Gina l<CR>
+nnoremap <Space>gL :Gina l -- %<CR>
 nnoremap <Space>gm :Gina chaperon<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
