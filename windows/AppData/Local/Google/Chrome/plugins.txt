@@ -41,9 +41,12 @@ Grammarly - instant grammar check and fix
 Cookie Inspector - view and edit cookies from Developer Tools
   https://chrome.google.com/webstore/detail/cookie-inspector/jgbbilmfbammlbbhmmgaagdkbkepnijn/related
 
-TamperMonkey - execute javascript automatically on given pages
+TamperMonkey - inject javascript automatically on given pages
   To include JQuery, download a related userscript.
   https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo
+
+Stylish - inject css automatically on given pages
+  https://chrome.google.com/webstore/detail/stylish-custom-themes-for/fjnbnpbmkenffdnngjfgmeleoegfcffe
 
 Tamper - edit remote files and use those as a native websites (via proxy)
   https://chrome.google.com/webstore/detail/tamper/mabhojhgigkmnkppkncbkblecnnanfmd
