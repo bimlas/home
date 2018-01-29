@@ -45,6 +45,9 @@ TamperMonkey - inject javascript automatically on given pages
   To include JQuery, download a related userscript.
   https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo
 
+ViolentMonkey - opensource version of TamperMonkey and it works in Vivaldi webpanels
+  https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag
+
 Stylish - inject css automatically on given pages
   https://chrome.google.com/webstore/detail/stylish-custom-themes-for/fjnbnpbmkenffdnngjfgmeleoegfcffe
 
