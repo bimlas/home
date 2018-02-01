@@ -5,7 +5,7 @@
       <option name="PHP Statement" value="true" />
     </context>
   </template>
-  <template name="chrome" value="ChromePhp::log($END$);" description="Display message directly in Chrome's console" toReformat="false" toShortenFQNames="true">
+  <template name="chrome" value="if (!is_file(sys_get_temp_dir() . '/ChromePhp.php')) {file_put_contents(sys_get_temp_dir() . '/ChromePhp.php', fopen('https://raw.githubusercontent.com/ccampbell/chromephp/master/ChromePhp.php', 'r'));} require_once sys_get_temp_dir() . '/ChromePhp.php';&#10;ChromePhp::log($END$);" description="Display message directly in Chrome's console" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="PHP Statement" value="true" />
     </context>
