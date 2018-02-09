@@ -65,7 +65,19 @@ Caller    := False
     {
       If Caller = TTOTAL_CMD
       {
+        ; Save the contents of the clipboard.
+        ClipSaved := ClipboardAll
+        ; Copy the app's actual path to clipboard.
+        Send, (pwd).Path | CLIP{Enter}
+
         WinActivate, ahk_class TTOTAL_CMD
+
+        ; CD to the path of the app.
+        Send, ^{Down}%CdCommand% "+{Insert}"{Enter}
+        ; Restore the clipboard.
+        Clipboard := ClipSaved
+        ; Free the memory in case the clipboard was very large.
+        ClipSaved =
       }
       If Caller = Vim
       {
