@@ -492,10 +492,8 @@ if isdirectory(g:pm_dir)
   endif
 
   " TYRU/OPEN-BROWSER.VIM                                                 {{{2
-  " netrw gx helyett
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'tyru/open-browser.vim'
-  endif
+  " instead of netrw gx
+  Plug 'tyru/open-browser.vim'
 
   " AIRBLADE/VIM-ROOTER                                                   {{{2
   " autochdir to project root when opening a buffer
