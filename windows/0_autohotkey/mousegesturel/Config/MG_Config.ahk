@@ -158,7 +158,7 @@ Goto,MG_Config_End
 
 MG_IsDisable(){
 	global
-	return ((MG_Exe="TOTALCMD64.EXE") || (MG_Exe="TOTALCMD.EXE"))
+	return ((MG_Exe="TOTALCMD64.EXE") || (MG_Exe="TOTALCMD.EXE") || (MG_Exe="vivaldi.exe"))
 }
 
 MG_IsTarget1(){
