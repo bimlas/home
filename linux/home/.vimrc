@@ -1501,6 +1501,11 @@ set showfulltag
 command W noautocmd w
 command Wall noautocmd wall
 
+"                             ABBREVATIONS                                {{{1
+" ============================================================================
+
+cabbrev argdo silent argdo silent
+
 "                                    MAP                                  {{{1
 " ============================================================================
 "
