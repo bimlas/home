@@ -59,6 +59,7 @@ link "$CWD/linux/home/.vimrc_viewer"     "$HOME/.vimrc_viewer"
 link "$CWD/linux/home/.Xresources"       "$HOME/.Xresources"
 link "$CWD/linux/home/.xsessionrc"       "$HOME/.xsessionrc"
 link "$CWD/linux/home/.zshrc"            "$HOME/.zshrc"
+link "$CWD/linux/home/ginit"             "$HOME/ginit"
 
 shopt -s extglob
 chmod 744 $HOME/bin/!(.gitignore|Gemfile|*.bat)

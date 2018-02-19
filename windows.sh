@@ -77,6 +77,7 @@ link "$CWD/linux/home/.spacemacs"     "$HOME/.spacemacs"
 link "$CWD/linux/home/.vimperatorrc"  "$HOME/.vimperatorrc"
 link "$CWD/linux/home/.vimrc"         "$HOME/.vimrc"
 link "$CWD/linux/home/.vimrc_viewer"  "$HOME/.vimrc_viewer"
+link "$CWD/linux/home/ginit"          "$HOME/ginit"
 
 remember
 
