@@ -1035,15 +1035,17 @@ if isdirectory(g:pm_dir)
   " AIRBLADE/VIM-GITGUTTER                                              " {{{2
   " show git status of lines on the sign column
   " $ install git
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins')
     Plug 'airblade/vim-gitgutter'
   endif
 
+  if PluginEnabled('vim-gitgutter')
     let g:gitgutter_map_keys = 0
 
     " Update only on file open/write
     let g:gitgutter_realtime = 0
     let g:gitgutter_eager = 0
+  endif
                                                                         " }}}2
 
   " ECLIM                                                                 {{{2
@@ -1549,7 +1551,11 @@ nnoremap Q <Nop>
 nnoremap <C-G> 1<C-G>
 
 " Update everything, not just the screen.
-nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart <Bar> GitGutterAll<CR><C-L>
+if PluginEnabled('vim-gitgutter')
+  nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart <Bar> GitGutterAll<CR><C-L>
+else
+  nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart<CR><C-L>
+endif
 
 " Inserting digraphs.
 nnoremap <Leader><C-K> a<C-K>
