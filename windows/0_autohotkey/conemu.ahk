@@ -18,6 +18,7 @@
 ; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 
 Terminal  := "c:\app\conemu\conemu64.exe /cmd powershell.exe"
+Tcmd      := "c:\app\tcmd\totalcmd64.exe"
 CdCommand := "cd"
 
 Caller    := False
@@ -61,28 +62,13 @@ Caller    := False
 #if WinActive("ahk_class VirtualConsoleClass")
   ^Space::
   {
-    If Caller != False
+    If Caller = Vim
     {
-      If Caller = TTOTAL_CMD
-      {
-        ; Save the contents of the clipboard.
-        ClipSaved := ClipboardAll
-        ; Copy the app's actual path to clipboard.
-        Send, (pwd).Path | CLIP{Enter}
-
-        WinActivate, ahk_class TTOTAL_CMD
-
-        ; CD to the path of the app.
-        Send, ^{Down}%CdCommand% "+{Insert}"{Enter}
-        ; Restore the clipboard.
-        Clipboard := ClipSaved
-        ; Free the memory in case the clipboard was very large.
-        ClipSaved =
-      }
-      If Caller = Vim
-      {
-        WinActivate, ahk_class Vim
-      }
+      WinActivate, ahk_class Vim
+    }
+    Else
+    {
+      Send, ^u%Tcmd% /O /S /L=(pwd).Path{Enter}
     }
     Return
   }
