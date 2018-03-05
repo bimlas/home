@@ -10,15 +10,5 @@
 <#k:: Send, #{Up}
 <#l:: Send, #{Right}
 
-; Dexpot helper
-<#1::  Send, ^{Numpad1}
-<#2::  Send, ^{Numpad2}
-<#3::  Send, ^{Numpad3}
-<#4::  Send, ^{Numpad4}
-<#+1:: Send, ^!{Numpad1}
-<#+2:: Send, ^!{Numpad2}
-<#+3:: Send, ^!{Numpad3}
-<#+4:: Send, ^!{Numpad4}
-
 ; App runners
 #p:: Run "C:\app\everything\everything.exe"
