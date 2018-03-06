@@ -41,6 +41,8 @@ if has('nvim')
     " pip2 install --upgrade neovim
     let g:python_host_prog = 'c:/app/python2/python.exe'
     " pip3 install --upgrade neovim
+    " NOTE: If `:CheckHealth` not works, try `pip3 uninstall msgpack; pip3
+    " install msgpack`.
     let g:python3_host_prog = 'c:/app/python3/python.exe'
     " gem update neovim
     let g:ruby_host_prog = 'c:/app/ruby/bin/ruby.exe'
