@@ -1617,6 +1617,7 @@ nnoremap <Leader>p :Unite history/yank<CR>
 " set virtualedit=onemore
 noremap  <C-Insert> "+y
 cnoremap <C-Insert> <C-Y>
+cnoremap <S-Insert> <C-R>+
 noremap  <S-Insert> "+P
 imap     <S-Insert> <C-O><S-Insert>
 
