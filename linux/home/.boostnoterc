@@ -1,0 +1,35 @@
+{
+    "amaEnabled": false,
+    "editor": {
+        "fontFamily": "DejaVu Sans Mono, Consolas",
+        "fontSize": "14",
+        "indentSize": "2",
+        "indentType": "space",
+        "keyMap": "default",
+        "switchPreview": "DBL_CLICK",
+        "theme": "solarized light",
+        "type": "EDITOR_PREVIEW",
+        "fetchUrlTitle": false
+    },
+    "hotkey": {
+        "toggleMain": "Cmd + Alt + L"
+    },
+    "isSideNavFolded": false,
+    "listStyle": "SMALL",
+    "listWidth": 250,
+    "navWidth": 200,
+    "preview": {
+        "codeBlockTheme": "solarized light",
+        "fontFamily": "Segoe UI, Ubuntu",
+        "fontSize": "14",
+        "lineNumber": true
+    },
+    "sortBy": "UPDATED_AT",
+    "sortTagsBy": "COUNTER",
+    "ui": {
+        "defaultNote": "ALWAYS_ASK",
+        "disableDirectWrite": false,
+        "theme": "white"
+    },
+    "zoom": 1
+}

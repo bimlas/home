@@ -67,6 +67,7 @@ copy              \
 
 header "  SYMLINK"
 
+link "$CWD/linux/home/.boostnoterc"   "$HOME/.boostnoterc"
 link "$CWD/linux/home/.ctags"         "$HOME/.ctags"
 link "$CWD/linux/home/.emacs"         "$HOME/.emacs"
 link "$CWD/linux/home/.gitconfig"     "$HOME/.gitconfig"
