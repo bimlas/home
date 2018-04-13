@@ -708,6 +708,9 @@
   ; bit).
   auto = 256
 
+  ; Detached GC causing problems in GUIs (as SmartGit warned about)
+  autoDetach = false
+
 [gui]                                                                   ; {{{1
 
   encoding = "utf-8"
