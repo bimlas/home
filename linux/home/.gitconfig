@@ -259,17 +259,17 @@
   ;
   ;   git log --grep'regex'
 
-  l    = "log --graph --date-order --date=short --format=shortlog"
-  la   = "log --graph --date-order --date=short --format=shortlog --all"
-  las  = "log --graph --date-order --date=short --format=shortlog --all --simplify-by-decoration"
-  lg   = "log --graph --date-order"
-  lgg  = "log --graph --date-order --name-status"
-  lp   = "log --graph --date-order --patch --stat --ignore-blank-lines"
+  l    = "log --graph --date=short --format=shortlog"
+  la   = "log --graph --date=short --format=shortlog --all"
+  las  = "log --graph --date=short --format=shortlog --all --simplify-by-decoration"
+  lg   = "log --graph"
+  lgg  = "log --graph --name-status"
+  lp   = "log --graph --patch --stat --ignore-blank-lines"
   lm   = "log --graph --merge --left-right --format=shortlog --all"
   lmg  = "log --graph --merge --left-right --all"
-  day  = "log --graph --date-order --all --since midnight"
-  yday = "log --graph --date-order --all --since=day.before.yesterday.midnight --until=midnight"
-  todo = "log --graph --date-order --grep 'WIP\\|TODO'"
+  day  = "log --graph --all --since midnight"
+  yday = "log --graph --all --since=day.before.yesterday.midnight --until=midnight"
+  todo = "log --graph --grep 'WIP\\|TODO'"
 
   ; Show `local...remote` if both side exists.
   lf  = "fetch-log --format=shortlog"
