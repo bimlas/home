@@ -14,6 +14,26 @@
 #   $ docker run   -it mylinux /bin/bash
 #   To rebuild the whole image, add `--no-cache` to the build command.
 #
+# PREVENT SENDING ENTIRE DIRECTORY TO DOCKER MACHINE
+#   If the Dockerfile is placed in to a huge directory, but you need only a
+#   specific subdirectory, then pass it as a parameter to the build command to
+#   prevent the sending of the huge dir (`Sending build context to Docker
+#   daemon`).
+#   $ docker build -t my-image ./subdir
+#
+#   If the build fails, you can see what happened by opening the last image
+#   container:
+#
+#   Removing intermediate container 13c13c71cf8d
+#    ---> 0dd860f784ed
+#   Step 22/22 : RUN composer install
+#    ---> Running in 79e8407ced6e
+#   Do not run Composer as root/super user! See https://getcomposer.org/root for details
+#   $ docker run -it 0dd860f784ed /bin/bash
+#
+# DECOUPLE DOCKERFILE INTO MULTIPLE CONTAINERS
+#   https://stackoverflow.com/a/43604959
+#
 # HISTORY OF IMAGE
 #   $ docker history mylinux
 #   Revert changes:
