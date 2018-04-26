@@ -62,6 +62,7 @@ MAINTAINER BimbaLaszlo
 
 RUN apt-get update
 RUN apt-get install -y zsh
+RUN apt-get install -y neovim
 RUN apt-get install -y git
 
 #                              DEVELOPEMENT                               {{{1
@@ -71,8 +72,11 @@ RUN apt-get install -y gcc make
 RUN apt-get install -y ctags
 
 RUN apt-get install -y python python-pip python3 python3-pip
+RUN pip install neovim
+RUN pip3 install neovim
 
 RUN apt-get install -y ruby ruby-dev
+RUN gem install neovim
 RUN gem install ripper-tags gem-ripper-tags
 RUN gem install pry
 
@@ -81,18 +85,10 @@ RUN gem install pry
 
 # ENV TERM=xterm
 
-RUN git clone --progress --verbose --depth 1 https://github.com/BimbaLaszlo/home ~/home
-# It's a bash script, not works with /bin/sh!
-RUN /bin/bash /root/home/linux_user.sh
-RUN chmod 744 /root/bin/*
-
-# RUN vim -c 'InstallNeoBundle' -c 'qa!'
-# RUN vim -c 'NeoBundleInstall' -c 'qa!'
-# mount?
-
-#                                BUILD VIM                                {{{1
-# ============================================================================
-
-RUN apt-get install -y python-dev python3-dev ruby-dev liblua5.3-dev libperl-dev
-RUN git clone --progress --verbose --depth 1 https://www.github.com/vim/vim /root/src/vim
-RUN cd /root/src/vim && /root/bin/makemyvim.sh && make && make install && cd -
+# CMD commands will run on executing container, but only one CMD is allowed!
+CMD git clone --progress --verbose --depth 1 https://github.com/bimlas/home ~/home && \
+    /bin/bash /root/home/linux_user.sh && \
+    chmod 744 /root/bin/* && \
+    vim -c 'InstallPluginManager' -c 'qa!' && \
+    vim -c 'PlugInstall' -c 'qa!'
+#mount?
