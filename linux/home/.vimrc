@@ -206,6 +206,11 @@ if isdirectory(g:pm_dir)
     " Plug 'https://github.com/bimlas/vim-ide'
   endif
 
+  " BIMLAS/VIM-RELATEDTAGS                                                {{{2
+  " conceptual work
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'https://github.com/bimlas/vim-relatedtags'
+  endif
                                                                         " }}}2
 
   " .. MEGJELENES .........................
