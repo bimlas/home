@@ -10,5 +10,8 @@
 <#k:: Send, #{Up}
 <#l:: Send, #{Right}
 
+; Replace numpad comma with dot character.
+NumPadDot:: Send, .
+
 ; App runners
 #p:: Run "C:\app\everything\everything.exe"
