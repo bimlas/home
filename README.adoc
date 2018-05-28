@@ -9,7 +9,7 @@ Sometimes I write notes in to the relevant config files to easily find it when
 I need.
 
 There are other useful Windows binaries under the
-https://github.com/BimbaLaszlo/home/releases[releases]:
+https://github.com/BimbaLaszlo/home/releases[releases].
 
 Please drop me a mail if You have any question or idea, or open an
 https://github.com/BimbaLaszlo/home/issues[issue] for it.
