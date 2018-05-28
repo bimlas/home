@@ -11,29 +11,5 @@ I need.
 There are other useful Windows binaries under the
 https://github.com/BimbaLaszlo/home/releases[releases]:
 
-* https://github.com/BimbaLaszlo/home/releases/tag/vimruntime.zip[vimruntime.zip] +
-Vim runtime binaries (ctags, diff, wget, etc.).
-
 Please drop me a mail if You have any question or idea, or open an
 https://github.com/BimbaLaszlo/home/issues[issue] for it.
-
-BimbaLaszlo (.github.io|gmail.com)
-
-= Saját beállítófájlok (dotfile, rc file, ini, stb.) Linux-hoz és Windows-hoz
-
-A fő könyvtárban található shell-szkriptek "egygombos" telepítést végeznek
-el, akár Linux-on, akár Windows-on (msys-git shell-jén keresztül).
-
-Érdemes belelesni a konfig fájlokba, mert van, hogy oda jegyzetelek, hogy
-mindig kéznél legyen a program leírása.
-
-A https://github.com/BimbaLaszlo/home/releases[releases] ponton belül egyéb
-hasznos fájlokat is találhatsz:
-
-* https://github.com/BimbaLaszlo/home/releases/tag/vimruntime.zip[vimruntime.zip] +
-Vim runtime binárisok (ctags, diff, wget, stb.)
-
-Ha bármilyen kérdésed / észrevételed / ötleted van, szívesen reagálok rá
-(https://github.com/BimbaLaszlo/home/issues[issue tracker]-ben is jelezheted).
-
-BimbaLaszlo (.github.io|gmail.com)
