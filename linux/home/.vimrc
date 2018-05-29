@@ -144,17 +144,6 @@ if isdirectory(g:pm_dir)
 
   call plug#begin(g:pm_install_dir)
 
-  " SHOUGO/VIMPROC.VIM                                                    {{{2
-  " nehany plugin hasznalja - windows dll:
-  " https://github.com/Shougo/vimproc.vim/downloads
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && executable(&makeprg)
-    Plug 'shougo/vimproc.vim', {
-    \ 'do' : &makeprg,
-    \ }
-  endif
-
-                                                                        " }}}2
-
   " .. SAJAT ..............................
 
   " BIMBALASZLO/DOTVIM                                                    {{{2
@@ -172,7 +161,6 @@ if isdirectory(g:pm_dir)
   " all-in-one highlighter plugin
   " WIP
   Plug 'https://github.com/bimlas/vim-high'
-  Plug 'https://github.com/bimlas/vim-high-school'
 
   let g:high_lighters = {
   \ 'words': {'_hlgroups': []},
@@ -200,12 +188,6 @@ if isdirectory(g:pm_dir)
     Plug 'https://github.com/bimbalaszlo/vim-numutils'
   endif
 
-  " BIMBALASZLO/VIM-IDE                                                   {{{2
-  " conceptual work
-  if !exists('g:vimrc_minimal_plugins')
-    " Plug 'https://github.com/bimlas/vim-ide'
-  endif
-
   " BIMLAS/VIM-RELATEDTAGS                                                {{{2
   " conceptual work
   if !exists('g:vimrc_minimal_plugins')
@@ -228,35 +210,9 @@ if isdirectory(g:pm_dir)
     " Make vertical split visible.
     let g:neosolarized_vertSplitBgTrans = 0
 
-  " TWEEKMONSTER/LOCAL-INDENT.VIM                                         {{{2
-  " display a guide for the current line's indent level
-  " Plug 'tweekmonster/local-indent.vim'
-  "
-  "   let localindentguide_blacklist = ['help']
-  "   autocmd vimrc BufWinEnter * if index(localindentguide_blacklist, &filetype) < 0 | LocalIndentGuide +hl | endif
-
-  " LILYDJWG/COLORIZER                                                    {{{2
-  " show RGB colors with :ColorHighlight or :ColorToggle
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'lilydjwg/colorizer'
-  endif
-
-    let g:colorizer_startup  = 0
-    let g:colorizer_nomap    = 1
-    let g:colorizer_maxlines = 3000
                                                                         " }}}2
 
   " .. KURZOR MOZGATASA ...................
-
-  " MATCHIT.ZIP                                                           {{{2
-  " paros jelek kozti ugralas
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'vim-scripts/matchit.zip'
-  endif
-
-    " FIGYELEM: nagyon belassulhat tole az egesz vim. Ezek sem segitenek:
-    " let g:matchparen_timeout = 5
-    " let g:matchparen_insert_timeout = 5
 
   " EASYMOTION/VIM-EASYMOTION                                             {{{2
   " vim motion (in buffer) on speed
@@ -314,25 +270,6 @@ if isdirectory(g:pm_dir)
   " _privat*e_thing -> dav    -> _thing
   " _g*etJiggyYo    -> dav    -> _jiggyYo
   Plug 'julian/vim-textobj-variable-segment'
-
-  " TEK/VIM-TEXTOBJ-RUBY                                                  {{{2
-  " ir/ar: block, if/af: method, ic/ac: class
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'tek/vim-textobj-ruby'
-  endif
-
-    let g:textobj_ruby_no_mappings = 1
-
-    " A comment-eket ne vegye bele.
-    let g:textobj_ruby_inclusive = 0
-
-  " BPS/VIM-TEXTOBJ-PYTHON                                                {{{2
-  " if/af: function, ic/ac: class
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'bps/vim-textobj-python'
-  endif
-
-    let g:textobj_python_no_default_key_mappings = 1
                                                                         " }}}2
 
   " .. SZOVEG KERESESE/MODOSITASA .........
@@ -444,29 +381,10 @@ if isdirectory(g:pm_dir)
     endif
   endif
 
-  " JUNEGUNN/FZF
-  " general fuzzy finder for files, buffers, tags, commands, everything
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'junegunn/fzf', {'dir': '~/.fzf'} " 'do': './install --all'
-    Plug 'junegunn/fzf.vim'
-  endif
-
   " SHOUGO/UNITE-OUTLINE                                                  {{{2
   " tagbar-szeru, de neha jobb
   if !exists('g:vimrc_minimal_plugins')
     Plug 'shougo/unite-outline'
-  endif
-
-  " TSUKKEE/UNITE-TAG                                                     {{{2
-  " unite interface to browse tags
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'tsukkee/unite-tag'
-  endif
-
-  " SHOUGO/VIMFILER.VIM                                                   {{{2
-  " directory browser
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'shougo/vimfiler.vim'
   endif
                                                                         " }}}2
 
@@ -623,34 +541,10 @@ if isdirectory(g:pm_dir)
   "   set verbosefile=filename.txt
   "                                                                        }}}
 
-  " TWEEKMONSTER/HELPFUL.VIM                                              {{{2
-  " display vim version numbers in docs
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'tweekmonster/helpful.vim'
-  endif
-
-  " MATTN/BENCHVIMRC-VIM                                                  {{{2
-  " :BenchVimrc
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'mattn/benchvimrc-vim'
-  endif
-
-  " JUNEGUNN/VADER.VIM                                                    {{{2
-  " a unittesting and acceptance framework for Vim script
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'junegunn/vader.vim'
-  endif
-
   " THINCA/VIM-THEMIS                                                     {{{2
   " a unit testing framework for Vim script
   if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
     Plug 'thinca/vim-themis'
-  endif
-
-  " VIM-JP/VITAL.VIM                                                      {{{2
-  " a comprehensive vim utility functions for vim plugins
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'vim-jp/vital.vim'
   endif
                                                                         " }}}2
 
@@ -691,70 +585,6 @@ if isdirectory(g:pm_dir)
     " Smacks up the popup menu (sometimes it selects the first element when I
     " hiting space).
     let g:lexima_enable_space_rules = 0
-
-  " POWERMAN/VIM-PLUGIN-VIEWDOC                                           {{{2
-  " bongeszheto help tobb nyelvhez (a <CR> megnyitja a kurzor alatti objektum
-  " help-jet)
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'powerman/vim-plugin-viewdoc'
-  endif
-
-    " A `:help` parancsot ne cserelje le.
-    let g:no_viewdoc_abbrev = 1
-
-    " Open doc in split.
-    let g:viewdoc_open = 'new'
-
-    " Just press `N` after in the doc to search for the word.
-    let g:viewdoc_copy_to_search_reg = 1
-
-  " KABBAMINE/ZEAVIM.VIM                                                  {{{2
-  " talan a legnormalisabb referencia-bongeszo
-  " $ install zeal @ http://zealdocs.org/
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'kabbamine/zeavim.vim'
-  endif
-
-    if PluginEnabled('zeavim.vim')
-      autocmd vimrc FileType ruby Docset ruby 2
-    endif
-
-    let g:zv_disable_mapping = 1
-
-    if isdirectory('c:/app/zeal/')
-      let g:zv_zeal_executable = 'c:/app/zeal/zeal.exe'
-    endif
-
-  " NEOMAKE/NEOMAKE                                                       {{{2
-  " asynchronous syntax checker
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'neomake/neomake'
-
-    let g:neomake_error_sign = {'text': '▶', 'texthl': 'Error'}
-    let g:neomake_warning_sign = {'text': '∙', 'texthl': 'StatusLineNC'}
-    let g:neomake_info_sign = {'text': '∷', 'texthl': 'FoldColumn'}
-    let g:neomake_message_sign = {'text': '∷', 'texthl': 'FoldColumn'}
-
-    if PluginEnabled('neomake')
-      autocmd vimrc BufReadPost,BufWritePost * Neomake
-    endif
-  endif
-
-  " GTAGS.VIM                                                             {{{2
-  " gnu global
-  " $ pip install pygments
-  " $ cd PROJECT_ROOT
-  " $ gtags --gtagslabel=pygments
-  " Innentol mukodik a dolog.
-  "
-  " Hogy ne kelljen mindig megadni a gtagslabel erteket, a GTAGSLABEL
-  " kornyezeti valtozoban is beallithatod.
-  "
-  " Windows verzio: http://adoxa.altervista.org/global/
-  " Masold be a share/gtags/gtags.conf fajlt a ~/ konyvtarba.
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'vim-scripts/gtags.vim'
-  endif
 
   " THINCA/VIM-QUICKRUN                                                   {{{2
   " buffer, vagy kijelolt kod futtatasa
@@ -797,104 +627,6 @@ if isdirectory(g:pm_dir)
     \}
 
     autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | endif
-
-  " JANKO-M/VIM-TEST                                                      {{{2
-  " run tests easily
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'janko-m/vim-test'
-  endif
-
-    let g:test#strategy = 'vimproc'
-
-    " Using MiniTest instead of RSpec
-    let test#ruby#minitest#file_pattern = '_\(test\|spec\)\.rb'
-
-  " JOONTY/VDEBUG                                                         {{{2
-  " turns Vim into a real debugger
-  " See :help VdebugKeys for key mappings
-  "
-  " PHP.INI
-  " zend_extension=/path/to/xdebug.so
-  " xdebug.idekey=xdebug
-  " xdebug.remote_autostart=1
-  " xdebug.remote_enable=on
-  " xdebug.remote_handler=dbgp
-  " xdebug.remote_host=localhost
-  " xdebug.remote_port=9001
-  "
-  " RUBY
-  " Download the latest from
-  " http://downloads.activestate.com/Komodo/releases/XXX/remotedebugging/Komodo-RubyRemoteDebugging...
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'joonty/vdebug'
-  endif
-
-    " See the last message of https://github.com/joonty/vdebug/issues/78
-    let g:vdebug_options= {
-    \   "port" : 9001,
-    \ }
-
-    " RUBY - DOESN'T WORKS YET
-    " let $RUBYDB_LIB = 'c:\\app\\rdbgp'
-    " let $RUBYDB_OPTS = 'HOST=localhost PORT=' . g:vdebug_options['port']
-    "
-    " Start the script in a shell with
-    " ruby -I$RUBYDB_LIB -r $RUBYDB_LIB/rdbgp.rb myscript.rb
-
-  " MATTBOEHM/VIM-UNSTACK                                                 {{{2
-  " parse stack traces or quickfix entries and open the result in vim splits
-  " visually select part/all of a stacktrace and hit <leader>s
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'mattboehm/vim-unstack'
-  endif
-
-  " SHEERUN/VIM-POLYGLOT                                                  {{{2
-  " a lot of (emasculated, syntax only) filetype plugins
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
-    Plug 'sheerun/vim-polyglot'
-  endif
-
-  " DAVIDHALTER/JEDI-VIM                                                  {{{2
-  " python irasat nagyban megkonnyito kiegeszitesek / sugok
-  " $ pip install jedi
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_python
-    Plug 'davidhalter/jedi-vim'
-  endif
-
-  " VIM-RUBY/VIM-RUBY                                                     {{{2
-  " Ruby stuff (for example better omni-completion)
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_ruby
-    Plug 'vim-ruby/vim-ruby'
-  endif
-
-    " :help ft-ruby-omni
-    let g:rubycomplete_buffer_loading    = 1
-    let g:rubycomplete_classes_in_global = 1
-    let g:rubycomplete_rails             = 1
-    let g:rubycomplete_load_gemfile      = 1
-    let g:ruby_no_comment_fold           = 1
-    let g:ruby_operators                 = 1
-
-  " TPOPE/VIM-BUNDLER                                                     {{{2
-  " 'path' and 'tags' are automatically include all gems from your bundle
-  " $ gem install gem-ctags OR gem-ripper-tags
-  " Generate tags for already installed gems
-  " $ gem ctags OR ripper_tags
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_ruby
-    Plug 'tpope/vim-bundler'
-  endif
-
-  " TPOPE/VIM-RAILS                                                       {{{2
-  " rails syntax and other goodness
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_ruby
-    Plug 'tpope/vim-rails'
-  endif
-
-  " SUNAKU/VIM-RUBY-MINITEST                                              {{{2
-  " completion for MiniTest
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && g:has_ruby
-    Plug 'sunaku/vim-ruby-minitest'
-  endif
                                                                         " }}}2
 
   " .. NEOCOMPLETE/DEOPLETE ...............
@@ -938,11 +670,6 @@ if isdirectory(g:pm_dir)
       autocmd vimrc VimEnter * call deoplete#custom#set('_', 'matchers', ['matcher_fuzzy'])
       autocmd vimrc VimEnter * call deoplete#custom#set('ultisnips', 'rank', 1000)
     endif
-
-    " ZCHEE/DEOPLETE-JEDI                                                 {{{3
-    " jedi-vim integration
-    " $ pip{2,3?} install jedi
-    Plug 'zchee/deoplete-jedi', {'do': 'UpdateRemotePlugins'}
   endif
 
   " NEOCOMPLETE/DEOPLETE COMMON                                           {{{2
@@ -1050,13 +777,6 @@ if isdirectory(g:pm_dir)
     let g:gitgutter_realtime = 0
     let g:gitgutter_eager = 0
   endif
-                                                                        " }}}2
-
-  " ECLIM                                                                 {{{2
-  " Eclipse integration
-  " http://eclim.org/
-
-    " let g:EclimCompletionMethod = 'omnifunc'
                                                                         " }}}2
 
   call plug#end()
