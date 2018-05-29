@@ -1,0 +1,12 @@
+#!/bin/bash
+# mypager: Let diff-so-fancy work on Windows in MSysGit Bash, Hyper, etc.
+#
+# For details, see
+# https://github.com/so-fancy/diff-so-fancy/issues/295#issuecomment-392691782
+
+case "$(uname -s)" in
+    CYGWIN*|MINGW*) pagerCmd=diff-so-fancy.cmd;;
+    *)              pagerCmd=diff-so-fancy
+esac
+
+$pagerCmd | GREP_COLOR='1;37' grep --color=always -E '(Merge (commit|branch|pull request)|(fixup|squash)!|\\<WIP\\>).*|$' | less --tabs=4 -SiRFX
