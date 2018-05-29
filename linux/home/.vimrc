@@ -664,8 +664,8 @@ if isdirectory(g:pm_dir)
     let s:complete_plugin = 'deoplete'
 
     if PluginEnabled('deoplete.nvim')
-      autocmd vimrc VimEnter * call deoplete#custom#set('_', 'matchers', ['matcher_fuzzy'])
-      autocmd vimrc VimEnter * call deoplete#custom#set('ultisnips', 'rank', 1000)
+      autocmd vimrc VimEnter * call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy'])
+      autocmd vimrc VimEnter * call deoplete#custom#source('ultisnips', 'rank', 1000)
     endif
   endif
 
