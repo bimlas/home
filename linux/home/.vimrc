@@ -161,8 +161,6 @@ if isdirectory(g:pm_dir)
 
   let g:high_lighters = {
   \ 'words': {'_hlgroups': []},
-  \ 'deep_indent': {},
-  \ 'indent': {},
   \ 'unite_directory': {'whitelist': ['unite', 'denite']},
   \ 'invisible_space': {},
   \ }
