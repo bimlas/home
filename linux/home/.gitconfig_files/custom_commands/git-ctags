@@ -1,5 +1,5 @@
 #!/bin/bash
-# git-ctags: Regenerate CTags database
+# git-ctags: Regenerate CTags database (only on Vim files)
 #
 # http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 
@@ -9,6 +9,6 @@ topdir="`git rev-parse --show-toplevel`"
 cd $topdir
 
 trap 'rm -f "$gitdir/$$.tags"' EXIT
-git ls-files | grep -v '^test' | sed "s#.*#$topdir/&#" | \
+git ls-files "**.vim" | grep -v '^test' | sed "s#.*#$topdir/&#" | \
   ctags -L - -f"$gitdir/$$.tags"
 mv --force "$gitdir/$$.tags" "$gitdir/tags"

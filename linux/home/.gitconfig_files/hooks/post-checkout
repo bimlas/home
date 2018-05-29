@@ -1,3 +1,4 @@
 #!/bin/bash
 # Invoked on: clone, checkout
+git ctags >/dev/null 2>&1 &
 [ -f composer.json ] && git composer-autoload >/dev/null 2>&1 &
