@@ -8,9 +8,6 @@
 " Use the minimal setting for debugging.
 " source $HOME/.vimrc_minimal | finish
 
-" Enable development-related plugins.
-" let g:vimrc_dev_plugins = 1
-
 "                               BOILERPLATE                               {{{1
 " ============================================================================
 
@@ -427,7 +424,7 @@ if isdirectory(g:pm_dir)
   "         Scripts which using the cwd will use the project root
   " too! For example running a script with QuickRun will generate files to
   "                     root instead of script's dir.
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins')
     Plug 'airblade/vim-rooter'
   endif
 
@@ -461,7 +458,7 @@ if isdirectory(g:pm_dir)
   "   Eval a motion or selection as VimL and replace it with the result.
   "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
   "   that it probably deserves its own plugin.
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins')
     Plug 'tpope/vim-scriptease'
   endif
                                                                         " }}}2
@@ -543,7 +540,7 @@ if isdirectory(g:pm_dir)
 
   " THINCA/VIM-THEMIS                                                     {{{2
   " a unit testing framework for Vim script
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins')
     Plug 'thinca/vim-themis'
   endif
                                                                         " }}}2
@@ -552,7 +549,7 @@ if isdirectory(g:pm_dir)
 
   " TOMTOM/TCOMMENT_VIM                                                   {{{2
   " szovegreszek kommentelese
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins')
     Plug 'tomtom/tcomment_vim'
   endif
 
@@ -560,7 +557,7 @@ if isdirectory(g:pm_dir)
 
   " COHAMA/LEXIMA.VIM                                                     {{{2
   " auto insert `end` (for VimL, Ruby, etc.) and pairing chars ({, [, <, etc)
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins')
     Plug 'cohama/lexima.vim'
   end
 
@@ -633,7 +630,7 @@ if isdirectory(g:pm_dir)
 
   " SHOUGO/ECHODOC.VIM                                                    {{{2
   " displays function signatures from completions in the command line
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins')
+  if !exists('g:vimrc_minimal_plugins')
     Plug 'shougo/echodoc.vim'
   endif
 
@@ -642,7 +639,7 @@ if isdirectory(g:pm_dir)
   " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
   " automatic code completion
   " needs lua interface (:version +lua)
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && !has('nvim') && has('lua')
+  if !exists('g:vimrc_minimal_plugins') && !has('nvim') && has('lua')
     Plug 'shougo/neocomplete.vim'
     let s:complete_plugin = 'neocomplete'
 
@@ -662,7 +659,7 @@ if isdirectory(g:pm_dir)
   " SHOUGO/DEOPLETE.NVIM                                                  {{{2
   " automatic code completion
   " $ pip3 install neovim
-  if !exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins') && has('nvim') && has('python3')
+  if !exists('g:vimrc_minimal_plugins') && has('nvim') && has('python3')
     Plug 'shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
     let s:complete_plugin = 'deoplete'
 
@@ -673,7 +670,7 @@ if isdirectory(g:pm_dir)
   endif
 
   " NEOCOMPLETE/DEOPLETE COMMON                                           {{{2
-  if (!exists('g:vimrc_minimal_plugins') && exists('g:vimrc_dev_plugins'))
+  if !exists('g:vimrc_minimal_plugins')
   \ && ((!has('nvim') && has('lua')) || (has('nvim') && has('python3')))
 
     exe 'let g:' . s:complete_plugin . '#enable_at_startup = 1'
