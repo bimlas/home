@@ -551,6 +551,10 @@
   ; PHP
   codecept = "!vendor/bin/codecept"
 
+  ; __ OTHER COMMANDS _____________________                               {{{2
+
+  ignore = "!git rm --cached -r :/ ; git add --all ; #"
+
 [core]                                                                  ; {{{1
 
   ; Create symlinks on Windows too.
