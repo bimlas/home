@@ -606,7 +606,7 @@
     If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
-      SendInput, conemu64.exe /cmd powershell{Enter}
+      SendInput, c:\app\git\git-bash.exe{Enter}
     }
     Else
     {
