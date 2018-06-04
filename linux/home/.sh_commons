@@ -9,6 +9,7 @@ alias ls='ls -Av --color --group-directories-first'
 alias grep='grep --color'
 alias du='du -b'
 alias g='git'
+__git_complete g __git_main
 alias shall='shdo run !ALL'
 alias mvim='vim -u ~/.vimrc_minimal'
 
