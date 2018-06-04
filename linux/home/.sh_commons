@@ -34,7 +34,9 @@ if [[ ! $PATH =~ $HOME/.gitconfig_files/custom_commands ]]; then
   export PATH=$HOME/.gitconfig_files/custom_commands:$PATH
 fi
 
-export EDITOR=vim
+if [[ -z $EDITOR ]]; then
+  export EDITOR=vim
+fi
 
 # View manuals in vim.
 export MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |         \
