@@ -573,6 +573,13 @@
   ; Do not modify EOL.
   autocrlf = "false"
 
+  ; Do not show this warning:
+  ;   warning: LF will be replaced by CRLF in ...
+  ;   The file will have its original line endings in your working directory.
+  ; Even if `autocrlf` is set to `false`, this warning is shown (on Git Bash,
+  ; not PowerShell ?).
+  safecrlf = "false"
+
   ; Handles very slow the Windows network drives without these settings, but
   ; it require at least 1.9.4.
   ; http://stackoverflow.com/a/24045966
