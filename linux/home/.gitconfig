@@ -591,6 +591,11 @@
   ; Global .gitignore file.
   excludesfile = "~/.gitconfig_files/core_excludesfile"
 
+  ; Global .gitattributes file
+  ; `git log -L:funcname:file` is not working without proper attribute
+  ; settings
+  attributesFile = "~/.gitconfig_files/core_attributesfile"
+
 [color]                                                                 ; {{{1
 
   ui = "true"
