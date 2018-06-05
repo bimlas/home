@@ -1,9 +1,9 @@
 First Time=false
-Height 1024=655
+Height 1920=655
 State=AAAA/wAAAAD9AAAAAAAABPwAAAJhAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAAAAAAHABhAGMAdABpAG8AbgBzAFQAbwBvAGwAQgBhAHIAAAAAAP////8AAAAAAAAAAA==
 ToolBarsMovable=Disabled
 Version=2.4.0-beta3
-Width 1280=1276
+Width 1920=1915
 
 [Archives]
 Supported Packers=tar,gzip,bzip2,lzma,xz,unzip,zip,cpio,unrar,dpkg
@@ -26,7 +26,7 @@ Space Moves Down=false
 bzip2=/bin/bzip2
 checksum utility=/usr/bin/md5sum
 cpio=/bin/cpio
-diff utility=/usr/bin/gvimdiff
+diff utility=/usr/bin/kdiff3
 dpkg=/usr/bin/dpkg
 gzip=/bin/gzip
 kdesu=/usr/lib/kde4/libexec/kdesu
@@ -50,8 +50,8 @@ zip=/usr/bin/zip
 
 [General]
 Default Viewer Mode=text
-Editor=/usr/bin/gvim
-Terminal=xterm
+Editor=/usr/bin/nvim-qt
+Terminal=konsole
 View In Separate Window=true
 
 [Konfigurator]

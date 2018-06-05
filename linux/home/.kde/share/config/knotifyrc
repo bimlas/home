@@ -1,5 +1,0 @@
-[Phonon::AudioOutput]
-KNotify_Volume=1
-
-[Sounds]
-No sound=true
