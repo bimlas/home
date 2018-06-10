@@ -8,6 +8,7 @@ Font=Noto Mono,10,-1,0,50,0,0,0,0,0,Regular
 CursorShape=0
 
 [General]
+Command=/bin/zsh
 Name=nyolcas
 Parent=FALLBACK/
 
