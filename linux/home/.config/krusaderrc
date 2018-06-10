@@ -19,7 +19,7 @@ Immediate Context Menu=false
 Left Selects=false
 Right Preserves=true
 ShiftCtrl Left Selects=true
-Space Moves Down=false
+Space Moves Down=true
 
 [Dependencies]
 7z=/usr/bin/7z
@@ -73,14 +73,16 @@ Sort Column=1
 Icons=false
 
 [Look&Feel]
+Default Search Mode=2
 Equal Button Visible=true
 FlatOriginBar=true
 History Button Visible=false
 Home Button Visible=true
-Human Readable Size=false
+Human Readable Size=true
 Mark Dirs=false
 Minimize To Tray=false
 Mouse Selection=2
+Navigator Full Path=true
 New Style Quicksearch=true
 Panel Toolbar visible=true
 Show Size In Bytes=false
