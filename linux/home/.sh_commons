@@ -35,7 +35,7 @@ if [[ ! $PATH =~ $HOME/.gitconfig_files/custom_commands ]]; then
 fi
 
 if [[ -z $EDITOR ]]; then
-  export EDITOR=vim
+  export EDITOR=nvim-qt
 fi
 
 # View manuals in vim.

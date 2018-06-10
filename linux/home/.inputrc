@@ -3,9 +3,9 @@
 
 # Use Vi mode where it's available.
 # http://www.catonmat.net/download/bash-vi-editing-mode-cheat-sheet.txt
-set editing-mode vi
-set keymap vi-command
-"\C-k":     vi-movement-mode
+# set editing-mode vi
+# set keymap vi-command
+# "\C-k":     vi-movement-mode
 
 # Ctrl+Left/Right to move between words.
 "\e[1;5C":  forward-word

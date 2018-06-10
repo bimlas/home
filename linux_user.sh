@@ -20,8 +20,7 @@ header "  COPY"
 copy --recursive   \
   ".aptitude/"     \
   ".config/"       \
-  ".dosbox/"       \
-  ".kde/"          \
+  ".local/"        \
   ".vimrc_minimal" \
   "$HOME"
 
@@ -44,17 +43,12 @@ link "$CWD/linux/home/.gitconfig_files/" "$HOME/.gitconfig_files"
 link "$CWD/linux/home/.bashrc"           "$HOME/.bashrc"
 link "$CWD/linux/home/.boostnoterc"      "$HOME/.boostnoterc"
 link "$CWD/linux/home/.conkyrc"          "$HOME/.conkyrc"
-link "$CWD/linux/home/.ctags"            "$HOME/.ctags"
-link "$CWD/linux/home/.emacs"            "$HOME/.emacs"
 link "$CWD/linux/home/.gitconfig"        "$HOME/.gitconfig"
 link "$CWD/linux/home/.gemrc"            "$HOME/.gemrc"
 link "$CWD/linux/home/.gvimrc"           "$HOME/.gvimrc"
-link "$CWD/linux/home/.ideavimrc"        "$HOME/.ideavimrc"
 link "$CWD/linux/home/.inputrc"          "$HOME/.inputrc"
 link "$CWD/linux/home/.profile"          "$HOME/.profile"
-link "$CWD/linux/home/.spacemacs"        "$HOME/.spacemacs"
 link "$CWD/linux/home/.sh_commons"       "$HOME/.sh_commons"
-link "$CWD/linux/home/.vimperatorrc"     "$HOME/.vimperatorrc"
 link "$CWD/linux/home/.vimrc"            "$HOME/.vimrc"
 link "$CWD/linux/home/.vimrc_viewer"     "$HOME/.vimrc_viewer"
 link "$CWD/linux/home/.Xresources"       "$HOME/.Xresources"

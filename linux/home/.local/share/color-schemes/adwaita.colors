@@ -89,8 +89,8 @@ ForegroundPositive=0,110,40
 ForegroundVisited=100,74,155
 
 [General]
-ColorScheme=Aldabra
-Name=Aldabra
+ColorScheme=Adwaita
+Name=Adwaita
 shadeSortColumn=true
 
 [KDE]

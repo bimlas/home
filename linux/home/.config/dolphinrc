@@ -1,4 +1,5 @@
 [General]
-ShowFullPath=true
 BrowseThroughArchives=true
 GlobalViewProps=true
+ShowFullPath=true
+ShowFullPathInTitlebar=true

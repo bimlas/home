@@ -11,11 +11,10 @@ sudo aptitude install -y software-properties-common
 
 sudo aptitude install -y zsh
 sudo aptitude install -y git
-sudo aptitude install -y vim
+sudo aptitude install -y neovim
 
 sudo aptitude install -y nodejs
-npm install -g git-run
-npm install -g diff-so-dancy
+sudo npm install -g diff-so-fancy
 
 echo '!! Change shell to Zsh needs password'
 chsh -s /bin/zsh
@@ -25,34 +24,32 @@ chsh -s /bin/zsh
 sudo aptitude install -y gcc make
 sudo aptitude install -y ctags
 
-sudo aptitude install -y openjdk-8-jdk
+sudo aptitude install -y openjdk-11-jdk
 
 sudo aptitude install -y python python-pip python3 python3-pip
-sudo pip2 install jedi
-sudo pip3 install jedi
-# Use `import better_exceptions` in source to activate
-sudo pip2 install better_exceptions
-sudo pip3 install better_exceptions
 
 sudo aptitude install -y ruby ruby-dev
-sudo gem install ripper-tags gem-ripper-tags
 sudo gem install pry
 
 # __ OTHER ______________________________
 
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
-sudo aptitude update
-sudo aptitude install -y neovim
 sudo pip2 install neovim
 sudo pip3 install neovim
 sudo gem install neovim
+sudo npm install -g neovim
+
+# Needed by IDEA deployment to work with Vagrant
+sudo aptitude install -y gnome-keyring
 
 # __ DESKTOP ____________________________
+
+sudo aptitude install -y neovim-qt
+sudo aptitude install -y redshift
 
 # To autostart window manager:
 #   $ cat 'exec awesome' >> ~/.xinitrc OR /etc/X11/xinit/.xinitrc
 
-sudo aptitude install -y xorg
+# sudo aptitude install -y xorg
 # sudo aptitude install -y awesome
 
 # __ VIRTUALBOX _________________________
