@@ -14,7 +14,9 @@ UnredirectFullscreen=false
 XRenderSmoothScale=false
 
 [Desktops]
-Number=1
+[Desktops]
+Number=4
+Rows=1
 
 [Effect-CoverSwitch]
 TabBox=false
@@ -51,6 +53,12 @@ TopLeft=None
 TopRight=None
 
 [Plugins]
+blurEnabled=true
+contrastEnabled=false
+cubeslideEnabled=false
+desktopchangeosdEnabled=false
+desktopgridEnabled=false
+highlightwindowEnabled=true
 kwin4_effect_blurEnabled=false
 kwin4_effect_coverswitchEnabled=false
 kwin4_effect_cubeEnabled=false
@@ -60,7 +68,6 @@ kwin4_effect_desktopgridEnabled=false
 kwin4_effect_dialogparentEnabled=true
 kwin4_effect_diminactiveEnabled=false
 kwin4_effect_dimscreenEnabled=false
-kwin4_effect_fadeEnabled=true
 kwin4_effect_fadedesktopEnabled=false
 kwin4_effect_fallapartEnabled=false
 kwin4_effect_flipswitchEnabled=false
@@ -73,7 +80,6 @@ kwin4_effect_logoutEnabled=true
 kwin4_effect_lookingglassEnabled=false
 kwin4_effect_magiclampEnabled=false
 kwin4_effect_magnifierEnabled=false
-kwin4_effect_maximizeEnabled=true
 kwin4_effect_minimizeanimationEnabled=true
 kwin4_effect_mouseclickEnabled=false
 kwin4_effect_mousemarkEnabled=false
@@ -94,9 +100,13 @@ kwin4_effect_taskbarthumbnailEnabled=true
 kwin4_effect_thumbnailasideEnabled=false
 kwin4_effect_trackmouseEnabled=false
 kwin4_effect_translucencyEnabled=true
+kwin4_effect_windowapertureEnabled=false
 kwin4_effect_windowgeometryEnabled=false
 kwin4_effect_wobblywindowsEnabled=false
 kwin4_effect_zoomEnabled=false
+presentwindowsEnabled=false
+slideEnabled=true
+zoomEnabled=false
 
 [TabBox]
 ActivitiesMode=1
