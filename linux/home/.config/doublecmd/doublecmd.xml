@@ -1,472 +1,121 @@
-<?xml version="1.0" encoding="utf-8"?>
-<doublecmd DCVersion="0.5.11 beta" ConfigVersion="7">
-  <Configuration Save="False">
-    <UseConfigInProgramDir>False</UseConfigInProgramDir>
-  </Configuration>
+<?xml version="1.0" encoding="UTF-8"?>
+<doublecmd DCVersion="0.8.2 beta" ConfigVersion="10">
   <Colors>
     <FileFilters/>
-    <Foreground>-2147483640</Foreground>
-    <Background>-2147483643</Background>
-    <Background2>-2147483643</Background2>
-    <Mark>255</Mark>
-    <Cursor>-2147483635</Cursor>
-    <CursorText>-2147483634</CursorText>
-    <UseInvertedSelection>False</UseInvertedSelection>
-    <InactivePanelBrightness>100</InactivePanelBrightness>
-    <UseFrameCursor>False</UseFrameCursor>
-    <FreeSpaceIndicator>
-      <ForeColor>0</ForeColor>
-      <BackColor>16777215</BackColor>
-      <UseGradient>True</UseGradient>
-    </FreeSpaceIndicator>
+    <Foreground>7695960</Foreground>
+    <Background>14809085</Background>
+    <Background2>14809085</Background2>
+    <Cursor>13033448</Cursor>
+    <CursorText>7695960</CursorText>
+    <Mark>1461195</Mark>
   </Colors>
-  <Plugins>
-    <DsxPlugins/>
-    <WcxPlugins>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>zip</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
-        <Flags>607</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>lzma</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/lzma/lzma.wcx</Path>
-        <Flags>1</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>tar</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
-        <Flags>95</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>bz2</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
-        <Flags>91</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>tbz</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
-        <Flags>95</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>gz</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
-        <Flags>91</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>tgz</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
-        <Flags>95</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>cpio</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/cpio/cpio.wcx</Path>
-        <Flags>0</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>deb</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/deb/deb.wcx</Path>
-        <Flags>4</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>rpm</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/rpm/rpm.wcx</Path>
-        <Flags>4</Flags>
-      </WcxPlugin>
-      <WcxPlugin Enabled="True">
-        <ArchiveExt>rar</ArchiveExt>
-        <Path>%commander_path%/plugins/wcx/unrar/unrar.wcx</Path>
-        <Flags>68</Flags>
-      </WcxPlugin>
-    </WcxPlugins>
-    <WdxPlugins>
-      <WdxPlugin>
-        <Name>rpm_wdx</Name>
-        <Path>%commander_path%/plugins/wdx/rpm_wdx/rpm_wdx.wdx</Path>
-        <DetectString>EXT="RPM"</DetectString>
-      </WdxPlugin>
-      <WdxPlugin>
-        <Name>deb_wdx</Name>
-        <Path>%commander_path%/plugins/wdx/deb_wdx/deb_wdx.wdx</Path>
-        <DetectString>EXT="DEB"</DetectString>
-      </WdxPlugin>
-    </WdxPlugins>
-    <WfxPlugins>
-      <WfxPlugin Enabled="True">
-        <Name>FTP</Name>
-        <Path>%commander_path%/plugins/wfx/ftp/ftp.wfx</Path>
-      </WfxPlugin>
-      <WfxPlugin Enabled="True">
-        <Name>Windows Network</Name>
-        <Path>%commander_path%/plugins/wfx/samba/samba.wfx</Path>
-      </WfxPlugin>
-    </WfxPlugins>
-    <WlxPlugins>
-      <WlxPlugin Enabled="True">
-        <Name>wlxMplayer</Name>
-        <Path>%commander_path%/plugins/wlx/wlxmplayer/wlxmplayer.wlx</Path>
-        <DetectString>(EXT="MPG")|(EXT="AVI")|(EXT="MPEG")|(EXT="FLV")</DetectString>
-      </WlxPlugin>
-    </WlxPlugins>
-  </Plugins>
   <Toolbars>
     <MainToolbar>
       <Row>
         <Command>
-          <ID>{E5D6BCE2-D94E-4511-A1DD-DF190C80B335}</ID>
-          <Icon>utilities-terminal</Icon>
-          <Command>cm_RunTerm</Command>
+          <ID>{7E513165-D789-4A00-BA9B-D78EB2FAB839}</ID>
+          <Icon>cm_columnsview</Icon>
+          <Command>cm_ColumnsView</Command>
         </Command>
         <Command>
-          <ID>{3F9E5A61-ABB0-4799-8E88-2AD90D86D132}</ID>
-          <Icon>list-add</Icon>
-          <Command>cm_MarkPlus</Command>
-        </Command>
-        <Command>
-          <ID>{30EA3999-73DA-4E09-A1F9-44B561AF5BA3}</ID>
-          <Icon>list-remove</Icon>
-          <Command>cm_MarkMinus</Command>
+          <ID>{6DF1483F-3B72-4A96-A131-CD9CF076AED9}</ID>
+          <Icon>cm_thumbnailsview</Icon>
+          <Command>cm_ThumbnailsView</Command>
         </Command>
         <Separator/>
         <Command>
-          <ID>{1454530C-76E6-4B08-B234-FB82B9AA3445}</ID>
-          <Icon>package-x-generic</Icon>
+          <ID>{400F235C-F3A0-414D-A186-1CB050158E01}</ID>
+          <Icon>cm_networkconnect</Icon>
+          <Command>cm_NetworkConnect</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{09564C7C-C3A0-4397-BB5C-349747AE443A}</ID>
+          <Icon>cm_packfiles</Icon>
           <Command>cm_PackFiles</Command>
         </Command>
-        <Separator/>
         <Command>
-          <ID>{CA9BC01F-0243-4793-AF6E-243D9CAF46FD}</ID>
-          <Icon>system-search</Icon>
-          <Command>cm_Search</Command>
+          <ID>{17E4DD50-2A50-4124-A13D-73B749D10C60}</ID>
+          <Icon>cm_extractfiles</Icon>
+          <Command>cm_ExtractFiles</Command>
         </Command>
         <Separator/>
         <Command>
-          <ID>{C8DF56FB-C005-48FF-A5FB-6A06E91FB439}</ID>
-          <Icon>go-previous</Icon>
-          <Command>cm_ViewHistoryPrev</Command>
+          <ID>{A335324D-5FA2-4EE3-B7DF-B897CD8A5C9E}</ID>
+          <Icon>cm_syncdirs</Icon>
+          <Command>cm_SyncDirs</Command>
         </Command>
         <Command>
-          <ID>{949C2048-4974-4B53-A785-577A2E27D138}</ID>
-          <Icon>go-next</Icon>
-          <Command>cm_ViewHistoryNext</Command>
+          <ID>{FFF4C7A7-75E6-4D05-A706-D031798FEF7F}</ID>
+          <Icon>cm_copyfullnamestoclip</Icon>
+          <Command>cm_CopyFullNamesToClip</Command>
+        </Command>
+        <Command>
+          <ID>{2F0CA6C4-5E31-43DE-9D87-451D6C11C9B8}</ID>
+          <Icon>cm_copynamestoclip</Icon>
+          <Command>cm_CopyNamesToClip</Command>
         </Command>
       </Row>
     </MainToolbar>
   </Toolbars>
-  <Tabs>
-    <Options>785</Options>
-    <CharacterLimit>32</CharacterLimit>
-    <Position>0</Position>
-  </Tabs>
   <MainWindow>
     <Position>
-      <Left>0</Left>
-      <Top>203</Top>
-      <Width>1276</Width>
-      <Height>657</Height>
       <Maximized>False</Maximized>
-      <Splitter>50</Splitter>
+      <Left>0</Left>
+      <Top>240</Top>
+      <Width>1905</Width>
+      <Height>561</Height>
+      <PixelsPerInch>96</PixelsPerInch>
     </Position>
   </MainWindow>
-  <Language>
-    <POFileName>doublecmd.hu.po</POFileName>
-  </Language>
+  <Tabs>
+    <ActionOnDoubleClick>1</ActionOnDoubleClick>
+  </Tabs>
   <Behaviours>
-    <GoToRoot>False</GoToRoot>
-    <RunInTerminal>xterm -e sh -c</RunInTerminal>
-    <RunTerminal>xterm</RunTerminal>
-    <OnlyOneAppInstance>False</OnlyOneAppInstance>
-    <LynxLike>True</LynxLike>
-    <FileSizeFormat>1</FileSizeFormat>
-    <MinimizeToTray>False</MinimizeToTray>
-    <AlwaysShowTrayIcon>False</AlwaysShowTrayIcon>
+    <OnlyOneAppInstance>True</OnlyOneAppInstance>
     <Mouse>
       <Selection Enabled="True">
         <Button>1</Button>
       </Selection>
-      <ScrollMode>1</ScrollMode>
-      <WheelScrollLines>3</WheelScrollLines>
     </Mouse>
-    <AutoFillColumns>True</AutoFillColumns>
-    <AutoSizeColumn>1</AutoSizeColumn>
-    <DateTimeFormat>yyyy/mm/dd</DateTimeFormat>
-    <CutTextToColumnWidth>True</CutTextToColumnWidth>
     <ShowSystemFiles>True</ShowSystemFiles>
-    <ListFilesInThread>True</ListFilesInThread>
-    <LoadIconsSeparately>True</LoadIconsSeparately>
-    <DelayLoadingTabs>True</DelayLoadingTabs>
-    <HighlightUpdatedFiles>True</HighlightUpdatedFiles>
-    <DriveBlackList/>
-    <DriveBlackListUnmounted>False</DriveBlackListUnmounted>
   </Behaviours>
   <Tools>
-    <Viewer Enabled="False">
-      <Path/>
-      <Parameters/>
+    <Viewer Enabled="True">
+      <Path>nvim-qt</Path>
+      <Parameters>-- -u ~/.vimrc_viewer</Parameters>
       <RunInTerminal>False</RunInTerminal>
       <KeepTerminalOpen>False</KeepTerminalOpen>
     </Viewer>
     <Editor Enabled="True">
-      <Path>/usr/bin/gvim</Path>
+      <Path>nvim-qt</Path>
       <Parameters/>
       <RunInTerminal>False</RunInTerminal>
       <KeepTerminalOpen>False</KeepTerminalOpen>
     </Editor>
-    <Differ Enabled="True">
-      <Path>/usr/bin/gvimdiff</Path>
-      <Parameters/>
-      <RunInTerminal>False</RunInTerminal>
-      <KeepTerminalOpen>False</KeepTerminalOpen>
-    </Differ>
   </Tools>
-  <Fonts>
-    <Main>
-      <Name>default</Name>
-      <Size>10</Size>
-      <Style>1</Style>
-    </Main>
-    <Editor>
-      <Name>Monospace</Name>
-      <Size>11</Size>
-      <Style>0</Style>
-    </Editor>
-    <Viewer>
-      <Name>Monospace</Name>
-      <Size>11</Size>
-      <Style>1</Style>
-    </Viewer>
-    <Log>
-      <Name>Monospace</Name>
-      <Size>11</Size>
-      <Style>0</Style>
-    </Log>
-    <ViewerBook>
-      <Name>default</Name>
-      <Size>14</Size>
-      <Style>1</Style>
-    </ViewerBook>
-  </Fonts>
-  <ToolTips>
-    <ShowToolTipMode>1</ShowToolTipMode>
-    <CustomFields/>
-  </ToolTips>
   <Layout>
-    <MainMenu>True</MainMenu>
-    <ButtonBar Enabled="False">
-      <FlatIcons>True</FlatIcons>
-      <ButtonHeight>24</ButtonHeight>
-      <IconSize>16</IconSize>
-    </ButtonBar>
     <DriveBar1>False</DriveBar1>
-    <DriveBar2>True</DriveBar2>
-    <DriveBarFlat>True</DriveBarFlat>
-    <DrivesListButton Enabled="True">
-      <ShowLabel>True</ShowLabel>
-      <ShowFileSystem>True</ShowFileSystem>
-      <ShowFreeSpace>True</ShowFreeSpace>
-    </DrivesListButton>
-    <DirectoryTabs>True</DirectoryTabs>
-    <CurrentDirectory>True</CurrentDirectory>
-    <TabHeader>True</TabHeader>
-    <StatusBar>True</StatusBar>
     <CmdLine>False</CmdLine>
-    <LogWindow>False</LogWindow>
-    <TermWindow>False</TermWindow>
     <KeyButtons>False</KeyButtons>
-    <InterfaceFlat>True</InterfaceFlat>
-    <DriveFreeSpace>False</DriveFreeSpace>
-    <DriveIndicator>False</DriveIndicator>
-    <ProgressInMenuBar>False</ProgressInMenuBar>
-    <PanelOfOperationsInBackground>True</PanelOfOperationsInBackground>
-    <HorizontalFilePanels>False</HorizontalFilePanels>
-    <ShortFormatDriveInfo>False</ShortFormatDriveInfo>
   </Layout>
-  <FilesViews>
-    <Sorting>
-      <CaseSensitivity>0</CaseSensitivity>
-      <NaturalSorting>True</NaturalSorting>
-      <SortFolderMode>0</SortFolderMode>
-      <NewFilesPosition>2</NewFilesPosition>
-      <UpdatedFilesPosition>2</UpdatedFilesPosition>
-    </Sorting>
-  </FilesViews>
   <Keyboard>
     <Typing>
       <Actions>
-        <NoModifier>2</NoModifier>
-        <Alt>0</Alt>
+        <NoModifier>0</NoModifier>
         <CtrlAlt>0</CtrlAlt>
       </Actions>
     </Typing>
   </Keyboard>
-  <FileOperations>
-    <BufferSize>524288</BufferSize>
-    <UseMmapInSearch>False</UseMmapInSearch>
-    <PartialNameSearch>True</PartialNameSearch>
-    <WipePassNumber>1</WipePassNumber>
-    <DropReadOnlyFlag>False</DropReadOnlyFlag>
-    <ProcessComments>False</ProcessComments>
-    <RenameSelOnlyName>False</RenameSelOnlyName>
-    <ShowCopyTabSelectPanel>False</ShowCopyTabSelectPanel>
-    <UseTrash>True</UseTrash>
-    <SkipFileOpError>False</SkipFileOpError>
-    <ShowDialogOnDragDrop>True</ShowDialogOnDragDrop>
-    <OverwriteFolder>False</OverwriteFolder>
-    <ProgressKind>0</ProgressKind>
-    <Confirmations>15</Confirmations>
-    <Options>
-      <Symlink>0</Symlink>
-      <CorrectLinks>False</CorrectLinks>
-      <FileExists>0</FileExists>
-      <DirectoryExists>0</DirectoryExists>
-      <SetPropertyError>0</SetPropertyError>
-      <ReserveSpace>False</ReserveSpace>
-      <CheckFreeSpace>True</CheckFreeSpace>
-      <CopyAttributes>True</CopyAttributes>
-      <CopyTime>True</CopyTime>
-      <CopyOwnership>True</CopyOwnership>
-    </Options>
-  </FileOperations>
-  <Log Enabled="False">
-    <Options>255</Options>
-  </Log>
-  <History>
-    <SearchReplaceHistory Save="False"/>
-    <DirHistory Save="False"/>
-    <CmdLineHistory Save="False"/>
-    <FileMaskHistory Save="False"/>
-  </History>
   <QuickSearch>
-    <MatchBeginning>True</MatchBeginning>
-    <MatchEnding>True</MatchEnding>
-    <Case>1</Case>
-    <Items>2</Items>
+    <MatchBeginning>False</MatchBeginning>
+    <MatchEnding>False</MatchEnding>
   </QuickSearch>
-  <QuickFilter>
-    <AutoHide>True</AutoHide>
-  </QuickFilter>
   <Miscellaneous>
-    <GridVertLine>False</GridVertLine>
-    <GridHorzLine>False</GridHorzLine>
-    <ShowWarningMessages>True</ShowWarningMessages>
-    <SpaceMovesDown>False</SpaceMovesDown>
-    <DirBrackets>True</DirBrackets>
+    <SpaceMovesDown>True</SpaceMovesDown>
+    <InplaceRename>True</InplaceRename>
   </Miscellaneous>
-  <Thumbnails Save="True">
-    <Width>128</Width>
-    <Height>128</Height>
-  </Thumbnails>
-  <AutoRefresh>
-    <Options>3</Options>
-    <ExcludeDirs/>
-    <Mode>0</Mode>
-  </AutoRefresh>
   <Icons>
-    <ShowMode>1</ShowMode>
-    <ShowOverlays>False</ShowOverlays>
     <Size>16</Size>
-    <Exclude>False</Exclude>
-    <ExcludeDirs/>
-    <CustomDriveIcons>False</CustomDriveIcons>
-    <ShowInMenus Enabled="False">
-      <Size>16</Size>
-    </ShowInMenus>
   </Icons>
-  <IgnoreList Enabled="False">
-    <IgnoreListFile>/home/nyolcas/.config/doublecmd/ignorelist.txt</IgnoreListFile>
-  </IgnoreList>
-  <DirectoryHotList/>
-  <Viewer>
-    <PreviewVisible>False</PreviewVisible>
-    <ImageStretch>False</ImageStretch>
-    <CopyMovePath1/>
-    <CopyMovePath2/>
-    <CopyMovePath3/>
-    <CopyMovePath4/>
-    <CopyMovePath5/>
-    <PaintMode>Pen</PaintMode>
-    <PaintWidth>5</PaintWidth>
-    <NumberOfColumns>1</NumberOfColumns>
-    <ViewerMode>1</ViewerMode>
-    <PaintColor>255</PaintColor>
-    <BackgroundColor>0</BackgroundColor>
-    <FontColor>16777215</FontColor>
-    <TextPosition>1510</TextPosition>
-  </Viewer>
-  <Lua>
-    <PathToLibrary>liblua5.1.so.0</PathToLibrary>
-  </Lua>
-  <NameShortcutFile>shortcuts.scf</NameShortcutFile>
-  <LastUsedPacker>zip</LastUsedPacker>
-  <UseShellForFileOperations>False</UseShellForFileOperations>
-  <SearchTemplates/>
-  <ColumnsSets>
-    <ColumnsSet>
-      <Name>Default</Name>
-      <CustomView>False</CustomView>
-      <CursorBorder Enabled="False">
-        <Color>0</Color>
-      </CursorBorder>
-      <Columns>
-        <Column>
-          <Title>Név</Title>
-          <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
-          <Width>450</Width>
-          <Align>0</Align>
-          <Font>
-            <Name>default</Name>
-            <Size>10</Size>
-            <Style>1</Style>
-          </Font>
-          <Overcolor>True</Overcolor>
-          <TextColor>-2147483640</TextColor>
-          <Background>-2147483643</Background>
-          <Background2>-2147483643</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
-        </Column>
-        <Column>
-          <Title>Kit</Title>
-          <FuncString>[DC().GETFILEEXT{}]</FuncString>
-          <Width>50</Width>
-          <Align>0</Align>
-          <Font>
-            <Name>default</Name>
-            <Size>10</Size>
-            <Style>1</Style>
-          </Font>
-          <Overcolor>True</Overcolor>
-          <TextColor>-2147483640</TextColor>
-          <Background>-2147483643</Background>
-          <Background2>-2147483643</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
-        </Column>
-        <Column>
-          <Title>Méret</Title>
-          <FuncString>[DC().GETFILESIZE{}]</FuncString>
-          <Width>70</Width>
-          <Align>1</Align>
-          <Font>
-            <Name>default</Name>
-            <Size>10</Size>
-            <Style>1</Style>
-          </Font>
-          <Overcolor>True</Overcolor>
-          <TextColor>-2147483640</TextColor>
-          <Background>-2147483643</Background>
-          <Background2>-2147483643</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
-        </Column>
-      </Columns>
-    </ColumnsSet>
-  </ColumnsSets>
-  <MultiRenamePresets>
-    <LastPreset/>
-    <Presets/>
-  </MultiRenamePresets>
 </doublecmd>
