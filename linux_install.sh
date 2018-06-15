@@ -38,6 +38,8 @@ sudo pip3 install neovim
 sudo gem install neovim
 sudo npm install -g neovim
 
+sudo gem install asciidoctor
+
 # Needed by IDEA deployment to work with Vagrant
 sudo aptitude install -y gnome-keyring
 
