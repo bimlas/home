@@ -143,21 +143,21 @@ if isdirectory(g:pm_dir)
 
   " .. SAJAT ..............................
 
-  " BIMBALASZLO/DOTVIM                                                    {{{2
+  " BIMLAS/DOTVIM                                                         {{{2
   " sajat ~/.vim
-  Plug 'https://github.com/bimbalaszlo/dotvim'
+  Plug 'https://gitlab.com/bimlas/dotvim'
 
-  " BIMBALASZLO/VIM-EIGHTHEADER                                           {{{2
+  " BIMLAS/VIM-EIGHTHEADER                                                {{{2
   " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
-  Plug 'https://github.com/bimbalaszlo/vim-eightheader'
+  Plug 'https://gitlab.com/bimlas/vim-eightheader'
 
     let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
     let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
 
-  " BIMBALASZLO/VIM-HIGH                                                  {{{2
+  " BIMLAS/VIM-HIGH                                                       {{{2
   " all-in-one highlighter plugin
   " WIP
-  Plug 'https://github.com/bimlas/vim-high'
+  Plug 'https://gitlab.com/bimlas/vim-high'
 
   let g:high_lighters = {
   \ 'words': {'_hlgroups': []},
@@ -177,16 +177,16 @@ if isdirectory(g:pm_dir)
     \ | exe pos.'wincmd w'
   endif
 
-  " BIMBALASZLO/VIM-NUMUTILS                                              {{{2
+  " BIMLAS/VIM-NUMUTILS                                                   {{{2
   " szamertekek modositasa regex alapjan
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'https://github.com/bimbalaszlo/vim-numutils'
+    Plug 'https://gitlab.com/bimlas/vim-numutils'
   endif
 
   " BIMLAS/VIM-RELATEDTAGS                                                {{{2
   " conceptual work
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'https://github.com/bimlas/vim-relatedtags'
+    Plug 'https://gitlab.com/bimlas/vim-relatedtags'
   endif
                                                                         " }}}2
 
@@ -305,10 +305,10 @@ if isdirectory(g:pm_dir)
     Plug 'tpope/vim-abolish'
   endif
 
-  " BIMBALASZLO/VIM-TEXTCONV                                              {{{2
+  " BIMLAS/VIM-TEXTCONV                                              {{{2
   " easily apply text conversions
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'https://github.com/bimbalaszlo/vim-textconv'
+    Plug 'https://github.com/bimlas/vim-textconv'
   endif
 
   " JUNEGUNN/VIM-EASY-ALIGN                                               {{{2
