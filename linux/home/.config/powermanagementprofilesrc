@@ -3,4 +3,4 @@ idleTime=300
 
 [AC][SuspendSession]
 idleTime=1200000
-suspendType=1
+suspendType=8
