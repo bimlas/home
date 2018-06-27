@@ -183,8 +183,14 @@
   ; Push tags.
   pst = "push --tags"
 
-  ; Push to origin (used to delete remote branch).
-  pso = "push origin"
+  ; Deleting remote branch:
+  ;
+  ;   $ git push origin :remote-branch
+  ;
+  ; Push branch without checking out:
+  ;
+  ;   $ git push origin --set upstream local-branch:remote-branch
+  pso = "push origin --set-upstream"
 
   ; Set origin
   seto = "!sh -c 'git remote add origin $*; \
