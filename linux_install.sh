@@ -13,6 +13,9 @@ sudo aptitude install -y zsh
 sudo aptitude install -y git
 sudo aptitude install -y neovim
 
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 sudo aptitude install -y nodejs
 sudo npm install -g diff-so-fancy
 
