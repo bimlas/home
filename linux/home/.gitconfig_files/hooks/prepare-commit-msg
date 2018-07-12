@@ -1,4 +1,14 @@
 #!/bin/bash
+
+# Indicate the unfinished tasks
+
+if ( git --no-pager diff --cached -U0 | grep '^+.*TODO' > /dev/null ); then
+  line='WARNING: Commit introducing TODOs'
+  if ! ( grep "$line" "$1" > /dev/null ); then
+    sed -i.bak -e "/# Please enter the commit message for your changes./ s,^,$line\n\n," $1
+  fi
+fi
+
 # Append issue number / bug tracking URL to commit.
 #
 # If the branch name contains the issue number, it will append it to the
@@ -13,27 +23,26 @@ branchName=`git rev-parse --abbrev-ref HEAD`
 
 IFS=- read issueTracker issueNumber <<< $(echo $branchName | sed -nr 's,([a-z-]+/)?([A-Z]+-[0-9]+)-.+,\2,p')
 
-if [[ -z $issueNumber ]]; then
-  exit 0
-fi
+if ! [[ -z $issueNumber ]]; then
 
-case "$issueTracker" in
-  WRIKE)
-    line="Wrike: https://www.wrike.com/open.htm?id=$issueNumber"
-    ;;
-  # GH)
-  #   line="GitHub: #$issueNumber"
-  #   ;;
-  # GL)
-  #   line="GitLab: #$issueNumber"
-  #   ;;
-  *)
-    line="Issue: #$issueNumber"
-    ;;
-esac
+  case "$issueTracker" in
+    WRIKE)
+      line="Wrike: https://www.wrike.com/open.htm?id=$issueNumber"
+      ;;
+    # GH)
+    #   line="GitHub: #$issueNumber"
+    #   ;;
+    # GL)
+    #   line="GitLab: #$issueNumber"
+    #   ;;
+    *)
+      line="Issue: #$issueNumber"
+      ;;
+  esac
 
-# If the commit message already contains the line (`--amend`), then do
-# not add it again.
-if ! ( grep "$line" "$1" > /dev/null ); then
-  sed -i.bak -e "/# Please enter the commit message for your changes./ s,^,$line\n\n," $1
+  # If the commit message already contains the line (`--amend`), then do
+  # not add it again.
+  if ! ( grep "$line" "$1" > /dev/null ); then
+    sed -i.bak -e "/# Please enter the commit message for your changes./ s,^,$line\n\n," $1
+  fi
 fi
