@@ -474,9 +474,6 @@
   ; __ COMMIT _____________________________                               {{{2
 
   c   = "commit"
-  ca  = "commit --amend"
-  cam = "commit --amend --reuse-message=HEAD"
-  cm  = "commit -m"
   cmu = "commit -m Update"
 
   ; fixup   merge without changing the commit message
