@@ -8,6 +8,7 @@ alias pm-hibernate='echo "NEVER USE IT!"'
 alias ls='ls -Av --color --group-directories-first'
 alias grep='grep --color'
 alias du='du -b'
+alias o='xdg-open'
 alias g='git'
 __git_complete g __git_main
 alias shall='shdo run !ALL'
