@@ -340,7 +340,8 @@
   dfw  = "diff --patch --stat --ignore-blank-lines --color-words"
   dfwc = "diff --patch --stat --ignore-blank-lines --color-words --cached"
   dfs  = "diff --name-status"
-  gdf  = "difftool"
+  gdf  = "difftool --dir-diff"
+  gdfc = "difftool --dir-diff --cached"
 
   ; __ GREP _____________________________
 
@@ -656,7 +657,7 @@
 
   ; Find renamed and copied files.
   renames   = "copies"
-  tool      = "$EDITORdiff"
+  tool      = "meld"
 
   ; Check the diffrenece:
   ;   for i in myers minimal patience histogram; do
@@ -669,6 +670,11 @@
   compactionHeuristic = "true"
   ; Needs 2.11
   indentHeuristic = "true"
+
+[difftool]                                                              ; {{{1
+
+    prompt = false
+    trustExitCode = true
 
 [rebase]                                                                ; {{{1
 
