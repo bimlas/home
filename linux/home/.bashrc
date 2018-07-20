@@ -102,14 +102,17 @@ ps1_git=
 # debian
 if [[ -e '/etc/bash_completion.d/git-prompt' ]]; then
   source /etc/bash_completion.d/git-prompt
-  ps1_git='$(__git_ps1 "[%s]")'
 # arch
 elif [[ -e '/usr/share/git/git-prompt.sh' ]]; then
   source /usr/share/git/git-prompt.sh
-  ps1_git='$(__git_ps1 "[%s]")'
 fi
 
-PS1="\n$clr_bldcyn$chr_topleft$chr_vertical"
+if [[ "$(type -t __git_ps1)" = 'function' ]]; then
+  ps1_git='`__git_ps1 "[%s]"`'
+fi
+
+PS1="$clr_bldcyn$(printf '_%.0s' {1..78})"
+PS1+="\n$clr_bldcyn$chr_topleft$chr_vertical"
 PS1+="[$clr_bldwht\A$clr_bldcyn]"
 PS1+="$ps1_git "
 PS1+="$clr_bldwht\w\n"
