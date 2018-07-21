@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=Unity Ambiance
+Comment=
+X-KDE-PluginInfo-Author=DarkBeastOfPrey
+X-KDE-PluginInfo-Email=darkbeastofprey@openmailbox.org
+X-KDE-PluginInfo-Name=UnityAmbiance
+X-KDE-PluginInfo-Version=2.8
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-Category=Plasma Theme
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
+X-Plasma-API=5.0
+
+[ContrastEffect]
+enabled=false
+contrast=0.2
+intensity=0.4
+saturation=1.7

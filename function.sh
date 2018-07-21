@@ -16,7 +16,6 @@ copy()
     | sed "s:.*:    &:"
 }
 
-
 link()
 {
   if [ $is_win_admin -eq 0 ]; then
@@ -32,6 +31,8 @@ remember()
 {
   header "DON'T FORGET TO:"
   header "* run ~/firefox/install_addons.ps1"
+  header "ON LINUX:"
+  header "* install United KDE Plasma theme in Plasma settings if not works"
   header "ON WINDOWS:"
   header "* add ~/bin to path"
   header "* add ~/.gitconfig_files/custom_commands to path"
