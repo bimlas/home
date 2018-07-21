@@ -52,6 +52,8 @@ sudo aptitude install -y gnome-keyring
 
 sudo aptitude install -y neovim-qt
 sudo aptitude install -y redshift
+# Only conky-all contains nVidia variables
+sudo aptitude install -y conky-all
 
 # To autostart window manager:
 #   $ cat 'exec awesome' >> ~/.xinitrc OR /etc/X11/xinit/.xinitrc
