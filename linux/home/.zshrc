@@ -40,6 +40,9 @@ RPROMPT='%B%(?..%F{red}[%?])%F{blue}[%f%T%F{blue}]%b'
 # ============================================================================
 # See `man zshcompsys` for more information.
 
+# Custom completion scripts
+fpath=(~/.zsh/completion $fpath)
+
 autoload -U compinit && compinit
 
 # Show hidden files too.
