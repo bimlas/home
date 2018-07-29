@@ -10,7 +10,9 @@ alias grep='grep --color'
 alias du='du -b'
 alias o='xdg-open'
 alias g='git'
-__git_complete g __git_main
+if typeset -f __git_complete > /dev/null; then
+  __git_complete g __git_main
+fi
 alias shall='shdo run !ALL'
 alias mvim='vim -u ~/.vimrc_minimal'
 
