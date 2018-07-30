@@ -109,7 +109,7 @@ elif [[ -e '/usr/share/git/git-prompt.sh' ]]; then
 fi
 
 if [[ "$(type -t __git_ps1)" = 'function' ]]; then
-  ps1_git='`__git_ps1 "\n'$chr_vertical'  '$clr_bldylw'%s"`'
+  ps1_git='`__git_ps1 "\n'$chr_vertical'  '$clr_bldylw'Git: %s"`'
 fi
 
 PS1="$clr_bldcyn$(printf '_%.0s' {1..78})"
