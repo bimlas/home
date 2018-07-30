@@ -84,7 +84,8 @@ clr_txtrst='\[\e[0m\]'    # Text Reset
 # Special characters.
 chr_topleft='\342\224\214'
 chr_bottomleft='\342\224\224'
-chr_vertical='\342\224\200'
+chr_horizontal='\342\224\200'
+chr_vertical='\342\224\202'
 
 # Command line completion.
 if [[ -e '/etc/bash_completion' ]]; then
@@ -108,15 +109,15 @@ elif [[ -e '/usr/share/git/git-prompt.sh' ]]; then
 fi
 
 if [[ "$(type -t __git_ps1)" = 'function' ]]; then
-  ps1_git='`__git_ps1 "[%s]"`'
+  ps1_git='`__git_ps1 "\n'$chr_vertical'  '$clr_bldylw'%s"`'
 fi
 
 PS1="$clr_bldcyn$(printf '_%.0s' {1..78})"
-PS1+="\n$clr_bldcyn$chr_topleft$chr_vertical"
-PS1+="[$clr_bldwht\A$clr_bldcyn]"
-PS1+="$ps1_git "
-PS1+="$clr_bldwht\w\n"
-PS1+="$clr_bldcyn$chr_bottomleft$chr_vertical "
+PS1+="\n$clr_bldcyn$chr_topleft$chr_horizontal"
+PS1+="[$clr_bldwht\A$clr_bldcyn] "
+PS1+="$clr_bldwht\w"
+PS1+="$clr_bldcyn$ps1_git\n"
+PS1+="$clr_bldcyn$chr_bottomleft$chr_horizontal "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo $clr_bldred; else echo $clr_bldwht; fi)\\$ $clr_txtrst"
 export PS1
 
