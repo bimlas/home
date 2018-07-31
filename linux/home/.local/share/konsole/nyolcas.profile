@@ -1,8 +1,9 @@
 [Appearance]
 AntiAliasFonts=true
-BoldIntense=true
-ColorScheme=Breeze
-Font=Noto Mono,10,-1,0,50,0,0,0,0,0,Regular
+BoldIntense=false
+ColorScheme=flatui-mod
+Font=DejaVu Sans Mono,10,-1,0,50,0,0,0,0,0,Regular
+UseFontLineChararacters=true
 
 [Cursor Options]
 CursorShape=0
@@ -13,4 +14,4 @@ Name=nyolcas
 Parent=FALLBACK/
 
 [Terminal Features]
-BlinkingCursorEnabled=0
+BlinkingCursorEnabled=false
