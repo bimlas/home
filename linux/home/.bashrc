@@ -35,7 +35,7 @@ HISTSIZE=10000
 HISTFILESIZE=10000
 
 # Disable duplicated and blank lines in history.
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 
 # Save the command to the history when entering it instead of when leaving
 # bash.
