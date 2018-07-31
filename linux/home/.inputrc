@@ -7,6 +7,12 @@
 # set keymap vi-command
 # "\C-k":     vi-movement-mode
 
+# Search in history with up arrow (type the beginning of an older command,
+# then press up arrow - it will search for it instead of going to previous
+# history entry).
+"\e[A":     history-search-backward
+"\e[B":     history-search-forward
+
 # Ctrl+Left/Right to move between words.
 "\e[1;5C":  forward-word
 "\e[1;5D":  backward-word
