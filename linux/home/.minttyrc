@@ -7,7 +7,7 @@ BellType=0
 Term = xterm-256color
 
 # https://github.com/geekjuice/flat-ui-mintty/blob/master/flat-minttyrc
-ForegroundColour = 147, 161, 161
+ForegroundColour = 166, 179, 179
 BackgroundColour = 54,  34,  0
 CursorColour     = 211, 84,  0
 BoldBlack        = 52,  73,  94
