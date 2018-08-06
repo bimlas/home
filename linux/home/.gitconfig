@@ -272,18 +272,10 @@
   lmg  = "log --graph --merge --left-right --all"
   day  = "log --graph --all --since midnight"
   yday = "log --graph --all --since=day.before.yesterday.midnight --until=midnight"
-  todo = "log --graph --grep 'WIP\\|TODO'"
 
   ; Show `local...remote` if both side exists.
   lf  = "fetch-log --format=shortlog"
   lfg = "fetch-log"
-
-  ; Formated for mail to my boss.
-  ; The last Sed command removes the metainformation (keywords, issue number,
-  ; etc.)
-  ; tmail shows the log from the last tag only.
-  mail = "!git log --format=mail $@ | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
-  tmail = "!git log --format=mail `git describe --tags --no-abbrev`.. | sed '/!TITLE!/! s/.*/  &/; s/!TITLE! //; /^\\s*_\\+$/,/^\\s*$/d'; #"
 
   ; __ SHOW _______________________________                               {{{2
 
@@ -368,7 +360,6 @@
   ; `git push --follow-tags` will only push annotated tags.
 
   ft   = "!git tag -l | xargs git tag -d; git fetch --tags"
-  lt   = "tag -n --sort=creatordate"
   tday = "!git tag `date +'%Y-%m-%d'`"
 
   ; __ CHECKOUT ___________________________                               {{{2
@@ -470,7 +461,6 @@
 
   adu = "add --update"
   ada = "add --all"
-  adp = "add --patch"
 
   ; __ COMMIT _____________________________                               {{{2
 
