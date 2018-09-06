@@ -268,7 +268,7 @@
   lg   = "log --graph"
   lgg  = "log --graph --name-status"
   lp   = "log --graph --patch --stat --ignore-blank-lines"
-  lb   = "!git lg master..$*"
+  review = "log --patch --reverse master.."
   lm   = "log --graph --merge --left-right --format=shortlog --all"
   lmg  = "log --graph --merge --left-right --all"
   day  = "log --graph --all --since midnight"
