@@ -236,7 +236,6 @@
   ;                                           # (`feature` in to `master`)
 
   f  = "fetch"
-  fo = "fetch origin"
 
   ; __ STATUS _____________________________                               {{{2
 
@@ -294,7 +293,6 @@
   ;   $ git diff fc17405...ee2de56
 
   sw  = "show --patch --stat --ignore-blank-lines"
-  sww = "show --patch --stat --ignore-blank-lines --color-words"
 
   ; __ DIFF _______________________________                               {{{2
 
