@@ -605,10 +605,6 @@
   match      = "green"
   filename   = "white bold"
 
-[interactive]                                                           ; {{{1
-
-  diffFilter = "diff-so-fancy"
-
 [commit]                                                                ; {{{1
 
   ; Include the diff in to the commit message (scissors mode).
