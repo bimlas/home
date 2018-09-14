@@ -209,23 +209,29 @@
           git push --set-upstream origin --all; \
           git push --set-upstream origin --tags' -"
 
-  ; Use `fetch` instead of `pull`:
+  ; My old theory was:
   ;
-  ; * Detect diverged branches without doing an undesired merge
-  ; * Decidable merge/rebase
-  ; * Update branches without checkout
+  ;   Use `fetch` instead of `pull`:
   ;
-  ; If there are no commits added locally, just update the branch pointer:
+  ;   * Detect diverged branches without doing an undesired merge
+  ;   * Decidable merge/rebase
+  ;   * Update branches without checkout
   ;
-  ;   $ git merge --ff-only
+  ;   If there are no commits added locally, just update the branch pointer:
   ;
-  ; To rebase on the top of the origin/CURRENT_BRANCH just run
+  ;     $ git merge --ff-only
   ;
-  ;   $ git rebase
+  ;   To rebase on the top of the origin/CURRENT_BRANCH just run
   ;
-  ; To merge with it:
+  ;     $ git rebase
   ;
-  ;   $ git merge
+  ;   To merge with it:
+  ;
+  ;     $ git merge
+  ;
+  ; Now I see that setting up `pull.ff = only` has the same benefits, because
+  ; it stops and waits for your interaction if the branch is diverged from
+  ; orgin counterpart.
   ;
   ; Update (merge) branches without checkout:
   ;
@@ -236,6 +242,7 @@
   ;                                           # (`feature` in to `master`)
 
   f  = "fetch"
+  pl = "pull"
 
   ; __ STATUS _____________________________                               {{{2
 
@@ -700,6 +707,11 @@
   ; deleted locally (but won't delete any locally checked-out branches, those
   ; are different from remote-tracking branches).
   prune = "true"
+
+[pull]                                                                  ; {{{1
+
+  ; Allow only --fast-forward, do not merge automatically
+  ff = "only"
 
 [push]                                                                  ; {{{1
 
