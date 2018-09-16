@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 # rename video files to 2015.07.05_22.10_file.avi
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================
 

@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 # Fit images to the given size (longer side) if it's larger than it.
 #
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================

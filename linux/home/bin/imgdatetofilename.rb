@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 # rename file.jpg to 2015.07.05_22.10_file.jpg
 # http://rtarlowski.blogspot.hu/2011/04/ruby-191-change-jpg-image-name-using.html
 # ==================== BimbaLaszlo (.github.io|gmail.com) ====================

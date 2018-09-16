@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 # imgrotatebyexif.rb: Rotate image by EXIF information
 #
 # The original image is not modified, the rotated gets a 'ROT_' prefix to its
