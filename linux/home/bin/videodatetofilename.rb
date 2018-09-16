@@ -5,7 +5,7 @@
 files = ARGV.empty? ? Dir.glob("*.{avi,mpg,mpeg,mp4,m4v}") : ARGV
 
 files.each {|file|
-  metadata = `avconv -v quiet -i "#{file}" -f ffmetadata -`.match(/(?<=creation_time=)(.*)/)
+  metadata = `ffmpeg -v quiet -i "#{file}" -f ffmetadata -`.match(/(?<=creation_time=)(.*)/)
 
   if (!metadata.nil?)
     timeTaken = metadata[1].gsub(/[-:]/, '.').gsub(' ', '_')
