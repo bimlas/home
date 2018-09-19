@@ -299,7 +299,7 @@
   ;   ...
   ;   $ git diff fc17405...ee2de56
 
-  sw  = "show --patch --stat --ignore-blank-lines"
+  sw  = "show --patch --stat --no-abbrev --ignore-blank-lines"
 
   ; __ DIFF _______________________________                               {{{2
 
