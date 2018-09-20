@@ -668,9 +668,19 @@
   prompt = false
   trustExitCode = true
 
+[stash]                                                                 ; {{{1
+
+  # Speed up by using binary implementation over script
+  # Needs Git 2.19
+  useBuiltin = "true"
+
 [rebase]                                                                ; {{{1
 
   autoSquash = "true"
+
+  # Speed up by using binary implementation over script
+  # Needs Git 2.19
+  useBuiltin = "true"
 
 [merge]                                                                 ; {{{1
 
