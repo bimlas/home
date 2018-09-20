@@ -604,7 +604,7 @@
 
   ui = "true"
 
-[color "grep"]
+[color "grep"]                                                          ; {{{1
 
   linenumber = "red"
   separator  = "cyan"
@@ -640,7 +640,7 @@
   shortlog = "%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n  %s%C(reset)"
   mail     = "!TITLE! * %s%n%+b"
 
-[grep]
+[grep]                                                                  ; {{{1
 
   ; Let Git grep usable outside of repository too.
   fallbackToNoIndex = "true"
@@ -665,8 +665,8 @@
 
 [difftool]                                                              ; {{{1
 
-    prompt = false
-    trustExitCode = true
+  prompt = false
+  trustExitCode = true
 
 [rebase]                                                                ; {{{1
 
