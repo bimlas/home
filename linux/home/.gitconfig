@@ -254,7 +254,7 @@
          git stash list' -"
   sb  = "branch-status"
   sba = "branch-status --all"
-  sr  = "remote show origin"
+  sr  = "remote --verbose show"
 
   ; __ LOG ________________________________                               {{{2
 
