@@ -172,9 +172,9 @@
 
   ; Push and track the current branch.
   ; See 'push.default'
-  ps = "push --set-upstream"
+  ps = "push"
   ; See https://developer.atlassian.com/blog/2015/04/force-with-lease/?utm_source=medium&utm_medium=blog&utm_campaign=lesser-git
-  psforce = "push --set-upstream --force-with-lease"
+  psforce = "push --force-with-lease"
 
   ; Push tags.
   pst = "push --tags"
