@@ -16,10 +16,8 @@ sudo aptitude install -y neovim
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-sudo aptitude install -y nodejs
+sudo aptitude install -y nodejs npm
 sudo npm install -g diff-so-fancy
-
-sudo aptitude install -y meld
 
 echo '!! Change shell to Zsh needs password'
 chsh -s /bin/zsh
