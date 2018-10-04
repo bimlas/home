@@ -33,6 +33,7 @@ remember()
   header "* run ~/firefox/install_addons.ps1"
   header "ON LINUX (KDE):"
   header "* enable search indexing on data partitions"
+  header "* install 'dolphin-plugins' for Git integration"
   header "* install United KDE Plasma theme in Plasma settings if not works"
   header "ON WINDOWS:"
   header "* add ~/bin to path"
