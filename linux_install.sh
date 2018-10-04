@@ -10,6 +10,9 @@ sudo aptitude install -y software-properties-common
 # __ BASIC STUFF ________________________
 
 sudo aptitude install -y zsh
+echo '!! Change shell to Zsh needs password'
+chsh -s /bin/zsh
+
 sudo aptitude install -y git
 sudo aptitude install -y neovim
 
@@ -18,9 +21,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 sudo aptitude install -y nodejs npm
 sudo npm install -g diff-so-fancy
-
-echo '!! Change shell to Zsh needs password'
-chsh -s /bin/zsh
 
 # __ DEVELOPEMENT _______________________
 

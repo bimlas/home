@@ -31,7 +31,8 @@ remember()
 {
   header "DON'T FORGET TO:"
   header "* run ~/firefox/install_addons.ps1"
-  header "ON LINUX:"
+  header "ON LINUX (KDE):"
+  header "* enable search indexing on data partitions"
   header "* install United KDE Plasma theme in Plasma settings if not works"
   header "ON WINDOWS:"
   header "* add ~/bin to path"
