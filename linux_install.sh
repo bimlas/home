@@ -43,6 +43,8 @@ sudo npm install -g neovim
 
 sudo gem install asciidoctor
 
+sudo npm install -g tiddlywiki
+
 # Needed by IDEA deployment to work with Vagrant
 sudo aptitude install -y gnome-keyring
 
