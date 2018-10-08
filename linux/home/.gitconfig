@@ -170,6 +170,13 @@
 
   cl = "clone --recursive"
 
+  ; Create a "local remote" repository (bare repo with working tree) Without
+  ; `cd $GIT_PREFIX` it would reinit the main repo if the current repo is a
+  ; submodule.
+  bare = "!sh -c ' \
+          [ $GIT_PREFIX ] && cd $GIT_PREFIX; \
+          git init && git config receive.denyCurrentBranch updateInstead' -"
+
   ; Push and track the current branch.
   ; See 'push.default'
   ps = "push"
