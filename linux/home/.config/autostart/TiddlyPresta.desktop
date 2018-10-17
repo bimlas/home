@@ -1,0 +1,20 @@
+[Desktop Entry]
+Comment[hu_HU]=
+Comment=
+Exec=/home/nyolcas/bin/tiddlyserver.sh ~/cuccok/src/private-tiddly/_presta 9880
+GenericName[hu_HU]=
+GenericName=
+Hidden=false
+Icon=system-run
+MimeType=
+Name[hu_HU]=TiddlyPublic
+Name=TiddlyPublic
+Path=
+StartupNotify=true
+Terminal=true
+TerminalOptions=--new-tab --show-tabbar --noclose
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=
