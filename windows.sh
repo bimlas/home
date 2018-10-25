@@ -80,7 +80,8 @@ link "$CWD/linux/home/.spacemacs"     "$HOME/.spacemacs"
 link "$CWD/linux/home/.vimperatorrc"  "$HOME/.vimperatorrc"
 link "$CWD/linux/home/.vimrc"         "$HOME/.vimrc"
 link "$CWD/linux/home/.vimrc_viewer"  "$HOME/.vimrc_viewer"
-link "$CWD/linux/home/ginit"          "$HOME/ginit"
+link "$CWD/linux/home/.config/ginit/nvim/init.vim" "$HOME/AppData/Local/nvim/init.vim"
+link "$CWD/linux/home/.config/ginit/nvim/ginit.vim" "$HOME/AppData/Local/nvim/ginit.vim"
 
 remember
 
