@@ -653,6 +653,13 @@
     Return
   }
 
+  ; Press space to search for other part of filename.
+  Space::
+  {
+    Send, *
+    Return
+  }
+
   ^f::
   {
     PostMessage, 1075, 2022, , , ahk_class TTOTAL_CMD ; cm_CompareFilesByContent=2022;File comparison

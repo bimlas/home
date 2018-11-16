@@ -1,3 +1,0 @@
-* QuickSearch eXtended
-  fuzzy match for quick search
-  https://www.ghisler.ch/board/viewtopic.php?t=22592
