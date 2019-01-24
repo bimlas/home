@@ -273,7 +273,10 @@
   ;
   ; Look for expression in commit messages.
   ;
-  ;   git log --grep'regex'
+  ;   # -i  --regexp-ignore-case  Ignore case
+  ;   git log --grep 'regex' -i
+  ;   # Commit message has to match to all of the expressions:
+  ;   git log --grep 'foo' --grep 'bar' --all-match
 
   l    = "log --graph --date=short --format=shortlog"
   la   = "log --graph --date=short --format=shortlog --all"
