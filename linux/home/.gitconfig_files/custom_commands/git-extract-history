@@ -1,0 +1,30 @@
+#!/bin/sh
+# git-extract-history: Extract history of file arguments
+#
+# https://stackoverflow.com/a/37037151
+
+cat <<_HEREDOC_
+Usage: `basename $0` [FILES...]
+
+WARNING: Does not handles renamings!
+
+To extract the entire history of the files, you must first get all names of
+the files. For example if you want to extract files affected in current
+branch, then you can collect all filenames by
+
+  $ git log --name-only --format='' master.. | sort -u
+
+Get the whole history of given files by
+
+  $ git log --name-only --format='' YOUR FILES HERE | sort -u
+
+_HEREDOC_
+
+read -p 'Do you want to continue extracting? ' answer
+if [[ ! $answer =~ ^[Yy] ]]; then
+   exit 1
+fi
+
+git filter-branch --force --index-filter 'git read-tree --empty; git reset $GIT_COMMIT -- $@' -- --all -- $@
+
+echo $answer

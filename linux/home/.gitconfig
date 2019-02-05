@@ -97,17 +97,14 @@
 ;   git commit -m "B commit"
 ;   git rebase --continue
 ;
-; EXTRACT THE HISTORY OF A FILE
+; EXTRACT THE HISTORY OF A FILE (moved to `extract-history` script)
 ;
-;   # https://gist.github.com/ssp/1663093
+; GET EVERY NAME OF A FILE (INCLUDE RENAMINGS), GET EVERY FILENAMES OF BRANCH
 ;
-;   git clone git@github.com:me/myrepo.git && cd myrepo
-;   # Reduce the repository to just the subfolder which contains the
-;   # interesting file(s)
-;   git filter-branch --prune-empty --subdirectory-filter files/dir -- --all
-;   git filter-branch --force --prune-empty --index-filter \
-;     'git rm --cached --ignore-unmatch \
-;     $(git ls-files | grep -v "files.rb\|to.py\|extract.sh")'
+;   # Every name of a file
+;   git --no-pager log --name-only --format='' -- FILE LIST | sort -u
+;   # Filenames in branch
+;   git --no-pager log --name-only --format='' master.. | sort -u
 ;
 ; CHECKOUT (ARCHIVE) FILES/REVISIONS TO OUTSIDE OF REPOSITORY
 ;
