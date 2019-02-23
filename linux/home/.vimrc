@@ -332,6 +332,12 @@ if isdirectory(g:pm_dir)
 
   " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
 
+  " JUSTINMK/VIM-DIRVISH                                                  {{{2
+  " directory viewer for vim, batch execute shell commands
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'justinmk/vim-dirvish'
+  endif
+
   " SHOUGO/UNITE.VIM                                                      {{{2
   " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
   if !exists('g:vimrc_minimal_plugins')
