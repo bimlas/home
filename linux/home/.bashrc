@@ -96,7 +96,7 @@ fi
 # Slows down the prompt...
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
-# GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWUPSTREAM=true
 # GIT_PS1_DESCRIBE_STYLE=describe
 ps1_git=
@@ -109,7 +109,7 @@ elif [[ -e '/usr/share/git/git-prompt.sh' ]]; then
 fi
 
 if [[ "$(type -t __git_ps1)" = 'function' ]]; then
-  ps1_git='`__git_ps1 "\n'$chr_vertical'  '$clr_bldylw'Git: %s" | sed "s# *\([<>=\$\*]\+\) *# \1 #"`'
+  ps1_git='`__git_ps1 "\n'$chr_vertical'  '$clr_bldylw'Git: %s" | sed "s# *\([<>=%+\$\*]\+\) *# \1 #"`'
   ps1_git+='`git for-each-ref --format="%(upstream:short)" $(git symbolic-ref -q HEAD 2>/dev/null) 2>/dev/null | sed "s#/.\+##"`'
 fi
 
