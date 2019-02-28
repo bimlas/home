@@ -670,6 +670,11 @@
   ; Needs 2.11
   indentHeuristic = "true"
 
+  ; Moved lines in a diff are colored differently (removed from here, added to
+  ; there)
+  colorMoved = "true"
+  colorMovedWS = "ignore-all-space"
+
 [difftool]                                                              ; {{{1
 
   prompt = false
