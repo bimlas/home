@@ -14,7 +14,7 @@
   </tool>
   <tool name="vim" showInMainMenu="true" showInEditor="true" showInProject="true" showInSearchPopup="true" disabled="false" useConsole="false" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
     <exec>
-      <option name="COMMAND" value="C:\app\neovim\bin\nvim-qt.exe" />
+      <option name="COMMAND" value="C:\app\vim\gvim.exe" />
       <option name="PARAMETERS" value="$FilePath$" />
       <option name="WORKING_DIRECTORY" value="$FileDir$" />
     </exec>
