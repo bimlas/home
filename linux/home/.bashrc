@@ -92,32 +92,35 @@ if [[ -e '/etc/bash_completion' ]]; then
   source '/etc/bash_completion'
 fi
 
-# Custom prompt.
-# Slows down the prompt...
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-GIT_PS1_SHOWUPSTREAM=true
+## Custom prompt.
+## Slows down the prompt...
+# GIT_PS1_SHOWDIRTYSTATE=true
+# GIT_PS1_SHOWSTASHSTATE=true
+# GIT_PS1_SHOWUNTRACKEDFILES=true
+# GIT_PS1_SHOWUPSTREAM=true
 # GIT_PS1_DESCRIBE_STYLE=describe
-ps1_git=
-# debian
-if [[ -e '/etc/bash_completion.d/git-prompt' ]]; then
-  source /etc/bash_completion.d/git-prompt
-# arch
-elif [[ -e '/usr/share/git/git-prompt.sh' ]]; then
-  source /usr/share/git/git-prompt.sh
-fi
+## Debian
+# if [[ -e '/etc/bash_completion.d/git-prompt' ]]; then
+#   source /etc/bash_completion.d/git-prompt
+## Arch
+# elif [[ -e '/usr/share/git/git-prompt.sh' ]]; then
+#   source /usr/share/git/git-prompt.sh
+# fi
 
-if [[ "$(type -t __git_ps1)" = 'function' ]]; then
-  ps1_git='`__git_ps1 "\n'$chr_vertical'  '$clr_bldylw'Git: %s" | sed "s# *\([<>=%+\$\*]\+\) *# \1 #"`'
-  ps1_git+='`git for-each-ref --format="%(upstream:short)" $(git symbolic-ref -q HEAD 2>/dev/null) 2>/dev/null | sed "s#/.\+##"`'
-fi
+my_git_prompt='`if (git rev-parse --is-inside-work-tree &> /dev/null); then echo -e "'
+my_git_prompt+='\n'$chr_vertical'  '$clr_bldylw'Git: '
+my_git_prompt+=$clr_bldred
+my_git_prompt+='$(git status --porcelain --short -z | sed "s/.\+/* /")'
+my_git_prompt+='$(git show-ref stash | sed "s/.\+/$ /")'
+my_git_prompt+=$clr_bldylw
+my_git_prompt+='$(if (git symbolic-ref -q HEAD &>/dev/null); then git for-each-ref --format="%(refname:short) '$clr_bldwht'%(upstream:trackshort)'$clr_bldylw' %(upstream:remotename)" $(git symbolic-ref -q HEAD); else echo "'$clr_bldred'DETACHED @ $(git rev-parse --short HEAD)"; fi)'
+my_git_prompt+='"; fi`'
 
 PS1="$clr_bldcyn$(printf '_%.0s' {1..78})"
 PS1+="\n$clr_bldcyn$chr_topleft$chr_horizontal"
 PS1+="[$clr_bldwht\A$clr_bldcyn] "
 PS1+="$clr_bldwht\w"
-PS1+="$clr_bldcyn$ps1_git\n"
+PS1+="$clr_bldcyn$my_git_prompt\n"
 PS1+="$clr_bldcyn$chr_bottomleft$chr_horizontal "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo $clr_bldred; else echo $clr_bldwht; fi)\\$ $clr_txtrst"
 export PS1
