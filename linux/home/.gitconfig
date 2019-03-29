@@ -611,6 +611,23 @@
 
   ui = "true"
 
+[color "diff"]                                                          ; {{{1
+
+  meta       = "yellow bold"
+  frag       = "magenta"
+  func       = "magenta ul"
+  commit     = "yellow bold"
+  old        = "red bold"
+  new        = "green bold"
+  whitespace = "red reverse"
+
+[color "diff-highlight"]                                                ; {{{1
+
+  oldNormal    = "red"
+  oldHighlight = "red bold reverse"
+  newNormal    = "green bold"
+  newHighlight = "green bold reverse"
+
 [color "grep"]                                                          ; {{{1
 
   linenumber = "red"
