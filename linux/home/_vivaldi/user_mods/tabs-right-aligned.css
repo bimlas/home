@@ -1,0 +1,17 @@
+/* https://forum.vivaldi.net/topic/25049/tabs-and-bookmark-bar-centered/6 */
+
+.tab-strip {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.tab-position {
+  position: relative;
+  left: 0 !important;
+}
+
+#tabs-container .newtab {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+}
