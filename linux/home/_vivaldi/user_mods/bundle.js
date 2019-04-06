@@ -9,6 +9,7 @@ function loadMod(name) {
     document.body.appendChild(js);
 }
 
-loadMod("tabs-right-aligned");
-loadMod("alert-on-find");
+// loadMod("tabs-right-aligned");
+loadMod("addressbar-to-titlebar");
 loadMod("url-on-thumbnails");
+loadMod("alert-on-find");
