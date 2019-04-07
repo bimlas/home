@@ -1,5 +1,13 @@
 /* https://forum.vivaldi.net/topic/25049/tabs-and-bookmark-bar-centered/6 */
 
+#tabs-container {
+  padding-top: 0 !important;
+}
+
+.vivaldi {
+  height: 32px;
+}
+
 .tab-strip {
   display: flex;
   flex-direction: row-reverse;
