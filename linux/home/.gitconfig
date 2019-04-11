@@ -187,10 +187,10 @@
   ;
   ;   $ git push origin :remote-branch
   ;
-  ; Push branch without checking out:
+  ; Push branch to remote counter-part without checking out:
   ;
-  ;   $ git push origin --set upstream local-branch:remote-branch
-  pso = "push origin --set-upstream"
+  ;   $ git push origin local-branch
+  pso = "push origin"
 
   ; Set origin
   seto = "!sh -c 'git remote add origin $*; \
