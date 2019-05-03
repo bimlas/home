@@ -7,12 +7,12 @@
 /.project
 /.settings
 # Tags files
-tags
-TAGS
+/tags
+/TAGS
 # GNU Global tags
-GTAGS
-GRTAGS
-GPATH
+/GTAGS
+/GRTAGS
+/GPATH
 
 # Created by https://www.gitignore.io/api/intellij
 
