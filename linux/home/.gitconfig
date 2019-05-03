@@ -56,6 +56,10 @@
 ;
 ;   git add :/
 ;
+; SEE WHICH GITIGNORE IS APPLIED TO FILE
+;
+;   git check-gitignore --verbose path/to/file
+;
 ; REDUCE THE SIZE OF REPO
 ;
 ;   It may compress up to half size!
