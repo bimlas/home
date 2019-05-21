@@ -693,7 +693,7 @@
 
   ; Moved lines in a diff are colored differently (removed from here, added to
   ; there)
-  colorMoved = "true"
+  ;colorMoved = "true"
   colorMovedWS = "ignore-all-space"
 
 [difftool]                                                              ; {{{1
