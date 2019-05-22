@@ -85,6 +85,8 @@ link "$CWD/linux/home/.vimrc"         "$HOME/.vimrc"
 link "$CWD/linux/home/.vimrc_viewer"  "$HOME/.vimrc_viewer"
 link "$CWD/linux/home/.config/ginit/nvim/init.vim" "$HOME/AppData/Local/nvim/init.vim"
 link "$CWD/linux/home/.config/ginit/nvim/ginit.vim" "$HOME/AppData/Local/nvim/ginit.vim"
+link "$CWD/linux/home/.config/VSCodium/User/keybindings.json" "$HOME/AppData/Roaming/VSCodium/User/keybindings.json"
+link "$CWD/linux/home/.config/VSCodium/User/settings.json" "$HOME/AppData/Roaming/VSCodium/User/settings.json"
 
 remember
 
