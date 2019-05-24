@@ -606,7 +606,7 @@
     If(RegExMatch(aControl, "(TMy|LCL)ListBox\d+"))
     {
       PostMessage, 1075, 4003, , , ahk_class TTOTAL_CMD ; cm_FocusCmdLine=4003;Focus on command line
-      SendInput, c:\app\conemu\conemu.exe /cmd -cur_console:n set TERM=xterm-256color & "C:\app\git\git-cmd.exe" --command=usr/bin/bash.exe --login -i{Enter}
+      SendInput, c:\app\git\git-bash.exe{Enter}
     }
     Else
     {
