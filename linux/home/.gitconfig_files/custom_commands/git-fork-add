@@ -1,0 +1,10 @@
+#!/bin/bash
+# git-fork-add: Add a fork of your repo as remote
+#
+# For example your repository's 'origin' is 'git@github.com:YOU/my-repo.git'. To
+# add 'git@github.com:OTHER_USER/my-repo.git' as 'OTHER_USER' remote, use this
+# command and pass 'OTHER_USER' as argument.
+
+origin=$(git remote --verbose show | grep "^origin.*(fetch)$" | sed "s/^origin\s\+\(.*\)\s\+(fetch)$/\1/")
+fork=$(echo $origin | sed "s/$(git config --get user.name)/$1/")
+git remote add "$1" "$fork"
