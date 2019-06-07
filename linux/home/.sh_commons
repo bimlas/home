@@ -13,7 +13,7 @@ alias g='git'
 if typeset -f __git_complete > /dev/null; then
   __git_complete g __git_main
 fi
-alias shall='shdo run !ALL'
+alias run='mosh run'
 alias mvim='vim -u ~/.vimrc_minimal'
 
 # Disable .vimrc in vim.tiny because of incompatible settings.
