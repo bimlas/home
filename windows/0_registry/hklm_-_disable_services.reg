@@ -1,34 +1,5 @@
 Windows Registry Editor Version 5.00
 
-; system_setup.reg - sajat win7 beallitasok
-;
-; Ha ezt a fajlt alkalmazod es hibauzenetet dob, akkor valoszinuleg nem vagy
-; admin.
-; Hogy lasd a hatast, jelentkezz be ujra a profilodba.
-;
-; TODO: valami tiltja a nyomtatot.
-; TODO: Defender tiltasa, Update kezire allitasa
-;
-; ==================== BimbaLaszlo (.github.io|gmail.com) ====================
-
-;                   IKONOK MELLETTI NYILACSKA ELTUNTETESE                 {{{1
-; ============================================================================
-
-; Copy a blank icon to the path.
-; [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]
-; "29"="C:\\blank.ico,0"
-
-;                             3D FLIP TILTASA                             {{{1
-; ============================================================================
-
-; A win+tab ablakvalto menu letiltasa.
-
-[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DWM]
-"DisallowFlip3d"=dword:00000001
-
-;                         SZOLGALTATASOK TILTASA                          {{{1
-; ============================================================================
-;
 ; http://www.blackviper.com/service-configurations/black-vipers-windows-7-service-configurations/
 ;
 ; START TYPE     LOADER     MEANING
@@ -55,6 +26,10 @@ Windows Registry Editor Version 5.00
 ; 0x4            Service    NOT TO BE STARTED UNDER ANY
 ; (disabled)     Control    CONDITIONS.
 ;                Manager
+
+; SMBV1 BECAUSE OF WANNACRY VIRUS
+["HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters"]
+"SMB1"=dword:00000000
 
 ; Windows Firewall
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\MpsSvc]
@@ -155,35 +130,3 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\WSearch]
 "Start"=dword:00000004
 "DelayedAutostart"=dword:00000000
-
-;                  SMBv1 TILTASA (WANNACRY VIRUS MIATT)                   {{{1
-; ============================================================================
-
-["HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters"]
-"SMB1"=dword:00000000
-
-;                                  TWEAK                                  {{{1
-; ============================================================================
-
-; Let me handle if there is too low space.
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer]
-"NoLowDiskSpaceChecks"=dword:00000001
-
-; How many seconds to wait before chkdisk
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager]
-"AutoChkTimeOut"=dword:00000005
-
-; Configuring Automatic Debugging for System Crashes
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug]
-"Auto"="0"
-
-; Crash reporting
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PCHealth\ErrorReporting]
-"DoReport"=dword:00000000
-"ShowUI"=dword:00000000
-
-; Disabling Disk Defragmentation (disable to speed up boot)
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction]
-"Enable"="y"
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OptimalLayout]
-"EnableAutoLayout"=dword:00000001

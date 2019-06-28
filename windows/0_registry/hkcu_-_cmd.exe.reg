@@ -1,0 +1,25 @@
+Windows Registry Editor Version 5.00
+
+; __ ALAPERTELMEZETT ERTEKEK ________________
+
+[HKEY_CURRENT_USER\Console]
+
+; Betutipus
+"FaceName"="Consolas"
+"FontFamily"=dword:00000036
+
+; Betumeret
+"FontSize"=dword:00100000
+"FontWeight"=dword:00000190
+
+; Buffer merete
+"ScreenBufferSize"=dword:07d00050
+
+; Ablak merete
+"WindowSize"=dword:00360050
+
+; __ PROMPT _________________________________
+
+[HKEY_CURRENT_USER\Environment]
+
+"PROMPT"="$_$P$_$G$S"

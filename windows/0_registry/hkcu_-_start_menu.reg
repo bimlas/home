@@ -1,0 +1,58 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+
+; Menu kinyitasa, ha a kurzort fole visszuk.
+"Start_AutoCascade"=dword:00000001
+
+; Nagy ikonok hasznalata
+"Start_LargeMFUIcons"=dword:00000001
+
+; Ha begepelunk az also entry-be, akkor hol keressen
+"Start_SearchFiles"=dword:00000000
+"Start_SearchPrograms"=dword:00000001
+
+; Ikonok behuzasanak engedelyezese.
+"Start_EnableDragDrop"=dword:00000001
+
+; Ujonnan telepitett programok kiemelese.
+"Start_NotifyNewApps"=dword:00000000
+
+; Nev szerint rendezze a 'minden program' elemeit.
+"Start_SortByName"=dword:00000001
+
+; Utoljara hasznalt fajlok, programok ne jelenjenek meg a fooldalon.
+"Start_TrackDocs"=dword:00000000
+"Start_TrackProgs"=dword:00000000
+
+; __ LISTA ELEMEK ___________________________
+;
+; 0: ne jelenjen meg
+; 1: jelenjen meg
+; 2: kinyithato menu formajaban
+
+"StartMenuAdminTools"=dword:00000000
+"StartMenuFavorites"=dword:00000000
+
+; __ JOBB OLDALI ELEMEK _____________________
+
+"Start_ShowControlPanel"=dword:00000001
+"Start_ShowDownloads"=dword:00000000
+"Start_ShowHelp"=dword:00000000
+"Start_ShowHomegroup"=dword:00000000
+"Start_ShowMyComputer"=dword:00000001
+"Start_ShowMyDocs"=dword:00000000
+"Start_ShowMyGames"=dword:00000000
+"Start_ShowMyMusic"=dword:00000000
+"Start_ShowMyPics"=dword:00000000
+"Start_ShowNetConn"=dword:00000000
+"Start_ShowNetPlaces"=dword:00000000
+"Start_ShowPrinters"=dword:00000000
+"Start_ShowRecentDocs"=dword:00000000
+; Jobb gom -> tulajdonsagok -> mappa belefoglalasa -> inditoikonokat
+; tartalmazo mappa kijelolese es mar kesz is a custom Start menu.
+"Start_ShowRecordedTV"=dword:00000002
+"Start_ShowRun"=dword:00000000
+"Start_ShowUser"=dword:00000001
+"Start_ShowVideos"=dword:00000000
+"Start_AdminToolsRoot"=dword:00000001

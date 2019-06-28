@@ -1,0 +1,6 @@
+Windows Registry Editor Version 5.00
+
+; A win+tab ablakvalto menu letiltasa.
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DWM]
+"DisallowFlip3d"=dword:00000001
