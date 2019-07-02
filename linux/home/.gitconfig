@@ -310,7 +310,7 @@
   ;   ...
   ;   $ git diff fc17405...ee2de56
 
-  sw  = "show --patch --stat --no-abbrev --ignore-blank-lines"
+  sw  = "show --patch --stat --ignore-blank-lines"
 
   ; __ DIFF _______________________________                               {{{2
 
@@ -650,9 +650,6 @@
 
 [log]                                                                   ; {{{1
 
-  ; Abbreviate SHA to 7 chars.
-  abbrevCommit = "true"
-
   ; 2014-03-25 12:34:56 +0100
   date = "iso"
 
@@ -665,7 +662,7 @@
 
 [pretty]                                                                ; {{{1
 
-  shortlog = "%C(auto)%h%C(auto)%d %C(bold blue)%ad %an%n  %s%C(reset)"
+  shortlog = "%C(auto)%H%C(auto)%d %C(bold blue)%ad %an%n  %s%C(reset)"
   mail     = "!TITLE! * %s%n%+b"
 
 [grep]                                                                  ; {{{1
