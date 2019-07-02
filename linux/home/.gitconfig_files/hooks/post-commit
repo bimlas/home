@@ -1,3 +1,8 @@
 #!/bin/bash
 git ctags >/dev/null 2>&1 &
 [ -f composer.json ] && git composer-autoload >/dev/null 2>&1 &
+
+# https://github.com/bimlas/bash-mosh
+if ( which mosh &> /dev/null ); then
+  echo "." | mosh tag "@git" &
+fi
