@@ -29,12 +29,12 @@ if ! [[ -z $issueNumber ]]; then
     WRIKE)
       line="Wrike: https://www.wrike.com/open.htm?id=$issueNumber"
       ;;
-    # GH)
-    #   line="GitHub: #$issueNumber"
-    #   ;;
-    # GL)
-    #   line="GitLab: #$issueNumber"
-    #   ;;
+    GITHUB)
+      line="GitHub: #$issueNumber"
+      ;;
+    GITLAB)
+      line="GitLab: #$issueNumber"
+      ;;
     *)
       line="Issue: #$issueNumber"
       ;;
