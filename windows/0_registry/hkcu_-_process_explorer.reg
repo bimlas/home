@@ -1,7 +1,5 @@
 Windows Registry Editor Version 5.00
 
-[HKEY_CURRENT_USER\Software\Sysinternals]
-
 [HKEY_CURRENT_USER\Software\Sysinternals\Process Explorer]
 "EulaAccepted"=dword:00000001
 "Windowplacement"=hex:2c,00,00,00,00,00,00,00,01,00,00,00,ff,ff,ff,ff,ff,ff,ff,\
@@ -26,7 +24,7 @@ Windows Registry Editor Version 5.00
 "SavedDivider"=hex:2c,58,b0,60,c1,82,e5,3f
 "ProcessImageColumnWidth"=dword:000000c8
 "ShowUnnamedHandles"=dword:00000000
-"ShowDllView"=dword:00000000
+"ShowDllView"=dword:00000001
 "HandleSortColumn"=dword:00000001
 "HandleSortDirection"=dword:00000001
 "DllSortColumn"=dword:00000000
@@ -59,7 +57,7 @@ Windows Registry Editor Version 5.00
 "PrcessColumnCount"=dword:0000000d
 "DllColumnCount"=dword:00000004
 "HandleColumnCount"=dword:00000002
-"DefaultProcPropPage"=dword:0000000d
+"DefaultProcPropPage"=dword:00000004
 "DefaultSysInfoPage"=dword:00000004
 "DefaultDllPropPage"=dword:00000000
 "SymbolPath"=""
@@ -86,8 +84,8 @@ Windows Registry Editor Version 5.00
 "VirusTotalSubmitUnknown"=dword:00000000
 "ToolbarBands"=hex:06,01,00,00,00,00,00,00,00,00,00,00,4b,00,00,00,01,00,00,00,\
   00,00,00,00,4b,00,00,00,02,00,00,00,00,00,00,00,4b,00,00,00,03,00,00,00,00,\
-  00,00,00,4b,00,00,00,04,00,00,00,00,00,00,00,4b,00,00,00,06,00,00,00,00,00,\
-  00,00,4b,00,00,00,06,00,00,00,00,00,00,00,4b,00,00,00,06,00,00,00,00,00,00,\
+  00,00,00,4b,00,00,00,04,00,00,00,00,00,00,00,4b,00,00,00,05,00,00,00,00,00,\
+  00,00,4b,00,00,00,05,00,00,00,00,00,00,00,4b,00,00,00,05,00,00,00,00,00,00,\
   00
 "UseGoogle"=dword:00000000
 "ShowNewProcesses"=dword:00000000
@@ -128,14 +126,14 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Sysinternals\Process Explorer\ProcessColumnMap]
 "0"=dword:00000003
 "1"=dword:0000041f
-"2"=dword:000004a7
-"3"=dword:00000424
-"4"=dword:00000427
-"5"=dword:00000532
+"2"=dword:00000424
+"3"=dword:00000427
+"4"=dword:00000535
+"5"=dword:00000656
 "6"=dword:0000042d
 "7"=dword:0000042f
-"8"=dword:00000651
-"9"=dword:00000652
+"8"=dword:00000652
+"9"=dword:00000651
 "10"=dword:00000004
 "11"=dword:00000026
 "12"=dword:00000409
@@ -144,9 +142,9 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Sysinternals\Process Explorer\ProcessColumns]
 "0"=dword:000000c8
 "1"=dword:00000028
-"2"=dword:00000064
-"3"=dword:00000050
-"4"=dword:0000007c
+"2"=dword:00000050
+"3"=dword:0000007c
+"4"=dword:00000064
 "5"=dword:00000064
 "6"=dword:00000064
 "7"=dword:00000064
@@ -157,3 +155,4 @@ Windows Registry Editor Version 5.00
 "12"=dword:0000008c
 
 [HKEY_CURRENT_USER\Software\Sysinternals\Process Explorer\ProcessComments]
+
