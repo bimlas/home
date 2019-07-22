@@ -1,0 +1,55 @@
+#!/bin/bash
+# git-release: Check documentation before release then commit
+#
+# Usage:
+#
+#  $ git add :/
+#  $ git relase 1.2.3 [-f]
+#  ...
+#  $ git log --oneline
+#  f7f79ba (HEAD -> master, tag: v1.2.3) 1.2.3
+
+repo_root="`git rev-parse --show-toplevel`"
+cd "$repo_root"
+
+function check_documents()
+{
+  for doc in README LICENSE CHANGELOG; do
+    if [ ! -f $doc* ]; then
+      echo "ERROR: There is no $doc, please write it!" >&2
+      exit 1;
+    fi
+  done
+}
+
+function ask_questions()
+{
+  for question in \
+    "Is the repository public?" \
+    "Are the URLs in the documentation correct?" \
+    "Are there a real life example and a screencast in the readme?" \
+    "Are the changes documented in the changelog?" \
+    "Is the documentation adjusted to the code changes?" \
+    "Are the version numbers updated everywhere (package.json for example)?" \
+  ; do
+    read -p "$question [y/n] " -n 1 answer
+    # Move to a new line
+    echo
+    if [[ ! $answer =~ ^[Yy] ]]; then
+      echo "ERROR: Please come back when you done" >&2
+      # Handle exits from shell or function but don't exit interactive shell
+      [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+    fi
+  done
+}
+
+function commit()
+{
+  tag=$1; shift
+  git commit --message "$tag"
+  git tag --annotate --message "$tag" --edit "v$tag" $*
+}
+
+check_documents
+ask_questions
+commit $*
