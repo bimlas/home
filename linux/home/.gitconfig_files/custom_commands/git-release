@@ -9,14 +9,20 @@
 #  $ git log --oneline
 #  f7f79ba (HEAD -> master, tag: v1.2.3) 1.2.3
 
-repo_root="`git rev-parse --show-toplevel`"
-cd "$repo_root"
+function check_testing_time()
+{
+  (git log --since "3 days" | grep ".*" > /dev/null)
+  if [[ $? == 0 ]]; then
+    echo "FAIL: The product has not been tested for at least 3 days"
+    exit 1
+  fi
+}
 
 function check_documents()
 {
   for doc in README LICENSE CHANGELOG; do
     if [ ! -f $doc* ]; then
-      echo "ERROR: There is no $doc, please write it!" >&2
+      echo "FAIL: There is no $doc, please write it!" >&2
       exit 1;
     fi
   done
@@ -36,7 +42,7 @@ function ask_questions()
     # Move to a new line
     echo
     if [[ ! $answer =~ ^[Yy] ]]; then
-      echo "ERROR: Please come back when you done" >&2
+      echo "FAIL: Please come back when you done" >&2
       # Handle exits from shell or function but don't exit interactive shell
       [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
     fi
@@ -50,6 +56,15 @@ function commit()
   git tag --annotate --message "$tag" --edit "v$tag" $*
 }
 
+if [ $# == 0 ]; then
+  echo "ERROR: The version argument is missing"
+  exit 1
+fi
+
+repo_root="`git rev-parse --show-toplevel`"
+cd "$repo_root"
+
+check_testing_time
 check_documents
 ask_questions
 commit $*
