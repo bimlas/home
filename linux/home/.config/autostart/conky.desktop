@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[hu_HU]=
+Comment=
+Exec=conky
+GenericName[hu_HU]=
+GenericName=
+Icon=system-run
+MimeType=
+Name[hu_HU]=conky
+Name=conky
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
