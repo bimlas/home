@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cd $1 && git pull --ff-only && tiddlywiki --server $2
+cd $1 && git pull --ff-only && tiddlywiki --listen port=$2
