@@ -34,7 +34,7 @@ copy             \
 
 copy              \
   _intellijidea/* \
-  $HOME/.intellijidea*/
+  $HOME/.IntelliJIdea*/
 
 header "  SYMLINK"
 
