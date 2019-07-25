@@ -132,19 +132,29 @@ ENP3S0
   DOWN${goto 60}${downspeed enp3s0} ${goto 140}${totaldown enp3s0}${alignr}${downspeedgraph enp3s0 8,60}${else}
 NO NETWORK${endif}
 
-Inbound: ${tcp_portmon 1 32767 count}  Outbound: ${tcp_portmon 32768 61000 count}${alignr}ALL: ${tcp_portmon 1 65535 count}
+Inbound: ${tcp_portmon 1 32767 count}  Outbound: ${tcp_portmon 32768 65535 count}${alignr}ALL: ${tcp_portmon 1 65535 count}
 
-INBOUND CONNECTION ${ALIGNR} LOCAL SERVICE/PORT
-${tcp_portmon 1 32767 rhost 0} ${alignr} ${tcp_portmon 1 32767 lservice 0}
-${tcp_portmon 1 32767 rhost 1} ${alignr} ${tcp_portmon 1 32767 lservice 1}
-${tcp_portmon 1 32767 rhost 2} ${alignr} ${tcp_portmon 1 32767 lservice 2}
-${tcp_portmon 1 32767 rhost 3} ${alignr} ${tcp_portmon 1 32767 lservice 3}
-${tcp_portmon 1 32767 rhost 4} ${alignr} ${tcp_portmon 1 32767 lservice 4}
+INBOUND CONNECTION
+${tcp_portmon 1 32767 lhost 0}
+  ${tcp_portmon 1 32767 lip 0}:${tcp_portmon 1 32767 lservice 0}
+${tcp_portmon 1 32767 lhost 1}
+  ${tcp_portmon 1 32767 lip 1}:${tcp_portmon 1 32767 lservice 1}
+${tcp_portmon 1 32767 lhost 2}
+  ${tcp_portmon 1 32767 lip 2}:${tcp_portmon 1 32767 lservice 2}
+${tcp_portmon 1 32767 lhost 3}
+  ${tcp_portmon 1 32767 lip 3}:${tcp_portmon 1 32767 lservice 3}
+${tcp_portmon 1 32767 lhost 4}
+  ${tcp_portmon 1 32767 lip 4}:${tcp_portmon 1 32767 lservice 4}
 
-OUTBOUND CONNECTION ${ALIGNR} REMOTE SERVICE/PORT
-${tcp_portmon 32768 61000 rhost 0} ${alignr} ${tcp_portmon 32768 61000 rservice 0}
-${tcp_portmon 32768 61000 rhost 1} ${alignr} ${tcp_portmon 32768 61000 rservice 1}
-${tcp_portmon 32768 61000 rhost 2} ${alignr} ${tcp_portmon 32768 61000 rservice 2}
-${tcp_portmon 32768 61000 rhost 3} ${alignr} ${tcp_portmon 32768 61000 rservice 3}
-${tcp_portmon 32768 61000 rhost 4} ${alignr} ${tcp_portmon 32768 61000 rservice 4}
+OUTBOUND CONNECTION
+${tcp_portmon 32768 65535 rhost 0}
+  ${tcp_portmon 32768 65535 rip 0}:${tcp_portmon 32768 65535 rservice 0}
+${tcp_portmon 32768 65535 rhost 1}
+  ${tcp_portmon 32768 65535 rip 1}:${tcp_portmon 32768 65535 rservice 1}
+${tcp_portmon 32768 65535 rhost 2}
+  ${tcp_portmon 32768 65535 rip 2}:${tcp_portmon 32768 65535 rservice 2}
+${tcp_portmon 32768 65535 rhost 3}
+  ${tcp_portmon 32768 65535 rip 3}:${tcp_portmon 32768 65535 rservice 3}
+${tcp_portmon 32768 65535 rhost 4}
+  ${tcp_portmon 32768 65535 rip 4}:${tcp_portmon 32768 65535 rservice 4}
 ]]
