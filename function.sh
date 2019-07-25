@@ -35,6 +35,7 @@ remember()
   header "* enable search indexing on data partitions"
   header "* install 'dolphin-plugins' for Git integration"
   header "* install 'plasma-applet-redshift-control' for RedShift applet"
+  header "* install Krohnkite KWin script for tiling and see your notes about setting it up"
   header "* install United KDE Plasma theme in Plasma settings if not works"
   header "ON WINDOWS:"
   header "* add ~/bin to path"
