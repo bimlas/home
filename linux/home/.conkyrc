@@ -136,25 +136,25 @@ Inbound: ${tcp_portmon 1 32767 count}  Outbound: ${tcp_portmon 32768 65535 count
 
 INBOUND CONNECTION
 ${tcp_portmon 1 32767 lhost 0}
-  ${tcp_portmon 1 32767 lip 0}:${tcp_portmon 1 32767 lservice 0}
+  ${tcp_portmon 1 32767 lservice 0} ${tcp_portmon 1 32767 lip 0}
 ${tcp_portmon 1 32767 lhost 1}
-  ${tcp_portmon 1 32767 lip 1}:${tcp_portmon 1 32767 lservice 1}
+  ${tcp_portmon 1 32767 lservice 1} ${tcp_portmon 1 32767 lip 1}
 ${tcp_portmon 1 32767 lhost 2}
-  ${tcp_portmon 1 32767 lip 2}:${tcp_portmon 1 32767 lservice 2}
+  ${tcp_portmon 1 32767 lservice 2} ${tcp_portmon 1 32767 lip 2}
 ${tcp_portmon 1 32767 lhost 3}
-  ${tcp_portmon 1 32767 lip 3}:${tcp_portmon 1 32767 lservice 3}
+  ${tcp_portmon 1 32767 lservice 3} ${tcp_portmon 1 32767 lip 3}
 ${tcp_portmon 1 32767 lhost 4}
-  ${tcp_portmon 1 32767 lip 4}:${tcp_portmon 1 32767 lservice 4}
+  ${tcp_portmon 1 32767 lservice 4} ${tcp_portmon 1 32767 lip 4}
 
 OUTBOUND CONNECTION
 ${tcp_portmon 32768 65535 rhost 0}
-  ${tcp_portmon 32768 65535 rip 0}:${tcp_portmon 32768 65535 rservice 0}
+  ${tcp_portmon 32768 65535 rservice 0} ${tcp_portmon 32768 65535 rip 0}
 ${tcp_portmon 32768 65535 rhost 1}
-  ${tcp_portmon 32768 65535 rip 1}:${tcp_portmon 32768 65535 rservice 1}
+  ${tcp_portmon 32768 65535 rservice 1} ${tcp_portmon 32768 65535 rip 1}
 ${tcp_portmon 32768 65535 rhost 2}
-  ${tcp_portmon 32768 65535 rip 2}:${tcp_portmon 32768 65535 rservice 2}
+  ${tcp_portmon 32768 65535 rservice 2} ${tcp_portmon 32768 65535 rip 2}
 ${tcp_portmon 32768 65535 rhost 3}
-  ${tcp_portmon 32768 65535 rip 3}:${tcp_portmon 32768 65535 rservice 3}
+  ${tcp_portmon 32768 65535 rservice 3} ${tcp_portmon 32768 65535 rip 3}
 ${tcp_portmon 32768 65535 rhost 4}
-  ${tcp_portmon 32768 65535 rip 4}:${tcp_portmon 32768 65535 rservice 4}
+  ${tcp_portmon 32768 65535 rservice 4} ${tcp_portmon 32768 65535 rip 4}
 ]]
