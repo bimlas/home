@@ -72,8 +72,8 @@ conky.config = {
 conky.text = [[
 ${alignr}$USER @ ${nodename}
 
-${execi 3600 lsb_release -d | cut -f 2} (${execi 3600 lsb_release -c | cut -f 2})
-Kernel: ${kernel}
+${alignr}${execi 3600 lsb_release -d | cut -f 2} (${execi 3600 lsb_release -c | cut -f 2})
+${alignr}Kernel: ${kernel}
 
 PROCESSOR (${execi 3600 uname -p}) ${hr 2}
 
@@ -101,9 +101,9 @@ ${top_mem name 5} $alignr ${top_mem pid 5} ${top_mem cpu 5} ${top_mem mem 5}
 
 GPU (${nvidia modelname}) ${hr 2}
 
-GPU${goto 60}${nvidia gpuutil}%${goto 140}${nvidia gputemp}C° ${alignr}${nvidiagraph gpuutil 8,60 0}
+GPU${goto 60}${nvidia gpuutil}% ${alignr}${nvidiagraph gpuutil 8,60 0}
 RAM${goto 60}${nvidia mem}MB${goto 140}${nvidia memmax}MB ${alignr}${nvidiabar 8,60 mem}
-FAN${goto 60}${nvidia fanlevel}% ${alignr}${nvidiabar 8,60 fanlevel}
+FAN${goto 60}${nvidia fanlevel}%${goto 140}${nvidia gputemp}C° ${alignr}${nvidiabar 8,60 fanlevel}
 
 DISK ${hr 2}
 
@@ -112,7 +112,7 @@ DISKIO${goto 60}${diskio}${alignr}${diskiograph 8,60}
 ${goto 60}USED ${goto 140}TOTAL
 ROOT${goto 60}${fs_used /root} ${goto 140}${fs_size /root}${alignr}${fs_bar 8,60 /root}
 
-NAME $alignr  PID    CPU%   IO%
+NAME ${alignr} PID    CPU%    IO%
 ${top_io name 1} $alignr ${top_io pid 1} ${top_io cpu 1} ${top_io io_perc 1}
 ${top_io name 2} $alignr ${top_io pid 2} ${top_io cpu 2} ${top_io io_perc 2}
 ${top_io name 3} $alignr ${top_io pid 3} ${top_io cpu 3} ${top_io io_perc 3}
@@ -140,6 +140,7 @@ ${tcp_portmon 1 32767 rhost 1} ${alignr} ${tcp_portmon 1 32767 lservice 1}
 ${tcp_portmon 1 32767 rhost 2} ${alignr} ${tcp_portmon 1 32767 lservice 2}
 ${tcp_portmon 1 32767 rhost 3} ${alignr} ${tcp_portmon 1 32767 lservice 3}
 ${tcp_portmon 1 32767 rhost 4} ${alignr} ${tcp_portmon 1 32767 lservice 4}
+
 OUTBOUND CONNECTION ${ALIGNR} REMOTE SERVICE/PORT
 ${tcp_portmon 32768 61000 rhost 0} ${alignr} ${tcp_portmon 32768 61000 rservice 0}
 ${tcp_portmon 32768 61000 rhost 1} ${alignr} ${tcp_portmon 32768 61000 rservice 1}
