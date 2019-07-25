@@ -105,8 +105,17 @@ FAN${goto 60}${nvidia fanlevel}% ${alignr}${nvidiabar 8,60 fanlevel}
 
 DISK ${hr 2}
 
+DISKIO${goto 60}${diskio}${alignr}${diskiograph 8,60}
+
 ${goto 60}USED ${goto 140}TOTAL
 ROOT${goto 60}${fs_used /root} ${goto 140}${fs_size /root}${alignr}${fs_bar 8,60 /root}
+
+NAME $alignr  PID    CPU%   IO%
+${top_io name 1} $alignr ${top_io pid 1} ${top_io cpu 1} ${top_io io_perc 1}
+${top_io name 2} $alignr ${top_io pid 2} ${top_io cpu 2} ${top_io io_perc 2}
+${top_io name 3} $alignr ${top_io pid 3} ${top_io cpu 3} ${top_io io_perc 3}
+${top_io name 4} $alignr ${top_io pid 4} ${top_io cpu 4} ${top_io io_perc 4}
+${top_io name 5} $alignr ${top_io pid 5} ${top_io cpu 5} ${top_io io_perc 5}
 
 NETWORK ${hr 2}
 
