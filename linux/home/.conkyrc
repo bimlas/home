@@ -70,6 +70,8 @@ conky.config = {
 }
 
 conky.text = [[
+${alignr}$USER @ ${nodename}
+
 ${execi 3600 lsb_release -d | cut -f 2} (${execi 3600 lsb_release -c | cut -f 2})
 Kernel: ${kernel}
 
