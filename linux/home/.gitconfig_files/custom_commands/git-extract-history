@@ -6,6 +6,8 @@
 cat <<_HEREDOC_
 Usage: `basename $0` [FILES...]
 
+USE IT ONLY ON A COPY REPOSITORY INSTEAD OF A WORKING CLONE
+
 WARNING: Does not handles renamings!
 
 To extract the entire history of the files, you must first get all names of
