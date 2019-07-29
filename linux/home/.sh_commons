@@ -36,6 +36,9 @@ fi
 if [[ ! $PATH =~ $HOME/.gitconfig_files/custom_commands ]]; then
   export PATH=$HOME/.gitconfig_files/custom_commands:$PATH
 fi
+if [[ ! $PATH =~ $HOME/src/bash-mosh/bin ]]; then
+  export PATH=$HOME/src/bash-mosh/bin:$PATH
+fi
 
 if [[ -z $EDITOR ]]; then
   export EDITOR="gvim --nofork"
