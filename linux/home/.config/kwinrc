@@ -108,6 +108,12 @@ presentwindowsEnabled=false
 slideEnabled=true
 zoomEnabled=false
 
+[Script-krohnkite]
+enableSpreadLayout=false
+enableStairLayout=false
+ignoreClass=krunner,yakuake,spectacle,kded5,conky,enpass,alarm-clock-applet,fsearch,teamviewer
+layoutPerDesktop=true
+
 [TabBox]
 ActivitiesMode=1
 ApplicationsMode=0
