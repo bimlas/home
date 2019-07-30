@@ -16,7 +16,7 @@ conky.config = {
   own_window              = true,
   -- Kde needs own_window_type to be 'normal', for xfce set it to 'desktop'.
   own_window_type       = 'normal',
-  own_window_transparent  = true,
+  own_window_transparent  = false,
   own_window_argb_visual  = true,
   own_window_argb_value   = 100,
   own_window_colour       = 'black',
@@ -46,7 +46,7 @@ conky.config = {
 
   -- Gap between borders of screen and text
   gap_x  = 16,
-  gap_y  = 48,
+  gap_y  = 0,
 
   -- Subtract file system buffers from used memory?
   no_buffers  = true,
@@ -70,6 +70,7 @@ conky.config = {
 }
 
 conky.text = [[
+
 ${alignr}$USER @ ${nodename}
 
 ${alignr}${execi 3600 lsb_release -d | cut -f 2} (${execi 3600 lsb_release -c | cut -f 2})
