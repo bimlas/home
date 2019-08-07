@@ -495,11 +495,14 @@
   ; You can write a note about the stash like this:
   ; $ git stash save "Buggy - find a better way"
   ;
+  ; Stash only selected files:
+  ; $ git stash push -m "Buggy - find a better way" path/to/file
+  ;
   ; To apply more stashes, apply the first one, then `git add --all`, apply
   ; the next one, etc.
 
   ; Stash, but keep staged files.
-  st  = "stash-needs-message"
+  st  = "stash push --keep-index --include-untracked"
   stl = "stash list"
   sts = "stash show"
   sta = "stash apply"
