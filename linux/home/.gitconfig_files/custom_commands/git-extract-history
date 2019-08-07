@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # git-extract-history: Extract history of file arguments
 #
 # https://stackoverflow.com/a/37037151
