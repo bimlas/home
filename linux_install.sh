@@ -54,6 +54,8 @@ sudo aptitude install -y neovim-qt
 sudo aptitude install -y redshift
 # Only conky-all contains nVidia variables
 sudo aptitude install -y conky-all
+# AutoHotKey for Linux, xautomation is needed for `xte` only
+sudo aptitude install -y xbindkeys # xautomation
 
 # To autostart window manager:
 #   $ cat 'exec awesome' >> ~/.xinitrc OR /etc/X11/xinit/.xinitrc
