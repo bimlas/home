@@ -482,7 +482,7 @@
   ; __ COMMIT _____________________________                               {{{2
 
   c   = "commit"
-  cmu = "commit -m Update"
+  cmu = "commit -m 'Documentation update'"
 
   ; fixup   merge without changing the commit message
   ; squash  the commit message is editable
