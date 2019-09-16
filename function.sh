@@ -18,7 +18,7 @@ copy()
 
 link()
 {
-  if [ $is_win_admin -eq 0 ]; then
+  if [[ $is_win_admin -eq 0 ]]; then
     copy $@
   else
     $LN --verbose --symbolic --force --no-dereference "$@" 2>&1 \
