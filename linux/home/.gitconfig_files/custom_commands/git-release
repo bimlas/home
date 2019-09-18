@@ -9,23 +9,49 @@
 #  $ git log --oneline
 #  f7f79ba (HEAD -> master, tag: v1.2.3) 1.2.3
 
-function check_testing_time()
+function check_that_there_are_staged_changes()
 {
-  (git log --since "3 days" | grep ".*" > /dev/null)
-  if [[ $? == 0 ]]; then
-    echo "FAIL: The product has not been tested for at least 3 days"
+  (git diff --staged | grep ".*" > /dev/null)
+  if [[ $? != 0 ]]; then
+    echo "FAIL: There are no staged changes, please stage only version number incrementation!"
     exit 1
   fi
 }
 
-function check_documents()
+function check_that_only_version_modified()
 {
-  for doc in README LICENSE CHANGELOG; do
+  (git diff --staged --word-diff=porcelain --unified=0 | grep -Po "(?<=^\+)(?!\+\+).*" | grep -v "^v\?$1$"> /dev/null)
+  if [[ $? == 0 ]]; then
+    echo "FAIL: Do not stage anything else expect version number (maybe you mistyped it)!"
+    exit 1
+  fi
+}
+
+function check_required_documents()
+{
+  for doc in README CHANGELOG LICENSE; do
     if [ ! -f $doc* ]; then
       echo "FAIL: There is no $doc, please write it!" >&2
-      exit 1;
+      exit 1
     fi
   done
+}
+
+function check_optional_documents()
+{
+  for doc in README CHANGELOG LICENSE; do
+    if [ ! -f $doc* ]; then
+      echo "WARNING: There is no $doc, please write it!" >&2
+    fi
+  done
+}
+
+function check_testing_time()
+{
+  (git log --since "3 days" | grep ".*" > /dev/null)
+  if [[ $? == 0 ]]; then
+    echo "WARNING: The product has not been tested for at least 3 days"
+  fi
 }
 
 function ask_questions()
@@ -64,7 +90,12 @@ fi
 repo_root="`git rev-parse --show-toplevel`"
 cd "$repo_root"
 
+version_number_without_v_prefix=${*#v}
+
+check_that_there_are_staged_changes
+check_that_only_version_modified $version_number_without_v_prefix
+check_required_documents
+check_optional_documents
 check_testing_time
-check_documents
 ask_questions
-commit $*
+commit $version_number_without_v_prefix
