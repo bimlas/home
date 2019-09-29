@@ -811,7 +811,7 @@ function! InstallPluginManager()
     return
   endif
 
-  echo 'Plugin manager installed. Please restart Vim and install plugins.'
+  echo 'Plugin manager installed. Please restart Vim and install plugins (:PlugInstall).'
   return
 endfunction
 
