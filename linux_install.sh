@@ -1,73 +1,65 @@
 #!/bin/bash
 # linux_install.sh: Install everything
 
-sudo apt-get update
-sudo apt-get install -y aptitude
-sudo aptitude safe-upgrade -y
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y aptitude
 # PPA installer
-sudo aptitude install -y software-properties-common
+sudo apt install -y software-properties-common
 
 # __ BASIC STUFF ________________________
 
-sudo aptitude install -y zsh
+sudo apt install -y zsh
 echo '!! Change shell to Zsh needs password'
 chsh -s /bin/zsh
-
-sudo aptitude install -y git
-sudo aptitude install -y neovim
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-sudo aptitude install -y nodejs npm
+sudo apt install -y vim
+
+sudo apt install -y git
+
+sudo apt install -y nodejs npm
 sudo npm install -g diff-so-fancy
 
 # __ DEVELOPEMENT _______________________
 
-sudo aptitude install -y gcc make
-sudo aptitude install -y ctags
+sudo apt install -y gcc make
 
-sudo aptitude install -y openjdk-11-jdk
+sudo apt install -y openjdk-11-jdk
 
-sudo aptitude install -y python python-pip python3 python3-pip
+sudo apt install -y python python-pip python3 python3-pip
 
-sudo aptitude install -y ruby ruby-dev
-sudo gem install pry
+sudo apt install -y ruby ruby-dev
 
 # __ OTHER ______________________________
 
 sudo pip2 install neovim
 sudo pip3 install neovim
-sudo gem install neovim
-sudo npm install -g neovim
-
-sudo gem install asciidoctor
 
 sudo npm install -g tiddlywiki
 
-# Needed by IDEA deployment to work with Vagrant
-sudo aptitude install -y gnome-keyring
-
 # __ DESKTOP ____________________________
 
-sudo aptitude install -y neovim-qt
-sudo aptitude install -y redshift
+sudo apt install -y vim-gtk
+sudo apt install -y redshift
 # Only conky-all contains nVidia variables
-sudo aptitude install -y conky-all
+sudo apt install -y conky-all
 # AutoHotKey for Linux, xautomation is needed for `xte` only
-sudo aptitude install -y xbindkeys # xautomation
+sudo apt install -y xbindkeys # xautomation
 
 # To autostart window manager:
 #   $ cat 'exec awesome' >> ~/.xinitrc OR /etc/X11/xinit/.xinitrc
 
-# sudo aptitude install -y xorg
-# sudo aptitude install -y awesome
+# sudo apt install -y xorg
+# sudo apt install -y awesome
 
 # __ VIRTUALBOX _________________________
 
 # XORG
 #   If installed via apt, it drops segmentation fault:
-#     $ sudo aptitude install -y virtualbox-guest-x11
+#     $ sudo apt install -y virtualbox-guest-x11
 #   Use the builtin installer instead
 #     Tools -> Install integration services
 #     $ sudo mount /dev/cdrom /mnt
