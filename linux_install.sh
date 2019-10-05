@@ -6,8 +6,12 @@ sudo apt upgrade -y
 sudo apt install -y aptitude
 # PPA installer
 sudo apt install -y software-properties-common
+# Needed to download installers and GPG keys (Spotify for example)
+sudo apt install -y curl
 
 # __ BASIC STUFF ________________________
+
+sudo apt install -y git
 
 sudo apt install -y zsh
 echo '!! Change shell to Zsh needs password'
@@ -17,8 +21,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 sudo apt install -y vim
-
-sudo apt install -y git
 
 sudo apt install -y nodejs npm
 sudo npm install -g diff-so-fancy
@@ -33,10 +35,9 @@ sudo apt install -y python python-pip python3 python3-pip
 
 sudo apt install -y ruby ruby-dev
 
-# __ OTHER ______________________________
+sudo snap install intellij-idea-ultimate --classic
 
-sudo pip2 install neovim
-sudo pip3 install neovim
+# __ OTHER ______________________________
 
 sudo npm install -g tiddlywiki
 
@@ -48,6 +49,39 @@ sudo apt install -y redshift
 sudo apt install -y conky-all
 # AutoHotKey for Linux, xautomation is needed for `xte` only
 sudo apt install -y xbindkeys # xautomation
+
+# Fsearch
+sudo add-apt-repository -y ppa:christian-boxdoerfer/fsearch-daily
+sudo apt-get update
+sudo apt install -y fsearch-trunk
+
+# Spotify
+curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
+
+# __ NET ________________________________
+
+sudo apt install -y qbittorrent
+sudo apt install -y telegram-desktop
+
+# Vivaldi
+curl --location -o ./vivaldi.deb https://downloads.vivaldi.com/stable/vivaldi-stable_amd64.deb
+sudo dpkg -i ./vivaldi.deb
+sudo apt install -y --fix-broken
+rm ./vivaldi.deb
+
+# Skype
+curl --location -o ./skype.deb https://go.skype.com/skypeforlinux-64.deb
+sudo dpkg -i ./skype.deb
+sudo apt install -y --fix-broken
+rm ./skype.deb
+
+# TeamViewer
+curl --location -o ./teamviewer.deb https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+sudo dpkg -i ./teamviewer.deb
+sudo apt install -y --fix-broken
+rm ./teamviewer.deb
 
 # To autostart window manager:
 #   $ cat 'exec awesome' >> ~/.xinitrc OR /etc/X11/xinit/.xinitrc
