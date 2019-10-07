@@ -29,7 +29,7 @@ function check_that_only_version_modified()
 
 function check_required_documents()
 {
-  for doc in README CHANGELOG LICENSE; do
+  for doc in README CHANGELOG; do
     if [ ! -f $doc* ]; then
       echo "FAIL: There is no $doc, please write it!" >&2
       exit 1
@@ -39,7 +39,7 @@ function check_required_documents()
 
 function check_optional_documents()
 {
-  for doc in README CHANGELOG LICENSE; do
+  for doc in LICENSE; do
     if [ ! -f $doc* ]; then
       echo "WARNING: There is no $doc, please write it!" >&2
     fi
