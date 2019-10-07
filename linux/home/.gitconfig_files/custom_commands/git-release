@@ -20,7 +20,7 @@ function check_that_there_are_staged_changes()
 
 function check_that_only_version_modified()
 {
-  (git diff --staged --word-diff=porcelain --unified=0 | grep -Po "(?<=^\+)(?!\+\+).*" | grep -v "^v\?$1$"> /dev/null)
+  (git diff --staged --unified=0 | grep -Po "(?<=^\+)(?!\+\+).*" | grep -v "v\?$1"> /dev/null)
   if [[ $? == 0 ]]; then
     echo "FAIL: Do not stage anything else expect version number (maybe you mistyped it)!"
     exit 1
