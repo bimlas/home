@@ -36,6 +36,10 @@ copy              \
   _intellijidea/* \
   $HOME/.IntelliJIdea*/
 
+copy              \
+  _netbenas/* \
+  $HOME/.netbeans/*/
+
 header "  SYMLINK"
 
 link "$CWD/linux/home/bin/"              "$HOME/bin"
