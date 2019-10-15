@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[hu_HU]=
+Comment=
+Exec=$HOME/bin/warn-on-high-memory-usage.sh
+GenericName[hu_HU]=
+GenericName=
+Icon=system-run
+MimeType=
+Name[hu_HU]=Warn on high memory usage
+Name=Warn on high memory usage
+Path=
+StartupNotify=true
+Terminal=true
+TerminalOptions=--new-tab --show-tabbar --noclose
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=
