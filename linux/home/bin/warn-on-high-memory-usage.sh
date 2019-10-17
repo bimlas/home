@@ -14,7 +14,8 @@ do
     available=$(free -m | awk '/^Mem:/{print $7}')
 
     if [[ $available -lt $THRESHOLD ]]; then
-        kdialog --passivepopup "Memory is running out ($available MB available)"
+        top_usage=$(ps aux --sort=-%mem | head -4 | tail -3 | awk '{print $11 " (" $4 "%)"}')
+        kdialog --passivepopup "Memory is running out ($available MB available)\n$top_usage"
     fi
 
     sleep $INTERVAL
