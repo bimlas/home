@@ -12,8 +12,6 @@ wmclassmatch=1
 
 [2]
 Description=fsearch ablakbeállításai
-clientmachine=galileo
-clientmachinematch=0
 placement=Centered
 placementrule=2
 skippager=true
@@ -46,6 +44,40 @@ XftAntialias[$d]
 XftHintStyle[$d]
 XftSubPixel[$d]
 count=3
+
+[4]
+Description=kcalc ablakbeállításai
+position=1420,678
+positionrule=3
+title=KCalc
+titlematch=0
+wmclass=kcalc
+wmclasscomplete=false
+wmclassmatch=1
+
+[5]
+Description=enpass ablakbeállításai
+placement=Centered
+placementrule=2
+title=Enpass
+titlematch=1
+types=1
+wmclass=enpass
+wmclasscomplete=false
+wmclassmatch=1
+
+[6]
+Description=alarm-clock-applet ablakbeállításai
+clientmachine=laci
+clientmachinematch=0
+position=1510,848
+positionrule=3
+title=Riasztások
+titlematch=1
+types=1
+wmclass=alarm-clock-applet
+wmclasscomplete=false
+wmclassmatch=1
 
 [KDE]
 LookAndFeelPackage[$d]
