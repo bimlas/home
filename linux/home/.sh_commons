@@ -21,6 +21,21 @@ if [[ $(which vim.tiny 2> /dev/null) ]]; then
   alias vim.tiny='vim.tiny -u NONE'
 fi
 
+if [[ $(which nnn 2> /dev/null) ]]; then
+  n()
+  {
+    EDITOR='vim' nnn -dHn "$@"
+
+    export NNN_TMPFILE=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd
+
+    # cd on quit only on ^G
+    if [ -f $NNN_TMPFILE ]; then
+            . $NNN_TMPFILE
+            rm -f $NNN_TMPFILE > /dev/null
+    fi
+  }
+fi
+
 # Do not close the image after gnuplot.
 if [[ $(which gnuplot 2> /dev/null) ]]; then
   alias gnuplot='gnuplot -persist'
