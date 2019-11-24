@@ -1614,7 +1614,7 @@ nnoremap <Space>gb :Gina branch<CR>
 nnoremap <Space>gB :Gina blame :<CR>
 nnoremap <Space>gc :Gina commit<CR>
 nnoremap <Space>gd :Gina diff<CR>
-nmap     <Space>gD <Plug>GitGutterPreviewHunk
+nmap     <Space>gD <Plug>(GitGutterPreviewHunk)
 nnoremap <Space>gg :silent Gina grep --ignore-case -C3 '' -- ':/'<S-Left><S-Left><S-Left><Right>
 nnoremap <Space>gG :silent Gina qrep --ignore-case '' -- ':/'<S-Left><S-Left><S-Left><Right>
 nnoremap <Space>gl :Gina l<CR>
@@ -1623,10 +1623,10 @@ nnoremap <Space>gm :Gina chaperon<CR>
 nnoremap <Space>gn :GitGutterNextHunk<CR>
 nnoremap <Space>gp :GitGutterPrevHunk<CR>
 nmap     <Space>gr :Gina checkout %<CR><C-L>
-nmap     <Space>gR <Plug>GitGutterUndoHunk
+nmap     <Space>gR <Plug>(GitGutterUndoHunk)
 nnoremap <Space>gs :Gina status<CR>
 nmap     <Space>gw :Gina add %<CR><C-L>
-nmap     <Space>gW <Plug>GitGutterStageHunk
+nmap     <Space>gW <Plug>(GitGutterStageHunk)
 
 "                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
 " ............................................................................
