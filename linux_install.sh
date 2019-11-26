@@ -23,7 +23,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 sudo apt install -y vim
 
 curl -sL https://deb.nodesource.com/setup_12.x | sudo bash
-sudo apt install -y nodejs npm
+sudo apt install -y nodejs
 
 sudo npm install -g diff-so-fancy
 
