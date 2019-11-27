@@ -1,8 +1,5 @@
 {
-    "workbench.colorTheme": "Solarized Light",
     "editor.renderWhitespace": "boundary",
-    "php.suggest.basic": false,
-    "php.validate.enable": false,
     "editor.minimap.enabled": false,
     "breadcrumbs.enabled": true,
     "terminal.integrated.shell.windows": "C:\\app\\git\\git-cmd.exe",
@@ -11,8 +8,10 @@
         "TERM": "xterm-256color"
     },
     "editor.formatOnPaste": true,
-    "workbench.iconTheme": "ayu",
     "workbench.editor.showTabs": false,
     "editor.fontFamily": "'DeJavu Sans Mono', Consolas, 'Courier New', monospace",
-    "editor.fontSize": 12
+    "editor.fontSize": 12,
+    "files.autoSave": "afterDelay",
+    "gitlens.statusBar.enabled": false,
+    "scm.defaultViewMode": "tree"
 }
