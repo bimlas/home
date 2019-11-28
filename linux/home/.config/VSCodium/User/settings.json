@@ -1,5 +1,7 @@
 {
     "editor.renderWhitespace": "boundary",
+    "php.suggest.basic": false,
+    "php.validate.enable": false,
     "editor.minimap.enabled": false,
     "breadcrumbs.enabled": true,
     "terminal.integrated.shell.windows": "C:\\app\\git\\git-cmd.exe",
