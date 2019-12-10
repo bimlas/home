@@ -11,4 +11,8 @@
     <option name="IS_WHITESPACES_SHOWN" value="true" />
     <option name="KEEP_TRAILING_SPACE_ON_CARET_LINE" value="false" />
   </component>
+  <component name="PhpCodeFoldingSettings">
+    <option name="COLLAPSE_FUNCTION_BODY" value="true" />
+    <option name="COLLAPSE_METHOD_BODY" value="true" />
+  </component>
 </application>
