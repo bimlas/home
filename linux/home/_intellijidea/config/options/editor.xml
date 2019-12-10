@@ -1,4 +1,7 @@
 <application>
+  <component name="CodeFoldingSettings">
+    <option name="COLLAPSE_METHODS" value="true" />
+  </component>
   <component name="DefaultFont">
     <option name="FONT_FAMILY" value="DejaVu Sans Mono" />
   </component>
