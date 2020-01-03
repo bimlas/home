@@ -32,7 +32,7 @@ augroup END
 " ============================================================================
 
 if has('nvim')
-  if has('windows')
+  if has('win32')
     " Run `:CheckHealth` to verify.
 
     " pip2 install --upgrade neovim
