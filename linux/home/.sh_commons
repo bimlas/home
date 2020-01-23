@@ -82,6 +82,16 @@ x()
   nohup $* &> /dev/null &
 }
 
+# Countdown timer
+#   $ alarm 1    # Wait 60 seconds
+#   $ alarm 1:23 # Wait 83 seconds
+alarm()
+{
+  sleep `TZ=utc date -d "1970-01-01 0:$1" +%s`
+  kdialog --passivepopup 'ALARM' 5
+  cvlc --repeat /usr/share/sounds/freedesktop/stereo/service-login.oga
+}
+
 # English-hungarian dictionary, download:
 # https://github.com/BimbaLaszlo/dotvim/blob/master/doc/szotar.txt
 szotar()
