@@ -46,9 +46,10 @@
           </profile-state>
         </entry>
       </component>
+      <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
       <component name="PropertiesComponent">
-        <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
         <property name="nodejs_interpreter_path" value="C:/app/nodejs/node" />
+        <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
       </component>
       <component name="RunManager">
         <configuration default="true" type="Applet" factoryName="Applet">
@@ -97,10 +98,8 @@
           <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
         </configuration>
       </component>
-      <component name="VcsContentAnnotationSettings">
-        <option name="myLimit" value="2678400000" />
-      </component>
       <component name="VcsManagerConfiguration">
+        <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
         <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
       </component>
       <component name="masterDetails">
