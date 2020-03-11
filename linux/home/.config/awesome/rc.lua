@@ -54,6 +54,11 @@ beautiful.useless_gap = 5
 beautiful.useless_gap = 5
 beautiful.border_focus = "#fade00"
 
+-- Notifications, Spotify track info, etc.
+naughty.config.defaults["icon_size"] = 150
+naughty.config.defaults["width"] = 450
+naughty.config.defaults["position"] = "bottom_right"
+
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
