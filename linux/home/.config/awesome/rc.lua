@@ -219,6 +219,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.align.horizontal,
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
+                spacing = 5,
                 s.mylayoutbox,
                 mytextclock,
                 wibox.widget.systray(),
@@ -227,6 +228,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mytasklist, -- Middle widget
             { -- Left widgets
                 layout = wibox.layout.fixed.horizontal,
+                spacing = 5,
                 s.mypromptbox,
                 s.mytaglist,
                 mylauncher,
