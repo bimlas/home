@@ -55,7 +55,7 @@ beautiful.useless_gap = 5
 beautiful.border_focus = "#fade00"
 
 -- Notifications, Spotify track info, etc.
-naughty.config.defaults["icon_size"] = 150
+naughty.config.defaults["icon_size"] = 100
 naughty.config.defaults["width"] = 450
 naughty.config.defaults["position"] = "top_right"
 
