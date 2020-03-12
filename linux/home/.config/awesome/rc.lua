@@ -57,7 +57,7 @@ beautiful.border_focus = "#fade00"
 -- Notifications, Spotify track info, etc.
 naughty.config.defaults["icon_size"] = 150
 naughty.config.defaults["width"] = 450
-naughty.config.defaults["position"] = "bottom_right"
+naughty.config.defaults["position"] = "top_right"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -213,32 +213,29 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
+
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "right", width = 16, screen = s })
+    s.mywibox = awful.wibar({ position = "top", height = 16, screen = s })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
-        layout = wibox.container.rotate,
-        direction = "east",
-        {
-            layout = wibox.layout.align.horizontal,
-            { -- Right widgets
-                layout = wibox.layout.fixed.horizontal,
-                spacing = 5,
-                s.mylayoutbox,
-                mytextclock,
-                wibox.widget.systray(),
-                mykeyboardlayout,
-            },
-            s.mytasklist, -- Middle widget
-            { -- Left widgets
-                layout = wibox.layout.fixed.horizontal,
-                spacing = 5,
-                s.mypromptbox,
-                s.mytaglist,
-                mylauncher,
-            },
-        }
+        layout = wibox.layout.align.horizontal,
+        { -- Left widgets
+            layout = wibox.layout.fixed.horizontal,
+            spacing = 5,
+            mylauncher,
+            s.mytaglist,
+            s.mypromptbox,
+        },
+        s.mytasklist, -- Middle widget
+        { -- Right widgets
+            layout = wibox.layout.fixed.horizontal,
+            spacing = 5,
+            wibox.widget.systray(),
+            mykeyboardlayout,
+            mytextclock,
+            s.mylayoutbox,
+        },
     }
 end)
 -- }}}
