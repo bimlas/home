@@ -170,9 +170,7 @@ local tasklist_buttons = gears.table.join(
 local function set_wallpaper(s)
     local wallpaper_path = os.getenv("HOME") .. "/wallpaper"
 
-    local user_wallpaper = io.open(wallpaper_path, "r")
-    if user_wallpaper ~= nil then
-        io.close(user_wallpaper)
+    if gears.filesystem.file_readable(wallpaper_path) then
         beautiful.wallpaper = wallpaper_path
     end
 
@@ -212,7 +210,6 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
-
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", height = 16, screen = s })
