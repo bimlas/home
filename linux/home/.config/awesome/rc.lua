@@ -22,7 +22,7 @@ require("awful.hotkeys_popup.keys")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
-local cpu = require("bimlas.cpu")
+local stat_mem = require("bimlas.mem")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -238,7 +238,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = 5,
-            cpu,
+            stat_mem,
             wibox.widget.systray(),
             mykeyboardlayout,
             mytextclock,
