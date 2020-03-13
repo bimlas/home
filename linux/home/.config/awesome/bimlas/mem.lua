@@ -5,9 +5,9 @@ local mem = awful.widget.watch(
     "free -h",
     2,
     function(widget, stdout)
-        local total, available = string.match(stdout, "Mem:%s*(%S+)%s*%S+%s*(%S+).*")
+        local total, used = string.match(stdout, "Mem:%s*(%S+)%s*(%S+).*")
 
-        widget:set_text("MEM: " .. available .. " / " .. total)
+        widget:set_text("MEM: " .. used .. " / " .. total)
     end
 )
 
