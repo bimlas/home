@@ -22,6 +22,7 @@ require("awful.hotkeys_popup.keys")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
+local stat_cpu = require("cpu-widget.cpu-widget")
 local stat_mem = require("bimlas.mem")
 
 -- {{{ Error handling
@@ -238,6 +239,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = 5,
+            stat_cpu(),
             stat_mem,
             wibox.widget.systray(),
             mykeyboardlayout,
