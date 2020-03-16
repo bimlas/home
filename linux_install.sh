@@ -54,13 +54,13 @@ sudo apt install -y xbindkeys # xautomation
 
 # Fsearch
 sudo add-apt-repository -y ppa:christian-boxdoerfer/fsearch-daily
-sudo apt-get update
+sudo apt update
 sudo apt install -y fsearch-trunk
 
 # Spotify
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update
+sudo apt update
 sudo apt install -y spotify-client
 
 # __ NET ________________________________
