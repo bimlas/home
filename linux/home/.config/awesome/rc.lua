@@ -24,6 +24,7 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 local stat_cpu = require("cpu-widget.cpu-widget")
 local stat_mem = require("bimlas.mem")
+local volumebar_widget = require("volumebar-widget.volumebar")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -241,6 +242,7 @@ awful.screen.connect_for_each_screen(function(s)
             spacing = 5,
             stat_cpu(),
             stat_mem,
+            volumebar_widget({margins = 6}),
             wibox.widget.systray(),
             mykeyboardlayout,
             mytextclock,
