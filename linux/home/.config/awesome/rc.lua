@@ -7,10 +7,15 @@ require("awful.autofocus")
 
 -- Required settings
 require("bimlas.error-handling")
-require("bimlas.variables")
-require("bimlas.rules-and-signals")
 
 if os.getenv("XDG_CURRENT_DESKTOP") == "" then
+  theme = "zenburn"
+  require("bimlas.variables")
   require("bimlas.desktop")
   require("bimlas.panel")
+else
+  theme = "gtk"
+  require("bimlas.variables")
 end
+
+require("bimlas.rules-and-signals")

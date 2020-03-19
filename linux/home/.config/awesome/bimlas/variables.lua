@@ -4,7 +4,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. theme .. "/theme.lua")
 beautiful.useless_gap = 5
 beautiful.useless_gap = 5
 beautiful.border_focus = "#fade00"
