@@ -1,19 +1,23 @@
-#!/bin/sh
-# imgoptimize - optimize images in subfolders
+#!/bin/bash
+# imgoptimize: Resize and convert to JPG or PNG depending on the file size
 #
-# jpegtran: libjpeg-progs package
-# pngout:   http://www.jonof.id.au/pngout
-# The pngout have to be on $PATH.
+# Needs ImageMagick
 #
-# http://blog.stationfour.com/automating-png-jpg-image-optimization-in-windows/
-# ==================== BimbaLaszlo (.github.io|gmail.com) ====================
+# https://stackoverflow.com/a/25997117
 
-for f in $(find -name '*.jpg'); do
-  echo jpegtran: $f
-  jpegtran -optimize -progressive -outfile $f -copy none $f
-done
+convert_to()
+{
+  convert "$2" -strip -resize "800x800>" -strip -quality 75 $1:-
+}
 
-for f in $(find -name '*.png'); do
-  echo pngout: $f
-  pngout $f
-done
+jpg_size=$(convert_to jpg "$1" | wc -c)
+png_size=$(convert_to png "$1" | wc -c)
+jpg_png_ratio=$(echo $jpg_size*100/$png_size | bc)
+target_format=$(if [ $jpg_size -lt $png_size ]; then echo "jpg"; else echo "png"; fi)
+if ( identify -format '%[channels]' "$1" | grep "rgba" > /dev/null ); then
+  target_format=png
+fi
+
+echo "$1: JPG: $(echo $jpg_size/1000 | bc) kbyte, PNG: $(echo $png_size/1000 | bc) kbyte"
+
+convert_to $target_format "$1" > "$(dirname "$1")/RESIZED_$(basename -s ${1#*.} "$1")$target_format"
