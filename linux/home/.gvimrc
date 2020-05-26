@@ -15,7 +15,7 @@ if exists('g:vimrc_minimal_plugins')
 else
   " set lines=50
   " let &columns = &foldcolumn + (&number ? &numberwidth : 0) + &textwidth
-  set lines=999 columns=999
+  set lines=255 columns=255
 
   " Az ablak bal-felso sarka a desktop-on (pixelben megadva).
   winpos 0 0
