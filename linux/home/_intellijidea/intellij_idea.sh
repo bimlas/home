@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/.IntelliJIdea*/config
+cd ~/.config/JetBrains/IntelliJIdea*/
 rm -rf eval/
 
 cd options
