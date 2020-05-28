@@ -1,1 +1,0 @@
-nvim-qt --maximized -- -d %*
