@@ -48,14 +48,11 @@ sudo npm install -g tiddlywiki
 sudo apt install -y vim-gtk
 sudo apt install -y redshift
 # Only conky-all contains nVidia variables
-sudo apt install -y conky-all
+# sudo apt install -y conky-all
 # AutoHotKey for Linux, xautomation is needed for `xte` only
 sudo apt install -y xbindkeys # xautomation
-
-# Fsearch
-sudo add-apt-repository -y ppa:christian-boxdoerfer/fsearch-daily
-sudo apt update
-sudo apt install -y fsearch-trunk
+# Fuzzy finder GUI
+sudo apt install -y rofi
 
 # Spotify
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
