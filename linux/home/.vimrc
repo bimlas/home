@@ -784,6 +784,16 @@ if isdirectory(g:pm_dir)
   endif
                                                                         " }}}2
 
+  " .. BROWSER EXTENSION ..................
+
+  " GLACAMBRE/FIRENVIM                                                  " {{{2
+  " use neovim in browser's textareas
+  " https://github.com/glacambre/firenvim
+  if has('nvim')
+    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+  endif
+                                                                        " }}}2
+
   call plug#end()
 else
   autocmd vimrc VimEnter * echomsg 'Run :InstallPluginManager'
@@ -1799,3 +1809,17 @@ function! LoadProjectSettings() "{{{
   catch /^Vim\%((\a\+)\)\=:E484/
   endtry
 endfunction "}}}
+
+"                               FIRENVIM                                  {{{1
+" ============================================================================
+
+if exists('g:started_by_firenvim')
+  " Statusline
+  set laststatus=0
+  " Tabline
+  set showtabline=0
+
+  colorscheme morning
+
+  autocmd FileType * set filetype=tiddlywiki textwidth=0
+endif
