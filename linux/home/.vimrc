@@ -628,6 +628,10 @@ if isdirectory(g:pm_dir)
     \}
 
     autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | endif
+
+    " SUKIMA/VIM-TIDDLYWIKI                                                {{{
+    " syntax highlighting for .tid files
+    Plug 'sukima/vim-tiddlywiki'
                                                                         " }}}2
 
   " .. NEOCOMPLETE/DEOPLETE ...............
