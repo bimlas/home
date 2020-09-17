@@ -634,6 +634,20 @@ if isdirectory(g:pm_dir)
     Plug 'sukima/vim-tiddlywiki'
                                                                         " }}}2
 
+  " .. FAJLTIPUSOK ........................
+
+  " HABAMAX/VIM-ASCIIDOCTOR                                             " {{{2
+  " szovegreszek kommentelese
+  if !exists('g:vimrc_minimal_plugins')
+    Plug 'habamax/vim-asciidoctor'
+
+    let g:asciidoctor_syntax_conceal = 1
+    let g:asciidoctor_folding = 1
+    let g:asciidoctor_fold_options = 1
+    let g:asciidoctor_fenced_languages = ['javascript', 'php','python']
+  endif
+                                                                        " }}}2
+
   " .. NEOCOMPLETE/DEOPLETE ...............
 
   " SHOUGO/ECHODOC.VIM                                                    {{{2
@@ -1131,6 +1145,9 @@ endif
 "                             SZINTAXIS KIEMELES                          {{{1
 " ============================================================================
 
+" Hide what intend to be hidden
+set conceallevel=2
+
 " Shell-scrip-eknel ne jelezze hibanak: $()
 let is_posix = 1
 
@@ -1492,7 +1509,7 @@ endfunction
 " alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
 " blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
 " pl. |===, vagy ;=== is.
-autocmd vimrc FileType asciidoc if PluginEnabled('vim-textobj-user') |
+autocmd vimrc FileType asciidoc,asciidoctor if PluginEnabled('vim-textobj-user') |
 \ call textobj#user#plugin('adocblock', {
 \   '-': {
 \     'select-a-function': 'AdocBlockA',
@@ -1682,7 +1699,7 @@ autocmd vimrc FileType help noremap <buffer> <Space>m2
 
 " __ ASCIIDOC ___________________________
 
-autocmd vimrc FileType asciidoc vnoremap <Space>mq :AdocFormat<CR>$hD
+autocmd vimrc FileType asciidoc,asciidoctor vnoremap <Space>mq :AdocFormat<CR>$hD
 
 " __ RUBY _______________________________
 
@@ -1770,6 +1787,8 @@ vmap     <Space>xc  <Plug>(EasyAlign)
 "
 " WARNING: The order of autocommands can lead to unexpected behaviour! Try to
 " reorder in this case.
+
+autocmd vimrc BufEnter *.adoc set filetype=asciidoctor
 
 " Set up omni-completion if not already set.
 autocmd vimrc FileType * if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
