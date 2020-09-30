@@ -1089,7 +1089,7 @@ set modeline
 " utf-16le: Windows registry fajlok (.reg) kodolasa
 " cp1250:   magyar Windows default
 " default:  a rendszer alapertelmezese
-set fileformats=unix,dos fileencodings=utf8,cp1250,default,utf-16le
+set fileformats=unix,dos fileencodings=utf8,ucs-bom,cp1250,default,utf-16le
 
 " Uj fajlok letrehozasanal nem jelzi ki a karakterkodolast e nelkul.
 let &fileencoding = matchstr(&fileencodings, '^[^,]\+')
