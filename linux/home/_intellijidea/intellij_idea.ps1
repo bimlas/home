@@ -1,6 +1,6 @@
 # powershell -ExecutionPolicy Bypass ./intellij_idea.ps1
 
-$ideadir = "$ENV:HOMEDRIVE\$ENV:HOMEPATH\.IntelliJIdea*\config"
+$ideadir = "$ENV:HOMEDRIVE\$ENV:HOMEPATH\AppData\Roaming\JetBrains\IntelliJIdea*"
 
 Remove-Item "$ideadir\eval" -Recurse
 
