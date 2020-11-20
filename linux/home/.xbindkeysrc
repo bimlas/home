@@ -78,6 +78,9 @@
 "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
   b:9
 
+"xfdesktop --windowlist"
+  b:2
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
