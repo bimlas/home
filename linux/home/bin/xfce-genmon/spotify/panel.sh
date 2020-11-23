@@ -37,7 +37,7 @@ if pidof spotify &> /dev/null; then
     INFO+="</txt>"
   fi
 
-  INFO+="<click>xdotool windowactivate ${WINDOW_ID}</click>"
+  INFO+="<txtclick>dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next</txtclick>"
 
   # Tooltip
   MORE_INFO="<tool>"
