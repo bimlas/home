@@ -507,7 +507,7 @@
   sts = "stash show"
   sta = "stash apply"
   std = "stash drop"
-  stp = "stash pop"
+  stp = "stash pop --index"
 
   ; Usage: git str 'stash@{123}'
   str = "!git stash show $@ --patch | git apply --reverse; #"
