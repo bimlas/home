@@ -755,7 +755,8 @@
 
 [push]                                                                  ; {{{1
 
-  ; `git push -u` is enough instead of `git push -u origin my_branch`.
+  ; `git push -u` is enough instead of
+  ; `git push --set-upstream origin my_branch`
   default = "current"
 
   ; Push annotated tags.
