@@ -7,6 +7,7 @@
 
 autoload -U colors     && colors
 autoload -U promptinit && promptinit
+source ~/bin/zsh/fzf-zsh-completion.sh
 setopt prompt_subst
 
 #                                 PROMPT                                  {{{1
@@ -90,6 +91,11 @@ zstyle ':completion:*' auto-description 'specify: %d'
 
 # All different types of matches displayed separately
 zstyle ':completion:*' group-name ''
+
+# FZF tab-completion specific
+zstyle ':completion:*' fzf-search-display true
+# preview a `git status` when completing git add
+zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c color.status=always status --short'
 
 # Use the same colors for listing files as `ls`.
 eval "$(dircolors -b)"
