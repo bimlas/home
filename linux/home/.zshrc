@@ -94,9 +94,16 @@ zstyle ':completion:*' group-name ''
 
 # FZF tab-completion specific
 zstyle ':completion:*' fzf-search-display true
-# preview a `git status` when completing git add
-zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c color.status=always status --short'
-
+# Preview `git diff` when completing git add
+zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='
+for arg in {+1}; do
+  { git diff --color=always -- "$arg" } 2>/dev/null
+done'
+# Compare with master when completing git checkout
+zstyle ':completion::*:git::git,checkout,*' fzf-completion-opts --preview='
+for arg in {+1}; do
+  { git --no-pager log --oneline --graph --right-only --date-order --boundary --pretty="format:%s" master.."$arg" } 2>/dev/null
+done'
 # Use the same colors for listing files as `ls`.
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
