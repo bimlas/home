@@ -8,6 +8,10 @@
 autoload -U colors     && colors
 autoload -U promptinit && promptinit
 source ~/bin/zsh/fzf-zsh-completion.sh
+
+export ZSHZ_CMD=cdd
+source ~/bin/zsh/zsh-z.plugin.zsh
+
 setopt prompt_subst
 
 #                                 PROMPT                                  {{{1
