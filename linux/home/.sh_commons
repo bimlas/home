@@ -80,7 +80,8 @@ export FZF_DEFAULT_OPTS="--exact --multi \
     --bind=ctrl-u:page-up \
     --bind=ctrl-e:preview-page-down \
     --bind=ctrl-y:preview-page-up \
-    --bind=ctrl-w:backward-kill-word"
+    --bind=ctrl-w:backward-kill-word \
+    --bind=ctrl-a:select-all"
 
 #                                FUNCTIONS                                {{{1
 # ============================================================================
