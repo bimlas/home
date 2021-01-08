@@ -72,8 +72,15 @@ export MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |         \
                  -c 'map q :q<CR>' - \""
 
 # FZF default options
-export FZF_DEFAULT_OPTS="--exact --multi
---bind=tab:accept,ctrl-j:accept,ctrl-space:toggle+down,ctrl-d:page-down,ctrl-u:page-up,ctrl-e:preview-page-down,ctrl-y:preview-page-up,ctrl-w:backward-kill-word"
+export FZF_DEFAULT_OPTS="--exact --multi \
+    --bind=tab:accept \
+    --bind=ctrl-j:accept \
+    --bind=ctrl-space:toggle+down \
+    --bind=ctrl-d:page-down \
+    --bind=ctrl-u:page-up \
+    --bind=ctrl-e:preview-page-down \
+    --bind=ctrl-y:preview-page-up \
+    --bind=ctrl-w:backward-kill-word"
 
 #                                FUNCTIONS                                {{{1
 # ============================================================================
