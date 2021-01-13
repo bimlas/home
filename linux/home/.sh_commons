@@ -15,7 +15,9 @@ if typeset -f __git_complete > /dev/null; then
 fi
 alias run='mosh run'
 alias mvim='vim -u ~/.vimrc_minimal'
+
 alias vagrant-restart-mysql='vagrant ssh --command "sudo service mysql restart"'
+alias vagrant-apache-log='vagrant ssh --command "sudo cat /var/log/apache2/error.log"'
 
 # Disable .vimrc in vim.tiny because of incompatible settings.
 if [[ $(which vim.tiny 2> /dev/null) ]]; then
