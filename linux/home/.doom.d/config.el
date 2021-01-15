@@ -51,6 +51,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(after! sql
+  (setq sql-port 3306
+        sql-mysql-login-params (append sql-mysql-login-params '(port))))
+
 (after! lsp-mode
   (setq
    lsp-ui-doc-delay 3.0
