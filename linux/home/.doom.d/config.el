@@ -59,7 +59,8 @@
   (setq
    lsp-ui-doc-delay 3.0
    lsp-ui-doc-max-width 120
-   lsp-ui-doc-max-height 120))
+   lsp-ui-doc-max-height 120
+   lsp-headerline-breadcrumb-enable t))
 
 (use-package! origami
   :config
