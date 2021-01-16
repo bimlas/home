@@ -111,7 +111,7 @@ DISK ${hr 2}
 # What the hell is this? It's not about "file movement"...
 # DISKIO${goto 60}${diskio}${alignr}${diskiograph 8,60}
 #
-${execp bash ~/bin/conky-media-list.sh}
+${execp bash ~/bin/conky/media-list.sh}
 
 NAME ${alignr} PID    CPU%    IO%
 ${top_io name 1} $alignr ${top_io pid 1} ${top_io cpu 1} ${top_io io_perc 1}
