@@ -24,6 +24,12 @@ if [[ $(which vim.tiny 2> /dev/null) ]]; then
   alias vim.tiny='vim.tiny -u NONE'
 fi
 
+# When exiting from Midnight Commander, switch the shell to the current
+# directory
+if [[ $(which mc 2> /dev/null) ]]; then
+  alias mc='. /usr/lib/mc/mc-wrapper.sh'
+fi
+
 if [[ $(which nnn 2> /dev/null) ]]; then
   n()
   {
