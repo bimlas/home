@@ -53,6 +53,10 @@ fi
 #                          ENVIRONMENT VARIABLES                          {{{1
 # ============================================================================
 
+# Disable translations on command line (man pages, --help, TUI, etc)
+# https://www.linuxquestions.org/questions/showthread.php?p=2274163#post2274163
+export LANGUAGE=C
+
 # Add ~/bin to $PATH.
 if [[ ! $PATH =~ $HOME/bin ]]; then
   export PATH=$HOME/bin:$PATH
