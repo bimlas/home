@@ -3,14 +3,18 @@
 #
 # Usage:
 #
-#   $ panel.sh "dirname-of-vagrant-project"
+#   Command:  vagrant-apache-log.sh "dirname-of-vagrant-project"
+#   Interval: 3
+#
+#   * Click on the text to get the latest log
+#   * Click on the icon to open the log in your editor
 
-helpers="`dirname $0`/_helpers.sh"
 log_file="/tmp/bimlas-xfce-genmon-vagrant-apache-log-$1"
 
 case "$2" in
   update)
-    vagrant ssh `"$helpers" "$1" get_machine_id` -- -C 'sudo cat /var/log/apache2/error.log' > "/tmp/bimlas-xfce-genmon-vagrant-apache-log-$1"
+    machine_id=`vagrant global-status | grep "/$1\\s*$" | awk '{print $1}'`
+    vagrant ssh "$machine_id" -- -C 'sudo cat /var/log/apache2/error.log' > "$log_file"
     ;;
   *)
     echo "<txt>Log: $1</txt>"
