@@ -334,54 +334,11 @@ if isdirectory(g:pm_dir)
     Plug 'justinmk/vim-dirvish'
   endif
 
-  " SHOUGO/UNITE.VIM                                                      {{{2
-  " fajlok/tag-ok/stb. gyors keresese - a lehetosegekert lasd :Unite
+  " JUNEGUNN/FZF.VIM                                                      {{{2
+  " the fuzzy finder
   if !exists('g:vimrc_minimal_plugins')
-    Plug 'shougo/unite.vim'
-  endif
-
-    if PluginEnabled('unite.vim')
-      autocmd vimrc VimEnter * call PostUnite()
-      function! PostUnite()
-        call unite#custom#profile('default', 'context', {
-        \ 'prompt_direction': 'top',
-        \ 'no_split':         1,
-        \ 'cursor_line_time': '0.0',
-        \ 'sync':             1,
-        \ })
-      endfunction
-
-      " Jo lenne, de pl. a ~/ nem visz el a $HOME konyvtarba.
-      " autocmd vimrc VimEnter * call unite#filters#matcher_default#use(['matcher_regexp'])
-    endif
-
-    let g:unite_source_history_yank_enable  = 1
-    " let g:unite_source_tag_show_location = 0
-    let g:unite_source_tag_max_fname_length = 70
-    let g:unite_enable_auto_select          = 0
-    let g:unite_source_buffer_time_format   = ''
-
-    " Ripgrep
-    let g:unite_source_rec_async_command  = ['rg', '--hidden', '--files']
-    let g:unite_source_grep_command       = 'rg'
-    let g:unite_source_grep_default_opts  = '--hidden --no-heading --vimgrep'
-    let g:unite_source_grep_recursive_opt = ''
-    let g:unite_source_grep_encoding      = 'utf-8'
-
-  " SHOUGO/DENITE.NVIM                                                    {{{2
-  " general fuzzy finder for files, buffers, tags, commands, everything
-  if !exists('g:vimrc_minimal_plugins') && has('python3')
-    Plug 'shougo/denite.nvim'
-    if PluginEnabled('denite.nvim')
-      autocmd vimrc VimEnter *
-      \ call denite#custom#source('_', 'matchers', ['matcher_substring'])
-    endif
-  endif
-
-  " SHOUGO/UNITE-OUTLINE                                                  {{{2
-  " tagbar-szeru, de neha jobb
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'shougo/unite-outline'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
   endif
                                                                         " }}}2
 
@@ -1312,9 +1269,6 @@ vnoremap X     dd
 nnoremap xp    xp
 nnoremap xP    xP
 
-" Korabban masolt szoveg beillesztese.
-nnoremap <Leader>p :Unite history/yank<CR>
-
 " Az ablakkezelo vagolapjanak hasznalata.
 " Hogy a <S-Insert> a sor vegen is normalisan mukodjon:
 " set virtualedit=onemore
@@ -1385,28 +1339,6 @@ endif
 let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
-
-"                                  UNITE                                  {{{3
-" ............................................................................
-
-autocmd vimrc FileType unite call UniteMaps()
-function! UniteMaps()
-  nmap <buffer>       <Esc>      <Plug>(unite_exit)
-  imap <buffer>       <C-K>      <Plug>(unite_insert_leave)
-  map  <buffer>       <C-K>      <Plug>(unite_all_exit)
-  nmap <buffer>       <C-N>      <Plug>(unite_loop_cursor_down)
-  nmap <buffer>       <C-P>      <Plug>(unite_loop_cursor_up)
-  nmap <buffer>       h          <Plug>(unite_delete_backward_path)
-  nmap <buffer>       l          <CR>
-  nmap <buffer>       S          <Plug>(unite_append_end)<C-U>
-  map  <buffer>       w          <Plug>(unite_smart_preview)
-  map  <buffer>       <C-Z>      <Plug>(unite_smart_preview)
-  imap <buffer><expr> <C-Z>      unite#do_action('preview')
-  map  <buffer><expr> <C-CR>     unite#do_action('start')
-  imap <buffer><expr> <C-CR>     unite#do_action('start')
-  nmap <buffer>       ~          <Plug>(unite_input_directory)<C-U>~/<CR><Plug>(unite_insert_leave)
-  nmap <buffer>       \          <Plug>(unite_input_directory)<C-U>/<CR><Plug>(unite_insert_leave)
-endfunction
 
 "                              TEXTOBJ-USER                               {{{3
 " ............................................................................
@@ -1494,7 +1426,7 @@ endfunction
 "
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
 
-noremap  <Space>?       :Unite mapping<CR>
+noremap  <Space>?       :Maps<CR>
 
 noremap  <Space><Space>      g<C-]>
 noremap  <C-W><Space><Space> <C-W>g<C-]>
@@ -1551,9 +1483,7 @@ nnoremap <Space>apb :BenchVimrc<CR>
 "                           <Space>b - BUFFERS                            {{{3
 " ............................................................................
 
-nnoremap <Space>bb :Unite buffer<CR>
-nnoremap <Space>bB :Unite buffer:!<CR>
-nnoremap <Space>bc :Unite -no-quit -keep-focus change<CR>
+nnoremap <Space>bb :Buffers<CR>
 nnoremap <Space>bd :bdelete<CR>
 nnoremap <Space>bD :bdelete!<CR>
 " Move to next/previous argument (:args).
@@ -1576,12 +1506,10 @@ nnoremap <Space>du :diffupdate<CR>
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap <Space>F   :find<Space>
-nnoremap <Space>fb  :Unite bookmark<CR>
 nnoremap <Space>fe  :VimFilerExplorer<CR>
-nnoremap <Space>ff  :UniteWithBufferDir file file/new directory/new <CR>
-nnoremap <Space>fF  :Unite file file/new directory/new<CR>
-nmap     <Space>fp  :Denite file_rec<CR>
-nnoremap <Space>ft  :UniteWithBufferDir file file/new directory/new  -tab<CR>
+nnoremap <Space>ff  :Dirvish %<CR>
+nnoremap <Space>fF  :Dirvish<CR>
+nmap     <Space>fp  :Files<CR>
 nnoremap <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap <Space>fvm :edit ~/.vimrc_minimal<CR>
 nnoremap <Space>fvv :edit $MYVIMRC<CR>
@@ -1613,10 +1541,9 @@ nmap     <Space>gW <Plug>(GitGutterStageHunk)
 
 map             <Space>mK  <Plug>Zeavim
 nnoremap        <Space>mg  :noautocmd vimgrep //j <C-R>=expand('%:p:h')<CR>/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
-nnoremap        <Space>mo  :Unite -start-insert outline<CR>
 noremap         <Space>mr  :QuickRun<CR>
 noremap  <expr> <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
-nnoremap        <Space>mt  :Unite -start-insert tag<CR>
+nnoremap        <Space>mt  :Tags<CR>
 
 " Testing (checking
 nnoremap        <Space>mcc :TestNearest<CR>
@@ -1690,8 +1617,9 @@ nmap <Space>qcU <Plug>CoerceU
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
+nnoremap <Space>ss :Rg<CR>
 nnoremap <Space>sg :noautocmd vimgrep //j ## <Bar> copen<Home><C-Right><C-Right><Right><Right>
-nnoremap <Space>sl :Unite -no-quit -keep-focus line<CR>
+nnoremap <Space>sl :Lines<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
 " ............................................................................
