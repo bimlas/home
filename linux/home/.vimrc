@@ -646,66 +646,19 @@ if isdirectory(g:pm_dir)
 
   " .. NEOCOMPLETE/DEOPLETE ...............
 
-  " SHOUGO/ECHODOC.VIM                                                    {{{2
-  " displays function signatures from completions in the command line
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'shougo/echodoc.vim'
-  endif
-
-    let g:echodoc_enable_at_startup = 1
-
-  " SHOUGO/NEOCOMPLETE.VIM                                                {{{2
-  " automatic code completion
-  " needs lua interface (:version +lua)
-  if !exists('g:vimrc_minimal_plugins') && !has('nvim') && has('lua')
-    Plug 'shougo/neocomplete.vim'
-    let s:complete_plugin = 'neocomplete'
-
-    let g:neocomplete#enable_fuzzy_completion = 1
-
-    " Wait before showing completions.
-    let g:neocomplete#auto_complete_delay = 500
-
-    " Allways show completions independently from the time it takes.
-    let g:neocomplete#skip_auto_completion_time = ''
-
-    if PluginEnabled('neocomplete.vim')
-      autocmd vimrc VimEnter * call neocomplete#custom#source('ultisnips', 'rank', 1000)
-    endif
-  endif
-
   " SHOUGO/DEOPLETE.NVIM                                                  {{{2
   " automatic code completion
   " $ pip3 install neovim
   if !exists('g:vimrc_minimal_plugins') && has('nvim') && has('python3')
     Plug 'shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
-    let s:complete_plugin = 'deoplete'
 
-    if PluginEnabled('deoplete.nvim')
-      autocmd vimrc VimEnter * call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy'])
-      autocmd vimrc VimEnter * call deoplete#custom#source('ultisnips', 'rank', 1000)
-    endif
-  endif
+    let g:deoplete#enable_at_startup = 1
 
-  " NEOCOMPLETE/DEOPLETE COMMON                                           {{{2
-  if !exists('g:vimrc_minimal_plugins')
-  \ && ((!has('nvim') && has('lua')) || (has('nvim') && has('python3')))
-
-    exe 'let g:' . s:complete_plugin . '#enable_at_startup = 1'
-    exe 'let g:' . s:complete_plugin . '#enable_smart_case = 1'
-
-    if !exists('g:' . s:complete_plugin . '#sources')
-      exe 'let g:' . s:complete_plugin . '#sources = {}'
-    endif
-    exe 'let g:' . s:complete_plugin . '#sources._ = ["omni", "tag", "file/include", "syntax", "vim", "ultisnips", "buffer"]'
-
-    " SHOUGO/NECO-VIM                                                     {{{3
-    " better syntax complete
-    Plug 'shougo/neco-vim'
-
-    " SHOUGO/NECO-SYNTAX                                                  {{{3
-    " better syntax complete
-    Plug 'shougo/neco-syntax'
+    autocmd vimrc VimEnter * call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy'])
+    autocmd vimrc VimEnter * call deoplete#custom#source('ultisnips', 'rank', 1000)
+    autocmd vimrc VimEnter * call deoplete#custom#option('enable_smart_case', 1)
+    autocmd vimrc VimEnter * call deoplete#custom#option('sources',
+          \ {'_': ["omni", "tag", "file/include", "syntax", "vim", "ultisnips", "buffer"]} )
 
     " SHOUGO/NEOINCLUDE.VIM                                               {{{3
     " complete from included files too
