@@ -12,5 +12,20 @@
     {
         "key": "ctrl+shift+f12",
         "command": "workbench.action.toggleZenMode"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "sqltools.executeCurrentQuery",
+        "when": " !editorHasSelection && editorLangId == 'sql'"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "sqltools.executeQuery",
+        "when": "editorHasSelection && editorLangId == 'sql'"
+    },
+    {
+        "key": "ctrl+e ctrl+e",
+        "command": "-sqltools.executeQuery",
+        "when": "editorTextFocus"
     }
 ]
