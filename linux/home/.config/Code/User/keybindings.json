@@ -27,5 +27,9 @@
         "key": "ctrl+e ctrl+e",
         "command": "-sqltools.executeQuery",
         "when": "editorTextFocus"
-    }
+    },
+    {
+        "key": "alt+9",
+        "command": "git-graph.view"
+    },
 ]

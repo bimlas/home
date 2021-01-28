@@ -18,6 +18,7 @@
     "gitlens.currentLine.enabled": false,
     "gitlens.views.commits.files.layout": "tree",
     "git-graph.commitDetailsView.location": "Docked to Bottom",
+    "autoHide.sideBarDelay": 0,
     "workbench.colorTheme": "Solarized Light",
     "workbench.settings.enableNaturalLanguageSearch": false,
     "workbench.editor.limit.enabled": true,
