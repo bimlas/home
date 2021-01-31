@@ -32,4 +32,12 @@
         "key": "alt+9",
         "command": "git-graph.view"
     },
+    {
+        "key": "f11",
+        "command": "bookmarks.toggleLabeled"
+    },
+    {
+        "key": "shift+f11",
+        "command": "bookmarks.listFromAllFiles"
+    },
 ]

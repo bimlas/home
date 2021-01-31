@@ -19,6 +19,7 @@
     "gitlens.views.commits.files.layout": "tree",
     "git-graph.commitDetailsView.location": "Docked to Bottom",
     "autoHide.sideBarDelay": 0,
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "workbench.colorTheme": "Solarized Light",
     "workbench.settings.enableNaturalLanguageSearch": false,
     "workbench.editor.limit.enabled": true,
@@ -26,5 +27,4 @@
         "terminal.foreground": "#e2dddd",
         "terminal.background": "#333333"
     }
-
 }
