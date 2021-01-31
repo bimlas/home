@@ -90,629 +90,181 @@ let g:loaded_logiPat           = 1
 let did_install_default_menus = 1
 let did_install_syntax_menu   = 1
 
-" __ NETRW ______________________________                                 {{{2
-
-" Netrw ablakanak abszolut merete.
-let g:netrw_winsize = -28
-
-" Ne legyen fejlec.
-let g:netrw_banner = 0
-
-" Eger map-ok tiltasa:
-let g:netrw_mousemaps = 0
-
-" Alapbol tree nezetben nyissa meg.
-" let g:netrw_liststyle = 3
-
-" Csak az a lenyeg, hogy a konyvtarak legyenek elol.
-let g:netrw_sort_sequence = '[\/]$,*'
-
-" Mindig az elozo ablakban nyissa meg a fajlt. (:Vexplore-nal kell)
-let g:netrw_browse_split = 4
-                                                                        " }}}2
-
 " On Windows there is no different filename for Py2 and Py3.
 let g:has_python = has('python') || has('python3')
 let g:has_ruby   = has('ruby')
 
 let g:pm_dir   = $HOME . '/.vim/vim-plug'
 let g:pm_install_dir = $HOME . '/.vim/plugins'
+let g:plugins_config_dir='~/.config/nvim/plugins'
 
 if ! (g:has_ruby || g:has_python)
   let g:plug_threads = 1
 endif
 
-" Create supply functions, variables.
-function! PluginEnabled(bundle)
-  return 0
-endfunction
-
 if isdirectory(g:pm_dir)
   exe 'source ' . g:pm_dir . '/plug.vim'
 
-  " Create supply function to check if plugin is installed.
- function! PluginEnabled(plugin)
-   return has_key(g:plugs, a:plugin) && isdirectory(g:plugs[a:plugin].dir)
- endfunction
-
   call plug#begin(g:pm_install_dir)
+
+  exe 'source ' . g:plugins_config_dir . '/netrw.vim'
 
   " .. SAJAT ..............................
 
-  " BIMLAS/DOTVIM                                                         {{{2
-  " sajat ~/.vim
-  Plug 'https://gitlab.com/bimlas/dotvim'
-
-  " BIMLAS/VIM-EIGHTHEADER                                                {{{2
-  " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
-  Plug 'https://gitlab.com/bimlas/vim-eightheader'
-
-    let g:EightHeader_comment   = 'call tcomment#Comment(line("."), line("."), "CL")'
-    let g:EightHeader_uncomment = 'call tcomment#Comment(line("."), line("."), "UL")'
-
-  " BIMLAS/VIM-HIGH                                                       {{{2
-  " all-in-one highlighter plugin
-  " WIP
-  Plug 'https://gitlab.com/bimlas/vim-high'
-
-  let g:high_lighters = {
-  \ 'words': {'_hlgroups': []},
-  \ 'unite_directory': {'whitelist': ['unite', 'denite']},
-  \ 'invisible_space': {},
-  \ }
-
-  for color in ['8ccbea', 'a4e57e', 'ffdb72', 'ff7272', 'ffb3ff', '9999ff']
-    exe 'autocmd vimrc ColorScheme,VimEnter * highlight! HighWords'.color.' guibg=#'.color.' guifg=#000000'
-    let g:high_lighters.words._hlgroups += ['HighWords'.color]
-  endfor
-
-  if PluginEnabled('vim-high')
-    autocmd vimrc CursorHold *
-    \ let pos = winnr()
-    \ | windo call high#UpdateGroups()
-    \ | exe pos.'wincmd w'
-  endif
-
-  " BIMLAS/VIM-NUMUTILS                                                   {{{2
-  " szamertekek modositasa regex alapjan
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'https://gitlab.com/bimlas/vim-numutils'
-  endif
-
-  " BIMLAS/VIM-RELATEDTAGS                                                {{{2
-  " conceptual work
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'https://gitlab.com/bimlas/vim-relatedtags'
-  endif
-                                                                        " }}}2
+  exe 'source ' . g:plugins_config_dir . '/dotvim.vim'
+  exe 'source ' . g:plugins_config_dir . '/eightheader.vim'
+  exe 'source ' . g:plugins_config_dir . '/high.vim'
+  exe 'source ' . g:plugins_config_dir . '/numutils.vim'
 
   " .. MEGJELENES .........................
   " http://bytefluent.com/vivify/
   " http://cocopon.me/app/vim-color-gallery/
   " http://vimcolors.com/
 
-  " ICYMIND/NEOSOLARIZED                                                  {{{2
-  " THE colorscheme - i tried but cannot live without it :(
-  " Actually it's a fork which works in terminal and NeoVim too.
-  Plug 'icymind/neosolarized'
-
-    let g:neosolarized_contrast = 'high'
-
-    " Make vertical split visible.
-    let g:neosolarized_vertSplitBgTrans = 0
-
-                                                                        " }}}2
-
-  " .. KURZOR MOZGATASA ...................
-
-  " EASYMOTION/VIM-EASYMOTION                                             {{{2
-  " vim motion (in buffer) on speed
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'easymotion/vim-easymotion'
-  end
-
-    let g:EasyMotion_do_mapping = 0
-    let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'
-
-    " Show target as UPPERCASE, allow jump with lowercase.
-    let g:EasyMotion_use_upper = 1
-
-    " Allow jump to foldlines too.
-    let g:EasyMotion_skipfoldedline = 0
-
-    " Stay in the same column when using <Plug>(easymotion-sol-j)
-    let g:EasyMotion_startofline = 0
-
-    if PluginEnabled('vim-easymotion')
-      autocmd vimrc VimEnter * EMCommandLineNoreMap <C-J> <CR>
-    endif
-                                                                        " }}}2
+  exe 'source ' . g:plugins_config_dir . '/neosolarized.vim'
 
   " .. TEXTOBJ-USER .......................
 
-  " KANA/VIM-TEXTOBJ-USER                                                 {{{2
-  " sajat text-object
-  Plug 'kana/vim-textobj-user'
-
-  " KANA/VIM-TEXTOBJ-ENTIRE                                               {{{2
-  " ae: az egesz buffer, ie: az elejen es vegen levo ures sorok nelkul
-  Plug 'kana/vim-textobj-entire'
-
-  " GLTS/VIM-TEXTOBJ-COMMENT                                              {{{2
-  " ic/ac: block of comment, aC: include leading/trailing blank lines
-  Plug 'glts/vim-textobj-comment'
-
-  " SAAGUERO/VIM-TEXTOBJ-PASTEDTEXT                                       {{{2
-  " gb for pasted text
-  Plug 'saaguero/vim-textobj-pastedtext'
-
-  " THINCA/VIM-TEXTOBJ-BETWEEN                                            {{{2
-  " ifX/afX for text surrounded by X
-  Plug 'thinca/vim-textobj-between'
-
-  " SGUR/VIM-TEXTOBJ-PARAMETER                                            {{{2
-  " if,/af, for function parameters
-  Plug 'sgur/vim-textobj-parameter'
-
-  " JULIAN/VIM-TEXTOBJ-VARIABLE-SEGMENT                                   {{{2
-  " _privat*e_thing -> civone -> _one_thing
-  " eggsAn*dCheese  -> dav    -> eggsCheese
-  " foo_ba*r_baz    -> dav    -> foo_baz
-  " _privat*e_thing -> dav    -> _thing
-  " _g*etJiggyYo    -> dav    -> _jiggyYo
-  Plug 'julian/vim-textobj-variable-segment'
-                                                                        " }}}2
+  exe 'source ' . g:plugins_config_dir . '/textobj-user.vim'
+  exe 'source ' . g:plugins_config_dir . '/textobj-entire.vim'
+  exe 'source ' . g:plugins_config_dir . '/textobj-comment.vim'
+  exe 'source ' . g:plugins_config_dir . '/textobj-pastedtext.vim'
+  exe 'source ' . g:plugins_config_dir . '/textobj-between.vim'
+  exe 'source ' . g:plugins_config_dir . '/textobj-parameter.vim'
+  exe 'source ' . g:plugins_config_dir . '/textobj-variable-segment.vim'
 
   " .. SZOVEG KERESESE/MODOSITASA .........
 
-  " THINCA/VIM-VISUALSTAR                                                 {{{2
-  " kijelolt szoveg keresese * gombbal
-  Plug 'thinca/vim-visualstar'
-
-  " ROMAINL/VIM-QF                                                        {{{2
-  " quckifix imrpovements
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'romainl/vim-qf'
-  endif
-
-    let g:qf_auto_open_quickfix = 0
-    let g:qf_auto_open_loclist = 0
-
-  " MACHAKANN/VIM-SANDWICH                                                {{{2
-  " paros jelek gyors cserelese/torlese
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'machakann/vim-sandwich'
-  endif
-
-    let g:sandwich_no_default_key_mappings          = 1
-    let g:operator_sandwich_no_default_key_mappings = 1
-    let g:textobj_sandwich_no_default_key_mappings  = 1
-
-  " TOMMCDO/VIM-EXCHANGE                                                  {{{2
-  " cx: exchange text-objects or selected text with each other
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'tommcdo/vim-exchange'
-  endif
-
-  " TPOPE/VIM-ABOLISH                                                     {{{2
-  " intelligens substitute
-  "   :%Subvert/facilit{y,ies}/building{,s}/g
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'tpope/vim-abolish'
-  endif
-
-  " BIMLAS/VIM-TEXTCONV                                              {{{2
-  " easily apply text conversions
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'https://github.com/bimlas/vim-textconv'
-  endif
-
-  " JUNEGUNN/VIM-EASY-ALIGN                                               {{{2
-  " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'junegunn/vim-easy-align'
-  endif
-
-    " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
-    " 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,
-    " fuggetlenul attol, hogy abban szerepelt-e.
-    let g:easy_align_delimiters = {
-    \ '|': {'pattern': '\(\(^\|\s\)\@<=\(\d\+\*\)\?\(\(\d\+\|\.\d\+\|\d\+\.\d\+\)+\)\?\([\^<>]\|\.[\^<>]\|[\^<>]\.[\^<>]\)\?[a-z]\?\)\?|', 'filter': 'v/^|=\+$/'},
-    \ 't': {'pattern': '\t'},
-    \ '\': {'pattern': '\\$', 'stick_to_left': 0, 'ignore_unmatched': 0},
-    \ '<': {'pattern': '<<$', 'stick_to_left': 0, 'ignore_unmatched': 0},
-    \ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
-    \ }
-
-                                                                        " }}}2
-
-  " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
-
-  " JUSTINMK/VIM-DIRVISH                                                  {{{2
-  " directory viewer for vim, batch execute shell commands
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'justinmk/vim-dirvish'
-  endif
-
-  " JUNEGUNN/FZF.VIM                                                      {{{2
-  " the fuzzy finder
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-  endif
-                                                                        " }}}2
+  exe 'source ' . g:plugins_config_dir . '/visualstar.vim'
 
   " .. EGYEB HASZNOSSAGOK .................
 
-  " ANDREWRADEV/LINEDIFF.VIM                                              {{{2
-  " fajl reszeinek osszehasonlitasa
-  " :Linediff kijeloles utan
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'andrewradev/linediff.vim'
-  endif
-
-  " CHRISBRA/VIM-DIFF-ENHANCED                                            {{{2
-  " use git as diffexpr
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'chrisbra/vim-diff-enhanced'
-    let &diffexpr='EnhancedDiff#Diff("git diff", "")'
-  endif
-
-  " MACHAKANN/VIM-HIGHLIGHTEDYANK                                         {{{2
-  " make the yanked region apparent
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'machakann/vim-highlightedyank'
-  endif
-
-  " TPOPE/VIM-REPEAT                                                      {{{2
-  " repeat (.) plugin-okon is
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'tpope/vim-repeat'
-  endif
-
-  " TYRU/OPEN-BROWSER.VIM                                                 {{{2
-  " instead of netrw gx
-  Plug 'tyru/open-browser.vim'
-
-  " AIRBLADE/VIM-ROOTER                                                   {{{2
-  " autochdir to project root when opening a buffer
-  "
-  "                            WARNING! DANGER!
-  "         Scripts which using the cwd will use the project root
-  " too! For example running a script with QuickRun will generate files to
-  "                     root instead of script's dir.
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'airblade/vim-rooter'
-  endif
-
-  " TPOPE/VIM-SCRIPTEASE                                                  {{{2
-  " :PP
-  "   Pretty print.  With no argument, acts as a REPL.
-  " :Runtime
-  "   Reload runtime files.  Like `:runtime!`, but it unlets any include
-  "   guards first.
-  " :Disarm
-  "   Remove a runtime file's maps, commands, and autocommands, effectively
-  "   disabling it.
-  " :Scriptnames
-  "   Load `:scriptnames` into the quickfix list.
-  " :Verbose
-  "   Capture the output of a `:verbose` invocation into the preview window.
-  " :Time
-  "   Measure how long a command takes.
-  " :Breakadd
-  "   Like its lowercase cousin, but makes it much easier to set breakpoints
-  "   inside functions.  Also :Breakdel.
-  " :Vedit
-  "   Edit a file relative the runtime path. For example, `:Vedit
-  "   plugin/scriptease.vim`. Also, `:Vsplit`, `:Vtabedit`, etc.
-  "   Extracted from [pathogen.vim](https://github.com/tpope/vim-pathogen).
-  " K
-  "   Look up the `:help` for the VimL construct under the cursor.
-  " zS
-  "   Show the active syntax highlighting groups under the cursor.
-  " g!
-  "   Eval a motion or selection as VimL and replace it with the result.
-  "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
-  "   that it probably deserves its own plugin.
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'tpope/vim-scriptease'
-  endif
-                                                                        " }}}2
-
-  " .. DEBUG/BENCHMARK/VIML DEVELOPMENT ...
-
-  "                               CHEATSHEET                               {{{
-  "
-  " Analyse startuptime:
-  "   $ vim --startuptime startup.txt
-  "
-  "   If you want to list time of function calls:
-  "   $ vim --cmd 'profile start times.txt | profile func * | profile file *'
-  "   \ -c 'profile pause' -c 'noau qall!'
-  "   $ vim -c 'set ft=vim nofoldenable' times.txt
-  "
-  "   If you want to benchmark functions of Unite for example, then use
-  "   `profile func unite*`.
-  "
-  " Debug a command
-  "   debug CommandName
-  "
-  " Debug a fucntion
-  "   debug call FunctionName(arg)
-  "
-  " Add breakpoint to function
-  "   breakadd func [lineNumber] functionName
-  "
-  " Add breakpoint to file
-  "   breakadd file [lineNumber] fileName
-  "
-  " Add breakpoint to current line of current file
-  "   breakadd here
-  "
-  " Delete breakpoint number from breaklist output
-  "   breakdel number
-  "
-  " Delete all breakpoints
-  "   breakdel *
-  "
-  " Delete breakpoint on function
-  "   breakdel func [lineNumber] functionName
-  "
-  " Delete breakpoint on file
-  "   breakdel file [lineNumber] fileName
-  "
-  " Delete breakpoint at current line of current file
-  "   breakdel here
-  "
-  " Commands in debug mode:
-  "   cont:      continue execution until the next breakpoint (if one exists)
-  "   quit:      stop current execution, but still stops at the next
-  "              breakpoint
-  "   step:      execute the current command and come back to debug mode when
-  "              it is finished
-  "   next:      like step except it also steps over function calls and
-  "              sourced files
-  "   interrupt: like quit, but returns to debug mode for the next command
-  "   finish:    finishes the current script or function and returns to debug
-  "              mode for the next command
-  "
-  " Levels of :verbose (for example :9verbose COMMAND)
-  "   >= 1  When the viminfo file is read or written.
-  "   >= 2  When a file is ":source"'ed.
-  "   >= 5  Every searched tags file and include file.
-  "   >= 8  Files for which a group of autocommands is executed.
-  "   >= 9  Every executed autocommand.
-  "   >= 12 Every executed function.
-  "   >= 13 When an exception is thrown, caught, finished, or discarded.
-  "   >= 14 Anything pending in a ":finally" clause.
-  "   >= 15 Every executed Ex command (truncated at 200 characters).
-  "
-  " To set verbose permanently:
-  "   set verbose=123
-  "
-  " To output :verbose to a file:
-  "   set verbosefile=filename.txt
-  "                                                                        }}}
-
-  " THINCA/VIM-THEMIS                                                     {{{2
-  " a unit testing framework for Vim script
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'thinca/vim-themis'
-  endif
-                                                                        " }}}2
-
-  " .. PROGRAMOZAS ........................
-
-  " TOMTOM/TCOMMENT_VIM                                                   {{{2
-  " szovegreszek kommentelese
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'tomtom/tcomment_vim'
-  endif
-
-    let g:tcomment_maps = 0
-
-  " COHAMA/LEXIMA.VIM                                                     {{{2
-  " auto insert `end` (for VimL, Ruby, etc.) and pairing chars ({, [, <, etc)
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'cohama/lexima.vim'
-  end
-
-    if PluginEnabled('lexima.vim')
-      autocmd vimrc VimEnter * call PostLexima()
-      function! PostLexima()
-        for key in ['Describe', 'Before', 'It']
-          call lexima#add_rule({
-          \ 'filetype': 'vimspec',
-          \ 'at': '^\s*'.key.'\>.*\%#',
-          \ 'char': '<CR>',
-          \ 'input': '<CR>',
-          \ 'input_after': '<CR>End',
-          \ })
-        endfor
-      endfunction
-    endif
-
-    " Do not insert closing paired characters ('>', '}', '"').
-    let g:lexima_enable_basic_rules = 0
-
-    " Smacks up the popup menu (sometimes it selects the first element when I
-    " hiting space).
-    let g:lexima_enable_space_rules = 0
-
-  " THINCA/VIM-QUICKRUN                                                   {{{2
-  " buffer, vagy kijelolt kod futtatasa
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'thinca/vim-quickrun'
-  endif
-
-    let g:quickrun_no_default_key_mappings = 1
-    " \     'hook/output_encode/encoding': 'default',
-    let g:quickrun_config = {
-    \  '_':
-    \  {
-    \    'outputter':                     'buffer',
-    \    'outputter/buffer/running_mark': '... RUNNING ...',
-    \    'hook/cd/directory':             '%S:p:h',
-    \    'hook/shebang/enable':           has('win32') ? 0 : 1,
-    \  },
-    \  'asciidoc':
-    \  {
-    \    'command':   'asciidoctor',
-    \    'cmdopt':    '-o -',
-    \    'outputter': 'browser'
-    \  },
-    \  'text':
-    \  {
-    \    'command':   'asciidoctor',
-    \    'cmdopt':    '-o -',
-    \    'outputter': 'browser'
-    \  },
-    \  'vimspec' :
-    \  {
-    \   'command' : g:pm_install_dir . '/vim-themis/bin/themis',
-    \   'cmdopt'  : '--runtimepath ".."',
-    \   'exec'    : '%c %o %s:p'
-    \  },
-    \  'rubyCustom':
-    \  {
-    \    'command': 'irb'
-    \  },
-    \}
-
-    autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | endif
-
-    " SUKIMA/VIM-TIDDLYWIKI                                                {{{
-    " syntax highlighting for .tid files
-    Plug 'sukima/vim-tiddlywiki'
-                                                                        " }}}2
+  exe 'source ' . g:plugins_config_dir . '/open-browser.vim'
 
   " .. FAJLTIPUSOK ........................
 
-  " HABAMAX/VIM-ASCIIDOCTOR                                             " {{{2
-  " szovegreszek kommentelese
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'habamax/vim-asciidoctor'
+  exe 'source ' . g:plugins_config_dir . '/asciidoctor.vim'
 
-    let g:asciidoctor_syntax_conceal = 1
-    let g:asciidoctor_folding = 1
-    let g:asciidoctor_fold_options = 1
-    let g:asciidoctor_fenced_languages = ['javascript', 'php','python']
+  if(!exists('g:vimrc_minimal_plugins'))
+
+    " .. KURZOR MOZGATASA ...................
+
+    exe 'source ' . g:plugins_config_dir . '/easymotion.vim'
+
+    " .. SZOVEG KERESESE/MODOSITASA .........
+
+    exe 'source ' . g:plugins_config_dir . '/qf.vim'
+    exe 'source ' . g:plugins_config_dir . '/sandwich.vim'
+    exe 'source ' . g:plugins_config_dir . '/abolish.vim'
+    exe 'source ' . g:plugins_config_dir . '/exchange.vim'
+    exe 'source ' . g:plugins_config_dir . '/easy-align.vim'
+    exe 'source ' . g:plugins_config_dir . '/textconv.vim'
+
+    " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
+
+    exe 'source ' . g:plugins_config_dir . '/dirvish.vim'
+    exe 'source ' . g:plugins_config_dir . '/fzf.vim'
+
+    " .. EGYEB HASZNOSSAGOK .................
+
+    exe 'source ' . g:plugins_config_dir . '/linediff.vim'
+    exe 'source ' . g:plugins_config_dir . '/highlightedyank.vim'
+    exe 'source ' . g:plugins_config_dir . '/diff-enhanced.vim'
+    exe 'source ' . g:plugins_config_dir . '/repeat.vim'
+    exe 'source ' . g:plugins_config_dir . '/scriptease.vim'
+    exe 'source ' . g:plugins_config_dir . '/rooter.vim'
+
+    " .. PROGRAMOZAS ........................
+
+    exe 'source ' . g:plugins_config_dir . '/tcomment.vim'
+    exe 'source ' . g:plugins_config_dir . '/lexima.vim'
+    exe 'source ' . g:plugins_config_dir . '/quickrun.vim'
+    exe 'source ' . g:plugins_config_dir . '/deoplete.vim'
+    exe 'source ' . g:plugins_config_dir . '/snippets.vim'
+
+    " .. GIT ................................
+
+    exe 'source ' . g:plugins_config_dir . '/gina.vim'
+    exe 'source ' . g:plugins_config_dir . '/gitgutter.vim'
+
+    " .. DEBUG/BENCHMARK/VIML DEVELOPMENT ...
+
+    "                               CHEATSHEET                               {{{
+    "
+    " Analyse startuptime:
+    "   $ vim --startuptime startup.txt
+    "
+    "   If you want to list time of function calls:
+    "   $ vim --cmd 'profile start times.txt | profile func * | profile file *'
+    "   \ -c 'profile pause' -c 'noau qall!'
+    "   $ vim -c 'set ft=vim nofoldenable' times.txt
+    "
+    "   If you want to benchmark functions of Unite for example, then use
+    "   `profile func unite*`.
+    "
+    " Debug a command
+    "   debug CommandName
+    "
+    " Debug a fucntion
+    "   debug call FunctionName(arg)
+    "
+    " Add breakpoint to function
+    "   breakadd func [lineNumber] functionName
+    "
+    " Add breakpoint to file
+    "   breakadd file [lineNumber] fileName
+    "
+    " Add breakpoint to current line of current file
+    "   breakadd here
+    "
+    " Delete breakpoint number from breaklist output
+    "   breakdel number
+    "
+    " Delete all breakpoints
+    "   breakdel *
+    "
+    " Delete breakpoint on function
+    "   breakdel func [lineNumber] functionName
+    "
+    " Delete breakpoint on file
+    "   breakdel file [lineNumber] fileName
+    "
+    " Delete breakpoint at current line of current file
+    "   breakdel here
+    "
+    " Commands in debug mode:
+    "   cont:      continue execution until the next breakpoint (if one exists)
+    "   quit:      stop current execution, but still stops at the next
+    "              breakpoint
+    "   step:      execute the current command and come back to debug mode when
+    "              it is finished
+    "   next:      like step except it also steps over function calls and
+    "              sourced files
+    "   interrupt: like quit, but returns to debug mode for the next command
+    "   finish:    finishes the current script or function and returns to debug
+    "              mode for the next command
+    "
+    " Levels of :verbose (for example :9verbose COMMAND)
+    "   >= 1  When the viminfo file is read or written.
+    "   >= 2  When a file is ":source"'ed.
+    "   >= 5  Every searched tags file and include file.
+    "   >= 8  Files for which a group of autocommands is executed.
+    "   >= 9  Every executed autocommand.
+    "   >= 12 Every executed function.
+    "   >= 13 When an exception is thrown, caught, finished, or discarded.
+    "   >= 14 Anything pending in a ":finally" clause.
+    "   >= 15 Every executed Ex command (truncated at 200 characters).
+    "
+    " To set verbose permanently:
+    "   set verbose=123
+    "
+    " To output :verbose to a file:
+    "   set verbosefile=filename.txt
+    "                                                                        }}}
+
+    exe 'source ' . g:plugins_config_dir . '/themis.vim'
+
   endif
-                                                                        " }}}2
-
-  " .. NEOCOMPLETE/DEOPLETE ...............
-
-  " SHOUGO/DEOPLETE.NVIM                                                  {{{2
-  " automatic code completion
-  " $ pip3 install neovim
-  if !exists('g:vimrc_minimal_plugins') && has('nvim') && has('python3')
-    Plug 'shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
-
-    let g:deoplete#enable_at_startup = 1
-
-    autocmd vimrc VimEnter * call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy'])
-    autocmd vimrc VimEnter * call deoplete#custom#source('ultisnips', 'rank', 1000)
-    autocmd vimrc VimEnter * call deoplete#custom#option('enable_smart_case', 1)
-    autocmd vimrc VimEnter * call deoplete#custom#option('sources',
-          \ {'_': ["omni", "tag", "file/include", "syntax", "vim", "ultisnips", "buffer"]} )
-
-    " SHOUGO/NEOINCLUDE.VIM                                               {{{3
-    " complete from included files too
-    Plug 'shougo/neoinclude.vim'
-  endif
-
-  " SIRVER/ULTISNIPS                                                      {{{2
-  " template engine (see on GitHub: it's awesome!)
-  " NOTE: it has a filetype autocommand which fails if the plugin is not
-  " activated, so the trigger is `on_ft`.
-  if !exists('g:vimrc_minimal_plugins') && g:has_python
-    Plug 'sirver/ultisnips'
-  endif
-
-    let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
-    let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-    let g:UltiSnipsListSnippets        = '<C-G>'
-
-  " HONZA/VIM-SNIPPETS                                                    {{{2
-  " templates
-  if !exists('g:vimrc_minimal_plugins') && g:has_python
-    Plug 'honza/vim-snippets'
-  endif
-                                                                        " }}}2
-
-  " .. GIT ................................
-
-  " LAMBDALISUE/GINA.VIM                                                  {{{2
-  " git integration
-  " $ install git
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'lambdalisue/gina.vim'
-  endif
-
-    if PluginEnabled('gina.vim')
-      autocmd vimrc VimEnter * call PostGina()
-      function! PostGina()
-        call gina#custom#command#option('status', '--branch')
-        call gina#custom#command#alias('status', 's')
-
-        call gina#custom#command#option('show', '-p|--patch')
-        call gina#custom#command#option('show', '--stat')
-        call gina#custom#command#alias('show', 'sw')
-        call gina#custom#command#option('sw', '-p|--patch')
-        call gina#custom#command#option('sw', '--stat')
-
-        call gina#custom#command#alias('log', 'l')
-        call gina#custom#command#option('l', '--graph')
-        call gina#custom#command#alias('log', 'la')
-        call gina#custom#command#option('la', '--graph')
-        call gina#custom#command#option('la', '--all')
-        call gina#custom#command#alias('log', 'las')
-        call gina#custom#command#option('las', '--graph')
-        call gina#custom#command#option('las', '--all')
-        call gina#custom#command#option('las', '--simplify-by-decoration')
-
-        call gina#custom#command#option('diff', '--stat')
-        call gina#custom#command#option('diff', '-p|--patch')
-        call gina#custom#command#alias('diff', 'df')
-        call gina#custom#command#option('df', '--stat')
-        call gina#custom#command#option('df', '-p|--patch')
-        call gina#custom#command#alias('diff', 'dfc')
-        call gina#custom#command#option('dfc', '--stat')
-        call gina#custom#command#option('dfc', '-p|--patch')
-        call gina#custom#command#option('dfc', '--cached')
-
-        call gina#custom#command#alias('commit', 'c')
-        call gina#custom#command#alias('commit', 'ca')
-        call gina#custom#command#option('ca', '--amend')
-      endfunction
-    endif
-
-  " AIRBLADE/VIM-GITGUTTER                                              " {{{2
-  " show git status of lines on the sign column
-  " $ install git
-  if !exists('g:vimrc_minimal_plugins')
-    Plug 'airblade/vim-gitgutter'
-  endif
-
-  if PluginEnabled('vim-gitgutter')
-    let g:gitgutter_map_keys = 0
-
-    " Update only on file open/write
-    let g:gitgutter_realtime = 0
-    let g:gitgutter_eager = 0
-  endif
-                                                                        " }}}2
-
-  " .. BROWSER EXTENSION ..................
-
-  " GLACAMBRE/FIRENVIM                                                  " {{{2
-  " use neovim in browser's textareas
-  " https://github.com/glacambre/firenvim
-  if has('nvim')
-    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-  endif
-                                                                        " }}}2
 
   call plug#end()
 else
@@ -919,7 +471,7 @@ set wildmode=longest,list,full
 set path=.
 
 " Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-if PluginEnabled('dotvim') | set showtabline=2 tabline=%!dotvim#shorttabline#call() | endif
+set showtabline=2
 
 " Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
 let &fillchars = 'vert: ,stl: ,stlnc: '
@@ -1112,11 +664,6 @@ set cinoptions=(0,t0,W2
 " Behuzas szerint kulonuljenek el a blokkok.
 set foldmethod=marker
 
-" Sajat foldheader.
-if PluginEnabled('vim-eightheader')
-\ | let &foldtext = "EightHeaderFolds(&tw, 'left', [ repeat('  ', v:foldlevel - 1), repeat(' ', v:foldlevel - 1) . '.', '' ], '', '')"
-\ | endif
-
 "                                  DIFFEXPR                               {{{1
 " ============================================================================
 "
@@ -1213,11 +760,7 @@ nnoremap Q <Nop>
 nnoremap <C-G> 1<C-G>
 
 " Update everything, not just the screen.
-if PluginEnabled('vim-gitgutter')
-  nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart <Bar> GitGutterAll<CR><C-L>
-else
-  nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart<CR><C-L>
-endif
+nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart<CR><C-L>
 
 " Inserting digraphs.
 nnoremap <Leader><C-K> a<C-K>
@@ -1308,30 +851,6 @@ function! NetrwLynxMap()
   map <buffer> l <CR>
 endfunction
 
-"                               EASYMOTION                                {{{3
-" ............................................................................
-
-if PluginEnabled('vim-easymotion')
-  map s         <Plug>(easymotion-s2)
-  map t         <Plug>(easymotion-tl)
-  map T         <Plug>(easymotion-Tl)
-  map t         <Plug>(easymotion-tl)
-  map T         <Plug>(easymotion-Tl)
-  map f         <Plug>(easymotion-fl)
-  map F         <Plug>(easymotion-Fl)
-  map <Leader>n <Plug>(easymotion-n)
-  map <Leader>N <Plug>(easymotion-N)
-  map é         <Plug>(easymotion-next)
-  map É         <Plug>(easymotion-prev)
-endif
-
-"                           VIM-HIGHLIGHTEDYANK                           {{{3
-" ............................................................................
-
-if PluginEnabled('vim-highlightedyank')
-  map y <Plug>(highlightedyank)
-endif
-
 "                               OPENBROWSER                               {{{3
 " ............................................................................
 
@@ -1385,21 +904,6 @@ function! TextObjMapsPython()
   vmap <buffer> af <Plug>(textobj-python-function-a)
   vmap <buffer> if <Plug>(textobj-python-function-i)
 endfunction
-
-" Blokkok, vagy tablazatok kijelolese - a kurzor elotti blokkhatarolot veszi
-" alapul. Minden olyan sort, ahol csak ugyanaz a karakter szerepel
-" blokkhatarnak veszi. A tablazatokat a ^.=\+$ formaban keresi meg, mert lehet
-" pl. |===, vagy ;=== is.
-autocmd vimrc FileType asciidoc,asciidoctor if PluginEnabled('vim-textobj-user') |
-\ call textobj#user#plugin('adocblock', {
-\   '-': {
-\     'select-a-function': 'AdocBlockA',
-\     'select-a':          'ab',
-\     'select-i-function': 'AdocBlockI',
-\     'select-i':          'ib',
-\   }
-\ })
-\ | endif
 
 function! AdocBlockA()
   if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
