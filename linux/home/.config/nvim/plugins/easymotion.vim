@@ -1,4 +1,3 @@
-" EASYMOTION/VIM-EASYMOTION
 " vim motion (in buffer) on speed
 Plug 'easymotion/vim-easymotion'
 

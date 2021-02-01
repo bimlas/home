@@ -1,4 +1,3 @@
-" BIMLAS/VIM-EIGHTHEADER
 " (fold)header-ek letrehozasa, egyeni foldtext, tartalomjegyzek formazasa...
 Plug 'https://gitlab.com/bimlas/vim-eightheader'
 

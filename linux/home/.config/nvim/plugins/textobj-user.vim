@@ -1,4 +1,3 @@
-" KANA/VIM-TEXTOBJ-USER
 " sajat text-object
 Plug 'kana/vim-textobj-user'
 

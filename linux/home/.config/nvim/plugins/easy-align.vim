@@ -1,4 +1,3 @@
-" JUNEGUNN/VIM-EASY-ALIGN
 " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
 Plug 'junegunn/vim-easy-align'
 

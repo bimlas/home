@@ -1,4 +1,3 @@
-" HABAMAX/VIM-ASCIIDOCTOR                                             "
 " szovegreszek kommentelese
 Plug 'habamax/vim-asciidoctor'
 

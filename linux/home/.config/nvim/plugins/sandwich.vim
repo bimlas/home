@@ -1,4 +1,3 @@
-" MACHAKANN/VIM-SANDWICH
 " paros jelek gyors cserelese/torlese
 Plug 'machakann/vim-sandwich'
 

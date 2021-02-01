@@ -1,5 +1,3 @@
-" __ NETRW ______________________________
-
 " Netrw ablakanak abszolut merete.
 let g:netrw_winsize = -28
 

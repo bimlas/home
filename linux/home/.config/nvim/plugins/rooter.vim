@@ -1,4 +1,3 @@
-" AIRBLADE/VIM-ROOTER
 " autochdir to project root when opening a buffer
 "
 "                            WARNING! DANGER!

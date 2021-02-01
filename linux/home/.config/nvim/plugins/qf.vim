@@ -1,4 +1,3 @@
-" ROMAINL/VIM-QF
 " quckifix imrpovements
 Plug 'romainl/vim-qf'
 

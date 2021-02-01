@@ -1,4 +1,3 @@
-" TPOPE/VIM-SCRIPTEASE
 " :PP
 "   Pretty print.  With no argument, acts as a REPL.
 " :Runtime

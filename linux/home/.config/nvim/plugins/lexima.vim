@@ -1,4 +1,3 @@
-" COHAMA/LEXIMA.VIM
 " auto insert `end` (for VimL, Ruby, etc.) and pairing chars ({, [, <, etc)
 Plug 'cohama/lexima.vim'
 

@@ -1,4 +1,3 @@
-" THINCA/VIM-QUICKRUN
 " buffer, vagy kijelolt kod futtatasa
 Plug 'thinca/vim-quickrun'
 

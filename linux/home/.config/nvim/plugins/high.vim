@@ -1,4 +1,3 @@
-" BIMLAS/VIM-HIGH
 " all-in-one highlighter plugin
 " WIP
 Plug 'https://gitlab.com/bimlas/vim-high'

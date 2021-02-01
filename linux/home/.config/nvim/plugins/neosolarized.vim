@@ -1,4 +1,3 @@
-" ICYMIND/NEOSOLARIZED
 " THE colorscheme - i tried but cannot live without it :(
 " Actually it's a fork which works in terminal and NeoVim too.
 Plug 'icymind/neosolarized'

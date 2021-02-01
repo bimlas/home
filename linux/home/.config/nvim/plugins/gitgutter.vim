@@ -1,4 +1,3 @@
-" AIRBLADE/VIM-GITGUTTER                                              "
 " show git status of lines on the sign column
 " $ install git
 Plug 'airblade/vim-gitgutter'

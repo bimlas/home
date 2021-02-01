@@ -1,4 +1,3 @@
-" MACHAKANN/VIM-HIGHLIGHTEDYANK
 " make the yanked region apparent
 Plug 'machakann/vim-highlightedyank'
 

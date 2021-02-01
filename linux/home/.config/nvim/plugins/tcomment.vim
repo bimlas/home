@@ -1,4 +1,3 @@
-" TOMTOM/TCOMMENT_VIM
 " szovegreszek kommentelese
 Plug 'tomtom/tcomment_vim'
 

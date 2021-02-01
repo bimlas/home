@@ -1,4 +1,3 @@
-" LAMBDALISUE/GINA.VIM
 " git integration
 " $ install git
 Plug 'lambdalisue/gina.vim'

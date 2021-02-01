@@ -1,4 +1,3 @@
-" SHOUGO/DEOPLETE.NVIM
 " automatic code completion
 " $ pip3 install neovim
 if has('nvim') && has('python3')

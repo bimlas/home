@@ -1,4 +1,3 @@
-" BIMLAS/DOTVIM
 " sajat ~/.vim
 Plug 'https://gitlab.com/bimlas/dotvim'
 
