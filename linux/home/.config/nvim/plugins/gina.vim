@@ -1,9 +1,7 @@
 " LAMBDALISUE/GINA.VIM
 " git integration
 " $ install git
-if !exists('g:vimrc_minimal_plugins')
-  Plug 'lambdalisue/gina.vim'
-endif
+Plug 'lambdalisue/gina.vim'
 
 autocmd vimrc VimEnter * call PostGina()
 function! PostGina()

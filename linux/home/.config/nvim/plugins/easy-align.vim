@@ -1,8 +1,6 @@
 " JUNEGUNN/VIM-EASY-ALIGN
 " szoveg igazitasa nagyon intelligens modon, regex kifejezesekkel
-if !exists('g:vimrc_minimal_plugins')
-  Plug 'junegunn/vim-easy-align'
-endif
+Plug 'junegunn/vim-easy-align'
 
 " A | az asciidoctor-nak megfelelo formazasokat is felismeri, az
 " 'ignore_unmatched' miatt a leghosszabb sor vege utan fog kerulni a pattern,

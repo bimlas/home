@@ -28,6 +28,4 @@
 "   Eval a motion or selection as VimL and replace it with the result.
 "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
 "   that it probably deserves its own plugin.
-if !exists('g:vimrc_minimal_plugins')
-  Plug 'tpope/vim-scriptease'
-endif
+Plug 'tpope/vim-scriptease'

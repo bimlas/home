@@ -1,8 +1,6 @@
 " EASYMOTION/VIM-EASYMOTION
 " vim motion (in buffer) on speed
-if !exists('g:vimrc_minimal_plugins')
-  Plug 'easymotion/vim-easymotion'
-end
+Plug 'easymotion/vim-easymotion'
 
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_keys = 'ASDFGHJKLUIOPQWER'

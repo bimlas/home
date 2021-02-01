@@ -1,7 +1,5 @@
 " TOMTOM/TCOMMENT_VIM
 " szovegreszek kommentelese
-if !exists('g:vimrc_minimal_plugins')
-  Plug 'tomtom/tcomment_vim'
-endif
+Plug 'tomtom/tcomment_vim'
 
 let g:tcomment_maps = 0

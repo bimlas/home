@@ -1,8 +1,6 @@
 " COHAMA/LEXIMA.VIM
 " auto insert `end` (for VimL, Ruby, etc.) and pairing chars ({, [, <, etc)
-if !exists('g:vimrc_minimal_plugins')
-  Plug 'cohama/lexima.vim'
-end
+Plug 'cohama/lexima.vim'
 
 autocmd vimrc VimEnter * call PostLexima()
 function! PostLexima()

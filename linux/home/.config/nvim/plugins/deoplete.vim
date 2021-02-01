@@ -1,7 +1,7 @@
 " SHOUGO/DEOPLETE.NVIM
 " automatic code completion
 " $ pip3 install neovim
-if !exists('g:vimrc_minimal_plugins') && has('nvim') && has('python3')
+if has('nvim') && has('python3')
   Plug 'shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
 
   let g:deoplete#enable_at_startup = 1
@@ -12,7 +12,7 @@ if !exists('g:vimrc_minimal_plugins') && has('nvim') && has('python3')
   autocmd vimrc VimEnter * call deoplete#custom#option('sources',
         \ {'_': ["omni", "tag", "file/include", "syntax", "vim", "ultisnips", "buffer"]} )
 
-  " SHOUGO/NEOINCLUDE.VIM                                               {{{3
+  " SHOUGO/NEOINCLUDE.VIM
   " complete from included files too
   Plug 'shougo/neoinclude.vim'
 endif
@@ -21,10 +21,10 @@ endif
 " template engine (see on GitHub: it's awesome!)
 " NOTE: it has a filetype autocommand which fails if the plugin is not
 " activated, so the trigger is `on_ft`.
-if !exists('g:vimrc_minimal_plugins') && g:has_python
+if g:has_python
   Plug 'sirver/ultisnips'
-endif
 
-let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-let g:UltiSnipsListSnippets        = '<C-G>'
+  let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
+  let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+  let g:UltiSnipsListSnippets        = '<C-G>'
+endif

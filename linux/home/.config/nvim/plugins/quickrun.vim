@@ -1,8 +1,6 @@
 " THINCA/VIM-QUICKRUN
 " buffer, vagy kijelolt kod futtatasa
-if !exists('g:vimrc_minimal_plugins')
-  Plug 'thinca/vim-quickrun'
-endif
+Plug 'thinca/vim-quickrun'
 
 let g:quickrun_no_default_key_mappings = 1
 " \     'hook/output_encode/encoding': 'default',
