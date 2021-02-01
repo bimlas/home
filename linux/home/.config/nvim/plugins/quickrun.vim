@@ -23,12 +23,6 @@ let g:quickrun_config = {
       \    'cmdopt':    '-o -',
       \    'outputter': 'browser'
       \  },
-      \  'vimspec' :
-      \  {
-      \   'command' : g:pm_install_dir . '/vim-themis/bin/themis',
-      \   'cmdopt'  : '--runtimepath ".."',
-      \   'exec'    : '%c %o %s:p'
-      \  },
       \  'rubyCustom':
       \  {
       \    'command': 'irb'

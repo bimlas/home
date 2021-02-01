@@ -90,212 +90,167 @@ let g:loaded_logiPat           = 1
 let did_install_default_menus = 1
 let did_install_syntax_menu   = 1
 
-let g:pm_dir   = $HOME . '/.vim/vim-plug'
-let g:pm_install_dir = $HOME . '/.vim/plugins'
-let g:plugins_config_dir='~/.config/nvim/plugins'
+call bimlas#plugins#configure('netrw')
 
-if ! (has('ruby') || has('python3'))
-  let g:plug_threads = 1
-endif
+" .. SAJAT ..............................
 
-if isdirectory(g:pm_dir)
-  exe 'source ' . g:pm_dir . '/plug.vim'
+call bimlas#plugins#configure('dotvim')
+call bimlas#plugins#configure('eightheader')
+call bimlas#plugins#configure('high')
+call bimlas#plugins#configure('numutils')
 
-  call plug#begin(g:pm_install_dir)
+" .. MEGJELENES .........................
+" http://bytefluent.com/vivify/
+" http://cocopon.me/app/vim-color-gallery/
+" http://vimcolors.com/
 
-  exe 'source ' . g:plugins_config_dir . '/netrw.vim'
+call bimlas#plugins#configure('neosolarized')
 
-  " .. SAJAT ..............................
+" .. TEXTOBJ-USER .......................
 
-  exe 'source ' . g:plugins_config_dir . '/dotvim.vim'
-  exe 'source ' . g:plugins_config_dir . '/eightheader.vim'
-  exe 'source ' . g:plugins_config_dir . '/high.vim'
-  exe 'source ' . g:plugins_config_dir . '/numutils.vim'
+call bimlas#plugins#configure('textobj-user')
+call bimlas#plugins#configure('textobj-entire')
+call bimlas#plugins#configure('textobj-comment')
+call bimlas#plugins#configure('textobj-pastedtext')
+call bimlas#plugins#configure('textobj-between')
+call bimlas#plugins#configure('textobj-parameter')
+call bimlas#plugins#configure('textobj-variable-segment')
 
-  " .. MEGJELENES .........................
-  " http://bytefluent.com/vivify/
-  " http://cocopon.me/app/vim-color-gallery/
-  " http://vimcolors.com/
+" .. SZOVEG KERESESE/MODOSITASA .........
 
-  exe 'source ' . g:plugins_config_dir . '/neosolarized.vim'
+call bimlas#plugins#configure('visualstar')
 
-  " .. TEXTOBJ-USER .......................
+" .. EGYEB HASZNOSSAGOK .................
 
-  exe 'source ' . g:plugins_config_dir . '/textobj-user.vim'
-  exe 'source ' . g:plugins_config_dir . '/textobj-entire.vim'
-  exe 'source ' . g:plugins_config_dir . '/textobj-comment.vim'
-  exe 'source ' . g:plugins_config_dir . '/textobj-pastedtext.vim'
-  exe 'source ' . g:plugins_config_dir . '/textobj-between.vim'
-  exe 'source ' . g:plugins_config_dir . '/textobj-parameter.vim'
-  exe 'source ' . g:plugins_config_dir . '/textobj-variable-segment.vim'
+call bimlas#plugins#configure('open-browser')
+
+" .. FAJLTIPUSOK ........................
+
+call bimlas#plugins#configure('asciidoctor')
+
+if(!exists('g:vimrc_minimal_plugins'))
+
+  " .. KURZOR MOZGATASA ...................
+
+  call bimlas#plugins#configure('easymotion')
 
   " .. SZOVEG KERESESE/MODOSITASA .........
 
-  exe 'source ' . g:plugins_config_dir . '/visualstar.vim'
+  call bimlas#plugins#configure('qf')
+  call bimlas#plugins#configure('sandwich')
+  call bimlas#plugins#configure('abolish')
+  call bimlas#plugins#configure('exchange')
+  call bimlas#plugins#configure('easy-align')
+  call bimlas#plugins#configure('textconv')
+
+  " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
+
+  call bimlas#plugins#configure('dirvish')
+  call bimlas#plugins#configure('fzf')
 
   " .. EGYEB HASZNOSSAGOK .................
 
-  exe 'source ' . g:plugins_config_dir . '/open-browser.vim'
+  call bimlas#plugins#configure('linediff')
+  call bimlas#plugins#configure('highlightedyank')
+  call bimlas#plugins#configure('diff-enhanced')
+  call bimlas#plugins#configure('repeat')
+  call bimlas#plugins#configure('scriptease')
+  call bimlas#plugins#configure('rooter')
 
-  " .. FAJLTIPUSOK ........................
+  " .. PROGRAMOZAS ........................
 
-  exe 'source ' . g:plugins_config_dir . '/asciidoctor.vim'
+  call bimlas#plugins#configure('tcomment')
+  call bimlas#plugins#configure('lexima')
+  call bimlas#plugins#configure('quickrun')
+  call bimlas#plugins#configure('deoplete')
+  call bimlas#plugins#configure('ultisnips')
+  call bimlas#plugins#configure('snippets')
 
-  if(!exists('g:vimrc_minimal_plugins'))
+  " .. GIT ................................
 
-    " .. KURZOR MOZGATASA ...................
+  call bimlas#plugins#configure('gina')
+  call bimlas#plugins#configure('gitgutter')
 
-    exe 'source ' . g:plugins_config_dir . '/easymotion.vim'
+  " .. DEBUG/BENCHMARK/VIML DEVELOPMENT ...
 
-    " .. SZOVEG KERESESE/MODOSITASA .........
+  "                               CHEATSHEET                               {{{
+  "
+  " Analyse startuptime:
+  "   $ vim --startuptime startup.txt
+  "
+  "   If you want to list time of function calls:
+  "   $ vim --cmd 'profile start times.txt | profile func * | profile file *'
+  "   \ -c 'profile pause' -c 'noau qall!'
+  "   $ vim -c 'set ft=vim nofoldenable' times.txt
+  "
+  "   If you want to benchmark functions of Unite for example, then use
+  "   `profile func unite*`.
+  "
+  " Debug a command
+  "   debug CommandName
+  "
+  " Debug a fucntion
+  "   debug call FunctionName(arg)
+  "
+  " Add breakpoint to function
+  "   breakadd func [lineNumber] functionName
+  "
+  " Add breakpoint to file
+  "   breakadd file [lineNumber] fileName
+  "
+  " Add breakpoint to current line of current file
+  "   breakadd here
+  "
+  " Delete breakpoint number from breaklist output
+  "   breakdel number
+  "
+  " Delete all breakpoints
+  "   breakdel *
+  "
+  " Delete breakpoint on function
+  "   breakdel func [lineNumber] functionName
+  "
+  " Delete breakpoint on file
+  "   breakdel file [lineNumber] fileName
+  "
+  " Delete breakpoint at current line of current file
+  "   breakdel here
+  "
+  " Commands in debug mode:
+  "   cont:      continue execution until the next breakpoint (if one exists)
+  "   quit:      stop current execution, but still stops at the next
+  "              breakpoint
+  "   step:      execute the current command and come back to debug mode when
+  "              it is finished
+  "   next:      like step except it also steps over function calls and
+  "              sourced files
+  "   interrupt: like quit, but returns to debug mode for the next command
+  "   finish:    finishes the current script or function and returns to debug
+  "              mode for the next command
+  "
+  " Levels of :verbose (for example :9verbose COMMAND)
+  "   >= 1  When the viminfo file is read or written.
+  "   >= 2  When a file is ":source"'ed.
+  "   >= 5  Every searched tags file and include file.
+  "   >= 8  Files for which a group of autocommands is executed.
+  "   >= 9  Every executed autocommand.
+  "   >= 12 Every executed function.
+  "   >= 13 When an exception is thrown, caught, finished, or discarded.
+  "   >= 14 Anything pending in a ":finally" clause.
+  "   >= 15 Every executed Ex command (truncated at 200 characters).
+  "
+  " To set verbose permanently:
+  "   set verbose=123
+  "
+  " To output :verbose to a file:
+  "   set verbosefile=filename.txt
+  "                                                                        }}}
 
-    exe 'source ' . g:plugins_config_dir . '/qf.vim'
-    exe 'source ' . g:plugins_config_dir . '/sandwich.vim'
-    exe 'source ' . g:plugins_config_dir . '/abolish.vim'
-    exe 'source ' . g:plugins_config_dir . '/exchange.vim'
-    exe 'source ' . g:plugins_config_dir . '/easy-align.vim'
-    exe 'source ' . g:plugins_config_dir . '/textconv.vim'
+  call bimlas#plugins#configure('themis')
 
-    " .. FAJLOK/BUFFEREK/STB. BONGESZESE ....
-
-    exe 'source ' . g:plugins_config_dir . '/dirvish.vim'
-    exe 'source ' . g:plugins_config_dir . '/fzf.vim'
-
-    " .. EGYEB HASZNOSSAGOK .................
-
-    exe 'source ' . g:plugins_config_dir . '/linediff.vim'
-    exe 'source ' . g:plugins_config_dir . '/highlightedyank.vim'
-    exe 'source ' . g:plugins_config_dir . '/diff-enhanced.vim'
-    exe 'source ' . g:plugins_config_dir . '/repeat.vim'
-    exe 'source ' . g:plugins_config_dir . '/scriptease.vim'
-    exe 'source ' . g:plugins_config_dir . '/rooter.vim'
-
-    " .. PROGRAMOZAS ........................
-
-    exe 'source ' . g:plugins_config_dir . '/tcomment.vim'
-    exe 'source ' . g:plugins_config_dir . '/lexima.vim'
-    exe 'source ' . g:plugins_config_dir . '/quickrun.vim'
-    exe 'source ' . g:plugins_config_dir . '/deoplete.vim'
-    exe 'source ' . g:plugins_config_dir . '/snippets.vim'
-
-    " .. GIT ................................
-
-    exe 'source ' . g:plugins_config_dir . '/gina.vim'
-    exe 'source ' . g:plugins_config_dir . '/gitgutter.vim'
-
-    " .. DEBUG/BENCHMARK/VIML DEVELOPMENT ...
-
-    "                               CHEATSHEET                               {{{
-    "
-    " Analyse startuptime:
-    "   $ vim --startuptime startup.txt
-    "
-    "   If you want to list time of function calls:
-    "   $ vim --cmd 'profile start times.txt | profile func * | profile file *'
-    "   \ -c 'profile pause' -c 'noau qall!'
-    "   $ vim -c 'set ft=vim nofoldenable' times.txt
-    "
-    "   If you want to benchmark functions of Unite for example, then use
-    "   `profile func unite*`.
-    "
-    " Debug a command
-    "   debug CommandName
-    "
-    " Debug a fucntion
-    "   debug call FunctionName(arg)
-    "
-    " Add breakpoint to function
-    "   breakadd func [lineNumber] functionName
-    "
-    " Add breakpoint to file
-    "   breakadd file [lineNumber] fileName
-    "
-    " Add breakpoint to current line of current file
-    "   breakadd here
-    "
-    " Delete breakpoint number from breaklist output
-    "   breakdel number
-    "
-    " Delete all breakpoints
-    "   breakdel *
-    "
-    " Delete breakpoint on function
-    "   breakdel func [lineNumber] functionName
-    "
-    " Delete breakpoint on file
-    "   breakdel file [lineNumber] fileName
-    "
-    " Delete breakpoint at current line of current file
-    "   breakdel here
-    "
-    " Commands in debug mode:
-    "   cont:      continue execution until the next breakpoint (if one exists)
-    "   quit:      stop current execution, but still stops at the next
-    "              breakpoint
-    "   step:      execute the current command and come back to debug mode when
-    "              it is finished
-    "   next:      like step except it also steps over function calls and
-    "              sourced files
-    "   interrupt: like quit, but returns to debug mode for the next command
-    "   finish:    finishes the current script or function and returns to debug
-    "              mode for the next command
-    "
-    " Levels of :verbose (for example :9verbose COMMAND)
-    "   >= 1  When the viminfo file is read or written.
-    "   >= 2  When a file is ":source"'ed.
-    "   >= 5  Every searched tags file and include file.
-    "   >= 8  Files for which a group of autocommands is executed.
-    "   >= 9  Every executed autocommand.
-    "   >= 12 Every executed function.
-    "   >= 13 When an exception is thrown, caught, finished, or discarded.
-    "   >= 14 Anything pending in a ":finally" clause.
-    "   >= 15 Every executed Ex command (truncated at 200 characters).
-    "
-    " To set verbose permanently:
-    "   set verbose=123
-    "
-    " To output :verbose to a file:
-    "   set verbosefile=filename.txt
-    "                                                                        }}}
-
-    exe 'source ' . g:plugins_config_dir . '/themis.vim'
-
-  endif
-
-  call plug#end()
-else
-  autocmd vimrc VimEnter * echomsg 'Run :InstallPluginManager'
 endif
 
-"                         INSTALL PLUGIN MANAGER                          {{{1
-" ============================================================================
-
-command!  InstallPluginManager  call InstallPluginManager()
-function! InstallPluginManager()
-  let pm_repo = 'https://github.com/junegunn/vim-plug'
-
-  if ! executable('git')
-    echohl ErrorMsg | echomsg 'Git is not available.' | echohl None
-    return
-  endif
-
-  if ! isdirectory(g:pm_dir)
-    silent! if ! mkdir(g:pm_dir, 'p')
-      echohl ErrorMsg | echomsg 'Cannot create directory (may be a regular file):' | echomsg g:pm_dir | echohl None
-      return
-    endif
-  endif
-
-  echo 'Cloning plugin manager...'
-  let msg = system('git clone --depth 1 "' . pm_repo . '" "' . g:pm_dir . '"')
-  if msg =~ 'fatal'
-    echohl ErrorMsg | echomsg 'Cannot clone ' . pm_repo . ' to ' . g:pm_dir . ':' | echomsg msg | echohl None
-    return
-  endif
-
-  echo 'Plugin manager installed. Please restart Vim and install plugins (:PlugInstall).'
-  return
-endfunction
+call bimlas#plugins#loadConfiguredPlugins()
 
 "                              ALAPVETO MUKODES                           {{{1
 " ============================================================================
