@@ -21,7 +21,7 @@ endif
 " template engine (see on GitHub: it's awesome!)
 " NOTE: it has a filetype autocommand which fails if the plugin is not
 " activated, so the trigger is `on_ft`.
-if g:has_python
+if has('python3')
   Plug 'sirver/ultisnips'
 
   let g:UltiSnipsJumpForwardTrigger  = '<Tab>'

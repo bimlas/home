@@ -90,15 +90,11 @@ let g:loaded_logiPat           = 1
 let did_install_default_menus = 1
 let did_install_syntax_menu   = 1
 
-" On Windows there is no different filename for Py2 and Py3.
-let g:has_python = has('python') || has('python3')
-let g:has_ruby   = has('ruby')
-
 let g:pm_dir   = $HOME . '/.vim/vim-plug'
 let g:pm_install_dir = $HOME . '/.vim/plugins'
 let g:plugins_config_dir='~/.config/nvim/plugins'
 
-if ! (g:has_ruby || g:has_python)
+if ! (has('ruby') || has('python3'))
   let g:plug_threads = 1
 endif
 

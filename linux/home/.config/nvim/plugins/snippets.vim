@@ -1,5 +1,5 @@
 " HONZA/VIM-SNIPPETS
 " templates
-if g:has_python
+if has('python3')
   Plug 'honza/vim-snippets'
 endif
