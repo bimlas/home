@@ -28,7 +28,7 @@ genmon()
   echo "<click>$0 edit</click>"
   echo "<txt>`$0 show | tail -1`</txt>"
   echo "<tool>`$0 show | tail -20`</tool>"
-  echo "<txtclick>xterm -e /bin/bash --login -i -c '$0 add'</txtclick>"
+  echo "<txtclick>x-terminal-emulator -e /bin/bash -i -c '$0 add'</txtclick>"
 }
 
 log_file="$HOME/cuccok/download/mylog"
