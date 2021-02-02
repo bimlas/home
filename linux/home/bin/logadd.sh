@@ -25,6 +25,7 @@ add()
 genmon()
 {
   echo "<img>/usr/share/icons/elementary-xfce/mimes/24/text.png</img>"
+  echo "<click>$0 edit</click>"
   echo "<txt>`$0 show | tail -1`</txt>"
   echo "<tool>`$0 show | tail -20`</tool>"
   echo "<txtclick>xterm -e /bin/bash --login -i -c '$0 add'</txtclick>"
@@ -36,7 +37,7 @@ case "$1" in
   "show") cat "$log_file";;
   "list") list;;
   "add") add;;
-  "edit") $EDITOR "$log_file";;
+  "edit") ${EDITOR:-xdg-open} "$log_file";;
   "genmon") genmon;;
   *)
     echo "Unknown command: $1" >& 2
