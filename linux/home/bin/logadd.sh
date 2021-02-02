@@ -1,25 +1,45 @@
-#!/bin/sh
+#!/bin/bash
 # Add timestamp to personal log file for time tracking
 #
-# Use as `/bin/sh -c "GENMON=1 logadd.sh"` if you want to use as XFCE GenMon
-# widget.
+# Use as `logadd.sh genmon` if you want to use as XFCE GenMon widget.
+
+list()
+{
+  cat $log_file \
+  | cut --delimiter ' ' --complement --fields 1,2 \
+  | sort --unique
+}
+
+add()
+{
+  message=`
+    $0 list \
+    | fzf --print-query \
+    | tail -1`
+
+  if [ ! -z "$message" ]; then
+    echo "`date +"%Y-%m-%d %T"` $message" >> $log_file
+  fi
+}
+
+genmon()
+{
+  echo "<img>/usr/share/icons/elementary-xfce/mimes/24/text.png</img>"
+  echo "<txt>`$0 show | tail -1`</txt>"
+  echo "<tool>`$0 show | tail -20`</tool>"
+  echo "<txtclick>xterm -e /bin/bash --login -i -c '$0 add'</txtclick>"
+}
 
 log_file="$HOME/cuccok/download/mylog"
 
-message=`
-  cat $log_file \
-  | cut -d ' ' --complement -f 1,2 \
-  | sort -u \
-  | fzf --print-query \
-  | tail -1`
-
-if [ ! -z "$message" ]; then
-  echo "`date +"%Y-%m-%d %T"` $message" >> $log_file
-fi
-
-if [ ! -z "$GENMON" ]; then
-  echo "<img>/usr/share/icons/elementary-xfce/mimes/24/text.png</img>"
-  echo "<txt>`cat $log_file | tail -1`</txt>"
-  echo "<tool>`cat $log_file | tail -20`</tool>"
-  echo "<txtclick>xterm -e /bin/bash --login -i -c $0</txtclick>"
-fi
+case "$1" in
+  "show") cat "$log_file";;
+  "list") list;;
+  "add") add;;
+  "edit") $EDITOR "$log_file";;
+  "genmon") genmon;;
+  *)
+    echo "Unknown command: $1" >& 2
+    exit 1
+    ;;
+esac
