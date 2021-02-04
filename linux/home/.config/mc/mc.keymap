@@ -115,7 +115,7 @@ HistoryPrev = alt-y
 BottomOnScreen = alt-j
 MiddleOnScreen = alt-r
 TopOnScreen = alt-g
-PanelOtherSync = alt-i
+PanelOtherSync = =
 SelectCodepage = alt-e
 Top = alt-lt; home; a1; g
 Bottom = alt-gt; end; c1; G
