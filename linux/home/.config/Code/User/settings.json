@@ -8,6 +8,7 @@
     "editor.fontSize": 13,
     "editor.minimap.enabled": false,
     "window.restoreWindows": "none",
+    "window.menuBarVisibility": "toggle",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "gitlens.codeLens.enabled": false,
