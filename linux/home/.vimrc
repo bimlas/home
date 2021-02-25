@@ -554,9 +554,6 @@ endif
 "                             SZINTAXIS KIEMELES                          {{{1
 " ============================================================================
 
-" Hide what intend to be hidden
-set conceallevel=2
-
 " Shell-scrip-eknel ne jelezze hibanak: $()
 let is_posix = 1
 
