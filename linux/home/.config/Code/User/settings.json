@@ -6,6 +6,7 @@
     "zenMode.fullScreen": false,
     "zenMode.silentNotifications": false,
     "editor.fontSize": 13,
+    "editor.find.loop": false,
     "editor.minimap.enabled": false,
     "window.restoreWindows": "none",
     "window.menuBarVisibility": "toggle",
