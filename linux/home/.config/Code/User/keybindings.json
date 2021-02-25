@@ -5,6 +5,16 @@
         "command": "workbench.action.quickOpen"
     },
     {
+        "key": "down",
+        "command": "editor.action.nextMatchFindAction",
+        "when": "editorFocus && findInputFocussed"
+    },
+    {
+        "key": "up",
+        "command": "editor.action.previousMatchFindAction",
+        "when": "editorFocus && findInputFocussed"
+    },
+    {
         "key": "ctrl+shift+numpad_subtract",
         "command": "list.collapseAll",
         "when": "listFocus && !inputFocus"
