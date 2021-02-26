@@ -24,19 +24,8 @@
         "command": "workbench.action.toggleZenMode"
     },
     {
-        "key": "ctrl+enter",
-        "command": "sqltools.executeCurrentQuery",
-        "when": " !editorHasSelection && editorLangId == 'sql'"
-    },
-    {
-        "key": "ctrl+enter",
-        "command": "sqltools.executeQuery",
-        "when": "editorHasSelection && editorLangId == 'sql'"
-    },
-    {
-        "key": "ctrl+e ctrl+e",
-        "command": "-sqltools.executeQuery",
-        "when": "editorTextFocus"
+        "key": "alt+insert",
+        "command": "scratchpad.openLocal"
     },
     {
         "key": "alt+9",
@@ -60,6 +49,16 @@
     },
     {
         "key": "ctrl+enter",
+        "command": "sqltools.executeCurrentQuery",
+        "when": " !editorHasSelection && editorLangId == 'sql'"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "sqltools.executeQuery",
+        "when": "editorHasSelection && editorLangId == 'sql'"
+    },
+    {
+        "key": "ctrl+enter",
         "command": "rest-client.request",
         "when": "editorTextFocus && editorLangId == 'http'"
     },
@@ -67,5 +66,20 @@
         "key": "ctrl+enter",
         "command": "rest-client.request",
         "when": "editorTextFocus && editorLangId == 'plaintext'"
+    },
+    {
+        "key": "ctrl+shift+down",
+        "command": "-editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "-editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+e ctrl+e",
+        "command": "-sqltools.executeQuery",
+        "when": "editorTextFocus"
     },
 ]
