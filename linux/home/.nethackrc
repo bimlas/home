@@ -1,0 +1,12 @@
+OPTIONS=color
+
+# Needs Curses enabled build
+OPTIONS=windowtype:curses
+OPTIONS=guicolor
+OPTIONS=align_message:bottom
+OPTIONS=align_status:left
+# Permanently show inventory
+OPTIONS=perm_invent
+
+OPTIONS=number_pad:1
+OPTIONS=!autopickup

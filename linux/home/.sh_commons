@@ -45,6 +45,10 @@ if [[ $(which nnn 2> /dev/null) ]]; then
   }
 fi
 
+if [[ -f ~/nh/install/games/nethack ]]; then
+  alias nethack=~/nh/install/games/nethack
+fi
+
 # Do not close the image after gnuplot.
 if [[ $(which gnuplot 2> /dev/null) ]]; then
   alias gnuplot='gnuplot -persist'
