@@ -39,7 +39,7 @@ function virtualenv_info()
 # Indicate if the terminal has been opened from nnn
 nnn_info()
 {
-  if [[ -v 'NNN' ]]; then
+  if [[ -v 'NNN' || -v 'nnn' ]]; then
     echo "%F{yellow}NNN "
   fi
 }
