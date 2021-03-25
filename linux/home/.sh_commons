@@ -30,6 +30,10 @@ if [[ $(which mc 2> /dev/null) ]]; then
   alias mc='. /usr/lib/mc/mc-wrapper.sh'
 fi
 
+if [[ $(which mycli 2> /dev/null) ]]; then
+  alias mycli='mycli --auto-vertical-output'
+fi
+
 if [[ $(which nnn 2> /dev/null) ]]; then
   n()
   {
