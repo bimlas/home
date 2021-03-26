@@ -103,6 +103,9 @@ export FZF_DEFAULT_OPTS="--exact --multi \
     --bind=ctrl-w:backward-kill-word \
     --bind=ctrl-a:select-all"
 
+# NNN default options
+export NNN_PLUG='!:_|x-terminal-emulator;'
+
 #                                FUNCTIONS                                {{{1
 # ============================================================================
 
