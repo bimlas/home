@@ -82,4 +82,9 @@
         "command": "-sqltools.executeQuery",
         "when": "editorTextFocus"
     },
+    {
+        "key": "f4",
+        "command": "gitlens.openWorkingFile",
+        "when": "editorTextFocus && isInDiffEditor && isInDiffRightEditor"
+    },
 ]
