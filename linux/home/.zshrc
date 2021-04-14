@@ -47,16 +47,14 @@ nnn_info()
 jobs_info()
 {
   if ( jobs | grep '.*' > /dev/null ); then
-    echo ''
-    echo '%F{blue}│ %F{cyan}Jobs'
-    jobs | grep -o '^.\{18\}[^\-]\+' | sed 's/^/%F{blue}│   %F{cyan}/'
+    echo "\n│ %F{cyan}Jobs: $(jobs | sed 's/^\(\[[0-9]\+\]\)\s\+[+-]\s\+\(\S\+\)\( ([^)]\+)\)\?\s\+\([^-]\+\).*/\1 \2 \4 |/g' | tr -s '\n' ' ')"
   fi
 }
 
 # Errorcode of last command
 errorcode_info=$'%(?..\n│ %F{red}Error code: %?)'
 
-PROMPT=$'\n%B%F{blue}${(r:$COLUMNS::─:)}\r%F{blue}┌[%f%T%F{blue}%B]%f %~ %F{blue}${vcs_info_msg_0_}%F{blue}$(virtualenv_info)%F{blue}${errorcode_info}$(jobs_info)\n%F{blue}└ $(nnn_info)%(!.%F{red}#.%F{white}$)%f%b '
+PROMPT=$'\n%B%F{blue}${(r:$COLUMNS::─:)}\r%F{blue}┌[%f%T%F{blue}%B]%f %~ %F{blue}${vcs_info_msg_0_}%F{blue}$(virtualenv_info)%F{blue}${errorcode_info}%F{blue}$(jobs_info)\n%F{blue}└ $(nnn_info)%(!.%F{red}#.%F{white}$)%f%b '
 
 #                            COMPLETE OPTIONS                             {{{1
 # ============================================================================
