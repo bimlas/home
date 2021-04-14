@@ -56,7 +56,7 @@ jobs_info()
 # Errorcode of last command
 errorcode_info=$'%(?..\n│ %F{red}Error code: %?)'
 
-PROMPT=$'\n%B%F{blue}${(r:$COLUMNS::─:)}\r%F{blue}┌[%f%T%F{blue}%B]%f %~ %F{blue}${vcs_info_msg_0_}%F{blue}$(virtualenv_info)%F{blue}${errorcode_info}%F{blue}$(jobs_info)\n%F{blue}└ $(nnn_info)%(!.%F{red}#.%F{white}$)%f%b '
+PROMPT=$'\n%B%F{blue}┌[%f%T%F{blue}%B]%f %~ %F{blue}${vcs_info_msg_0_}%F{blue}$(virtualenv_info)%F{blue}${errorcode_info}%F{blue}$(jobs_info)\n%F{blue}└ $(nnn_info)%(!.%F{red}#.%F{white}$)%f%b '
 
 #                            COMPLETE OPTIONS                             {{{1
 # ============================================================================
