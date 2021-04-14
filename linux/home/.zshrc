@@ -47,7 +47,9 @@ nnn_info()
 jobs_info()
 {
   if ( jobs | grep '.*' > /dev/null ); then
-    echo "\n│ %F{cyan}Jobs: $(jobs | sed 's/^\(\[[0-9]\+\]\)\s\+[+-]\s\+\(\S\+\)\( ([^)]\+)\)\?\s\+\([^-]\+\).*/\1 \2 \4 |/g' | tr -s '\n' ' ')"
+    list_of_jobs=$(jobs | sed 's/^\(\[[0-9]\+\]\)\s\+\([+-]\)\?\s\+\(\S\+\)\( ([^)]\+)\)\?\s\+\([^-]\+\).*/\1\2 \3 \5 |/g' | tr -s '\n' ' ')
+    colorized_list=$(echo "$list_of_jobs" | sed -e 's/running /%F{green}/g' -e 's/suspended \|continued /%F{red}/g' -e 's/ |/%F{cyan}/g')
+    echo "\n│ %F{cyan}Jobs: $colorized_list"
   fi
 }
 
