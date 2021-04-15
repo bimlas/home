@@ -47,16 +47,17 @@ nnn_info()
 jobs_info()
 {
   if ( jobs | grep '.*' > /dev/null ); then
-    list_of_jobs=$(jobs | sed 's/^\(\[[0-9]\+\]\)\s\+\([+-]\)\?\s\+\(\S\+\)\( ([^)]\+)\)\?\s\+\([^-]\+\).*/\1\2 \3 \5 |/g' | tr -s '\n' ' ')
-    colorized_list=$(echo "$list_of_jobs" | sed -e 's/running /%F{green}/g' -e 's/suspended \|continued /%F{red}/g' -e 's/ |/%F{cyan}/g')
-    echo "\n│ %F{cyan}Jobs: $colorized_list"
+    list_of_jobs=$(jobs | grep '^\[')
+    formated_list=$(echo "$list_of_jobs" | sed 's/^\(\[[0-9]\+\]\)\s\+\([+-]\)\?\s\+\(\S\+\)\( ([^)]\+)\)\?\s\+\([^-]\+\).*/\1\2 \3 \5 |/g' | tr -s '\n' ' ')
+    colorized_list=$(echo "$formated_list" | sed -e 's/running /%F{green}/g' -e 's/suspended \|continued /%F{red}/g' -e "s/ |/%F{$1}/g")
+    echo "\n│ %F{$1}Jobs: $colorized_list"
   fi
 }
 
 # Errorcode of last command
 errorcode_info=$'%(?..\n│ %F{red}Error code: %?)'
 
-PROMPT=$'\n%B%F{blue}┌[%f%T%F{blue}%B]%f %~ %F{blue}${vcs_info_msg_0_}%F{blue}$(virtualenv_info)%F{blue}${errorcode_info}%F{blue}$(jobs_info)\n%F{blue}└ $(nnn_info)%(!.%F{red}#.%F{white}$)%f%b '
+PROMPT=$'\n%B%F{blue}┌[%f%T%F{blue}%B]%f %~ %F{blue}${vcs_info_msg_0_}%F{blue}$(virtualenv_info)%F{blue}${errorcode_info}%F{blue}$(jobs_info cyan)\n%F{blue}└ $(nnn_info)%(!.%F{red}#.%F{white}$)%f%b '
 
 #                            COMPLETE OPTIONS                             {{{1
 # ============================================================================
