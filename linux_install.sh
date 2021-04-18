@@ -17,6 +17,9 @@ sudo apt install -y zsh
 echo '!! Change shell to Zsh needs password'
 chsh -s /bin/zsh
 
+sudo apt install -y tmux
+git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
