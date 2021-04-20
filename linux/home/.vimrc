@@ -162,7 +162,7 @@ if(!exists('g:vimrc_minimal_plugins'))
   call bimlas#plugins#configure('tcomment')
   call bimlas#plugins#configure('lexima')
   call bimlas#plugins#configure('quickrun')
-  call bimlas#plugins#configure('deoplete')
+  call bimlas#plugins#configure('coc')
   call bimlas#plugins#configure('ultisnips')
   call bimlas#plugins#configure('snippets')
 
