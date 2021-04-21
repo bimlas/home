@@ -169,6 +169,7 @@ if(!exists('g:vimrc_minimal_plugins'))
   " .. GIT ................................
 
   call bimlas#plugins#configure('fugitive')
+  call bimlas#plugins#configure('gv')
   call bimlas#plugins#configure('gitgutter')
 
   " .. DEBUG/BENCHMARK/VIML DEVELOPMENT ...

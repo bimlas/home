@@ -9,8 +9,6 @@ nnoremap <Space>gd :Git diff<CR>
 nnoremap <Space>gb :Git blame<CR>
 nnoremap <Space>gg :silent Git grep --ignore-case '' -- ':/'<S-Left><S-Left><S-Left><Right>
 nnoremap <Space>gG :silent Git grep --ignore-case -C3 '' -- ':/'<S-Left><S-Left><S-Left><Right>
-nnoremap <Space>gl :Git la<CR>
-nnoremap <Space>gL :Git log -- %<CR>
 nmap     <Space>gw :Git add %<CR><C-L>
 
 autocmd vimrc FileType fugitive setlocal nofoldenable
