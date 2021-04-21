@@ -9,7 +9,7 @@ alias e='$EDITOR'
 alias ls='ls -Av --color --group-directories-first'
 alias grep='grep --color'
 alias du='du -b'
-alias apt-upgrade-all='sudo apt update && sudo apt list --upgradable && sudo apt upgrade --no-show-upgraded && sudo apt autoremove --purge'
+alias apt-upgrade-all='sudo apt update && sudo apt list --upgradable && sudo apt upgrade --no-show-upgraded && sudo apt autoremove --purge --yes'
 alias o='xdg-open'
 alias g='git'
 if typeset -f __git_complete > /dev/null; then
