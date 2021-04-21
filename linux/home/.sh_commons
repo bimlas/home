@@ -39,7 +39,7 @@ fi
 if [[ $(which nnn 2> /dev/null) ]]; then
   n()
   {
-    EDITOR='vim' nnn -Ho -T e "$@"
+    nnn -Ho -T e "$@"
 
     export NNN_TMPFILE=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd
 
