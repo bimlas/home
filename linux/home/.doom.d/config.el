@@ -24,7 +24,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-material)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -59,7 +59,7 @@
 
 (after! lsp-mode
   (setq
-   lsp-ui-doc-delay 3.0
+
    lsp-ui-doc-max-width 120
    lsp-ui-doc-max-height 120
    lsp-headerline-breadcrumb-enable t))
