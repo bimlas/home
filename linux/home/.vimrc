@@ -962,7 +962,7 @@ nnoremap <Space>F   :find<Space>
 nnoremap <Space>fe  :VimFilerExplorer<CR>
 nnoremap <Space>ff  :Dirvish %<CR>
 nnoremap <Space>fF  :Dirvish<CR>
-nmap     <Space>fp  :Files<CR>
+nnoremap <Space>fr  :History<CR>
 nnoremap <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap <Space>fvm :edit ~/.vimrc_minimal<CR>
 nnoremap <Space>fvv :edit $MYVIMRC<CR>
