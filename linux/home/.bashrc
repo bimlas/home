@@ -116,12 +116,18 @@ my_git_prompt+=$clr_bldylw
 my_git_prompt+='$(if (git symbolic-ref -q HEAD &>/dev/null); then git for-each-ref --format="%(refname:short) '$clr_bldwht'%(upstream:trackshort)'$clr_bldylw' %(upstream:remotename)" $(git symbolic-ref -q HEAD); else echo "'$clr_bldred'DETACHED @ $(git rev-parse --short HEAD)"; fi)'
 my_git_prompt+='"; fi`'
 
+my_jobs_info='$('
+my_jobs_info+='jobs'
+my_jobs_info+="| prompt_jobs_info.sh '$clr_bldcyn' '$clr_bldgrn' '$clr_bldred'"
+my_jobs_info+='| sed "s/.\\+/\\n'$chr_vertical'  Jobs: & \\n/")'
+
 PS1="$clr_bldcyn$(printf '_%.0s' {1..78})"
 PS1+="\n$clr_bldcyn$chr_topleft$chr_horizontal"
 PS1+="[$clr_bldwht\A$clr_bldcyn] "
 PS1+="$clr_bldwht\w"
-PS1+="$clr_bldcyn$my_git_prompt\n"
-PS1+="$clr_bldcyn$chr_bottomleft$chr_horizontal "
+PS1+="$clr_bldcyn$my_git_prompt"
+PS1+="$clr_bldcyn$my_jobs_info"
+PS1+="\n$clr_bldcyn$chr_bottomleft$chr_horizontal "
 PS1+="$(if [[ ${EUID} == 0 ]]; then echo $clr_bldred; else echo $clr_bldwht; fi)\\$ $clr_txtrst"
 export PS1
 
