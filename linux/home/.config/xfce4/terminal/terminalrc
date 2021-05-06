@@ -41,3 +41,5 @@ CustomCommand=tmux
 DropdownWidth=95
 DropdownAlwaysShowTabs=FALSE
 ColorBoldIsBright=FALSE
+DropdownKeepAbove=FALSE
+DropdownKeepOpenDefault=TRUE
