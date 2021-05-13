@@ -87,9 +87,4 @@
         "command": "gitlens.openWorkingFile",
         "when": "editorTextFocus && isInDiffEditor && isInDiffRightEditor"
     },
-    {
-        "key": "escape",
-        "command": "workbench.action.closeSidebar",
-        "when": "inZenMode"
-    },
 ]
