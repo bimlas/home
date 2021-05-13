@@ -163,5 +163,10 @@ bindkey '^[OA' history-beginning-search-backward  # Up (on Xterm)
 bindkey '^n'   history-beginning-search-forward
 bindkey '^[[B' history-beginning-search-forward   # Down (on TTY)
 bindkey '^[OB' history-beginning-search-forward   # Down (on Xterm)
+
+# Edit current command line
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
                                                                          # }}}
 source $HOME/.sh_commons
