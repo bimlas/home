@@ -168,5 +168,11 @@ bindkey '^[OB' history-beginning-search-forward   # Down (on Xterm)
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
+
+# Navi cheat sheet completion
+# https://github.com/denisidoro/navi
+if ( which navi > /dev/null ); then
+  eval "$(navi widget zsh)"
+fi
                                                                          # }}}
 source $HOME/.sh_commons

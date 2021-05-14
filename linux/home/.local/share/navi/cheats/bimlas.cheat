@@ -1,0 +1,19 @@
+% git
+
+# PERSONAL Stage Prestashop files
+git add ':/**.tpl' ':/**.php' ':/**.js' ':!config/settings.inc.php'
+
+% vagrant
+
+# Start machine and open SSH tunnel to MySQL database
+vagrant up ; vagrant ssh -- -L <local_port>:127.0.0.1:3306 -N &
+
+$ local_port: echo 3307
+
+# Show Apache error log
+vagrant ssh --command "sudo cat /var/log/apache2/error.log" | tail -20
+
+% apache, docker, vagrant, php
+
+# Filter error log for errors only (useful for Docker Compose)
+grep '\[pid'
