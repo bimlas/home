@@ -4,22 +4,18 @@
 #                                  ALIAS                                  {{{1
 # ============================================================================
 
-alias pm-hibernate='echo "NEVER USE IT!"'
 alias e='$EDITOR'
-alias ls='ls -Av --color --group-directories-first'
-alias grep='grep --color'
-alias du='du -b'
-alias apt-upgrade-all='sudo apt update && sudo apt list --upgradable && sudo apt upgrade --no-show-upgraded && sudo apt autoremove --purge --yes'
 alias o='xdg-open'
 alias g='git'
 if typeset -f __git_complete > /dev/null; then
   __git_complete g __git_main
 fi
+alias ls='ls -Av --color --group-directories-first'
+alias grep='grep --color'
+alias du='du -b'
 alias run='mosh run'
 alias mvim='vim -u ~/.vimrc_minimal'
-
-alias vagrant-restart-mysql='vagrant ssh --command "sudo service mysql restart"'
-alias vagrant-apache-log='vagrant ssh --command "sudo cat /var/log/apache2/error.log"'
+alias pm-hibernate='echo "NEVER USE IT!"'
 
 # Disable .vimrc in vim.tiny because of incompatible settings.
 if [[ $(which vim.tiny 2> /dev/null) ]]; then
@@ -110,33 +106,6 @@ export NNN_PLUG='!:_|x-terminal-emulator;'
 
 #                                FUNCTIONS                                {{{1
 # ============================================================================
-
-# Start program then give back the prompt (to run programs with GUI).
-x()
-{
-  nohup $* &> /dev/null &
-}
-
-# Countdown timer
-#   $ alarm 1    # Wait 60 seconds
-#   $ alarm 1:23 # Wait 83 seconds
-alarm()
-{
-  sleep `TZ=utc date -d "1970-01-01 0:$1" +%s`
-  kdialog --passivepopup 'ALARM' 5
-  cvlc --repeat /usr/share/sounds/freedesktop/stereo/service-login.oga
-}
-
-# English-hungarian dictionary, download:
-# https://github.com/BimbaLaszlo/dotvim/blob/master/doc/szotar.txt
-szotar()
-{
-  if [[ -e $HOME/.vim_local/bundle/dotvim/doc/szotar.txt ]]; then
-    grep "$@" $HOME/.vim_local/bundle/dotvim/doc/szotar.txt
-  else
-    echo "ERROR: missing dictionary $HOME/.vim_local/bundle/dotvim/doc/szotar.txt"
-  fi
-}
 
 cd..() {
   local declare dirs=()

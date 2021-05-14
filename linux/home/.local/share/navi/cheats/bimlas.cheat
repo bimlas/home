@@ -11,9 +11,17 @@ vagrant up ; vagrant ssh -- -L <local_port>:127.0.0.1:3306 -N &
 $ local_port: echo 3307
 
 # Show Apache error log
-vagrant ssh --command "sudo cat /var/log/apache2/error.log" | tail -20
+vagrant ssh --command "sudo cat /var/log/apache2/error.log"
 
-% apache, docker, vagrant, php
+# Restart MySQL service
+vagrant ssh --command "sudo service mysql restartt"
+
+% apache, php
 
 # Filter error log for errors only (useful for Docker Compose)
 grep '\[pid'
+
+% apt
+
+# Upgrade packages
+sudo apt update && sudo apt list --upgradable && sudo apt upgrade --no-show-upgraded && sudo apt autoremove --purge --yes
