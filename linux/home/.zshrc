@@ -5,6 +5,8 @@
 #
 # Log in again in to the desktop.
 
+source $HOME/.sh_commons
+
 autoload -U colors     && colors
 autoload -U promptinit && promptinit
 source ~/bin/zsh/fzf-zsh-completion.sh
@@ -175,4 +177,3 @@ if ( which navi > /dev/null ); then
   eval "$(navi widget zsh)"
 fi
                                                                          # }}}
-source $HOME/.sh_commons
