@@ -103,6 +103,8 @@ export FZF_DEFAULT_OPTS="--exact --multi \
     --bind=ctrl-y:preview-page-up \
     --bind=ctrl-w:backward-kill-word \
     --bind=ctrl-a:select-all"
+# Open Tmux pane for FZF
+FZF_TMUX_OPTS="-d 40%"
 
 # NNN default options
 export NNN_PLUG='!:_|x-terminal-emulator;'
