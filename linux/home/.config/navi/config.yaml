@@ -15,8 +15,8 @@ style:
 
 finder:
   command: fzf # equivalent to the --finder option
-  overrides: --no-select-1 # equivalent to the --fzf-overrides option
-  overrides_var: --no-select-1  # equivalent to the --fzf-overrides-var option
+  overrides: --no-select-1 --preview-window=down # equivalent to the --fzf-overrides option
+  overrides_var: --no-select-1 --preview-window=down  # equivalent to the --fzf-overrides-var option
 
 # cheats:
   # path: /path/to/some/dir # equivalent to the --path option
