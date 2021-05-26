@@ -1,5 +1,9 @@
 #!/bin/bash
-# List jobs in the ZSH, BASH, etc. shell prompt
+# Format the list of jobs in ZSH, BASH, etc. to show in shell prompt
+#
+# Usage:
+#
+#  PS1+='$(jobs | jobs_prompt.sh)'
 
 list_of_jobs=$(grep '^\[')
 if [[ -z "$list_of_jobs" ]]; then
