@@ -116,9 +116,10 @@ my_git_prompt+=$clr_bldylw
 my_git_prompt+='$(if (git symbolic-ref -q HEAD &>/dev/null); then git for-each-ref --format="%(refname:short) '$clr_bldwht'%(upstream:trackshort)'$clr_bldylw' %(upstream:remotename)" $(git symbolic-ref -q HEAD); else echo "'$clr_bldred'DETACHED @ $(git rev-parse --short HEAD)"; fi)'
 my_git_prompt+='"; fi`'
 
+export JOBS_PROMPT_TEXT="$clr_bldcyn"
 my_jobs_info='$('
 my_jobs_info+='jobs'
-my_jobs_info+="| prompt_jobs_info.sh '$clr_bldcyn' '$clr_bldgrn' '$clr_bldred'"
+my_jobs_info+='| prompt_jobs_info.sh'
 my_jobs_info+='| sed "s/.\\+/\\n'$chr_vertical'  Jobs: & \\n/")'
 
 PS1="$clr_bldcyn$(printf '_%.0s' {1..78})"
