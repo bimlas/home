@@ -284,10 +284,7 @@
   las  = "log --graph --date=short --format=shortlog --all --simplify-by-decoration"
   lg   = "log --graph"
   lgg  = "log --graph --name-status"
-  lp   = "log --graph --patch --stat --ignore-blank-lines"
   review = "log --patch --reverse master.."
-  lm   = "log --graph --merge --left-right --format=shortlog --all"
-  lmg  = "log --graph --merge --left-right --all"
   day  = "log --graph --all --since midnight"
   yday = "log --graph --all --since=day.before.yesterday.midnight --until=midnight"
 
@@ -662,7 +659,7 @@
 
 [pretty]                                                                ; {{{1
 
-  shortlog = "%C(auto)%H%C(auto)%d %C(bold blue)%ad %an%n  %s%C(reset)"
+  shortlog = "%C(auto)%h%C(auto)%d%C(reset) %s %C(blue)<%an>"
   mail     = "!TITLE! * %s%n%+b"
 
 [grep]                                                                  ; {{{1
