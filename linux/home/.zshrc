@@ -49,7 +49,7 @@ nnn_info()
 export JOBS_PROMPT_TEXT='%F{cyan}'
 jobs_info()
 {
-  jobs | jobs_prompt.sh | sed 's/.\+/\n│ %F{cyan}Jobs: &\n/'
+  jobs | jobs_prompt | sed 's/.\+/\n│ %F{cyan}Jobs: &\n/'
 }
 
 # Errorcode of last command

@@ -119,7 +119,7 @@ my_git_prompt+='"; fi`'
 export JOBS_PROMPT_TEXT="$clr_bldcyn"
 my_jobs_info='$('
 my_jobs_info+='jobs'
-my_jobs_info+='| jobs_prompt.sh'
+my_jobs_info+='| jobs_prompt'
 my_jobs_info+='| sed "s/.\\+/\\n'$chr_vertical'  Jobs: & \\n/")'
 
 PS1="$clr_bldcyn$(printf '_%.0s' {1..78})"
