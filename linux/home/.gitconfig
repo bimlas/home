@@ -171,21 +171,12 @@
 
   cl = "clone --recursive"
 
-  ; Create a "local remote" repository (bare repo with working tree) Without
-  ; `cd $GIT_PREFIX` it would reinit the main repo if the current repo is a
-  ; submodule.
-  bare = "!sh -c ' \
-          [ $GIT_PREFIX ] && cd $GIT_PREFIX; \
-          git init && git config receive.denyCurrentBranch updateInstead' -"
-
   ; Push and track the current branch.
   ; See 'push.default'
   ps = "push"
+  pst = "push --tags"
   ; See https://developer.atlassian.com/blog/2015/04/force-with-lease/?utm_source=medium&utm_medium=blog&utm_campaign=lesser-git
   psforce = "push --force-with-lease"
-
-  ; Push tags.
-  pst = "push --tags"
 
   ; Deleting remote branch:
   ;
@@ -195,27 +186,6 @@
   ;
   ;   $ git push origin local-branch
   pso = "push origin"
-
-  ; Set origin
-  seto = "!sh -c 'git remote add origin $*; \
-          git remote set-url origin $*; \
-          git fetch origin' -"
-
-  ; Add and set (if already exists) 'origin', than push it.
-  ghcl = "!sh -c 'git clone --recursive git@github.com:$*.git' -"
-  ghps = "!sh -c ' \
-          git remote add origin git@github.com:$*.git; \
-          git remote set-url origin git@github.com:$*.git; \
-          git fetch; \
-          git push --set-upstream origin --all; \
-          git push --set-upstream origin --tags' -"
-  glcl = "!sh -c 'git clone --recursive git@gitlab.com:$*.git' -"
-  glps = "!sh -c ' \
-          git remote add origin git@gitlab.com:$*.git; \
-          git remote set-url origin git@gitlab.com:$*.git; \
-          git fetch; \
-          git push --set-upstream origin --all; \
-          git push --set-upstream origin --tags' -"
 
   ; My old theory was:
   ;
