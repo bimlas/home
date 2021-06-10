@@ -629,7 +629,7 @@
 
 [pretty]                                                                ; {{{1
 
-  shortlog = "%C(auto)%h%C(auto)%d%C(reset) %s %C(blue)<%an>"
+  shortlog = "%C(auto)%h%C(auto)%d%C(reset) %s %C(blue)<%an> %ad"
   mail     = "!TITLE! * %s%n%+b"
 
 [grep]                                                                  ; {{{1
