@@ -22,7 +22,8 @@
     "git-graph.commitDetailsView.location": "Docked to Bottom",
     "autoHide.sideBarDelay": 0,
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-    "workbench.colorTheme": "Solarized Light",
+    "workbench.preferredLightColorTheme": "Quiet Light",
+    "workbench.preferredDarkColorTheme": "Base16 Tomorrow",
     "workbench.settings.enableNaturalLanguageSearch": false,
     "workbench.editor.limit.enabled": true,
     "workbench.colorCustomizations": {
