@@ -29,4 +29,7 @@ let g:quickrun_config = {
       \  },
       \}
 
+noremap         <Space>mr  :QuickRun<CR>
+noremap  <expr> <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
+
 autocmd vimrc FileType quickrun if has('win32') | set fileformat=dos | endif

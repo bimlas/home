@@ -28,3 +28,7 @@
 "   This is handy for doing math, even outside of VimL.  It's so handy, in fact,
 "   that it probably deserves its own plugin.
 Plug 'tpope/vim-scriptease'
+
+" Simple calculator/evaulator.
+map      <Space>ac g!
+nnoremap <Space>aC :PP<CR>

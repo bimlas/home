@@ -13,8 +13,6 @@ let g:EasyMotion_skipfoldedline = 0
 " Stay in the same column when using <Plug>(easymotion-sol-j)
 let g:EasyMotion_startofline = 0
 
-autocmd vimrc VimEnter * EMCommandLineNoreMap <C-J> <CR>
-
 map s         <Plug>(easymotion-s2)
 map t         <Plug>(easymotion-tl)
 map T         <Plug>(easymotion-Tl)
@@ -26,3 +24,11 @@ map <Leader>n <Plug>(easymotion-n)
 map <Leader>N <Plug>(easymotion-N)
 map é         <Plug>(easymotion-next)
 map É         <Plug>(easymotion-prev)
+
+map <Space>j <Plug>(easymotion-sol-j)
+map <Space>k <Plug>(easymotion-sol-k)
+" Stay in the same column.
+map <Space>J <Plug>(easymotion-j)
+map <Space>K <Plug>(easymotion-k)
+
+autocmd vimrc VimEnter * EMCommandLineNoreMap <C-J> <CR>

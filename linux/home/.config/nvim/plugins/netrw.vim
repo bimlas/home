@@ -15,3 +15,10 @@ let g:netrw_sort_sequence = '[\/]$,*'
 
 " Mindig az elozo ablakban nyissa meg a fajlt. (:Vexplore-nal kell)
 let g:netrw_browse_split = 4
+
+" Lynx-szeru mozgas netrw-ben.
+autocmd vimrc FileType netrw call NetrwLynxMap()
+function! NetrwLynxMap()
+  map <buffer> h -
+  map <buffer> l <CR>
+endfunction

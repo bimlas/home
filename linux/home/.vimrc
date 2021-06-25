@@ -8,88 +8,27 @@
 " Use the minimal setting for debugging.
 " source $HOME/.vimrc_minimal | finish
 
-"                               BOILERPLATE                               {{{1
+"                                 LAYERS                                  {{{1
 " ============================================================================
 
-" Sok plugin es beallitas igenyli.
-set nocompatible
-
-" Gyorsitja a vim mukodeset.
-if v:version >= 704
-  set regexpengine=1
-endif
-
-" Nem szeretem a magyar uzeneteket (a C az angol megfeleloje).
-language messages C
-
-" Letrehozunk egy autocmd group-ot.
-" http://rbtnn.hateblo.jp/entry/2014/12/28/010913
-augroup vimrc
-  autocmd!
-augroup END
-
-"                                NEOVIM                                   {{{1
-" ============================================================================
-
-if has('nvim')
-  if has('win32')
-    " Run `:CheckHealth` to verify.
-
-    " pip2 install --upgrade neovim
-    let g:python_host_prog = 'c:/app/python2/python.exe'
-    " pip3 install --upgrade neovim
-    " NOTE: If `:CheckHealth` not works, try `pip3 uninstall msgpack; pip3
-    " install msgpack`.
-    let g:python3_host_prog = 'c:/app/python3/python.exe'
-    " gem update neovim
-    let g:ruby_host_prog = 'c:/app/ruby/bin/ruby.exe'
-    let g:ruby_default_path = ['c:/app/ruby']
-  endif
-endif
-
-"                          WIN / NIX BEALLITASOK                          {{{1
-" ============================================================================
-
-" Add external binaries to PATH (like ctags, rg, etc.).
-let $PATH .= (has('win32') ? ';' : ':') . $HOME . '/.vim/bin'
-
+call bimlas#layers#configure('init')
 if has('win32')
-  " Add the basic Linux tools (via Msys-Git) to the PATH.
-  let $PATH = $PATH . ';c:/app/git/usr/bin'
-
-  " Backslash (\) helyett forwardslash (/) hasznalat az utvonalakban
-  " (pl. <C-X><C-F> kiegeszitesenel).
-  " Tapasztalatbol mondhatom, hogy nem minden plugin szereti (pl. Jedi-vim) -
-  " ha valamelyik nem mukodik, probald meg kommentelve is.
-  " set shellslash
-
-  " :make ezt a programot hasznalja:
-  set makeprg=mingw32-make
-
+  call bimlas#layers#configure('win32')
+endif
+call bimlas#layers#configure('readwrite')
+call bimlas#layers#configure('textarea')
+call bimlas#layers#configure('infoline')
+call bimlas#layers#configure('statusline')
+call bimlas#layers#configure('diff')
+call bimlas#layers#configure('tui')
+if has('gui_running')
+  call bimlas#layers#configure('gui')
 endif
 
-"                                PLUGINOK                                 {{{1
+"                                 PLUGINS                                 {{{1
 " ============================================================================
 
-" Disable some default plugins.
-let g:loaded_gzip              = 1
-let g:loaded_tar               = 1
-let g:loaded_tarPlugin         = 1
-let g:loaded_zip               = 1
-let g:loaded_zipPlugin         = 1
-let g:loaded_rrhelper          = 1
-let g:loaded_2html_plugin      = 1
-let g:loaded_vimball           = 1
-let g:loaded_vimballPlugin     = 1
-let g:loaded_getscript         = 1
-let g:loaded_getscriptPlugin   = 1
-let g:loaded_logiPat           = 1
-
-" Disable the loading of the menupoints to speed up startup. If you want to
-" open up the font selector, use `set guifont=*`
-let did_install_default_menus = 1
-let did_install_syntax_menu   = 1
-
+call bimlas#plugins#configure('disable-default-plugins')
 call bimlas#plugins#configure('netrw')
 
 " .. SAJAT ..............................
@@ -172,413 +111,9 @@ if(!exists('g:vimrc_minimal_plugins'))
   call bimlas#plugins#configure('gv')
   call bimlas#plugins#configure('gitgutter')
 
-  " .. DEBUG/BENCHMARK/VIML DEVELOPMENT ...
-
-  "                               CHEATSHEET                               {{{
-  "
-  " Analyse startuptime:
-  "   $ vim --startuptime startup.txt
-  "
-  "   If you want to list time of function calls:
-  "   $ vim --cmd 'profile start times.txt | profile func * | profile file *'
-  "   \ -c 'profile pause' -c 'noau qall!'
-  "   $ vim -c 'set ft=vim nofoldenable' times.txt
-  "
-  "   If you want to benchmark functions of Unite for example, then use
-  "   `profile func unite*`.
-  "
-  " Debug a command
-  "   debug CommandName
-  "
-  " Debug a fucntion
-  "   debug call FunctionName(arg)
-  "
-  " Add breakpoint to function
-  "   breakadd func [lineNumber] functionName
-  "
-  " Add breakpoint to file
-  "   breakadd file [lineNumber] fileName
-  "
-  " Add breakpoint to current line of current file
-  "   breakadd here
-  "
-  " Delete breakpoint number from breaklist output
-  "   breakdel number
-  "
-  " Delete all breakpoints
-  "   breakdel *
-  "
-  " Delete breakpoint on function
-  "   breakdel func [lineNumber] functionName
-  "
-  " Delete breakpoint on file
-  "   breakdel file [lineNumber] fileName
-  "
-  " Delete breakpoint at current line of current file
-  "   breakdel here
-  "
-  " Commands in debug mode:
-  "   cont:      continue execution until the next breakpoint (if one exists)
-  "   quit:      stop current execution, but still stops at the next
-  "              breakpoint
-  "   step:      execute the current command and come back to debug mode when
-  "              it is finished
-  "   next:      like step except it also steps over function calls and
-  "              sourced files
-  "   interrupt: like quit, but returns to debug mode for the next command
-  "   finish:    finishes the current script or function and returns to debug
-  "              mode for the next command
-  "
-  " Levels of :verbose (for example :9verbose COMMAND)
-  "   >= 1  When the viminfo file is read or written.
-  "   >= 2  When a file is ":source"'ed.
-  "   >= 5  Every searched tags file and include file.
-  "   >= 8  Files for which a group of autocommands is executed.
-  "   >= 9  Every executed autocommand.
-  "   >= 12 Every executed function.
-  "   >= 13 When an exception is thrown, caught, finished, or discarded.
-  "   >= 14 Anything pending in a ":finally" clause.
-  "   >= 15 Every executed Ex command (truncated at 200 characters).
-  "
-  " To set verbose permanently:
-  "   set verbose=123
-  "
-  " To output :verbose to a file:
-  "   set verbosefile=filename.txt
-  "                                                                        }}}
-
-  call bimlas#plugins#configure('themis')
-
 endif
 
 call bimlas#plugins#loadConfiguredPlugins()
-
-"                              ALAPVETO MUKODES                           {{{1
-" ============================================================================
-
-" Disable GUI menubar - this flag (M) have to be in here (in the .vimrc,
-" before `filetye syntax on`), not in .gvimrc.
-set guioptions=M
-
-" Fajltipus felismeres bekapcsolasa, a ra jellemzo formazas (pl. kommentkari)
-" es behuzas stilusanak betoltese.
-if exists(':filetype')
-  filetype plugin indent on
-endif
-
-" Szintaxiskiemeles.
-if has('syntax')
-  syntax enable
-endif
-
-" Eger viselkedese.
-behave xterm
-
-" Manual bongeszesenek lehetosege.
-if !has('win32')
-  runtime ftplugin/man.vim
-endif
-
-"                            MODE-AWARE CURSOR                            {{{1
-" ============================================================================
-
-" https://github.com/blaenk/dots/blob/9843177fa6155e843eb9e84225f458cd0205c969/vim/vimrc.ln#L49-L64
-set guicursor+=o:hor50-OperatorCursor
-set guicursor+=n:Cursor
-set guicursor+=i-ci-sm:ver25-InsertCursor
-set guicursor+=r-cr:ReplaceCursor-hor20
-set guicursor+=c:Cursor
-set guicursor+=v-ve:VisualCursor
-
-"                               STATUSLINE                                {{{1
-" ============================================================================
-
-" Mindig mutassa a statusline-t.
-set laststatus=2
-
-let stat_argnr        = '%a'
-let stat_buftype      = '%w%h%q'
-let stat_filename     = '%t'
-let stat_flags        = '%r%m'
-let stat_binary       = '%{&binary ? "BINARY" : ""}'
-let stat_filetype     = '%{&filetype}'
-let stat_fileformat   = '%{&fenc ? &fenc : &enc}%{&bomb ? "-bom" : ""} %{&ff}'
-
-let &statusline  = stat_argnr . ' '
-let &statusline .= '%#StatInfo#' . stat_buftype . ' '
-let &statusline .= '%#StatFilename#' . stat_filename . '%(' . stat_flags . ' %)'
-let &statusline .= '%#StatWarning#%( ' . stat_binary . ' %)'
-let &statusline .= '%#StatInfo# [%#StatFileformat#' .stat_filetype . '%#StatInfo#]'
-let &statusline .= '[%#StatFileformat#' . stat_fileformat . '%#StatInfo#] '
-let &statusline .= '%*'
-
-"                                 ALTALANOS                               {{{1
-" ============================================================================
-
-" Fajlnev es current working directory kiirasa a cimsorban.
-let &titlestring = '%f | CWD: %{getcwd()}'
-
-" Szoveg szelessege - ugyan a fajlok beallitasahoz kene tenni, de szamitasok
-" miatt itt mar be kell allitani.
-set textwidth=78
-
-" Sorok szamozasara szant oszlop szelessege.
-set numberwidth=6
-
-" Minden valtoztatasrol tajekoztasson.
-set report=0
-
-" Operatorra varo parancs mutatasa (pl. makro rogzitesehez hasznalt 'q'),
-" kijelolesnel a kijeloles merete.
-set showcmd
-
-" Mod (insert, visual, stb.) mutatasa.
-set showmode
-
-" Kellokepp magas legyen a statusline alatti terulet.
-set cmdheight=2
-
-" Completion in the command line:
-" - <Tab> expands string to the longest common part
-" - Second <Tab> shows all match
-" - Starting from the third will iterate on the list
-set wildmode=longest,list,full
-
-" Use only buffer's dir.
-set path=.
-
-" Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-set showtabline=2
-
-" Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
-let &fillchars = 'vert: ,stl: ,stlnc: '
-
-" Kurzor koruli 'ter' gorgetesnel.
-set scrolloff=3
-
-" A sor utolso karaktere utan egyel is allhat a kurzor.
-" NAGYON HASZNOS TUD LENNI!
-set virtualedit=onemore
-
-" Mindig legyen eger.
-set mouse=a
-
-" Makrok futtatasanal ne frissitse a kepernyot, csak ha vegzett.
-set lazyredraw
-
-" Do not make visual/audio bell (have to be in .gvimrc too).
-set visualbell t_vb=
-set belloff=all
-
-" Tordelje el a hosszu sorokat. (softbreak)
-set wrap
-
-" ... csak a megadott karakterek utan (a szavakat ne torje el).
-set linebreak
-let &breakat = " \t;:,/])}"
-
-" A wrap-al tort sorokat huzza be ugy, hogy az elozo sor behuzasat kovesse.
-set breakindent
-
-" Sorok osszefuzesenel ket szokoz helyett csak egyet tegyen.
-set nojoinspaces
-
-" Bufferek kozti valtasnal ne mentse automatikusan azok tartalmat.
-set hidden
-
-" Mindig az aktualis fajl konyvtara legyen a cwd.
-" Tapasztalatbol mondhatom, hogy nem minden plugin szereti (pl. netrw,
-" fugitive).
-" UPDATE: a fugitive ugy tunik mar jol kezeli, viszont a vimfiler es unite
-" nem.
-" set autochdir
-
-" CursorHold-hoz kell es a swap fajl mentesenek idejet is befolyasolja.
-set updatetime=1000
-
-" Terminalban ne varakozzon az <Esc>
-set ttimeout ttimeoutlen=0 notimeout
-
-" Uj ablakok alulra / jobbra keruljenek. (a help is)
-set splitbelow splitright
-
-" Ablakok nyitasanal / bezarasanal mindig ugyanakkorara meretezze ujra oket.
-set equalalways
-
-" A help ablak se foglaljon nagyobb helyet.
-set helpheight=0
-
-" A Vim alapertelmezett karakterkodolasa. (nem a fajloke)
-set encoding=utf8
-
-"                             FAJLOK BEALLITASAI                          {{{1
-" ============================================================================
-
-" Fajlok elore megadott beallitasait hasznalhatja. (fajl elejen, vagy vegen
-" talalhato vim-specifikus beallitasok)
-set modeline
-
-" Lehetseges sorvegzodesek/karakterkodolasok. Uj fajl letrehozasanal az elso
-" parametert hasznalja.
-" utf8:     amit mindenkinek hasznalnia kene
-" utf-16le: Windows registry fajlok (.reg) kodolasa
-" cp1250:   magyar Windows default
-" default:  a rendszer alapertelmezese
-set fileformats=unix,dos fileencodings=utf8,ucs-bom,cp1250,default,utf-16le
-
-" Uj fajlok letrehozasanal nem jelzi ki a karakterkodolast e nelkul.
-let &fileencoding = matchstr(&fileencodings, '^[^,]\+')
-
-" Ne csinaljon biztonsagi masolatokat a fajl mentese elott.
-set nobackup nowritebackup
-
-" A swap fajlokat csak arra hasznalja, hogy egy szerkesztes alatt levo fajl
-" ujboli megnyitasanal figyelmeztessen. A fugitive plugin helyes mukodesehez
-" kell.
-" Hogy ertsd, mit is csinal, nyiss meg ket ugyanolyan nevu, de kulonbozo
-" konyvtarban levo fajlt es figyeld a swap konyvtarat. Zard be oket ugy, hogy
-" a swap fajl megmaradjon (pl.: kill, <Ctrl-Alt-Del>), majd nyisd meg oket
-" ismet, de most forditott sorrendben. A recovery igy nem fog mukodni.
-let s:swapdir = $HOME.'/.vim/swap'
-if !isdirectory(s:swapdir)
-  call mkdir(s:swapdir, 'p')
-endif
-let &directory = s:swapdir
-
-" Persistent undo.
-let s:undodir = $HOME.'/.vim/undo'
-if !isdirectory(s:undodir)
-  call mkdir(s:undodir, 'p')
-endif
-let &undodir = s:undodir
-set undofile
-
-"                                  KERESES                                {{{1
-" ============================================================================
-
-" NOTE: a vimgrep kihagyja azokat a fajlokat, amik a wildignore-ban
-" szerepelnek, valamint a rejtett konyvtarakat is (pl. .git).
-
-" Case insensitive keresesnel, de nagybetus szoveg eseten case sensitive-re
-" valt.
-set ignorecase smartcase
-
-" Kereses talalatainak kiemelese mar begepeles kozben.
-set hlsearch incsearch
-
-" Mivel nem mindig veszem eszre, hogy a fajl vegerol mar atugrottam az
-" elejere, ezert inkabb le is tiltom ezt a lehetoseget.
-set nowrapscan
-
-" I using Git grep most of the time instead of standard grepping tools.
-let &grepprg = 'git grep -n'
-
-if has('nvim')
-  set inccommand=nosplit
-endif
-
-"                             SZINTAXIS KIEMELES                          {{{1
-" ============================================================================
-
-" Shell-scrip-eknel ne jelezze hibanak: $()
-let is_posix = 1
-
-" Specialis karakterek (tabulator, sor vegi whitespace) mutatasa.
-if has('gui_running')
-  set list listchars=tab:▶‒,nbsp:∙,trail:∙,extends:▶,precedes:◀
-else
-  set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
-endif
-
-" Sortores mutatasa.
-if has('gui_running')
-  let &showbreak = '↳'
-else
-  let &showbreak = '^'
-endif
-
-" Helyesiras ellenorzes magyarra es angolra allitasa.
-set spelllang=hu,en
-
-"                                  BEHUZAS                                {{{1
-" ============================================================================
-
-" Automatikus behuzas { utan is.
-set autoindent smartindent
-
-" A behuzas merteke szokozokben megadva - a > es < karakterekkel toreno
-" behuzasnal a shiftwidth tobbszorosere mozgassa a szoveget.
-set shiftwidth=2 shiftround
-
-" Tab helyett szokozok hasznalata.
-set expandtab
-
-" 1 tabulator a shiftwidth-nek megfelelo szokozt fog beirni.
-let &softtabstop = &sw
-
-" A backspace ezeket torolje: indent, end of line, start
-set backspace=2
-
-" Ha a formatoptions-ben szerepel az 'n', akkor a mintara illeszkedo reszeket
-" fogja listaelem-jelolonek tekinteni. Mivel az asciidoc tobb karaktert is
-" hasznal a listakhoz, ezert modositani kellett ezt a beallitast.
-let &formatlistpat = '^\s*[0-9\.]\+[\]:.)}\t ]\s*'
-
-" C forraskod formazasa.
-" (0    Nyitottan maradt zarojelekel egy oszlopban kezdje az uj sort.
-" t0    A fuggveny tipusa maradjon a margon.
-" W2    Ha egy zarojelparos kulon sorban van, es a nyito zarojel utan
-"       nincs non-white kari, akkor a kovetkezo sort 2 szokozzel bentebb
-"       kezdi.
-set cinoptions=(0,t0,W2
-
-"                                  FOLDING                                {{{1
-" ============================================================================
-
-" Behuzas szerint kulonuljenek el a blokkok.
-set foldmethod=marker
-
-"                                  DIFFEXPR                               {{{1
-" ============================================================================
-"
-" :help diff-diffexpr: a --minimal kapcsolot hozzatettem.
-" A diff manual-bol:
-"
-"   -d
-"   --minimal
-"      Change the algorithm perhaps find a smaller set of changes. This makes
-"      diff slower (sometimes much slower)
-
-if &diffexpr == ''
-  set diffexpr=MyDiff()
-endif
-function! MyDiff()
-    let opt = ''
-    if &diffopt =~ 'icase'
-      let opt = opt . '-i '
-    endif
-    if &diffopt =~ 'iwhite'
-      let opt = opt . '-b '
-    endif
-    silent execute '!diff -a --binary --minimal ' . opt . ' "' . v:fname_in . '" "' . v:fname_new . '" > "' . v:fname_out . '"'
-endfunction
-
-"                               KODKIEGESZITES                            {{{1
-" ============================================================================
-
-" <C-N> kiegeszitesnel a sztringeket vegye:
-" .  ebbol a fajlbol
-" i  include fajlokbol
-" t  tags fajlbol
-" set complete=.,i,t
-
-" Behaviour of insert-mode completion (omnicomplete):
-" menuone  Show popup menu even if there is only one item
-" noinsert,noselect  Let the user choose the item
-set completeopt=menuone,noinsert,noselect
-
-" Fuggvenyek parametereit is mutatja kiegeszitesnel.
-set showfulltag
 
 "                                COMMANDS                                 {{{1
 " ============================================================================
@@ -712,99 +247,10 @@ if exists(':tnoremap')
     tnoremap <Esc> <C-\><C-n>
 endif
 
-"                                PLUGINOK                                 {{{2
-" ____________________________________________________________________________
-
-"                                  NETRW                                  {{{3
-" ............................................................................
-
-" Lynx-szeru mozgas netrw-ben.
-autocmd vimrc FileType netrw call NetrwLynxMap()
-function! NetrwLynxMap()
-  map <buffer> h -
-  map <buffer> l <CR>
-endfunction
-
-"                               OPENBROWSER                               {{{3
-" ............................................................................
-
-" Url megnyitasa a bongeszoben, vagy google a kurzor alatti szora.
-let g:netrw_nogx = 1
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
-
-"                              TEXTOBJ-USER                               {{{3
-" ............................................................................
-
-omap  i*   <Plug>(textobj-between-i)*
-vmap  i*   <Plug>(textobj-between-i)*
-omap  a*   <Plug>(textobj-between-a)*
-vmap  a*   <Plug>(textobj-between-a)*
-omap  i:   <Plug>(textobj-between-i):
-vmap  i:   <Plug>(textobj-between-i):
-omap  a:   <Plug>(textobj-between-a):
-vmap  a:   <Plug>(textobj-between-a):
-omap  i#   <Plug>(textobj-between-i)#
-vmap  i#   <Plug>(textobj-between-i)#
-omap  a#   <Plug>(textobj-between-a)#
-vmap  a#   <Plug>(textobj-between-a)#
-omap  i/   <Plug>(textobj-between-i)/
-vmap  i/   <Plug>(textobj-between-i)/
-omap  a/   <Plug>(textobj-between-a)/
-vmap  a/   <Plug>(textobj-between-a)/
-omap  i\|  <Plug>(textobj-between-i)<Bar>
-vmap  i\|  <Plug>(textobj-between-i)<Bar>
-omap  a\|  <Plug>(textobj-between-a)<Bar>
-vmap  a\|  <Plug>(textobj-between-a)<Bar>
-
-autocmd vimrc FileType ruby call TextObjMapsRuby()
-function! TextObjMapsRuby()
-  omap <buffer> ab <Plug>(textobj-ruby-block-a)
-  omap <buffer> ib <Plug>(textobj-ruby-block-i)
-  omap <buffer> af <Plug>(textobj-ruby-function-a)
-  omap <buffer> if <Plug>(textobj-ruby-function-i)
-
-  vmap <buffer> ab <Plug>(textobj-ruby-block-a)
-  vmap <buffer> ib <Plug>(textobj-ruby-block-i)
-  vmap <buffer> af <Plug>(textobj-ruby-function-a)
-  vmap <buffer> if <Plug>(textobj-ruby-function-i)
-endfunction
-
-autocmd vimrc FileType python call TextObjMapsPython()
-function! TextObjMapsPython()
-  omap <buffer> af <Plug>(textobj-python-function-a)
-  omap <buffer> if <Plug>(textobj-python-function-i)
-
-  vmap <buffer> af <Plug>(textobj-python-function-a)
-  vmap <buffer> if <Plug>(textobj-python-function-i)
-endfunction
-
-function! AdocBlockA()
-  if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
-  let searchfor = getline('.')
-  let block_start = getpos('.')
-  call search(searchfor, 'W')
-  let block_stop = getpos('.')
-  return ['V', block_start, block_stop]
-endfunction
-
-function! AdocBlockI()
-  if search('^\(.\)\1\+$\|^.=\+$', 'Wb') == 0 | return 0 | endif
-  let searchfor = getline('.')
-  normal j
-  let block_start = getpos('.')
-  call search(searchfor, 'W')
-  normal k
-  let block_stop = getpos('.')
-  return ['V', block_start, block_stop]
-endfunction
-
 "                               SPACE MAPS                                {{{2
 " ____________________________________________________________________________
 "
 " Idea taken from Spacemacs: https://github.com/syl20bnr/spacemacs
-
-noremap  <Space>?       :Maps<CR>
 
 noremap  <Space><Space>      g<C-]>
 noremap  <C-W><Space><Space> <C-W>g<C-]>
@@ -828,29 +274,8 @@ map      <Space>y       "+y
 noremap  <Space>p       "+p
 noremap  <Space>P       "+P
 
-map      <Space>j       <Plug>(easymotion-sol-j)
-map      <Space>k       <Plug>(easymotion-sol-k)
-" Stay in the same column.
-map      <Space>J       <Plug>(easymotion-j)
-map      <Space>K       <Plug>(easymotion-k)
-
-nmap     <Space>c       <Plug>TComment_gc
-vmap     <Space>c       <Plug>TComment_gc
-nmap     <Space>cc      <Plug>TComment_gcc
-
 "                         <Space>a - APPLICATIONS                         {{{3
 " ............................................................................
-
-" TODO: xterm cwd
-
-" Simple calculator/evaulator.
-map      <Space>ac g!
-nnoremap <Space>aC :PP<CR>
-
-" Open terminal (shell).
-nnoremap <expr> <Space>as   has('win32')
-                            \ ? ':silent !start conemu64.exe /dir "'.expand('%:p:h').'" /cmd powershell<cr>'
-                            \ : ':silent !cd '.expand('%:p:h').'; xterm; cd -<CR>'
 
 " Profiling.
 nnoremap <Space>app :profile start ./profile.log <Bar> profile func * <Bar> profile file * <Bar>
@@ -861,7 +286,6 @@ nnoremap <Space>apb :BenchVimrc<CR>
 "                           <Space>b - BUFFERS                            {{{3
 " ............................................................................
 
-nnoremap <Space>bb :Buffers<CR>
 nnoremap <Space>bd :bdelete<CR>
 nnoremap <Space>bD :bdelete!<CR>
 " Move to next/previous argument (:args).
@@ -875,7 +299,6 @@ nnoremap <Space>bf :first<CR>
 nnoremap <Space>dn ]c
 nnoremap <Space>dp [c
 nnoremap <Space>dt :diffthis<CR>
-vnoremap <Space>dt :Linediff<CR>
 nnoremap <Space>do :let b=bufnr('%')<CR>:bufdo diffoff!<CR>:exe 'buffer ' . b<CR>
 nnoremap <Space>du :diffupdate<CR>
 
@@ -884,67 +307,9 @@ nnoremap <Space>du :diffupdate<CR>
 
 " TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap <Space>F   :find<Space>
-nnoremap <Space>fe  :VimFilerExplorer<CR>
-nnoremap <Space>ff  :Dirvish %<CR>
-nnoremap <Space>fF  :Dirvish<CR>
-nnoremap <Space>fr  :History<CR>
 nnoremap <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap <Space>fvm :edit ~/.vimrc_minimal<CR>
 nnoremap <Space>fvv :edit $MYVIMRC<CR>
-
-"                    <Space>m - MODE (FILETYPE) AWARE                     {{{3
-" ............................................................................
-
-map             <Space>mK  <Plug>Zeavim
-nnoremap        <Space>mg  :noautocmd vimgrep //j <C-R>=expand('%:p:h')<CR>/**/*.%:e <Bar> copen<Home><C-Right><C-Right><Right><Right>
-noremap         <Space>mr  :QuickRun<CR>
-noremap  <expr> <Space>mR  ':QuickRun ' . &filetype . 'Custom<CR>'
-nnoremap        <Space>mt  :Tags<CR>
-
-" Testing (checking
-nnoremap        <Space>mcc :TestNearest<CR>
-nnoremap        <Space>mcf :TestFile<CR>
-nnoremap        <Space>mcl :TestLast<CR>
-nnoremap        <Space>mcv :TestVisit<CR>
-
-" Definition
-nnoremap         <Space>mOd :Gtags -i <C-R>=expand('<cword>')<CR><CR>
-" Reference
-nnoremap         <Space>mOr :Gtags -ir <C-R>=expand('<cword>')<CR><CR>
-" Symbol (usefull for variables)
-nnoremap         <Space>mOs :Gtags -si <C-R>=expand('<cword>')<CR><CR>
-
-" __ VIM ________________________________
-
-autocmd vimrc FileType vim noremap <buffer> <Space>m8
-\ :call EightHeader(78, 'left', 1, ' ', '{'.'{{2' , '')<CR><CR>
-
-autocmd vimrc FileType vim nnoremap <buffer> <Space>ms  :PP<CR>
-
-" __ VIMHELP ____________________________
-
-autocmd vimrc FileType help nnoremap <buffer> <Space>m1
-\ :call EightHeader(78, 'left', 1, ' ', '\= "*".matchstr(s:str, ";\\@<=.*")."*"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
-
-autocmd vimrc FileType help noremap <buffer> <Space>m2
-\ :call EightHeader(78, 'left', 1, '.', '\= "\|".matchstr(s:str, ";\\@<=.*")."\|"', '\= matchstr(s:str, ".*;\\@=")')<CR><CR>
-
-" __ ASCIIDOC ___________________________
-
-autocmd vimrc FileType asciidoc,asciidoctor vnoremap <Space>mq :AdocFormat<CR>$hD
-
-" __ RUBY _______________________________
-
-autocmd vimrc FileType ruby nnoremap <buffer>       <Space>mb Orequire 'pry'; binding.pry<Esc>
-autocmd vimrc FileType ruby nnoremap <buffer><expr> <Space>ms has('win32')
-                                                              \ ? ':silent !start conemu64.exe /cmd irb.bat<CR>'
-                                                              \ : ':silent !xterm -c irb &<CR>'
-
-" __ PYTHON _____________________________
-
-autocmd vimrc FileType python nnoremap <buffer><expr> <Space>ms has('win32')
-                                                                \ ? ':silent !start conemu64.exe /cmd python.exe<CR>'
-                                                                \ : ':silent !xterm -c python &<CR>'
 
 "                        <Space>n - PLUGIN MANAGER                        {{{3
 " ............................................................................
@@ -955,27 +320,10 @@ nnoremap <Space>ni :PlugInstall<CR>
 nnoremap <Space>nl :PlugDiff<CR>
 nnoremap <Space>nu :PlugUpdate <Bar> PlugUpgrade<CR>
 
-"                <Space>q - QUOTES, SURROUNDS, CHANGE CASE                {{{3
-" ............................................................................
-
-nmap <Space>qa  <Plug>(operator-sandwich-add)
-vmap <Space>qa  <Plug>(operator-sandwich-add)
-nmap <Space>qs  <Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
-nmap <Space>qd  <Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
-
-nmap <Space>qcc <Plug>Coercec
-nmap <Space>qcm <Plug>Coercem
-nmap <Space>qc_ <Plug>Coerce_
-nmap <Space>qcs <Plug>Coerces
-nmap <Space>qcu <Plug>Coerceu
-nmap <Space>qcU <Plug>CoerceU
-
 "                            <Space>s - SEARCH                            {{{3
 " ............................................................................
 
-nnoremap <Space>ss :Rg<CR>
 nnoremap <Space>sg :noautocmd vimgrep //j ## <Bar> copen<Home><C-Right><C-Right><Right><Right>
-nnoremap <Space>sl :Lines<CR>
 
 "                            <Space>t - TOGGLE                            {{{3
 " ............................................................................
@@ -999,79 +347,3 @@ nnoremap <Space>wn  :botright 78 vnew [NOTES]<Bar> set ft=asciidoc buftype=nofil
 nnoremap <Space>wm  :let ft=&filetype <Bar> exe 'new [' . ft . ']' <Bar> let &filetype=ft <Bar> set buftype=nofile<CR>
 nnoremap <Space>wtt :tabnew<CR>
 nnoremap <Space>wtq :tabclose<CR>
-
-"                      <Space>x - TEXT MODIFICATION                       {{{3
-" ............................................................................
-
-nnoremap <Space>x0  :silent call dotvim#contact#call()<CR><CR>
-nnoremap <Space>x1  :silent call EightHeader(&tw, 'center', 0, '=', ' {' . '{{1', '')<CR><CR>
-nnoremap <Space>x2  :silent call EightHeader(&tw, 'center', 0, '_', ' {' . '{{2', '')<CR><CR>
-nnoremap <Space>x3  :silent call EightHeader(&tw, 'center', 0, '.', ' {' . '{{3', '')<CR><CR>
-nnoremap <Space>x4  :silent call EightHeader(0 - (&tw / 2), 'left', 1, ['__', '_', ''], '', '\= " " . s:str . " "')<CR><CR>
-nnoremap <Space>x8  :silent call EightHeader(78, 'left', 1, ' ', '{'.'{{' , '')<CR><CR>
-nnoremap <Space>x9  :silent call EightHeader(78, 'left', 1, ' ', '}'.'}}' , '')<CR><CR>
-
-nmap     <Space>xcc <Plug>(EasyAlign)ip
-nmap     <Space>xc  <Plug>(EasyAlign)
-vmap     <Space>xc  <Plug>(EasyAlign)
-
-"                                AUTOCOMMAND                              {{{1
-" ============================================================================
-"
-" WARNING: The order of autocommands can lead to unexpected behaviour! Try to
-" reorder in this case.
-
-autocmd vimrc BufEnter *.adoc set filetype=asciidoctor
-
-" Set up omni-completion if not already set.
-autocmd vimrc FileType * if &l:omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
-
-" Splits has to be equal even if Vim itself resized.
-autocmd vimrc VimResized * wincmd =
-
-" Disable the fancy things for view-only buffers.
-autocmd vimrc FileType man,qf  setlocal nonumber nolist
-autocmd vimrc BufNew   __doc__ setlocal nonumber nolist   " pydoc buffer
-
-" Disable folding in diffs.
-autocmd vimrc FileType diff setlocal nofoldenable
-
-" Auto-open quickfix window - I don't like to open it up by Neomake.
-" See `:help QuickFixCmdPost` and https://github.com/tpope/vim-fugitive#faq
-autocmd vimrc QuickFixCmdPost *grep* nested botright cwindow
-
-" Load project settings.
-"
-" Usefull for setting up tags to include another
-" project's tag file.
-" Before loading project-specific settings, reset `tags` to prevent mixing of
-" not relevant tag files.
-"
-" Using a Git hook to generate tags.
-" http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-" Triggered by vim-rooter's autocommand.
-" https://github.com/airblade/vim-rooter
-autocmd vimrc VimEnter * call LoadProjectSettings()
-autocmd vimrc User RooterChDir call LoadProjectSettings()
-
-function! LoadProjectSettings() "{{{
-  set tags=.git/tags
-  try
-    source .lvimrc
-  catch /^Vim\%((\a\+)\)\=:E484/
-  endtry
-endfunction "}}}
-
-"                               FIRENVIM                                  {{{1
-" ============================================================================
-
-if exists('g:started_by_firenvim')
-  " Statusline
-  set laststatus=0
-  " Tabline
-  set showtabline=0
-
-  colorscheme morning
-
-  autocmd FileType * set filetype=tiddlywiki textwidth=0
-endif

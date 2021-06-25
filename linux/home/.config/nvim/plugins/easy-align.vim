@@ -11,3 +11,7 @@ let g:easy_align_delimiters = {
       \ '<': {'pattern': '<<$', 'stick_to_left': 0, 'ignore_unmatched': 0},
       \ '+': {'pattern': ' +$', 'stick_to_left': 0, 'filter': 'v/^+$/', 'ignore_unmatched': 0},
       \ }
+
+nmap <Space>xcc <Plug>(EasyAlign)ip
+nmap <Space>xc  <Plug>(EasyAlign)
+vmap <Space>xc  <Plug>(EasyAlign)
