@@ -67,6 +67,9 @@ export LANGUAGE=C
 if [[ ! $PATH =~ $HOME/bin ]]; then
   export PATH=$HOME/bin:$PATH
 fi
+if [[ ! $PATH =~ $HOME/.local/bin ]]; then
+  export PATH=$HOME/.local/bin:$PATH
+fi
 if [[ ! $PATH =~ $HOME/.gitconfig_files/custom_commands ]]; then
   export PATH=$HOME/.gitconfig_files/custom_commands:$PATH
 fi
