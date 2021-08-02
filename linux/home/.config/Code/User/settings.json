@@ -35,5 +35,7 @@
     "workbench.colorCustomizations": {
         "terminal.foreground": "#e2dddd",
         "terminal.background": "#333333"
-    }
+    },
+    "window.autoDetectColorScheme": true,
+    "workbench.colorTheme": "Quiet Light",
 }
