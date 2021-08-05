@@ -27,6 +27,7 @@
     "autoHide.sideBarDelay": 0,
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/init.vscode_neovim.vim",
+    "workbench.colorTheme": "Quiet Light",
     "workbench.preferredLightColorTheme": "Quiet Light",
     "workbench.preferredDarkColorTheme": "Base16 Tomorrow",
     "workbench.settings.enableNaturalLanguageSearch": false,
@@ -36,6 +37,6 @@
         "terminal.foreground": "#e2dddd",
         "terminal.background": "#333333"
     },
+    "explorer.autoReveal": false,
     "window.autoDetectColorScheme": true,
-    "workbench.colorTheme": "Quiet Light",
 }
