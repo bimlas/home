@@ -7,7 +7,7 @@
     "zenMode.fullScreen": false,
     "zenMode.silentNotifications": false,
     "zenMode.hideLineNumbers": false,
-    "editor.fontSize": 12,
+    "editor.fontSize": 13,
     "editor.lineHeight": 1.6,
     "editor.mouseWheelScrollSensitivity": 3,
     "editor.find.autoFindInSelection": "multiline",
