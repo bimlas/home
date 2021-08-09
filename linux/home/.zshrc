@@ -52,6 +52,15 @@ jobs_info()
   jobs | jobs_prompt | sed 's/.\+/\n│ %F{cyan}Jobs: &\n/'
 }
 
+dirs_info()
+{
+  list=$(dirs -v | sed 's/\t/ /' | tail +2)
+  if [[ -n "$list" ]]; then
+    echo '\n│ Directory stack:'
+    echo $list | sed 's/.*/│   &/'
+  fi
+}
+
 # Errorcode of last command
 errorcode_info=$'%(?..\n│ %F{red}Error code: %?)'
 
@@ -59,6 +68,7 @@ PROMPT=$'\n'
 PROMPT+=$'%B%F{blue}┌'
 PROMPT+=$'[%f%T%F{blue}%B]'
 PROMPT+=$'%f %~ '
+PROMPT+=$'%F{blue}$(dirs_info)'
 PROMPT+=$'%F{blue}${vcs_info_msg_0_}'
 PROMPT+=$'%F{blue}$(virtualenv_info)'
 PROMPT+=$'%F{blue}${errorcode_info}'
