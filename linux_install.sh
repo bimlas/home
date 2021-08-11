@@ -19,6 +19,7 @@ chsh -s /bin/zsh
 
 sudo apt install -y tmux
 git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+pip3 install --user tmuxp
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
