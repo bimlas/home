@@ -27,7 +27,7 @@ bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts
 
 sudo apt install -y neovim
 
-curl -sL https://deb.nodesource.com/setup_12.x | sudo bash
+curl -sL https://deb.nodesource.com/setup_lts.x | sudo bash
 sudo apt install -y nodejs
 
 sudo npm install -g diff-so-fancy
