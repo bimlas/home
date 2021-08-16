@@ -8,6 +8,8 @@ sudo apt install -y aptitude
 sudo apt install -y software-properties-common
 # Needed to download installers and GPG keys (Spotify for example)
 sudo apt install -y curl
+# Needed to use `pip`
+sudo apt install -y python3 python3-pip
 
 # __ BASIC STUFF ________________________
 
@@ -38,8 +40,6 @@ sudo npm install -g diff-so-fancy
 sudo apt install -y gcc make
 
 #sudo apt install -y openjdk-11-jdk
-
-sudo apt install -y python3 python3-pip
 
 #sudo apt install -y ruby ruby-dev
 
