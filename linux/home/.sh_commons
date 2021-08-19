@@ -36,9 +36,9 @@ fi
 if [[ $(which nnn 2> /dev/null) ]]; then
   n()
   {
-    nnn -Ho -T e "$@"
+    NNN_TMPFILE=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd
 
-    export NNN_TMPFILE=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd
+    nnn -Ho -T e "$@"
 
     # cd on quit only on ^G
     if [ -f $NNN_TMPFILE ]; then
