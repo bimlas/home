@@ -87,4 +87,9 @@
         "command": "gitlens.openWorkingFile",
         "when": "editorTextFocus && isInDiffEditor && isInDiffRightEditor"
     },
+    {
+        "key": "ctrl+shift+j",
+        "command": "editor.action.joinLines",
+        "when": "editorTextFocus"
+    },
 ]
