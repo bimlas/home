@@ -49,7 +49,9 @@ nnn_info()
 export JOBS_PROMPT_TEXT='%F{cyan}'
 jobs_info()
 {
-  jobs | jobs_prompt | sed 's/.\+/\n│ %F{cyan}Jobs: &\n/'
+  if ( which jobs_prompt > /dev/null ); then
+    jobs | jobs_prompt | sed 's/.\+/\n│ %F{cyan}Jobs: &\n/'
+  fi
 }
 
 dirs_info()
