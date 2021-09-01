@@ -25,24 +25,35 @@ IFS=- read issueTracker issueNumber <<< $(echo $branchName | sed -nr 's,([a-z-]+
 
 if ! [[ -z $issueNumber ]]; then
 
+  firstline=''
+  lastline=''
   case "$issueTracker" in
     WRIKE)
-      line="Wrike: https://www.wrike.com/open.htm?id=$issueNumber"
+      lastline="Wrike: https://www.wrike.com/open.htm?id=$issueNumber"
       ;;
     GITHUB)
-      line="GitHub: #$issueNumber"
+      lastline="GitHub: #$issueNumber"
       ;;
     GITLAB)
-      line="GitLab: #$issueNumber"
+      lastline="GitLab: #$issueNumber"
+      ;;
+    # JIRA
+    AF)
+      firstline="$issueTracker-$issueNumber "
       ;;
     *)
-      line="Issue: #$issueNumber"
+      lastline="Issue: #$issueNumber"
       ;;
   esac
 
   # If the commit message already contains the line (`--amend`), then do
   # not add it again.
-  if ! ( grep "$line" "$1" > /dev/null ); then
-    sed -i.bak -e "/# Please enter the commit message for your changes./ s,^,$line\n\n," $1
+  if ! ( grep "$lastline" "$1" > /dev/null ); then
+    sed -i.bak -e "/# Please enter the commit message for your changes./ s,^,$lastline\n\n," "$1"
+  fi
+  if ! [ -z "$firstline" ] && ! ( grep "$firstline" "$1" > /dev/null ); then
+    echo "$firstline" > "$1.bak"
+    cat "$1" >> "$1.bak"
+    mv "$1.bak" "$1"
   fi
 fi
