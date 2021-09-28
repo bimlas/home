@@ -57,3 +57,8 @@ if ! [[ -z $issueNumber ]]; then
     mv "$1.bak" "$1"
   fi
 fi
+
+# Execute hook of current repository
+if [ -f .git/hooks/`basename $0` ] && [ -x .git/hooks/`basename $0` ]; then
+  .git/hooks/`basename $0`
+fi

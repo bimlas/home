@@ -8,3 +8,8 @@ then
     echo "Pass -n|--no-verify to commit anyway."
     exit 1
 fi
+
+# Execute hook of current repository
+if [ -f .git/hooks/`basename $0` ] && [ -x .git/hooks/`basename $0` ]; then
+  .git/hooks/`basename $0`
+fi

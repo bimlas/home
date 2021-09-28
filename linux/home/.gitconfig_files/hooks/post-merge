@@ -1,4 +1,10 @@
 #!/bin/bash
 # Invoked on: merge, pull
+
 git ctags >/dev/null 2>&1 &
 [ -f composer.json ] && git composer-autoload >/dev/null 2>&1 &
+
+# Execute hook of current repository
+if [ -f .git/hooks/`basename $0` ] && [ -x .git/hooks/`basename $0` ]; then
+  .git/hooks/`basename $0`
+fi
