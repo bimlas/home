@@ -62,8 +62,8 @@ link "$CWD/linux/home/.Xresources"       "$HOME/.Xresources"
 link "$CWD/linux/home/.xsessionrc"       "$HOME/.xsessionrc"
 link "$CWD/linux/home/.zshrc"            "$HOME/.zshrc"
 mkdir -p "$HOME/.config/nvim/"
-link "$CWD/linux/home/.config/ginit/nvim/init.vim" "$HOME/.config/nvim/init.vim"
-link "$CWD/linux/home/.config/ginit/nvim/ginit.vim" "$HOME/.config/nvim/ginit.vim"
+link "$CWD/linux/home/.config/nvim/init.vim" "$HOME/.config/nvim/init.vim"
+link "$CWD/linux/home/.config/nvim/ginit.vim" "$HOME/.config/nvim/ginit.vim"
 
 shopt -s extglob
 chmod 744 $HOME/bin/!(.gitignore|Gemfile|*.bat)
