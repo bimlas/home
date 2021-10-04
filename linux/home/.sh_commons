@@ -30,7 +30,7 @@ if [[ $(which mc 2> /dev/null) ]]; then
 fi
 
 if [[ $(which mycli 2> /dev/null) ]]; then
-  alias mycli='EDITOR="code --wait" PAGER="pspg -a -b -X" mycli'
+  alias mycli='EDITOR="code --wait" PAGER="less -SiRFX" mycli'
 fi
 
 if [[ $(which nnn 2> /dev/null) ]]; then
