@@ -1,8 +1,3 @@
-" Gyorsitja a vim mukodeset.
-if v:version >= 704
-  set regexpengine=1
-endif
-
 " Bufferek kozti valtasnal ne mentse automatikusan azok tartalmat.
 set hidden
 
