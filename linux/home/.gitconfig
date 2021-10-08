@@ -647,7 +647,8 @@
   ;   for i in myers minimal patience histogram; do
   ;     git log --diff-algorithm=$i -p >$i
   ;   done
-  algorithm = "minimal"
+  ; https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
+  algorithm = "patience"
 
   ; Well structured hunks:
   ; Needs 2.9
