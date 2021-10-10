@@ -1,6 +1,12 @@
 " automatic code completion with language server protocol (lsp)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+let g:coc_global_extensions = [
+      \   'coc-tsserver',
+      \   'coc-prettier',
+      \ ]
+" For configuration, see ~/.config/nvim/coc-settings.json
+
 set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 augroup plugin_coc
