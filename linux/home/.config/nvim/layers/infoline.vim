@@ -15,4 +15,4 @@ set showmode
 " - <Tab> expands string to the longest common part
 " - Second <Tab> shows all match
 " - Starting from the third will iterate on the list
-set wildmode=longest,list,full
+set wildmode=longest:full,full
