@@ -3,6 +3,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 let g:coc_global_extensions = [
       \   'coc-tsserver',
+      \   'coc-eslint',
       \   'coc-prettier',
       \ ]
 " For configuration, see ~/.config/nvim/coc-settings.json
