@@ -1,7 +1,5 @@
 " Almighty homerow.
 inoremap <C-F>      <C-X><C-O>
-noremap  <C-H>      @
-noremap  <C-H><C-H> @@
 map      <C-J>      <CR>
 imap     <C-J>      <CR>
 map      <C-K>      <Esc>
@@ -14,20 +12,6 @@ noremap  k          gk
 noremap  gj         j
 noremap  gk         k
 
-" Take some keys from english keyboard.
-noremap é ;
-noremap É ,
-noremap ő [
-noremap ú ]
-noremap Ő {
-noremap Ú }
-
-" I don't using the ex-mode directly.
-nnoremap Q <Nop>
-
-" Show the full path.
-nnoremap <C-G> 1<C-G>
-
 " Update everything, not just the screen.
 nnoremap <C-L> :nohlsearch <Bar> checktime <Bar> diffupdate <Bar> syntax sync fromstart<CR><C-L>
 
@@ -36,10 +20,6 @@ nnoremap <Leader><C-K> a<C-K>
 
 " Don't move to the first match, just highlight those.
 nnoremap * *Nzz
-
-" Repeat last :substitute with all of its flags.
-nnoremap & :&&<CR>
-vnoremap & :&&<CR>
 
 " <Up> and <C-P> differs in command line - try it out!
 cnoremap <C-P> <Up>
@@ -55,7 +35,6 @@ inoremap <expr> <C-D> pumvisible() ? '<PageDown>' : '<C-D>'
 " inoremap <expr> <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
 inoremap <expr> <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
 
-" Kurzor alatti parancs sugojanak megnyitasa.
 autocmd vimrc FileType man call ManMap()
 function! ManMap()
   map   <buffer> K    <C-]>
@@ -65,6 +44,7 @@ endfunction
 "                             NEOVIM SPECIFIC                             {{{1
 " ____________________________________________________________________________
 
+" Go to normal mode in builtin terminal emulator
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
 endif
@@ -134,7 +114,7 @@ nnoremap <Space>du :diffupdate<CR>
 nnoremap <Space>F   :find<Space>
 nnoremap <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap <Space>fvm :edit ~/.vimrc_minimal<CR>
-nnoremap <Space>fvv :edit $MYVIMRC<CR>
+nnoremap <Space>fvv :edit ~/.vimrc<CR>
 
 "                        <Space>n - PLUGIN MANAGER                        {{{2
 " ............................................................................

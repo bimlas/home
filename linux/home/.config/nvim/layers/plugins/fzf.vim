@@ -2,7 +2,8 @@
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-noremap  <Space>?  :Maps<CR>
+nnoremap <F1>      :Commands<CR>
+nnoremap <Space>?  :Maps<CR>
 nnoremap <Space>bb :Buffers<CR>
 nnoremap <Space>ff :Files<CR>
 nnoremap <Space>fr :History<CR>
