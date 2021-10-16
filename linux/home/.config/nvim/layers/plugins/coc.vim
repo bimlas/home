@@ -25,6 +25,11 @@ augroup plugin_coc
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
+command MyRenameSymbol call CocAction('refactor')
+command MyJumpToSymbolDeifinition call CocAction('jumpDefinition')
+command MyJumpToSymbolReferences call CocAction('jumpReferences')
+command MyOutlineDocument call CocAction('showOutline')
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
