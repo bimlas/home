@@ -34,14 +34,6 @@ function! s:InstallPluginManager()
   return
 endfunction
 
-function! bimlas#plugins#configure(name)
-  exe 'source ' . s:plugins_config_dir . '/' . a:name . '.vim'
-endfunction
-
-function! bimlas#plugins#loadConfiguredPlugins()
-  call plug#end()
-endfunction
-
 if !isdirectory(s:plugin_manager_dir)
   call s:InstallPluginManager()
 else
