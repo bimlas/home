@@ -13,6 +13,9 @@ let $PATH .= (has('win32') ? ';' : ':') . $HOME . '/.vim/bin'
 " Use only buffer's dir
 set path=.
 
+" Nvim has no direct connection to the system clipboard without this
+set clipboard+=unnamed
+
 " I using Git grep most of the time instead of standard grepping tools.
 let &grepprg = 'git grep -n'
 

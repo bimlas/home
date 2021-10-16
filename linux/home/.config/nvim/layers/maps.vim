@@ -55,41 +55,6 @@ inoremap <expr> <C-D> pumvisible() ? '<PageDown>' : '<C-D>'
 " inoremap <expr> <C-W>  (col(".") == 1       ) ? "<BS>"  : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'Wb')<CR>"
 inoremap <expr> <C-L>  (col(".") == col("$")) ? "<Del>" : "<C-O>d:call search('\\s\\+\\<Bar>[A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű\\n]\\+\\<Bar>[^A-Za-z0-9ÁÉÍÓÖŐÚÜŰáéíóöőúüű]', 'W')<CR>"
 
-" A torles ne masolja a vagolapra a szoveget.
-" Azert nem `noremap`, mert az `onoremap` is beletartozna, igy pl. a `cc`
-" beutese `"_c"_c` lenne `"_cc` helyett.
-" noremap s     "_s
-nnoremap S     "_S
-vnoremap S     "_S
-nnoremap c     "_c
-vnoremap c     "_c
-nnoremap C     "_C
-vnoremap C     "_C
-nnoremap d     "_d
-vnoremap d     "_d
-nnoremap D     "_D
-vnoremap D     "_D
-nnoremap <Del> "_<Del>
-vnoremap <Del> "_<Del>
-" Kivagas motion-nel.
-nnoremap x     d
-nnoremap xx    dd
-vnoremap x     d
-nnoremap X     dd
-vnoremap X     dd
-" ... viszont a karakterek felcsereleset meghagyjuk.
-nnoremap xp    xp
-nnoremap xP    xP
-
-" Az ablakkezelo vagolapjanak hasznalata.
-" Hogy a <S-Insert> a sor vegen is normalisan mukodjon:
-" set virtualedit=onemore
-noremap  <C-Insert> "+y
-cnoremap <C-Insert> <C-Y>
-cnoremap <S-Insert> <C-R>+
-noremap  <S-Insert> "+P
-imap     <S-Insert> <C-O><S-Insert>
-
 " Kurzor alatti parancs sugojanak megnyitasa.
 autocmd vimrc FileType man call ManMap()
 function! ManMap()

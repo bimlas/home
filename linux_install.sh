@@ -35,6 +35,8 @@ sudo apt install -y nodejs
 
 sudo npm install -g diff-so-fancy
 
+sudo apt install -y xsel
+
 # __ DEVELOPEMENT _______________________
 
 sudo apt install -y gcc make
