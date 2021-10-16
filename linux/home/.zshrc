@@ -26,6 +26,15 @@ zstyle ':vcs_info:*' check-for-changes false
 zstyle ':vcs_info:*' formats $'\n│ %F{yellow}Git: %b'
 precmd () { vcs_info }
 
+vcs_stash_info()
+{
+  stash=$(git stash list 2> /dev/null)
+  if [[ -n "$stash" ]]; then
+    echo '\n│ %F{yellow}Git stash:'
+    echo $stash | sed -e 's/stash@{\([0-9]\+\)}:/%F{yellow}\1:%F{blue}/' -e 's/.*/%F{blue}│   &/'
+  fi
+}
+
 # Python virtualenv.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 function virtualenv_info()
@@ -72,6 +81,7 @@ PROMPT+=$'[%f%T%F{blue}%B]'
 PROMPT+=$'%f %~ '
 PROMPT+=$'%F{blue}$(dirs_info)'
 PROMPT+=$'%F{blue}${vcs_info_msg_0_}'
+PROMPT+=$'%F{blue}$(vcs_stash_info)'
 PROMPT+=$'%F{blue}$(virtualenv_info)'
 PROMPT+=$'%F{blue}${errorcode_info}'
 PROMPT+=$'%F{blue}$(jobs_info)\n'
