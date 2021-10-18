@@ -1,50 +1,28 @@
-" Nem szeretem a magyar uzeneteket (a C az angol megfeleloje).
+" Do not use translations for Vim's messages (`C` stays for English)
 language messages C
 
-" A Vim alapertelmezett karakterkodolasa. (nem a fajloke)
-set encoding=utf8
-
-" Mindig legyen eger.
-set mouse=a
-
-" Eger viselkedese.
-behave xterm
-
-" Mindig mutassa a tabokat (megnyitott fajlokat, nem a TAB karakteret).
-set showtabline=2
-
-" Sorok szamozasara szant oszlop szelessege.
-set numberwidth=6
-
-" Uj ablakok alulra / jobbra keruljenek. (a help is)
+" Open splits in these directions
 set splitbelow splitright
 
-" Ablakok nyitasanal / bezarasanal mindig ugyanakkorara meretezze ujra oket.
-set equalalways
-
-" A help ablak se foglaljon nagyobb helyet.
-set helpheight=0
-
-" Az ablakok kozti elvalaszto ne tartalmazzon karaktereket, csak a szinezes jelolje a hatarokat.
+" Use only colors to highlight the window borders, do not add characters
 let &fillchars = 'vert: ,stl: ,stlnc: '
 
-" Do not make visual/audio bell (have to be in .gvimrc too).
-set visualbell t_vb=
-set belloff=all
-
-" CursorHold-hoz kell es a swap fajl mentesenek idejet is befolyasolja.
+" Needed by CursorHold and sawing of swap file
 set updatetime=1000
 
-" Makrok futtatasanal ne frissitse a kepernyot, csak ha vegzett.
+" Refresh window only when a macro run is finished, do not show the process
 set lazyredraw
 
-" Terminalban ne varakozzon az <Esc>
+" In terminal do not wait after pressing <Esc>
 set ttimeout ttimeoutlen=0 notimeout
 
-" Splits has to be equal even if Vim itself resized.
+" Size help window to the same size as other windows
+set helpheight=0
+
+" Splits has to be equal even if Vim itself resized
 autocmd vimrc VimResized * wincmd =
 
-" Disable the fancy things for view-only buffers.
+" Disable the fancy things for view-only buffers
 autocmd vimrc FileType man,qf  setlocal nonumber nolist
 autocmd vimrc BufNew   __doc__ setlocal nonumber nolist   " pydoc buffer
 

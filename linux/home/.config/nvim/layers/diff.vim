@@ -1,5 +1,4 @@
-" :help diff-diffexpr: a --minimal kapcsolot hozzatettem.
-" A diff manual-bol:
+" :help diff-diffexpr: Added `--minimal` flag
 "
 "   -d
 "   --minimal
@@ -20,5 +19,5 @@ function! MyDiff()
     silent execute '!diff -a --binary --minimal ' . opt . ' "' . v:fname_in . '" "' . v:fname_new . '" > "' . v:fname_out . '"'
 endfunction
 
-" Disable folding in diffs.
+" Disable foldings in diffs
 autocmd vimrc FileType diff setlocal nofoldenable

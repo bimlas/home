@@ -1,15 +1,8 @@
-" Kellokepp magas legyen a statusline alatti terulet.
+" Height of the 'command line' below statusline
 set cmdheight=2
 
-" Minden valtoztatasrol tajekoztasson.
+" Notify me about everything
 set report=0
-
-" Operatorra varo parancs mutatasa (pl. makro rogzitesehez hasznalt 'q'),
-" kijelolesnel a kijeloles merete.
-set showcmd
-
-" Mod (insert, visual, stb.) mutatasa.
-set showmode
 
 " Completion in the command line:
 " - <Tab> expands string to the longest common part
