@@ -58,6 +58,7 @@ if(!exists('g:vimrc_minimal_plugins'))
 
   source $HOME/.config/nvim/layers/plugins/dirvish.vim
   source $HOME/.config/nvim/layers/plugins/fzf.vim
+  source $HOME/.config/nvim/layers/plugins/telescope.vim
 
   " .. EGYEB HASZNOSSAGOK .................
 
@@ -70,6 +71,7 @@ if(!exists('g:vimrc_minimal_plugins'))
 
   " .. PROGRAMOZAS ........................
 
+  source $HOME/.config/nvim/layers/plugins/treesitter.vim
   source $HOME/.config/nvim/layers/plugins/tcomment.vim
   source $HOME/.config/nvim/layers/plugins/lexima.vim
   source $HOME/.config/nvim/layers/plugins/quickrun.vim
