@@ -41,17 +41,6 @@ function! ManMap()
   map   <buffer> <CR> <C-]>
 endfunction
 
-"                             NEOVIM SPECIFIC                             {{{1
-" ____________________________________________________________________________
-
-" Go to normal mode in builtin terminal emulator
-if has('nvim')
-    tnoremap <Esc> <C-\><C-n>
-endif
-if exists(':tnoremap')
-    tnoremap <Esc> <C-\><C-n>
-endif
-
 "                               SPACE MAPS                                {{{1
 " ____________________________________________________________________________
 "
@@ -79,15 +68,6 @@ map      <Space>y       "+y
 noremap  <Space>p       "+p
 noremap  <Space>P       "+P
 
-"                         <Space>a - APPLICATIONS                         {{{2
-" ............................................................................
-
-" Profiling.
-nnoremap <Space>app :profile start ./profile.log <Bar> profile func * <Bar> profile file * <Bar>
-                    \ echomsg "Profiling started, <lt>Space>apq to stop it (and quit from Vim!)."<CR>
-nnoremap <Space>apq :profile pause <Bar> noautocmd qall<CR>
-nnoremap <Space>apb :BenchVimrc<CR>
-
 "                           <Space>b - BUFFERS                            {{{2
 " ............................................................................
 
@@ -110,20 +90,10 @@ nnoremap <Space>du :diffupdate<CR>
 "                            <Space>f - FILES                             {{{2
 " ............................................................................
 
-" TODO: UniteWithBufferDir - ~ not goes to $HOME; Unite file:%:p:h not goes to ../
 nnoremap <Space>F   :find<Space>
 nnoremap <Space>fvg :edit $MYGVIMRC<CR>
 nnoremap <Space>fvm :edit ~/.vimrc_minimal<CR>
 nnoremap <Space>fvv :edit ~/.vimrc<CR>
-
-"                        <Space>n - PLUGIN MANAGER                        {{{2
-" ............................................................................
-
-nnoremap <Space>nc :PlugClean<CR>
-nnoremap <Space>nd :Plug '' <Bar> PlugInstall<S-Left><S-Left><S-Left><Right>
-nnoremap <Space>ni :PlugInstall<CR>
-nnoremap <Space>nl :PlugDiff<CR>
-nnoremap <Space>nu :PlugUpdate <Bar> PlugUpgrade<CR>
 
 "                            <Space>s - SEARCH                            {{{2
 " ............................................................................

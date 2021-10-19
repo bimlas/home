@@ -40,3 +40,9 @@ else
   exe 'source ' . s:plugin_manager_dir . '/plug.vim'
   call plug#begin(s:plugins_install_dir)
 endif
+
+nnoremap <Space>nc :PlugClean<CR>
+nnoremap <Space>nd :Plug '' <Bar> PlugInstall<S-Left><S-Left><S-Left><Right>
+nnoremap <Space>ni :PlugInstall<CR>
+nnoremap <Space>nl :PlugDiff<CR>
+nnoremap <Space>nu :PlugUpdate <Bar> PlugUpgrade<CR>

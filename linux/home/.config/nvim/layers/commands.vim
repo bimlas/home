@@ -1,4 +1,4 @@
 cabbrev  argdo silent argdo silent
 
 command  W  noautocmd write
-command  Wa  noautocmd wall
+command  Wall  noautocmd wall
