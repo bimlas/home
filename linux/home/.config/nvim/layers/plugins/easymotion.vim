@@ -1,4 +1,8 @@
 " vim motion (in buffer) on speed
+
+" WARNING: Jumping to line (<Space>j) causing false ESLint warnings, overrides
+" colors in Coc-Explorer
+
 Plug 'easymotion/vim-easymotion'
 
 let g:EasyMotion_do_mapping = 0

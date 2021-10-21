@@ -43,7 +43,7 @@ if(!exists('g:vimrc_minimal_plugins'))
 
   " .. KURZOR MOZGATASA ...................
 
-  source $HOME/.config/nvim/layers/plugins/easymotion.vim
+  " source $HOME/.config/nvim/layers/plugins/easymotion.vim
 
   " .. SZOVEG KERESESE/MODOSITASA .........
 
@@ -64,6 +64,7 @@ if(!exists('g:vimrc_minimal_plugins'))
 
   source $HOME/.config/nvim/layers/plugins/linediff.vim
   source $HOME/.config/nvim/layers/plugins/highlightedyank.vim
+  source $HOME/.config/nvim/layers/plugins/bookmarks.vim
   source $HOME/.config/nvim/layers/plugins/diff-enhanced.vim
   source $HOME/.config/nvim/layers/plugins/repeat.vim
   source $HOME/.config/nvim/layers/plugins/scriptease.vim

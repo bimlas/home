@@ -1,6 +1,12 @@
 " Do not use translations for Vim's messages (`C` stays for English)
 language messages C
 
+colorscheme desert
+
+" Use these instead of EasyMotion
+set number
+set relativenumber
+
 " Open splits in these directions
 set splitbelow splitright
 

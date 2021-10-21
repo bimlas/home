@@ -13,7 +13,7 @@ Plug 'chriskempson/base16-vim'
 " Use GUI colors in terminal.
 set termguicolors
 
-autocmd  vimrc  VimEnter  *  colorscheme base16-tomorrow-night-eighties
+autocmd  vimrc  VimEnter  *  colorscheme base16-gruvbox-dark-pale
 
 "                                DEFAULTS
 " ____________________________________________________________________________
