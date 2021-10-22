@@ -118,7 +118,8 @@ nnoremap        <Space>tw :set wrap!<CR>
 " ............................................................................
 
 nnoremap <Space>wo  :tab split<CR>
-nnoremap <Space>wn  :botright 78 vnew [NOTES]<Bar> set ft=asciidoc buftype=nofile nonumber norelativenumber<CR>
+nnoremap <Space>wn  :botright 78 vnew $HOME/NOTES.adoc<Bar> set ft=asciidoc nobuflisted nonumber norelativenumber<CR>
+autocmd vimrc BufLeave $HOME/NOTES.adoc write
 nnoremap <Space>wm  :let ft=&filetype <Bar> exe 'new [' . ft . ']' <Bar> let &filetype=ft <Bar> set buftype=nofile<CR>
 nnoremap <Space>wtt :tabnew<CR>
 nnoremap <Space>wtq :tabclose<CR>
