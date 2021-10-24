@@ -23,6 +23,10 @@ let g:quickrun_config = {
       \    'cmdopt':    '-o -',
       \    'outputter': 'browser'
       \  },
+      \  'python':
+      \  {
+      \    'commnand': 'python3'
+      \  },
       \  'rubyCustom':
       \  {
       \    'command': 'irb'
