@@ -613,7 +613,7 @@
 [commit]                                                                ; {{{1
 
   ; Additional text which appears on the top of commit message as a comment.
-  template = "~/.gitconfig_files/commit_template"
+  ; template = "~/.gitconfig_files/commit_template"
 
 [log]                                                                   ; {{{1
 
