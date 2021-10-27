@@ -39,7 +39,8 @@ sudo apt install -y xsel
 
 # __ DEVELOPEMENT _______________________
 
-sudo apt install -y gcc make
+# GCC, Make, etc.
+sudo apt install -y build-essential
 
 #sudo apt install -y openjdk-11-jdk
 
