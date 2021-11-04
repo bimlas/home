@@ -67,7 +67,7 @@ wider_completion_menu = False
 # \s - Seconds of the current time
 # \t - Product type (Percona, MySQL, MariaDB)
 # \u - Username
-prompt = '==== \t \u@\h:\d\n  '
+prompt = '\n\n## \R:\m:\s \t\n## \u@\h:\d\n\n'
 prompt_continuation = ''
 
 # Skip intro info on startup and outro info on exit
