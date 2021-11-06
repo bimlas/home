@@ -200,6 +200,9 @@ bindkey '^n'   history-beginning-search-forward
 bindkey '^[[B' history-beginning-search-forward   # Down (on TTY)
 bindkey '^[OB' history-beginning-search-forward   # Down (on Xterm)
 
+# Ctrl + Arrows to jump between words
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 # Edit current command line
 autoload -z edit-command-line
 zle -N edit-command-line
