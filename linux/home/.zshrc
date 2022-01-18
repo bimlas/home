@@ -47,6 +47,15 @@ function virtualenv_info()
   echo $venv
 }
 
+kubernetes_info()
+{
+    CONTEXT=$(cat ~/.kube/config 2>/dev/null| grep -o '^current-context: [^/]*' | cut -d' ' -f2)
+
+    if [ -n "$CONTEXT" ]; then
+        echo "$CONTEXT" | sed 's/.\+/\n│ %F{green}Kubernetes: &\n/'
+    fi
+}
+
 # Indicate if the terminal has been opened from nnn
 nnn_info()
 {
@@ -83,6 +92,7 @@ PROMPT+=$'%F{blue}$(dirs_info)'
 PROMPT+=$'%F{blue}${vcs_info_msg_0_}'
 PROMPT+=$'%F{blue}$(vcs_stash_info)'
 PROMPT+=$'%F{blue}$(virtualenv_info)'
+PROMPT+=$'%F{blue}$(kubernetes_info)'
 PROMPT+=$'%F{blue}${errorcode_info}'
 PROMPT+=$'%F{blue}$(jobs_info)\n'
 PROMPT+=$'%F{blue}└ '
