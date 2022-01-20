@@ -190,6 +190,11 @@ compctl -K _pip_completion pip3
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+#                               KUBERNETES                                {{{2
+# ____________________________________________________________________________
+
+(which kubectl > /dev/null) && source <(kubectl completion zsh)
+
 #                                  OTHER                                  {{{1
 # ============================================================================
 
