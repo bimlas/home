@@ -64,6 +64,11 @@
    lsp-ui-doc-max-height 120
    lsp-headerline-breadcrumb-enable t))
 
+(add-hook! 'typescript-mode-hook
+   (prettier-mode t))
+(add-hook! 'json-mode-hook
+   (prettier-mode t))
+
 (use-package! origami
   :config
   (global-origami-mode t))
@@ -71,3 +76,6 @@
 (map!
  :map evil-snipe-mode-map
  :nvm "s" #'evil-avy-goto-char-2)
+
+(map!
+ :n "^z" #'suspend-emacs)
