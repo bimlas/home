@@ -228,7 +228,7 @@
          [ $GIT_PREFIX ] && cd $GIT_PREFIX; \
          git status --short --branch $*; \
          echo \"## `git status --porcelain $* | wc -l` files affected\"; \
-         git --no-pager diff -U0 master | grep \"^+.*TODO\" | sed \"s/^+//\" | git --no-pager grep -nFf - -- $(git --no-pager diff --name-status master | cut -f2 | sed \"s#.*#:/&#\") 2> /dev/null; \
+         git --no-pager diff -U0 `git branch | grep -o -E \"\\<(main|master)\\>\" | head -1` | grep \"^+.*TODO\" | sed \"s/^+//\" | git --no-pager grep -nFf - -- $(git --no-pager diff --name-status `git branch | grep -o -E \"\\<(main|master)\\>\" | head -1` | cut -f2 | sed \"s#.*#:/&#\") 2> /dev/null; \
          git stash list' -"
   sb  = "branch-status"
   sba = "branch-status --all"

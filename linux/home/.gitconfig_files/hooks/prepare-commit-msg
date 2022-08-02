@@ -41,6 +41,9 @@ if ! [[ -z $issueNumber ]]; then
     AF)
       firstline="$issueTracker-$issueNumber "
       ;;
+    MP)
+      firstline="$issueTracker-$issueNumber "
+      ;;
     *)
       lastline="Issue: #$issueNumber"
       ;;
