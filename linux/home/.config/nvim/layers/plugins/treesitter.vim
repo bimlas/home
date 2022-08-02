@@ -6,7 +6,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend))
-" set foldlevelstart=1
+set foldlevelstart=99
 set foldminlines=1
 
 autocmd vimrc VimEnter * call EnableTreeSitter()
