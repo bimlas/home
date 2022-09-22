@@ -71,8 +71,8 @@ noremap  <Space>P       "+P
 "                           <Space>b - BUFFERS                            {{{2
 " ............................................................................
 
-nnoremap <Space>bd :bdelete<CR>
-nnoremap <Space>bD :bdelete!<CR>
+nnoremap <Space>bd :lua require('bufdelete').bufdelete(0)<CR>
+nnoremap <Space>bD :lua require('bufdelete').bufdelete(0, true)<CR>
 " Move to next/previous argument (:args).
 nnoremap <Space>bn :next<CR>
 nnoremap <Space>bp :previous<CR>

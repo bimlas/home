@@ -6,6 +6,7 @@ let g:high_lighters = {
       \ 'words': {'_hlgroups': []},
       \ 'unite_directory': {'whitelist': ['unite', 'denite']},
       \ 'invisible_space': {},
+      \ 'custom_words': {'pattern': 'TODO\|NOTE\|DONE', 'hlgroup': 'SpecialKey'}
       \ }
 
 for color in ['8ccbea', 'a4e57e', 'ffdb72', 'ff7272', 'ffb3ff', '9999ff']

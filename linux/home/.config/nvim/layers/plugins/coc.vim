@@ -37,6 +37,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <Space>ft <Cmd>CocCommand explorer --position=floating --floating-position=right-center --floating-width=50<CR>
 nmap <silent> gR <Plug>(coc-rename)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

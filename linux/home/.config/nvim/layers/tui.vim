@@ -7,6 +7,9 @@ colorscheme desert
 set number
 set relativenumber
 
+" Highlight current line
+set cursorline
+
 " Open splits in these directions
 set splitbelow splitright
 
