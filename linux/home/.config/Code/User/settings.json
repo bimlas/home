@@ -14,6 +14,7 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
+  "git.useIntegratedAskPass": false,
   "git-graph.commitDetailsView.location": "Docked to Bottom",
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
