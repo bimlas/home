@@ -47,12 +47,20 @@ function virtualenv_info()
   echo $venv
 }
 
+doctl_info()
+{
+  doctl_context=$(doctl auth list | grep current | grep -o '^\S\+')
+  if [ -n "$doctl_context" ]; then
+      echo "$doctl_context" | sed 's/.\+/\n│ %F{green}Doctl: &\n/'
+  fi
+}
+
 kubernetes_info()
 {
-    CONTEXT=$(cat ~/.kube/config 2>/dev/null| grep -o '^current-context: [^/]*' | cut -d' ' -f2)
+    kubernetes_context=$(cat ~/.kube/config 2>/dev/null| grep -o '^current-context: [^/]*' | cut -d' ' -f2)
 
-    if [ -n "$CONTEXT" ]; then
-        echo "$CONTEXT" | sed 's/.\+/\n│ %F{green}Kubernetes: &\n/'
+    if [ -n "$kubernetes_context" ]; then
+        echo "$kubernetes_context" | sed 's/.\+/\n│ %F{green}Kubernetes: &\n/'
     fi
 }
 
@@ -92,6 +100,7 @@ PROMPT+=$'%F{blue}$(dirs_info)'
 PROMPT+=$'%F{blue}${vcs_info_msg_0_}'
 PROMPT+=$'%F{blue}$(vcs_stash_info)'
 PROMPT+=$'%F{blue}$(virtualenv_info)'
+PROMPT+=$'%F{blue}$(doctl_info)'
 PROMPT+=$'%F{blue}$(kubernetes_info)'
 PROMPT+=$'%F{blue}${errorcode_info}'
 PROMPT+=$'%F{blue}$(jobs_info)\n'
