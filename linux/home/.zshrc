@@ -9,6 +9,9 @@ source $HOME/.sh_commons
 
 autoload -U colors     && colors
 autoload -U promptinit && promptinit
+
+export FZF_COMPLETION_AUTO_COMMON_PREFIX=true
+export FZF_COMPLETION_AUTO_COMMON_PREFIX_PART=true
 source ~/bin/zsh/fzf-zsh-completion.sh
 
 export ZSHZ_CMD=cdd

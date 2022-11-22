@@ -1,14 +1,18 @@
 # set ft=zsh
-# https://github.com/lincheney/fzf-tab-completion
 
-_FZF_COMPLETION_SEP=$'\x01'
+# use a whitespace char or anchors don't work
+_FZF_COMPLETION_SEP=$'\u00a0'
+_FZF_COMPLETION_SPACE_SEP=$'\v'
+_FZF_COMPLETION_NONSPACE=$'\u00ad'
 _FZF_COMPLETION_FLAGS=( a k f q Q e n U l 1 2 C )
 
 zmodload zsh/zselect
 zmodload zsh/system
 
+_fzf_bash_completion_awk="$( { which gawk || echo awk; } 2>/dev/null)"
+
 fzf_completion() {
-    emulate -LR zsh
+    emulate -LR zsh +o ALIASES
     setopt interactivecomments
     local value code stderr
     local __compadd_args=()
@@ -42,10 +46,23 @@ fzf_completion() {
         fi
 
         # all except autoload functions
-        local full_functions="$(functions + | fgrep -vx "$(functions -u +)")"
+        local full_functions="$(functions + | grep -F -vx "$(functions -u +)")"
 
         # do not allow grouping, it stuffs up display strings
         zstyle ":completion:*:*" list-grouped no
+
+        local _FZF_COMPLETION_CONTEXT
+        _FZF_COMPLETION_CONTEXT="${compstate[context]//_/-}"
+        _FZF_COMPLETION_CONTEXT="${_FZF_COMPLETION_CONTEXT:+-$_FZF_COMPLETION_CONTEXT-}"
+        if [ "$_FZF_COMPLETION_CONTEXT" = -command- -a "$CURRENT" -gt 1 ]; then
+            _FZF_COMPLETION_CONTEXT="${words[1]}"
+        fi
+        _FZF_COMPLETION_CONTEXT=":completion::complete:${_FZF_COMPLETION_CONTEXT:-*}::${(j-,-)words[@]}"
+
+        local _FZF_COMPLETION_SEARCH_DISPLAY=0
+        if zstyle -t "$_FZF_COMPLETION_CONTEXT" fzf-search-display; then
+            _FZF_COMPLETION_SEARCH_DISPLAY=1
+        fi
 
         set -o monitor +o notify
         exec {__evaled}>&1
@@ -57,22 +74,24 @@ fzf_completion() {
                 stderr="$(
                     _fzf_completion_preexit() {
                         echo set -A _comps "${(qkv)_comps[@]}" >&"${__evaled}"
-                        functions + | fgrep -vx -e "$(functions -u +)" -e "$full_functions" | while read -r f; do which "$f"; done >&"${__evaled}"
+                        functions + | grep -F -vx -e "$(functions -u +)" -e "$full_functions" | while read -r f; do which -- "$f"; done >&"${__evaled}"
                     }
                     trap _fzf_completion_preexit EXIT TERM
                     _main_complete 2>&1
                 )"
-                printf %s\\n "stderr=${(q)stderr}" >&"${__evaled}"
-            ) | awk -F"$_FZF_COMPLETION_SEP" '$1!="" && !x[$1]++ { print $0; system("") }'
+                printf "stderr='%s'\\n" "${stderr//'/'\''}" >&"${__evaled}"
+            # need to get awk to be unbuffered either by using -W interactive or system("")
+            ) | "$_fzf_bash_completion_awk" -W interactive -F"$_FZF_COMPLETION_SEP" '$1!="" && !x[$1]++ { print $0; system("") }' 2>/dev/null
         )
         coproc_pid="$!"
         value="$(_fzf_completion_selector <&p)"
         code="$?"
         kill -- -"$coproc_pid" 2>/dev/null && wait "$coproc_pid"
 
-        printf 'code=%q; value=%q\n' "$code" "$value"
+        printf "code='%s'; value='%s'\\n" "${code//'/'\''}" "${value//'/'\''}"
     )" 2>/dev/null
 
+    compstate[insert]=unambiguous
     case "$code" in
         0)
             local opts index
@@ -134,24 +153,18 @@ _fzf_completion_selector() {
         fi
     done
 
-    local context field=2
-    context="${compstate[context]//_/-}"
-    context="${context:+-$context-}"
-    if [ "$context" = -command- -a "$CURRENT" -gt 1 ]; then
-        context="${words[1]}"
-    fi
-    context=":completion::complete:${context:-*}::${(j-,-)words[@]}"
-
-    if zstyle -t "$context" fzf-search-display; then
-        field=2..5
+    local field=2
+    if (( _FZF_COMPLETION_SEARCH_DISPLAY )); then
+        field=2,3
     fi
 
     local flags=()
-    zstyle -a "$context" fzf-completion-opts flags
+    zstyle -a "$_FZF_COMPLETION_CONTEXT" fzf-completion-opts flags
 
     tput cud1 >/dev/tty # fzf clears the line on exit so move down one
+    # fullvalue, value, index, display, show, prefix
     FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS" \
-        $(__fzfcmd 2>/dev/null || echo fzf) --ansi --prompt "> $PREFIX" -d "$_FZF_COMPLETION_SEP" --with-nth 4..6 --nth "$field" "${flags[@]}" \
+        $(__fzfcmd 2>/dev/null || echo fzf) --ansi --prompt "> $PREFIX" -d "[${_FZF_COMPLETION_SEP}${_FZF_COMPLETION_SPACE_SEP}]" --with-nth 6,5,4 --nth "$field" "${flags[@]}" \
         < <(printf %s\\n "${lines[@]}"; cat)
     code="$?"
     tput cuu1 >/dev/tty
@@ -161,7 +174,7 @@ _fzf_completion_selector() {
 _fzf_completion_compadd() {
     local __flags=()
     local __OAD=()
-    local __disp __hits __ipre __apre __hpre __hsuf __asuf __isuf
+    local __disp __hits __ipre __apre __hpre __hsuf __asuf __isuf __opts __optskv
     zparseopts -D -E -a __opts -A __optskv -- "${^_FZF_COMPLETION_FLAGS[@]}+=__flags" F+: P:=__apre S:=__asuf o+: p:=__hpre s:=__hsuf i:=__ipre I:=__isuf W+: d:=__disp J+: V+: X+: x+: r+: R+: D+: O+: A+: E+: M+:
     local __filenames="${__flags[(r)-f]}"
     local __noquote="${__flags[(r)-Q]}"
@@ -188,13 +201,12 @@ _fzf_completion_compadd() {
         __ipre=( -i "${__ipre[2]}" )
         IPREFIX=
     fi
-    printf '__compadd_args+=( %q )\n' "$(printf '%q ' PREFIX="$PREFIX" IPREFIX="$IPREFIX" SUFFIX="$SUFFIX" ISUFFIX="$ISUFFIX" compadd ${__flags:+-$__flags} "${__opts[@]}" "${__ipre[@]}" "${__apre[@]}" "${__hpre[@]}" "${__hsuf[@]}" "${__asuf[@]}" "${__isuf[@]}" -U)" >&"${__evaled}"
+    local compadd_args="$(printf '%q ' PREFIX="$PREFIX" IPREFIX="$IPREFIX" SUFFIX="$SUFFIX" ISUFFIX="$ISUFFIX" compadd ${__flags:+-$__flags} "${__opts[@]}" "${__ipre[@]}" "${__apre[@]}" "${__hpre[@]}" "${__hsuf[@]}" "${__asuf[@]}" "${__isuf[@]}" -U)"
+    printf "__compadd_args+=( '%s' )\n" "${compadd_args//'/'\\''}" >&"${__evaled}"
     (( __comp_index++ ))
 
     local file_prefix="${__optskv[-W]:-.}"
     local __disp_str __hit_str __show_str __real_str __suffix
-    local padding="$(printf %s\\n "${__disp[@]}" | awk '{print length}' | sort -nr | head -n1)"
-    padding="$(( padding==0 ? 0 : padding>COLUMNS ? padding : COLUMNS ))"
 
     local prefix="${IPREFIX}${__ipre[2]}${__apre[2]}${__hpre[2]}"
     local suffix="${__hsuf[2]}${__asuf[2]}${__isuf[2]}"
@@ -237,24 +249,22 @@ _fzf_completion_compadd() {
         if [[ "$__disp_str" =~ [^[:print:]] ]]; then
             __disp_str="${(q)__disp_str}"
         fi
-        __disp_str=$'\x1b[37m'"$__disp_str"$'\x1b[0m'
         # use display as fallback
         if [[ -z "$__show_str" ]]; then
             __show_str="$__disp_str"
             __disp_str=
+        elif (( ! _FZF_COMPLETION_SEARCH_DISPLAY )); then
+            __disp_str=$'\x1b[37m'"$__disp_str"$'\x1b[0m'
         fi
-
-        # pad out so that e.g. short flags with long display strings are not penalised
-        printf -v __disp_str "%-${padding}s" "$__disp_str"
 
         if [[ "$__show_str" == "$PREFIX"* ]]; then
-            __show_str="${PREFIX}${_FZF_COMPLETION_SEP}${__show_str:${#PREFIX}}"
+            __show_str="${__show_str:${#PREFIX}}${_FZF_COMPLETION_SPACE_SEP}"$'\x1b[37m'"${PREFIX}"$'\x1b[0m'
         else
-            __show_str="${_FZF_COMPLETION_SEP}$__show_str"
+            __show_str+="${_FZF_COMPLETION_SEP}"
         fi
 
-        # fullvalue, value, index, prefix, show, display
-        printf %s\\n "${prefix}${__real_str}${__suffix}${_FZF_COMPLETION_SEP}${(q)__hit_str}${_FZF_COMPLETION_SEP}${__comp_index}${_FZF_COMPLETION_SEP}${__show_str}${_FZF_COMPLETION_SEP}${__disp_str}" >&"${__stdout}"
+        # fullvalue, value, index, display, show, prefix
+        printf %s\\n "${(q)prefix}${(q)__real_str}${(q)__suffix}${_FZF_COMPLETION_SEP}${(q)__hit_str}${_FZF_COMPLETION_SEP}${__comp_index}${_FZF_COMPLETION_SEP}${__disp_str}${_FZF_COMPLETION_SEP}${__show_str}${_FZF_COMPLETION_SPACE_SEP}" >&"${__stdout}"
     done
     return "$code"
 }
