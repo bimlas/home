@@ -43,6 +43,7 @@ return function(use)
           map('n', '<Space>gB', function() gs.blame_line { full = true } end)
           -- map('n', '<Space>tb', gs.toggle_current_line_blame)
           map('n', '<Space>gd', gs.diffthis)
+          map('n', '<Space>gc', ':Gitsigns diffthis @<CR>')
           -- map('n', '<Space>gD', function() gs.diffthis('~') end)
           -- map('n', '<Space>gd', gs.toggle_deleted)
 

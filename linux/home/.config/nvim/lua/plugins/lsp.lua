@@ -3,20 +3,26 @@ return function(use)
     requires = {
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
+      -- 'hrsh7th/cmp-nvim-lsp-signature-help',
       -- 'ray-x/lsp_signature.nvim',
       'hrsh7th/cmp-path',
-      'l3mon4d3/luasnip',
+      'hrsh7th/cmp-calc',
+      'hrsh7th/cmp-vsnip',
+      'hrsh7th/vim-vsnip',
+      'hrsh7th/vim-vsnip-integ',
+      'rafamadriz/friendly-snippets',
       -- Highlight cursorword
       'rrethy/vim-illuminate',
       'b0o/schemastore.nvim',
+      -- LSP status plugin
+      'j-hui/fidget.nvim',
     },
     config = function()
 
       local lspconfig = require('lspconfig')
-      local luasnip = require('luasnip')
-      require("luasnip.loaders.from_snipmate").lazy_load()
+      local cmp = require 'cmp'
       require('illuminate').configure({ providers = { 'lsp', 'treesitter' } })
+      require('fidget').setup({})
       -- require("lsp_signature").setup({ max_height = 1, hint_enable = false })
 
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -77,6 +83,13 @@ return function(use)
       -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
       -- vim.keymap.set('n', '<space>e', vim.diagnostic.setloclist, opts)
 
+      -- Signs
+      local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
       local on_attach = function(client, bufnr)
@@ -89,9 +102,10 @@ return function(use)
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+        vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
+        vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-        vim.keymap.set('n', 'gi', "<cmd>TroubleToggle lsp_implementations<cr>", { silent = true, noremap = true })
+        vim.keymap.set('n', 'gi', "<cmd>Trouble lsp_implementations<cr>", { silent = true, noremap = true })
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
         -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
         -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -99,9 +113,8 @@ return function(use)
         --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         -- end, bufopts)
         -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', '<space>.', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', '<space>=', vim.lsp.buf.formatting, bufopts)
+        vim.keymap.set('n', '<space>=', vim.lsp.buf.format, bufopts)
 
         if client.name == "tsserver" then
           client.server_capabilities.document_formatting = false -- 0.7 and earlier
@@ -111,7 +124,7 @@ return function(use)
 
       -- Add additional capabilities supported by nvim-cmp
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
       -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
       for _, lsp in ipairs(servers) do
@@ -122,17 +135,24 @@ return function(use)
         }
       end
 
+      local feedkey = function(key, mode)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+      end
+
       -- nvim-cmp setup
-      local cmp = require 'cmp'
       cmp.setup {
+        window = {
+          -- completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered()
+        },
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body)
+            vim.fn["vsnip#anonymous"](args.body)
           end,
         },
         mapping = cmp.mapping.preset.insert({
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-u>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
@@ -140,27 +160,30 @@ return function(use)
           },
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
+              cmp.confirm({
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true,
+              })
+            elseif vim.fn["vsnip#available"](1) == 1 then
+              feedkey("<Plug>(vsnip-expand-or-jump)", "")
             else
-              fallback()
+              fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
           end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
+          ["<S-Tab>"] = cmp.mapping(function()
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
+            elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+              feedkey("<Plug>(vsnip-jump-prev)", "")
             end
-          end, { 'i', 's' }),
+          end, { "i", "s" }),
         }),
         sources = {
+          { name = 'vsnip' },
           { name = 'nvim_lsp' },
           { name = 'path' },
-          { name = 'nvim_lsp_signature_help' },
+          { name = 'calc' },
+          -- { name = 'nvim_lsp_signature_help' },
         },
       }
 
