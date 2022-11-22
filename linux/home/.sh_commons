@@ -40,7 +40,7 @@ if [[ $(which nnn 2> /dev/null) ]]; then
   {
     NNN_TMPFILE=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd
 
-    nnn -Ho -T e "$@"
+    nnn -Hoe "$@"
 
     # cd on quit only on ^G
     if [ -f $NNN_TMPFILE ]; then
