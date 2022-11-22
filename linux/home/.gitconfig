@@ -249,9 +249,9 @@
   ;   # Commit message has to match to all of the expressions:
   ;   git log --grep 'foo' --grep 'bar' --all-match
 
-  l    = "log --graph --date=short --format=shortlog"
-  la   = "log --graph --date=short --format=shortlog --all"
-  las  = "log --graph --date=short --format=shortlog --all --simplify-by-decoration"
+  l    = "log --graph --date=short --format=shortlog --date-order"
+  la   = "log --graph --date=short --format=shortlog --date-order --all"
+  las  = "log --graph --date=short --format=shortlog --date-order --all --simplify-by-decoration"
   lg   = "log --graph"
   lgg  = "log --graph --name-status"
   review = "log --patch --reverse master.."
