@@ -9,6 +9,6 @@
 
 if (( $RANDOM > 25000 )); then
   playerctl --all-players play-pause
-  sleep 2
+  sleep `expr $RANDOM / 1000 / 5`
   playerctl --all-players play-pause
 fi
