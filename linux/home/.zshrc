@@ -14,9 +14,6 @@ export FZF_COMPLETION_AUTO_COMMON_PREFIX=true
 export FZF_COMPLETION_AUTO_COMMON_PREFIX_PART=true
 source ~/bin/zsh/fzf-zsh-completion.sh
 
-export ZSHZ_CMD=cdd
-source ~/bin/zsh/zsh-z.plugin.zsh
-
 setopt prompt_subst
 
 #                                 PROMPT                                  {{{1
@@ -178,6 +175,13 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # Custom completion for `kill`.
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+#                         JUMP TO RECENT DIRECTORY                        {{{2
+# ____________________________________________________________________________
+
+# Usage: `cd` to some directories, `cdr <Tab>` to jump to an earlier dir
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
 
 #                           PYTHON PIP COMPLETE                           {{{2
 # ____________________________________________________________________________
