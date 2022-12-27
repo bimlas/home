@@ -21,9 +21,11 @@ setopt prompt_subst
 
 # Git prompt.
 autoload -Uz vcs_info
+# Enable only Git, disable others
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false
 zstyle ':vcs_info:*' formats $'\n│ %F{yellow}Git: %b'
+zstyle ':vcs_info:*' actionformats $'\n│ %F{yellow}Git: %b %F{red}(%a)'
 precmd () { vcs_info }
 
 vcs_stash_info()
@@ -103,8 +105,8 @@ PROMPT+=$'%F{blue}$(virtualenv_info)'
 PROMPT+=$'%F{blue}$(doctl_info)'
 PROMPT+=$'%F{blue}$(kubernetes_info)'
 PROMPT+=$'%F{blue}${errorcode_info}'
-PROMPT+=$'%F{blue}$(jobs_info)\n'
-PROMPT+=$'%F{blue}└ '
+PROMPT+=$'%F{blue}$(jobs_info)'
+PROMPT+=$'\n%F{blue}└ '
 PROMPT+=$'$(nnn_info)'
 PROMPT+=$'%(!.%F{red}#.%F{white}$)'
 PROMPT+=$'%f%b '
