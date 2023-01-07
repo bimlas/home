@@ -18,98 +18,94 @@ setopt prompt_subst
 
 #                                 PROMPT                                  {{{1
 # ============================================================================
+# man zshmisc -> SIMPLE PROMPT ESCAPES, CONDITIONAL SUBSTRINGS IN PROMPTS
 
 # Git prompt.
 autoload -Uz vcs_info
 # Enable only Git, disable others
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false
-zstyle ':vcs_info:*' formats $'\n│ %F{yellow}Git: %b'
-zstyle ':vcs_info:*' actionformats $'\n│ %F{yellow}Git: %b %F{red}(%a)'
-precmd () { vcs_info }
+zstyle ':vcs_info:*' formats $'\n%F{blue}│ %F{yellow}Git: %b '
+zstyle ':vcs_info:*' actionformats $'\n%F{blue}│ %F{yellow}Git: %b %F{red}(%a) '
 
 vcs_stash_info()
 {
   stash=$(git stash list 2> /dev/null)
   if [[ -n "$stash" ]]; then
-    echo '\n│ %F{yellow}Git stash:'
-    echo $stash | sed -e 's/stash@{\([0-9]\+\)}:/%F{yellow}\1:%F{blue}/' -e 's/.*/%F{blue}│   &/'
-  fi
-}
-
-# Python virtualenv.
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-function virtualenv_info()
-{
-  if [[ -n "$VIRTUAL_ENV" ]]; then
-    venv="\n│ %F{green}Python$(python -c 'import sys; print(sys.version_info.major)') virtualenv: ${VIRTUAL_ENV##*/}"
-  else
-    venv=''
-  fi
-  echo $venv
-}
-
-doctl_info()
-{
-  doctl_context=$(doctl auth list | grep current | grep -o '^\S\+')
-  if [ -n "$doctl_context" ]; then
-      echo "$doctl_context" | sed 's/.\+/\n│ %F{green}Doctl: &\n/'
+    echo '%F{red}(stash) '
   fi
 }
 
 kubernetes_info()
 {
-    kubernetes_context=$(cat ~/.kube/config 2>/dev/null| grep -o '^current-context: [^/]*' | cut -d' ' -f2)
-
-    if [ -n "$kubernetes_context" ]; then
-        echo "$kubernetes_context" | sed 's/.\+/\n│ %F{green}Kubernetes: &\n/'
-    fi
-}
-
-# Indicate if the terminal has been opened from nnn
-nnn_info()
-{
-  if [[ -v 'NNN' || -v 'nnn' ]]; then
-    echo "%F{yellow}NNN "
+  kubernetes_context=$(cat ~/.kube/config 2>/dev/null| grep -o '^current-context: [^/]*' | cut -d' ' -f2)
+  if [ -n "$kubernetes_context" ]; then
+      echo "\n%F{blue}│ %F{green}Kubernetes: $kubernetes_context "
   fi
 }
 
-export JOBS_PROMPT_TEXT='%F{cyan}'
-jobs_info()
+dirstack_info()
 {
-  if ( which jobs_prompt > /dev/null ); then
-    jobs | jobs_prompt | sed 's/.\+/\n│ %F{cyan}Jobs: &\n/'
+  count=$(dirs -v | tail +2 | wc -l)
+  if [[ $count -gt 0 ]]; then
+    echo "%F{blue}~$count "
   fi
 }
 
-dirs_info()
-{
-  list=$(dirs -v | sed 's/\t/ /' | tail +2)
-  if [[ -n "$list" ]]; then
-    echo '\n│ Directory stack:'
-    echo $list | sed 's/.*/│   &/'
-  fi
-}
+# Show username only if logged in through SSH
+ssh_username="%f${SSH_TTY:+%n@%M }"
 
 # Errorcode of last command
-errorcode_info=$'%(?..\n│ %F{red}Error code: %?)'
+errorcode_info=$'%(?..%F{red}?%? )'
+
+jobs_info='%1(j.%F{cyan}&%j .)'
+
+# Indicate if the terminal has been opened from nnn
+nnn_info="%F{yellow}${NNN:+NNN }${nnn:+NNN }"
+
+# Owner of the prompt
+dollar_or_percent='%(!.%F{red}#.%F{white}$)'
+
+function preexec() {
+  timer=$(($(date +%s%0N)/1000000))
+}
+
+function precmd() {
+  vcs_info
+
+  if [ $timer ]; then
+    now=$(($(date +%s%0N)/1000000))
+    seconds=$(( ($now-$timer)/1000 ))
+
+    elapsed_time=''
+    if [[ $seconds -gt 5 ]]; then
+      format='%-Ss'
+      if [[ $seconds -gt 59 ]]; then format="%-Mm${format}"; fi
+      if [[ $seconds -gt 3599 ]]; then format="%-Hh${format}"; fi
+      elapsed_time="[%f$(date -u -d @${seconds} +"${format}")%F{blue}] "
+    fi
+    export elapsed_time
+    unset timer
+  fi
+}
 
 PROMPT=$'\n'
 PROMPT+=$'%B%F{blue}┌'
-PROMPT+=$'[%f%T%F{blue}%B]'
-PROMPT+=$' %n@%M %f%~ '
-PROMPT+=$'%F{blue}$(dirs_info)'
-PROMPT+=$'%F{blue}${vcs_info_msg_0_}'
-PROMPT+=$'%F{blue}$(vcs_stash_info)'
-PROMPT+=$'%F{blue}$(virtualenv_info)'
-PROMPT+=$'%F{blue}$(doctl_info)'
-PROMPT+=$'%F{blue}$(kubernetes_info)'
-PROMPT+=$'%F{blue}${errorcode_info}'
-PROMPT+=$'%F{blue}$(jobs_info)'
+PROMPT+=$'[%f%T%F{blue}] '
+PROMPT+=$'${elapsed_time}'
+PROMPT+=$'${ssh_username}'
+PROMPT+='%F{blue}%~ '
+PROMPT+=$'${vcs_info_msg_0_}'
+PROMPT+=$'$(vcs_stash_info)'
+PROMPT+=$'$(kubernetes_info)'
 PROMPT+=$'\n%F{blue}└ '
-PROMPT+=$'$(nnn_info)'
-PROMPT+=$'%(!.%F{red}#.%F{white}$)'
-PROMPT+=$'%f%b '
+PROMPT+=$'${nnn_info}'
+PROMPT+=$'${jobs_info}'
+PROMPT+=$'$(dirstack_info)'
+PROMPT+=$'${errorcode_info}'
+PROMPT+=$'${dollar_or_percent}'
+PROMPT+=$'%f%b%k '
+
 
 #                            COMPLETE OPTIONS                             {{{1
 # ============================================================================
