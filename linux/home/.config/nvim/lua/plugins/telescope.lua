@@ -2,35 +2,32 @@ return function(use)
   use { 'nvim-telescope/telescope.nvim',
     requires = {
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     },
     config = function()
-      require('telescope').setup {
+
+      vim.keymap.set({ 'n', 'v', 'o' }, '<F1>', '<cmd>Telescope keymaps<cr>', { desc = 'List keymaps' })
+      vim.keymap.set({ 'n' }, '<space><c-o>', '<cmd>Telescope jumplist<cr>', { desc = 'Jump to previous position' })
+      vim.keymap.set({ 'n' }, '<space>bb', '<cmd>Telescope buffers<cr>', { desc = 'List buffers' })
+      vim.keymap.set({ 'n' }, '<space>ff', '<cmd>Telescope find_files previewer=false hidden=true<cr>',
+        { desc = 'Find files' })
+      vim.keymap.set({ 'n' }, '<space>fr', '<cmd>Telescope oldfiles previewer=false<cr>', { desc = 'Recent files' })
+      vim.keymap.set({ 'n' }, '<space>ss', '<cmd>Telescope grep_string search= layout_strategy=vertical<cr>',
+        { desc = 'Search files' })
+
+      local telescope = require("telescope")
+      local trouble = require("trouble.providers.telescope")
+
+      telescope.load_extension('fzf')
+      telescope.setup {
         extensions = {
           fzf = {
             fuzzy = false,
             override_generic_sorter = true,
             override_file_sorter = true,
             case_mode = "smart_case"
-          }
+          },
         },
-      };
-      require('telescope').load_extension('fzf')
-
-      vim.cmd([[
-        nnoremap <F1>      :Telescope commands<CR>
-        nnoremap <Space>?  :Telescope keymaps<CR>
-        nnoremap <Space>bb :Telescope buffers<CR>
-        nnoremap <Space>ff :Telescope find_files previewer=false hidden=true<CR>
-        nnoremap <Space>fr :Telescope oldfiles previewer=false<CR>
-        nnoremap <Space><C-O> :Telescope jumplist<CR>
-        nnoremap <Space>ss :Telescope grep_string search= layout_strategy=vertical<CR>
-      ]])
-
-      local telescope = require("telescope")
-      local trouble = require("trouble.providers.telescope")
-
-      telescope.setup {
         defaults = {
           mappings = {
             i = { ["<c-t>"] = trouble.smart_open_with_trouble },
@@ -43,7 +40,10 @@ return function(use)
               i = { ["<c-x>"] = 'delete_buffer' },
               n = { ["<c-x>"] = 'delete_buffer' },
             }
-          }
+          },
+          lsp_references = {
+            include_current_line= true,
+          },
         }
       }
     end,

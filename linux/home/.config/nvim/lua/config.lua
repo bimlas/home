@@ -47,6 +47,12 @@ vim.opt.cursorline = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+-- COMMAND
+
+vim.cmd([[ 
+  command! MyCopyReference let @+ = expand('%') . ': ' . luaeval("require('nvim-treesitter').statusline({type_patterns = {'class', 'function', 'method'}})")
+]])
+
 -- MAPS
 
 vim.keymap.set('n', '<Space><Tab>', function () vim.cmd('b#') end)

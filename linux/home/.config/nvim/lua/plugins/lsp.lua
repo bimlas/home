@@ -1,31 +1,61 @@
 return function(use)
   use { 'neovim/nvim-lspconfig',
     requires = {
+      -- 'williamboman/mason.nvim',
+      -- 'williamboman/mason-lspconfig.nvim',
+      -- {
+      --   -- Buggy: Pressing <Esc> twice after `gd` to a definition shows errors in LspSaga; the peek window of gd opens the definition in the wrong split if I hit <CR>
+      --   "glepnir/lspsaga.nvim",
+      --   branch = "main",
+      --   config = function()
+      --     local saga = require("lspsaga")
+      --
+      --     saga.init_lsp_saga({
+      --       preview_lines_above = 5,
+      --       finder_action_keys = {
+      --         open = { 'e', '<CR>' },
+      --         vsplit = '<C-W>v',
+      --         split = '<C-W>s',
+      --         quit = '<ESC>' ,
+      --       },
+      --       definition_action_keys = {
+      --         edit =  '<cr>',
+      --         vsplit = '<C-W>v',
+      --         split = '<C-W>s',
+      --         quit = '<ESC>',
+      --       },
+      --       rename_action_quit = '<ESC>',
+      --     })
+      --   end,
+      -- },
+      -- Intellisense, code completion
+      -- Show definition, references in floating window
+      {
+        'rmagatti/goto-preview',
+        config = function()
+          require('goto-preview').setup {}
+        end
+      },
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
-      -- 'hrsh7th/cmp-nvim-lsp-signature-help',
-      -- 'ray-x/lsp_signature.nvim',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-calc',
+      -- Snippet management
       'hrsh7th/cmp-vsnip',
       'hrsh7th/vim-vsnip',
       'hrsh7th/vim-vsnip-integ',
       'rafamadriz/friendly-snippets',
+      -- Fancy icons for completion menu
+      'onsails/lspkind.nvim',
       -- Highlight cursorword
       'rrethy/vim-illuminate',
-      'b0o/schemastore.nvim',
-      -- LSP status plugin
+      -- LSP status in bottom-right corner of the window
       'j-hui/fidget.nvim',
+      -- Schemas for GitHub Actions, Kubernetes YAML files, etc.
+      'b0o/schemastore.nvim',
     },
     config = function()
 
-      local lspconfig = require('lspconfig')
-      local cmp = require 'cmp'
-      require('illuminate').configure({ providers = { 'lsp', 'treesitter' } })
-      require('fidget').setup({})
-      -- require("lsp_signature").setup({ max_height = 1, hint_enable = false })
-
-      -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
       local servers = {
         'dockerls', -- npm install -g dockerfile-language-server-nodejs
         'tsserver', -- npm install -g typescript typescript-language-server
@@ -35,9 +65,10 @@ return function(use)
         'eslint', -- npm install -g vscode-langservers-extracted
         -- TODO: Set up Prettier
         'vimls', -- npm install -g vim-language-server
-        'sumneko_lua'
+        'sumneko_lua',
       }
-      settings = {
+
+      local settings = {
         yamlls = {
           yaml = {
             schemas = {
@@ -75,13 +106,13 @@ return function(use)
         }
       }
 
-      -- Mappings.
-      -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      local opts = { noremap = true, silent = true }
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-      -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-      -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-      -- vim.keymap.set('n', '<space>e', vim.diagnostic.setloclist, opts)
+      -- require('mason').setup()
+      -- require('mason-lspconfig').setup {
+      --   ensure_installed = servers,
+      -- }
+
+      require('illuminate').configure({ providers = { 'lsp', 'treesitter' } })
+      require('fidget').setup({})
 
       -- Signs
       local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -100,19 +131,16 @@ return function(use)
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
+        -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', 'gd', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>', bufopts)
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
+        vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>",
+          { desc = 'LSP: List references of symbol under the cursor', silent = true })
         vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
         vim.keymap.set('n', 'gi', "<cmd>Trouble lsp_implementations<cr>", { silent = true, noremap = true })
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-        -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-        -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        -- vim.keymap.set('n', '<space>wl', function()
-        --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        -- end, bufopts)
-        -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set({ 'n', 'i' }, '<C-k>', vim.lsp.buf.signature_help, bufopts)
         vim.keymap.set('n', '<space>.', vim.lsp.buf.code_action, bufopts)
         vim.keymap.set('n', '<space>=', vim.lsp.buf.format, bufopts)
 
@@ -127,6 +155,7 @@ return function(use)
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
       -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+      local lspconfig = require('lspconfig')
       for _, lsp in ipairs(servers) do
         lspconfig[lsp].setup {
           on_attach = on_attach,
@@ -140,7 +169,27 @@ return function(use)
       end
 
       -- nvim-cmp setup
+      local lspkind = require('lspkind')
+      local cmp = require 'cmp'
       cmp.setup {
+        formatting = {
+          fields = {
+            cmp.ItemField.Abbr,
+            cmp.ItemField.Menu,
+            cmp.ItemField.Kind,
+          },
+          format = lspkind.cmp_format({
+            mode = 'symbol_text',
+            maxwidth = 50,
+            ellipsis_char = '...',
+
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            before = function(entry, vim_item)
+              return vim_item
+            end
+          })
+        },
         window = {
           -- completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered()
@@ -153,11 +202,10 @@ return function(use)
         mapping = cmp.mapping.preset.insert({
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-u>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          },
+          -- ['<CR>'] = cmp.mapping.confirm {
+          --   behavior = cmp.ConfirmBehavior.Replace,
+          --   select = true,
+          -- },
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.confirm({
@@ -183,7 +231,6 @@ return function(use)
           { name = 'nvim_lsp' },
           { name = 'path' },
           { name = 'calc' },
-          -- { name = 'nvim_lsp_signature_help' },
         },
       }
 

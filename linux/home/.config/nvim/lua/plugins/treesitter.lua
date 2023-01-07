@@ -2,7 +2,6 @@ return function(use)
   use { 'nvim-treesitter/nvim-treesitter',
     requires =
     {
-      { 'nvim-treesitter/nvim-treesitter-textobjects' },
       { 'nvim-treesitter/nvim-treesitter-context',
         config = {
           mode = 'topline',
@@ -48,19 +47,6 @@ return function(use)
             init_selection = "gb",
             node_incremental = "gb",
           },
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            keymaps = {
-              ["i,"] = "@parameter.inner",
-              ["a,"] = "@parameter.outer",
-              ["ib"] = "@block.inner",
-              ["ab"] = "@block.outer",
-              ["ic"] = "@comment.inner",
-              ["ac"] = "@comment.outer",
-            },
-          }
         },
         rainbow = {
           enable = true,
