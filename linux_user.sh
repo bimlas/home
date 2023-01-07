@@ -44,6 +44,7 @@ header "  SYMLINK"
 
 link "$CWD/linux/home/bin/"              "$HOME/bin"
 link "$CWD/linux/home/.gitconfig_files/" "$HOME/.gitconfig_files"
+link "$CWD/linux/home/.vsnip/"           "$HOME/.vsnip"
 link "$CWD/linux/home/.bashrc"           "$HOME/.bashrc"
 link "$CWD/linux/home/.boostnoterc"      "$HOME/.boostnoterc"
 link "$CWD/linux/home/.conkyrc"          "$HOME/.conkyrc"
