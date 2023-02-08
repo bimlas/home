@@ -30,16 +30,17 @@ return function(use)
       -- },
       -- Intellisense, code completion
       -- Show definition, references in floating window
-      {
-        'rmagatti/goto-preview',
-        config = function()
-          require('goto-preview').setup {}
-        end
-      },
+      -- {
+      --   -- Cool, but going deep in the hierarchy with several open previews makes it useless
+      --   -- Besides this I cannot open the selected preview in the active window, I have to open in a new split and close the original
+      --   'rmagatti/goto-preview',
+      --   config = function()
+      --     require('goto-preview').setup {}
+      --   end
+      -- },
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
-      'hrsh7th/cmp-calc',
       -- Snippet management
       'hrsh7th/cmp-vsnip',
       'hrsh7th/vim-vsnip',
@@ -59,6 +60,8 @@ return function(use)
       local servers = {
         'dockerls', -- npm install -g dockerfile-language-server-nodejs
         'tsserver', -- npm install -g typescript typescript-language-server
+        'pylsp', -- pip install python-lsp-server
+        'pyright', -- pip install pyright
         'yamlls', -- npm install -g yaml-language-server
         -- TODO: Addditional settings for Kubernetes, Docker Compose, GitHub Actions, etc: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#yamlls
         'jsonls', -- npm install -g vscode-langservers-extracted
@@ -132,8 +135,8 @@ return function(use)
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
-        -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', 'gd', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>', bufopts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', '<c-w>gd', function () vim.cmd('vsplit'); vim.lsp.buf.definition() end, bufopts)
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
         vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>",
           { desc = 'LSP: List references of symbol under the cursor', silent = true })
@@ -230,7 +233,6 @@ return function(use)
           { name = 'vsnip' },
           { name = 'nvim_lsp' },
           { name = 'path' },
-          { name = 'calc' },
         },
       }
 

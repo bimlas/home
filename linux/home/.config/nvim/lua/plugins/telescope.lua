@@ -18,7 +18,6 @@ return function(use)
       local telescope = require("telescope")
       local trouble = require("trouble.providers.telescope")
 
-      telescope.load_extension('fzf')
       telescope.setup {
         extensions = {
           fzf = {
@@ -42,10 +41,11 @@ return function(use)
             }
           },
           lsp_references = {
-            include_current_line= true,
+            include_current_line = true,
           },
         }
       }
+      telescope.load_extension('fzf')
     end,
   }
 end
