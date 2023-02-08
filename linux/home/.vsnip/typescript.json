@@ -2,7 +2,7 @@
   "Log with filename": {
     "prefix": ["log"],
     "body": [
-      "console.debug(`DEBUG-${VIM:luaeval(\"require('string').format('%04.0f', 9999 * require('math').random())\")} PID-\\${process.pid}-\\${process.ppid} $RELATIVE_FILEPATH: ${1:message}`);"
+      "console.debug(`DEBUG-${VIM:luaeval(\"require('string').format('%04.0f', 9999 * require('math').random())\")} PID-\\${process.pid}-\\${process.ppid} $RELATIVE_FILEPATH: \\${JSON.stringify(${1:obj}, undefined, 2)}`);"
     ],
     "description": "Log to console with prefilled filename"
   }
