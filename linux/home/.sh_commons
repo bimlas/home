@@ -36,6 +36,13 @@ if [[ $(which mc 2> /dev/null) ]]; then
   alias mc='. /usr/lib/mc/mc-wrapper.sh'
 fi
 
+if [[ $(which ssh 2> /dev/null) ]]; then
+  ssh-tmux()
+  {
+    ssh -t $@ tmux new-session -As ssh
+  }
+fi
+
 if [[ $(which mycli 2> /dev/null) ]]; then
   alias mycli='EDITOR="code --wait" PAGER="less -SiRFX" mycli'
 fi
