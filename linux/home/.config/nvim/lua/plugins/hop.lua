@@ -1,3 +1,4 @@
+-- Would be good, but does not works well with macros
 return function(use)
   use { 'phaazon/hop.nvim', branch = 'v2', config = function()
     local hop = require('hop')

@@ -68,7 +68,7 @@ return function(use)
         'eslint', -- npm install -g vscode-langservers-extracted
         -- TODO: Set up Prettier
         'vimls', -- npm install -g vim-language-server
-        'sumneko_lua',
+        'lua_ls', -- https://github.com/luals/lua-language-server
       }
 
       local settings = {
@@ -87,7 +87,7 @@ return function(use)
             validate = { enable = true },
           },
         },
-        sumneko_lua = {
+        lua_ls = {
           Lua = {
             runtime = {
               -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
