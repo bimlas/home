@@ -6,63 +6,89 @@
 # Warning level indicates the thresholds of price change which you would like
 # to receive notifications.
 
-warninglevel=$1
-shift
-tokens="${@}"
-trending_tokens=$(curl --silent 'https://api.coingecko.com/api/v3/search/trending' | jq '.coins [].item .id' | sed 's/"//g' | tr '\n' ' ')
-filename='/tmp/xfce-genmon-coingecko'
-
-function get_prices()
+function _jq()
 {
-  contents=''
-  for token in ${@}; do
-    tokenfilename="${filename}_${token}"
-    if [[ ! -f "${tokenfilename}" ]]; then
-      curl --silent "https://api.coingecko.com/api/v3/coins/${token}?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false" > "${tokenfilename}"
-    fi
-    fetch_error=$(jq '.status.error_message' "${tokenfilename}" | sed 's/"//g')
-    if [[ "x${fetch_error}" != 'xnull' ]]; then
-      rm "${tokenfilename}"
-      continue
+  jq -r "$@" 2> /dev/null
+}
+
+function alert_once()
+{
+  message="${1}"; shift
+  state_filename="${1}"; shift
+
+  if [[ "x$(cat "${state_filename}")" != "x$(date '+%F')" ]]; then
+    date '+%F' > "${state_filename}"
+    notify-send --icon 'dialog-warning' "${message}"
+  fi
+}
+
+function get_token_details()
+{
+  token="${1}"; shift
+  filename="${1}"; shift
+
+  if [[ ! -f "${filename}" ]]; then
+    curl --silent "https://api.coingecko.com/api/v3/coins/${token}?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false" > "${filename}"
+  fi
+  fetch_error=$(_jq '.status.error_message' "${filename}")
+  if [[ "x${fetch_error}" != 'xnull' ]]; then
+    rm "${filename}"
+    return 1
+  fi
+}
+
+function show_prices()
+{
+  results=''
+  for token in "${@}"; do
+    token_filename="${price_filename}_${token}"
+
+    if [[ ! -f "${token_filename}" ]]; then 
+      get_token_details "${token}" "${token_filename}" || continue
     fi
 
-    symbol=$(jq '.symbol' ${tokenfilename} | tr '[:lower:]' '[:upper:]' | sed 's/"//g')
-    id=$(jq '.id' ${tokenfilename} | sed 's/"//g')
-    price=$(jq ".\"${token}\".usd" ${filename})
-    change=$(jq ".\"${token}\".usd_24h_change | . * 100.0 + 0.5 | floor / 100.0" ${filename})
+    symbol=$(_jq '.symbol' "${token_filename}" | tr '[:lower:]' '[:upper:]')
+    id=$(_jq '.id' "${token_filename}")
+    price=$(_jq ".\"${token}\".usd" "${price_filename}")
+    change=$(_jq ".\"${token}\".usd_24h_change | . * 100.0 + 0.5 | floor / 100.0" "${price_filename}")
 
-    color='green'
+    price_color='green'
     if [[ $(echo "${change} < 0" | bc) -eq 1 ]]; then
-      color='red'
+      price_color='red'
     fi
 
-    # Warn on huge change, show a popup only once
-    changecolor=${color}
+    change_color=${price_color}
+    state_filename="${token_filename}_alert"
     if [[ $(echo "${change#-} > ${warninglevel}" | bc) -eq 1 ]]; then
-      if [[ "x$(cat "${tokenfilename}_notification")" -ne "x$(date '+%F')" ]]; then
-        date '+%F' > "${tokenfilename}_notification"
-        notify-send --icon 'dialog-warning' "Huge price change on ${symbol}"
-      fi
-      changecolor='yellow'
+      alert_once "Huge price change on ${symbol}" "${state_filename}"
+      change_color='yellow'
       change="<b>${change}</b>"
     else 
-      rm "${tokenfilename}_notification" 2&> /dev/null
+      rm "${state_filename}" 2&> /dev/null
     fi 
 
     if [[ -n "${TOOLTIP:+is_set}" ]]; then
-      contents="$contents\n${symbol} ${id} \$${price} (${change}%)"
+      results="$results\n${symbol} ${id} \$${price} (${change}%)"
     else
-      contents="$contents ${symbol}: <span foreground=\"${color}\">\$${price}</span> <span foreground=\"${changecolor}\">(${change}%)</span>"
+      results="$results ${symbol}: <span foreground=\"${price_color}\">\$${price}</span> <span foreground=\"${change_color}\">(${change}%)</span>"
     fi
   done
-  echo -e "${contents}"
+  echo -e "${results}"
 }
 
-curl --silent "https://api.coingecko.com/api/v3/simple/price?ids=${trending_tokens// /%2C}${tokens// /%2C}&vs_currencies=usd&include_24hr_change=true" > "${filename}"
+warninglevel="${1}"; shift
+tokens="${@}"
+trending_tokens=$(curl --silent 'https://api.coingecko.com/api/v3/search/trending' | _jq '.coins [].item .id' | tr '\n' ' ')
+price_filename='/tmp/xfce-genmon-coingecko'
 
-fetch_error=$(jq '.status.error_message' "${filename}" | sed 's/"//g')
+curl --silent "https://api.coingecko.com/api/v3/simple/price?ids=${trending_tokens// /%2C}${tokens// /%2C}&vs_currencies=usd&include_24hr_change=true" > "${price_filename}"
+
+fetch_error=$(_jq '.status.error_message' "${price_filename}")
 if [[ "x${fetch_error}" != 'xnull' ]]; then
   echo "<txt>Error while fetching CoinGecko</txt><tool>${fetch_error}</tool>"
 else
-  echo -e "<txt>$(get_prices ${tokens})</txt><txtclick>xdg-open 'https://www.coingecko.com/'</txtclick><tool>Click to visit CoinGecko\n\nTrending tokens:\n\n<span font-family=\"monospace\" allow-breaks=\"false\">$(TOOLTIP=1 get_prices ${trending_tokens} | column -t)</span></tool>"
+  echo -e \
+    "<txt>$(show_prices ${tokens})</txt>" \
+    "<txtclick>xdg-open 'https://www.coingecko.com/'</txtclick>" \
+    "<tool>Click to visit CoinGecko\n\nTrending tokens:\n\n<span font-family=\"monospace\" allow-breaks=\"false\">$(TOOLTIP=1 show_prices ${trending_tokens} | column -t)</span>\n\n<small>(last update: $(date))</small></tool>"
 fi
