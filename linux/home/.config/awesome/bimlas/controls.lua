@@ -1,5 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
+local naughty = require("naughty")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -47,6 +48,31 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
+    awful.key({ modkey, "Shift" }, "Left",
+        function ()
+            local tag = client.focus and client.focus.first_tag or nil
+            if tag == nil then
+                return
+            end
+            -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
+            local tag = client.focus.screen.tags[(tag.name - 2) % #awful.screen.focused().tags + 1]
+            awful.client.movetotag(tag)
+            awful.tag.viewprev()
+        end,
+        {description = "move to previous", group = "tag"}),
+    awful.key({ modkey, "Shift" }, "Right",
+        function ()
+            local tag = client.focus and client.focus.first_tag or nil
+            if tag == nil then
+                return
+            end
+            -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
+            local tag = client.focus.screen.tags[(tag.name % #awful.screen.focused().tags) + 1]
+            awful.client.movetotag(tag)
+            awful.tag.viewnext()
+        end,
+        {description = "move to next", group = "tag"}),
+
     awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
@@ -71,19 +97,23 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
+    -- awful.key({ modkey,           }, "Tab",
+    --     function ()
+    --         awful.client.focus.history.previous()
+    --         if client.focus then
+    --             client.focus:raise()
+    --         end
+    --     end,
+    --     {description = "go back", group = "client"}),
+    awful.key({ modkey,           }, "Tab", function () awful.spawn('/home/bimlas/bin/window-list.sh') end,
+              {description = "search window", group = "client"}),
+    awful.key({ "Mod1",           }, "Tab", function () awful.spawn('/bin/sh -c "(sleep 0.2; xdotool key Return) & /home/bimlas/bin/window-list.sh"') end,
+              {description = "previous window", group = "client"}),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, "Shift" }, "r", awesome.restart,
+    awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
@@ -131,9 +161,24 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
+
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+    -- Send selection to other window in tag (usefull for executing selected SQL statements in Vim)
+    awful.key({ modkey, "Control" }, "Return", function ()
+      local active_client = awful.client.focus
+      if not active_client or (#awful.screen.tiled_clients ~= 2) then
+        naughty.notify({ preset = naughty.config.presets.low,
+                          title = "Error sending command",
+                          text = "It has to be exactly 2 clients" })
+        return
+      end
+      -- TODO: I think it not works
+      local executing_client = awful.tiled_clients.next(1)
+      -- TODO: Send selection to client
+    end, {description = "send selection to other window", group = "launcher" })
 )
 
 clientkeys = gears.table.join(
@@ -186,7 +231,7 @@ clientkeys = gears.table.join(
 for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
-        awful.key({ "Control" }, "#" .. i + 9,
+        awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = awful.screen.focused()
                         local tag = screen.tags[i]

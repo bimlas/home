@@ -2,17 +2,35 @@ local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
-
--- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %Y %m %d %H:%M ")
+local vicious = require("vicious")
 
 local mymainmenu = require("bimlas.widget.mainmenu")
 local stat_cpu = require("cpu-widget.cpu-widget")
 local stat_mem = require("bimlas.widget.mem")
 local volumebar_widget = require("volumebar-widget.volumebar")
 
+-- Create a textclock widget
+mytextclock = wibox.widget.textclock(" %Y %m %d %H:%M ")
+
+-- Launcher widget
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
+
+-- Battery widget
+batwidget = wibox.widget.progressbar()
+batbox = wibox.layout.margin(
+    wibox.widget{ { max_value = 1, widget = batwidget,
+                    border_width = 0.5, border_color = "#000000",
+                    color = { type = "linear",
+                              from = { 0, 0 },
+                              to = { 0, 30 },
+                              stops = { { 0, "#AECF96" },
+                                        { 1, "#FF5656" } } } },
+                  forced_height = 10, forced_width = 8,
+                  direction = 'east', color = beautiful.fg_widget,
+                  layout = wibox.container.rotate },
+    1, 1, 3, 3)
+vicious.register(batwidget, vicious.widgets.bat, "$2", 61, "BAT0")
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
@@ -104,6 +122,7 @@ awful.screen.connect_for_each_screen(function(s)
             volumebar_widget({margins = 6}),
             wibox.widget.systray(),
             mykeyboardlayout,
+            batbox,
             mytextclock,
             s.mylayoutbox,
         },

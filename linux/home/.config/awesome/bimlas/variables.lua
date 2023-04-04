@@ -5,8 +5,7 @@ local naughty = require("naughty")
 
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. theme .. "/theme.lua")
-beautiful.useless_gap = 5
-beautiful.useless_gap = 5
+beautiful.useless_gap = 3
 beautiful.border_focus = "#fade00"
 
 -- Notifications, Spotify track info, etc.
@@ -21,6 +20,7 @@ editor_cmd = terminal .. " -e " .. editor
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+    awful.layout.suit.max,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.floating,
