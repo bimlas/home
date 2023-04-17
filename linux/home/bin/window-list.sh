@@ -1,5 +1,6 @@
 #!/bin/bash
-# Show searchable window list (Alt-Tab with filter)
+# Show searchable window list (Alt-Tab with filter), SSH hosts and project directories
+# Switch context by Ctlr+Tab
 #
 # Define these hotkeys in your window manager:
 #
@@ -9,4 +10,54 @@
 #   Alt+Tab
 #     /bin/bash -c '(sleep 0.2 ; xdotool key Return) & /path/to/window-list.sh'
 
-rofi -show window -selected-row 1 -show-icons -theme gruvbox-dark-soft
+PROJECTS_ROOT='/media/bimlas/src/k8s'
+
+# Show window list
+if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
+  rofi \
+    -show window \
+    -modi project:"${0} project",run:"${0} run",ssh \
+    -selected-row 1
+
+# Show modi
+elif [ ${ROFI_RETV} -eq 0 ]; then
+  modi="${1}"
+  shift
+  case "${modi}" in
+
+    project)
+      find ${PROJECTS_ROOT} -mindepth 1 -maxdepth 1 -type d
+      ;;
+
+    run)
+      echo "run: cd ${PROJECTS_ROOT}; ${SHELL}"
+      echo "sql: cd ${PROJECTS_ROOT}; ${SHELL}"
+      echo 'kubernetes: k9s'
+
+  esac
+
+# Open selected item
+else
+  modi="${1}"
+  shift
+  case "${modi}" in
+
+    project)
+      xfce4-terminal \
+        --title=$(basename "${1}") \
+        --working-directory "${1}" \
+        --execute /bin/zsh --interactive --login -c \
+        "cd '${1}'; git fetch; git lf; echo; git s; ${SHELL}"
+      ;;
+
+    run)
+      title=$(sed 's/^\([^:]\+\):.*/\1/' <<< "${1}")
+      command=$(sed "s/^${title}://" <<< "${1}")
+      xfce4-terminal \
+        --title="${title}" \
+        --execute /bin/zsh --interactive --login -c \
+        "${command}"
+      ;;
+
+    esac
+fi
