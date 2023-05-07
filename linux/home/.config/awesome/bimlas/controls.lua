@@ -38,6 +38,43 @@ require("awful.hotkeys_popup.keys")
 
 local menubar = require("bimlas.widget.menubar")
 
+-- direction: -1: prev tag, +1: next tag
+local function get_tag_by_direction(direction)
+  local current_tag = awful.screen.focused().selected_tag
+  -- get tag (modulo 9 excluding 0 to wrap from 1 to 9)
+  return awful.screen.focused().tags[(current_tag.name - 1 + direction) % #awful.screen.focused().tags + 1]
+end
+
+-- direction: -1: prev tag, +1: next tag
+local function swap_tag_clients(direction)
+  local source_tag = awful.screen.focused().selected_tag
+  if source_tag == nil then
+      return
+  end
+  local target_tag = get_tag_by_direction(direction)
+  if target_tag == nil then
+      return
+  end
+
+  -- Swap clients, make shallow copy from clients first
+  local temp_tag = awful.tag.add("__temp_tag_for_swap")
+  for key, client in pairs(target_tag:clients()) do
+    client:toggle_tag(temp_tag)
+    client:toggle_tag(target_tag)
+  end
+  for key, client in pairs(source_tag:clients()) do
+    client:toggle_tag(target_tag)
+    client:toggle_tag(source_tag)
+  end
+  for key, client in pairs(temp_tag:clients()) do
+    client:toggle_tag(source_tag)
+    client:toggle_tag(temp_tag)
+  end
+  temp_tag:delete()
+
+  target_tag:view_only()
+end
+
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
@@ -50,28 +87,25 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey, "Shift" }, "Left",
         function ()
-            local tag = client.focus and client.focus.first_tag or nil
-            if tag == nil then
-                return
-            end
-            -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
-            local tag = client.focus.screen.tags[(tag.name - 2) % #awful.screen.focused().tags + 1]
+            local tag = get_tag_by_direction(-1)
             awful.client.movetotag(tag)
             awful.tag.viewprev()
         end,
         {description = "move to previous", group = "tag"}),
     awful.key({ modkey, "Shift" }, "Right",
         function ()
-            local tag = client.focus and client.focus.first_tag or nil
-            if tag == nil then
-                return
-            end
-            -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
-            local tag = client.focus.screen.tags[(tag.name % #awful.screen.focused().tags) + 1]
+            local tag = get_tag_by_direction(1)
             awful.client.movetotag(tag)
             awful.tag.viewnext()
         end,
         {description = "move to next", group = "tag"}),
+
+    awful.key({ modkey, "Control", "Shift" }, "Left",
+        function () swap_tag_clients(-1) end,
+        {description = "swap clients with previous tag", group = "tag"}),
+    awful.key({ modkey, "Control", "Shift" }, "Right",
+        function () swap_tag_clients(1) end,
+        {description = "swap clients with next tag", group = "tag"}),
 
     awful.key({ modkey,           }, "j",
         function ()
