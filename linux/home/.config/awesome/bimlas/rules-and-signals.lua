@@ -158,6 +158,15 @@ end)
 --     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 -- end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+function set_maximized_border_color(c)
+  if c.maximized or c.maximized_horizontal or c.maximized_vertical then
+    c.border_color = "#be95be"
+  else
+    c.border_color = beautiful.border_focus
+  end
+end
+
+client.connect_signal("focus", function(c) set_maximized_border_color(c) end)
+client.connect_signal("request::geometry", function(c) set_maximized_border_color(c) end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
