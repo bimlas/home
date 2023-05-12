@@ -7,18 +7,7 @@ local controls = require("bimlas.controls")
 
 awful.screen.connect_for_each_screen(function(s)
   -- Each screen has its own tag table.
-  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, {
-    -- Define default layout for each tag, see `awful.layout.layouts` for possibilities
-    awful.layout.suit.max,
-    awful.layout.suit.max,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair,
-  })
+  awful.tag({ "main" }, s, awful.layout.layouts[1])
 end)
 
 -- {{{ Rules
@@ -75,6 +64,14 @@ awful.rules.rules = {
     }
   }, properties = { floating = true } },
 
+  -- XFCE related
+  { rule_any = { name = { "Whisker Menu" } },
+    properties = { floating = true, requests_no_titlebar = true, titlebars_enabled = false, border_width = 0 }
+  },
+  { rule_any = { name = { "xfce4-panel" }, class = {"Xfdesktop"} },
+    properties = { sticky = true, border_width = 0 }
+  },
+
   -- Add titlebars to normal clients and dialogs
   { rule_any = { type = { "normal", "dialog" } },
     -- except_any = { instance = { "vivaldi-stable" } },
@@ -101,6 +98,13 @@ client.connect_signal("manage", function(c)
       and not c.size_hints.program_position then
     -- Prevent clients from being unreachable after screen count changes.
     awful.placement.no_offscreen(c)
+  end
+
+  -- Set border radius to get rounded corners, it makes useless gap really useless by making the windows more separated
+  if c.name ~= "xfce4-panel" and c.class ~= "Xfdesktop" then
+    c.shape = function(cr,w,h)
+        gears.shape.rounded_rect(cr,w,h,12)
+    end
   end
 end)
 
@@ -129,7 +133,8 @@ client.connect_signal("request::titlebars", function(c)
 
   top_titlebar:setup {
     { -- Left
-      awful.titlebar.widget.iconwidget(c),
+      -- Remove icons because of rounded window corners
+      -- awful.titlebar.widget.iconwidget(c),
       buttons = buttons,
       layout  = wibox.layout.fixed.horizontal
     },
@@ -169,4 +174,5 @@ end
 client.connect_signal("focus", function(c) set_maximized_border_color(c) end)
 client.connect_signal("request::geometry", function(c) set_maximized_border_color(c) end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
 -- }}}

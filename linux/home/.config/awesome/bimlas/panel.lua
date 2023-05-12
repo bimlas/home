@@ -5,12 +5,9 @@ local wibox = require("wibox")
 local vicious = require("vicious")
 
 local mymainmenu = require("bimlas.widget.mainmenu")
-local stat_cpu = require("cpu-widget.cpu-widget")
-local stat_mem = require("bimlas.widget.mem")
-local volumebar_widget = require("volumebar-widget.volumebar")
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %Y %m %d %H:%M ")
+mytextclock = wibox.widget.textclock(" %Y-%m-%d %H:%M ")
 
 -- Launcher widget
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
@@ -18,7 +15,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 
 -- Battery widget
 batwidget = wibox.widget.progressbar()
-batbox = wibox.layout.margin(
+batterybox = wibox.layout.margin(
     wibox.widget{ { max_value = 1, widget = batwidget,
                     border_width = 0.5, border_color = "#000000",
                     color = { type = "linear",
@@ -117,12 +114,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = 5,
-            stat_cpu(),
-            stat_mem,
-            volumebar_widget({margins = 6}),
             wibox.widget.systray(),
             mykeyboardlayout,
-            batbox,
+            batterybox,
             mytextclock,
             s.mylayoutbox,
         },

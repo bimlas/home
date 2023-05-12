@@ -42,7 +42,7 @@ local menubar = require("bimlas.widget.menubar")
 local function get_tag_by_direction(direction)
   local current_tag = awful.screen.focused().selected_tag
   -- get tag (modulo 9 excluding 0 to wrap from 1 to 9)
-  return awful.screen.focused().tags[(current_tag.name - 1 + direction) % #awful.screen.focused().tags + 1]
+  return awful.screen.focused().tags[(current_tag.index - 1 + direction) % #awful.screen.focused().tags + 1]
 end
 
 -- direction: -1: prev tag, +1: next tag
@@ -56,7 +56,8 @@ local function swap_tag_clients(direction)
       return
   end
 
-  -- Swap clients, make shallow copy from clients first
+  -- Swap clients
+  -- I cannot repeat `source_tag:swpa(target_tag)` multiple times without releasing the keys
   local temp_tag = awful.tag.add("__temp_tag_for_swap")
   for key, client in pairs(target_tag:clients()) do
     client:toggle_tag(temp_tag)
@@ -71,6 +72,18 @@ local function swap_tag_clients(direction)
     client:toggle_tag(temp_tag)
   end
   temp_tag:delete()
+
+  -- Swap tag names, handle index named tags
+  local new_source_name = target_tag.name
+  if target_tag.name == tostring(target_tag.index) then
+    new_source_name = source_tag.index
+  end
+  local new_target_name = source_tag.name
+  if source_tag.name == tostring(source_tag.index) then
+    new_target_name = target_tag.index
+  end
+  source_tag.name = new_source_name
+  target_tag.name = new_target_name
 
   target_tag:view_only()
 end
@@ -196,23 +209,55 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
 
+    awful.key({ modkey, "Shift"}, "n", function ()
+      -- Show rename prompt, use Rofi instead of awful.prompt to be able to use in XFCE too
+      local tag = awful.screen.focused().selected_tag
+      awful.spawn.with_line_callback('rofi -dmenu -p "New tag" -theme-str "listview { enabled: false; }"', {
+        stdout = function(tag_name)
+          if not tag_name or #tag_name == 0 then return end
+          awful.tag.add(tag_name, {
+            screen = awful.screen.focused(),
+            layout = awful.layout.layouts[1] }):view_only()
+        end
+      })
+    end, {description = "new tag", group = "tag"}),
+
+    awful.key({ modkey, "Shift"}, "r", function ()
+      -- Show rename prompt, use Rofi instead of awful.prompt to be able to use in XFCE too
+      local tag = awful.screen.focused().selected_tag
+      awful.spawn.with_line_callback('rofi -dmenu -p "Rename tag #' .. tag.index .. ' (' .. tag.name .. ')" -theme-str "listview { enabled: false; }"', {
+        stdout = function(new_name)
+          if not new_name or #new_name == 0 then return end
+          local t = awful.screen.focused().selected_tag
+          if t then t.name = new_name end
+        end
+      })
+    end, {description = "rename tag", group = "tag"}),
+
+    awful.key({ modkey, "Shift"}, "x", function ()
+      local t = awful.screen.focused().selected_tag
+      if not t then return end
+      t:delete()
+    end, {description = "delete tag", group = "tag"}),
+
+
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
+              {description = "show the menubar", group = "launcher"})
 
-    -- Send selection to other window in tag (usefull for executing selected SQL statements in Vim)
-    awful.key({ modkey, "Control" }, "Return", function ()
-      local active_client = awful.client.focus
-      if not active_client or (#awful.screen.tiled_clients ~= 2) then
-        naughty.notify({ preset = naughty.config.presets.low,
-                          title = "Error sending command",
-                          text = "It has to be exactly 2 clients" })
-        return
-      end
-      -- TODO: I think it not works
-      local executing_client = awful.tiled_clients.next(1)
-      -- TODO: Send selection to client
-    end, {description = "send selection to other window", group = "launcher" })
+    -- -- Send selection to other window in tag (usefull for executing selected SQL statements in Vim)
+    -- awful.key({ modkey, "Control" }, "Return", function ()
+    --   local active_client = awful.client.focus
+    --   if not active_client or (#awful.screen.tiled_clients ~= 2) then
+    --     naughty.notify({ preset = naughty.config.presets.low,
+    --                       title = "Error sending command",
+    --                       text = "It has to be exactly 2 clients" })
+    --     return
+    --   end
+    --   -- TODO: I think it not works
+    --   local executing_client = awful.tiled_clients.next(1)
+    --   -- TODO: Send selection to client
+    -- end, {description = "send selection to other window", group = "launcher" })
 )
 
 clientkeys = gears.table.join(
