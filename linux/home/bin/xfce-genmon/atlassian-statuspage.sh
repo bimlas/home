@@ -5,19 +5,30 @@
 #
 # <DOMAIN> is https://<DOMAIN>.statuspage.io/
 
+function _jq()
+{
+  jq -r "${@}" 2> /dev/null
+}
+
 domain=${1}
 url="https://${domain}.statuspage.io/api/v2/status.json"
 filename="/tmp/xfce-genmon-atlassian-statuspage_${domain}"
 
 curl --silent "${url}" > ${filename}
 
-name=$(jq '.page.name' ${filename} | sed 's/"//g')
-url=$(jq '.page.url' ${filename} | sed 's/"//g')
-description=$(jq '.status.description' ${filename} | sed 's/"//g')
-indicator=$(jq '.status.indicator' ${filename} | sed 's/"//g')
+fetch_error=$(_jq '.status.error_message' "${tokenfilename}")
+if [[ "x${fetch_error}" != 'x' ]]; then
+  echo "<txt>Error while fetching Statuspage</txt><tool>${fetch_error}</tool>"
+  exit 1
+fi
+
+name=$(_jq '.page.name' ${filename})
+url=$(_jq '.page.url' ${filename})
+description=$(_jq '.status.description' ${filename})
+indicator=$(_jq '.status.indicator' ${filename})
 
 color='green'
-if [[ "x${indicator}" -ne 'xnone' ]]; then
+if [[ "x${indicator}" != 'xnone' ]]; then
   color='red'
   if [[ "x$(cat "${filename}_notification")" -ne "x$(date '+%F')" ]]; then
     date '+%F' > "${filename}_notification"

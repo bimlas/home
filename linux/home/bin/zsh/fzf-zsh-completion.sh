@@ -1,4 +1,5 @@
 # set ft=zsh
+# https://github.com/lincheney/fzf-tab-completion
 
 # use a whitespace char or anchors don't work
 _FZF_COMPLETION_SEP=$'\u00a0'
