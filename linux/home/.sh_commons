@@ -97,6 +97,10 @@ fi
 if [[ ! $PATH =~ $HOME/.cargo/bin ]]; then
   export PATH=$HOME/.cargo/bin:$PATH
 fi
+if [[ ! $PATH =~ $HOME/.deno ]]; then
+  export DENO_INSTALL="$HOME/.deno"
+  export PATH="$DENO_INSTALL/bin:$PATH"
+fi
 
 if [[ -z $EDITOR ]]; then
   export EDITOR="nvim"
