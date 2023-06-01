@@ -15,7 +15,7 @@ else
 
   # Selected a custom entry, create new workspace
   if [ ${ROFI_RETV} -eq 2 ]; then
-    "$(dirname "${0}")/_create_workspace.sh" "${workspace}"
+    "$(dirname "${0}")/_create-workspace.sh" "${workspace}"
   fi
 
   # Move active window to workspace and switch to it

@@ -14,7 +14,7 @@ if [ ${ROFI_RETV} -eq 0 ]; then
 else
   title=$(basename "${1}")
 
-  # "$(dirname "${0}")/_create_workspace.sh" "${title}"
+  # "$(dirname "${0}")/_create-workspace.sh" "${title}"
   # # Swicth to last (probably newly created) desktop
   # wmctrl -s $(wmctrl -d | tail -1 | cut --delimiter ' ' --fields 1)
 
