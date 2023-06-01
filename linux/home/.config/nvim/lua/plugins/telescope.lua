@@ -43,6 +43,9 @@ return function(use)
           lsp_references = {
             include_current_line = true,
           },
+          colorscheme = {
+            enable_preview = true
+          },
         }
       }
       telescope.load_extension('fzf')

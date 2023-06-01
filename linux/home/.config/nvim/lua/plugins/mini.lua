@@ -14,7 +14,8 @@ return function(use)
         search_method = 'cover',
         custom_textobjects = {
           [','] = spec_argument(),
-          c = spec_treesitter({ a = '@comment.outer', i = '@comment.inner' }),
+          -- TODO: Not works on comment blocks, just lines
+          -- c = spec_treesitter({ a = '@comment.outer', i = '@comment.inner' }),
           e = function()
             local from = { line = 1, col = 1 }
             local to = {

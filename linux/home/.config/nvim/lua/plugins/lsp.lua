@@ -117,6 +117,12 @@ return function(use)
       require('illuminate').configure({ providers = { 'lsp', 'treesitter' } })
       require('fidget').setup({})
 
+      local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
+
       -- Signs
       local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
       for type, icon in pairs(signs) do
@@ -136,7 +142,7 @@ return function(use)
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', '<c-w>gd', function () vim.cmd('vsplit'); vim.lsp.buf.definition() end, bufopts)
+        vim.keymap.set('n', '<c-w>gd', function() vim.cmd('vsplit'); vim.lsp.buf.definition() end, bufopts)
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
         vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>",
           { desc = 'LSP: List references of symbol under the cursor', silent = true })
@@ -210,7 +216,7 @@ return function(use)
           --   select = true,
           -- },
           ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+            if cmp.visible() and has_words_before() then
               cmp.confirm({
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = true,

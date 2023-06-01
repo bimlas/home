@@ -6,7 +6,7 @@ return function(use)
 
       require('lualine').setup {
         options = {
-          theme = 'base16',
+          theme = 'kanagawa',
         },
         sections = {
           lualine_a = {
