@@ -4,5 +4,4 @@ awesome-client "
     screen = awful.client.focus.screen,
     layout = awful.layout.layouts[1],
     volatile = true,
-  })
-  tag:view_only()"
+  })"

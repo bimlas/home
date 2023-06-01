@@ -5,12 +5,19 @@
 
 # List items
 if [ ${ROFI_RETV} -eq 0 ]; then
-  find "${PROJECTS_ROOT}" -mindepth 1 -maxdepth 1 -type d
+  echo -e '\0prompt\x1fOpen project'
+
+  find "${PROJECTS_ROOT}" -mindepth 1 -maxdepth 1 -type d \
+  | sed -e 's/.*/&\x0icon\x1ffolder/'
 
 # Open selected item
 else
   title=$(basename "${1}")
-  "$(dirname "${0}")/_create_workspace.sh" "${title}"
+
+  # "$(dirname "${0}")/_create_workspace.sh" "${title}"
+  # # Swicth to last (probably newly created) desktop
+  # wmctrl -s $(wmctrl -d | tail -1 | cut --delimiter ' ' --fields 1)
+
   xfce4-terminal \
     --title="${title}" \
     --working-directory "${1}" \
