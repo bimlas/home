@@ -14,8 +14,8 @@ require("bimlas.error-handling")
   -- require("bimlas.desktop")
   -- require("bimlas.panel")
 -- else
-  -- theme = "gtk"
-  theme = "zenburn"
+  -- theme = "zenburn"
+  theme = "xresources"
   require("bimlas.variables")
 -- end
 

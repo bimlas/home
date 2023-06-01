@@ -6,7 +6,7 @@ local naughty = require("naughty")
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. theme .. "/theme.lua")
 beautiful.useless_gap = 0
-beautiful.border_focus = "#b3be62"
+-- beautiful.border_focus = "#b3be62"
 
 -- Notifications, Spotify track info, etc.
 naughty.config.defaults["icon_size"] = 100
@@ -20,7 +20,7 @@ editor_cmd = terminal .. " -e " .. editor
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.tile, -- It has master and resizable columns
+    awful.layout.suit.tile.left, -- It has master and resizable columns
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.max,
