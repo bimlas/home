@@ -74,6 +74,7 @@ nnn_info="%F{yellow}${NNN:+NNN }${nnn:+NNN }"
 dollar_or_percent='%(!.%F{red}#.%F{white}$)'
 
 function preexec() {
+  # Show time of command
   timer=$(($(date +%s%0N)/1000000))
 }
 
@@ -224,6 +225,8 @@ zstyle ':chpwd:*' recent-dirs-max 100
 
 # Usage: `zmv '(*).(jpg|jpeg)' 'epcot-$1.$2'`, add -n for dry-run
 autoload -U zmv
+alias zcp='zmv -C'
+alias zln='zmv -L'
 
 
 #                                  OTHER                                  {{{1
@@ -299,3 +302,12 @@ if ( which navi > /dev/null ); then
   bindkey '^g' _navi_widget
 fi
 # }}}
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Syntax highlighting
+# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+# Have to be on the very end of Zsh RC
+[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
