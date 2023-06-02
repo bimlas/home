@@ -43,7 +43,6 @@ awesome-client <<_HEREDOC_
     return focused_client, selected_client
   end
 
-
   local focused_client, selected_client = get_clients()
   if focused_client == nil or selected_client == nil then
     return
@@ -51,16 +50,13 @@ awesome-client <<_HEREDOC_
 
   local tag
   if focused_client.first_tag.index == selected_client.first_tag.index then
-    -- The focused and the selected client is on the same tag,
-    -- so we want to create a new tag to view them side-by-side
     tag = create_volatile_tag(focused_client.screen)
+    selected_client:move_to_tag(tag)
+    focused_client:move_to_tag(tag)
   else
-    -- We want to move the focused client to the tag of selected client
-    -- (add focused client to an existing view)
     tag = selected_client.first_tag
+    focused_client:move_to_tag(tag)
   end
 
-  selected_client:move_to_tag(tag)
-  focused_client:move_to_tag(tag)
   tag:view_only()
 _HEREDOC_
