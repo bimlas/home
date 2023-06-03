@@ -1,6 +1,5 @@
 local gears = require("gears")
 local awful = require("awful")
-local naughty = require("naughty")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.

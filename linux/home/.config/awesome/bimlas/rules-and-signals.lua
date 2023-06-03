@@ -7,7 +7,7 @@ local controls = require("bimlas.controls")
 
 awful.screen.connect_for_each_screen(function(s)
   -- Each screen has its own tag table.
-  awful.tag({ "main" }, s, awful.layout.layouts[1])
+  awful.tag({ "main" }, s, awful.layout.suit.max)
 end)
 
 -- {{{ Rules
