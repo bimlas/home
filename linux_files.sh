@@ -37,5 +37,3 @@ link "$CWD/linux/.zshrc"                  "$HOME/.zshrc"
 
 shopt -s extglob
 chmod 744 $HOME/bin/!(.gitignore|Gemfile|*.bat)
-
-remember

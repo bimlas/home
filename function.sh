@@ -26,22 +26,3 @@ link()
       | sed "s:.*:    &:"
   fi
 }
-
-remember()
-{
-  header "DON'T FORGET TO:"
-  header "* run ~/firefox/install_addons.ps1"
-  header "ON LINUX (KDE):"
-  header "* enable search indexing on data partitions"
-  header "* install 'dolphin-plugins' for Git integration"
-  header "* install 'plasma-applet-redshift-control' for RedShift applet"
-  header "* install Krohnkite KWin script for tiling and see your notes about setting it up"
-  header "* install United KDE Plasma theme in Plasma settings if not works"
-  header "ON WINDOWS:"
-  header "* add ~/bin to path"
-  header "* add ~/.gitconfig_files/custom_commands to path"
-  header "* add ~/.gitconfig_files/custom_commands/diff-so-fancy to path"
-  header "* autostart autohotkey scripts"
-  header "* set LC_ALL=hu_HU.UTF-8 to avoid weird chars in Git log"
-  header "* set EDITOR to use for Git"
-}
