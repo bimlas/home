@@ -51,7 +51,7 @@ return function(use)
       -- Highlight cursorword
       'rrethy/vim-illuminate',
       -- LSP status in bottom-right corner of the window
-      'j-hui/fidget.nvim',
+      { 'j-hui/fidget.nvim', branch = 'legacy' },
       -- Schemas for GitHub Actions, Kubernetes YAML files, etc.
       'b0o/schemastore.nvim',
     },
