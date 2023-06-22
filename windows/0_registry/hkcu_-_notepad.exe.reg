@@ -1,9 +1,0 @@
-Windows Registry Editor Version 5.00
-
-[HKEY_CURRENT_USER\Software\Microsoft\Notepad]
-
-; Ne tordelje a hosszu sorokat
-"fWrap"=dword:00000000
-
-; Statusbar bekapcsolasa
-"StatusBar"=dword:00000001

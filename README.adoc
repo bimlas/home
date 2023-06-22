@@ -1,7 +1,6 @@
-= Dotfiles for Linux and Windows
+= Dotfiles for Linux
 
-The shell-scripts in the root directory are "`one-click`" installers whether
-on Linux or Windows (via the Git shell).
+The shell-scripts in the root directory are "`one-click`" installers.
 
 image::https://imgs.xkcd.com/comics/borrow_your_laptop.png[link="https://xkcd.com/1806/" align="center"]
 
