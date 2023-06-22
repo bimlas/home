@@ -19,6 +19,7 @@ link "$CWD/linux/bin/"                    "$HOME/bin"
 copy --recursive ".config/" "$HOME"
 link "$CWD/linux/.config/awesome/"        "$HOME/.config/awesome"
 link "$CWD/linux/.config/nvim/"           "$HOME/.config/nvim"
+link "$CWD/linux/.config/rofi/"           "$HOME/.config/rofi"
 link "$CWD/linux/.config/xfce4/terminal/" "$HOME/.config/xfce4/terminal"
 
 link "$CWD/linux/.gitconfig_files/"       "$HOME/.gitconfig_files"
