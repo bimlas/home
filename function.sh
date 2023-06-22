@@ -3,6 +3,7 @@
 
 CP="`which cp`"
 LN="`which ln`"
+RM="`which rm`"
 
 header()
 {
@@ -13,16 +14,13 @@ copy()
 {
   $CP --recursive --verbose --force "$@" 2>&1 \
     | sed -e "s:^$CP.*:`printf "\e[0;31m"`&`printf "\e[0m"`:" \
-    | sed "s:.*:    &:"
+    | sed "s:.*:    copy &:"
 }
 
 link()
 {
-  if [[ -v 'is_win_admin' ]] && [[ $is_win_admin -eq 0 ]]; then
-    copy $@
-  else
-    $LN --verbose --symbolic --force --no-dereference "$@" 2>&1 \
-      | sed -e "s:^$LN.*:`printf "\e[0;31m"`&`printf "\e[0m"`:" \
-      | sed "s:.*:    &:"
-  fi
+  $RM -rf "$2"
+  $LN --verbose --symbolic --no-dereference --no-target-directory "$@" 2>&1 \
+    | sed -e "s:^$LN.*:`printf "\e[0;31m"`&`printf "\e[0m"`:" \
+    | sed "s:.*:    link &:"
 }
