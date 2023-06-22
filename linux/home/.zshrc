@@ -311,3 +311,5 @@ export NVM_DIR="$HOME/.nvm"
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 # Have to be on the very end of Zsh RC
 [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+  export PATH="${PATH}:/home/bimlas/.cargo/bin"

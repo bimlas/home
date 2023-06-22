@@ -1,5 +1,0 @@
-aptitude "";
-aptitude::Keep-Unused-Pattern "";
-aptitude::Delete-Unused-Pattern "";
-aptitude::Forget-New-On-Update "true";
-aptitude::Forget-New-On-Install "true";

@@ -21,7 +21,6 @@ alias ls='ls -Av --color --group-directories-first'
 alias grep='grep --color'
 alias du='du -b'
 alias run='mosh run'
-alias mvim='vim -u ~/.vimrc_minimal'
 alias pm-hibernate='echo "NEVER USE IT!"'
 alias hummingbot='pushd /media/bimlas/src/hummingbot/hummingbot; conda activate hummingbot; ./bin/hummingbot.py; conda deactivate; popd'
 

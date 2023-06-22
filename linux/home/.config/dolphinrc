@@ -1,8 +1,0 @@
-[General]
-BrowseThroughArchives=true
-GlobalViewProps=true
-ShowFullPath=true
-ShowFullPathInTitlebar=true
-
-[VersionControl]
-enabledPlugins=Git

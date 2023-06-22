@@ -1,5 +1,0 @@
-set nocompatible
-filetype plugin indent on
-syntax enable
-" :Verbose EX_COMMAND copies the output to a buffer.
-set runtimepath+=$HOME/.vim/plugins/vim-scriptease

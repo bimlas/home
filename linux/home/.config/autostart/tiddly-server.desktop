@@ -1,17 +1,17 @@
 [Desktop Entry]
 Comment[hu_HU]=
 Comment=
-Exec=$HOME/bin/warn-on-high-memory-usage.sh
+Exec=/bin/bash -c 'cd /media/bimlas/data/bimlas/bimlas.gitlab.io; npm run start'
 GenericName[hu_HU]=
 GenericName=
+Hidden=false
 Icon=system-run
 MimeType=
-Name[hu_HU]=Warn on high memory usage
-Name=Warn on high memory usage
+Name=TiddlyServer
 Path=
 StartupNotify=true
 Terminal=true
-TerminalOptions=--new-tab --show-tabbar --noclose
+TerminalOptions=--new-tab --show-tabbar --noclose --title tiddlywiki
 Type=Application
 X-DBUS-ServiceName=
 X-DBUS-StartupType=none
