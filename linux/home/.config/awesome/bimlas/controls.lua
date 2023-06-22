@@ -151,9 +151,9 @@ globalkeys = gears.table.join(
     --         end
     --     end,
     --     {description = "go back", group = "client"}),
-    awful.key({ modkey,           }, "Tab", function () awful.spawn('/home/bimlas/bin/window-list.sh') end,
+    awful.key({ modkey,           }, "Tab", function () awful.spawn('/home/bimlas/bin/rofi/window-list.sh') end,
               {description = "search window", group = "client"}),
-    awful.key({ "Mod1",           }, "Tab", function () awful.spawn('/bin/sh -c "(sleep 0.2; xdotool key Return) & /home/bimlas/bin/window-list.sh"') end,
+    awful.key({ "Mod1",           }, "Tab", function () awful.spawn('/bin/sh -c "(sleep 0.2; xdotool key Return) & /home/bimlas/bin/rofi/window-list.sh"') end,
               {description = "previous window", group = "client"}),
 
     -- Standard program
