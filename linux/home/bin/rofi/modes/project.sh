@@ -5,7 +5,7 @@
 
 # List items
 if [ ${ROFI_RETV} -eq 0 ]; then
-  echo -e '\0prompt\x1fOpen project'
+  echo -e '\0prompt\x1fproject'
 
   find "${PROJECTS_ROOT}" -mindepth 1 -maxdepth 1 -type d \
   | sed -e 's/.*/&\x0icon\x1ffolder/'

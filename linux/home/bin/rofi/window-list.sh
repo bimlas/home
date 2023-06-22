@@ -17,7 +17,7 @@ export PROJECTS_ROOT='/media/bimlas/src/k8s'
 # Window based
 rofi \
   -show window \
-  -modi window,workspace:"${ROFI_MODES_DIR}/workspace.sh",project:"${ROFI_MODES_DIR}/project.sh",ssh \
+  -modi window,project:"${ROFI_MODES_DIR}/project.sh",ssh \
   -window-command "$(dirname "${0}")/modes/_move-to-common-workspace.sh {window}"
 
 # Original, workspace based
