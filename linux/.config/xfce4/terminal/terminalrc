@@ -36,10 +36,10 @@ ColorForeground=#959DCB
 ColorBackground=#292D3E
 ColorCursor=x
 DropdownHeight=95
-RunCustomCommand=TRUE
 CustomCommand=tmux
 DropdownWidth=95
 DropdownAlwaysShowTabs=FALSE
 ColorBoldIsBright=FALSE
 DropdownKeepAbove=FALSE
 DropdownKeepOpenDefault=TRUE
+
