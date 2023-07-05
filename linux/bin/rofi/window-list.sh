@@ -12,23 +12,9 @@
 #   kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
 
 export ROFI_MODES_DIR="$(dirname "${0}")/modes"
-export PROJECTS_ROOT='/media/bimlas/src/k8s'
+export PROJECTS_ROOT='/media/bimlas/data/magpie/'
 
-# Window based
 rofi \
   -show window \
   -modi window,project:"${ROFI_MODES_DIR}/project.sh",ssh \
   -window-command "$(dirname "${0}")/modes/_move-to-common-workspace.sh {window}"
-
-# Original, workspace based
-# rofi \
-#   -show workspace \
-#   -modi workspace:"${ROFI_MODES_DIR}/workspace.sh",window,project:"${ROFI_MODES_DIR}/project.sh",run:"${ROFI_MODES_DIR}/run.sh",ssh
-
-
-# Combi list for windows and workspaces
-# rofi \
-#   -show combi \
-#   -modi combi,project:"${ROFI_MODES_DIR}/project.sh",run:"${ROFI_MODES_DIR}/run.sh",ssh \
-#   -combi-modi workspace:"${ROFI_MODES_DIR}/workspace.sh",window \
-#   -display-combi 'Jump to window'
