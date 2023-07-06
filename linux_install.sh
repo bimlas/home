@@ -15,13 +15,15 @@ sudo apt install -y curl
 # Needed to use `pip`
 sudo apt install -y python3 python3-pip
 # GCC, Make, etc.
-sudo apt install -y build-essential
+sudo apt install -y build-essential autotools-dev autoconf
 
 sudo apt install -y git
 
 sudo apt install -y tmux
 git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 pip3 install --user tmuxp
+
+sudo apt install -y ripgrep
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -40,6 +42,13 @@ sudo apt-get install -y nodejs
 curl --location -o ./delta.deb https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_amd64.deb
 sudo dpkg -i ./delta.deb
 rm ./delta.deb
+
+sudo pip3 install pgcli
+
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt update
+sudo apt install -y kubectl
 
 # __ GUI ________________________________
 
