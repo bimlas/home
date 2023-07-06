@@ -143,11 +143,11 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab", function () awful.spawn('/bin/bash -c "PROJECTS_DIR=/media/bimlas/data/magpie $HOME/.local/bin/window-list.sh"') end,
+    awful.key({ modkey,           }, "Tab", function () awful.spawn('/bin/bash -c "PROJECTS_DIR=/media/bimlas/data/magpie $HOME/.local/bin/window-list"') end,
               {description = "search window", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(os.getenv('HOME') .. '/.local/bin/named-terminal.sh') end,
+    awful.key({ modkey,           }, "Return", function () awful.spawn(os.getenv('HOME') .. '/.local/bin/named-terminal') end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
