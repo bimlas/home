@@ -8,7 +8,7 @@ configuration {
   ssh-command: "{terminal} -T {host} -e ssh -t {host} tmux new-session -As ssh";
 
   show-icons: true;
-  font: "mono 18";
+  font: "mono 12";
   // Show modi list on the bottom of the window
   sidebar-mode: true;
 }
