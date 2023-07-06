@@ -143,26 +143,20 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    -- awful.key({ modkey,           }, "Tab",
-    --     function ()
-    --         awful.client.focus.history.previous()
-    --         if client.focus then
-    --             client.focus:raise()
-    --         end
-    --     end,
-    --     {description = "go back", group = "client"}),
-    awful.key({ modkey,           }, "Tab", function () awful.spawn('/home/bimlas/bin/rofi/window-list.sh') end,
+    awful.key({ modkey,           }, "Tab", function () awful.spawn('/bin/bash -c "PROJECTS_DIR=/media/bimlas/data/magpie $HOME/.local/bin/window-list.sh"') end,
               {description = "search window", group = "client"}),
-    awful.key({ "Mod1",           }, "Tab", function () awful.spawn('/bin/sh -c "(sleep 0.2; xdotool key Return) & /home/bimlas/bin/rofi/window-list.sh"') end,
-              {description = "previous window", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey,           }, "Return", function () awful.spawn(os.getenv('HOME') .. '/.local/bin/named-terminal.sh') end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
+    awful.key({                   }, "Print", function () awful.spawn('xfce4-screenshooter') end,
+              {description = "take a screenshot", group = "launcher"}),
+    awful.key({         "Control" }, "Print", function () awful.spawn('xfce4-screenshooter -r') end,
+              {description = "take a screenshot of region", group = "launcher"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -241,8 +235,8 @@ globalkeys = gears.table.join(
 
 
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    awful.key({ modkey }, "p", function() awful.spawn('rofi -show drun -show-icons') end,
+              {description = "show the app launcher", group = "launcher"})
 
     -- -- Send selection to other window in tag (usefull for executing selected SQL statements in Vim)
     -- awful.key({ modkey, "Control" }, "Return", function ()
