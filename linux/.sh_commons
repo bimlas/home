@@ -107,7 +107,7 @@ fi
 
 # View manuals in vim.
 export MANPAGER="/bin/sh -c \"unset PAGER; col -b -x |         \
-                 vim -R                                        \
+                 nvim -R                                       \
                  -c 'set nocp'                                 \
                  -c 'filetype plugin on'                       \
                  -c 'syntax enable'                            \

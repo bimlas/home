@@ -52,13 +52,6 @@ dirstack_info()
   fi
 }
 
-nodejs_info()
-{
-  if [ -f package.json ]; then
-    echo "\n%F{blue}│ %F{green}NodeJS: $(node --version)"
-  fi
-}
-
 # Show username only if logged in through SSH
 ssh_username="%f${SSH_TTY:+%n@%M }"
 
@@ -105,8 +98,7 @@ PROMPT+=$'${ssh_username}'
 PROMPT+='%F{blue}%~ '
 PROMPT+=$'${vcs_info_msg_0_}'
 PROMPT+=$'$(vcs_stash_info)'
-PROMPT+=$'$(kubernetes_info)'
-PROMPT+=$'$(nodejs_info)'
+# PROMPT+=$'$(kubernetes_info)'
 PROMPT+=$'\n%F{blue}└ '
 PROMPT+=$'${nnn_info}'
 PROMPT+=$'${jobs_info}'
