@@ -28,11 +28,16 @@ sudo apt install -y ripgrep
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
+wget -O /tmp/navi.tar.gz https://github.com/denisidoro/navi/releases/download/v2.22.1/navi-v2.22.1-x86_64-unknown-linux-musl.tar.gz
+tar -xf /tmp/navi.tar.gz --to-stdout > ~/.local/bin/navi
+chmod +x ~/.local/bin/navi
+
 sudo apt install -y nnn
 
 bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
 
-sudo add-apt-repository -y ppa:neovim-ppa/stable
+# Stable is really old, don't use it
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt update
 sudo apt install -y neovim
 
