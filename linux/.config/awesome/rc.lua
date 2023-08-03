@@ -17,6 +17,7 @@ require("bimlas.error-handling")
   -- theme = "zenburn"
   theme = "xresources"
   require("bimlas.variables")
+  -- require("bimlas.panel")
 -- end
 
 require("bimlas.rules-and-signals")
