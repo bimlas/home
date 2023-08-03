@@ -16,7 +16,7 @@ return function(use)
         { desc = 'Search files' })
 
       local telescope = require("telescope")
-      local trouble = require("trouble.providers.telescope")
+      -- local trouble = require("trouble.providers.telescope")
 
       telescope.setup {
         extensions = {
@@ -27,12 +27,12 @@ return function(use)
             case_mode = "smart_case"
           },
         },
-        defaults = {
-          mappings = {
-            i = { ["<c-t>"] = trouble.smart_open_with_trouble },
-            n = { ["<c-t>"] = trouble.smart_open_with_trouble },
-          },
-        },
+        -- defaults = {
+        --   mappings = {
+        --     i = { ["<c-t>"] = trouble.smart_open_with_trouble },
+        --     n = { ["<c-t>"] = trouble.smart_open_with_trouble },
+        --   },
+        -- },
         pickers = {
           buffers = {
             mappings = {

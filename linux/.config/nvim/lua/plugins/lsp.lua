@@ -42,12 +42,12 @@ return function(use)
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       -- Snippet management
-      'hrsh7th/cmp-vsnip',
-      'hrsh7th/vim-vsnip',
-      'hrsh7th/vim-vsnip-integ',
-      'rafamadriz/friendly-snippets',
+      -- 'hrsh7th/cmp-vsnip',
+      -- 'hrsh7th/vim-vsnip',
+      -- 'hrsh7th/vim-vsnip-integ',
+      -- 'rafamadriz/friendly-snippets',
       -- Fancy icons for completion menu
-      'onsails/lspkind.nvim',
+      -- 'onsails/lspkind.nvim',
       -- Highlight cursorword
       'rrethy/vim-illuminate',
       -- LSP status in bottom-right corner of the window
@@ -130,6 +130,11 @@ return function(use)
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
 
+      local function on_list(options)
+        vim.fn.setqflist({}, ' ', options)
+        vim.api.nvim_command('tabnew | copen | cfirst')
+      end
+
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
       local on_attach = function(client, bufnr)
@@ -144,8 +149,9 @@ return function(use)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
         vim.keymap.set('n', '<c-w>gd', function() vim.cmd('vsplit'); vim.lsp.buf.definition() end, bufopts)
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>",
-          { desc = 'LSP: List references of symbol under the cursor', silent = true })
+        -- vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>",
+        -- Open references in new tab to be able to preview without messing up windows
+        vim.keymap.set('n', 'gr', function () vim.lsp.buf.references(nil, {on_list=on_list}) end, { desc = 'LSP: List references of symbol under the cursor', silent = true })
         vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
         vim.keymap.set('n', 'gi', "<cmd>Trouble lsp_implementations<cr>", { silent = true, noremap = true })
@@ -178,7 +184,7 @@ return function(use)
       end
 
       -- nvim-cmp setup
-      local lspkind = require('lspkind')
+      -- local lspkind = require('lspkind')
       local cmp = require 'cmp'
       cmp.setup {
         formatting = {
@@ -187,17 +193,17 @@ return function(use)
             cmp.ItemField.Menu,
             cmp.ItemField.Kind,
           },
-          format = lspkind.cmp_format({
-            mode = 'symbol_text',
-            maxwidth = 50,
-            ellipsis_char = '...',
-
-            -- The function below will be called before any actual modifications from lspkind
-            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-            before = function(entry, vim_item)
-              return vim_item
-            end
-          })
+          -- format = lspkind.cmp_format({
+          --   mode = 'symbol_text',
+          --   maxwidth = 50,
+          --   ellipsis_char = '...',
+          --
+          --   -- The function below will be called before any actual modifications from lspkind
+          --   -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+          --   before = function(entry, vim_item)
+          --     return vim_item
+          --   end
+          -- })
         },
         window = {
           -- completion = cmp.config.window.bordered(),
@@ -221,8 +227,8 @@ return function(use)
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = true,
               })
-            elseif vim.fn["vsnip#available"](1) == 1 then
-              feedkey("<Plug>(vsnip-expand-or-jump)", "")
+            -- elseif vim.fn["vsnip#available"](1) == 1 then
+            --   feedkey("<Plug>(vsnip-expand-or-jump)", "")
             else
               fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
@@ -236,7 +242,7 @@ return function(use)
           end, { "i", "s" }),
         }),
         sources = {
-          { name = 'vsnip' },
+          -- { name = 'vsnip' },
           { name = 'nvim_lsp' },
           { name = 'path' },
         },

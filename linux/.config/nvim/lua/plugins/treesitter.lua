@@ -33,6 +33,7 @@ return function(use)
 
       require('nvim-treesitter.configs').setup({
         ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+        -- Sometimes it's buggy, shows errors, making editor unable to use
         highlight = {
           enable = true,
           -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
