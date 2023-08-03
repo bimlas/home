@@ -744,7 +744,7 @@
 
     features = decorations
     whitespace-error-style = 22 reverse
-    light = true
+    ; light = true
 
 [delta "decorations"]                                                   ; {{{1
 
