@@ -3,41 +3,6 @@ return function(use)
     requires = {
       -- 'williamboman/mason.nvim',
       -- 'williamboman/mason-lspconfig.nvim',
-      -- {
-      --   -- Buggy: Pressing <Esc> twice after `gd` to a definition shows errors in LspSaga; the peek window of gd opens the definition in the wrong split if I hit <CR>
-      --   "glepnir/lspsaga.nvim",
-      --   branch = "main",
-      --   config = function()
-      --     local saga = require("lspsaga")
-      --
-      --     saga.init_lsp_saga({
-      --       preview_lines_above = 5,
-      --       finder_action_keys = {
-      --         open = { 'e', '<CR>' },
-      --         vsplit = '<C-W>v',
-      --         split = '<C-W>s',
-      --         quit = '<ESC>' ,
-      --       },
-      --       definition_action_keys = {
-      --         edit =  '<cr>',
-      --         vsplit = '<C-W>v',
-      --         split = '<C-W>s',
-      --         quit = '<ESC>',
-      --       },
-      --       rename_action_quit = '<ESC>',
-      --     })
-      --   end,
-      -- },
-      -- Intellisense, code completion
-      -- Show definition, references in floating window
-      -- {
-      --   -- Cool, but going deep in the hierarchy with several open previews makes it useless
-      --   -- Besides this I cannot open the selected preview in the active window, I have to open in a new split and close the original
-      --   'rmagatti/goto-preview',
-      --   config = function()
-      --     require('goto-preview').setup {}
-      --   end
-      -- },
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
