@@ -1,12 +1,12 @@
 return function(use)
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
-
       require('lualine').setup {
         options = {
-          theme = 'vscode',
+          icons_enabled = false,
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
         },
         sections = {
           lualine_a = {
@@ -29,9 +29,8 @@ return function(use)
           lualine_z = { 'location' },
         },
         tabline = {},
-        extensions = {},
+        extensions = { 'quickfix' },
       }
-
     end
   }
 end

@@ -2,24 +2,20 @@ return function(use)
   use({
     'muniftanjim/prettier.nvim',
     requires = {
-    'jose-elias-alvarez/null-ls.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
       'nvim-lua/plenary.nvim',
     },
     config = function()
-      local null_ls = require("null-ls")
-
-      null_ls.setup({
+      require("null-ls").setup {
         timeout_ms = 5000,
         on_attach = function(client, bufnr)
           if client.server_capabilities.documentFormattingProvider then
             vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
           end
         end,
-      })
+      }
 
-      local prettier = require("prettier")
-
-      prettier.setup({
+      require("prettier").setup {
         bin = 'prettier', -- or `prettierd`
         filetypes = {
           "css",
@@ -35,8 +31,7 @@ return function(use)
           "typescriptreact",
           "yaml",
         },
-      })
-
+      }
     end
   })
 end

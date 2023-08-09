@@ -2,6 +2,8 @@ return function(use)
   use { 'nvim-treesitter/nvim-treesitter',
     requires =
     {
+      -- For Mini.ai text objects
+      'nvim-treesitter/nvim-treesitter-textobjects',
       { 'nvim-treesitter/nvim-treesitter-context',
         config = {
           mode = 'topline',
@@ -21,19 +23,33 @@ return function(use)
           }
         }
       },
-      { 'mfussenegger/nvim-treehopper',
-        config = function()
-          vim.cmd('omap     <silent> v :<C-U>lua require("tsht").nodes()<CR>')
-          vim.cmd('xnoremap <silent> v :lua require("tsht").nodes()<CR>')
-        end
-      },
       { 'p00f/nvim-ts-rainbow' }
     },
     config = function()
-
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+      require('nvim-treesitter.configs').setup {
+        -- one of "all", "maintained" (parsers with maintainers), or a list of languages
         -- Sometimes it's buggy, shows errors, making editor unable to use
+        ensure_installed = {
+          'bash',
+          'comment',
+          'css',
+          'diff',
+          'dockerfile',
+          'git_config',
+          'git_rebase',
+          'gitattributes',
+          'gitcommit',
+          'html',
+          'javascript',
+          'json',
+          'lua',
+          'regex',
+          'solidity',
+          'sql',
+          'typescript',
+          'vim',
+          'yaml',
+        }, 
         highlight = {
           enable = true,
           -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -42,18 +58,11 @@ return function(use)
           -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
         },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "gb",
-            node_incremental = "gb",
-          },
-        },
         rainbow = {
           enable = true,
           extended_mode = true,
         }
-      })
+      }
     end
   }
 end

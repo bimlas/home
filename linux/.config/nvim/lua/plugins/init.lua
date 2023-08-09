@@ -12,15 +12,10 @@ return require('packer').startup(function(use)
   require('plugins/colorscheme')(use)
   require('plugins/lualine')(use)
   require('plugins/mini')(use)
-  require('plugins/fzf')(use)
-  -- require('plugins/telescope')(use)
-  -- require('plugins/nnn')(use)
-  -- require('plugins/comment')(use)
-  -- TODO: Breaks Nvim for some reasons on Nvim 10
-  -- require('plugins/treesitter')(use)
+  require('plugins/telescope')(use)
+  require('plugins/treesitter')(use)
   require('plugins/lsp')(use)
   require('plugins/prettier')(use)
-  require('plugins/fugitive')(use)
   require('plugins/gitsigns')(use)
 
   -- Automatically set up your configuration after cloning packer.nvim
