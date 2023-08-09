@@ -24,6 +24,10 @@ git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 pip3 install --user tmuxp
 
 sudo apt install -y ripgrep
+# Needed by some NeoVim plugins to speed up file listings, use as `fdfind`
+sudo apt install -y fd-find
+# Make symlink, see https://github.com/sharkdp/fd#on-ubuntu
+ln -s $(which fdfind) ~/.local/bin/fd
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
