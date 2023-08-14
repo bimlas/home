@@ -23,7 +23,6 @@ return function(use)
           }
         }
       },
-      { 'p00f/nvim-ts-rainbow' }
     },
     config = function()
       require('nvim-treesitter.configs').setup {
@@ -58,10 +57,6 @@ return function(use)
           -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
         },
-        rainbow = {
-          enable = true,
-          extended_mode = true,
-        }
       }
     end
   }

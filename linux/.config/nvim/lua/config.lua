@@ -47,6 +47,9 @@ vim.opt.cursorline = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+-- Used by cursorhold
+vim.opt.updatetime = 500
+
 -- COMMAND
 
 vim.cmd([[ 

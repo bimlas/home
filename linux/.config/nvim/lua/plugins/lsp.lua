@@ -14,7 +14,6 @@ return function(use)
       -- Fancy icons for completion menu
       -- 'onsails/lspkind.nvim',
       -- Highlight cursorword
-      'rrethy/vim-illuminate',
       -- LSP status in bottom-right corner of the window
       { 'j-hui/fidget.nvim', branch = 'legacy' },
       -- Schemas for GitHub Actions, Kubernetes YAML files, etc.
@@ -79,7 +78,6 @@ return function(use)
       --   ensure_installed = servers,
       -- }
 
-      require('illuminate').configure({ providers = { 'lsp', 'treesitter' } })
       require('fidget').setup({})
 
       local has_words_before = function()
@@ -127,6 +125,27 @@ return function(use)
         if client.name == "tsserver" then
           client.server_capabilities.document_formatting = false -- 0.7 and earlier
           client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+        end
+
+        -- Highlight cursor word
+        if client.server_capabilities.documentHighlightProvider then
+          vim.api.nvim_create_augroup('lsp_document_highlight', {
+            clear = false
+          })
+          vim.api.nvim_clear_autocmds({
+            buffer = bufnr,
+            group = 'lsp_document_highlight',
+          })
+          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            group = 'lsp_document_highlight',
+            buffer = bufnr,
+            callback = vim.lsp.buf.document_highlight,
+          })
+          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            group = 'lsp_document_highlight',
+            buffer = bufnr,
+            callback = vim.lsp.buf.clear_references,
+          })
         end
       end
 
