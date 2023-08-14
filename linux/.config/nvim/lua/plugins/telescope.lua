@@ -58,6 +58,8 @@ return function(use)
           }
         },
         defaults = {
+          -- Show file path above preview window
+          dynamic_preview_title = true,
           -- mappings = {
           --   i = { ["<c-t>"] = trouble.smart_open_with_trouble },
           --   n = { ["<c-t>"] = trouble.smart_open_with_trouble },
