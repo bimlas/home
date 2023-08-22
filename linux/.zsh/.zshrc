@@ -5,7 +5,7 @@
 #
 # Log in again in to the desktop.
 
-source $HOME/.sh_commons
+source $ZDOTDIR/alias
 
 autoload -U colors     && colors
 autoload -U promptinit && promptinit
@@ -227,7 +227,6 @@ alias zln='zmv -L'
 setopt NO_BEEP
 setopt NUMERIC_GLOB_SORT
 
-export HISTFILE=~/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
 setopt INC_APPEND_HISTORY
