@@ -79,6 +79,10 @@
 "xfdesktop --windowlist"
   b:9
 
+# Type in cliboard contents (for apps where paste is not available, for example IPMI KVM)
+"sleep 0.5 && xsel -o --clipboard | xargs --null xdotool type --clearmodifiers --"
+  alt+shift+v
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
