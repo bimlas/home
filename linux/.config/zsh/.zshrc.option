@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+autoload -U colors && colors
+
+setopt NO_BEEP
+
+export HISTSIZE=1000
+export SAVEHIST=1000
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+
+# If numeric filenames are matched by a filename generation pattern, sort the filenames numerically rather than lexicographically
+setopt NUMERIC_GLOB_SORT

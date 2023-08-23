@@ -1,0 +1,95 @@
+#!/bin/zsh
+
+# man zshmisc -> SIMPLE PROMPT ESCAPES, CONDITIONAL SUBSTRINGS IN PROMPTS
+
+autoload -U promptinit && promptinit
+
+# If set, parameter expansion, command substitution and arithmetic expansion are performed in prompts
+setopt PROMPT_SUBST
+
+# Git prompt.
+autoload -Uz vcs_info
+# Enable only Git, disable others
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes false
+zstyle ':vcs_info:*' formats $'\n%F{blue}│ %F{yellow}Git: %b '
+zstyle ':vcs_info:*' actionformats $'\n%F{blue}│ %F{yellow}Git: %b %F{red}(%a) '
+
+vcs_stash_info()
+{
+  stash=$(git stash list 2> /dev/null)
+  if [[ -n "$stash" ]]; then
+    echo '%F{red}(stash) '
+  fi
+}
+
+kubernetes_info()
+{
+  kubernetes_context=$(cat ~/.kube/config 2>/dev/null| grep -o '^current-context: [^/]*' | cut -d' ' -f2)
+  if [ -n "$kubernetes_context" ]; then
+      echo "\n%F{blue}│ %F{green}Kubernetes: $kubernetes_context "
+  fi
+}
+
+dirstack_info()
+{
+  count=$(dirs -v | tail +2 | wc -l)
+  if [[ $count -gt 0 ]]; then
+    echo "%F{blue}~$count "
+  fi
+}
+
+# Show username only if logged in through SSH
+ssh_username="%f${SSH_TTY:+%n@%M }"
+
+# Errorcode of last command
+errorcode_info=$'%(?..%F{red}?%? )'
+
+jobs_info='%1(j.%F{cyan}&%j .)'
+
+# Indicate if the terminal has been opened from nnn
+nnn_info="%F{yellow}${NNN:+NNN }${nnn:+NNN }"
+
+# Owner of the prompt
+dollar_or_percent='%(!.%F{red}#.%F{white}$)'
+
+function preexec() {
+  # Show time of command
+  timer=$(($(date +%s%0N)/1000000))
+}
+
+function precmd() {
+  vcs_info
+
+  if [ $timer ]; then
+    now=$(($(date +%s%0N)/1000000))
+    seconds=$(( ($now-$timer)/1000 ))
+
+    elapsed_time=''
+    if [[ $seconds -gt 5 ]]; then
+      format='%-Ss'
+      if [[ $seconds -gt 59 ]]; then format="%-Mm${format}"; fi
+      if [[ $seconds -gt 3599 ]]; then format="%-Hh${format}"; fi
+      elapsed_time="[%f$(date -u -d @${seconds} +"${format}")%F{blue}] "
+    fi
+    export elapsed_time
+    unset timer
+  fi
+}
+
+PROMPT=$'\n'
+PROMPT+=$'%B%F{blue}┌'
+PROMPT+=$'[%f%T%F{blue}] '
+PROMPT+=$'${elapsed_time}'
+PROMPT+=$'${ssh_username}'
+PROMPT+='%F{blue}%~ '
+PROMPT+=$'${vcs_info_msg_0_}'
+PROMPT+=$'$(vcs_stash_info)'
+PROMPT+=$'$(kubernetes_info)'
+PROMPT+=$'\n%F{blue}└ '
+PROMPT+=$'${nnn_info}'
+PROMPT+=$'${jobs_info}'
+PROMPT+=$'$(dirstack_info)'
+PROMPT+=$'${errorcode_info}'
+PROMPT+=$'${dollar_or_percent}'
+PROMPT+=$'%f%b%k '

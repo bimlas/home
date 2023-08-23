@@ -22,7 +22,7 @@ link "$CWD/linux/.config/nvim/"           "$HOME/.config/nvim"
 link "$CWD/linux/.config/rofi/"           "$HOME/.config/rofi"
 link "$CWD/linux/.config/xfce4/terminal/" "$HOME/.config/xfce4/terminal"
 
-link "$CWD/linux/.zsh/"                   "$HOME/.zsh"
+link "$CWD/linux/.config/zsh/"            "$HOME/.config/zsh"
 link "$CWD/linux/.zshenv"                 "$HOME/.zshenv"
 
 link "$CWD/linux/.gitconfig_files/"       "$HOME/.gitconfig_files"

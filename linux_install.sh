@@ -4,7 +4,7 @@
 sudo apt update
 sudo apt upgrade -y
 
-sudo apt install -y zsh
+sudo apt install -y zsh zsh-syntax-highlighting
 echo '!! Change shell to Zsh needs password'
 chsh -s /bin/zsh
 
