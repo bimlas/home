@@ -162,7 +162,7 @@
 
   ; Edit .gitconfig
   ; rc = "config --global --edit"
-  rc = "!$EDITOR $HOME/.gitconfig"
+  rc = "!$EDITOR $HOME/.config/git/config"
 
   ; Find keywords.
   kw = "keywords --all"
@@ -571,15 +571,15 @@
   ; your hooks in that directory, e.g. /etc/git/hooks/pre-receive instead of
   ; in $GIT_DIR/hooks/pre-receive.
   ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-  hooksPath = "~/.gitconfig_files/hooks"
+  hooksPath = "$HOME/.config/git/hooks"
 
   ; Global .gitignore file.
-  excludesfile = "~/.gitconfig_files/core_excludesfile"
+  excludesfile = "$HOME/.config/git/core_excludesfile"
 
   ; Global .gitattributes file
   ; `git log -L:funcname:file` is not working without proper attribute
   ; settings
-  attributesFile = "~/.gitconfig_files/core_attributesfile"
+  attributesFile = "$HOME/.config/git/core_attributesfile"
 
 [color]                                                                 ; {{{1
 
@@ -613,7 +613,7 @@
 [commit]                                                                ; {{{1
 
   ; Additional text which appears on the top of commit message as a comment.
-  ; template = "~/.gitconfig_files/commit_template"
+  ; template = "$HOME/.config/git/commit_template"
 
 [log]                                                                   ; {{{1
 

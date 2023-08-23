@@ -1,0 +1,9 @@
+# `git log -L:funcname:file` is not working without setting up `diff`
+# parameter
+#
+# See https://www.git-scm.com/docs/gitattributes#_defining_a_custom_hunk_header
+# for a list of diff types, Google for `xfuncname` for custom language
+# implementation
+*.php text=auto diff=php
+*.py  text=auto diff=python
+*.rb  text=auto diff=ruby
