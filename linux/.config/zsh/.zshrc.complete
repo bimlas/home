@@ -74,7 +74,7 @@ done'
 
 export FZF_COMPLETION_AUTO_COMMON_PREFIX=true
 export FZF_COMPLETION_AUTO_COMMON_PREFIX_PART=true
-source ~/bin/zsh/fzf-zsh-completion.sh
+source ~/.config/zsh/bin/fzf-zsh-completion.sh
 
 # __ PYTHON PIP COMPLETE
 
