@@ -1,6 +1,6 @@
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.gitconfig_files/custom_commands:$PATH
+export PATH=$HOME/.config/git/bin:$PATH
 
 export EDITOR="nvim"
 
