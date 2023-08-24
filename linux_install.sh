@@ -20,7 +20,7 @@ sudo apt install -y build-essential autotools-dev autoconf
 sudo apt install -y git
 
 sudo apt install -y tmux
-git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
 pip3 install --user tmuxp
 
 sudo apt install -y ripgrep
