@@ -157,6 +157,9 @@ globalkeys = gears.table.join(
               {description = "take a screenshot", group = "launcher"}),
     awful.key({         "Control" }, "Print", function () awful.spawn('xfce4-screenshooter -r') end,
               {description = "take a screenshot of region", group = "launcher"}),
+    awful.key({ modkey,           }, "d", function () awful.spawn(os.getenv('HOME') .. "/.config/rofi/bin/dictionary") end,
+              {description = "look for selected text in dictionary", group = "launcher"}),
+
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),

@@ -1,0 +1,59 @@
+#!/bin/bash
+# Rofi site search: Look for selected text on website, dictionary, translator
+#
+# Usage:
+#   Set up a keyboard shortcut to this script, select a text anywehere and
+#   press the shortcut. Works with any program: terminal, PDF reader, web
+#   browser, office apps, etc.
+#
+#   To add new URLs, simply copy the URL of a search result from the desired
+#   site and replace the search query by `%s` (e.g.
+#   https://www.google.com/search?q=%s).
+#
+#   If you want to open browser without additional UI elements, use the
+#   `@preview` window type.
+#
+# Dependencies
+#   - rofi
+#   - xsel
+#   - jq
+#   - Chromium based defeault browser (`x-www-browser`)
+
+# Open Rofi
+if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
+  rofi -show site-search -modi site-search:"${0}"
+
+# List items
+elif [ ${ROFI_RETV} -eq 0 ]; then
+  # Type | Title | Window type | URL
+  cat << _HEREDOC_
+Text   Google                @normal   https://www.google.com/search?q=%s
+Text   Google Translate      @preview  https://translate.google.com/?sl=auto&tl=hu&op=translate&text=%s
+Text   Cambridge Dictionary  @preview  https://dictionary.cambridge.org/dictionary/english/%s
+Text   Thesaurus             @preview  https://www.thesaurus.com/browse/%s
+Code   DevDocs               @preview  https://devdocs.io/#q=%s
+Code   DevDocs: JavaScript   @preview  https://devdocs.io/#q=javascript%20%s
+Code   DevDocs: Node.js      @preview  https://devdocs.io/#q=nodejs%20%s
+Code   DevDocs: Lua          @preview  https://devdocs.io/#q=lua%20%s
+Code   DevDocs: PostgreSQL   @preview  https://devdocs.io/#q=postgres%20%s
+Chain  Arbitrum              @normal   https://arbiscan.io/search?q=%s
+Chain  Avalanche             @normal   https://snowtrace.io/search?q=%s
+Chain  Bsc                   @normal   https://bscscan.com/search?f=0&q=%s
+Chain  Ethereum              @normal   https://etherscan.io/search?q=%s
+Chain  Optimism              @normal   https://optimistic.etherscan.io/search?q=%s
+Chain  Polygon               @normal   https://polygonscan.com/search?q=%s
+_HEREDOC_
+
+# Open selected item
+else
+  UI_FLAGS=''
+  if ( echo "${1}" | grep '@preview' > /dev/null); then
+    UI_FLAGS='--window-size=700,600 --app='
+  fi
+
+  URL_TEMPLATE=$(echo "${1}" | sed 's/.* //')
+  SELECTED_TEXT=$(xsel -o | jq -sRr '@uri')
+  URL=$(echo "${URL_TEMPLATE}" | sed "s/%s/${SELECTED_TEXT}/")
+  nohup x-www-browser ${UI_FLAGS}"${URL}" > /dev/null &
+
+fi

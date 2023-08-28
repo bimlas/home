@@ -3,6 +3,7 @@
 alias e='$EDITOR'
 alias o='xdg-open'
 alias g='git'
+alias d='docker'
 alias k='kubectl'
 alias ls='ls -Av --color --group-directories-first'
 alias grep='grep --color'
