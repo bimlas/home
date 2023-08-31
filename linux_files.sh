@@ -28,7 +28,6 @@ link "$CWD/linux/.config/zsh/"            "$HOME/.config/zsh"
 link "$CWD/linux/.zshenv"                 "$HOME/.zshenv"
 
 link "$CWD/linux/.nethackrc"              "$HOME/.nethackrc"
-link "$CWD/linux/.xbindkeysrc"            "$HOME/.xbindkeysrc"
 link "$CWD/linux/.Xresources"             "$HOME/.Xresources"
 link "$CWD/linux/.xsessionrc"             "$HOME/.xsessionrc"
 

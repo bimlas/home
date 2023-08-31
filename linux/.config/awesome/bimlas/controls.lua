@@ -25,7 +25,9 @@ clientbuttons = gears.table.join(
     awful.button({ modkey }, 3, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
         awful.mouse.client.resize(c)
-    end)
+    end),
+    awful.button({ }, 8, function() awful.spawn('playerctl --all-players play-pause') end),
+    awful.button({ }, 9, function() awful.spawn('xfdesktop --windowlist') end)
 )
 -- }}}
 
@@ -157,8 +159,10 @@ globalkeys = gears.table.join(
               {description = "take a screenshot", group = "launcher"}),
     awful.key({         "Control" }, "Print", function () awful.spawn('xfce4-screenshooter -r') end,
               {description = "take a screenshot of region", group = "launcher"}),
-    awful.key({ modkey,           }, "d", function () awful.spawn(os.getenv('HOME') .. "/.config/rofi/bin/dictionary") end,
-              {description = "look for selected text in dictionary", group = "launcher"}),
+    awful.key({ modkey,           }, "d", function () awful.spawn(os.getenv('HOME') .. "/.config/rofi/bin/site-search") end,
+              {description = "look for selected text in site search", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "v", function () awful.spawn('/bin/bash -c "sleep 0.5 && xsel -o --clipboard | xargs --null xdotool type --clearmodifiers --"') end,
+              {description = "look for selected text in site search", group = "launcher"}),
 
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,

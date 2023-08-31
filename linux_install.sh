@@ -63,9 +63,6 @@ sudo apt install -y kubectl
 
 sudo apt install -y xsel
 
-# AutoHotKey for Linux, xautomation is needed for `xte` only
-sudo apt install -y xbindkeys # xautomation
-
 # Fuzzy finder GUI
 sudo apt install -y rofi
 
