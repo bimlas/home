@@ -11,4 +11,16 @@ configuration {
   font: "mono 12";
   // Show modi list on the bottom of the window
   sidebar-mode: true;
+
 }
+
+/* Needs compositor
+#window {
+  fullscreen: true;
+  transparency: "true";
+  opacity: 85%;
+  padding: 400;
+  background-color: #ffffff00;
+}
+*/
+
