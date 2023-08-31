@@ -1,19 +1,42 @@
 #!/bin/bash
-# Rofi site search: Look for selected text on website, dictionary, translator
+# Rofi site search: Look for selected text in site search, dictionary, translator
 #
 # Usage:
-#   Set up a keyboard shortcut to this script, select a text anywehere and
-#   press the shortcut. Works with any program: terminal, PDF reader, web
-#   browser, office apps, etc.
+#
+#   Specify the search engines (see below), set up a keyboard shortcut for this
+#   script, select the desired text by mouse in any app (terminal, PDF reader,
+#   web browser, office apps, etc.) and press the shortcut.
+#
+# Format of the search engine list (~/.config/rofi/site-search):
+#
+#   GROUP_NAME  SEARCH_ENGINE_NAME  @WINDOW_TYPE  https://URL/%s
+#
+#   For example:
+#
+#   Any    Google                @normal   https://www.google.com/search?q=%s
+#   Any    Google Maps           @preview  https://www.google.com/maps/search/%s
+#   Text   Google Translate      @preview  https://translate.google.com/?sl=auto&tl=hu&op=translate&text=%s
+#   Text   Cambridge Dictionary  @preview  https://dictionary.cambridge.org/dictionary/english/%s
+#   Text   Thesaurus             @preview  https://www.thesaurus.com/browse/%s
+#   Game   NetHack Wiki          @preview  https://nethackwiki.com/mediawiki/index.php?search=%s
+#   Shell  Cheat.sh              @preview  https://cheat.sh/%s
+#   Code   DevDocs               @preview  https://devdocs.io/#q=%s
+#   Code   DevDocs: JavaScript   @preview  https://devdocs.io/#q=javascript%20%s
+#   Code   DevDocs: Node.js      @preview  https://devdocs.io/#q=nodejs%20%s
+#   Code   DevDocs: PostgreSQL   @preview  https://devdocs.io/#q=postgres%20%s
+#   Chain  Ethereum              @normal   https://etherscan.io/search?q=%s
+#   Chain  Polygon               @normal   https://polygonscan.com/search?q=%s
+#   Chain  Bsc                   @normal   https://bscscan.com/search?f=0&q=%s
 #
 #   To add new URLs, simply copy the URL of a search result from the desired
-#   site and replace the search query by `%s` (e.g.
+#   site search and replace the search query by `%s` (e.g.
 #   https://www.google.com/search?q=%s).
 #
 #   If you want to open browser without additional UI elements, use the
 #   `@preview` window type.
 #
-# Dependencies
+# Dependencies:
+#
 #   - rofi
 #   - xsel
 #   - jq
@@ -25,35 +48,19 @@ if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
 
 # List items
 elif [ ${ROFI_RETV} -eq 0 ]; then
-  # Type | Title | Window type | URL
-  cat << _HEREDOC_
-Text   Google                @normal   https://www.google.com/search?q=%s
-Text   Google Translate      @preview  https://translate.google.com/?sl=auto&tl=hu&op=translate&text=%s
-Text   Cambridge Dictionary  @preview  https://dictionary.cambridge.org/dictionary/english/%s
-Text   Thesaurus             @preview  https://www.thesaurus.com/browse/%s
-Code   DevDocs               @preview  https://devdocs.io/#q=%s
-Code   DevDocs: JavaScript   @preview  https://devdocs.io/#q=javascript%20%s
-Code   DevDocs: Node.js      @preview  https://devdocs.io/#q=nodejs%20%s
-Code   DevDocs: Lua          @preview  https://devdocs.io/#q=lua%20%s
-Code   DevDocs: PostgreSQL   @preview  https://devdocs.io/#q=postgres%20%s
-Chain  Arbitrum              @normal   https://arbiscan.io/search?q=%s
-Chain  Avalanche             @normal   https://snowtrace.io/search?q=%s
-Chain  Bsc                   @normal   https://bscscan.com/search?f=0&q=%s
-Chain  Ethereum              @normal   https://etherscan.io/search?q=%s
-Chain  Optimism              @normal   https://optimistic.etherscan.io/search?q=%s
-Chain  Polygon               @normal   https://polygonscan.com/search?q=%s
-_HEREDOC_
+  cat "${HOME}/.config/rofi/site-search"
 
 # Open selected item
 else
-  UI_FLAGS=''
-  if ( echo "${1}" | grep '@preview' > /dev/null); then
-    UI_FLAGS='--window-size=700,600 --app='
-  fi
 
   URL_TEMPLATE=$(echo "${1}" | sed 's/.* //')
   SELECTED_TEXT=$(xsel -o | jq -sRr '@uri')
   URL=$(echo "${URL_TEMPLATE}" | sed "s/%s/${SELECTED_TEXT}/")
-  nohup x-www-browser ${UI_FLAGS}"${URL}" > /dev/null &
+
+  if ( echo "${1}" | grep '@preview' > /dev/null); then
+    nohup x-www-browser --window-size=700,600 --app="${URL}" > /dev/null &
+  else
+    nohup x-www-browser "${URL}" > /dev/null &
+  fi
 
 fi
