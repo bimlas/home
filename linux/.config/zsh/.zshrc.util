@@ -12,9 +12,12 @@ autoload -U zmv
 alias zcp='zmv -C'
 alias zln='zmv -L'
 
-# Syntax highlighting
+# Syntax highlighting: VERY SLOW WITH LONG LINES
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 # Have to be on the very end of Zsh RC
-if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+#   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# fi
+# Faster syntax highlighting
+# https://github.com/zdharma-continuum/fast-syntax-highlighting
+source ~/.local/share/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh

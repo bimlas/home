@@ -4,9 +4,12 @@
 sudo apt update
 sudo apt upgrade -y
 
-sudo apt install -y zsh zsh-syntax-highlighting
+sudo apt install -y git
+
+sudo apt install -y zsh # zsh-syntax-highlighting
 echo '!! Change shell to Zsh needs password'
 chsh -s /bin/zsh
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting ~/.local/share/zsh/fast-syntax-highlighting
 
 # PPA installer
 sudo apt install -y software-properties-common
@@ -16,8 +19,6 @@ sudo apt install -y curl
 sudo apt install -y python3 python3-pip
 # GCC, Make, etc.
 sudo apt install -y build-essential autotools-dev autoconf
-
-sudo apt install -y git
 
 sudo apt install -y tmux
 git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
