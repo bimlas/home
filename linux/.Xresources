@@ -36,29 +36,29 @@ Xft*HintStyle:       hintslight
 ! A Shift-+ es Shift-- ne meretezze at a betuket.
 *xterm*shiftFonts:    false
 
-! ! TokyoNight Storm
-! ! https://github.com/folke/tokyonight.nvim/blob/main/extras/xresources/tokyonight_storm.Xresources
-! 
-! *background: #24283b
-! *foreground: #c0caf5
-! 
-! *color0: #1d202f
-! *color1: #f7768e
-! *color2: #9ece6a
-! *color3: #e0af68
-! *color4: #7aa2f7
-! *color5: #bb9af7
-! *color6: #7dcfff
-! *color7: #a9b1d6
-! 
-! *color8: #414868
-! *color9: #f7768e
-! *color10: #9ece6a
-! *color11: #e0af68
-! *color12: #7aa2f7
-! *color13: #bb9af7
-! *color14: #7dcfff
-! *color15: #c0caf5
+! TokyoNight Storm
+! https://github.com/folke/tokyonight.nvim/blob/main/extras/xresources/tokyonight_storm.Xresources
+
+*background: #24283b
+*foreground: #c0caf5
+
+*color0: #1d202f
+*color1: #f7768e
+*color2: #9ece6a
+*color3: #e0af68
+*color4: #7aa2f7
+*color5: #bb9af7
+*color6: #7dcfff
+*color7: #a9b1d6
+
+*color8: #414868
+*color9: #f7768e
+*color10: #9ece6a
+*color11: #e0af68
+*color12: #7aa2f7
+*color13: #bb9af7
+*color14: #7dcfff
+*color15: #c0caf5
 
 ! ! TokyoNight Night
 ! 
@@ -83,29 +83,28 @@ Xft*HintStyle:       hintslight
 ! *color14: #7dcfff
 ! *color15: #c0caf5
 
-! TokyoNight Day
-
-*background: #e1e2e7
-*foreground: #3760bf
-
-*color0: #e9e9ed
-*color1: #f52a65
-*color2: #587539
-*color3: #8c6c3e
-*color4: #2e7de9
-*color5: #9854f1
-*color6: #007197
-*color7: #6172b0
-
-*color8: #a1a6c5
-*color9: #f52a65
-*color10: #587539
-*color11: #8c6c3e
-*color12: #2e7de9
-*color13: #9854f1
-*color14: #007197
-*color15: #3760bf
-
+! ! TokyoNight Day
+! 
+! *background: #e1e2e7
+! *foreground: #3760bf
+! 
+! *color0: #e9e9ed
+! *color1: #f52a65
+! *color2: #587539
+! *color3: #8c6c3e
+! *color4: #2e7de9
+! *color5: #9854f1
+! *color6: #007197
+! *color7: #6172b0
+! 
+! *color8: #a1a6c5
+! *color9: #f52a65
+! *color10: #587539
+! *color11: #8c6c3e
+! *color12: #2e7de9
+! *color13: #9854f1
+! *color14: #007197
+! *color15: #3760bf
 
 ! ! Kanagawa
 ! ! https://github.com/rebelot/kanagawa.nvim/blob/master/extras/.Xresources
