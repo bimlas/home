@@ -571,14 +571,20 @@
   ; your hooks in that directory, e.g. /etc/git/hooks/pre-receive instead of
   ; in $GIT_DIR/hooks/pre-receive.
   ; http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+  ;
+  ; If does not works, check `.git/config` in repo for override
   hooksPath = "~/.config/git/hooks"
 
   ; Global .gitignore file.
+  ;
+  ; If does not works, check `.git/config` in repo for override
   excludesfile = "~/.config/git/core_excludesfile"
 
   ; Global .gitattributes file
   ; `git log -L:funcname:file` is not working without proper attribute
   ; settings
+  ;
+  ; If does not works, check `.git/config` in repo for override
   attributesFile = "~/.config/git/core_attributesfile"
 
 [color]                                                                 ; {{{1
@@ -613,6 +619,8 @@
 [commit]                                                                ; {{{1
 
   ; Additional text which appears on the top of commit message as a comment.
+  ;
+  ; If does not works, check `.git/config` in repo for override
   ; template = "~/.config/git/commit_template"
 
 [log]                                                                   ; {{{1
