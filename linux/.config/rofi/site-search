@@ -3,6 +3,7 @@ Any    Google Maps           @preview  https://www.google.com/maps/search/%s
 Text   Google Translate      @preview  https://translate.google.com/?sl=auto&tl=hu&op=translate&text=%s
 Text   Cambridge Dictionary  @preview  https://dictionary.cambridge.org/dictionary/english/%s
 Text   Thesaurus             @preview  https://www.thesaurus.com/browse/%s
+Work   Jira                  @normal   https://magpiefi.atlassian.net/browse/%s
 Game   NetHack Wiki          @preview  https://nethackwiki.com/mediawiki/index.php?search=%s
 Shell  Cheat.sh              @preview  https://cheat.sh/%s
 Code   DevDocs               @preview  https://devdocs.io/#q=%s
@@ -10,9 +11,11 @@ Code   DevDocs: JavaScript   @preview  https://devdocs.io/#q=javascript%20%s
 Code   DevDocs: Node.js      @preview  https://devdocs.io/#q=nodejs%20%s
 Code   DevDocs: Lua          @preview  https://devdocs.io/#q=lua%20%s
 Code   DevDocs: PostgreSQL   @preview  https://devdocs.io/#q=postgres%20%s
-Chain  Arbitrum              @normal   https://arbiscan.io/search?q=%s
-Chain  Avalanche             @normal   https://snowtrace.io/search?q=%s
-Chain  Bsc                   @normal   https://bscscan.com/search?f=0&q=%s
 Chain  Ethereum              @normal   https://etherscan.io/search?q=%s
-Chain  Optimism              @normal   https://optimistic.etherscan.io/search?q=%s
 Chain  Polygon               @normal   https://polygonscan.com/search?q=%s
+Chain  Bsc                   @normal   https://bscscan.com/search?f=0&q=%s
+Chain  Avalanche             @normal   https://snowtrace.io/search?q=%s
+Chain  Arbitrum              @normal   https://arbiscan.io/search?q=%s
+Chain  Optimism              @normal   https://optimistic.etherscan.io/search?q=%s
+Chain  PolygonZK             @normal   https://zkevm.polygonscan.com/search?q=%s
+Chain  Base                  @normal   https://basescan.org/search?q=%s
