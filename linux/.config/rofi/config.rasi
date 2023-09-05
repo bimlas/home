@@ -1,6 +1,3 @@
-/* @theme "gruvbox-dark-soft" */
-@theme "Arc"
-
 configuration {
   kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
   matching-negate-char: '!';
@@ -11,16 +8,46 @@ configuration {
   font: "mono 12";
   // Show modi list on the bottom of the window
   sidebar-mode: true;
-
 }
 
-/* Needs compositor
-#window {
+@theme "Arc"
+
+* {
+  text-color: #191c29ff;
+  foreground: #191c29ff;
+  background: #00000000;
+  normal-background: @background;
+  normal-foreground: @foreground;
+  active-background: #a8aecb20;
+  active-foreground: @foreground;
+  alternate-normal-background: @normal-background;
+  alternate-normal-foreground: @normal-foreground;
+  alternate-active-background: @active-background;
+  alternate-active-foreground: @active-foreground;
+  selected-normal-background: #a8aecb40;
+  selected-normal-foreground: @foreground;
+  selected-active-background: #a8aecb60;
+  selected-active-foreground: @selected-normal-foreground;
+  separatorcolor: @selected-normal-background;
+  font: "Ubuntu Mono 13";
+}
+
+window {
+  transparency: "real"; // Needs compositor like Picom
   fullscreen: true;
-  transparency: "true";
-  opacity: 85%;
-  padding: 400;
-  background-color: #ffffff00;
+  border-color: #00000000;
 }
-*/
+
+mainbox {
+  border-color: #acd7eb90;
+  background-image: linear-gradient(to bottom, #e1e2e7a0, #e1e2e760, #e1e2e7a0);
+  border: 3px;
+  margin: 30%;
+  padding: 16px;
+  border-radius: 24px;
+}
+
+scrollbar {
+  handle-color: @active-background;
+}
 
