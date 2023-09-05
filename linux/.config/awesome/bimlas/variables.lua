@@ -3,9 +3,12 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 
+-- Auto start compositor
+awful.spawn.single_instance('picom --daemon', {})
+
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. theme .. "/theme.lua")
-beautiful.useless_gap = 0
+beautiful.useless_gap = 4
 -- beautiful.border_focus = "#b3be62"
 
 -- Notifications, Spotify track info, etc.
