@@ -37,7 +37,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-local menubar = require("bimlas.widget.menubar")
+local menubar = require("widget.menubar")
 
 -- direction: -1: prev tag, +1: next tag
 local function get_tag_by_direction(direction)

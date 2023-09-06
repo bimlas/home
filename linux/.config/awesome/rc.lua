@@ -5,19 +5,14 @@ pcall(require, "luarocks.loader")
 -- https://github.com/awesomeWM/awesome/blob/master/lib/awful/autofocus.lua
 require("awful.autofocus")
 
--- Required settings
-require("bimlas.error-handling")
+require("helpers.error-handling")
 
--- if os.getenv("XDG_CURRENT_DESKTOP") == "" then
-  -- theme = "zenburn"
-  -- require("bimlas.variables")
-  -- require("bimlas.desktop")
-  -- require("bimlas.panel")
--- else
-  -- theme = "zenburn"
-  theme = "xresources"
-  require("bimlas.variables")
-  -- require("bimlas.panel")
--- end
+require("config")
+require("controls")
 
-require("bimlas.rules-and-signals")
+require("theme")
+require("tags")
+-- require("desktop")
+-- require("panel")
+require("rules")
+require("signals")

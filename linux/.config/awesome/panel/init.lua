@@ -4,7 +4,7 @@ local beautiful = require("beautiful")
 local wibox = require("wibox")
 local vicious = require("vicious")
 
-local mymainmenu = require("bimlas.widget.mainmenu")
+local mymainmenu = require("widget.mainmenu")
 
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock(" %Y-%m-%d %H:%M ")
