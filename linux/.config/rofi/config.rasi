@@ -51,3 +51,7 @@ scrollbar {
   handle-color: @active-background;
 }
 
+button {
+  padding: 2px;
+  border-radius: 0px 0px 12px 12px;
+}
