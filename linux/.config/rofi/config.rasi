@@ -18,15 +18,15 @@ configuration {
   background: #00000000;
   normal-background: @background;
   normal-foreground: @foreground;
-  active-background: #a8aecb20;
+  active-background: #acd7eb30;
   active-foreground: @foreground;
   alternate-normal-background: @normal-background;
   alternate-normal-foreground: @normal-foreground;
   alternate-active-background: @active-background;
   alternate-active-foreground: @active-foreground;
-  selected-normal-background: #a8aecb40;
+  selected-normal-background: #acd7eb60;
   selected-normal-foreground: @foreground;
-  selected-active-background: #a8aecb60;
+  selected-active-background: #acd7ebc0;
   selected-active-foreground: @selected-normal-foreground;
   separatorcolor: @selected-normal-background;
   font: "Ubuntu Mono 13";
