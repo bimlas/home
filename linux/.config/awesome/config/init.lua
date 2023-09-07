@@ -1,8 +1,9 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
--- Auto start compositor
-awful.spawn.single_instance('picom --daemon', {})
+-- Autostart apps
+awful.spawn.single_instance('picom --daemon')
+awful.spawn.single_instance('/bin/bash -c "cd /media/bimlas/data/bimlas/bimlas.gitlab.io; npm run start"')
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
