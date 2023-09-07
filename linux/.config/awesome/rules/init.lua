@@ -68,11 +68,5 @@ awful.rules.rules = {
     -- except_any = { instance = { "vivaldi-stable" } },
     properties = { titlebars_enabled = true }
   },
-
-  -- Map applications to tags and screens
-  -- { rule = { class = "Firefox" },
-  --   properties = { screen = 1, tag = "2" } },
-  -- { rule = { class = "Xfce4-terminal" },
-  --   properties = { tag = "2" } },
 }
 

@@ -57,7 +57,8 @@ client.connect_signal("request::titlebars", function(c)
     { -- Middle
       { -- Title
         align  = "center",
-        widget = awful.titlebar.widget.titlewidget(c)
+        widget = awful.titlebar.widget.titlewidget(c),
+        font = "Ubuntu 10"
       },
       buttons = buttons,
       layout  = wibox.layout.flex.horizontal
@@ -90,18 +91,3 @@ end
 client.connect_signal("focus", function(c) set_maximized_border_color(c) end)
 client.connect_signal("request::geometry", function(c) set_maximized_border_color(c) end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
--- history_3 = nil
--- history_4 = nil
--- client.connect_signal("focus", function(c)
---   history = awful.client.focus.history.list
---   if history[1] == history_3 and history[2] == history_4 and (history[1].first_tag ~= history[2].first_tag or #history[1].first_tag:clients() ~= 2) then
---     tag = tags.create_volatile_tag(history[1].screen)
---     history[2]:move_to_tag(tag)
---     history[1]:move_to_tag(tag)
---   end
---   history_4 = history_3
---   history_3 = history[2]
--- end)
-
-

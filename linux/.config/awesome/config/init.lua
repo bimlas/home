@@ -1,9 +1,4 @@
 local awful = require("awful")
-local beautiful = require("beautiful")
-
--- Autostart apps
-awful.spawn.single_instance('picom --daemon')
-awful.spawn.single_instance('/bin/bash -c "cd /media/bimlas/data/bimlas/bimlas.gitlab.io; npm run start"')
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -17,3 +12,8 @@ awful.layout.layouts = {
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.max,
 }
+
+awful.screen.connect_for_each_screen(function(s)
+  -- Each screen has its own tag table.
+  awful.tag({ "main" }, s, awful.layout.suit.max)
+end)
