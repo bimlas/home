@@ -49,10 +49,12 @@ client.connect_signal("request::titlebars", function(c)
 
   top_titlebar:setup {
     { -- Left
-      -- Remove icons because of rounded window corners
-      -- awful.titlebar.widget.iconwidget(c),
-      buttons = buttons,
-      layout  = wibox.layout.fixed.horizontal
+      awful.titlebar.widget.closebutton(c),
+      awful.titlebar.widget.maximizedbutton(c),
+      awful.titlebar.widget.floatingbutton(c),
+      -- awful.titlebar.widget.ontopbutton(c),
+      -- awful.titlebar.widget.stickybutton(c),
+      layout = wibox.layout.fixed.horizontal()
     },
     { -- Middle
       { -- Title
@@ -64,12 +66,10 @@ client.connect_signal("request::titlebars", function(c)
       layout  = wibox.layout.flex.horizontal
     },
     { -- Right
-      awful.titlebar.widget.stickybutton(c),
-      awful.titlebar.widget.ontopbutton(c),
-      awful.titlebar.widget.floatingbutton(c),
-      awful.titlebar.widget.maximizedbutton(c),
-      awful.titlebar.widget.closebutton(c),
-      layout = wibox.layout.fixed.horizontal()
+      -- Remove icons because of rounded window corners
+      -- awful.titlebar.widget.iconwidget(c),
+      buttons = buttons,
+      layout  = wibox.layout.fixed.horizontal
     },
     layout = wibox.layout.align.horizontal
   }

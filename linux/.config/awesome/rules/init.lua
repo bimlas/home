@@ -59,6 +59,9 @@ awful.rules.rules = {
   { rule_any = { name = { "Whisker Menu" } },
     properties = { floating = true, requests_no_titlebar = true, titlebars_enabled = false, border_width = 0 }
   },
+  { rule_any = { name = { "xfce4-panel" } },
+    properties = { ontop = true }
+  },
   { rule_any = { name = { "xfce4-panel" }, class = {"Xfdesktop"} },
     properties = { sticky = true, border_width = 0 }
   },
