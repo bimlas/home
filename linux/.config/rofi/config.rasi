@@ -8,6 +8,9 @@ configuration {
   font: "mono 12";
   // Show modi list on the bottom of the window
   sidebar-mode: true;
+
+  // Show workspace and title near icon, window class is just for filtering
+  window-format: "{w}  {t} \0meta\x1f {c}";
 }
 
 @theme "Arc"
@@ -15,7 +18,7 @@ configuration {
 * {
   text-color: #191c29ff;
   foreground: #191c29ff;
-  background: #00000000;
+  background: transparent;
   normal-background: @background;
   normal-foreground: @foreground;
   active-background: #acd7eb30;
@@ -35,7 +38,7 @@ configuration {
 window {
   transparency: "real"; // Needs compositor like Picom
   fullscreen: true;
-  border-color: #00000000;
+  border-color: transparent;
 }
 
 mainbox {
