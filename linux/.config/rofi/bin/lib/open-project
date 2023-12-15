@@ -1,0 +1,22 @@
+#!/bin/bash
+# See https://github.com/bimlas/howto-distraction-free-desktop-workspace-for-developers for details
+
+# Git fetch-log:
+# https://github.com/bimlas/home/blob/04576c810f1f0bce59980c1cb1767f6ebf20445c/linux/.gitconfig_files/custom_commands/git-fetch-log
+
+# You may have to add `--detach` to your terminal (for example in case of Kitty)
+if [ "x${ROFI_RETV}" = "x2" ]; then
+  # Selected a custom entry
+  nohup xfce4-terminal \
+    --title "${TITLE}" \
+    --working-directory "${PROJECTS_DIR}" \
+    > /dev/null &
+else
+  # Selected a project
+  nohup xfce4-terminal \
+    --title "${TITLE}" \
+    --working-directory "${DIRECTORY}" \
+    -x ${SHELL} --interactive --login -c \
+    "git fetch; git fetch-log --format=oneline; echo; git status --short; ${SHELL}" \
+    > /dev/null &
+fi

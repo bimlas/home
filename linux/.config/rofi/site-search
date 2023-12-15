@@ -4,6 +4,8 @@ Text   Google Translate      @preview  https://translate.google.com/?sl=auto&tl=
 Text   Cambridge Dictionary  @preview  https://dictionary.cambridge.org/dictionary/english/%s
 Text   Thesaurus             @preview  https://www.thesaurus.com/browse/%s
 Work   Jira                  @normal   https://magpiefi.atlassian.net/browse/%s
+Buy    Amazon                @normal   https://www.amazon.com/s?k=%s
+Buy    Rtings.com            @normal   https://www.rtings.com/search?q=%s
 Game   NetHack Wiki          @preview  https://nethackwiki.com/mediawiki/index.php?search=%s
 Shell  Cheat.sh              @preview  https://cheat.sh/%s
 Code   DevDocs               @preview  https://devdocs.io/#q=%s
@@ -19,3 +21,4 @@ Chain  Arbitrum              @normal   https://arbiscan.io/search?q=%s
 Chain  Optimism              @normal   https://optimistic.etherscan.io/search?q=%s
 Chain  PolygonZK             @normal   https://zkevm.polygonscan.com/search?q=%s
 Chain  Base                  @normal   https://basescan.org/search?q=%s
+Chain  zkSync                @normal   https://explorer.zksync.io/search?q=%s
