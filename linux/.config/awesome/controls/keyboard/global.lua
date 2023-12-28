@@ -34,11 +34,11 @@ return function (modkey)
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab", function () awful.spawn('/bin/bash -c "PROJECTS_DIR=/media/bimlas/data/magpie $HOME/.local/bin/window-list"') end,
+    awful.key({ modkey,           }, "Tab", function () awful.spawn('/bin/bash -c "PROJECTS_DIR=/media/bimlas/data/magpie $HOME/.config/rofi/modes/window-list"') end,
               {description = "search window", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(os.getenv('HOME') .. '/.local/bin/named-terminal') end,
+    awful.key({ modkey,           }, "Return", function () awful.spawn(os.getenv('HOME') .. '/.config/rofi/named-terminal') end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -48,10 +48,12 @@ return function (modkey)
               {description = "take a screenshot", group = "launcher"}),
     awful.key({         "Control" }, "Print", function () awful.spawn('xfce4-screenshooter -r') end,
               {description = "take a screenshot of region", group = "launcher"}),
-    awful.key({ modkey,           }, "d", function () awful.spawn(os.getenv('HOME') .. "/.config/rofi/bin/site-search") end,
-              {description = "look for selected text in site search", group = "launcher"}),
+    awful.key({ modkey,           }, "i", function () awful.spawn(os.getenv('HOME') .. "/.config/rofi/modes/INDEX") end,
+              {description = "rofi scripts index", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "v", function () awful.spawn('/bin/bash -c "sleep 0.5 && xsel -o --clipboard | xargs --null xdotool type --clearmodifiers --"') end,
               {description = "look for selected text in site search", group = "launcher"}),
+    awful.key({ "Mod1", "Control" }, "Delete", function () awful.spawn('mate-system-monitor') end,
+              {description = "task manager", group = "launcher"}),
 
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,

@@ -7,7 +7,7 @@ editor_cmd = terminal .. " -e " .. editor
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.tile, -- or .tile.left, it has master and resizable columns
+    awful.layout.suit.tile, -- .tile or .tile.left, it has master and resizable columns
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.max,
