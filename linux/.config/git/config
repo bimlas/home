@@ -692,6 +692,17 @@
 
   ; Allways create (empty) merge commits.
   ff   = "false"
+
+  ; 3-way merge:
+  ;   <<<<<<< HEAD
+  ;   Hello, master change.
+  ;   ||||||| merged common ancestors
+  ;   Hello, Original.
+  ;   =======
+  ;   Hello, branch b1 change.
+  ;   >>>>>>> b1
+  conflictstyle = "diff3"
+
   ; IntelliJ IDEA's "Apply All Non-Conflicting Changes" does the trick in most
   ; cases.
   tool = "$EDITORdiff"
