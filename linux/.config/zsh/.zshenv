@@ -1,6 +1,7 @@
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.config/git/bin:$PATH
+export PATH=$HOME/.local/lua-lang-server/bin:$PATH
 
 export EDITOR="nvim"
 

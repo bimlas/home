@@ -53,34 +53,13 @@ nnn_info="%F{yellow}${NNN:+NNN }${nnn:+NNN }"
 # Owner of the prompt
 dollar_or_percent='%(!.%F{red}#.%F{white}$)'
 
-function preexec() {
-  # Show time of command
-  timer=$(($(date +%s%0N)/1000000))
-}
-
 function precmd() {
   vcs_info
-
-  if [ $timer ]; then
-    now=$(($(date +%s%0N)/1000000))
-    seconds=$(( ($now-$timer)/1000 ))
-
-    elapsed_time=''
-    if [[ $seconds -gt 5 ]]; then
-      format='%-Ss'
-      if [[ $seconds -gt 59 ]]; then format="%-Mm${format}"; fi
-      if [[ $seconds -gt 3599 ]]; then format="%-Hh${format}"; fi
-      elapsed_time="[%f$(date -u -d @${seconds} +"${format}")%F{blue}] "
-    fi
-    export elapsed_time
-    unset timer
-  fi
 }
 
 PROMPT=$'\n'
 PROMPT+=$'%B%F{blue}┌'
 PROMPT+=$'[%f%T%F{blue}] '
-PROMPT+=$'${elapsed_time}'
 PROMPT+=$'${ssh_username}'
 PROMPT+='%F{blue}%~ '
 PROMPT+=$'${vcs_info_msg_0_}'

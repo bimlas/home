@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# Use Emacs bindings (-v for Vi mode)
+bindkey -e
+
 # Recursive search on history.
 bindkey '^p'   history-beginning-search-backward
 bindkey '^[[A' history-beginning-search-backward  # Up (on TTY)
