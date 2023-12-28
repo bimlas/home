@@ -13,9 +13,11 @@ return require('packer').startup(function(use)
   require('plugins/lualine')(use)
   require('plugins/mini')(use)
   require('plugins/telescope')(use)
+  require('plugins/nnn')(use)
   require('plugins/treesitter')(use)
   require('plugins/lsp')(use)
   require('plugins/prettier')(use)
+  require('plugins/fugitive')(use)
   require('plugins/gitsigns')(use)
 
   -- Automatically set up your configuration after cloning packer.nvim

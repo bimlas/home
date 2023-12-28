@@ -30,6 +30,7 @@ return function(use)
           "typescript",
           "typescriptreact",
           "yaml",
+          "sql", -- https://github.com/un-ts/prettier/tree/master/packages/sql#install
         },
       }
     end

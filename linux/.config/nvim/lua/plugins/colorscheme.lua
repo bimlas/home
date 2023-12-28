@@ -3,7 +3,19 @@ return function(use)
   --   -- vim.cmd('colorscheme base16-gruvbox-dark-pale')
   -- end }
   use { 'folke/tokyonight.nvim', config = function()
-    vim.cmd('colorscheme tokyonight-storm')
+    require("tokyonight").setup({
+      on_highlights = function(highlights, colors)
+        highlights.LineNr = {
+          fg = colors.fg_sidebar,
+          bg = colors.bg_sidebar
+        }
+        highlights.CursorLineNr = {
+          fg = colors.teal,
+          bg = colors.bg_sidebar
+        }
+      end
+    })
+    vim.cmd('colorscheme tokyonight-moon')
   end}
   -- use { 'rebelot/kanagawa.nvim', config = function()
   --   -- vim.cmd('colorscheme kanagawa')

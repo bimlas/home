@@ -58,4 +58,7 @@ vim.cmd([[
 
 -- MAPS
 
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
+
 vim.keymap.set('n', '<Space><Tab>', function () vim.cmd('b#') end)
