@@ -16,5 +16,5 @@ export PROJECTS_DIR=${PROJECTS_DIR:-${HOME}}
 
 rofi \
   -show window \
-  -modi window,project:"${SCRIPT_DIR}/modes/project",ssh \
-  -window-command "${SCRIPT_DIR}/lib/group-windows.${WINDOW_MANAGER} {window}"
+  -modi window,project:"${SCRIPT_DIR}/project",ssh \
+  -window-command "${SCRIPT_DIR}/../lib/group-windows.${WINDOW_MANAGER} {window}"

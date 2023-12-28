@@ -1,0 +1,34 @@
+#!/bin/bash
+# Rofi index: Main entry point for my Rofi scripts
+
+# Get script directory even if it's a symlink
+SCRIPT=${BASH_SOURCE[0]}
+while [ -L "${SCRIPT}" ]; do
+  SCRIPT_DIR=$( cd -P "$( dirname "${SCRIPT}" )" >/dev/null 2>&1 && pwd )
+  SCRIPT=$(readlink "${SCRIPT}")
+  [[ $SCRIPT != /* ]] && SCRIPT="${SCRIPT_DIR}/${SCRIPT}"
+done
+export SCRIPT_DIR=$( cd -P "$( dirname "$SCRIPT" )" >/dev/null 2>&1 && pwd )
+
+# Open Rofi
+if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
+  rofi -show index -modi index:"${0}"
+
+# List items
+elif [ ${ROFI_RETV} -eq 0 ]; then
+  # Exclude scripts that are not intended to run as standalone script
+  find ${SCRIPT_DIR} \
+    -type f \
+    -executable \
+    -not -name INDEX \
+    -not -name window-list \
+    -not -name project \
+    -printf "%f\n"
+
+# Copy the value of selected item to the clipboard
+else
+  killall rofi
+  unset $(env | sed -n '/^ROFI_/ s/=.*//p')
+  "${SCRIPT_DIR}/${1}"
+fi
+

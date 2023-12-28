@@ -12,7 +12,7 @@ if [ ${ROFI_RETV} -eq 0 ]; then
 else
   export TITLE=$(basename "${1}")
   export DIRECTORY="${1}"
-  "${SCRIPT_DIR}/lib/open-project"
+  "${SCRIPT_DIR}/../lib/open-project"
 
 fi
 

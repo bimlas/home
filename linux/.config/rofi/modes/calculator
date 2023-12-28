@@ -1,0 +1,29 @@
+#!/bin/bash
+# Rofi calculator
+#
+# Dependencies:
+#
+#   - rofi
+#   - xsel
+
+# Open Rofi
+if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
+  rofi -show calculator -modi calculator:"${0}"
+
+# List items
+elif [ ${ROFI_RETV} -eq 0 ]; then
+  echo 'Please enter formula'
+
+# User pressed Enter
+else
+  result=$(sed -n 's/^.*[=≈]\s*//p' <<< "${1}")
+  if [[ -n "${result}" ]]; then
+    echo -n "${result}" | xsel --clipboard > /dev/null
+    # Have to copy to default clipboard to be able to paste into Rofi for another calculation
+    echo -n "${result}" | xsel > /dev/null
+    echo "${result} copied to clipboard"
+  else
+    qalc --set "scientific notation 0" "${1}"
+  fi
+
+fi
