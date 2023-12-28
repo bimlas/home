@@ -33,13 +33,15 @@ ln -s $(which fdfind) ~/.local/bin/fd
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-wget -O /tmp/navi.tar.gz https://github.com/denisidoro/navi/releases/download/v2.22.1/navi-v2.22.1-x86_64-unknown-linux-musl.tar.gz
-tar -xf /tmp/navi.tar.gz --to-stdout > ~/.local/bin/navi
-chmod +x ~/.local/bin/navi
-
-sudo apt install -y nnn
-
 bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
+
+(
+  git clone https://github.com/jarun/nnn /tmp/nnn-build
+  cd /tmp/nnn-build
+  git checkout v4.9
+  sudo apt install -y pkg-config libncursesw5-dev libreadline-dev
+  sudo make strip install O_GITSTATUS=1
+)
 
 # Stable is really old, don't use it
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
@@ -49,9 +51,8 @@ sudo apt install -y neovim
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 
 sudo apt-get install -y nodejs
 
-curl --location -o ./delta.deb https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_amd64.deb
-sudo dpkg -i ./delta.deb
-rm ./delta.deb
+curl --location -o /tmp/delta.deb https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_0.16.5_amd64.deb
+sudo dpkg -i /tmp/delta.deb
 
 sudo pip3 install pgcli
 
@@ -73,21 +74,24 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sou
 sudo apt update
 sudo apt install -y spotify-client
 
-sudo apt install -y telegram-desktop
+# Task manager
+sudo apt install -y mate-system-monitor
 
-# Vivaldi
-curl --location -o ./vivaldi.deb https://downloads.vivaldi.com/stable/vivaldi-stable_amd64.deb
-sudo dpkg -i ./vivaldi.deb
-sudo apt install -y --fix-broken
-rm ./vivaldi.deb
+# Pause mediaplayer by binding
+sudo apt install -y playerctl
 
-# Skype
-curl --location -o ./skype.deb https://go.skype.com/skypeforlinux-64.deb
-sudo dpkg -i ./skype.deb
-sudo apt install -y --fix-broken
-rm ./skype.deb
+# # Vivaldi
+# curl --location -o ./vivaldi.deb https://downloads.vivaldi.com/stable/vivaldi-stable_amd64.deb
+# sudo dpkg -i ./vivaldi.deb
+# sudo apt install -y --fix-broken
+# rm ./vivaldi.deb
 
-# sudo apt install -y xorg
+# # Skype
+# curl --location -o ./skype.deb https://go.skype.com/skypeforlinux-64.deb
+# sudo dpkg -i ./skype.deb
+# sudo apt install -y --fix-broken
+# rm ./skype.deb
+
 sudo apt install -y awesome
 
 (
