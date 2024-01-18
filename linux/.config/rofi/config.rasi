@@ -5,7 +5,7 @@ configuration {
   ssh-command: "{terminal} -T {host} -e ssh -t {host} tmux new-session -As ssh";
 
   show-icons: true;
-  font: "mono 12";
+  font: "mono 11";
   // Show modi list on the bottom of the window
   sidebar-mode: true;
 
@@ -16,38 +16,34 @@ configuration {
 @theme "Arc"
 
 * {
-  text-color: #191c29ff;
-  foreground: #191c29ff;
-  background: transparent;
+  text-color: #c8d3f5f0;
+  foreground: #c8d3f5f0;
+  background: #00000000;
   normal-background: @background;
   normal-foreground: @foreground;
-  active-background: #acd7eb30;
+  active-background: #2f334dff;
   active-foreground: @foreground;
   alternate-normal-background: @normal-background;
   alternate-normal-foreground: @normal-foreground;
   alternate-active-background: @active-background;
   alternate-active-foreground: @active-foreground;
-  selected-normal-background: #acd7eb60;
-  selected-normal-foreground: @foreground;
-  selected-active-background: #acd7ebc0;
+  selected-normal-background: #394b70ff;
+  selected-normal-foreground: #c3e88dff;
+  selected-active-background: #394b70ff;
   selected-active-foreground: @selected-normal-foreground;
   separatorcolor: @selected-normal-background;
-  font: "Ubuntu Mono 13";
 }
 
 window {
-  transparency: "real"; // Needs compositor like Picom
-  fullscreen: true;
-  border-color: transparent;
+  border-color: #00000000;
+  padding: 0;
 }
 
 mainbox {
-  border-color: #acd7eb90;
-  background-image: linear-gradient(to bottom, #e1e2e7a0, #e1e2e760, #e1e2e7a0);
-  border: 3px;
-  margin: 30%;
+  border-color: #82aaffff;
+  background-image: linear-gradient(to bottom, #394b70ff, #222436ff, #222436ff, #222436ff, #222436ff, #222436ff, #394b70ff);
+  border: 2px;
   padding: 16px;
-  border-radius: 24px;
 }
 
 scrollbar {
