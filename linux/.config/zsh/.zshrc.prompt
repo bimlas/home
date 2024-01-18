@@ -53,6 +53,12 @@ nnn_info="%F{yellow}${NNN:+NNN }${nnn:+NNN }"
 # Owner of the prompt
 dollar_or_percent='%(!.%F{red}#.%F{white}$)'
 
+# Path with current dir colored
+dir_info()
+{
+  sed 's#/#%F{yellow}/%F{blue}#g' <<< "%F{blue}${PWD/#$HOME/~}"
+}
+
 function precmd() {
   vcs_info
 }
@@ -61,7 +67,7 @@ PROMPT=$'\n'
 PROMPT+=$'%B%F{blue}┌'
 PROMPT+=$'[%f%T%F{blue}] '
 PROMPT+=$'${ssh_username}'
-PROMPT+='%F{blue}%~ '
+PROMPT+=$'$(dir_info) '
 PROMPT+=$'${vcs_info_msg_0_}'
 PROMPT+=$'$(vcs_stash_info)'
 PROMPT+=$'$(kubernetes_info)'
