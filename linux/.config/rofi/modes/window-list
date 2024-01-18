@@ -15,6 +15,6 @@ export WINDOW_MANAGER=${WINDOW_MANAGER:-awesome}
 export PROJECTS_DIR=${PROJECTS_DIR:-${HOME}}
 
 rofi \
-  -show window \
-  -modi window,project:"${SCRIPT_DIR}/project",ssh \
-  -window-command "${SCRIPT_DIR}/../lib/group-windows.${WINDOW_MANAGER} {window}"
+  -show windowcd \
+  -modi windowcd,window,project:"${SCRIPT_DIR}/project",ssh \
+  -window-command "${SCRIPT_DIR}/../lib/join-windows.${WINDOW_MANAGER} {window}"

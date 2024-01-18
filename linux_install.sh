@@ -92,7 +92,7 @@ sudo apt install -y playerctl
 # sudo apt install -y --fix-broken
 # rm ./skype.deb
 
-sudo apt install -y awesome
+sudo apt install -y i3
 
 (
   git clone https://github.com/yshui/picom /tmp/picom-build
