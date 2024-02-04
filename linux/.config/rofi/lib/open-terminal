@@ -2,4 +2,4 @@
 # See https://github.com/bimlas/howto-distraction-free-desktop-workspace-for-developers for details
 
 # You may have to add `--detach` to your terminal (for example in case of Kitty)
-nohup xfce4-terminal --title "${TITLE}" > /dev/null &
+nohup xfce4-terminal --title "${TITLE}" -x nvim -u ~/.config/nvim/init.nvim_as_tmux.lua > /dev/null &
