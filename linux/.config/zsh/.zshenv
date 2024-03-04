@@ -3,6 +3,10 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.config/git/bin:$PATH
 export PATH=$HOME/.local/lua-lang-server/bin:$PATH
 
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
+
 export EDITOR="nvim"
 
 # Disable translations on command line (man pages, --help, TUI, etc)
