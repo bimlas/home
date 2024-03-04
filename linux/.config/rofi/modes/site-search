@@ -58,7 +58,9 @@ else
   URL=$(echo "${URL_TEMPLATE}" | sed "s/%s/${SELECTED_TEXT}/")
 
   if ( echo "${1}" | grep '@preview' > /dev/null); then
-    nohup x-www-browser --window-size=700,600 --app="${URL}" > /dev/null &
+    # nohup x-www-browser --window-size=700,600 --app="${URL}" > /dev/null &
+    # --app not works with Firefox
+    nohup x-www-browser --window-size=700,600 "${URL}" > /dev/null &
   else
     nohup x-www-browser "${URL}" > /dev/null &
   fi

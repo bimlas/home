@@ -5,7 +5,8 @@ configuration {
   ssh-command: "{terminal} -T {host} -e nvim -u ~/.config/nvim/init.nvim_as_tmux.lua 'ssh -t {host} tmux new-session -As ssh'";
 
   show-icons: true;
-  font: "mono 11";
+  font: "JetBrains Mono 11";
+  // Fallback font: "mono 11"
   // Show modi list on the bottom of the window
   sidebar-mode: true;
 
