@@ -587,6 +587,10 @@
   ; If does not works, check `.git/config` in repo for override
   attributesFile = "~/.config/git/core_attributesfile"
 
+[init]                                                                  ; {{{1
+
+  defaultBranch = "main"
+
 [color]                                                                 ; {{{1
 
   ui = "true"
