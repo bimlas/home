@@ -3,7 +3,7 @@ return function(use, cond)
     "neoclide/coc.nvim",
     cond = cond,
     branch = 'master',
-    run = 'npm ci',
+    run = {'npm ci', ':CocInstall coc-json coc-tsserver coc-prettier coc-sql coc-eslint coc-rust-analyzer'},
     config = function()
       local keyset = vim.keymap.set
       -- Autocomplete

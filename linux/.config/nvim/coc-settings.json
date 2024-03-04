@@ -1,5 +1,6 @@
 {
   "suggest.noselect": true,
   "coc.preferences.formatOnSave": true,
-  "coc.preferences.useQuickfixForLocations": true
+  "coc.preferences.useQuickfixForLocations": true,
+  "eslint.autoFixOnSave": true
 }
