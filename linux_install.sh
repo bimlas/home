@@ -63,6 +63,8 @@ sudo apt install -y kubectl
 
 # __ GUI ________________________________
 
+sudo apt install -y fonts-jetbrains-mono
+
 sudo apt install -y xsel
 
 # Fuzzy finder GUI
