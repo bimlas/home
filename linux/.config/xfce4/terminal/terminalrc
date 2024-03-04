@@ -31,7 +31,6 @@ ShortcutsNoMnemonics=TRUE
 ShortcutsNoHelpkey=TRUE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
 DropdownHeight=95
-CustomCommand=tmux
 DropdownWidth=95
 DropdownAlwaysShowTabs=FALSE
 DropdownKeepAbove=FALSE
@@ -44,6 +43,5 @@ BackgroundDarkness=0,000000
 ColorSelection=#c8d3f5
 ColorSelectionBackground=#2d3f76
 ColorPalette=#1b1d2b;#ff757f;#c3e88d;#ffc777;#82aaff;#c099ff;#86e1fc;#828bb8;#444a73;#ff757f;#c3e88d;#ffc777;#82aaff;#c099ff;#86e1fc;#c8d3f5
-FontName=Ubuntu Mono 10
-FontUseSystem=TRUE
+FontName=JetBrains Mono Medium 11
 
