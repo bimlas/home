@@ -8,17 +8,21 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
+
 return require('packer').startup(function(use)
-  require('plugins/colorscheme')(use)
-  require('plugins/lualine')(use)
-  require('plugins/mini')(use)
-  require('plugins/telescope')(use)
-  require('plugins/nnn')(use)
-  require('plugins/treesitter')(use)
-  require('plugins/lsp')(use)
-  require('plugins/prettier')(use)
-  require('plugins/fugitive')(use)
-  require('plugins/gitsigns')(use)
+  local not_as_tmux = function() return NVIM_AS_TMUX ~= true end
+
+  require('plugins/colorscheme')(use, "true")
+  require('plugins/lualine')(use, not_as_tmux)
+  require('plugins/mini')(use, not_as_tmux)
+  require('plugins/telescope')(use, not_as_tmux)
+  require('plugins/nnn')(use, not_as_tmux)
+  require('plugins/treesitter')(use, not_as_tmux)
+  require('plugins/coc')(use, not_as_tmux)
+  -- require('plugins/lsp')(use, not_as_tmux)
+  -- require('plugins/prettier')(use, not_as_tmux)
+  require('plugins/fugitive')(use, not_as_tmux)
+  require('plugins/gitsigns')(use, not_as_tmux)
 
   -- Automatically set up your configuration after cloning packer.nvim
   use { 'wbthomason/packer.nvim' }

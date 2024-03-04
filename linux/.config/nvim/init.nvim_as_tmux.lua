@@ -43,6 +43,13 @@ vim.keymap.set('n', 'I', my_insert_mode)
 vim.keymap.set('n', 'a', my_insert_mode)
 vim.keymap.set('n', 'A', my_insert_mode)
 
+-- Use Shift+PageUp/PageDown to scroll
+vim.keymap.set('n', '<s-pageup>', "<c-u>")
+vim.keymap.set('n', '<s-pagedown>', "<c-d>")
+-- ...or a simpler way to exit to normal mode (and start to scroll)
+vim.keymap.set('t', '<s-pageup>', "<c-\\><c-n>")
+vim.keymap.set('t', '<s-pagedown>', "<c-\\><c-n>")
+
 -- If you use Ctrl+S / Ctrl+Q to stop scrolling in terminal, these mappings could be handy: 
 -- Ctrl+S in normal mode sends stop signal without moving the cursor to the end of the buffer
 vim.keymap.set('n', '<c-s>', function() 

@@ -1,5 +1,6 @@
-return function(use)
+return function(use, cond)
   use { 'echasnovski/mini.nvim', branch = 'stable',
+    cond = cond,
     config = function()
 
       local spec_argument = require('mini.ai').gen_spec.argument

@@ -1,6 +1,7 @@
-return function(use)
+return function(use, cond)
   use {
     'nvim-lualine/lualine.nvim',
+    cond = cond,
     config = function()
       require('lualine').setup {
         options = {

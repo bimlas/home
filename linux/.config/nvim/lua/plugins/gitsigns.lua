@@ -1,5 +1,6 @@
-return function(use)
+return function(use, cond)
   use { 'lewis6991/gitsigns.nvim',
+  cond = cond,
   config = function()
     require('gitsigns').setup {
       sign_priority                = 99,

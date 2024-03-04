@@ -1,5 +1,8 @@
-return function(use)
+-- DISABLED, becuase I have issues with Prettier and I have to restart several times when working on a huge TypeScript file. Trying to use CoC instead.
+
+return function(use, cond)
   use { 'neovim/nvim-lspconfig',
+    cond = cond,
     requires = {
       -- 'williamboman/mason.nvim',
       -- 'williamboman/mason-lspconfig.nvim',

@@ -1,31 +1,11 @@
-return function(use)
+return function(use, cond)
   use { 'nvim-treesitter/nvim-treesitter',
-    requires =
-    {
-      -- For Mini.ai text objects
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      { 'nvim-treesitter/nvim-treesitter-context',
-        config = {
-          mode = 'topline',
-          max_lines = -1,
-          patterns = {
-            default = {
-              'class',
-              'function',
-              'method',
-              'for',
-              'while',
-              'if',
-              'switch',
-              'case',
-              'try',
-            },
-          }
-        }
-      },
-    },
+    cond = cond,
     config = function()
       require('nvim-treesitter.configs').setup {
+        auto_install = true,
+        ignore_install = {},
+        sync_install = false,
         -- one of "all", "maintained" (parsers with maintainers), or a list of languages
         -- Sometimes it's buggy, shows errors, making editor unable to use
         ensure_installed = {
@@ -59,5 +39,34 @@ return function(use)
         },
       }
     end
+  }
+
+  use {
+    -- For Mini.ai text objects
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    cond = cond,
+    after = { 'nvim-treesitter' }
+  }
+
+  use { 'nvim-treesitter/nvim-treesitter-context',
+    cond = cond,
+    after = { 'nvim-treesitter' },
+    config = {
+      mode = 'topline',
+      max_lines = -1,
+      patterns = {
+        default = {
+          'class',
+          'function',
+          'method',
+          'for',
+          'while',
+          'if',
+          'switch',
+          'case',
+          'try',
+        },
+      }
+    }
   }
 end

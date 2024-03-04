@@ -1,6 +1,7 @@
-return function(use)
+return function(use, cond)
   use {
     "mcchrish/nnn.vim",
+    cond = cond,
     config = function ()
       vim.g['nnn#command'] = 'nnn -dAHoe'
       vim.g['nnn#replace_netrw'] = 1

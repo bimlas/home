@@ -1,5 +1,6 @@
-return function(use)
+return function(use, cond)
   use { 'nvim-telescope/telescope.nvim',
+    cond = cond,
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
