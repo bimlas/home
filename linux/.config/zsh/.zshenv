@@ -1,3 +1,6 @@
+# Add custom completions
+fpath=(~/.config/zsh/completion $fpath)
+
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.config/git/bin:$PATH

@@ -16,7 +16,7 @@ Code   DevDocs: PostgreSQL   @preview  https://devdocs.io/#q=postgres%20%s
 Chain  Ethereum              @normal   https://etherscan.io/search?q=%s
 Chain  Polygon               @normal   https://polygonscan.com/search?q=%s
 Chain  Bsc                   @normal   https://bscscan.com/search?f=0&q=%s
-Chain  Avalanche             @normal   https://snowtrace.io/search?q=%s
+Chain  Avalanche             @normal   https://43114.snowtrace.io/?q=%s
 Chain  Arbitrum              @normal   https://arbiscan.io/search?q=%s
 Chain  Optimism              @normal   https://optimistic.etherscan.io/search?q=%s
 Chain  PolygonZK             @normal   https://zkevm.polygonscan.com/search?q=%s

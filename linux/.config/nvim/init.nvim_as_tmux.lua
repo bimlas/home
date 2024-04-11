@@ -8,6 +8,19 @@
 --
 --   Write it into a script file and set up your terminal to execute it as
 --   default command.
+--
+-- Experiences
+--
+--   - It works well
+--   - Easy to scroll, search for expressions and copy lines (without trailing whitespace)
+--
+--   - Refresh rate is slower even if I use from Alacritty or Kitty
+--   - In normal mode it's easy to hit `:q` accidentally (for example when I
+--     edit a file in nested Nvim) which is freezing the terminal, it's very
+--     annoying, thus disabled `:`
+--   - When a window resized (for example Nvim, K9S, window manager is i3),
+--     sometimes it's does not align the contents of the window, but fills up the
+--     margin of it with blank space
 
 -- Disable UI to be as fast as possible
 vim.opt.laststatus = 0
@@ -49,6 +62,9 @@ vim.keymap.set('n', '<s-pagedown>', "<c-d>")
 -- ...or a simpler way to exit to normal mode (and start to scroll)
 vim.keymap.set('t', '<s-pageup>', "<c-\\><c-n>")
 vim.keymap.set('t', '<s-pagedown>', "<c-\\><c-n>")
+
+-- Disable command mode to prevent accidentally hit `:q`
+vim.keymap.set('n', ':', "")
 
 -- If you use Ctrl+S / Ctrl+Q to stop scrolling in terminal, these mappings could be handy: 
 -- Ctrl+S in normal mode sends stop signal without moving the cursor to the end of the buffer

@@ -23,8 +23,8 @@ elif [ ${ROFI_RETV} -eq 0 ]; then
   fi
   cat << _HEREDOC_
 // Parsing ${SELECTED_TEXT} as ...
-Date (seconds):                 $(node -e "console.log(new Date(parseInt(${SELECTED_TEXT})).toISOString())" 2> /dev/null)
-Date (milliseconds):            $(node -e "console.log(new Date(parseInt(${SELECTED_TEXT}) / 1000).toISOString())" 2> /dev/null)
+Date (milliseconds):            $(node -e "console.log(new Date(parseInt(${SELECTED_TEXT})).toISOString())" 2> /dev/null)
+Date (seconds):                 $(node -e "console.log(new Date(parseInt(${SELECTED_TEXT}) * 1000).toISOString())" 2> /dev/null)
 Hexadecimal -> decimal number:  $(node -e "console.log(parseInt(${SELECTED_TEXT}, 16))" 2> /dev/null)
 Decimal -> hexadecimal number:  $(node -e "console.log('0x' + (${SELECTED_TEXT}).toString(16))" 2> /dev/null)
 _HEREDOC_

@@ -17,8 +17,10 @@ bindkey "^[[1;5D" backward-word
 
 # Less-gready Ctrl-W
 autoload -U select-word-style
-select-word-style bash
 export WORDCHARS='.-'
+select-word-style shell
+# zstyle ':zle:backward-kill-word' word-style shell
+# zstyle ':zle:backward-kill-word' word-chars '.-'
 
 # Edit current command line
 autoload -z edit-command-line
