@@ -38,7 +38,7 @@ vim.opt.clipboard = "unnamedplus"
 
 -- Disable mouse: when clicking into terminal window to gain focus, it's leaving insert mode
 -- You can still use the terminal's mouse support for text selection
-vim.opt.mouse = ''
+vim.opt.mouse = ""
 
 -- Search-related options
 vim.opt.ignorecase = true
@@ -47,35 +47,37 @@ vim.opt.wrapscan = false
 
 -- Clear search highlight when going back to terminal / insert mode
 -- Cannot achieve by autocommand, see `:help nohlsearch`
-function my_insert_mode() 
+function my_insert_mode()
   vim.cmd("nohlsearch")
   vim.cmd("startinsert")
 end
-vim.keymap.set('n', 'i', my_insert_mode)
-vim.keymap.set('n', 'I', my_insert_mode)
-vim.keymap.set('n', 'a', my_insert_mode)
-vim.keymap.set('n', 'A', my_insert_mode)
+vim.keymap.set("n", "i", my_insert_mode)
+vim.keymap.set("n", "I", my_insert_mode)
+vim.keymap.set("n", "a", my_insert_mode)
+vim.keymap.set("n", "A", my_insert_mode)
 
 -- Use Shift+PageUp/PageDown to scroll
-vim.keymap.set('n', '<s-pageup>', "<c-u>")
-vim.keymap.set('n', '<s-pagedown>', "<c-d>")
+vim.keymap.set("n", "<s-pageup>", "<c-u>")
+vim.keymap.set("n", "<s-pagedown>", "<c-d>")
 -- ...or a simpler way to exit to normal mode (and start to scroll)
-vim.keymap.set('t', '<s-pageup>', "<c-\\><c-n>")
-vim.keymap.set('t', '<s-pagedown>', "<c-\\><c-n>")
+vim.keymap.set("t", "<s-pageup>", "<c-\\><c-n>")
+vim.keymap.set("t", "<s-pagedown>", "<c-\\><c-n>")
 
 -- Disable command mode to prevent accidentally hit `:q`
-vim.keymap.set('n', ':', "")
+vim.keymap.set("n", ":", "")
+-- Disable macro record to prevent accidentally git `q` (quit from pager)
+vim.keymap.set("n", "q", "")
 
--- If you use Ctrl+S / Ctrl+Q to stop scrolling in terminal, these mappings could be handy: 
+-- If you use Ctrl+S / Ctrl+Q to stop scrolling in terminal, these mappings could be handy:
 -- Ctrl+S in normal mode sends stop signal without moving the cursor to the end of the buffer
-vim.keymap.set('n', '<c-s>', function() 
+vim.keymap.set("n", "<c-s>", function()
   local view = vim.fn.winsaveview()
   -- Emit of `<c-s>` does not work well with `startinsert` / `stopinsert`, have to execute in a single command
   vim.api.nvim_input("i<c-s><c-\\><c-n>")
   vim.schedule(function() vim.fn.winrestview(view) end)
 end)
 -- Ctrl+Q in normal mode moves you back to terminal mode before executing Ctrl+Q
-vim.keymap.set('n', '<c-q>', function() 
+vim.keymap.set("n", "<c-q>", function()
   my_insert_mode()
   vim.api.nvim_input("<c-q>")
 end)
