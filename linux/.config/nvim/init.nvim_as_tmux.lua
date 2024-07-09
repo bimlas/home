@@ -15,12 +15,8 @@
 --   - Easy to scroll, search for expressions and copy lines (without trailing whitespace)
 --
 --   - Refresh rate is slower even if I use from Alacritty or Kitty
---   - In normal mode it's easy to hit `:q` accidentally (for example when I
---     edit a file in nested Nvim) which is freezing the terminal, it's very
---     annoying, thus disabled `:`
---   - When a window resized (for example Nvim, K9S, window manager is i3),
---     sometimes it's does not align the contents of the window, but fills up the
---     margin of it with blank space
+--   - The content wrapping does not follows the resize of the window, the end of
+--     the line is truncated
 
 -- Disable UI to be as fast as possible
 vim.opt.laststatus = 0
@@ -91,6 +87,14 @@ vim.api.nvim_create_autocmd({"TermOpen"}, {
     vim.cmd("startinsert")
   end
 })
+vim.api.nvim_create_autocmd({"WinNew"}, {
+  group = "nvim_as_tmux",
+  desc = "Open terminal on split",
+  nested = true,
+  callback = function()
+    vim.cmd("terminal")
+  end
+})
 vim.api.nvim_create_autocmd({"TermClose"}, {
   group = "nvim_as_tmux",
   desc = "Quit from NeoVim if the terminal was the only buffer when deleted",
@@ -113,6 +117,24 @@ vim.api.nvim_create_autocmd({"UIEnter"}, {
     vim.cmd("terminal " .. vim.fn.argv(0))
   end
 })
+-- vim.api.nvim_create_autocmd({"WinResized"}, {
+--   -- Resize of window leads to blank margin on the right, I have to press 0 in
+--   -- normal mode to view the left side of the terminal content. To reproduce:
+--   -- - Use i3 (it does not happens when using floating windows)
+--   -- - Open Tmux
+--   -- - Split vertically to have a pane on the left and right side
+--   -- - Activate the right pane, let the cursor in it
+--   -- - Open another terminal to the right of Tmux terminal window, it will
+--   --   shrink Tmux window
+--   -- - Close the new terminal
+--   -- - The content of Tmux terminal is not aligned to the window
+--   -- Happens only in Nvim, tested via xfce4-terminal
+--   group = "nvim_as_tmux",
+--   desc = "Align the window content if terminal window is resized by window manager",
+--   callback = function()
+--     vim.api.nvim_input("<c-\\><c-n>0i")
+--   end
+-- })
 
 -- Optionally load plugins (colorscheme, EasyJump, etc.)
 -- Indicate "NeoVim as Tmux mode" to be able to set conditions to plugins loading

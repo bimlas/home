@@ -3,6 +3,12 @@
 
 local saved_queries_file = '/media/bimlas/data/magpie/queries.sql'
 
+vim.api.nvim_create_augroup('regular', {})
+vim.api.nvim_create_autocmd({'WinResized'}, {
+  group = 'regular',
+  command = 'wincmd ='
+})
+
 vim.api.nvim_create_augroup('pgcli_editor', {})
 vim.api.nvim_create_autocmd({'VimEnter'}, {
   group = 'pgcli_editor',

@@ -41,12 +41,13 @@ return function(use, cond)
     end
   }
 
-  use {
-    -- For Mini.ai text objects
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    cond = cond,
-    after = { 'nvim-treesitter' }
-  }
+  -- Drops error in newer Nvim versions
+  -- use {
+  --   -- For Mini.ai text objects
+  --   'nvim-treesitter/nvim-treesitter-textobjects',
+  --   cond = cond,
+  --   after = { 'nvim-treesitter' }
+  -- }
 
   use { 'nvim-treesitter/nvim-treesitter-context',
     cond = cond,
