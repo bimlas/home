@@ -11,6 +11,13 @@
 
 set $mod Mod4
 
+# Display Resolution
+# To get connected monitors, run `xrandr | grep -w 'connected'`
+# To get possible resolutions, refresh rates, run `xrandr -q`
+# To set the offset, use `--pos <X_offset>x<Y_offset>`
+#exec_always xrandr --output eDP-1  --mode 1920x1200 --rate 48 --pos 760x1440 --primary \
+#                   --output HDMI-1 --mode 3440x1440 --rate 60 --pos 0x0
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
@@ -21,7 +28,8 @@ focus_follows_mouse no
 # Do not wrap to the first client when reaching last client
 focus_wrapping no
 
-workspace_layout tabbed
+# Maximize windows by default
+# workspace_layout tabbed
 
 # Start XDG autostart .desktop files of ~/.config/autostart/ using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -76,23 +84,11 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+b split h
@@ -145,6 +141,11 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
+bindsym $mod+Ctrl+h workspace prev_on_output
+bindsym $mod+Ctrl+j focus output next
+bindsym $mod+Ctrl+k focus output next
+bindsym $mod+Ctrl+l workspace next_on_output
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2; workspace number $ws2
@@ -157,6 +158,11 @@ bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $
 bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10; workspace number $ws10
 
+bindsym $mod+Shift+Ctrl+h move workspace prev_on_output; workspace prev_on_output
+bindsym $mod+Shift+Ctrl+j move to output next; focus output next
+bindsym $mod+Shift+Ctrl+k move to output next; focus output next
+bindsym $mod+Shift+Ctrl+l move workspace next_on_output; workspace next_on_output
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -168,10 +174,12 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+p           exec --no-startup-id "rofi -show drun"
 bindsym $mod+Tab         exec --no-startup-id "/bin/bash -c 'WINDOW_MANAGER=i3 PROJECTS_DIR=/media/bimlas/data/magpie $HOME/.config/rofi/modes/window-list'"
 bindsym $mod+i           exec --no-startup-id "$HOME/.config/rofi/modes/INDEX"
+bindsym $mod+Ctrl+v      exec --no-startup-id "xfce4-clipman-history"
+bindsym Ctrl+Mod1+v      exec --no-startup-id "sleep 0.5 && xsel -o --clipboard | xargs --null xdotool type --clearmodifiers --"
 bindsym Print            exec --no-startup-id "xfce4-screenshooter"
 bindsym Ctrl+Print       exec --no-startup-id "xfce4-screenshooter -r"
+bindsym Ctrl+Shift+Print exec --no-startup-id "obs --startrecording --minimize-to-tray"
 bindsym Ctrl+Mod1+Delete exec --no-startup-id "mate-system-monitor"
-
 
 # Autostart scratchpad app
 # NOTE: 
@@ -249,9 +257,9 @@ bar {
 
 # Colors
 # class                 border  backgr. text    indicator child_border
-client.focused          #82aaff #82aaff #1b1d2b #c3e88d   #82aaff
-client.focused_inactive #1b1d2b #828bb8 #1b1d2b #c3e88d   #1b1d2b
-client.unfocused        #1b1d2b #3b4261 #c8d3f5 #c3e88d   #1b1d2b
+client.focused          #82aaff #82aaff #1b1d2b #ff966c   #82aaff
+client.focused_inactive #1b1d2b #828bb8 #1b1d2b #ff966c   #1b1d2b
+client.unfocused        #1b1d2b #3b4261 #c8d3f5 #ff966c   #1b1d2b
 
 # Needs i3 v4.22
 #gaps inner 10px
@@ -264,3 +272,5 @@ client.unfocused        #1b1d2b #3b4261 #c8d3f5 #c3e88d   #1b1d2b
 #for_window [instance=xfdesktop] move to position 0 px 0 px
 
 for_window [instance=qalculate-gtk] floating enable
+# Exit from fullscreen mode when opened, because I cannot find a way to let Cliplman on the top
+for_window [instance=xfce4-clipman-history] focus
