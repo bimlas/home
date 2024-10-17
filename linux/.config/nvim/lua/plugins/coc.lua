@@ -39,8 +39,11 @@ return function(use, cond)
       -- GoTo code navigation
       keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
       keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-      keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true })
-      keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
+      -- keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true })
+      -- keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
+      -- Needs https://github.com/fannheyward/telescope-coc.nvim
+      keyset("n", "gi", ":Telescope coc implementations<cr>", { silent = true })
+      keyset("n", "gr", ":Telescope coc references<cr>", { silent = true })
 
       -- Use K to show documentation in preview window
       function _G.show_docs()

@@ -1,6 +1,7 @@
 return function(use, cond)
   use { 'nvim-treesitter/nvim-treesitter',
     cond = cond,
+    run = {':TSUpdate'},
     config = function()
       require('nvim-treesitter.configs').setup {
         auto_install = true,

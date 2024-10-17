@@ -4,6 +4,7 @@ return function(use, cond)
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      { 'fannheyward/telescope-coc.nvim' }
     },
     config = function()
 
@@ -56,6 +57,12 @@ return function(use, cond)
           --     }
           --   }
           -- }
+          coc = {
+              layout_strategy = 'vertical',
+              prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
+              push_cursor_on_edit = true, -- save the cursor position to jump back in the future
+              timeout = 3000, -- timeout for coc commands
+          }
         },
         defaults = {
           -- Show file path above preview window
@@ -82,6 +89,7 @@ return function(use, cond)
       }
       telescope.load_extension('fzf')
       -- telescope.load_extension('file_browser')
+      telescope.load_extension('coc')
     end,
   }
 end
