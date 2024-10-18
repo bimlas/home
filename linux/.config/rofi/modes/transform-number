@@ -18,29 +18,21 @@ if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
 # List items
 elif [ ${ROFI_RETV} -eq 0 ]; then
   SELECTED_TEXT=$(xsel -o)
-  if ! [[ ${SELECTED_TEXT} =~ '^[+-]?[0-9]+([.][0-9]+)?$' ]]; then
-    SELECTED_TEXT="'${SELECTED_TEXT}'"
-  fi
+  SELECTED_TEXT="'${SELECTED_TEXT}'"
   cat << _HEREDOC_
 // Parsing ${SELECTED_TEXT} as ...
 Date (milliseconds):            $(node -e "console.log(new Date(parseInt(${SELECTED_TEXT})).toISOString())" 2> /dev/null)
 Date (seconds):                 $(node -e "console.log(new Date(parseInt(${SELECTED_TEXT}) * 1000).toISOString())" 2> /dev/null)
-Hexadecimal -> decimal number:  $(node -e "console.log(parseInt(${SELECTED_TEXT}, 16))" 2> /dev/null)
-Decimal -> hexadecimal number:  $(node -e "console.log('0x' + (${SELECTED_TEXT}).toString(16))" 2> /dev/null)
+Hexadecimal -> decimal number:  $(node -e "console.log(BigInt(${SELECTED_TEXT}).toString())" 2> /dev/null)
+Decimal -> hexadecimal number:  $(node -e "console.log('0x' + BigInt(${SELECTED_TEXT}).toString(16))" 2> /dev/null)
 _HEREDOC_
+# TODO:
+# 18 decimals:                    $(node -e "console.log(BigInt(${SELECTED_TEXT}) / 10n**18n))" 2> /dev/null)
+# 6 decimals:                     $(node -e "console.log(BigInt(${SELECTED_TEXT}) / 10n**6n))" 2> /dev/null)
 
 # Copy the value of selected item to the clipboard
 else
-  echo TODO
-
-  # URL_TEMPLATE=$(echo "${1}" | sed 's/.* //')
-  # SELECTED_TEXT=$(xsel -o | jq -sRr '@uri')
-  # URL=$(echo "${URL_TEMPLATE}" | sed "s/%s/${SELECTED_TEXT}/")
-  #
-  # if ( echo "${1}" | grep '@preview' > /dev/null); then
-  #   nohup x-www-browser --window-size=700,600 --app="${URL}" > /dev/null &
-  # else
-  #   nohup x-www-browser "${URL}" > /dev/null &
-  # fi
+  echo "${1}" | sed 's/^[^:]\+:\s\+//' | xsel --clipboard > /dev/null
 
 fi
+255

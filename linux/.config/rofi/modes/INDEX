@@ -23,6 +23,7 @@ elif [ ${ROFI_RETV} -eq 0 ]; then
     -not -name INDEX \
     -not -name window-list \
     -not -name project \
+    -not -name apps \
     -printf "%f\n"
 
 # Copy the value of selected item to the clipboard

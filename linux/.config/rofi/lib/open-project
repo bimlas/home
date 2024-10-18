@@ -10,14 +10,36 @@ if [ "x${ROFI_RETV}" = "x2" ]; then
   nohup xfce4-terminal \
     --title "${TITLE}" \
     --working-directory "${PROJECTS_DIR}" \
-    -x nvim -u ~/.config/nvim/init.nvim_as_tmux.lua \
     > /dev/null &
+  ## NVIM
+  # nohup xfce4-terminal \
+  #   --title "${TITLE}" \
+  #   --working-directory "${PROJECTS_DIR}" \
+  #   -x nvim -u ~/.config/nvim/init.nvim_as_tmux.lua \
+  #   > /dev/null &
+  ## WEZTERM
+  # export WEZTERM_TITLE="${TITLE}"
+  # nohup wezterm start \
+  #   --cwd "${PROJECTS_DIR}" \
+  #   > /dev/null &
 else
   # Selected a project
   nohup xfce4-terminal \
     --title "${TITLE}" \
     --working-directory "${DIRECTORY}" \
-    -x nvim -u ~/.config/nvim/init.nvim_as_tmux.lua \
-    "git fetch; git fetch-log --format=oneline; echo; git status --short; ${SHELL}" \
+    --execute ${SHELL} --interactive --login -c "git fetch; git fetch-log --format=oneline; echo; git status --short; ${SHELL}" \
     > /dev/null &
+  ## NVIM
+  # nohup xfce4-terminal \
+  #   --title "${TITLE}" \
+  #   --working-directory "${DIRECTORY}" \
+  #   -x nvim -u ~/.config/nvim/init.nvim_as_tmux.lua \
+  #   "git fetch; git fetch-log --format=oneline; echo; git status --short; ${SHELL}" \
+  #   > /dev/null &
+  ## WEZTERM
+  # export WEZTERM_TITLE="${TITLE}"
+  # nohup wezterm start \
+  #   --cwd "${DIRECTORY}" \
+  #   ${SHELL} -c "git fetch; git fetch-log --format=oneline; echo; git status --short; ${SHELL}" \
+  #   > /dev/null &
 fi

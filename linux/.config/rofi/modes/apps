@@ -1,0 +1,50 @@
+#!/bin/bash
+# Rofi apps: Open specified CLI app in named terminal
+#
+# Usage:
+#
+#   Specify apps list (see below) and select one of them in Rofi to open up a
+#   named terminal.
+#
+# Format of the apps list (~/.config/rofi/apps*, optionally group them by type,
+# like apps-pgcli, apps-utils, etc.):
+#
+#   TITLE             COMMAND
+#
+#   For example:
+#
+#   calculator        qalc
+#   edit-nvim-config  nvim ~/.config/nvim/init.lua
+#   kubernetes        k9s --context my-kubernetes-context
+#   my-remote-db      pgcli -h $(ssh -G my-remote-ssh-server | awk '/^hostname / { print $2 }') -p 5432 my-db my-user
+#
+# Dependencies:
+#
+#   - rofi
+
+# Open Rofi
+if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
+  rofi -show pgcli -modi pgcli:"${0}"
+
+# List items
+elif [ ${ROFI_RETV} -eq 0 ]; then
+  cat ${HOME}/.config/rofi/apps* \
+  | sed -e 's/.*/&\x0icon\x1fapplications-utilities/'
+
+# Copy the value of selected item to the clipboard
+else
+  TITLE=$(echo "${1}" | sed 's/ .*//')
+  COMMAND=$(echo "${1}" | sed 's/[^ ]\+ \+//')
+
+  nohup xfce4-terminal \
+    --title "${TITLE}" \
+    --execute ${SHELL} --interactive --login -c "${COMMAND}" \
+    > /dev/null &
+  ## NVIM
+  # nohup xfce4-terminal \
+  #   --title "${TITLE}" \
+  #   -x nvim -u ~/.config/nvim/init.nvim_as_tmux.lua \
+  #   "${COMMAND}" \
+  #   > /dev/null &
+
+fi

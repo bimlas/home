@@ -14,7 +14,14 @@ export SCRIPT_DIR=$( cd -P "$( dirname "$SCRIPT" )" >/dev/null 2>&1 && pwd )
 export WINDOW_MANAGER=${WINDOW_MANAGER:-awesome}
 export PROJECTS_DIR=${PROJECTS_DIR:-${HOME}}
 
+# rofi \
+#   -show windowcd \
+#   -modi windowcd,window,project:"${SCRIPT_DIR}/project",apps:"${SCRIPT_DIR}/apps",ssh \
+#   -window-command "${SCRIPT_DIR}/../lib/join-windows.${WINDOW_MANAGER} {window}"
+
 rofi \
-  -show windowcd \
-  -modi windowcd,window,project:"${SCRIPT_DIR}/project",ssh \
+  -show window \
+  -modi window,combi \
+  -combi-modi project:"${SCRIPT_DIR}/project",apps:"${SCRIPT_DIR}/apps",ssh \
   -window-command "${SCRIPT_DIR}/../lib/join-windows.${WINDOW_MANAGER} {window}"
+

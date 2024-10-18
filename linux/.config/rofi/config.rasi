@@ -2,7 +2,9 @@ configuration {
   kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
   matching-negate-char: '!';
 
-  ssh-command: "{terminal} -T {host} -e nvim -u ~/.config/nvim/init.nvim_as_tmux.lua 'ssh -t {host} tmux new-session -As ssh'";
+  ssh-command: "{terminal} -T {host} -e ssh -t {host} tmux new-session -As ssh";
+  // ssh-command: "{terminal} -T {host} -e nvim -u ~/.config/nvim/init.nvim_as_tmux.lua 'ssh -t {host} tmux new-session -As ssh'";
+  // ssh-command: "/bin/sh -c 'WEZTERM_TITLE={host} /usr/bin/wezterm start -- ssh -t {host} tmux new-session -As ssh'";
 
   show-icons: true;
   font: "JetBrains Mono 11";
