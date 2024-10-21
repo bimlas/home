@@ -14,11 +14,8 @@ return function(use, cond)
       -- 'hrsh7th/vim-vsnip',
       -- 'hrsh7th/vim-vsnip-integ',
       -- 'rafamadriz/friendly-snippets',
-      -- Fancy icons for completion menu
-      -- 'onsails/lspkind.nvim',
-      -- Highlight cursorword
       -- LSP status in bottom-right corner of the window
-      { 'j-hui/fidget.nvim', branch = 'legacy' },
+      { 'j-hui/fidget.nvim', tag = 'v1.4.5' },
       -- Schemas for GitHub Actions, Kubernetes YAML files, etc.
       'b0o/schemastore.nvim',
     },
@@ -26,7 +23,7 @@ return function(use, cond)
 
       local servers = {
         'dockerls', -- npm install -g dockerfile-language-server-nodejs
-        'tsserver', -- npm install -g typescript typescript-language-server
+        'ts_ls', -- npm install -g typescript typescript-language-server
         'pylsp', -- pip install python-lsp-server
         'pyright', -- pip install pyright
         'yamlls', -- npm install -g yaml-language-server
@@ -89,13 +86,6 @@ return function(use, cond)
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      -- Signs
-      local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
-
       local function on_list(options)
         vim.fn.setqflist({}, ' ', options)
         vim.api.nvim_command('tabnew | copen | cfirst')
@@ -111,19 +101,10 @@ return function(use, cond)
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', '<c-w>gd', function() vim.cmd('vsplit'); vim.lsp.buf.definition() end, bufopts)
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
         vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>", bufopts)
         -- Open references in new tab to be able to preview without messing up windows
         -- vim.keymap.set('n', 'gr', function () vim.lsp.buf.references(nil, {on_list=on_list}) end, { desc = 'LSP: List references of symbol under the cursor', silent = true })
-        vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-        vim.keymap.set('n', 'gi', "<cmd>Telescope lsp_implementations layout_strategy=vertical<cr>", { silent = true, noremap = true })
-        vim.keymap.set({ 'n', 'i' }, '<C-k>', vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set('n', '<space>.', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', '<space>=', vim.lsp.buf.format, bufopts)
+        -- vim.keymap.set('n', 'gi', "<cmd>Telescope lsp_implementations layout_strategy=vertical<cr>", { silent = true, noremap = true })
 
         if client.name == "tsserver" then
           client.server_capabilities.document_formatting = false -- 0.7 and earlier
@@ -180,21 +161,10 @@ return function(use, cond)
             cmp.ItemField.Menu,
             cmp.ItemField.Kind,
           },
-          -- format = lspkind.cmp_format({
-          --   mode = 'symbol_text',
-          --   maxwidth = 50,
-          --   ellipsis_char = '...',
-          --
-          --   -- The function below will be called before any actual modifications from lspkind
-          --   -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-          --   before = function(entry, vim_item)
-          --     return vim_item
-          --   end
-          -- })
         },
         window = {
           -- completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered()
+          -- documentation = cmp.config.window.bordered()
         },
         snippet = {
           expand = function(args)
