@@ -3,7 +3,7 @@ return function(use, cond)
     "neoclide/coc.nvim",
     cond = cond,
     branch = 'master',
-    run = {'npm ci', ':CocInstall coc-json coc-tsserver coc-prettier coc-sql coc-eslint coc-rust-analyzer'},
+    run = { 'npm ci', ':CocInstall coc-json coc-tsserver coc-prettier coc-sql coc-eslint coc-rust-analyzer @nomicfoundation/coc-solidity' },
     config = function()
       local keyset = vim.keymap.set
       -- Autocomplete
@@ -31,19 +31,24 @@ return function(use, cond)
       -- Use <c-space> to trigger completion
       keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
 
-      -- Use `[g` and `]g` to navigate diagnostics
+      keyset("i", "<c-s>", "CocActionAsync('showSignatureHelp')", { silent = true, expr = true })
+
       -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-      keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
-      keyset("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
+      keyset("n", "<c-w>d", "<Plug>(coc-diagnostic-info)", { silent = true })
+      keyset("n", "<c-w><c-d>", "<Plug>(coc-diagnostic-info)", { silent = true })
+      keyset("n", "[d", "<Plug>(coc-diagnostic-prev)", { silent = true })
+      keyset("n", "]d", "<Plug>(coc-diagnostic-next)", { silent = true })
 
       -- GoTo code navigation
       keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
-      keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-      -- keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true })
-      -- keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
+      keyset("n", "gry", "<Plug>(coc-type-definition)", { silent = true })
+      -- keyset("n", "gri", "<Plug>(coc-implementation)", { silent = true })
+      -- keyset("n", "grr", "<Plug>(coc-references)", { silent = true })
       -- Needs https://github.com/fannheyward/telescope-coc.nvim
-      keyset("n", "gi", ":Telescope coc implementations<cr>", { silent = true })
-      keyset("n", "gr", ":Telescope coc references<cr>", { silent = true })
+      keyset("n", "gri", "<cmd>Telescope coc implementations<cr>", { silent = true })
+      keyset("n", "grr", "<cmd>Telescope coc references<cr>", { silent = true })
+      keyset("n", "gro", "<cmd>Telescope coc document_symbols symbols=method,function layout_strategy=vertical<CR>",
+        { silent = true })
 
       -- Use K to show documentation in preview window
       function _G.show_docs()
@@ -99,7 +104,7 @@ return function(use, cond)
       -- keyset("n", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 
       -- Remap keys for apply code actions at the cursor position.
-      keyset("n", "<space>.", "<Plug>(coc-codeaction-cursor)", opts)
+      keyset("n", "gra", "<Plug>(coc-codeaction-cursor)", opts)
       -- -- Remap keys for apply source code actions for current file.
       -- keyset("n", "<leader>as", "<Plug>(coc-codeaction-source)", opts)
       -- -- Apply the most preferred quickfix action on the current line.

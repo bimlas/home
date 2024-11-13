@@ -13,6 +13,7 @@ return function(use, cond)
       'nvim-lspconfig'
     },
     config = function()
+      -- npm install -g @fsouza/prettierd
       local null_ls = require("null-ls")
 
       local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
@@ -46,7 +47,7 @@ return function(use, cond)
       })
 
       require("prettier").setup {
-        bin = 'prettier', -- or `prettierd`
+        bin = 'prettierd', -- or `prettierd`
         filetypes = {
           "css",
           "graphql",

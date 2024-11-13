@@ -6,6 +6,7 @@ return function(use, cond)
     requires = {
       -- 'williamboman/mason.nvim',
       -- 'williamboman/mason-lspconfig.nvim',
+      -- TODO: Replacebale by builtin completion? https://www.reddit.com/r/neovim/comments/1d7j0c1/a_small_gist_to_use_the_new_builtin_completion/
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
@@ -20,19 +21,19 @@ return function(use, cond)
       'b0o/schemastore.nvim',
     },
     config = function()
-
       local servers = {
-        'dockerls', -- npm install -g dockerfile-language-server-nodejs
-        'ts_ls', -- npm install -g typescript typescript-language-server
-        'pylsp', -- pip install python-lsp-server
-        'pyright', -- pip install pyright
-        'yamlls', -- npm install -g yaml-language-server
+        'dockerls',    -- npm install -g dockerfile-language-server-nodejs
+        'ts_ls',       -- npm install -g typescript typescript-language-server
+        'pylsp',       -- pip install python-lsp-server
+        'pyright',     -- pip install pyright
+        'yamlls',      -- npm install -g yaml-language-server
         -- TODO: Addditional settings for Kubernetes, Docker Compose, GitHub Actions, etc: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#yamlls
-        'jsonls', -- npm install -g vscode-langservers-extracted
-        'eslint', -- npm install -g vscode-langservers-extracted
+        'jsonls',      -- npm install -g vscode-langservers-extracted
+        'eslint',      -- npm install -g vscode-langservers-extracted
         -- TODO: Set up Prettier
-        'vimls', -- npm install -g vim-language-server
-        'lua_ls', -- https://github.com/luals/lua-language-server
+        'vimls',       -- npm install -g vim-language-server
+        'lua_ls',      -- https://github.com/luals/lua-language-server
+        'solidity_ls', -- npm install -g vscode-solidity-server
       }
 
       local settings = {
@@ -40,7 +41,8 @@ return function(use, cond)
           yaml = {
             schemas = {
               ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-              ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = { "/.k8s/*.yaml",
+              ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = {
+                "/.k8s/*.yaml",
                 "/tmp/kubectl-edit-*.yaml" },
             }
           }
@@ -94,20 +96,21 @@ return function(use, cond)
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
       local on_attach = function(client, bufnr)
-        -- Enable completion triggered by <c-x><c-o>
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
+        vim.diagnostic.config({ virtual_text = false })
 
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>", bufopts)
+        vim.keymap.set("n", "gro",
+          "<cmd>Telescope lsp_document_symbols layout_strategy=vertical<CR>", bufopts)
+        vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>", bufopts)
+        vim.keymap.set("n", "gri", "<cmd>Telescope lsp_implementations layout_strategy=vertical<CR>", bufopts)
         -- Open references in new tab to be able to preview without messing up windows
         -- vim.keymap.set('n', 'gr', function () vim.lsp.buf.references(nil, {on_list=on_list}) end, { desc = 'LSP: List references of symbol under the cursor', silent = true })
         -- vim.keymap.set('n', 'gi', "<cmd>Telescope lsp_implementations layout_strategy=vertical<cr>", { silent = true, noremap = true })
 
         if client.name == "tsserver" then
-          client.server_capabilities.document_formatting = false -- 0.7 and earlier
+          client.server_capabilities.document_formatting = false        -- 0.7 and earlier
           client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
         end
 
@@ -184,8 +187,8 @@ return function(use, cond)
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = true,
               })
-            -- elseif vim.fn["vsnip#available"](1) == 1 then
-            --   feedkey("<Plug>(vsnip-expand-or-jump)", "")
+              -- elseif vim.fn["vsnip#available"](1) == 1 then
+              --   feedkey("<Plug>(vsnip-expand-or-jump)", "")
             else
               fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
@@ -204,7 +207,6 @@ return function(use, cond)
           { name = 'path' },
         },
       }
-
     end
   }
 end

@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd({'VimEnter'}, {
   callback = function()
     vim.cmd('vsplit ' .. saved_queries_file .. ' | set filetype=sql | wincmd w')
     local buffer = tonumber(vim.cmd('echo bufnr("' .. saved_queries_file .. '")'))
+    vim.opt.foldmethod = 'marker'
     vim.keymap.set({'n'}, '<cr>', function ()
       vim.cmd('normal yap')
       vim.cmd('1 wincmd w')

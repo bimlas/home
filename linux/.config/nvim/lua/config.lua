@@ -33,7 +33,7 @@ vim.opt.report = 0
 -- - <Tab> expands string to the longest common part
 -- - Second <Tab> shows all match
 -- - Starting from the third will iterate on the list
-vim.opt.wildmode = {'longest:full', 'full'}
+vim.opt.wildmode = { 'longest:full', 'full' }
 
 -- DIFF
 
@@ -52,7 +52,7 @@ vim.opt.updatetime = 500
 
 -- COMMAND
 
-vim.cmd([[ 
+vim.cmd([[
   command! MyCopyReference let @+ = expand('%') . ': ' . luaeval("require('nvim-treesitter').statusline({type_patterns = {'class', 'function', 'method'}})")
 ]])
 
@@ -61,4 +61,4 @@ vim.cmd([[
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
-vim.keymap.set('n', '<Space><Tab>', function () vim.cmd('b#') end)
+vim.keymap.set('n', '<Space><Tab>', function() vim.cmd('b#') end)

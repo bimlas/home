@@ -37,6 +37,7 @@ return function(use, cond)
           },
         })
 
-      require('mini.comment').setup({})
+      -- Available in vanilla NeoVim
+      -- require('mini.comment').setup({})
     end }
 end
