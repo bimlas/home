@@ -1,50 +1,64 @@
 -- DISABLED, becuase I have issues with Prettier and I have to restart several times when working on a huge TypeScript file. Trying to use CoC instead.
 
 return function(use, cond)
-  use { 'neovim/nvim-lspconfig',
+  use {
+    'neovim/nvim-lspconfig',
     cond = cond,
+    after = {
+      'nvim-cmp'
+    },
     requires = {
+      -- TODO:
       -- 'williamboman/mason.nvim',
       -- 'williamboman/mason-lspconfig.nvim',
-      -- TODO: Replacebale by builtin completion? https://www.reddit.com/r/neovim/comments/1d7j0c1/a_small_gist_to_use_the_new_builtin_completion/
-      'hrsh7th/nvim-cmp',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      -- Snippet management
-      -- 'hrsh7th/cmp-vsnip',
-      -- 'hrsh7th/vim-vsnip',
-      -- 'hrsh7th/vim-vsnip-integ',
-      -- 'rafamadriz/friendly-snippets',
-      -- LSP status in bottom-right corner of the window
-      { 'j-hui/fidget.nvim', tag = 'v1.4.5' },
-      -- Schemas for GitHub Actions, Kubernetes YAML files, etc.
       'b0o/schemastore.nvim',
     },
     config = function()
+      -- require('mason').setup()
+      -- require('mason-lspconfig').setup {
+      --   ensure_installed = servers,
+      -- }
+
       local servers = {
-        'dockerls',    -- npm install -g dockerfile-language-server-nodejs
-        'ts_ls',       -- npm install -g typescript typescript-language-server
-        'pylsp',       -- pip install python-lsp-server
-        'pyright',     -- pip install pyright
-        'yamlls',      -- npm install -g yaml-language-server
-        -- TODO: Addditional settings for Kubernetes, Docker Compose, GitHub Actions, etc: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#yamlls
-        'jsonls',      -- npm install -g vscode-langservers-extracted
-        'eslint',      -- npm install -g vscode-langservers-extracted
-        -- TODO: Set up Prettier
-        'vimls',       -- npm install -g vim-language-server
-        'lua_ls',      -- https://github.com/luals/lua-language-server
-        'solidity_ls', -- npm install -g vscode-solidity-server
+        'docker_compose_language_service', -- npm install -g @microsoft/compose-language-service
+        'dockerls',                        -- npm install -g dockerfile-language-server-nodejs
+        'eslint',                          -- npm install -g vscode-langservers-extracted
+        'jsonls',                          -- npm install -g vscode-langservers-extracted
+        'lua_ls',                          -- https://github.com/luals/lua-language-server
+        'pylsp',                           -- pip install python-lsp-server
+        'pyright',                         -- pip install pyright
+        'solidity_ls',                     -- npm install -g vscode-solidity-server
+        'vimls',                           -- npm install -g vim-language-server
+        'vtsls',                           -- npm install -g @vtsls/language-server
+        'yamlls',                          -- npm install -g yaml-language-server
+        -- 'ts_ls',                           -- npm install -g typescript typescript-language-server
       }
 
       local settings = {
         yamlls = {
           yaml = {
+            -- TODO: Docker Compose schema, or use https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#docker_compose_language_service and set ft=yaml.docker-compose
             schemas = {
               ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
               ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = {
                 "/.k8s/*.yaml",
                 "/tmp/kubectl-edit-*.yaml" },
             }
+
+            -- TODO: Works with GitHub Actions out of the box, does not works on Kubernetes files
+            -- schemaStore = {
+            --   enable = false,
+            --   url = "",
+            -- },
+            -- schemas = require('schemastore').yaml.schemas({
+            --   extra = {
+            --     description = 'Kubernetes schema',
+            --     fileMatch = { "**/.k8s/*.yaml", "/tmp/kubectl-edit-*.yaml" },
+            --     name = 'Kubernetes schema',
+            --     url =
+            --     'https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json',
+            --   }
+            -- }),
           }
         },
         jsonls = {
@@ -72,47 +86,31 @@ return function(use, cond)
               enable = false,
             },
           },
-        }
+        },
       }
 
-      -- require('mason').setup()
-      -- require('mason-lspconfig').setup {
-      --   ensure_installed = servers,
-      -- }
-
-      require('fidget').setup({})
-
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
-
-      local function on_list(options)
-        vim.fn.setqflist({}, ' ', options)
-        vim.api.nvim_command('tabnew | copen | cfirst')
-      end
-
-      -- Use an on_attach function to only map the following keys
-      -- after the language server attaches to the current buffer
       local on_attach = function(client, bufnr)
-        vim.diagnostic.config({ virtual_text = false })
+        vim.diagnostic.config({ virtual_text = false, jump = { float = true } })
 
-        -- Mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        if client.name == "tsserver" then
+          client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+        end
+
+        if client.name == 'eslint' then
+          vim.api.nvim_create_augroup('lsp_format_on_save', {
+            clear = false
+          })
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = bufnr,
+            command = 'EslintFixAll',
+          })
+        end
+
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set("n", "gro",
+        vim.keymap.set("n", "gO",
           "<cmd>Telescope lsp_document_symbols layout_strategy=vertical<CR>", bufopts)
         vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>", bufopts)
         vim.keymap.set("n", "gri", "<cmd>Telescope lsp_implementations layout_strategy=vertical<CR>", bufopts)
-        -- Open references in new tab to be able to preview without messing up windows
-        -- vim.keymap.set('n', 'gr', function () vim.lsp.buf.references(nil, {on_list=on_list}) end, { desc = 'LSP: List references of symbol under the cursor', silent = true })
-        -- vim.keymap.set('n', 'gi', "<cmd>Telescope lsp_implementations layout_strategy=vertical<cr>", { silent = true, noremap = true })
-
-        if client.name == "tsserver" then
-          client.server_capabilities.document_formatting = false        -- 0.7 and earlier
-          client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
-        end
 
         -- Highlight cursor word
         if client.server_capabilities.documentHighlightProvider then
@@ -150,12 +148,39 @@ return function(use, cond)
         }
       end
 
+      vim.api.nvim_create_augroup('docker_compose_language_service_filetype', {})
+      vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+        group = 'regular',
+        pattern = 'docker-compose.*yml',
+        command = ':set filetype=yaml.docker-compose'
+      })
+    end
+  }
+
+  use {
+    'hrsh7th/nvim-cmp',
+    cond = cond,
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      -- Snippet management
+      -- 'hrsh7th/cmp-vsnip',
+      -- 'hrsh7th/vim-vsnip',
+      -- 'hrsh7th/vim-vsnip-integ',
+      -- 'rafamadriz/friendly-snippets',
+      -- LSP status in bottom-right corner of the window
+    },
+    config = function()
       local feedkey = function(key, mode)
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
       end
 
-      -- nvim-cmp setup
-      -- local lspkind = require('lspkind')
+      local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
+
       local cmp = require 'cmp'
       cmp.setup {
         formatting = {
@@ -165,10 +190,6 @@ return function(use, cond)
             cmp.ItemField.Kind,
           },
         },
-        window = {
-          -- completion = cmp.config.window.bordered(),
-          -- documentation = cmp.config.window.bordered()
-        },
         snippet = {
           expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
@@ -177,10 +198,6 @@ return function(use, cond)
         mapping = cmp.mapping.preset.insert({
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-u>'] = cmp.mapping.scroll_docs(4),
-          -- ['<CR>'] = cmp.mapping.confirm {
-          --   behavior = cmp.ConfirmBehavior.Replace,
-          --   select = true,
-          -- },
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() and has_words_before() then
               cmp.confirm({
@@ -196,8 +213,8 @@ return function(use, cond)
           ["<S-Tab>"] = cmp.mapping(function()
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-              feedkey("<Plug>(vsnip-jump-prev)", "")
+              -- elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+              --   feedkey("<Plug>(vsnip-jump-prev)", "")
             end
           end, { "i", "s" }),
         }),
@@ -209,4 +226,37 @@ return function(use, cond)
       }
     end
   }
+
+  use {
+    'stevearc/conform.nvim',
+    cond = cond,
+    config = function()
+      require("conform").setup({
+        formatters_by_ft = {
+          ['*'] = { 'prettierd' } -- npm install -g prettierd
+        },
+        -- formatters = {
+        --   prettierd = {
+        --     append_args = {'--plugin=prettier-plugin-sql'}
+        --   }
+        -- },
+        format_on_save = {
+          timeout_ms = 3000,
+          async = false,
+          quiet = false,
+          -- TODO: Does not formats by Prettier if this is specified
+          -- lsp_format = "fallback",
+        }
+      })
+    end
+  }
+
+  -- use {
+  --   'j-hui/fidget.nvim',
+  --   cond = cond,
+  --   tag = 'v1.4.5',
+  --   config = function()
+  --     require('fidget').setup({})
+  --   end
+  -- }
 end

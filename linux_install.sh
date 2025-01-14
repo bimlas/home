@@ -96,13 +96,13 @@ sudo apt install -y playerctl
 
 sudo apt install -y i3
 
-(
-  git clone https://github.com/yshui/picom /tmp/picom-build
-  cd /tmp/picom-build
-  git checkout v10.2
-  git submodule update --init --recursive
-  sudo apt install -y libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libxcb-glx0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl-dev libegl-dev libpcre2-dev libpcre3-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev meson
-  meson --buildtype=release . build
-  ninja -C build
-  ninja -C build install
-)
+# (
+#   git clone https://github.com/yshui/picom /tmp/picom-build
+#   cd /tmp/picom-build
+#   git checkout v10.2
+#   git submodule update --init --recursive
+#   sudo apt install -y libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libxcb-glx0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl-dev libegl-dev libpcre2-dev libpcre3-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev meson
+#   meson --buildtype=release . build
+#   ninja -C build
+#   ninja -C build install
+# )

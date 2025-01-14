@@ -22,6 +22,8 @@ vim.opt.smartcase = true
 
 vim.opt.wrapscan = false
 
+vim.opt.spell = true
+
 -- INFOLINE
 
 vim.opt.cmdheight = 2

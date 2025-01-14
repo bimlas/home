@@ -19,10 +19,8 @@ return require('packer').startup(function(use)
   require('plugins/telescope')(use, not_as_tmux)
   require('plugins/nnn')(use, not_as_tmux)
   require('plugins/treesitter')(use, not_as_tmux)
-  require('plugins/coc')(use, not_as_tmux)
-  -- require('plugins/lsp')(use, not_as_tmux)
-  -- TODO: Use https://github.com/stevearc/conform.nvim instead of this
-  -- require('plugins/prettier')(use, not_as_tmux)
+  require('plugins/lsp')(use, not_as_tmux)
+  -- require('plugins/coc')(use, not_as_tmux)
   require('plugins/fugitive')(use, not_as_tmux)
   require('plugins/gitsigns')(use, not_as_tmux)
 

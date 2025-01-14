@@ -25,7 +25,7 @@ vcs_stash_info()
 
 kubernetes_info()
 {
-  kubernetes_context=$(cat ~/.kube/config 2>/dev/null| grep -o '^current-context: [^/]*' | cut -d' ' -f2)
+  kubernetes_context=$(cat ~/.kube/config 2>/dev/null| grep -o '^current-context: [^/]*' | cut -d' ' -f2 | grep -v '^""$')
   if [ -n "$kubernetes_context" ]; then
       echo "\n%F{blue}│ %F{green}Kubernetes: $kubernetes_context "
   fi

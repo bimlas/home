@@ -47,7 +47,7 @@ return function(use, cond)
       -- Needs https://github.com/fannheyward/telescope-coc.nvim
       keyset("n", "gri", "<cmd>Telescope coc implementations<cr>", { silent = true })
       keyset("n", "grr", "<cmd>Telescope coc references<cr>", { silent = true })
-      keyset("n", "gro", "<cmd>Telescope coc document_symbols symbols=method,function layout_strategy=vertical<CR>",
+      keyset("n", "gO", "<cmd>Telescope coc document_symbols symbols=method,function layout_strategy=vertical<CR>",
         { silent = true })
 
       -- Use K to show documentation in preview window

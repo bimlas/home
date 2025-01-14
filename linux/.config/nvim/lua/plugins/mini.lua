@@ -2,7 +2,6 @@ return function(use, cond)
   use { 'echasnovski/mini.nvim', branch = 'stable',
     cond = cond,
     config = function()
-
       local spec_argument = require('mini.ai').gen_spec.argument
       local spec_treesitter = require('mini.ai').gen_spec.treesitter
       require('mini.ai').setup({
@@ -25,17 +24,21 @@ return function(use, cond)
       require('mini.surround').setup(
         {
           mappings = {
-            add = '<Space>qa', -- Add surrounding in Normal and Visual modes
-            delete = '<Space>qd', -- Delete surrounding
-            find = '', -- Find surrounding (to the right)
-            find_left = '', -- Find surrounding (to the left)
+            add = '<Space>qa',       -- Add surrounding in Normal and Visual modes
+            delete = '<Space>qd',    -- Delete surrounding
+            find = '',               -- Find surrounding (to the right)
+            find_left = '',          -- Find surrounding (to the left)
             highlight = '<Space>qh', -- Highlight surrounding
-            replace = '<Space>qr', -- Replace surrounding
-            update_n_lines = '', -- Update `n_lines`
-            suffix_last = '', -- Suffix to search with "prev" method
-            suffix_next = '', -- Suffix to search with "next" method
+            replace = '<Space>qr',   -- Replace surrounding
+            update_n_lines = '',     -- Update `n_lines`
+            suffix_last = '',        -- Suffix to search with "prev" method
+            suffix_next = '',        -- Suffix to search with "next" method
           },
         })
+
+      -- Has no fuzzy search
+      -- require('mini.completion').setup(
+      -- )
 
       -- Available in vanilla NeoVim
       -- require('mini.comment').setup({})

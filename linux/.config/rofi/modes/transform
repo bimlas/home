@@ -1,15 +1,16 @@
 #!/bin/bash
-# Rofi transform number: Try to transform the selected number to different formats
+# Rofi transform: Try to transform the selected number or text to different formats
 #
 # Usage:
 #
-#   Select the desired number by mouse in any app (terminal, PDF reader,
+#   Select the desired text by mouse in any app (terminal, PDF reader,
 #   web browser, office apps, etc.) and press the shortcut.
 #
 # Dependencies:
 #
 #   - rofi
 #   - xsel
+#   - node
 
 # Open Rofi
 if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
@@ -25,6 +26,8 @@ Date (milliseconds):            $(node -e "console.log(new Date(parseInt(${SELEC
 Date (seconds):                 $(node -e "console.log(new Date(parseInt(${SELECTED_TEXT}) * 1000).toISOString())" 2> /dev/null)
 Hexadecimal -> decimal number:  $(node -e "console.log(BigInt(${SELECTED_TEXT}).toString())" 2> /dev/null)
 Decimal -> hexadecimal number:  $(node -e "console.log('0x' + BigInt(${SELECTED_TEXT}).toString(16))" 2> /dev/null)
+Base64 encode:                  $(node -e "console.log(btoa(${SELECTED_TEXT}))" 2> /dev/null)
+Base64 decode:                  $(node -e "console.log(atob(${SELECTED_TEXT}))" 2> /dev/null)
 _HEREDOC_
 # TODO:
 # 18 decimals:                    $(node -e "console.log(BigInt(${SELECTED_TEXT}) / 10n**18n))" 2> /dev/null)

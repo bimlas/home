@@ -8,6 +8,12 @@ vim.api.nvim_create_autocmd({'WinResized'}, {
   group = 'regular',
   command = 'wincmd ='
 })
+vim.api.nvim_create_autocmd({'VimEnter'}, {
+  group = 'regular',
+  callback = function()
+    vim.api.nvim_set_hl(0, 'SpellBad', {undercurl = true, sp = '#0db9d7'})
+  end
+})
 
 vim.api.nvim_create_augroup('pgcli_editor', {})
 vim.api.nvim_create_autocmd({'VimEnter'}, {
