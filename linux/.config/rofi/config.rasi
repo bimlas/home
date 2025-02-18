@@ -1,5 +1,5 @@
 configuration {
-  kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
+  kb-mode-next: "Shift+Right,Control+Tab,Super+Tab,Alt+Tab";
   matching-negate-char: '!';
 
   ssh-command: "{terminal} -T {host} -e ssh -t {host} tmux new-session -As ssh";

@@ -9,7 +9,9 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+# Alt key: Mod1
+# Windows key: Mod4
+set $mod Mod1
 
 # Display Resolution
 # To get connected monitors, run `xrandr | grep -w 'connected'`
@@ -30,6 +32,9 @@ focus_wrapping no
 
 # Maximize windows by default
 # workspace_layout tabbed
+
+# Set wallpaper by `feh`
+exec --no-startup-id "$HOME/.fehbg"
 
 # Start XDG autostart .desktop files of ~/.config/autostart/ using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -172,10 +177,11 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Custom bindings
 bindsym $mod+p           exec --no-startup-id "rofi -show drun"
+bindsym $mod+o           exec --no-startup-id "x-www-browser"
 bindsym $mod+Tab         exec --no-startup-id "/bin/bash -c 'WINDOW_MANAGER=i3 PROJECTS_DIR=/media/bimlas/data/magpie $HOME/.config/rofi/modes/window-list'"
 bindsym $mod+i           exec --no-startup-id "$HOME/.config/rofi/modes/INDEX"
 bindsym $mod+Ctrl+v      exec --no-startup-id "xfce4-clipman-history"
-bindsym Ctrl+Mod1+v      exec --no-startup-id "sleep 0.5 && xsel -o --clipboard | xargs --null xdotool type --clearmodifiers --"
+# bindsym Ctrl+Mod1+v      exec --no-startup-id "sleep 0.5 && xsel -o --clipboard | xargs --null xdotool type --clearmodifiers --"
 bindsym Print            exec --no-startup-id "xfce4-screenshooter"
 bindsym Ctrl+Print       exec --no-startup-id "xfce4-screenshooter -r"
 bindsym Ctrl+Shift+Print exec --no-startup-id "obs --startrecording --minimize-to-tray"
@@ -263,8 +269,8 @@ client.focused_inactive #1b1d2b #828bb8 #1b1d2b #ff966c   #1b1d2b
 client.unfocused        #1b1d2b #3b4261 #c8d3f5 #ff966c   #1b1d2b
 
 # Needs i3 v4.22
-#gaps inner 10px
-#gaps outer 5px
+gaps inner 8px
+gaps outer 4px
 
 # Handle XFCE desktop
 # There is no way to move floating behind tilings windows, but these would be needed

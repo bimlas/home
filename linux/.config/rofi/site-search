@@ -23,6 +23,7 @@ Code   DevDocs: Node.js      @preview  https://devdocs.io/#q=nodejs%20%s
 Code   DevDocs: Lua          @preview  https://devdocs.io/#q=lua%20%s
 Code   DevDocs: PostgreSQL   @preview  https://devdocs.io/#q=postgres%20%s
 Shell  Cheat.sh              @preview  https://cheat.sh/%s
+Shell  IPLookup              @preview  https://ip-lookup.net/?ip=%s
 Game   NetHack Wiki          @preview  https://nethackwiki.com/mediawiki/index.php?search=%s
 Buy    Amazon                @normal   https://www.amazon.com/s?k=%s
 Buy    Rtings.com            @normal   https://www.rtings.com/search?q=%s

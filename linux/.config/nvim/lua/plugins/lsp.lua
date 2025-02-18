@@ -159,7 +159,8 @@ return function(use, cond)
 
   use {
     'hrsh7th/nvim-cmp',
-    cond = cond,
+    -- Needed to do not try to use requirements when `cond = false` (using Nvim as Tmux)
+    disable = not cond,
     requires = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',

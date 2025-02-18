@@ -15,8 +15,8 @@
 --   - Easy to scroll, search for expressions and copy lines (without trailing whitespace)
 --
 --   - Refresh rate is slower even if I use from Alacritty or Kitty
---   - The content wrapping does not follows the resize of the window, the end of
---     the line is truncated
+--   - Resizing of some apps makes a margin on the right side of the app
+--     (open K9S, split screen horizontally, make it fullscreen again)
 
 -- Disable UI to be as fast as possible
 vim.opt.laststatus = 0

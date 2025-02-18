@@ -18,7 +18,7 @@ return function(use, cond)
           lualine_x = { 'nvim_lsp' },
           lualine_y = { 'filetype', 'diagnostics' },
           lualine_z = {
-            { 'location', left_padding = 2 },
+            { 'progress', left_padding = 2 }, -- or 'location' (line:column)
           },
         },
         inactive_sections = {
@@ -27,7 +27,7 @@ return function(use, cond)
           lualine_c = {},
           lualine_x = {},
           lualine_y = {},
-          lualine_z = { 'location' },
+          lualine_z = {},
         },
         tabline = {},
         extensions = { 'quickfix' },

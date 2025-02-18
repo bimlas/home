@@ -653,7 +653,7 @@
 
   ; Find renamed and copied files.
   renames   = "copies"
-  tool      = "meld"
+  tool      = "kitty"
 
   ; Check the diffrenece:
   ;   for i in myers minimal patience histogram; do
@@ -677,6 +677,9 @@
 
   prompt = false
   trustExitCode = true
+
+[difftool "kitty"]                                                      ; {{{1
+  cmd = "kitten diff $LOCAL $REMOTE"
 
 [stash]                                                                 ; {{{1
 
