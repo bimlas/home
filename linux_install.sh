@@ -69,6 +69,8 @@ sudo apt install -y xsel
 
 # Fuzzy finder GUI
 sudo apt install -y rofi
+# Clipboard manager for rofi
+sudo wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip -O /usr/bin/greenclip && sudo chmod +x /usr/bin/greenclip
 
 # Spotify
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -

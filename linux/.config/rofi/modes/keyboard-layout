@@ -1,0 +1,20 @@
+#!/bin/bash
+# Change keyboard layout
+
+# Open Rofi
+if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
+  rofi -show transform-number -modi transform-number:"${0}"
+
+# List items
+elif [ ${ROFI_RETV} -eq 0 ]; then
+  cat << _HEREDOC_
+hu
+gb
+_HEREDOC_
+
+# Change keyboard layout
+else
+  setxkbmap "${1}"
+
+fi
+255
