@@ -112,6 +112,13 @@ return function(use, cond)
         vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references layout_strategy=vertical<CR>", bufopts)
         vim.keymap.set("n", "gri", "<cmd>Telescope lsp_implementations layout_strategy=vertical<CR>", bufopts)
 
+        -- DISABLED: nvim-treesitter-context does not works when this is set
+        -- -- Set LSP foldmethod if supported
+        -- if client:supports_method('textDocument/foldingRange') then
+        --   local win = vim.api.nvim_get_current_win()
+        --   vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+        -- end
+
         -- Highlight cursor word
         if client.server_capabilities.documentHighlightProvider then
           vim.api.nvim_create_augroup('lsp_document_highlight', {
@@ -199,6 +206,7 @@ return function(use, cond)
         mapping = cmp.mapping.preset.insert({
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-u>'] = cmp.mapping.scroll_docs(4),
+          ['<C-space>'] = cmp.mapping.complete({}),
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() and has_words_before() then
               cmp.confirm({

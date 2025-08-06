@@ -14,7 +14,7 @@ jpg_size=$(convert_to jpg "$1" | wc -c)
 png_size=$(convert_to png "$1" | wc -c)
 jpg_png_ratio=$(echo $jpg_size*100/$png_size | bc)
 target_format=$(if [ $jpg_size -lt $png_size ]; then echo "jpg"; else echo "png"; fi)
-if ( identify -format '%[channels]' "$1" | grep "rgba" > /dev/null ); then
+if ( identify -format '%[channels]' "$1" | grep -q "rgba" ); then
   target_format=png
 fi
 

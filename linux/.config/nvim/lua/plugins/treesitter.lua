@@ -53,22 +53,24 @@ return function(use, cond)
   use { 'nvim-treesitter/nvim-treesitter-context',
     cond = cond,
     after = { 'nvim-treesitter' },
-    config = {
-      mode = 'topline',
-      max_lines = -1,
-      patterns = {
-        default = {
-          'class',
-          'function',
-          'method',
-          'for',
-          'while',
-          'if',
-          'switch',
-          'case',
-          'try',
-        },
+    config = function ()
+      require("treesitter-context").setup{
+        mode = 'topline',
+        max_lines = -1,
+        patterns = {
+          default = {
+            'class',
+            'function',
+            'method',
+            'for',
+            'while',
+            'if',
+            'switch',
+            'case',
+            'try',
+          },
+        }
       }
-    }
+    end
   }
 end

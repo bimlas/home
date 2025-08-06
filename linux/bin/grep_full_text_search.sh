@@ -15,7 +15,7 @@
 # ========================== bimlas.gitlab.io ================================
 
 grep_args=''
-while ( echo "$1" | grep '^-' > /dev/null ); do
+while ( echo "$1" | grep -q '^-' ); do
   grep_args="$grep_args $1"
   shift
 done

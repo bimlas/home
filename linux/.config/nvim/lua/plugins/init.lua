@@ -12,6 +12,11 @@ end
 return require('packer').startup(function(use)
   local not_as_tmux = function() return NVIM_AS_TMUX ~= true end
 
+  -- -- Needs NerdFont
+  -- use {
+  --   "oxy2dev/markview.nvim"
+  -- }
+
   require('plugins/colorscheme')(use, "true")
   require('plugins/lualine')(use, not_as_tmux)
   require('plugins/mini')(use, not_as_tmux)

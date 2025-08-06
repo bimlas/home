@@ -5,6 +5,7 @@ vim.opt.clipboard = vim.opt.clipboard + { 'unnamed' }
 
 -- TEXTAREA
 
+vim.opt.mouse = ''
 vim.opt.scrolloff = 3
 vim.opt.virtualedit = 'onemore'
 vim.opt.linebreak = true
@@ -14,8 +15,10 @@ vim.opt.smartindent = true
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.shiftround = true
+vim.opt.foldmethod = 'expr'
+-- Modified in LSP config to lsp.foldexpr() if supported
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.listchars = { tab = '▶‒', nbsp = '∙', trail = '∙', extends = '▶', precedes = '◀' }
-vim.opt.foldmethod = 'marker'
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -62,5 +65,7 @@ vim.cmd([[
 
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
+-- Copy to system clipboard
+vim.keymap.set({'n', 'v'}, 'Y', '"+y')
 
 vim.keymap.set('n', '<Space><Tab>', function() vim.cmd('b#') end)

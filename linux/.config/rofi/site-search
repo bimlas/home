@@ -1,4 +1,4 @@
-Any    Google                @normal   https://www.google.com/search?q=%s
+Any    DuckDuckGo            @normal   https://www.duckduckgo.com/?q=%s
 Any    Google Maps           @preview  https://www.google.com/maps/search/%s
 Text   Google Translate      @preview  https://translate.google.com/?sl=auto&tl=hu&op=translate&text=%s
 Text   Cambridge Dictionary  @preview  https://dictionary.cambridge.org/dictionary/english/%s
@@ -24,6 +24,7 @@ Code   DevDocs: JavaScript   @preview  https://devdocs.io/#q=javascript%20%s
 Code   DevDocs: Node.js      @preview  https://devdocs.io/#q=nodejs%20%s
 Code   DevDocs: Lua          @preview  https://devdocs.io/#q=lua%20%s
 Code   DevDocs: PostgreSQL   @preview  https://devdocs.io/#q=postgres%20%s
+Code   HTTP status codes     @preview  https://http.dev/%s
 Shell  Cheat.sh              @preview  https://cheat.sh/%s
 Shell  IPLookup              @preview  https://ip-lookup.net/?ip=%s
 Game   NetHack Wiki          @preview  https://nethackwiki.com/mediawiki/index.php?search=%s
