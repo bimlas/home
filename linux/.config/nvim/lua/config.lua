@@ -55,11 +55,32 @@ vim.opt.splitright = true
 -- Used by cursorhold
 vim.opt.updatetime = 500
 
+-- QUICKFIX
+
+-- Bultin plugin, use these commands to filter to given pattern (use ! to remove matching lines)
+-- :Cfilter[!] /{pat}/
+-- :Lfilter[!] /{pat}/
+vim.cmd.packadd("cfilter")
+
 -- COMMAND
 
 vim.cmd([[
   command! MyCopyReference let @+ = expand('%') . ': ' . luaeval("require('nvim-treesitter').statusline({type_patterns = {'class', 'function', 'method'}})")
 ]])
+
+vim.api.nvim_create_user_command("Csort", function()
+  local qf = vim.fn.getqflist()
+  -- Sort by filename (full path) and then line number
+  table.sort(qf, function(a, b)
+    local fa = vim.fn.bufname(a.bufnr)
+    local fb = vim.fn.bufname(b.bufnr)
+    if fa ~= fb then
+      return fa < fb
+    end
+    return a.lnum < b.lnum
+  end)
+  vim.fn.setqflist(qf)
+end, { desc = "Sort quickfix list by filename then line number" })
 
 -- MAPS
 

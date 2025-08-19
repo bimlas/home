@@ -1,7 +1,7 @@
 -- Save your most used SQL queries to a file which opens when you open your editor in PGCli by CTRL-X CTRL-E
 -- Copy the saved queries by <CR> to the query editor
 
-local saved_queries_file = '/media/bimlas/data/magpie/queries.sql'
+local saved_queries_file = vim.fn.expand("~/queries.sql")
 
 vim.api.nvim_create_augroup('regular', {})
 vim.api.nvim_create_autocmd({'VimEnter'}, {
@@ -14,6 +14,24 @@ vim.api.nvim_create_autocmd({'VimEnter'}, {
 vim.api.nvim_create_autocmd({'WinResized'}, {
   group = 'regular',
   command = 'wincmd ='
+})
+
+vim.api.nvim_create_augroup('quickfix_window', {})
+vim.api.nvim_create_autocmd('QuickFixCmdPost', {
+  group = 'quickfix_window',
+  callback = function()
+    -- Sort by filename (full path) and then line number
+    local qf = vim.fn.getqflist()
+    table.sort(qf, function(a, b)
+      local fa = vim.fn.bufname(a.bufnr)
+      local fb = vim.fn.bufname(b.bufnr)
+      if fa ~= fb then
+        return fa < fb
+      end
+      return a.lnum < b.lnum
+    end)
+    vim.fn.setqflist(qf)
+  end,
 })
 
 vim.api.nvim_create_augroup('pgcli_editor', {})

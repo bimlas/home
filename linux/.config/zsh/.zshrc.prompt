@@ -17,9 +17,9 @@ zstyle ':vcs_info:*' actionformats $'\n%F{blue}│ %F{yellow}Git: %b %F{red}(%a)
 
 vcs_stash_info()
 {
-  stash=$(git stash list 2> /dev/null)
+  stash=$(git stash list 2> /dev/null | sed 's/^[^:]\+: WIP on \([^:]\+\):.*/\1/')
   if [[ -n "$stash" ]]; then
-    echo '%F{red}(stash) '
+    echo "%F{red}(stash: ${stash}) "
   fi
 }
 

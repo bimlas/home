@@ -246,7 +246,7 @@ return function(use, cond)
         },
         -- formatters = {
         --   prettierd = {
-        --     append_args = {'--plugin=prettier-plugin-sql'}
+        --     append_args = {'--plugin=/home/bimlas/.local/lib/node_modules/prettier-plugin-sql'}
         --   }
         -- },
         format_on_save = {

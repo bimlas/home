@@ -37,6 +37,9 @@ return function(use, cond)
   --   vim.cmd("colorscheme solarized-osaka")
   -- end }
   use { 'rebelot/kanagawa.nvim', cond = cond, config = function()
+    require('kanagawa').setup({
+      dimInactive = true,
+    })
     vim.cmd('colorscheme kanagawa')
   end }
   -- use { 'mofiqul/vscode.nvim', cond = cond, config = function()
