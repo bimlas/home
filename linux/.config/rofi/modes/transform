@@ -14,7 +14,7 @@
 
 # Open Rofi
 if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
-  rofi -show transform-number -modi transform-number:"${0}"
+  rofi -show transform -modi transform:"${0}"
 
 # List items
 elif [ ${ROFI_RETV} -eq 0 ]; then
@@ -24,6 +24,9 @@ elif [ ${ROFI_RETV} -eq 0 ]; then
 // Parsing ${SELECTED_TEXT} as ...
 Date (milliseconds):            $(node -e "console.log(new Date(parseInt(${SELECTED_TEXT})).toISOString())" 2> /dev/null)
 Date (seconds):                 $(node -e "console.log(new Date(parseInt(${SELECTED_TEXT}) * 1000).toISOString())" 2> /dev/null)
+Timestamp UTC (milliseconds):   $(node -e "console.log(new Date(${SELECTED_TEXT} + 'Z').getTime())" 2> /dev/null)
+Timestamp UTC (seconds):        $(node -e "console.log(new Date(${SELECTED_TEXT} + 'Z').getTime() / 1000)" 2> /dev/null)
+Day of week UTC:                $(node -e "console.log(['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][new Date(${SELECTED_TEXT} + 'Z').getDay()])" 2> /dev/null)
 Hexadecimal -> decimal number:  $(node -e "console.log(BigInt(${SELECTED_TEXT}).toString())" 2> /dev/null)
 Decimal -> hexadecimal number:  $(node -e "console.log('0x' + BigInt(${SELECTED_TEXT}).toString(16))" 2> /dev/null)
 Base64 encode:                  $(node -e "console.log(btoa(${SELECTED_TEXT}))" 2> /dev/null)
@@ -35,7 +38,7 @@ _HEREDOC_
 
 # Copy the value of selected item to the clipboard
 else
-  echo "${1}" | sed 's/^[^:]\+:\s\+//' | xsel --clipboard > /dev/null
+  echo -n "${1}" | sed 's/^[^:]\+:\s\+//' | xsel --clipboard > /dev/null
 
 fi
 255

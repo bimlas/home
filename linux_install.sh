@@ -44,9 +44,10 @@ bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts
 )
 
 # Stable is really old, don't use it
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
-sudo apt update
-sudo apt install -y neovim
+# The Unstable PPA may be also old (months behind the latest release, see https://github.com/neovim/nvim-lspconfig/issues/4023#issuecomment-3212624368)
+# Use latest release instead (https://github.com/neovim/neovim/blob/master/INSTALL.md#pre-built-archives-2)
+sudo rm -rf /opt/nvim-linux-x86_64
+curl --location https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz | sudo tar -xz -C /opt
 
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 
 sudo apt-get install -y nodejs

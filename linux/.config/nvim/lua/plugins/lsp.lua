@@ -13,6 +13,19 @@ return function(use, cond)
       -- 'williamboman/mason-lspconfig.nvim',
       'b0o/schemastore.nvim',
     },
+    run = {
+      -- DON'T UPGRADE UNTIL GLASSWORM TROJAN IS EXISTS
+      -- 'npm install -g @microsoft/compose-language-service',
+      -- 'npm install -g dockerfile-language-server-nodejs',
+      -- 'npm install -g vscode-langservers-extracted',
+      -- 'npm install -g vscode-langservers-extracted',
+      -- 'pip install python-lsp-server',
+      -- 'pip install pyright',
+      -- 'npm install -g vscode-solidity-server',
+      -- 'npm install -g vim-language-server',
+      -- 'npm install -g @vtsls/language-server',
+      -- 'npm install -g yaml-language-server',
+    },
     config = function()
       -- require('mason').setup()
       -- require('mason-lspconfig').setup {
@@ -20,6 +33,7 @@ return function(use, cond)
       -- }
 
       local servers = {
+        'tw5-lang-server', -- WIP
         'docker_compose_language_service', -- npm install -g @microsoft/compose-language-service
         'dockerls',                        -- npm install -g dockerfile-language-server-nodejs
         'eslint',                          -- npm install -g vscode-langservers-extracted
@@ -89,6 +103,7 @@ return function(use, cond)
         },
       }
 
+      local base_on_attach = vim.lsp.config.eslint.on_attach
       local on_attach = function(client, bufnr)
         vim.diagnostic.config({ virtual_text = false, jump = { float = true } })
 
@@ -97,12 +112,15 @@ return function(use, cond)
         end
 
         if client.name == 'eslint' then
+          if not base_on_attach then return end
+          base_on_attach(client, bufnr)
+
           vim.api.nvim_create_augroup('lsp_format_on_save', {
             clear = false
           })
           vim.api.nvim_create_autocmd('BufWritePre', {
             buffer = bufnr,
-            command = 'EslintFixAll',
+            command = 'LspEslintFixAll',
           })
         end
 
@@ -146,20 +164,24 @@ return function(use, cond)
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
       -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-      local lspconfig = require('lspconfig')
       for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup {
+        vim.lsp.config(lsp, {
           on_attach = on_attach,
           capabilities = capabilities,
           settings = settings[lsp],
-        }
+        })
+        vim.lsp.enable(lsp)
       end
 
-      vim.api.nvim_create_augroup('docker_compose_language_service_filetype', {})
       vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         group = 'regular',
         pattern = 'docker-compose.*yml',
         command = ':set filetype=yaml.docker-compose'
+      })
+      vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+        group = 'regular',
+        pattern = '*.tid',
+        command = ':set filetype=tiddlywiki'
       })
     end
   }

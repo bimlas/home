@@ -5,6 +5,8 @@ export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.config/git/bin:$PATH
 export PATH=$HOME/.local/lua-lang-server/bin:$PATH
+# See https://github.com/neovim/neovim/blob/master/INSTALL.md#pre-built-archives-2
+export PATH=/opt/nvim-linux-x86_64/bin:$PATH
 
 if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
