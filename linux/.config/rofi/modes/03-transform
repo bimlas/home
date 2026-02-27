@@ -38,7 +38,9 @@ _HEREDOC_
 
 # Copy the value of selected item to the clipboard
 else
-  echo -n "${1}" | sed 's/^[^:]\+:\s\+//' | xsel --clipboard > /dev/null
+  result=$(echo -n "${1}" | sed 's/^[^:]\+:\s\+//') 
+  echo -n "$result" | xsel --clipboard > /dev/null
+  # Save to primary to be able to transform the result again
+  echo -n "$result" | xsel --primary > /dev/null
 
 fi
-255

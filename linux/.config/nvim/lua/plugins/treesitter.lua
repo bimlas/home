@@ -2,6 +2,10 @@ return function(use, cond)
   use { 'nvim-treesitter/nvim-treesitter',
     cond = cond,
     run = {':TSUpdate'},
+    requires = {
+      'folke/todo-comments.nvim',
+      'nvim-lua/plenary.nvim' -- Needed by todo-comments
+    },
     config = function()
       require('nvim-treesitter.configs').setup {
         auto_install = true,
@@ -39,6 +43,15 @@ return function(use, cond)
           additional_vim_regex_highlighting = false,
         },
       }
+      require('todo-comments').setup({
+        highlight = {
+          comments_only = false
+        },
+        keywords = {
+          DONE = { icon = " ", color = "hint" },
+          FAIL = { icon = " ", color = "test" }
+        }
+      })
     end
   }
 

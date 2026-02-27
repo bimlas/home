@@ -1,0 +1,12 @@
+#!/bin/bash
+# Get network ID
+
+# Open Rofi
+if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
+  rofi -show network-id -modi network-id:"${0}"
+
+# List items
+elif [ ${ROFI_RETV} -eq 0 ]; then
+  grep 'id:' /media/bimlas/data/magpie/magpie-config/src/network/*/index.ts | sort
+
+fi

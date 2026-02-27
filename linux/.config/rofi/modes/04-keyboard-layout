@@ -3,7 +3,7 @@
 
 # Open Rofi
 if [ ${?} -eq 0 ] && [ -z ${ROFI_RETV} ]; then
-  rofi -show transform-number -modi transform-number:"${0}"
+  rofi -show keyboard-layout -modi keyboard-layout:"${0}"
 
 # List items
 elif [ ${ROFI_RETV} -eq 0 ]; then
@@ -17,4 +17,3 @@ else
   setxkbmap "${1}"
 
 fi
-255
