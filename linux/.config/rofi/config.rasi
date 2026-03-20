@@ -21,21 +21,56 @@ configuration {
 
 @theme "Arc"
 
+// Tokyo Night Moon
+
+// * {
+//   text-color: #c8d3f5f0;
+//   foreground: #c8d3f5f0;
+//   background: #00000000;
+//   normal-background: @background;
+//   normal-foreground: @foreground;
+//   active-background: #2f334dff;
+//   active-foreground: @foreground;
+//   alternate-normal-background: @normal-background;
+//   alternate-normal-foreground: @normal-foreground;
+//   alternate-active-background: @active-background;
+//   alternate-active-foreground: @active-foreground;
+//   selected-normal-background: #394b70ff;
+//   selected-normal-foreground: #c3e88dff;
+//   selected-active-background: #394b70ff;
+//   selected-active-foreground: @selected-normal-foreground;
+//   separatorcolor: @selected-normal-background;
+// }
+//
+// window {
+//   border-color: #00000000;
+//   padding: 0;
+// }
+//
+// mainbox {
+//   border-color: #82aaffff;
+//   background-image: linear-gradient(to bottom, #394b70ff, #222436ff, #222436ff, #222436ff, #222436ff, #222436ff, #394b70ff);
+//   border: 2px;
+//   padding: 16px;
+// }
+
+// Flexoki Light
+
 * {
-  text-color: #c8d3f5f0;
-  foreground: #c8d3f5f0;
-  background: #00000000;
+  text-color: #100f0ff0;
+  foreground: #100f0ff0;
+  background: #fffcf0f0;
   normal-background: @background;
   normal-foreground: @foreground;
-  active-background: #2f334dff;
+  active-background: #f9f6ebff;
   active-foreground: @foreground;
   alternate-normal-background: @normal-background;
   alternate-normal-foreground: @normal-foreground;
   alternate-active-background: @active-background;
   alternate-active-foreground: @active-foreground;
-  selected-normal-background: #394b70ff;
-  selected-normal-foreground: #c3e88dff;
-  selected-active-background: #394b70ff;
+  selected-normal-background: #f9f6ebff;
+  selected-normal-foreground: #ad8301ff;
+  selected-active-background: #efece1ff;
   selected-active-foreground: @selected-normal-foreground;
   separatorcolor: @selected-normal-background;
 }
@@ -46,8 +81,8 @@ window {
 }
 
 mainbox {
-  border-color: #82aaffff;
-  background-image: linear-gradient(to bottom, #394b70ff, #222436ff, #222436ff, #222436ff, #222436ff, #222436ff, #394b70ff);
+  border-color: #fffcf0ff;
+  background-image: linear-gradient(to bottom, #dad8ceff, #fffcf0f0, #fffcf0f0, #fffcf0f0, #fffcf0f0, #fffcf0f0, #dad8ceff);
   border: 2px;
   padding: 16px;
 }

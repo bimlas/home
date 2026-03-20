@@ -1,4 +1,7 @@
 return function(use, cond)
+  -- Best for sunlighted monitor
+  -- vim.cmd('colorscheme default')
+
   -- use { 'navarasu/onedark.nvim', cond = cond, config = function()
   --   require('onedark').setup {
   --     style = 'warmer'
@@ -6,27 +9,28 @@ return function(use, cond)
   --   require('onedark').load()
   -- end }
   -- use { 'rrethy/nvim-base16', cond = cond, config = function()
-  --   vim.cmd('colorscheme base16-gruvbox-dark-pale')
+  --   vim.cmd('colorscheme base16-tomorrow-night')
+  --   -- vim.cmd('colorscheme base16-gruvbox-dark-pale')
   -- end }
-  use { 'folke/tokyonight.nvim', cond = cond, config = function()
-    require("tokyonight").setup({
-      on_highlights = function(highlights, colors)
-        highlights.LineNr = {
-          fg = colors.fg_sidebar,
-          bg = colors.bg_sidebar
-        }
-        highlights.SignColumn = {
-          fg = colors.fg_sidebar,
-          bg = colors.bg_sidebar
-        }
-        highlights.CursorLineNr = {
-          fg = colors.teal,
-          bg = colors.bg_sidebar
-        }
-      end
-    })
-    vim.cmd('colorscheme tokyonight-moon')
-  end }
+  -- use { 'folke/tokyonight.nvim', cond = cond, config = function()
+  --   require("tokyonight").setup({
+  --     on_highlights = function(highlights, colors)
+  --       highlights.LineNr = {
+  --         fg = colors.fg_sidebar,
+  --         bg = colors.bg_sidebar
+  --       }
+  --       highlights.SignColumn = {
+  --         fg = colors.fg_sidebar,
+  --         bg = colors.bg_sidebar
+  --       }
+  --       highlights.CursorLineNr = {
+  --         fg = colors.teal,
+  --         bg = colors.bg_sidebar
+  --       }
+  --     end
+  --   })
+  --   vim.cmd('colorscheme tokyonight-moon')
+  -- end }
   -- use { "EdenEast/nightfox.nvim", cond = cond, config = function()
   --   vim.cmd("colorscheme nightfox")
   -- end }
@@ -36,14 +40,17 @@ return function(use, cond)
   --   })
   --   vim.cmd("colorscheme solarized-osaka")
   -- end }
-  use { 'rebelot/kanagawa.nvim', cond = cond, config = function()
-    require('kanagawa').setup({
-      dimInactive = true,
-    })
-    -- vim.cmd('colorscheme kanagawa')
-  end }
-  -- use { 'mofiqul/vscode.nvim', cond = cond, config = function()
-  --   -- vim.o.background = 'light'
-  --   require('vscode').load()
+  -- use { 'rebelot/kanagawa.nvim', cond = cond, config = function()
+  --   require('kanagawa').setup({
+  --     dimInactive = true,
+  --   })
+  --   -- vim.cmd('colorscheme kanagawa')
   -- end }
+  use { 'mofiqul/vscode.nvim', cond = cond, config = function()
+    -- vim.o.background = 'light'
+    -- require('vscode').load()
+  end }
+  use { 'kepano/flexoki-neovim', as = 'flexoki', cond = cond, config = function ()
+    vim.cmd('colorscheme flexoki-light')
+  end }
 end

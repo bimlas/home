@@ -36,15 +36,20 @@ else
   TITLE=$(echo "${1}" | sed 's/ .*//')
   COMMAND=$(echo "${1}" | sed 's/[^ ]\+ \+//')
 
-  nohup xfce4-terminal \
-    --title "${TITLE}" \
-    --execute ${SHELL} --interactive --login -c "${COMMAND}" \
-    > /dev/null &
-  ## NVIM
-  # nohup xfce4-terminal \
-  #   --title "${TITLE}" \
-  #   -x nvim -u ~/.config/nvim/init.nvim_as_tmux.lua \
-  #   "${COMMAND}" \
-  #   > /dev/null &
+  if [[ "$COMMAND" =~ ^\[GUI\]* ]]; then
+    COMMAND=$(echo "${COMMAND}" | sed 's/^\[GUI\] \+//')
+    nohup ${COMMAND} > /dev/null &
+  else
+    nohup xfce4-terminal \
+      --title "${TITLE}" \
+      --execute ${SHELL} --interactive --login -c "${COMMAND}" \
+      > /dev/null &
+    ## NVIM
+    # nohup xfce4-terminal \
+    #   --title "${TITLE}" \
+    #   -x nvim -u ~/.config/nvim/init.nvim_as_tmux.lua \
+    #   "${COMMAND}" \
+    #   > /dev/null &
+  fi
 
 fi

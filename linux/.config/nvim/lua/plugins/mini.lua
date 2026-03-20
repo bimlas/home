@@ -42,5 +42,8 @@ return function(use, cond)
 
       -- Available in vanilla NeoVim
       -- require('mini.comment').setup({})
+
+      -- Not bad, but grep_live has no fuzzy search
+      -- require('mini.pick').setup()
     end }
 end

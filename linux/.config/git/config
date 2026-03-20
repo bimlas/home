@@ -546,7 +546,7 @@
   ; less
   ;   -S: Do not break long lines (useful for log --graph with branches)
   ;   -i: Smart case in search
-  pager = "delta | GREP_COLOR='1;37' grep --color=always -E '(Merge (commit|branch|pull request)|(fixup|squash)!|\\<WIP\\>).*|$' | less --tabs=4 -SiRFX"
+  pager = "delta --light | GREP_COLOR='1;37' grep --color=always -E '(Merge (commit|branch|pull request)|(fixup|squash)!|\\<WIP\\>).*|$' | less --tabs=4 -SiRFX"
 
   ; Do not modify EOL.
   autocrlf = "false"

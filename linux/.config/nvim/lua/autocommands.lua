@@ -15,6 +15,19 @@ vim.api.nvim_create_autocmd({'WinResized'}, {
   group = 'regular',
   command = 'wincmd ='
 })
+vim.api.nvim_create_autocmd({'TextYankPost'}, {
+  group = 'regular',
+  callback = function()
+    vim.hl.on_yank {timeout=1000}
+  end
+})
+-- Some colorschemes has bad Folded color (Flexoki light)
+vim.api.nvim_create_autocmd({'ColorScheme'}, {
+  group = 'regular',
+  callback = function()
+    vim.api.nvim_set_hl(0, "Folded", { link = "Comment" })
+  end
+})
 
 vim.api.nvim_create_augroup('quickfix_window', {})
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {

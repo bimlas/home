@@ -193,6 +193,7 @@ return function(use, cond)
     requires = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'davidsierradz/cmp-conventionalcommits',
       -- Snippet management
       -- 'hrsh7th/cmp-vsnip',
       -- 'hrsh7th/vim-vsnip',
@@ -250,6 +251,7 @@ return function(use, cond)
           end, { "i", "s" }),
         }),
         sources = {
+          { name = 'conventionalcommits' },
           -- { name = 'vsnip' },
           { name = 'nvim_lsp' },
           { name = 'path' },

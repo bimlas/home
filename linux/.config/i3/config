@@ -185,7 +185,12 @@ bindsym $mod+o           exec --no-startup-id "x-www-browser"
 bindsym $mod+Tab         exec --no-startup-id "/bin/bash -c 'WINDOW_MANAGER=i3 PROJECTS_DIR=/media/bimlas/data/magpie $HOME/.config/rofi/modes/window-list'"
 bindsym $mod+i           exec --no-startup-id "$HOME/.config/rofi/modes/INDEX"
 bindsym $mod+Ctrl+v      exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-bindsym $mod+Ctrl+Shift+v exec --no-startup-id "sleep 0.5 && xsel -o --clipboard | xargs -I{} xte 'str {}'"
+# NOTE: Cannot type slowly
+# bindsym $mod+Ctrl+Shift+v exec --no-startup-id "sleep 0.5 && xsel -o --clipboard | xargs -I{} xte 'str {}'"
+# NOTE: Different keyboard layout makes it useless (`Z` or `>` is not typed)
+# bindsym $mod+Ctrl+Shift+v exec --no-startup-id "notify-send 'Typing from clipboard ... (try with different layouts if not working, like setxkbmap us)'; sleep 0.5 && xsel -o --clipboard | sed 's/./&\n/g' | while read -r char; do xte 'str '$char; sleep 0.8; done; notify-send 'Typing from clipboard done'"
+# NOTE: Typing `>` not works sometimes
+bindsym $mod+Ctrl+Shift+v exec --no-startup-id "notify-send 'Typing from clipboard ...'; sleep 0.5 && xsel -o --clipboard | xdotool type --clearmodifiers --delay 800 --file -; notify-send 'Typing from clipboard done'"
 bindsym Print            exec --no-startup-id "xfce4-screenshooter"
 bindsym Ctrl+Print       exec --no-startup-id "xfce4-screenshooter -r"
 bindsym Ctrl+Shift+Print exec --no-startup-id "obs --startrecording --minimize-to-tray"
@@ -268,9 +273,13 @@ bar {
 # Colors
 # class                 border  backgr. text    indicator child_border
 # Tokyo Night Moon
-client.focused          #82aaff #82aaff #1b1d2b #ff966c   #82aaff
-client.focused_inactive #1b1d2b #828bb8 #1b1d2b #ff966c   #1b1d2b
-client.unfocused        #1b1d2b #3b4261 #c8d3f5 #ff966c   #1b1d2b
+#client.focused          #82aaff #82aaff #1b1d2b #ff966c   #82aaff
+#client.focused_inactive #1b1d2b #828bb8 #1b1d2b #ff966c   #1b1d2b
+#client.unfocused        #1b1d2b #3b4261 #c8d3f5 #ff966c   #1b1d2b
+# Flexoki Light
+client.focused          #100f0f #e8cf83 #100f0f #fffcf0   #100f0f
+client.focused_inactive #100f0f #fffcf0 #100f0f #fffcf0   #100f0f
+client.unfocused        #100f0f #dad8ce #100f0f #fffcf0   #100f0f
 
 # Needs i3 v4.22
 gaps inner 8px
