@@ -36,6 +36,8 @@ return function(use, cond)
           },
         })
 
+      require('mini.notify').setup()
+
       -- Has no fuzzy search
       -- require('mini.completion').setup(
       -- )

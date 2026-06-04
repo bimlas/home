@@ -2,6 +2,8 @@
 
 autoload -U colors && colors
 
+# Use Ctrl+X Ctrl+E instead, or https://github.com/jeffreytse/zsh-vi-mode
+# setopt VI
 setopt NO_BEEP
 
 export HISTSIZE=1000
