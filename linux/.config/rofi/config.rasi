@@ -95,3 +95,13 @@ button {
   padding: 2px;
   border-radius: 0px 0px 12px 12px;
 }
+
+// Full screen
+* {
+  background: #00000000;
+}
+window {
+  transparency: "real"; // Needs compositor like Picom
+  fullscreen: true;
+  padding: 30%;
+}
